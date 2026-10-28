@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 """
 Master Multi-Language Audio Generator for Basic Language School (basiclanguage.school)
-Uses Microsoft Edge Neural TTS to generate studio-quality native audio files:
+Uses Microsoft Edge Neural TTS to generate studio-grade native MP3 audio files:
   - Russian (ru-RU-SvetlanaNeural) -> public/audio/ru/
   - English (en-US-JennyNeural)    -> public/audio/en/
+  - Spanish (es-ES-AlvaroNeural)   -> public/audio/es/
+  - French  (fr-FR-DeniseNeural)   -> public/audio/fr/
 
 Usage:
-  python3 scripts/generate-all-audio.py --lang ru
+  python3 scripts/generate-all-audio.py --lang es
+  python3 scripts/generate-all-audio.py --lang fr
   python3 scripts/generate-all-audio.py --lang en
   python3 scripts/generate-all-audio.py --all
   python3 scripts/generate-all-audio.py --force
@@ -43,6 +46,18 @@ CONFIGS = {
         "data_file": PROJECT_ROOT / "src" / "data" / "languages" / "en" / "englishData.ts",
         "output_dir": PUBLIC_AUDIO / "en",
         "manifest": PUBLIC_AUDIO / "en" / "index.json"
+    },
+    "es": {
+        "voice": "es-ES-AlvaroNeural",
+        "data_file": PROJECT_ROOT / "src" / "data" / "languages" / "es" / "spanishData.ts",
+        "output_dir": PUBLIC_AUDIO / "es",
+        "manifest": PUBLIC_AUDIO / "es" / "index.json"
+    },
+    "fr": {
+        "voice": "fr-FR-DeniseNeural",
+        "data_file": PROJECT_ROOT / "src" / "data" / "languages" / "fr" / "frenchData.ts",
+        "output_dir": PUBLIC_AUDIO / "fr",
+        "manifest": PUBLIC_AUDIO / "fr" / "index.json"
     }
 }
 
@@ -52,7 +67,10 @@ def normalize_text(text: str) -> str:
 
 
 def get_audio_filename(text: str) -> str:
-    clean = re.sub(r"[?.,!]", "", text).strip().lower()
+    # Remove punctuation, notes in parentheses, slashes
+    clean = text.split('/')[0]
+    clean = re.sub(r"\s*\([^)]*\)\s*", "", clean)
+    clean = re.sub(r"[?.,!¡¿'’\"]", "", clean).strip().lower()
     clean = unicodedata.normalize("NFC", clean)
     return re.sub(r"\s+", "_", clean) + ".mp3"
 
@@ -100,9 +118,9 @@ def parse_russian(data_file: Path):
     return categories
 
 
-def parse_english(data_file: Path):
+def parse_standard_lang(data_file: Path, lang_id: str):
     content = data_file.read_text(encoding="utf-8")
-    categories = { "alphabet": [], "examples": [], "phrases": [], "numbers": [], "words": [] }
+    categories = { "alphabet": [], "examples": [], "phrases": [], "numbers": [], "words": [], "time": [] }
 
     # Alphabet
     alpha_match = re.search(r"const alphabet:\s*AlphabetItem\[\]\s*=\s*\[([\s\S]*?)\];", content)
@@ -131,6 +149,12 @@ def parse_english(data_file: Path):
     if w_match:
         for w in re.findall(r"phrase:\s*['\"]([^'\"]+)['\"]", w_match.group(1)):
             categories["words"].append({"text": w, "spoken": w, "filename": get_audio_filename(w)})
+
+    # Time
+    t_match = re.search(r"const time:\s*PhraseItem\[\]\s*=\s*\[([\s\S]*?)\];", content)
+    if t_match:
+        for t in re.findall(r"phrase:\s*['\"]([^'\"]+)['\"]", t_match.group(1)):
+            categories["time"].append({"text": t, "spoken": t, "filename": get_audio_filename(t)})
 
     return categories
 
@@ -170,7 +194,7 @@ async def process_language(lang_id: str, force: bool = False):
     print(f"📁 Target Dir: {out_base.relative_to(PROJECT_ROOT)}/")
     print("=" * 60)
 
-    categories = parse_russian(data_file) if lang_id == "ru" else parse_english(data_file)
+    categories = parse_russian(data_file) if lang_id == "ru" else parse_standard_lang(data_file, lang_id)
     sem = asyncio.Semaphore(5)
 
     success = 0
@@ -185,6 +209,8 @@ async def process_language(lang_id: str, force: bool = False):
     }
 
     for cat_name, items in categories.items():
+        if not items:
+            continue
         cat_dir = out_base / cat_name
         cat_dir.mkdir(parents=True, exist_ok=True)
         manifest["files"][cat_name] = []
@@ -224,9 +250,9 @@ async def main():
         if idx + 1 < len(sys.argv):
             langs = [sys.argv[idx + 1]]
     elif "--all" in sys.argv:
-        langs = ["en", "ru"]
+        langs = ["es", "fr", "en", "ru"]
     else:
-        langs = ["en"] # Default to en since Russian is already mostly generated
+        langs = ["es", "fr"]
 
     for l in langs:
         if l in CONFIGS:

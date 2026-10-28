@@ -1,6 +1,8 @@
 import { LanguageMeta, SupportedLanguageId } from './types';
 import russianData from '../russianData';
 import englishData from './enData';
+import spanishData from './es/spanishData';
+import frenchData from './fr/frenchData';
 
 export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
   ru: {
@@ -82,6 +84,86 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
       },
     },
     data: englishData,
+  },
+  es: {
+    id: 'es',
+    name: 'Spanish',
+    nativeName: 'Español',
+    flag: '🇪🇸',
+    code: 'es-ES',
+    ttsVoice: 'es-ES-AlvaroNeural',
+    hasKeyboard: false,
+    hasAlphabet: true,
+    hasTimeGuide: true,
+    appName: 'Basic Spanish',
+    domain: 'basicspanish.school',
+    seo: {
+      alphabet: {
+        title: 'Spanish Alphabet | Basic Spanish',
+        description: 'Learn the letters of the Spanish alphabet including ñ with native pronunciation.',
+      },
+      phrases: {
+        title: 'Essential Spanish Phrases | Basic Spanish',
+        description: 'Learn practical Spanish phrases for conversation and travel.',
+      },
+      numbers: {
+        title: 'Spanish Numbers | Basic Spanish',
+        description: 'Master numbers in Spanish from 0 to 1,000.',
+      },
+      time: {
+        title: 'Telling Time in Spanish | Basic Spanish',
+        description: 'Learn how to ask and tell time in Spanish.',
+      },
+      words: {
+        title: 'Core Spanish Vocabulary | Basic Spanish',
+        description: 'Essential high-frequency Spanish words.',
+      },
+      quiz: {
+        title: 'Spanish Practice Quiz | Basic Spanish',
+        description: 'Test your Spanish knowledge with interactive quizzes.',
+      },
+    },
+    data: spanishData,
+  },
+  fr: {
+    id: 'fr',
+    name: 'French',
+    nativeName: 'Français',
+    flag: '🇫🇷',
+    code: 'fr-FR',
+    ttsVoice: 'fr-FR-HenriNeural',
+    hasKeyboard: false,
+    hasAlphabet: true,
+    hasTimeGuide: true,
+    appName: 'Basic French',
+    domain: 'basicfrench.school',
+    seo: {
+      alphabet: {
+        title: 'French Alphabet | Basic French',
+        description: 'Master the French alphabet with native audio guides and examples.',
+      },
+      phrases: {
+        title: 'Essential French Phrases | Basic French',
+        description: 'Learn practical French phrases for daily conversation and travel.',
+      },
+      numbers: {
+        title: 'French Numbers | Basic French',
+        description: 'Master numbers in French from 0 to 1,000.',
+      },
+      time: {
+        title: 'Telling Time in French | Basic French',
+        description: 'Learn how to ask and tell time in French.',
+      },
+      words: {
+        title: 'Core French Vocabulary | Basic French',
+        description: 'Essential high-frequency French words.',
+      },
+      quiz: {
+        title: 'French Practice Quiz | Basic French',
+        description: 'Test your French knowledge with interactive quizzes.',
+      },
+    },
+    data: frenchData,
   },
 };
 

@@ -24,9 +24,13 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
   const { currentLanguage } = useLanguage();
   const effectiveLangId = (lang && lang.toLowerCase().startsWith('en'))
     ? 'en'
-    : (lang && lang.toLowerCase().startsWith('ru'))
-      ? 'ru'
-      : currentLanguage;
+    : (lang && lang.toLowerCase().startsWith('es'))
+      ? 'es'
+      : (lang && lang.toLowerCase().startsWith('fr'))
+        ? 'fr'
+        : (lang && lang.toLowerCase().startsWith('ru'))
+          ? 'ru'
+          : currentLanguage;
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [initialized, setInitialized] = useState(false);
@@ -146,7 +150,7 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
     const cleanText = normalizedText
       .split('/')[0]
       .replace(/\s*\([^)]*\)\s*/g, '')
-      .replace(/[?.,!]/g, '')
+      .replace(/[?.,!¡¿'’"]/g, '')
       .trim();
     const fileName = cleanText.replace(/\s+/g, '_');
     
@@ -225,7 +229,13 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
   
   // Speech synthesis fallback
   const playSpeechSynthesis = () => {
-    const speechLang = lang || (effectiveLangId === 'en' ? 'en-US' : 'ru-RU');
+    const langCodeMap: Record<string, string> = {
+      en: 'en-US',
+      es: 'es-ES',
+      fr: 'fr-FR',
+      ru: 'ru-RU',
+    };
+    const speechLang = lang || langCodeMap[effectiveLangId] || 'en-US';
     speak(
       text, 
       speechLang,

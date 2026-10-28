@@ -22,6 +22,80 @@ const voiceCache: {
 /**
  * Get available Russian voices from the browser
  */
+/**
+ * Prioritized high-quality native voice selection by language code
+ */
+// Exclude novelty/joke/creepy voices from browser speech synthesis
+const NOVELTY_VOICE_NAMES = [
+  'whisper', 'bad news', 'bahh', 'bells', 'boing', 'bubbles', 'cellos',
+  'deranged', 'good news', 'hysterical', 'pipe organ', 'trinoids',
+  'wobble', 'zarvox', 'ralph', 'albert', 'fred', 'jester', 'organ', 'superstar'
+];
+
+const isNoveltyVoice = (voice: SpeechSynthesisVoice): boolean => {
+  const lowerName = voice.name.toLowerCase();
+  return NOVELTY_VOICE_NAMES.some(novelty => lowerName.includes(novelty));
+};
+
+export const getBestVoiceForLang = (lang: string): SpeechSynthesisVoice | null => {
+  if (!window.speechSynthesis) return null;
+  const allVoices = window.speechSynthesis.getVoices();
+  if (allVoices.length === 0) return null;
+
+  const targetLang = (lang || 'en').toLowerCase().trim();
+  const prefix = targetLang.split('-')[0];
+
+  // Specific high quality native voice names (macOS / Windows / Chrome / Edge)
+  const priorityVoiceNames: Record<string, string[]> = {
+    fr: ['Thomas', 'Amélie', 'Audrey', 'Aurelie', 'Marie', 'Céline', 'Henri', 'Denise', 'Paul', 'Google français'],
+    es: ['Mónica', 'Paulina', 'Jorge', 'Diego', 'Alvaro', 'Elvira', 'Lucia', 'Carlos', 'Google español'],
+    ru: ['Milena', 'Yelena', 'Tatyana', 'Dmitry', 'Svetlana', 'Pavel', 'Google русский'],
+    en: ['Samantha', 'Daniel', 'Karen', 'Victoria', 'Jenny', 'Guy', 'Alex', 'Google US English'],
+  };
+
+  // 1. Check for known high-quality native voice names matching target prefix
+  const preferredNames = priorityVoiceNames[prefix] || [];
+  for (const name of preferredNames) {
+    const found = allVoices.find(v => 
+      v.name.toLowerCase().includes(name.toLowerCase()) && 
+      v.lang.toLowerCase().replace('_', '-').startsWith(prefix)
+    );
+    if (found) return found;
+  }
+
+  // 2. Exact language match (e.g., 'fr-FR', 'es-ES') with natural/online/premium/enhanced tag
+  const premiumExact = allVoices.find(v => 
+    v.lang.toLowerCase().replace('_', '-') === targetLang &&
+    (v.name.toLowerCase().includes('natural') || v.name.toLowerCase().includes('premium') || v.name.toLowerCase().includes('enhanced'))
+  );
+  if (premiumExact) return premiumExact;
+
+  // 3. Exact language match without english in voice name
+  const exact = allVoices.find(v => 
+    v.lang.toLowerCase().replace('_', '-') === targetLang && 
+    !v.name.toLowerCase().includes('english') && !isNoveltyVoice(v)
+  );
+  if (exact) return exact;
+
+  // 4. Any voice matching language prefix (fr, es, ru) strictly avoiding cross-language english voices
+  const matchingPrefix = allVoices.find(v => 
+    v.lang.toLowerCase().replace('_', '-').startsWith(prefix) && 
+    !v.name.toLowerCase().includes('english') && !isNoveltyVoice(v)
+  );
+  if (matchingPrefix) return matchingPrefix;
+
+  // 5. Any clean voice matching language prefix (strictly avoiding novelty / whisper voices)
+  const cleanVoice = allVoices.find(v => 
+    v.lang.toLowerCase().replace('_', '-').startsWith(prefix) && 
+    !isNoveltyVoice(v)
+  );
+  if (cleanVoice) return cleanVoice;
+
+  // 6. Last resort fallback
+  const anyPrefix = allVoices.find(v => v.lang.toLowerCase().replace('_', '-').startsWith(prefix));
+  return anyPrefix || null;
+};
+
 export const getRussianVoices = (): SpeechSynthesisVoice[] => {
   if (!window.speechSynthesis) return [];
   
@@ -219,10 +293,13 @@ const playWithBrowserTTS = (
   // Set language
   utterance.lang = lang;
   
-  // Find best voice
-  const voice = getBestRussianVoice();
-  if (voice) {
-    utterance.voice = voice;
+  // Find best native voice for the selected language
+  const bestVoice = getBestVoiceForLang(lang);
+  if (bestVoice) {
+    utterance.voice = bestVoice;
+  } else if (lang.toLowerCase().startsWith('ru')) {
+    const voice = getBestRussianVoice();
+    if (voice) utterance.voice = voice;
   }
   
   // Set event handlers
