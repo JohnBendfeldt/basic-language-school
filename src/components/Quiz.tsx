@@ -10,7 +10,8 @@ import {
   NUMBER_TABLE, 
   extractDigit, 
   resolveTranslation, 
-  buildQuizQuestionHint 
+  buildQuizQuestionHint,
+  getAlphabetQuizHint 
 } from '../utils/translationResolver';
 import { UIStrings } from '../data/translations';
 
@@ -550,8 +551,14 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           setCurrentQuestion({
             type: 'alphabet',
             prompt: character,
-            answer: 'soft sign/soft',
-            hint: `What type of sign is "${character}"?`,
+            answer: 'soft sign/soft/мягкий знак/мягкий',
+            hint: baseLanguage === 'ru' 
+              ? `Какой это знак: «${character}»?` 
+              : baseLanguage === 'es'
+                ? `¿Qué tipo de signo es «${character}»?`
+                : baseLanguage === 'fr'
+                  ? `Quel type de signe est « ${character} » ?`
+                  : `What type of sign is "${character}"?`,
             targetAudioWord: character,
             russian: character,
             isTargetPrompt: true,
@@ -561,8 +568,14 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           setCurrentQuestion({
             type: 'alphabet',
             prompt: character,
-            answer: 'hard sign/hard',
-            hint: `What type of sign is "${character}"?`,
+            answer: 'hard sign/hard/твёрдый знак/твердый знак/твёрдый/твердый',
+            hint: baseLanguage === 'ru' 
+              ? `Какой это знак: «${character}»?` 
+              : baseLanguage === 'es'
+                ? `¿Qué tipo de signo es «${character}»?`
+                : baseLanguage === 'fr'
+                  ? `Quel type de signe est « ${character} » ?`
+                  : `What type of sign is "${character}"?`,
             targetAudioWord: character,
             russian: character,
             isTargetPrompt: true,
@@ -574,9 +587,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             type: 'alphabet',
             prompt: character,
             answer: acceptedAnswers.join('/'),
-            hint: currentLanguage === 'ru'
-              ? `What sound does the Cyrillic letter "${character}" make?`
-              : `Type the letter "${character}" or listen to its sound in ${currentMeta.name}:`,
+            hint: getAlphabetQuizHint(character, currentLanguage, baseLanguage, currentMeta.name),
             targetAudioWord: character,
             russian: character,
             isTargetPrompt: true,
@@ -635,8 +646,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             rawMeaning.includes('Asking for') ||
             rawMeaning.includes('Universal friendly');
 
-          if (isVerboseDefinition) {
-            // Pedagogical Rule: Complex definition is the prompt, simplest single word is the answer!
+          if (isVerboseDefinition && baseLanguage === currentLanguage) {
+            // Pedagogical Rule for monolingual practice: Complex definition is the prompt, simplest single word is the answer!
             const promptText = rawMeaning.replace(/^(Noun|Verb):\s*/i, '').trim();
             setCurrentQuestion({
               type: selected.category,
@@ -650,12 +661,13 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               id: selected.id
             });
           } else if (selected.isRussianToEnglish) {
-            // Standard Target -> Base
+            // Standard Target -> Base: prompt is target word, answer is baseWord (or target word for flexibility)
             const promptText = targetWord;
+            const cleanAnswer = `${baseWord}/${targetWord}`;
             setCurrentQuestion({
               type: selected.category,
               prompt: promptText,
-              answer: baseWord.toLowerCase(),
+              answer: cleanAnswer.toLowerCase(),
               hint: buildQuizQuestionHint(promptText, true, currentLanguage, baseLanguage),
               targetAudioWord: promptText,
               promptAudioWord: promptText,
@@ -664,12 +676,13 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               id: selected.id
             });
           } else {
-            // Standard Base -> Target
+            // Standard Base -> Target: prompt is base word in learner's tongue, answer is target word
             const promptText = baseWord;
+            const cleanAnswer = `${targetWord}/${baseWord}`;
             setCurrentQuestion({
               type: selected.category,
               prompt: promptText,
-              answer: targetWord.toLowerCase(),
+              answer: cleanAnswer.toLowerCase(),
               hint: buildQuizQuestionHint(promptText, false, currentLanguage, baseLanguage),
               targetAudioWord: targetWord,
               promptAudioWord: promptText,
@@ -1175,9 +1188,16 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     setShowKeyboard(prev => !prev);
   };
 
-  const needsRussianKeyboard = currentLanguage === 'ru' && currentQuestion && 
+  const needsRussianKeyboard = Boolean(
+    currentQuestion && 
     !currentQuestion.type.includes('alphabet') && 
-    currentQuestion.hint.includes('Russian');
+    (
+      (currentLanguage === 'ru' && !currentQuestion.isTargetPrompt) ||
+      (baseLanguage === 'ru' && currentQuestion.isTargetPrompt) ||
+      currentQuestion.hint.includes('Russian') ||
+      currentQuestion.hint.includes('русском')
+    )
+  );
 
   const combinationStarters = ['y', 'Y', 'z', 'Z', 's', 'S', 'c', 'C', 't', 'T', 'k', 'K'];
   const combinationFollowers = {
