@@ -153,4 +153,54 @@ describe('Multi-Language Core Architecture', () => {
       expect(screen.getByText('French')).toBeInTheDocument();
     });
   });
+
+  it('renders LanguageSwitcher as a centered modal with backdrop and close button', () => {
+    render(
+      <LanguageProvider>
+        <LanguageSwitcher />
+      </LanguageProvider>
+    );
+
+    // Click trigger to open
+    const trigger = screen.getByRole('button', { name: /Current language pair/i });
+    fireEvent.click(trigger);
+
+    // Check modal dialog and backdrop
+    const dialog = screen.getByRole('dialog', { name: /Language selection modal/i });
+    expect(dialog).toBeInTheDocument();
+    expect(dialog).toHaveClass('language-modal-container');
+
+    // Close button should be present
+    const closeBtn = screen.getByRole('button', { name: 'Close modal' });
+    expect(closeBtn).toBeInTheDocument();
+
+    // Clicking close button should close modal
+    fireEvent.click(closeBtn);
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+
+  it('closes LanguageSwitcher modal when pressing Escape or clicking backdrop', () => {
+    render(
+      <LanguageProvider>
+        <LanguageSwitcher />
+      </LanguageProvider>
+    );
+
+    // Open
+    fireEvent.click(screen.getByRole('button', { name: /Current language pair/i }));
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+
+    // Press Escape
+    fireEvent.keyDown(window, { key: 'Escape' });
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+
+    // Open again
+    fireEvent.click(screen.getByRole('button', { name: /Current language pair/i }));
+    const backdrop = document.querySelector('.language-modal-backdrop');
+    expect(backdrop).toBeInTheDocument();
+
+    // Click backdrop
+    fireEvent.click(backdrop!);
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
 });

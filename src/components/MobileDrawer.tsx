@@ -1,0 +1,324 @@
+import React, { useState, useEffect } from 'react';
+import {
+  FaTimes,
+  FaTachometerAlt,
+  FaChartLine,
+  FaUser,
+  FaSignInAlt,
+  FaSignOutAlt,
+  FaExchangeAlt,
+  FaShieldAlt,
+  FaFileContract,
+  FaDownload,
+  FaCheck,
+  FaGlobe
+} from 'react-icons/fa';
+import { useLanguage, SpeechSpeed } from '../contexts/LanguageContext';
+import { FlagIcon } from './FlagIcon';
+import AuthModal from './AuthModal';
+import ProgressModal from './ProgressModal';
+import { supabase, signOutUser } from '../services/supabaseClient';
+import { ProgressService } from '../services/progressService';
+
+interface MobileDrawerProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onNavigate: (section: string) => void;
+  installPrompt?: any;
+  onInstallClick?: () => void;
+}
+
+const SPEEDS: { value: SpeechSpeed; label: string; desc: string }[] = [
+  { value: 0.5, label: '0.50×', desc: 'Slow' },
+  { value: 0.75, label: '0.75×', desc: 'Learner' },
+  { value: 0.9, label: '0.90×', desc: 'Relaxed' },
+  { value: 1.0, label: '1.0×', desc: 'Standard' },
+  { value: 1.1, label: '1.10×', desc: 'Brisk' },
+  { value: 1.25, label: '1.25×', desc: 'Fast' },
+];
+
+export const MobileDrawer: React.FC<MobileDrawerProps> = ({
+  isOpen,
+  onClose,
+  onNavigate,
+  installPrompt,
+  onInstallClick
+}) => {
+  const {
+    targetMeta,
+    baseMeta,
+    targetLanguage,
+    baseLanguage,
+    speechSpeed,
+    setSpeechSpeed,
+    swapLanguages,
+    ui
+  } = useLanguage();
+
+  const [currentUser, setCurrentUser] = useState<any>(null);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [progressModalOpen, setProgressModalOpen] = useState(false);
+
+  // Sync Supabase user
+  useEffect(() => {
+    if (!supabase) return;
+
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setCurrentUser(user);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setCurrentUser(session?.user ?? null);
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  // Lock background body scroll when drawer is open
+  useEffect(() => {
+    if (isOpen) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = prevOverflow;
+      };
+    }
+  }, [isOpen]);
+
+  // Close on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  const handleSignOut = async () => {
+    await signOutUser();
+    setCurrentUser(null);
+  };
+
+  const handleOpenProgress = () => {
+    setProgressModalOpen(true);
+  };
+
+  const handleOpenAuth = () => {
+    setAuthModalOpen(true);
+  };
+
+  return (
+    <>
+      <div className="mobile-drawer-backdrop" onClick={onClose} role="presentation">
+        <aside
+          className="mobile-drawer-panel"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Settings and options menu"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Drawer Top Header */}
+          <div className="mobile-drawer-header">
+            <div className="drawer-app-identity">
+              <span className="drawer-course-flag">
+                <FlagIcon lang={targetLanguage} size={28} />
+              </span>
+              <div>
+                <h2 className="drawer-title">{targetMeta.appName || 'Language School'}</h2>
+                <p className="drawer-subtitle">Personal Study Dashboard</p>
+              </div>
+            </div>
+            <button
+              type="button"
+              className="drawer-close-btn"
+              onClick={onClose}
+              aria-label="Close menu"
+            >
+              <FaTimes />
+            </button>
+          </div>
+
+          <div className="mobile-drawer-scrollable">
+            {/* Section 1: Active Language Learning Pair */}
+            <div className="drawer-card drawer-pair-card">
+              <div className="drawer-card-label">
+                <FaGlobe className="drawer-card-icon" />
+                <span>Learning Pair</span>
+              </div>
+              <div className="drawer-pair-row">
+                <div className="drawer-pair-lang">
+                  <span className="drawer-pair-label">{ui.iSpeak || 'I speak'}</span>
+                  <div className="drawer-pair-name-wrap">
+                    <FlagIcon lang={baseLanguage} size={20} />
+                    <span className="drawer-pair-name">{baseMeta.name}</span>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  className="drawer-swap-btn"
+                  onClick={swapLanguages}
+                  title="Swap languages"
+                  aria-label="Swap language pair"
+                >
+                  <FaExchangeAlt />
+                </button>
+
+                <div className="drawer-pair-lang">
+                  <span className="drawer-pair-label">{ui.learning || 'Learning'}</span>
+                  <div className="drawer-pair-name-wrap">
+                    <FlagIcon lang={targetLanguage} size={20} />
+                    <span className="drawer-pair-name">{targetMeta.name}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Section 2: Audio Playback Speed */}
+            <div className="drawer-card">
+              <div className="drawer-card-label">
+                <FaTachometerAlt className="drawer-card-icon" />
+                <span>Audio Playback Speed</span>
+              </div>
+              <p className="drawer-card-desc">
+                Adjust neural pronunciation pacing for clear listening
+              </p>
+              <div className="drawer-speed-grid">
+                {SPEEDS.map((item) => {
+                  const isSelected = item.value === speechSpeed;
+                  return (
+                    <button
+                      key={item.value}
+                      type="button"
+                      className={`drawer-speed-btn ${isSelected ? 'active' : ''}`}
+                      onClick={() => setSpeechSpeed(item.value)}
+                    >
+                      <span className="drawer-speed-val">{item.label}</span>
+                      <span className="drawer-speed-desc">{item.desc}</span>
+                      {isSelected && <FaCheck className="drawer-speed-check" />}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Section 3: Progress & Detailed Stats */}
+            <div className="drawer-card drawer-action-card" onClick={handleOpenProgress} role="button" tabIndex={0}>
+              <div className="drawer-action-content">
+                <div className="drawer-action-icon progress-icon">
+                  <FaChartLine />
+                </div>
+                <div className="drawer-action-text">
+                  <h3>My Learning Progress</h3>
+                  <p>View mastery %, quiz accuracy, and review words</p>
+                </div>
+              </div>
+              <span className="drawer-action-arrow">›</span>
+            </div>
+
+            {/* Section 4: Cloud Sync & Account */}
+            <div className="drawer-card">
+              <div className="drawer-card-label">
+                <FaUser className="drawer-card-icon" />
+                <span>Account & Cloud Sync</span>
+              </div>
+              {currentUser ? (
+                <div className="drawer-user-info">
+                  <div className="drawer-user-details">
+                    <span className="drawer-user-email">{currentUser.email}</span>
+                    <span className="drawer-user-badge">Cloud Synced</span>
+                  </div>
+                  <button
+                    type="button"
+                    className="drawer-auth-btn sign-out"
+                    onClick={handleSignOut}
+                  >
+                    <FaSignOutAlt />
+                    <span>Sign Out</span>
+                  </button>
+                </div>
+              ) : (
+                <div className="drawer-guest-info">
+                  <p className="drawer-guest-desc">
+                    Your stats are currently saved locally. Sign in to sync your progress across your phone and computer.
+                  </p>
+                  <button
+                    type="button"
+                    className="drawer-auth-btn sign-in"
+                    onClick={handleOpenAuth}
+                  >
+                    <FaSignInAlt />
+                    <span>Sync & Sign In</span>
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Section 5: PWA Install App (if available) */}
+            {installPrompt && (
+              <div className="drawer-card drawer-install-card" onClick={onInstallClick} role="button" tabIndex={0}>
+                <div className="drawer-action-content">
+                  <div className="drawer-action-icon install-icon">
+                    <FaDownload />
+                  </div>
+                  <div className="drawer-action-text">
+                    <h3>Install Home Screen App</h3>
+                    <p>Fast offline-ready access without browser address bar</p>
+                  </div>
+                </div>
+                <span className="drawer-action-arrow">›</span>
+              </div>
+            )}
+
+            {/* Section 6: Legal & About Links */}
+            <div className="drawer-legal-links">
+              <button
+                type="button"
+                className="drawer-legal-link"
+                onClick={() => {
+                  onNavigate('privacy');
+                  onClose();
+                }}
+              >
+                <FaShieldAlt />
+                <span>Privacy Policy</span>
+              </button>
+              <button
+                type="button"
+                className="drawer-legal-link"
+                onClick={() => {
+                  onNavigate('terms');
+                  onClose();
+                }}
+              >
+                <FaFileContract />
+                <span>Terms of Service</span>
+              </button>
+            </div>
+
+            <div className="drawer-footer-note">
+              <span>Basic Language School · Free & Open Education</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      {/* Nested Modals triggered from Drawer */}
+      <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
+      <ProgressModal
+        isOpen={progressModalOpen}
+        onClose={() => setProgressModalOpen(false)}
+        userEmail={currentUser?.email}
+        languageId={targetLanguage}
+      />
+    </>
+  );
+};
+
+export default MobileDrawer;
