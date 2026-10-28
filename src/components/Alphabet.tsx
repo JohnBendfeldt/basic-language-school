@@ -53,14 +53,14 @@ const Alphabet: React.FC<AlphabetProps> = ({ data }) => {
               </div>
               
               {exampleWord && (
-                <div className="alphabet-example-box">
+                <div className="example">
                   {item.icon && (
-                    <div className="alphabet-example-icon-tile" aria-hidden="true">
+                    <span className="example-icon-badge" aria-hidden="true">
                       {item.icon}
-                    </div>
+                    </span>
                   )}
-                  <div className="alphabet-example-info">
-                    <div className="alphabet-example-word-row">
+                  <div className="example-details">
+                    <div className="example-word-row">
                       <span className="example-label">Example:</span>
                       <strong className="example-word">{exampleWord}</strong>
                       <PronunciationButton 
@@ -71,7 +71,7 @@ const Alphabet: React.FC<AlphabetProps> = ({ data }) => {
                         label={`Pronounce ${exampleWord}`}
                       />
                     </div>
-                    {exampleMeaning && <div className="example-translation">{exampleMeaning}</div>}
+                    {exampleMeaning && <span className="example-translation">{exampleMeaning}</span>}
                   </div>
                 </div>
               )}
