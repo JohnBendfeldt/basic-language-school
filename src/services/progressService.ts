@@ -109,8 +109,10 @@ export class ProgressService {
     answer: string;
     isCorrect: boolean;
     languageId?: string;
+    targetWord?: string;
+    meaningWord?: string;
   }): Promise<WordProgress> {
-    const { category, wordId, prompt, answer, isCorrect, languageId = 'ru' } = params;
+    const { category, wordId, prompt, answer, isCorrect, languageId = 'ru', targetWord, meaningWord } = params;
     const now = new Date().toISOString();
 
     // 1. Try Supabase if authenticated
@@ -160,6 +162,8 @@ export class ProgressService {
               wordId: data.word_id,
               prompt: data.prompt,
               answer: data.answer,
+              targetWord: targetWord || existing?.targetWord,
+              meaningWord: meaningWord || existing?.meaningWord,
               timesCorrect: data.times_correct,
               timesIncorrect: data.times_incorrect,
               lastTestedAt: data.last_tested_at,
@@ -181,6 +185,8 @@ export class ProgressService {
       wordId,
       prompt,
       answer,
+      targetWord,
+      meaningWord,
       timesCorrect: 0,
       timesIncorrect: 0,
       lastTestedAt: now,
@@ -196,6 +202,8 @@ export class ProgressService {
       languageId,
       prompt,
       answer,
+      targetWord: targetWord || existing.targetWord,
+      meaningWord: meaningWord || existing.meaningWord,
       timesCorrect,
       timesIncorrect,
       lastTestedAt: now,

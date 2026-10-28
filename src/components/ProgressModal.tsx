@@ -14,6 +14,14 @@ interface ProgressModalProps {
 }
 
 const getWordReviewDetails = (item: WordProgress, currentLanguage: string) => {
+  // If targetWord/meaningWord were explicitly recorded, use them directly
+  if (item.targetWord) {
+    const target = item.targetWord;
+    const meaning = item.meaningWord || (item.prompt === target ? item.answer : item.prompt);
+    const audioTarget = target.includes('/') ? target.split('/')[0].trim() : target;
+    return { target, audioTarget, meaning };
+  }
+
   let target = item.prompt;
   let meaning = item.answer;
 
@@ -21,6 +29,13 @@ const getWordReviewDetails = (item: WordProgress, currentLanguage: string) => {
     const isPromptRussian = containsCyrillic(item.prompt);
     const isAnswerRussian = containsCyrillic(item.answer);
     if (!isPromptRussian && isAnswerRussian) {
+      target = item.answer;
+      meaning = item.prompt;
+    }
+  } else {
+    // For Spanish, French, English etc.:
+    // If wordId ends with '-to-target', the prompt was the English meaning and the answer was the foreign target!
+    if (item.wordId && item.wordId.endsWith('-to-target')) {
       target = item.answer;
       meaning = item.prompt;
     }
