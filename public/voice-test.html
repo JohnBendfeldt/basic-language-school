@@ -2,24 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Spanish Voice Audition & Comparison</title>
+  <title>Voice Audition & Comparison (Spanish & French)</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: #f8fafc;
       color: #0f172a;
-      max-width: 800px;
+      max-width: 840px;
       margin: 40px auto;
-      padding: 0 20px;
+      padding: 0 20px 60px;
     }
     h1 {
-      font-size: 1.8rem;
+      font-size: 2rem;
       color: #1e1b4b;
       margin-bottom: 0.25rem;
     }
     p.lead {
       color: #64748b;
       margin-bottom: 2rem;
+    }
+    .lang-section {
+      margin-bottom: 3.5rem;
+    }
+    .section-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #312e81;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e0e7ff;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     .voice-card {
       background: #ffffff;
@@ -38,9 +52,9 @@
       align-items: baseline;
     }
     .voice-name {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 700;
-      color: #312e81;
+      color: #1e293b;
     }
     .voice-tag {
       font-size: 0.75rem;
@@ -68,7 +82,7 @@
     .sample-label {
       font-weight: 600;
       font-size: 0.85rem;
-      min-width: 140px;
+      min-width: 150px;
       color: #475569;
     }
     audio {
@@ -79,96 +93,175 @@
       background: #fef3c7;
       color: #92400e;
     }
-    .badge-rec {
+    .badge-winner {
       background: #dcfce7;
       color: #166534;
+      border: 1px solid #86efac;
+    }
+    .badge-rec {
+      background: #e0e7ff;
+      color: #3730a3;
     }
   </style>
 </head>
 <body>
 
-  <h1>🎙️ Spanish Voice Audition & Comparison</h1>
-  <p class="lead">Listen to each neural voice speaking full sentences and individual vocabulary at high clarity (+25% volume boosted):</p>
+  <h1>🎙️ Studio Neural Voice Audition</h1>
+  <p class="lead">Compare real neural voice samples with full phrases and single words boosted to +20% acoustic clarity.</p>
 
-  <!-- 1. Elvira -->
-  <div class="voice-card">
-    <div class="voice-header">
-      <div class="voice-name">1. Elvira (Spain - Castilian)</div>
-      <span class="voice-tag badge-rec">⭐ Recommended for Castilian</span>
+  <!-- ================= SPANISH ================= -->
+  <div class="lang-section">
+    <div class="section-title">
+      <span>🇪🇸 Spanish Voices</span>
     </div>
-    <div class="voice-desc">Warm, articulate, confident and standard European Spanish. Very natural inflection without being whispery or robotic.</div>
-    <div class="sample-row">
-      <span class="sample-label">Full Sentence:</span>
-      <audio controls src="/audio/samples/es-ES-ElviraNeural.mp3"></audio>
+
+    <!-- Jorge (Winner) -->
+    <div class="voice-card" style="border: 2px solid #22c55e;">
+      <div class="voice-header">
+        <div class="voice-name">1. Jorge (Mexico Male)</div>
+        <span class="voice-tag badge-winner">🏆 Selected Winner</span>
+      </div>
+      <div class="voice-desc">Deep, authoritative, confident broadcast voice. Extremely clear consonant projection.</div>
+      <div class="sample-row">
+        <span class="sample-label">Full Sentence:</span>
+        <audio controls src="/audio/samples/es-MX-JorgeNeural.mp3"></audio>
+      </div>
+      <div class="sample-row">
+        <span class="sample-label">Word: "Buenos días"</span>
+        <audio controls src="/audio/samples/es-MX-JorgeNeural_buenos_dias.mp3"></audio>
+      </div>
+      <div class="sample-row">
+        <span class="sample-label">Word: "Amor"</span>
+        <audio controls src="/audio/samples/es-MX-JorgeNeural_amor.mp3"></audio>
+      </div>
     </div>
-    <div class="sample-row">
-      <span class="sample-label">Word: "Buenos días"</span>
-      <audio controls src="/audio/samples/es-ES-ElviraNeural_buenos_dias.mp3"></audio>
+
+    <!-- Dalia -->
+    <div class="voice-card">
+      <div class="voice-header">
+        <div class="voice-name">2. Dalia (Mexico Female)</div>
+        <span class="voice-tag badge-rec">Crisp Female</span>
+      </div>
+      <div class="voice-desc">Bright, energetic, very distinct Latin American Spanish.</div>
+      <div class="sample-row">
+        <span class="sample-label">Full Sentence:</span>
+        <audio controls src="/audio/samples/es-MX-DaliaNeural.mp3"></audio>
+      </div>
     </div>
   </div>
 
-  <!-- 2. Dalia -->
-  <div class="voice-card">
-    <div class="voice-header">
-      <div class="voice-name">2. Dalia (Mexico - Latin American Neutral)</div>
-      <span class="voice-tag badge-rec">⭐ Top Pick for Clarity</span>
+  <!-- ================= FRENCH ================= -->
+  <div class="lang-section">
+    <div class="section-title">
+      <span>🇫🇷 French Voices (Pick your favorite)</span>
     </div>
-    <div class="voice-desc">Clear, confident, energetic and crisp. Ideal for language learners because consonants and vowels are exceptionally distinct and project loudly.</div>
-    <div class="sample-row">
-      <span class="sample-label">Full Sentence:</span>
-      <audio controls src="/audio/samples/es-MX-DaliaNeural.mp3"></audio>
-    </div>
-    <div class="sample-row">
-      <span class="sample-label">Word: "Buenos días"</span>
-      <audio controls src="/audio/samples/es-MX-DaliaNeural_buenos_dias.mp3"></audio>
-    </div>
-  </div>
 
-  <!-- 3. Jorge -->
-  <div class="voice-card">
-    <div class="voice-header">
-      <div class="voice-name">3. Jorge (Mexico Male - Authoritative & Broadcast)</div>
-      <span class="voice-tag">Male Voice Option</span>
+    <!-- Henri -->
+    <div class="voice-card">
+      <div class="voice-header">
+        <div class="voice-name">1. Henri (France Male)</div>
+        <span class="voice-tag badge-rec">⭐ Top Confident Pick</span>
+      </div>
+      <div class="voice-desc">Warm, confident, natural Parisian French male voice. Excellent projection without rushing.</div>
+      <div class="sample-row">
+        <span class="sample-label">Full Sentence:</span>
+        <audio controls src="/audio/samples/fr/fr-FR-HenriNeural.mp3"></audio>
+      </div>
+      <div class="sample-row">
+        <span class="sample-label">Word: "Bonjour"</span>
+        <audio controls src="/audio/samples/fr/fr-FR-HenriNeural_bonjour.mp3"></audio>
+      </div>
+      <div class="sample-row">
+        <span class="sample-label">Word: "Merci beaucoup"</span>
+        <audio controls src="/audio/samples/fr/fr-FR-HenriNeural_merci_beaucoup.mp3"></audio>
+      </div>
     </div>
-    <div class="voice-desc">Deep, authoritative, and very clear radio/broadcast male voice with excellent acoustic presence and zero mumble.</div>
-    <div class="sample-row">
-      <span class="sample-label">Full Sentence:</span>
-      <audio controls src="/audio/samples/es-MX-JorgeNeural.mp3"></audio>
-    </div>
-    <div class="sample-row">
-      <span class="sample-label">Word: "Buenos días"</span>
-      <audio controls src="/audio/samples/es-MX-JorgeNeural_buenos_dias.mp3"></audio>
-    </div>
-  </div>
 
-  <!-- 4. Paloma -->
-  <div class="voice-card">
-    <div class="voice-header">
-      <div class="voice-name">4. Paloma (US Neutral Female)</div>
-      <span class="voice-tag">Modern & Friendly</span>
+    <!-- Denise -->
+    <div class="voice-card">
+      <div class="voice-header">
+        <div class="voice-name">2. Denise (France Female - Current)</div>
+        <span class="voice-tag badge-current">Current Voice</span>
+      </div>
+      <div class="voice-desc">Standard metropolitan French female voice (the one currently deployed).</div>
+      <div class="sample-row">
+        <span class="sample-label">Full Sentence:</span>
+        <audio controls src="/audio/samples/fr/fr-FR-DeniseNeural.mp3"></audio>
+      </div>
+      <div class="sample-row">
+        <span class="sample-label">Word: "Bonjour"</span>
+        <audio controls src="/audio/samples/fr/fr-FR-DeniseNeural_bonjour.mp3"></audio>
+      </div>
     </div>
-    <div class="voice-desc">Modern, friendly, and very natural pace. Standard neutral accent widely used in educational media.</div>
-    <div class="sample-row">
-      <span class="sample-label">Full Sentence:</span>
-      <audio controls src="/audio/samples/es-US-PalomaNeural.mp3"></audio>
-    </div>
-  </div>
 
-  <!-- 5. Alvaro (Current) -->
-  <div class="voice-card">
-    <div class="voice-header">
-      <div class="voice-name">5. Alvaro (Spain Male - Current Voice)</div>
-      <span class="voice-tag badge-current">Current Voice</span>
+    <!-- Jean -->
+    <div class="voice-card">
+      <div class="voice-header">
+        <div class="voice-name">3. Jean (Canada Male - Deep & Articulate)</div>
+        <span class="voice-tag">Deep Male</span>
+      </div>
+      <div class="voice-desc">Resonant, mature, very articulate cadence.</div>
+      <div class="sample-row">
+        <span class="sample-label">Full Sentence:</span>
+        <audio controls src="/audio/samples/fr/fr-CA-JeanNeural.mp3"></audio>
+      </div>
+      <div class="sample-row">
+        <span class="sample-label">Word: "Bonjour"</span>
+        <audio controls src="/audio/samples/fr/fr-CA-JeanNeural_bonjour.mp3"></audio>
+      </div>
     </div>
-    <div class="voice-desc">The voice currently generated on the site. Lower gain / softer timbre, which is why it felt quiet.</div>
-    <div class="sample-row">
-      <span class="sample-label">Full Sentence:</span>
-      <audio controls src="/audio/samples/es-ES-AlvaroNeural.mp3"></audio>
+
+    <!-- Antoine -->
+    <div class="voice-card">
+      <div class="voice-header">
+        <div class="voice-name">4. Antoine (Canada Male - Energetic & Friendly)</div>
+        <span class="voice-tag">Friendly Male</span>
+      </div>
+      <div class="voice-desc">Bright, modern, expressive conversational tone.</div>
+      <div class="sample-row">
+        <span class="sample-label">Full Sentence:</span>
+        <audio controls src="/audio/samples/fr/fr-CA-AntoineNeural.mp3"></audio>
+      </div>
+      <div class="sample-row">
+        <span class="sample-label">Word: "Bonjour"</span>
+        <audio controls src="/audio/samples/fr/fr-CA-AntoineNeural_bonjour.mp3"></audio>
+      </div>
     </div>
-    <div class="sample-row">
-      <span class="sample-label">Word: "Buenos días"</span>
-      <audio controls src="/audio/samples/es-ES-AlvaroNeural_buenos_dias.mp3"></audio>
+
+    <!-- Sylvie -->
+    <div class="voice-card">
+      <div class="voice-header">
+        <div class="voice-name">5. Sylvie (Canada Female - Clear & Bright)</div>
+        <span class="voice-tag">Bright Female</span>
+      </div>
+      <div class="voice-desc">Crisp, clear, very intelligible female pronunciation.</div>
+      <div class="sample-row">
+        <span class="sample-label">Full Sentence:</span>
+        <audio controls src="/audio/samples/fr/fr-CA-SylvieNeural.mp3"></audio>
+      </div>
+      <div class="sample-row">
+        <span class="sample-label">Word: "Bonjour"</span>
+        <audio controls src="/audio/samples/fr/fr-CA-SylvieNeural_bonjour.mp3"></audio>
+      </div>
     </div>
+
+    <!-- Charline -->
+    <div class="voice-card">
+      <div class="voice-header">
+        <div class="voice-name">6. Charline (Belgium Female - Soft & Clear)</div>
+        <span class="voice-tag">European Female</span>
+      </div>
+      <div class="voice-desc">Gentle European French with crystal-clear vowel distinction.</div>
+      <div class="sample-row">
+        <span class="sample-label">Full Sentence:</span>
+        <audio controls src="/audio/samples/fr/fr-BE-CharlineNeural.mp3"></audio>
+      </div>
+      <div class="sample-row">
+        <span class="sample-label">Word: "Bonjour"</span>
+        <audio controls src="/audio/samples/fr/fr-BE-CharlineNeural_bonjour.mp3"></audio>
+      </div>
+    </div>
+
   </div>
 
 </body>

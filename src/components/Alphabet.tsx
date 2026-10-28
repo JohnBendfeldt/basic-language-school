@@ -61,8 +61,8 @@ const Alphabet: React.FC<AlphabetProps> = ({ data }) => {
                   )}
                   <div className="example-details">
                     <div className="example-word-row">
-                      <span className="example-label">Example:</span>
-                      <strong className="example-word">{exampleWord}</strong>
+                      <strong className="example-label">Example:</strong>
+                      <span className="example-word">{exampleWord}</span>
                       <PronunciationButton 
                         text={exampleWord} 
                         className="example-pronunciation"
@@ -71,7 +71,7 @@ const Alphabet: React.FC<AlphabetProps> = ({ data }) => {
                         label={`Pronounce ${exampleWord}`}
                       />
                     </div>
-                    {exampleMeaning && <span className="example-translation">{exampleMeaning}</span>}
+                    {exampleMeaning && <span className="example-translation">({exampleMeaning})</span>}
                   </div>
                 </div>
               )}
