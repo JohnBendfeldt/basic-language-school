@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PhraseItem } from '../types/index';
 import PronunciationButton from './PronunciationButton';
+import { NumberBadge } from './NumberBadge';
 import { FaSyncAlt } from 'react-icons/fa';
 
 interface PhraseCardProps {
@@ -26,17 +27,33 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
   category,
   icon
 }) => {
+  // Extract numeric digits from english/meaning if this is numbers mode
+  let numericValue: string | null = null;
+  if (contentType === 'numbers') {
+    const numMatch = english.match(/\b\d+([,.]\d+)?\b/);
+    if (numMatch) {
+      numericValue = numMatch[0];
+    }
+  }
+
   return (
     <div 
-      className={`phrase-card ${isRevealed ? 'phrase-revealed' : 'phrase-hidden'}`} 
+      className={`phrase-card ${contentType === 'numbers' ? 'phrase-card-number' : ''} ${isRevealed ? 'phrase-revealed' : 'phrase-hidden'}`} 
       key={`card-${animationKey}`}
     >
-      {(category || icon) && (
-        <div className="phrase-meta-badge">
-          {icon && <span className="meta-icon" aria-hidden="true">{icon}</span>}
-          {category && <span className="meta-category">{category}</span>}
-        </div>
-      )}
+      <div className="phrase-card-top-row">
+        {(category || icon) && (
+          <div className="phrase-meta-badge">
+            {icon && contentType !== 'numbers' && <span className="meta-icon" aria-hidden="true">{icon}</span>}
+            {category && <span className="meta-category">{category}</span>}
+          </div>
+        )}
+        {contentType === 'numbers' && numericValue && (
+          <div className="phrase-number-pill">
+            <NumberBadge value={numericValue} size={30} />
+          </div>
+        )}
+      </div>
       <div className="phrase-header">
         <h3 className="russian">{russian}</h3>
         <PronunciationButton 
