@@ -192,7 +192,7 @@ const AppContent: React.FC = () => {
         return (
           <Phrases 
             data={currentMeta.data.basicPhrases} 
-            title={currentLanguage === 'ru' ? 'Basic Russian Phrases' : 'Essential English Phrases'} 
+            title={currentLanguage === 'ru' ? 'Basic Russian Phrases' : `${currentMeta.name} Essential Phrases`} 
             contentType="phrases"
           />
         );
@@ -210,7 +210,7 @@ const AppContent: React.FC = () => {
         return (
           <Phrases 
             data={currentMeta.data.commonWords} 
-            title={currentLanguage === 'ru' ? 'Common Russian Words' : 'High-Frequency English Vocabulary'} 
+            title={currentLanguage === 'ru' ? 'Common Russian Words' : `Common ${currentMeta.name} Words & Vocabulary`} 
             contentType="words"
           />
         );
