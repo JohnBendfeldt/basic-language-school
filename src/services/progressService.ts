@@ -123,8 +123,9 @@ export class ProgressService {
             .from('word_progress')
             .select('*')
             .eq('user_id', user.id)
+            .eq('language_id', languageId)
             .eq('word_id', wordId)
-            .single();
+            .maybeSingle();
 
           const timesCorrect = (existing?.times_correct || 0) + (isCorrect ? 1 : 0);
           const timesIncorrect = (existing?.times_incorrect || 0) + (isCorrect ? 0 : 1);
@@ -146,7 +147,7 @@ export class ProgressService {
 
           const { data, error } = await supabase
             .from('word_progress')
-            .upsert(upsertPayload, { onConflict: 'user_id,word_id' })
+            .upsert(upsertPayload, { onConflict: 'user_id,language_id,word_id' })
             .select()
             .single();
 
@@ -409,7 +410,7 @@ export class ProgressService {
 
         await supabase
           .from('word_progress')
-          .upsert(payload, { onConflict: 'user_id,word_id' });
+          .upsert(payload, { onConflict: 'user_id,language_id,word_id' });
       }
 
       // Sync quiz sessions

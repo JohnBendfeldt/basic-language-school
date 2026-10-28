@@ -4,6 +4,7 @@ import RussianKeyboard from './RussianKeyboard';
 import PronunciationButton from './PronunciationButton';
 import { transliterate, containsCyrillic } from '../utils/transliteration';
 import { ProgressService } from '../services/progressService';
+import { useLanguage } from '../contexts/LanguageContext';
 
 // Define interfaces for the data structure
 interface AlphabetItem {
@@ -96,9 +97,11 @@ const getAudioCategory = (questionType: string): 'alphabet' | 'phrases' | 'numbe
 };
 
 const Quiz: React.FC<QuizProps> = ({ data }) => {
+  const { currentLanguage, currentMeta } = useLanguage();
+
   // Session Goal: 5, 10, or 20 questions (persisted across sessions)
   const [sessionGoal, setSessionGoal] = useState<number>(() => {
-    const saved = localStorage.getItem('russian_quiz_goal');
+    const saved = localStorage.getItem('quiz_goal');
     if (saved) {
       const num = parseInt(saved, 10);
       if ([5, 10, 20].includes(num)) return num;
@@ -108,7 +111,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
   // Active Category Filter: 'all', 'alphabet', 'basicPhrases', 'commonWords', 'numbers', 'time'
   const [activeCategory, setActiveCategory] = useState<QuizCategoryFilter>(() => {
-    const saved = localStorage.getItem('russian_quiz_category');
+    const saved = localStorage.getItem('quiz_category');
     if (saved && ['all', 'alphabet', 'basicPhrases', 'commonWords', 'numbers', 'time'].includes(saved)) {
       return saved as QuizCategoryFilter;
     }
@@ -152,9 +155,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     isSaved: false
   });
 
-  // Load mastered words on mount
+  // Load mastered words on mount and when language changes
   useEffect(() => {
-    ProgressService.getMasteredWordIds()
+    ProgressService.getMasteredWordIds(currentLanguage)
       .then(ids => {
         masteredWordIdsRef.current = ids;
         setMasteredWordIds(ids);
@@ -379,18 +382,22 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     categories.forEach(cat => {
       if (data[cat] && Array.isArray(data[cat])) {
         data[cat].forEach((item: PhraseItem) => {
-          questions.push({
-            item,
-            isRussianToEnglish: true,
-            id: `${cat}-${item.russian}-to-en`,
-            category: cat
-          });
-          questions.push({
-            item,
-            isRussianToEnglish: false,
-            id: `${cat}-${item.english}-to-ru`,
-            category: cat
-          });
+          const target = item.russian || item.phrase || '';
+          const meaning = item.english || item.meaning || '';
+          if (target && meaning) {
+            questions.push({
+              item,
+              isRussianToEnglish: true,
+              id: `${cat}-${target}-to-meaning`,
+              category: cat
+            });
+            questions.push({
+              item,
+              isRussianToEnglish: false,
+              id: `${cat}-${meaning}-to-target`,
+              category: cat
+            });
+          }
         });
       }
     });
@@ -532,25 +539,25 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         }
       } else {
         const item = selected.item as PhraseItem;
-        const russian = item.russian?.toString() || '';
-        const english = item.english?.toString() || '';
+        const targetWord = (item.russian || item.phrase || '').toString();
+        const meaningWord = (item.english || item.meaning || '').toString();
 
         if (selected.isRussianToEnglish) {
           setCurrentQuestion({
             type: selected.category,
-            prompt: russian,
-            answer: english.toLowerCase(),
-            hint: 'What does this mean in English?',
-            russian: russian,
+            prompt: targetWord,
+            answer: meaningWord.toLowerCase(),
+            hint: `What does "${targetWord}" mean?`,
+            russian: targetWord,
             id: selected.id
           });
         } else {
           setCurrentQuestion({
             type: selected.category,
-            prompt: english,
-            answer: russian.toLowerCase(),
-            hint: 'How do you say this in Russian?',
-            russian: russian,
+            prompt: meaningWord,
+            answer: targetWord.toLowerCase(),
+            hint: `How do you say "${meaningWord}" in ${currentMeta.name}?`,
+            russian: targetWord,
             id: selected.id
           });
         }
@@ -588,6 +595,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         category: activeCategory === 'all' ? 'mixed' : activeCategory,
         score: sessionScore,
         totalQuestions: sessionGoal,
+        ...(currentLanguage && currentLanguage !== 'ru' ? { languageId: currentLanguage } : {})
       });
     } catch (err) {
       console.warn('Could not record completed quiz session:', err);
@@ -643,6 +651,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         category: 'mixed',
         score: sessionScore,
         totalQuestions: sessionAnswered,
+        ...(currentLanguage && currentLanguage !== 'ru' ? { languageId: currentLanguage } : {})
       }).catch(err => console.warn('Could not save quiz session on goal adjustment:', err));
     }
   };
@@ -698,6 +707,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           category: currentStats.category,
           score: currentStats.score,
           totalQuestions: currentStats.total,
+          ...(currentLanguage && currentLanguage !== 'ru' ? { languageId: currentLanguage } : {})
         }).catch(err => console.warn('Could not save unmounted quiz session:', err));
       }
 
@@ -873,6 +883,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         prompt: currentQuestion.prompt || '',
         answer: currentQuestion.answer || '',
         isCorrect: isAnswerCorrect,
+        languageId: currentLanguage
       }).then(updatedWord => {
         if (updatedWord && updatedWord.masteryLevel >= 5) {
           setIsWordJustMastered(true);
@@ -1038,9 +1049,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     setShowKeyboard(prev => !prev);
   };
 
-  const needsRussianKeyboard = currentQuestion && 
+  const needsRussianKeyboard = currentLanguage === 'ru' && currentQuestion && 
     !currentQuestion.type.includes('alphabet') && 
-    currentQuestion.hint.includes('How do you say this in Russian');
+    currentQuestion.hint.includes('Russian');
 
   const combinationStarters = ['y', 'Y', 'z', 'Z', 's', 'S', 'c', 'C', 't', 'T', 'k', 'K'];
   const combinationFollowers = {
