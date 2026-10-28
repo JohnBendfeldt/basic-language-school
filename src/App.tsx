@@ -16,7 +16,7 @@ import { FaBars } from 'react-icons/fa';
 import { initVoices, cancelAllSpeech } from './utils/speech';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import { SupportedLanguageId } from './data/languages/types';
-import { getPageContent } from './utils/pageDictionary';
+import { getPageContent, getLocalizedAppName, getComponentChrome } from './utils/pageDictionary';
 
 // Map path segments to section IDs
 const PATH_TO_SECTION: Record<string, string> = {
@@ -256,6 +256,9 @@ const AppContent: React.FC = () => {
     }
   };
 
+  const chrome = getComponentChrome(baseLanguage);
+  const localizedAppName = getLocalizedAppName(currentLanguage, baseLanguage, currentMeta.appName);
+
   return (
     <div className="app">
       <header>
@@ -263,7 +266,7 @@ const AppContent: React.FC = () => {
           <h1 
             onClick={() => handleSectionChange('alphabet')} 
             style={{ cursor: 'pointer' }} 
-            title={`Return to ${currentMeta.appName} lessons`}
+            title={`Return to ${localizedAppName} lessons`}
           >
             {/* Dynamic Emblem: Language-specific flag accent (ES, FR, EN, RU) on Academic Crest */}
             {currentLanguage === 'ru' ? (
@@ -378,7 +381,7 @@ const AppContent: React.FC = () => {
                 </g>
               </svg>
             )}
-            {currentMeta.appName}
+            {localizedAppName}
           </h1>
 
           {/* Desktop Actions: Spacious row on wider screens */}
@@ -391,7 +394,7 @@ const AppContent: React.FC = () => {
 
             {installPrompt && (
               <button onClick={handleInstallClick} className="install-button">
-                Install App
+                {chrome.installApp}
               </button>
             )}
             <UserMenu onNavigate={handleSectionChange} />
@@ -440,7 +443,7 @@ const AppContent: React.FC = () => {
       
       <footer>
         <p>
-          © {new Date().getFullYear()} Basic Language School · All Rights Reserved ·{' '}
+          © {new Date().getFullYear()} Basic Language School · {chrome.allRightsReserved.replace(/\.$/, '')} ·{' '}
           <a
             href="/privacy"
             className="footer-link"
@@ -449,7 +452,7 @@ const AppContent: React.FC = () => {
               handleSectionChange('privacy');
             }}
           >
-            Privacy Policy
+            {chrome.privacyPolicy}
           </a>{' '}
           ·{' '}
           <a
@@ -460,7 +463,7 @@ const AppContent: React.FC = () => {
               handleSectionChange('terms');
             }}
           >
-            Terms of Service
+            {chrome.termsOfService}
           </a>
         </p>
       </footer>

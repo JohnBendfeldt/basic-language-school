@@ -3,6 +3,7 @@ import { FaChevronDown, FaCheck, FaGlobe, FaStar, FaExchangeAlt, FaTimes } from 
 import { useLanguage } from '../contexts/LanguageContext';
 import { SupportedLanguageId } from '../data/languages/types';
 import { FlagIcon } from './FlagIcon';
+import { getLocalizedLanguageName, getComponentChrome } from '../utils/pageDictionary';
 
 interface LanguageSwitcherProps {
   onLanguageChange?: (langId: SupportedLanguageId) => void;
@@ -83,6 +84,10 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
     }
   };
 
+  const chrome = getComponentChrome(baseLanguage);
+  const localizedTargetName = getLocalizedLanguageName(targetMeta.id, baseLanguage, targetMeta.name);
+  const localizedBaseName = getLocalizedLanguageName(baseMeta.id, baseLanguage, baseMeta.name);
+
   return (
     <div className={`language-switcher-container ${className}`}>
       <div className="language-pair-trigger-wrap">
@@ -92,19 +97,19 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
           onClick={() => setIsOpen(!isOpen)}
           aria-haspopup="dialog"
           aria-expanded={isOpen}
-          title={`I speak ${baseMeta.name}, learning ${targetMeta.name}. Click to change pair.`}
+          title={`${ui.iSpeak}: ${localizedBaseName}, ${ui.learning}: ${localizedTargetName}`}
           aria-label={`Current language pair: ${baseMeta.name} to ${targetMeta.name}. Click to switch.`}
         >
           <span className="pair-flag-chips">
-            <span className="base-flag-chip" title={`${ui.iSpeak || 'I speak'}: ${baseMeta.name}`}>
+            <span className="base-flag-chip" title={`${ui.iSpeak || 'I speak'}: ${localizedBaseName}`}>
               <FlagIcon lang={baseMeta.id} size={18} />
             </span>
             <span className="pair-arrow-symbol" aria-hidden="true">→</span>
-            <span className="target-flag-chip" title={`${ui.learning || 'Learning'}: ${targetMeta.name}`}>
+            <span className="target-flag-chip" title={`${ui.learning || 'Learning'}: ${localizedTargetName}`}>
               <FlagIcon lang={targetMeta.id} size={20} />
             </span>
           </span>
-          <span className="language-name">{targetMeta.name}</span>
+          <span className="language-name">{localizedTargetName}</span>
           <FaChevronDown className={`language-chevron ${isOpen ? 'open' : ''}`} />
         </button>
 
@@ -173,12 +178,12 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
               >
                 <div className="pair-box-top-row">
                   <span className="pair-box-label">{ui.iSpeak || 'I speak'}</span>
-                  {activeTab === 'base' && <span className="pair-box-badge">Customizing</span>}
+                  {activeTab === 'base' && <span className="pair-box-badge">{chrome.customizingBadge}</span>}
                 </div>
                 <div className="pair-box-value">
                   <FlagIcon lang={baseMeta.id} size={26} />
                   <div className="pair-box-names">
-                    <span className="pair-box-name">{baseMeta.name}</span>
+                    <span className="pair-box-name">{localizedBaseName}</span>
                     <span className="pair-box-native">{baseMeta.nativeName}</span>
                   </div>
                 </div>
@@ -208,12 +213,12 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
               >
                 <div className="pair-box-top-row">
                   <span className="pair-box-label">{ui.iWantToLearn || 'I want to learn'}</span>
-                  {activeTab === 'target' && <span className="pair-box-badge">Customizing</span>}
+                  {activeTab === 'target' && <span className="pair-box-badge">{chrome.customizingBadge}</span>}
                 </div>
                 <div className="pair-box-value">
                   <FlagIcon lang={targetMeta.id} size={26} />
                   <div className="pair-box-names">
-                    <span className="pair-box-name">{targetMeta.name}</span>
+                    <span className="pair-box-name">{localizedTargetName}</span>
                     <span className="pair-box-native">{targetMeta.nativeName}</span>
                   </div>
                 </div>
@@ -222,7 +227,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
 
             {/* Quick-Pairs Section */}
             <div className="quick-pairs-section">
-              <div className="quick-pairs-title">Popular Pairs</div>
+              <div className="quick-pairs-title">{chrome.popularPairs}</div>
               <div className="quick-pairs-chips">
                 <button
                   type="button"
@@ -291,7 +296,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                 onClick={() => setActiveTab('target')}
               >
                 <span>{ui.iWantToLearn || 'Learning'}</span>
-                <span className="tab-current-badge">{targetMeta.name}</span>
+                <span className="tab-current-badge">{localizedTargetName}</span>
               </button>
               <button
                 type="button"
@@ -299,7 +304,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                 onClick={() => setActiveTab('base')}
               >
                 <span>{ui.iSpeak || 'I speak'}</span>
-                <span className="tab-current-badge">{baseMeta.name}</span>
+                <span className="tab-current-badge">{localizedBaseName}</span>
               </button>
             </div>
 
@@ -307,8 +312,8 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
             <div className="language-list" role="menu">
               <div className="language-group-title">
                 {activeTab === 'target' 
-                  ? (ui.iWantToLearn ? `Choose Language to Learn` : 'Select Learning Course')
-                  : (ui.iSpeak ? `Choose Your Language (Interface & Meaning)` : 'Select Your Native Language')}
+                  ? chrome.chooseLanguageToLearn
+                  : (ui.iSpeak || 'Choose Your Language (Interface & Meaning)')}
               </div>
 
               <div className="language-options-grid">
@@ -318,6 +323,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                     const isSelected = activeTab === 'target' 
                       ? lang.id === targetLanguage 
                       : lang.id === baseLanguage;
+                    const localizedOptName = getLocalizedLanguageName(lang.id, baseLanguage, lang.name);
 
                     return (
                       <button
@@ -337,7 +343,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                           <FlagIcon lang={lang.id} size={26} />
                         </span>
                         <div className="option-details">
-                          <span className="option-name">{lang.name}</span>
+                          <span className="option-name">{localizedOptName}</span>
                           <span className="option-native">{lang.nativeName}</span>
                         </div>
                         {isSelected && <FaCheck className="option-check" />}
@@ -350,32 +356,35 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                 <>
                   <div className="language-group-title language-upcoming-title">
                     <FaStar className="upcoming-icon" />
-                    <span>Upcoming Courses</span>
+                    <span>{chrome.upcomingCourses}</span>
                   </div>
                   <div className="language-options-grid upcoming-grid">
                     {availableLanguages
                       .filter(l => !l.available)
-                      .map(lang => (
-                        <div
-                          key={lang.id}
-                          className="language-option upcoming disabled"
-                          title="Course under active development"
-                        >
-                          <span className="option-flag" aria-hidden="true">{lang.flag}</span>
-                          <div className="option-details">
-                            <span className="option-name">{lang.name}</span>
-                            <span className="option-native">{lang.nativeName}</span>
+                      .map(lang => {
+                        const localizedOptName = getLocalizedLanguageName(lang.id, baseLanguage, lang.name);
+                        return (
+                          <div
+                            key={lang.id}
+                            className="language-option upcoming disabled"
+                            title="Course under active development"
+                          >
+                            <span className="option-flag" aria-hidden="true">{lang.flag}</span>
+                            <div className="option-details">
+                              <span className="option-name">{localizedOptName}</span>
+                              <span className="option-native">{lang.nativeName}</span>
+                            </div>
+                            <span className="coming-soon-badge">{chrome.soonBadge}</span>
                           </div>
-                          <span className="coming-soon-badge">Soon</span>
-                        </div>
-                      ))}
+                        );
+                      })}
                   </div>
                 </>
               )}
             </div>
 
             <div className="language-dropdown-footer">
-              <span>Bidirectional curriculum · Studio neural voice</span>
+              <span>{chrome.bidirectionalNotice}</span>
             </div>
           </div>
         </div>

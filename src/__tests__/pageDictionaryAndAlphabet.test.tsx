@@ -5,7 +5,7 @@ import Alphabet from '../components/Alphabet';
 import NumbersAndTime from '../components/NumbersAndTime';
 import Quiz from '../components/Quiz';
 import { LanguageProvider, useLanguage } from '../contexts/LanguageContext';
-import { getPageContent, getAlphabetLabels, getTimeTabs, getEnglishTimeGuide } from '../utils/pageDictionary';
+import { getPageContent, getAlphabetLabels, getTimeTabs, getEnglishTimeGuide, getLocalizedAppName, getLocalizedLanguageName, localizeCategoryBadge } from '../utils/pageDictionary';
 import { resolveTranslation, getAlphabetQuizHint } from '../utils/translationResolver';
 import { englishData } from '../data/languages/en/englishData';
 import russianData from '../data/languages/ru/russianData';
@@ -134,5 +134,17 @@ describe('Page Dictionary & Multilingual Alphabet Localization', () => {
     expect(resolveTranslation({ word: 'Apple', meaning: 'Noun: A fruit' }, 'en', 'es')).toBe('Manzana');
     expect(resolveTranslation({ word: 'Apple', meaning: 'Noun: A fruit' }, 'en', 'fr')).toBe('Pomme');
     expect(resolveTranslation({ word: 'Book', meaning: 'Noun: Reading material' }, 'en', 'ru')).toBe('Книга');
+
+    // Test englishData.basicPhrases, commonWords, and time expressions into Russian
+    expect(resolveTranslation({ phrase: 'Hello', meaning: 'Universal friendly greeting (any time of day)' }, 'en', 'ru')).toBe('Привет / Здравствуйте');
+    expect(resolveTranslation({ phrase: 'Water', meaning: 'Noun: Essential drink for life' }, 'en', 'ru')).toBe('Вода');
+    expect(resolveTranslation({ phrase: "Two o'clock", meaning: '2:00 sharp', category: 'Time' } as any, 'en', 'ru')).toBe('Два часа (2:00)');
+
+    // Test localized app name, language name, and category badges
+    expect(getLocalizedAppName('en', 'ru', 'Basic English')).toBe('Базовый Английский');
+    expect(getLocalizedAppName('en', 'en', 'Basic English')).toBe('Basic English');
+    expect(getLocalizedLanguageName('en', 'ru', 'English')).toBe('Английский');
+    expect(localizeCategoryBadge('Greetings', 'ru')).toBe('Приветствия');
+    expect(localizeCategoryBadge('Food & Drink', 'ru')).toBe('Еда и напитки');
   });
 });

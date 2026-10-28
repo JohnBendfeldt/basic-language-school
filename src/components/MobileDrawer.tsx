@@ -19,6 +19,7 @@ import AuthModal from './AuthModal';
 import ProgressModal from './ProgressModal';
 import { supabase, signOutUser } from '../services/supabaseClient';
 import { ProgressService } from '../services/progressService';
+import { getComponentChrome, getLocalizedAppName, getLocalizedLanguageName } from '../utils/pageDictionary';
 
 interface MobileDrawerProps {
   isOpen: boolean;
@@ -113,6 +114,11 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
     setAuthModalOpen(true);
   };
 
+  const chrome = getComponentChrome(baseLanguage);
+  const localizedAppName = getLocalizedAppName(targetLanguage, baseLanguage, targetMeta.appName || 'Language School');
+  const localizedBaseName = getLocalizedLanguageName(baseLanguage, baseLanguage, baseMeta.name);
+  const localizedTargetName = getLocalizedLanguageName(targetLanguage, baseLanguage, targetMeta.name);
+
   return (
     <>
       <div className="mobile-drawer-backdrop" onClick={onClose} role="presentation">
@@ -130,8 +136,8 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                 <FlagIcon lang={targetLanguage} size={28} />
               </span>
               <div>
-                <h2 className="drawer-title">{targetMeta.appName || 'Language School'}</h2>
-                <p className="drawer-subtitle">Personal Study Dashboard</p>
+                <h2 className="drawer-title">{localizedAppName}</h2>
+                <p className="drawer-subtitle">{chrome.personalStudyDashboard}</p>
               </div>
             </div>
             <button
@@ -149,14 +155,14 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
             <div className="drawer-card drawer-pair-card">
               <div className="drawer-card-label">
                 <FaGlobe className="drawer-card-icon" />
-                <span>Learning Pair</span>
+                <span>{chrome.learningPair}</span>
               </div>
               <div className="drawer-pair-row">
                 <div className="drawer-pair-lang">
                   <span className="drawer-pair-label">{ui.iSpeak || 'I speak'}</span>
                   <div className="drawer-pair-name-wrap">
                     <FlagIcon lang={baseLanguage} size={20} />
-                    <span className="drawer-pair-name">{baseMeta.name}</span>
+                    <span className="drawer-pair-name">{localizedBaseName}</span>
                   </div>
                 </div>
 
@@ -174,7 +180,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                   <span className="drawer-pair-label">{ui.learning || 'Learning'}</span>
                   <div className="drawer-pair-name-wrap">
                     <FlagIcon lang={targetLanguage} size={20} />
-                    <span className="drawer-pair-name">{targetMeta.name}</span>
+                    <span className="drawer-pair-name">{localizedTargetName}</span>
                   </div>
                 </div>
               </div>
@@ -184,7 +190,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
             <div className="drawer-card">
               <div className="drawer-card-label">
                 <FaTachometerAlt className="drawer-card-icon" />
-                <span>Audio Playback Speed</span>
+                <span>{chrome.audioPlaybackSpeed}</span>
               </div>
               <p className="drawer-card-desc">
                 Adjust neural pronunciation pacing for clear listening
@@ -215,8 +221,8 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                   <FaChartLine />
                 </div>
                 <div className="drawer-action-text">
-                  <h3>My Learning Progress</h3>
-                  <p>View mastery %, quiz accuracy, and review words</p>
+                  <h3>{chrome.myLearningProgress}</h3>
+                  <p>{chrome.overallAccuracy} · {chrome.mastered}</p>
                 </div>
               </div>
               <span className="drawer-action-arrow">›</span>
@@ -226,7 +232,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
             <div className="drawer-card">
               <div className="drawer-card-label">
                 <FaUser className="drawer-card-icon" />
-                <span>Account & Cloud Sync</span>
+                <span>{chrome.accountCloudSync}</span>
               </div>
               {currentUser ? (
                 <div className="drawer-user-info">
@@ -240,13 +246,13 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                     onClick={handleSignOut}
                   >
                     <FaSignOutAlt />
-                    <span>Sign Out</span>
+                    <span>{chrome.signOut}</span>
                   </button>
                 </div>
               ) : (
                 <div className="drawer-guest-info">
                   <p className="drawer-guest-desc">
-                    Your stats are currently saved locally. Sign in to sync your progress across your phone and computer.
+                    {chrome.syncPromoText}
                   </p>
                   <button
                     type="button"
@@ -254,7 +260,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                     onClick={handleOpenAuth}
                   >
                     <FaSignInAlt />
-                    <span>Sync & Sign In</span>
+                    <span>{chrome.syncSignIn}</span>
                   </button>
                 </div>
               )}
@@ -268,8 +274,8 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                     <FaDownload />
                   </div>
                   <div className="drawer-action-text">
-                    <h3>Install Home Screen App</h3>
-                    <p>Fast offline-ready access without browser address bar</p>
+                    <h3>{chrome.installApp}</h3>
+                    <p>{chrome.installAppTitle}</p>
                   </div>
                 </div>
                 <span className="drawer-action-arrow">›</span>
@@ -287,7 +293,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                 }}
               >
                 <FaShieldAlt />
-                <span>Privacy Policy</span>
+                <span>{chrome.privacyPolicy}</span>
               </button>
               <button
                 type="button"
@@ -298,7 +304,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                 }}
               >
                 <FaFileContract />
-                <span>Terms of Service</span>
+                <span>{chrome.termsOfService}</span>
               </button>
             </div>
 

@@ -126,9 +126,9 @@ describe('Multi-Language Core Architecture', () => {
     const swapBtn = screen.getByLabelText('Swap language pair');
     fireEvent.click(swapBtn);
 
-    // Now learning English
+    // Now learning English (displayed localized as Inglés when baseLanguage is Spanish)
     await waitFor(() => {
-      expect(screen.getByText('English')).toBeInTheDocument();
+      expect(screen.getByText(/English|Inglés/i)).toBeInTheDocument();
     });
   });
 

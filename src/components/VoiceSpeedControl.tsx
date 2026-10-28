@@ -1,18 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FaTachometerAlt, FaCheck, FaTimes } from 'react-icons/fa';
 import { useLanguage, SpeechSpeed } from '../contexts/LanguageContext';
-
-const SPEEDS: { value: SpeechSpeed; label: string; desc: string }[] = [
-  { value: 0.5, label: '0.50×', desc: 'Slow-motion for clear syllables' },
-  { value: 0.75, label: '0.75×', desc: 'Learner pace' },
-  { value: 0.9, label: '0.90×', desc: 'Relaxed' },
-  { value: 1.0, label: '1.0×', desc: 'Standard native speed' },
-  { value: 1.1, label: '1.10×', desc: 'Brisk natural cadence' },
-  { value: 1.25, label: '1.25×', desc: 'Challenge pace' },
-];
+import { getComponentChrome } from '../utils/pageDictionary';
 
 export const VoiceSpeedControl: React.FC<{ className?: string }> = ({ className = '' }) => {
-  const { speechSpeed, setSpeechSpeed } = useLanguage();
+  const { speechSpeed, setSpeechSpeed, baseLanguage } = useLanguage();
+  const chrome = getComponentChrome(baseLanguage);
+
+  const SPEEDS: { value: SpeechSpeed; label: string; desc: string }[] = [
+    { value: 0.5, label: '0.50×', desc: chrome.speedDesc05 },
+    { value: 0.75, label: '0.75×', desc: chrome.speedDesc075 },
+    { value: 0.9, label: '0.90×', desc: baseLanguage === 'ru' ? 'Спокойный темп' : baseLanguage === 'es' ? 'Relajado' : baseLanguage === 'fr' ? 'Détendu' : 'Relaxed' },
+    { value: 1.0, label: '1.0×', desc: baseLanguage === 'en' ? 'Standard native speed' : chrome.speedDesc1 },
+    { value: 1.1, label: '1.10×', desc: baseLanguage === 'ru' ? 'Живой темп' : baseLanguage === 'es' ? 'Ritmo ágil' : baseLanguage === 'fr' ? 'Rythme vif' : 'Brisk natural cadence' },
+    { value: 1.25, label: '1.25×', desc: baseLanguage === 'en' ? 'Challenge pace' : chrome.speedDesc125 },
+  ];
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -74,8 +76,8 @@ export const VoiceSpeedControl: React.FC<{ className?: string }> = ({ className 
                   <FaTachometerAlt />
                 </div>
                 <div>
-                  <span className="speed-header-title">Audio Speed</span>
-                  <span className="speed-header-subtitle">Studio voice pace</span>
+                  <span className="speed-header-title">{chrome.audioSpeedLabel}</span>
+                  <span className="speed-header-subtitle">{chrome.studioVoicePace}</span>
                 </div>
               </div>
               <button

@@ -5,6 +5,7 @@ import { NumberBadge } from './NumberBadge';
 import { FaSyncAlt } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
 import { resolveTranslation } from '../utils/translationResolver';
+import { localizeCategoryBadge } from '../utils/pageDictionary';
 
 interface PhraseCardProps {
   targetText: string;
@@ -30,6 +31,7 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
   icon
 }) => {
   const { currentLanguage, baseLanguage, ui } = useLanguage();
+  const localizedCategory = localizeCategoryBadge(category, baseLanguage);
 
   // Extract numeric digits from translatedText/targetText if this is numbers mode
   let numericValue: string | null = null;
@@ -46,9 +48,9 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
       key={`card-${animationKey}`}
     >
       <div className="phrase-card-top-row">
-        {category && (
+        {localizedCategory && (
           <div className="phrase-meta-badge">
-            <span className="meta-category">{category}</span>
+            <span className="meta-category">{localizedCategory}</span>
           </div>
         )}
         {contentType === 'numbers' && numericValue && (
