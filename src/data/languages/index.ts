@@ -91,7 +91,7 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
     nativeName: 'Español',
     flag: '🇪🇸',
     code: 'es-ES',
-    ttsVoice: 'es-ES-AlvaroNeural',
+    ttsVoice: 'es-MX-JorgeNeural',
     hasKeyboard: false,
     hasAlphabet: true,
     hasTimeGuide: true,

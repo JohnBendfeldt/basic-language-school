@@ -48,13 +48,13 @@ CONFIGS = {
         "manifest": PUBLIC_AUDIO / "en" / "index.json"
     },
     "es": {
-        "voice": "es-ES-AlvaroNeural",
+        "voice": "es-MX-JorgeNeural",
         "data_file": PROJECT_ROOT / "src" / "data" / "languages" / "es" / "spanishData.ts",
         "output_dir": PUBLIC_AUDIO / "es",
         "manifest": PUBLIC_AUDIO / "es" / "index.json"
     },
     "fr": {
-        "voice": "fr-FR-DeniseNeural",
+        "voice": "fr-FR-HenriNeural",
         "data_file": PROJECT_ROOT / "src" / "data" / "languages" / "fr" / "frenchData.ts",
         "output_dir": PUBLIC_AUDIO / "fr",
         "manifest": PUBLIC_AUDIO / "fr" / "index.json"
@@ -166,7 +166,7 @@ async def synthesize_file(sem, spoken_text: str, voice: str, out_path: Path, for
 
         temp_path = out_path.with_suffix(".tmp.mp3")
         try:
-            communicate = edge_tts.Communicate(spoken_text, voice)
+            communicate = edge_tts.Communicate(spoken_text, voice, volume="+20%")
             await communicate.save(str(temp_path))
             temp_path.replace(out_path)
             return "success"
