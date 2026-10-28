@@ -145,8 +145,8 @@ const Phrases: React.FC<PhrasesProps> = ({
         {data.map((item, index) => (
           <PhraseCard 
             key={index}
-            russian={item.russian}
-            english={item.english}
+            russian={item.russian || item.phrase || ""}
+            english={item.english || item.meaning || ""}
             pronunciation={item.pronunciation}
             isRevealed={revealedCards[index]}
             onToggleReveal={() => toggleReveal(index)}

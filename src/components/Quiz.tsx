@@ -14,8 +14,10 @@ interface AlphabetItem {
 }
 
 interface PhraseItem {
-  english: string;
-  russian: string;
+  english?: string;
+  russian?: string;
+  phrase?: string;
+  meaning?: string;
   pronunciation?: string;
 }
 
