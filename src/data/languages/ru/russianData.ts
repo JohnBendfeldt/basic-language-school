@@ -2,7 +2,7 @@
  * Russian language data file
  * Contains all content for the Russian Learning App
  */
-import { AlphabetItem, PhraseItem } from '../types/index';
+import { AlphabetItem, PhraseItem } from '../../../types/index';
 
 // Russian alphabet with pronunciation guides and examples
 const alphabet: AlphabetItem[] = [

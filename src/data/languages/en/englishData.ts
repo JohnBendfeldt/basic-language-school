@@ -2,7 +2,7 @@
  * English language curriculum data for basicenglish.school and basicenglish.academy
  * Comprehensive beginner foundation: Alphabet & Phonics, Essential Phrases, Numbers, and Core Vocabulary.
  */
-import { AlphabetItem, PhraseItem, AppData } from '../types/index';
+import { AlphabetItem, PhraseItem, AppData } from '../../../types/index';
 
 // English alphabet (A-Z) with phonics sounds and beginner vocabulary
 const alphabet: AlphabetItem[] = [
