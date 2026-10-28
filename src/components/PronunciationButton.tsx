@@ -3,6 +3,7 @@ import { FaVolumeUp } from 'react-icons/fa';
 import { speak, initVoices } from '../utils/speech';
 import { containsCyrillic } from '../utils/transliteration';
 import { useLanguage } from '../contexts/LanguageContext';
+import { warmUpAudioContext } from '../utils/audioWarmup';
 
 interface PronunciationButtonProps {
   text: string;
@@ -162,6 +163,9 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
   const handleSpeak = () => {
     if (isPlaying) return;
     
+    // Warm up audio subsystem on click (unlocks Web Audio & AudioContext immediately)
+    warmUpAudioContext();
+
     // Safety guard: In Russian mode, ensure text is Cyrillic or digits
     if (effectiveLangId === 'ru' && !containsCyrillic(text) && !/^\d+$/.test(text.trim())) {
       console.warn('PronunciationButton: Skipped playing non-Russian text in Russian mode:', text);
@@ -192,6 +196,7 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
         }
         
         audioRef.current = new Audio(audioPath);
+        audioRef.current.preload = 'auto';
         audioPathRef.current = audioPath;
         
         audioRef.current.onended = () => {
