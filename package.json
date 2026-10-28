@@ -20,8 +20,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "preview": "vite preview",
-    "dev-server": "node src/dev-server.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run dev-server\" \"npm run start\"",
+    "dev": "vite",
     "generate-audio": "python3 scripts/generate-all-audio.py",
     "generate-audio:force": "python3 scripts/generate-all-audio.py --force",
     "generate-audio:time": "python3 scripts/generate-time-audio.py"
