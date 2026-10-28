@@ -5,6 +5,7 @@ import { ProgressService } from '../services/progressService';
 import { useLanguage } from '../contexts/LanguageContext';
 import AuthModal from './AuthModal';
 import ProgressModal from './ProgressModal';
+import { getComponentChrome } from '../utils/pageDictionary';
 
 interface UserMenuProps {
   onNavigate?: (section: string) => void;
@@ -12,7 +13,8 @@ interface UserMenuProps {
 }
 
 export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = null }) => {
-  const { currentLanguage } = useLanguage();
+  const { currentLanguage, baseLanguage } = useLanguage();
+  const chrome = getComponentChrome(baseLanguage);
   const [currentUser, setCurrentUser] = useState<any>(initialUser);
   const [menuOpen, setMenuOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
@@ -183,7 +185,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
             aria-label="View learning stats"
           >
             <FaChartLine />
-            <span className="btn-text">My Stats</span>
+            <span className="btn-text">{chrome.myStats}</span>
           </button>
 
           <button
@@ -194,7 +196,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
             aria-label="Sign in to sync progress"
           >
             <FaSignInAlt />
-            <span className="btn-text">Sign In</span>
+            <span className="btn-text">{chrome.signIn}</span>
           </button>
         </div>
       )}

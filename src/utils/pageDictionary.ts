@@ -742,3 +742,409 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
       };
   }
 };
+
+/**
+ * Localizes the top-level app title (e.g. "Basic English" -> "Базовый Английский")
+ * while preserving exact English strings when baseLang === 'en'.
+ */
+export const getLocalizedAppName = (
+  targetLang: SupportedLanguageId,
+  baseLang: SupportedLanguageId,
+  fallbackAppName: string
+): string => {
+  if (baseLang === 'en') return fallbackAppName;
+
+  const map: Record<SupportedLanguageId, Record<SupportedLanguageId, string>> = {
+    ru: {
+      en: 'Базовый Английский',
+      es: 'Базовый Испанский',
+      fr: 'Базовый Французский',
+      ru: 'Базовый Русский'
+    },
+    es: {
+      en: 'Inglés Básico',
+      es: 'Español Básico',
+      fr: 'Francés Básico',
+      ru: 'Ruso Básico'
+    },
+    fr: {
+      en: 'Anglais de Base',
+      es: 'Espagnol de Base',
+      fr: 'Français de Base',
+      ru: 'Russe de Base'
+    },
+    en: {
+      en: 'Basic English',
+      es: 'Basic Spanish',
+      fr: 'Basic French',
+      ru: 'Basic Russian'
+    }
+  };
+
+  return map[baseLang]?.[targetLang] || fallbackAppName;
+};
+
+/**
+ * Localizes a language's display name into the learner's base language.
+ */
+export const getLocalizedLanguageName = (
+  langId: SupportedLanguageId | string,
+  baseLang: SupportedLanguageId,
+  fallbackName: string
+): string => {
+  if (baseLang === 'en') return fallbackName;
+
+  const map: Record<SupportedLanguageId, Record<string, string>> = {
+    ru: {
+      en: 'Английский',
+      es: 'Испанский',
+      fr: 'Французский',
+      ru: 'Русский',
+      de: 'Немецкий',
+      it: 'Итальянский',
+      pt: 'Португальский',
+      ja: 'Японский',
+      zh: 'Китайский',
+      ko: 'Корейский'
+    },
+    es: {
+      en: 'Inglés',
+      es: 'Español',
+      fr: 'Francés',
+      ru: 'Ruso',
+      de: 'Alemán',
+      it: 'Italiano',
+      pt: 'Portugués',
+      ja: 'Japonés',
+      zh: 'Chino',
+      ko: 'Coreano'
+    },
+    fr: {
+      en: 'Anglais',
+      es: 'Espagnol',
+      fr: 'Français',
+      ru: 'Russe',
+      de: 'Allemand',
+      it: 'Italien',
+      pt: 'Portugais',
+      ja: 'Japonais',
+      zh: 'Chinois',
+      ko: 'Coréen'
+    },
+    en: {}
+  };
+
+  return map[baseLang]?.[langId] || fallbackName;
+};
+
+/**
+ * Localizes category badges on phrase/word/number cards into the learner's base language.
+ */
+export const localizeCategoryBadge = (
+  category: string | undefined,
+  baseLang: SupportedLanguageId
+): string | undefined => {
+  if (!category || baseLang === 'en') return category;
+
+  const key = category.trim().toLowerCase();
+  const map: Record<string, Record<SupportedLanguageId, string>> = {
+    'greetings': { en: 'Greetings', es: 'Saludos', fr: 'Salutations', ru: 'Приветствия' },
+    'conversation': { en: 'Conversation', es: 'Conversación', fr: 'Conversation', ru: 'Разговор' },
+    'farewells': { en: 'Farewells', es: 'Despedidas', fr: 'Au revoir', ru: 'Прощание' },
+    'politeness': { en: 'Politeness', es: 'Cortesía', fr: 'Politesse', ru: 'Вежливость' },
+    'responses': { en: 'Responses', es: 'Respuestas', fr: 'Réponses', ru: 'Ответы' },
+    'communication': { en: 'Communication', es: 'Comunicación', fr: 'Communication', ru: 'Общение' },
+    'travel': { en: 'Travel', es: 'Viajes', fr: 'Voyage', ru: 'Путешествия' },
+    'food & drink': { en: 'Food & Drink', es: 'Comida y Bebida', fr: 'Nourriture et Boissons', ru: 'Еда и напитки' },
+    'shopping': { en: 'Shopping', es: 'Compras', fr: 'Achats', ru: 'Покупки' },
+    'emergency': { en: 'Emergency', es: 'Emergencia', fr: 'Urgence', ru: 'Экстренные случаи' },
+    'people & family': { en: 'People & Family', es: 'Gente y Familia', fr: 'Personnes et Famille', ru: 'Люди и семья' },
+    'places': { en: 'Places', es: 'Lugares', fr: 'Lieux', ru: 'Места' },
+    'everyday objects': { en: 'Everyday Objects', es: 'Objetos Cotidianos', fr: 'Objets du Quotidien', ru: 'Повседневные предметы' },
+    'everyday essentials': { en: 'Everyday Essentials', es: 'Esenciales Diarios', fr: 'Essentiels du Quotidien', ru: 'Повседневные вещи' },
+    'time & weather': { en: 'Time & Weather', es: 'Tiempo y Clima', fr: 'Temps et Météo', ru: 'Время и погода' },
+    'descriptions': { en: 'Descriptions', es: 'Descripciones', fr: 'Descriptions', ru: 'Описания' },
+    'common verbs': { en: 'Common Verbs', es: 'Verbos Comunes', fr: 'Verbes Courants', ru: 'Основные глаголы' },
+    'core actions': { en: 'Core Actions', es: 'Acciones Básicas', fr: 'Actions de Base', ru: 'Основные действия' },
+    'numbers': { en: 'Numbers', es: 'Números', fr: 'Nombres', ru: 'Числа' },
+    'time': { en: 'Time', es: 'Hora y Tiempo', fr: 'Heure et Temps', ru: 'Время' }
+  };
+
+  return map[key]?.[baseLang] || category;
+};
+
+export interface ComponentChromeStrings {
+  // App Header & Footer
+  installApp: string;
+  installAppTitle: string;
+  loadingLessons: string;
+  allRightsReserved: string;
+  privacyPolicy: string;
+  termsOfService: string;
+
+  // LanguageSwitcher
+  customizingBadge: string;
+  popularPairs: string;
+  chooseLanguageToLearn: string;
+  upcomingCourses: string;
+  soonBadge: string;
+  bidirectionalNotice: string;
+  switchDirectionTitle: (baseName: string, targetName: string) => string;
+
+  // VoiceSpeedControl
+  audioSpeedLabel: string;
+  studioVoicePace: string;
+  speedDesc05: string;
+  speedDesc075: string;
+  speedDesc1: string;
+  speedDesc125: string;
+
+  // MobileDrawer
+  personalStudyDashboard: string;
+  learningPair: string;
+  audioPlaybackSpeed: string;
+  myLearningProgress: string;
+  accountCloudSync: string;
+  signOut: string;
+  syncSignIn: string;
+
+  // UserMenu & ProgressModal
+  myStats: string;
+  signIn: string;
+  signOutTitle: string;
+  progressModalTitle: string;
+  overallAccuracy: string;
+  questionsAttempted: string;
+  streak: string;
+  mastered: string;
+  accuracyByCategory: string;
+  alphabetCat: string;
+  phrasesCat: string;
+  commonWordsCat: string;
+  numbersCat: string;
+  correctOfTotal: (correct: number, total: number) => string;
+  syncPromoText: string;
+  signInRegister: string;
+  resetAllStats: string;
+  confirmResetStats: string;
+  doneBtn: string;
+}
+
+export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChromeStrings => {
+  switch (baseLang) {
+    case 'ru':
+      return {
+        installApp: 'Установить',
+        installAppTitle: 'Установить приложение на устройство',
+        loadingLessons: 'Загрузка уроков...',
+        allRightsReserved: 'Все права защищены.',
+        privacyPolicy: 'Политика конфиденциальности',
+        termsOfService: 'Условия использования',
+
+        customizingBadge: 'Настройка курса',
+        popularPairs: 'Популярные языковые пары',
+        chooseLanguageToLearn: 'Выберите язык для изучения',
+        upcomingCourses: 'Скоро появятся',
+        soonBadge: 'Скоро',
+        bidirectionalNotice: 'Двустороннее обучение · Студийная озвучка',
+        switchDirectionTitle: (baseName, targetName) =>
+          `Поменять направление: изучать ${baseName} (мой язык: ${targetName})`,
+
+        audioSpeedLabel: 'Скорость аудио',
+        studioVoicePace: 'Темп голоса',
+        speedDesc05: 'Замедленно по слогам',
+        speedDesc075: 'Учебный темп',
+        speedDesc1: 'Естественная скорость',
+        speedDesc125: 'Быстрый темп',
+
+        personalStudyDashboard: 'Личная панель обучения',
+        learningPair: 'Языковая пара',
+        audioPlaybackSpeed: 'Скорость воспроизведения аудио',
+        myLearningProgress: 'Мой прогресс обучения',
+        accountCloudSync: 'Аккаунт и синхронизация',
+        signOut: 'Выйти',
+        syncSignIn: 'Войти и синхронизировать',
+
+        myStats: 'Статистика',
+        signIn: 'Войти',
+        signOutTitle: 'Выйти из аккаунта',
+        progressModalTitle: 'Мой прогресс',
+        overallAccuracy: 'Общая точность',
+        questionsAttempted: 'Отвечено вопросов',
+        streak: 'Серия',
+        mastered: 'Изучено',
+        accuracyByCategory: 'Точность по категориям',
+        alphabetCat: 'Алфавит',
+        phrasesCat: 'Основные фразы',
+        commonWordsCat: 'Популярные слова',
+        numbersCat: 'Числа',
+        correctOfTotal: (correct, total) => `${correct} из ${total} верно`,
+        syncPromoText: 'Хотите сохранить прогресс на всех устройствах?',
+        signInRegister: 'Войти / Регистрация',
+        resetAllStats: 'Сбросить статистику',
+        confirmResetStats: 'Вы уверены, что хотите сбросить всю статистику обучения?',
+        doneBtn: 'Готово'
+      };
+    case 'es':
+      return {
+        installApp: 'Instalar App',
+        installAppTitle: 'Instalar aplicación en tu dispositivo',
+        loadingLessons: 'Cargando lecciones...',
+        allRightsReserved: 'Todos los derechos reservados.',
+        privacyPolicy: 'Política de Privacidad',
+        termsOfService: 'Términos de Servicio',
+
+        customizingBadge: 'Personalizando',
+        popularPairs: 'Pares Populares',
+        chooseLanguageToLearn: 'Elige el idioma para aprender',
+        upcomingCourses: 'Próximos Cursos',
+        soonBadge: 'Pronto',
+        bidirectionalNotice: 'Currículo bidireccional · Voz neural de estudio',
+        switchDirectionTitle: (baseName, targetName) =>
+          `Cambiar dirección: aprender ${baseName} desde ${targetName}`,
+
+        audioSpeedLabel: 'Velocidad de Audio',
+        studioVoicePace: 'Ritmo de voz',
+        speedDesc05: 'Cámara lenta para sílabas claras',
+        speedDesc075: 'Ritmo de estudiante',
+        speedDesc1: 'Velocidad nativa natural',
+        speedDesc125: 'Práctica de escucha rápida',
+
+        personalStudyDashboard: 'Panel de Estudio Personal',
+        learningPair: 'Par de Idiomas',
+        audioPlaybackSpeed: 'Velocidad de Reproducción de Audio',
+        myLearningProgress: 'Mi Progreso de Aprendizaje',
+        accountCloudSync: 'Cuenta y Sincronización en la Nube',
+        signOut: 'Cerrar Sesión',
+        syncSignIn: 'Sincronizar e Iniciar Sesión',
+
+        myStats: 'Mis Estadísticas',
+        signIn: 'Iniciar Sesión',
+        signOutTitle: 'Cerrar sesión',
+        progressModalTitle: 'Mi Progreso',
+        overallAccuracy: 'Precisión General',
+        questionsAttempted: 'Preguntas Respondidas',
+        streak: 'Racha',
+        mastered: 'Dominadas',
+        accuracyByCategory: 'Precisión por Categoría',
+        alphabetCat: 'Alfabeto',
+        phrasesCat: 'Frases Básicas',
+        commonWordsCat: 'Palabras Comunes',
+        numbersCat: 'Números',
+        correctOfTotal: (correct, total) => `${correct} de ${total} correctas`,
+        syncPromoText: '¿Quieres guardar tu progreso en todos tus dispositivos?',
+        signInRegister: 'Iniciar Sesión / Registrarse',
+        resetAllStats: 'Restablecer Estadísticas',
+        confirmResetStats: '¿Estás seguro de que quieres borrar tu progreso?',
+        doneBtn: 'Listo'
+      };
+    case 'fr':
+      return {
+        installApp: 'Installer l\'App',
+        installAppTitle: 'Installer l\'application sur votre appareil',
+        loadingLessons: 'Chargement des leçons...',
+        allRightsReserved: 'Tous droits réservés.',
+        privacyPolicy: 'Politique de Confidentialité',
+        termsOfService: 'Conditions d\'Utilisation',
+
+        customizingBadge: 'Personnalisation',
+        popularPairs: 'Paires Populaires',
+        chooseLanguageToLearn: 'Choisir la langue à apprendre',
+        upcomingCourses: 'Cours à Venir',
+        soonBadge: 'Bientôt',
+        bidirectionalNotice: 'Programme bidirectionnel · Voix neurale de studio',
+        switchDirectionTitle: (baseName, targetName) =>
+          `Inverser la direction : apprendre ${baseName} depuis ${targetName}`,
+
+        audioSpeedLabel: 'Vitesse Audio',
+        studioVoicePace: 'Rythme de la voix',
+        speedDesc05: 'Ralenti pour syllabes claires',
+        speedDesc075: 'Rythme d\'apprentissage',
+        speedDesc1: 'Vitesse native naturelle',
+        speedDesc125: 'Écoute rapide',
+
+        personalStudyDashboard: 'Tableau de Bord d\'Étude',
+        learningPair: 'Paire de Langues',
+        audioPlaybackSpeed: 'Vitesse de Lecture Audio',
+        myLearningProgress: 'Ma Progression d\'Apprentissage',
+        accountCloudSync: 'Compte et Synchronisation Cloud',
+        signOut: 'Se Déconnecter',
+        syncSignIn: 'Synchroniser et Se Connecter',
+
+        myStats: 'Mes Statistiques',
+        signIn: 'Se Connecter',
+        signOutTitle: 'Se déconnecter',
+        progressModalTitle: 'Ma Progression',
+        overallAccuracy: 'Précision Globale',
+        questionsAttempted: 'Questions Tentées',
+        streak: 'Série',
+        mastered: 'Maîtrisées',
+        accuracyByCategory: 'Précision par Catégorie',
+        alphabetCat: 'Alphabet',
+        phrasesCat: 'Phrases de Base',
+        commonWordsCat: 'Mots Courants',
+        numbersCat: 'Nombres',
+        correctOfTotal: (correct, total) => `${correct} sur ${total} correctes`,
+        syncPromoText: 'Voulez-vous sauvegarder votre progression sur tous vos appareils ?',
+        signInRegister: 'Se Connecter / S\'inscrire',
+        resetAllStats: 'Réinitialiser les Statistiques',
+        confirmResetStats: 'Êtes-vous sûr de vouloir réinitialiser toutes vos statistiques ?',
+        doneBtn: 'Terminé'
+      };
+    case 'en':
+    default:
+      return {
+        installApp: 'Install App',
+        installAppTitle: 'Install Application on your device',
+        loadingLessons: 'Loading lessons...',
+        allRightsReserved: 'All Rights Reserved.',
+        privacyPolicy: 'Privacy Policy',
+        termsOfService: 'Terms of Service',
+
+        customizingBadge: 'Customizing',
+        popularPairs: 'Popular Pairs',
+        chooseLanguageToLearn: 'Choose Language to Learn',
+        upcomingCourses: 'Upcoming Courses',
+        soonBadge: 'Soon',
+        bidirectionalNotice: 'Bidirectional curriculum · Studio neural voice',
+        switchDirectionTitle: (baseName, targetName) =>
+          `Switch direction: Learn ${baseName} from ${targetName}`,
+
+        audioSpeedLabel: 'Audio Speed',
+        studioVoicePace: 'Studio voice pace',
+        speedDesc05: 'Slow-motion for clear syllables',
+        speedDesc075: 'Learner pace',
+        speedDesc1: 'Natural native speed',
+        speedDesc125: 'Fast fluent listening',
+
+        personalStudyDashboard: 'Personal Study Dashboard',
+        learningPair: 'Learning Pair',
+        audioPlaybackSpeed: 'Audio Playback Speed',
+        myLearningProgress: 'My Learning Progress',
+        accountCloudSync: 'Account & Cloud Sync',
+        signOut: 'Sign Out',
+        syncSignIn: 'Sync & Sign In',
+
+        myStats: 'My Stats',
+        signIn: 'Sign In',
+        signOutTitle: 'Sign out',
+        progressModalTitle: 'My Progress',
+        overallAccuracy: 'Overall Accuracy',
+        questionsAttempted: 'Questions Attempted',
+        streak: 'Streak',
+        mastered: 'Mastered',
+        accuracyByCategory: 'Accuracy by Category',
+        alphabetCat: 'Alphabet',
+        phrasesCat: 'Basic Phrases',
+        commonWordsCat: 'Common Words',
+        numbersCat: 'Numbers',
+        correctOfTotal: (correct, total) => `${correct} of ${total} correct`,
+        syncPromoText: 'Want to save your progress across all your devices?',
+        signInRegister: 'Sign In / Register',
+        resetAllStats: 'Reset All Stats',
+        confirmResetStats: 'Are you sure you want to reset all your progress stats?',
+        doneBtn: 'Done'
+      };
+  }
+};
+

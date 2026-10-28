@@ -30,8 +30,18 @@ const NumbersAndTime: React.FC<NumbersAndTimeProps> = ({
   const resolvedTimeData = (timeData && timeData.length > 0)
     ? timeData
     : numbersData.filter(item => {
-        const text = (item.phrase || item.russian || '').toLowerCase();
-        return text.includes('clock') || text.includes('time') || text.includes('past') || text.includes('quarter');
+        if ((item as any).category === 'Time') return true;
+        const text = `${item.phrase || ''} ${item.russian || ''} ${item.translation || ''} ${item.meaning || ''}`.toLowerCase();
+        return (
+          text.includes('clock') ||
+          text.includes('time') ||
+          text.includes('past') ||
+          text.includes('quarter') ||
+          text.includes('noon') ||
+          text.includes('midnight') ||
+          text.includes('hora') ||
+          text.includes('heure')
+        );
       });
 
   // Localized section titles
