@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spanish Voice Audition & Comparison</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    h1 {
+      font-size: 1.8rem;
+      color: #1e1b4b;
+      margin-bottom: 0.25rem;
+    }
+    p.lead {
+      color: #64748b;
+      margin-bottom: 2rem;
+    }
+    .voice-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .voice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .voice-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #312e81;
+    }
+    .voice-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: #e0e7ff;
+      color: #3730a3;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .voice-desc {
+      color: #475569;
+      font-size: 0.95rem;
+    }
+    .sample-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+      background: #f8fafc;
+      padding: 10px 14px;
+      border-radius: 10px;
+    }
+    .sample-label {
+      font-weight: 600;
+      font-size: 0.85rem;
+      min-width: 140px;
+      color: #475569;
+    }
+    audio {
+      flex: 1;
+      height: 38px;
+    }
+    .badge-current {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    .badge-rec {
+      background: #dcfce7;
+      color: #166534;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎙️ Spanish Voice Audition & Comparison</h1>
+  <p class="lead">Listen to each neural voice speaking full sentences and individual vocabulary at high clarity (+25% volume boosted):</p>
+
+  <!-- 1. Elvira -->
+  <div class="voice-card">
+    <div class="voice-header">
+      <div class="voice-name">1. Elvira (Spain - Castilian)</div>
+      <span class="voice-tag badge-rec">⭐ Recommended for Castilian</span>
+    </div>
+    <div class="voice-desc">Warm, articulate, confident and standard European Spanish. Very natural inflection without being whispery or robotic.</div>
+    <div class="sample-row">
+      <span class="sample-label">Full Sentence:</span>
+      <audio controls src="/audio/samples/es-ES-ElviraNeural.mp3"></audio>
+    </div>
+    <div class="sample-row">
+      <span class="sample-label">Word: "Buenos días"</span>
+      <audio controls src="/audio/samples/es-ES-ElviraNeural_buenos_dias.mp3"></audio>
+    </div>
+  </div>
+
+  <!-- 2. Dalia -->
+  <div class="voice-card">
+    <div class="voice-header">
+      <div class="voice-name">2. Dalia (Mexico - Latin American Neutral)</div>
+      <span class="voice-tag badge-rec">⭐ Top Pick for Clarity</span>
+    </div>
+    <div class="voice-desc">Clear, confident, energetic and crisp. Ideal for language learners because consonants and vowels are exceptionally distinct and project loudly.</div>
+    <div class="sample-row">
+      <span class="sample-label">Full Sentence:</span>
+      <audio controls src="/audio/samples/es-MX-DaliaNeural.mp3"></audio>
+    </div>
+    <div class="sample-row">
+      <span class="sample-label">Word: "Buenos días"</span>
+      <audio controls src="/audio/samples/es-MX-DaliaNeural_buenos_dias.mp3"></audio>
+    </div>
+  </div>
+
+  <!-- 3. Jorge -->
+  <div class="voice-card">
+    <div class="voice-header">
+      <div class="voice-name">3. Jorge (Mexico Male - Authoritative & Broadcast)</div>
+      <span class="voice-tag">Male Voice Option</span>
+    </div>
+    <div class="voice-desc">Deep, authoritative, and very clear radio/broadcast male voice with excellent acoustic presence and zero mumble.</div>
+    <div class="sample-row">
+      <span class="sample-label">Full Sentence:</span>
+      <audio controls src="/audio/samples/es-MX-JorgeNeural.mp3"></audio>
+    </div>
+    <div class="sample-row">
+      <span class="sample-label">Word: "Buenos días"</span>
+      <audio controls src="/audio/samples/es-MX-JorgeNeural_buenos_dias.mp3"></audio>
+    </div>
+  </div>
+
+  <!-- 4. Paloma -->
+  <div class="voice-card">
+    <div class="voice-header">
+      <div class="voice-name">4. Paloma (US Neutral Female)</div>
+      <span class="voice-tag">Modern & Friendly</span>
+    </div>
+    <div class="voice-desc">Modern, friendly, and very natural pace. Standard neutral accent widely used in educational media.</div>
+    <div class="sample-row">
+      <span class="sample-label">Full Sentence:</span>
+      <audio controls src="/audio/samples/es-US-PalomaNeural.mp3"></audio>
+    </div>
+  </div>
+
+  <!-- 5. Alvaro (Current) -->
+  <div class="voice-card">
+    <div class="voice-header">
+      <div class="voice-name">5. Alvaro (Spain Male - Current Voice)</div>
+      <span class="voice-tag badge-current">Current Voice</span>
+    </div>
+    <div class="voice-desc">The voice currently generated on the site. Lower gain / softer timbre, which is why it felt quiet.</div>
+    <div class="sample-row">
+      <span class="sample-label">Full Sentence:</span>
+      <audio controls src="/audio/samples/es-ES-AlvaroNeural.mp3"></audio>
+    </div>
+    <div class="sample-row">
+      <span class="sample-label">Word: "Buenos días"</span>
+      <audio controls src="/audio/samples/es-ES-AlvaroNeural_buenos_dias.mp3"></audio>
+    </div>
+  </div>
+
+</body>
+</html>
