@@ -44,13 +44,13 @@ const parsePath = (): { langId?: SupportedLanguageId; section: string } => {
 
   // Handle /learn/:lang/:section or /learn/:lang
   if (segments[0] === 'learn') {
-    if (segments[1] && ['ru', 'en'].includes(segments[1])) {
+    if (segments[1] && ['ru', 'en', 'es', 'fr'].includes(segments[1])) {
       langId = segments[1] as SupportedLanguageId;
       section = segments[2] && PATH_TO_SECTION[segments[2]] ? PATH_TO_SECTION[segments[2]] : 'alphabet';
     } else if (segments[1] && PATH_TO_SECTION[segments[1]]) {
       section = PATH_TO_SECTION[segments[1]];
     }
-  } else if (['ru', 'en'].includes(segments[0])) {
+  } else if (['ru', 'en', 'es', 'fr'].includes(segments[0])) {
     // Handle /:lang/:section or /:lang
     langId = segments[0] as SupportedLanguageId;
     section = segments[1] && PATH_TO_SECTION[segments[1]] ? PATH_TO_SECTION[segments[1]] : 'alphabet';

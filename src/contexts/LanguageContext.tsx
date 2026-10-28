@@ -18,8 +18,10 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export const ALL_PLATFORM_LANGUAGES = [
   { id: 'ru', name: 'Russian', nativeName: 'Русский', flag: '🇷🇺', available: true },
   { id: 'en', name: 'English', nativeName: 'English', flag: '🇬🇧', available: true },
-  { id: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸', available: false },
-  { id: 'fr', name: 'French', nativeName: 'Français', flag: '🇫🇷', available: false },
+  { id: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸', available: true },
+  { id: 'fr', name: 'French', nativeName: 'Français', flag: '🇫🇷', available: true },
+  { id: 'de', name: 'German', nativeName: 'Deutsch', flag: '🇩🇪', available: false },
+  { id: 'it', name: 'Italian', nativeName: 'Italiano', flag: '🇮🇹', available: false },
 ];
 
 /**

@@ -1,6 +1,6 @@
 import { AppData } from '../../types';
 
-export type SupportedLanguageId = 'ru' | 'en';
+export type SupportedLanguageId = 'ru' | 'en' | 'es' | 'fr';
 
 export interface LanguageMeta {
   id: SupportedLanguageId;
