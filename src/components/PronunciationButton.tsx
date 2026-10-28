@@ -146,15 +146,17 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
     if (category === 'basicPhrases') category = 'phrases';
     if (category === 'commonWords') category = 'words';
     
-    // Format filename - strip slashes, parenthesized notes, punctuation and replace spaces with underscores
+    // Format filename - normalize to NFC (standard precomposed Cyrillic characters),
+    // strip slashes, parenthesized notes, punctuation, and encode URI component safely.
     const cleanText = normalizedText
+      .normalize('NFC')
       .split('/')[0]
       .replace(/\s*\([^)]*\)\s*/g, '')
       .replace(/[?.,!¡¿'’"]/g, '')
       .trim();
     const fileName = cleanText.replace(/\s+/g, '_');
     
-    return `/audio/${effectiveLangId}/${category}/${fileName}.mp3`;
+    return `/audio/${effectiveLangId}/${category}/${encodeURIComponent(fileName)}.mp3`;
   };
 
   const handleSpeak = () => {
