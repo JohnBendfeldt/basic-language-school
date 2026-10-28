@@ -185,30 +185,29 @@
     </g>
   </g>
 
-  <!-- Main Headline (Tightened font size & balanced spacing to completely avoid collision) -->
-  <!-- Left margin: 72px, right room: up to 680px (608px total width) -->
-  <text x="72" y="186" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif" font-size="54" font-weight="900" fill="#ffffff" letter-spacing="-1.2">
+  <!-- Main Headline (Balanced sizing & comfortable clearance before the right card) -->
+  <text x="72" y="176" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif" font-size="44" font-weight="900" fill="#ffffff" letter-spacing="-0.5">
     Basic Language School
   </text>
 
   <!-- Tagline -->
-  <text x="73" y="234" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="600" fill="#cbd5e1" letter-spacing="0.2">
+  <text x="73" y="218" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="600" fill="#cbd5e1" letter-spacing="0.2">
     Practical Language Learning for Real Careers &amp; Life
   </text>
 
   <!-- Underline Accent Bar -->
-  <rect x="73" y="258" width="530" height="4" rx="2" fill="url(#spectrum)"/>
+  <rect x="73" y="240" width="460" height="4" rx="2" fill="url(#spectrum)"/>
 
   <!-- Subtitle Paragraph -->
-  <text x="73" y="296" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" fill="#94a3b8" font-weight="400">
+  <text x="73" y="276" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" fill="#94a3b8" font-weight="400">
     Master Spanish, French, English, and Russian with studio neural audio,
   </text>
-  <text x="73" y="322" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="17" fill="#94a3b8" font-weight="400">
+  <text x="73" y="302" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" fill="#94a3b8" font-weight="400">
     spaced repetition, phonetics, and practical workplace vocabulary.
   </text>
 
   <!-- Feature Value Pills -->
-  <g transform="translate(72, 360)">
+  <g transform="translate(72, 342)">
     <!-- Pill 1: 4 Languages -->
     <g transform="translate(0, 0)">
       <rect width="168" height="42" rx="21" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>

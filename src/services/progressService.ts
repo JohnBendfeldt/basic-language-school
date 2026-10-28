@@ -388,6 +388,45 @@ export class ProgressService {
   }
 
   /**
+   * Get mastery overview across all specified languages
+   */
+  static async getMultiLanguageMastery(
+    languages: Array<{ id: string; totalItems: number }>
+  ): Promise<Record<string, { wordsMastered: number; totalItems: number; percentMastered: number; quizzesCompleted: number; averageScore: number }>> {
+    const results: Record<string, { wordsMastered: number; totalItems: number; percentMastered: number; quizzesCompleted: number; averageScore: number }> = {};
+
+    await Promise.all(
+      languages.map(async ({ id, totalItems }) => {
+        try {
+          const stats = await this.getUserStats(id);
+          const percentMastered = totalItems > 0
+            ? Math.min(100, Math.round((stats.wordsMasteredCount / totalItems) * 100))
+            : 0;
+
+          results[id] = {
+            wordsMastered: stats.wordsMasteredCount,
+            totalItems,
+            percentMastered,
+            quizzesCompleted: stats.totalQuizzesTaken,
+            averageScore: stats.averageScore
+          };
+        } catch (err) {
+          console.warn(`Could not calculate mastery for ${id}:`, err);
+          results[id] = {
+            wordsMastered: 0,
+            totalItems,
+            percentMastered: 0,
+            quizzesCompleted: 0,
+            averageScore: 0
+          };
+        }
+      })
+    );
+
+    return results;
+  }
+
+  /**
    * Sync guest progress to Supabase when user logs in
    */
   static async syncGuestDataToCloud(languageId: string = 'ru'): Promise<void> {
