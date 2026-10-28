@@ -42,10 +42,9 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
       key={`card-${animationKey}`}
     >
       <div className="phrase-card-top-row">
-        {(category || icon) && (
+        {category && (
           <div className="phrase-meta-badge">
-            {icon && contentType !== 'numbers' && <span className="meta-icon" aria-hidden="true">{icon}</span>}
-            {category && <span className="meta-category">{category}</span>}
+            <span className="meta-category">{category}</span>
           </div>
         )}
         {contentType === 'numbers' && numericValue && (
@@ -55,7 +54,14 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
         )}
       </div>
       <div className="phrase-header">
-        <h3 className="russian">{russian}</h3>
+        <div className="phrase-title-group">
+          {icon && contentType !== 'numbers' && (
+            <span className="phrase-icon-badge" aria-hidden="true">
+              {icon}
+            </span>
+          )}
+          <h3 className="phrase-text">{russian}</h3>
+        </div>
         <PronunciationButton 
           text={russian} 
           label={`Pronounce ${contentType === 'words' ? 'word' : contentType === 'numbers' ? 'number' : contentType === 'time' ? 'time expression' : 'phrase'} ${russian}`}
