@@ -9,8 +9,10 @@ interface PhraseCardProps {
   pronunciation: string;
   isRevealed: boolean;
   onToggleReveal: () => void;
-  animationKey: number; // Add a key to trigger animation only on the changed card
-  contentType?: 'phrases' | 'words' | 'numbers' | 'time'; // Add content type prop
+  animationKey: number;
+  contentType?: 'phrases' | 'words' | 'numbers' | 'time';
+  category?: string;
+  icon?: string;
 }
 
 const PhraseCard: React.FC<PhraseCardProps> = ({ 
@@ -20,13 +22,21 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
   isRevealed, 
   onToggleReveal,
   animationKey,
-  contentType = 'phrases' // Default to phrases
+  contentType = 'phrases',
+  category,
+  icon
 }) => {
   return (
     <div 
       className={`phrase-card ${isRevealed ? 'phrase-revealed' : 'phrase-hidden'}`} 
       key={`card-${animationKey}`}
     >
+      {(category || icon) && (
+        <div className="phrase-meta-badge">
+          {icon && <span className="meta-icon" aria-hidden="true">{icon}</span>}
+          {category && <span className="meta-category">{category}</span>}
+        </div>
+      )}
       <div className="phrase-header">
         <h3 className="russian">{russian}</h3>
         <PronunciationButton 
@@ -151,7 +161,9 @@ const Phrases: React.FC<PhrasesProps> = ({
             isRevealed={revealedCards[index]}
             onToggleReveal={() => toggleReveal(index)}
             animationKey={lastToggledCard === index ? Date.now() : index}
-            contentType={contentType} // Pass content type down to card
+            contentType={contentType}
+            category={item.category}
+            icon={item.icon}
           />
         ))}
       </div>

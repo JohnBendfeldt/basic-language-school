@@ -4411,3 +4411,32 @@ html {
   color: #4a5af4;
   margin-left: auto;
 }
+
+
+/* Subtle Adult-Oriented Visual Anchor Badge */
+.phrase-meta-badge {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 6px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 3px 8px;
+  margin-bottom: 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #475569;
+  user-select: none;
+}
+
+.phrase-meta-badge .meta-icon {
+  font-size: 0.85rem;
+  line-height: 1;
+}
+
+.phrase-meta-badge .meta-category {
+  color: #475569;
+}
