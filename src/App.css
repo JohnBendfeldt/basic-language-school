@@ -340,8 +340,18 @@ footer {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   position: relative;
+}
+
+.letter-icon {
+  font-size: 1.85rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
 }
 
 .letter-uppercase, .letter-lowercase {
