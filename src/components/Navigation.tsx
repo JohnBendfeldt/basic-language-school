@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface NavigationProps {
   activeSection: string;
@@ -13,12 +14,14 @@ const Navigation: React.FC<NavigationProps> = ({
   isOpen,
   _onClose
 }) => {
+  const { ui } = useLanguage();
+
   const navItems = [
-    { id: 'alphabet', label: 'Alphabet' },
-    { id: 'phrases', label: 'Basic Phrases' },
-    { id: 'words', label: 'Common Words' },
-    { id: 'numbers', label: 'Numbers & Time' },
-    { id: 'quiz', label: 'Quiz' }
+    { id: 'alphabet', label: ui?.alphabet || 'Alphabet' },
+    { id: 'phrases', label: ui?.basicPhrases || 'Basic Phrases' },
+    { id: 'words', label: ui?.commonWords || 'Common Words' },
+    { id: 'numbers', label: ui?.numbersAndTime || 'Numbers & Time' },
+    { id: 'quiz', label: ui?.quiz || 'Quiz' }
   ];
 
   return (
