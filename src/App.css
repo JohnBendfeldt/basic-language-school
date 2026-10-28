@@ -724,6 +724,24 @@ footer {
   margin-bottom: 0.5rem;
 }
 
+.phrase-revealed-translation-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.phrase-pronunciation.mini {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  min-height: 28px;
+  font-size: 0.8rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .phrase-card .english {
   color: var(--text-dark);
   font-size: 1.1rem;
