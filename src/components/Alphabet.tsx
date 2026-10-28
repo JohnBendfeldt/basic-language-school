@@ -13,11 +13,11 @@ const Alphabet: React.FC<AlphabetProps> = ({ data }) => {
   return (
     <div className="section">
       <div className="alphabet-header">
-        <h2>{currentLanguage === 'ru' ? 'Russian Alphabet (Cyrillic)' : 'English Alphabet & Phonics'}</h2>
+        <h2>{currentLanguage === 'ru' ? 'Russian Alphabet (Cyrillic)' : `${currentMeta.name} Alphabet`}</h2>
         <p className="section-subtitle">
           {currentLanguage === 'ru'
             ? '33 letters with pronunciation guides, example words, and studio neural audio'
-            : '26 letters with phonics sounds, example vocabulary, and native studio audio'}
+            : `${data.length} letters with pronunciation guides, example vocabulary, and native studio audio`}
         </p>
       </div>
 

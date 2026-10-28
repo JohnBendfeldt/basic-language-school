@@ -1,5 +1,6 @@
+import App from '../App';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import React from 'react';
 import { LanguageProvider, useLanguage } from '../contexts/LanguageContext';
 import LanguageSwitcher from '../components/LanguageSwitcher';
@@ -85,5 +86,28 @@ describe('Multi-Language Core Architecture', () => {
 
     const btn = screen.getByRole('button');
     expect(btn).toBeInTheDocument();
+  });
+
+  it("renders correct language titles when switching across Russian, English, Spanish, French", async () => {
+    // Test that Common Words and Phrases reflect the active language in App
+    window.history.pushState({}, "", "/learn/es/words");
+    const { unmount } = render(<App />);
+
+    // Title MUST say Spanish, never English
+    await waitFor(() => {
+      expect(screen.getByText("Common Spanish Words & Vocabulary")).toBeInTheDocument();
+      expect(screen.queryByText("High-Frequency English Vocabulary")).not.toBeInTheDocument();
+    });
+
+    // Test French phrases at /learn/fr/phrases
+    window.history.pushState({}, "", "/learn/fr/phrases");
+    fireEvent(window, new PopStateEvent("popstate"));
+
+    await waitFor(() => {
+      expect(screen.getByText("French Essential Phrases")).toBeInTheDocument();
+      expect(screen.queryByText("Basic Russian Phrases")).not.toBeInTheDocument();
+    });
+
+    unmount();
   });
 });
