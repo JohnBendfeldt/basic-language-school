@@ -226,7 +226,8 @@ export const speakText = async (
   text: string, 
   lang = 'ru-RU',
   onEnd?: () => void,
-  onError?: (error: Error) => void
+  onError?: (error: Error) => void,
+  rate = 1.0
 ): Promise<void> => {
   try {
     // Check if a Russian voice is available in the browser
@@ -234,7 +235,7 @@ export const speakText = async (
     
     if (hasRussianVoice) {
       // If Russian voice is available, use browser's speech synthesis
-      playWithBrowserTTS(text, lang, onEnd, onError);
+      playWithBrowserTTS(text, lang, onEnd, onError, rate);
       return;
     }
     
@@ -251,7 +252,7 @@ export const speakText = async (
       
       audio.onerror = () => {
         // If local audio fails, fall back to browser TTS as last resort
-        playWithBrowserTTS(text, lang, onEnd, onError);
+        playWithBrowserTTS(text, lang, onEnd, onError, rate);
       };
       
       await audio.play();
@@ -259,7 +260,7 @@ export const speakText = async (
     }
     
     // If no audio file available either, use browser TTS as last resort
-    playWithBrowserTTS(text, lang, onEnd, onError);
+    playWithBrowserTTS(text, lang, onEnd, onError, rate);
   } catch (error) {
     console.error('Speech error:', error);
     if (onError) {
@@ -280,7 +281,8 @@ const playWithBrowserTTS = (
   text: string,
   lang: string,
   onEnd?: () => void,
-  onError?: (error: Error) => void
+  onError?: (error: Error) => void,
+  rate = 1.0
 ): void => {
   if (!window.speechSynthesis) {
     if (onError) onError(new Error('Speech synthesis not supported in this browser'));
@@ -290,8 +292,9 @@ const playWithBrowserTTS = (
   // Create a new utterance
   const utterance = new SpeechSynthesisUtterance(text);
   
-  // Set language
+  // Set language and playback rate
   utterance.lang = lang;
+  utterance.rate = rate;
   
   // Find best native voice for the selected language
   const bestVoice = getBestVoiceForLang(lang);

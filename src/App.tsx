@@ -8,6 +8,7 @@ import Quiz from './components/Quiz';
 import BottomNavigation from './components/BottomNavigation';
 import UserMenu from './components/UserMenu';
 import LanguageSwitcher from './components/LanguageSwitcher';
+import VoiceSpeedControl from './components/VoiceSpeedControl';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
 import { initVoices, cancelAllSpeech } from './utils/speech';
@@ -310,6 +311,9 @@ const AppContent: React.FC = () => {
           </h1>
 
           <div className="header-actions">
+            {/* Playback speed selector (.50x to 1.25x) */}
+            <VoiceSpeedControl />
+
             {/* Duolingo-style language switcher */}
             <LanguageSwitcher onLanguageChange={handleLanguageChange} />
 
