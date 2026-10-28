@@ -186,6 +186,31 @@ const AppContent: React.FC = () => {
       );
     }
 
+    const getSectionTitle = (sectionType: 'phrases' | 'words' | 'numbers' | 'time') => {
+      if (baseLanguage === 'es') {
+        if (sectionType === 'phrases') return `Frases Básicas (${currentMeta.nativeName})`;
+        if (sectionType === 'words') return `Palabras Comunes (${currentMeta.nativeName})`;
+        if (sectionType === 'numbers') return `Números (${currentMeta.nativeName})`;
+        return `Tiempo y Expresiones (${currentMeta.nativeName})`;
+      }
+      if (baseLanguage === 'ru') {
+        if (sectionType === 'phrases') return `Основные фразы (${currentMeta.nativeName})`;
+        if (sectionType === 'words') return `Популярные слова (${currentMeta.nativeName})`;
+        if (sectionType === 'numbers') return `Числа (${currentMeta.nativeName})`;
+        return `Время и выражения (${currentMeta.nativeName})`;
+      }
+      if (baseLanguage === 'fr') {
+        if (sectionType === 'phrases') return `Phrases de Base (${currentMeta.nativeName})`;
+        if (sectionType === 'words') return `Mots Courants (${currentMeta.nativeName})`;
+        if (sectionType === 'numbers') return `Nombres (${currentMeta.nativeName})`;
+        return `Heure et Expressions (${currentMeta.nativeName})`;
+      }
+      if (sectionType === 'phrases') return `${currentMeta.name} Essential Phrases`;
+      if (sectionType === 'words') return `Common ${currentMeta.name} Words & Vocabulary`;
+      if (sectionType === 'numbers') return `${currentMeta.name} Numbers`;
+      return `${currentMeta.name} Time Expressions`;
+    };
+
     switch (activeSection) {
       case 'alphabet':
         return <Alphabet data={currentMeta.data.alphabet} />;
@@ -193,7 +218,7 @@ const AppContent: React.FC = () => {
         return (
           <Phrases 
             data={currentMeta.data.basicPhrases} 
-            title={currentLanguage === 'ru' ? 'Basic Russian Phrases' : `${currentMeta.name} Essential Phrases`} 
+            title={getSectionTitle('phrases')} 
             contentType="phrases"
           />
         );
@@ -211,7 +236,7 @@ const AppContent: React.FC = () => {
         return (
           <Phrases 
             data={currentMeta.data.commonWords} 
-            title={currentLanguage === 'ru' ? 'Common Russian Words' : `Common ${currentMeta.name} Words & Vocabulary`} 
+            title={getSectionTitle('words')} 
             contentType="words"
           />
         );

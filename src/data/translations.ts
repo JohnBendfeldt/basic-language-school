@@ -26,12 +26,16 @@ export interface UIStrings {
   meaning: string;
   listen: string;
   tapToReveal: string;
+  tapToHide: string;
   hide: string;
   revealAll: string;
   hideAll: string;
+  pronunciationLabel: string;
+  tapCardToRevealSubtitle: string;
 
   // Quiz strings
   testYourKnowledge: string;
+  allTopics: string;
   checkAnswer: string;
   nextQuestion: string;
   startNextQuiz: string;
@@ -40,13 +44,18 @@ export interface UIStrings {
   yourAnswerHere: string;
   correct: string;
   incorrect: string;
+  correctAnswerIs: string;
   wordsToReview: string;
+  scoreLabel: string;
+  masteredLabel: string;
+  remainingLabel: string;
+  questionOf: string;
 }
 
 export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
   en: {
     alphabet: 'Alphabet',
-    basicPhrases: 'Basic Phrases',
+    basicPhrases: 'Phrases & Greetings',
     commonWords: 'Common Words',
     numbersAndTime: 'Numbers & Time',
     numbers: 'Numbers',
@@ -66,12 +75,16 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     sound: 'Sound',
     meaning: 'Meaning',
     listen: 'Listen',
-    tapToReveal: 'Tap to reveal translation',
+    tapToReveal: 'Tap to reveal',
+    tapToHide: 'Tap to hide',
     hide: 'Hide',
     revealAll: 'Reveal All',
     hideAll: 'Hide All',
+    pronunciationLabel: 'Pronunciation:',
+    tapCardToRevealSubtitle: 'Tap any card to reveal its translation and pronunciation',
 
     testYourKnowledge: 'Test Your Knowledge',
+    allTopics: 'All Topics',
     checkAnswer: 'Check Answer',
     nextQuestion: 'Next Question',
     startNextQuiz: 'Start Next Quiz',
@@ -79,8 +92,13 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     pressEnter: 'press ↵ Enter',
     yourAnswerHere: 'Your answer here...',
     correct: 'Correct!',
-    incorrect: 'Incorrect',
+    incorrect: 'Not quite',
+    correctAnswerIs: 'The correct answer is:',
     wordsToReview: 'Words to Review from This Session',
+    scoreLabel: 'Score:',
+    masteredLabel: 'Mastered:',
+    remainingLabel: 'remaining',
+    questionOf: 'Question'
   },
 
   es: {
@@ -105,12 +123,16 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     sound: 'Sonido',
     meaning: 'Significado',
     listen: 'Escuchar',
-    tapToReveal: 'Toca para revelar traducción',
+    tapToReveal: 'Toca para ver',
+    tapToHide: 'Toca para ocultar',
     hide: 'Ocultar',
     revealAll: 'Mostrar Todo',
     hideAll: 'Ocultar Todo',
+    pronunciationLabel: 'Pronunciación:',
+    tapCardToRevealSubtitle: 'Toca cualquier tarjeta para ver su traducción y pronunciación',
 
     testYourKnowledge: 'Pon a Prueba tu Conocimiento',
+    allTopics: 'Todos los Temas',
     checkAnswer: 'Comprobar Respuesta',
     nextQuestion: 'Siguiente Pregunta',
     startNextQuiz: 'Comenzar Siguiente Quiz',
@@ -118,8 +140,13 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     pressEnter: 'presiona ↵ Enter',
     yourAnswerHere: 'Escribe tu respuesta aquí...',
     correct: '¡Correcto!',
-    incorrect: 'Incorrecto',
+    incorrect: 'Casi, pero no del todo.',
+    correctAnswerIs: 'La respuesta correcta es:',
     wordsToReview: 'Palabras para Repasar de Esta Sesión',
+    scoreLabel: 'Puntuación:',
+    masteredLabel: 'Dominadas:',
+    remainingLabel: 'restantes',
+    questionOf: 'Pregunta'
   },
 
   fr: {
@@ -145,11 +172,15 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     meaning: 'Signification',
     listen: 'Écouter',
     tapToReveal: 'Appuyez pour révéler',
+    tapToHide: 'Appuyez pour masquer',
     hide: 'Masquer',
     revealAll: 'Tout Révéler',
     hideAll: 'Tout Masquer',
+    pronunciationLabel: 'Prononciation :',
+    tapCardToRevealSubtitle: 'Appuyez sur une carte pour voir sa traduction et sa prononciation',
 
     testYourKnowledge: 'Testez Vos Connaissances',
+    allTopics: 'Tous les Sujets',
     checkAnswer: 'Vérifier la Réponse',
     nextQuestion: 'Question Suivante',
     startNextQuiz: 'Commencer le Quiz Suivant',
@@ -157,8 +188,13 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     pressEnter: 'appuyez sur ↵ Entrée',
     yourAnswerHere: 'Votre réponse ici...',
     correct: 'Correct !',
-    incorrect: 'Incorrect',
+    incorrect: 'Pas tout à fait.',
+    correctAnswerIs: 'La bonne réponse est :',
     wordsToReview: 'Mots à Réviser de Cette Session',
+    scoreLabel: 'Score :',
+    masteredLabel: 'Maîtrisés :',
+    remainingLabel: 'restants',
+    questionOf: 'Question'
   },
 
   ru: {
@@ -183,12 +219,16 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     sound: 'Звук',
     meaning: 'Значение',
     listen: 'Слушать',
-    tapToReveal: 'Нажмите, чтобы увидеть перевод',
+    tapToReveal: 'Нажмите, чтобы увидеть',
+    tapToHide: 'Нажмите, чтобы скрыть',
     hide: 'Скрыть',
     revealAll: 'Показать всё',
     hideAll: 'Скрыть всё',
+    pronunciationLabel: 'Произношение:',
+    tapCardToRevealSubtitle: 'Нажмите на любую карточку, чтобы увидеть перевод и произношение',
 
     testYourKnowledge: 'Проверьте свои знания',
+    allTopics: 'Все темы',
     checkAnswer: 'Проверить ответ',
     nextQuestion: 'Следующий вопрос',
     startNextQuiz: 'Начать следующий тест',
@@ -196,7 +236,12 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     pressEnter: 'нажмите ↵ Enter',
     yourAnswerHere: 'Введите ваш ответ...',
     correct: 'Правильно!',
-    incorrect: 'Неправильно',
+    incorrect: 'Не совсем так.',
+    correctAnswerIs: 'Правильный ответ:',
     wordsToReview: 'Слова для повторения из этой сессии',
+    scoreLabel: 'Счёт:',
+    masteredLabel: 'Изучено:',
+    remainingLabel: 'осталось',
+    questionOf: 'Вопрос'
   },
 };

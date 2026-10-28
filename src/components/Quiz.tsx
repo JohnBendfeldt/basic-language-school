@@ -6,6 +6,13 @@ import { transliterate, containsCyrillic } from '../utils/transliteration';
 import { ProgressService } from '../services/progressService';
 import { useLanguage } from '../contexts/LanguageContext';
 import { getAlphabetAcceptedAnswers } from '../utils/alphabetAnswers';
+import { 
+  NUMBER_TABLE, 
+  extractDigit, 
+  resolveTranslation, 
+  buildQuizQuestionHint 
+} from '../utils/translationResolver';
+import { UIStrings } from '../data/translations';
 
 // Define interfaces for the data structure
 interface AlphabetItem {
@@ -45,6 +52,19 @@ export const QUIZ_CATEGORIES: QuizCategoryInfo[] = [
   { id: 'numbers', label: 'Numbers', icon: '🔢', description: 'Counting 0 through 1,000' },
   { id: 'time', label: 'Time & Days', icon: '⏰', description: 'Days of the week, relative days, and clock phrases' },
 ];
+
+export const getCategoryLabel = (id: QuizCategoryFilter, ui?: UIStrings): string => {
+  if (!ui) return id;
+  switch (id) {
+    case 'all': return ui.allTopics || 'All Topics';
+    case 'alphabet': return ui.alphabet || 'Alphabet';
+    case 'basicPhrases': return ui.basicPhrases || 'Phrases';
+    case 'commonWords': return ui.commonWords || 'Common Words';
+    case 'numbers': return ui.numbers || 'Numbers';
+    case 'time': return ui.time || 'Time & Days';
+    default: return id;
+  }
+};
 
 interface QuizProps {
   data: {
@@ -104,7 +124,7 @@ const getAudioCategory = (questionType: string): 'alphabet' | 'phrases' | 'numbe
 };
 
 const Quiz: React.FC<QuizProps> = ({ data }) => {
-  const { currentLanguage, currentMeta } = useLanguage();
+  const { currentLanguage, currentMeta, baseLanguage, ui } = useLanguage();
 
   // Session Goal: 5, 10, or 20 questions (persisted per language)
   const [sessionGoal, setSessionGoal] = useState<number>(() => {
@@ -205,6 +225,13 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       return prompt;
     }
 
+    // For numbers, if there's both a word and a digit representation, show "Word (Digit)" e.g. "quince (15)"
+    const digitPart = parts.find(p => /^\d+$/.test(p));
+    const wordPart = parts.find(p => !/^\d+$/.test(p) && !p.startsWith('/') && !p.startsWith('('));
+    if (digitPart && wordPart) {
+      return `${wordPart} (${digitPart})`;
+    }
+
     // Filter out parts that start with / or are purely phonetic metadata
     const cleanCandidates = parts.filter(p => !p.startsWith('/') && !p.startsWith('('));
     if (cleanCandidates.length > 0) {
@@ -302,68 +329,40 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     return s.replace(/\s+/g, ' ').trim();
   };
 
-  const numberEquivalents: { [key: string]: string[] } = {
-    "0": ["zero", "ноль"],
-    "1": ["one", "один", "одна", "одно"],
-    "2": ["two", "два", "две"],
-    "3": ["three", "три"],
-    "4": ["four", "четыре"],
-    "5": ["five", "пять"],
-    "6": ["six", "шесть"],
-    "7": ["seven", "семь"],
-    "8": ["eight", "восемь"],
-    "9": ["nine", "девять"],
-    "10": ["ten", "десять"],
-    "11": ["eleven", "одиннадцать"],
-    "12": ["twelve", "двенадцать"],
-    "13": ["thirteen", "тринадцать"],
-    "14": ["fourteen", "четырнадцать"],
-    "15": ["fifteen", "пятнадцать"],
-    "16": ["sixteen", "шестнадцать"],
-    "17": ["seventeen", "семнадцать"],
-    "18": ["eighteen", "восемьнадцать"],
-    "19": ["nineteen", "девятнадцать"],
-    "20": ["twenty", "двадцать"],
-    "30": ["thirty", "тридцать"],
-    "40": ["forty", "сорок"],
-    "50": ["fifty", "пятьдесят"],
-    "60": ["sixty", "шестьдесят"],
-    "70": ["seventy", "семьдесят"],
-    "80": ["eighty", "восемьдесят"],
-    "90": ["ninety", "девяносто"],
-    "100": ["hundred", "one hundred", "a hundred", "сто"],
-    "1000": ["thousand", "one thousand", "a thousand", "тысяча"]
-  };
-
   const checkNumberEquivalence = (userAnswer: string, correctAnswer: string): boolean => {
-    // Strip commas, periods, and extra spaces (e.g. "1,000" or "1.000" -> "1000")
-    const cleanUser = userAnswer.replace(/[,.]/g, '').replace(/\s+/g, ' ').trim();
-    const cleanTarget = correctAnswer.replace(/[,.]/g, '').replace(/\s+/g, ' ').trim();
+    // Strip punctuation, accents, and extra spaces
+    const cleanUser = userAnswer.toLowerCase().replace(/[,.]/g, '').replace(/\s+/g, ' ').trim();
+    const cleanTarget = correctAnswer.toLowerCase().replace(/[,.]/g, '').replace(/\s+/g, ' ').trim();
     if (cleanUser === cleanTarget) return true;
 
-    // Check if user answer is digits (allowing spaces like "1 000" or raw "1000")
-    const userDigits = cleanUser.replace(/\s+/g, '');
-    if (/^\d+$/.test(userDigits)) {
-      const possibleWordForms = numberEquivalents[userDigits] || [];
-      return possibleWordForms.some(wordForm => 
-        cleanTarget === wordForm || cleanTarget.includes(wordForm)
-      );
-    } 
+    const userDigit = extractDigit(cleanUser);
+    const targetDigit = extractDigit(cleanTarget);
 
-    // Check if target is digits
-    const targetDigits = cleanTarget.replace(/\s+/g, '');
-    if (/^\d+$/.test(targetDigits)) {
-      const possibleWordForms = numberEquivalents[targetDigits] || [];
-      return possibleWordForms.some(wordForm =>
-        cleanUser === wordForm || cleanUser.includes(wordForm)
-      );
+    // 1. Both contain numbers and match (e.g. user typed "1" and target is "1 - single unit" or "1 (One)")
+    if (userDigit !== null && targetDigit !== null && userDigit === targetDigit) {
+      return true;
     }
 
-    // Check if both user and target are equivalent representations of the same number
-    // (e.g. user typed "thousand" or "a thousand" and target is "one thousand")
-    for (const [digit, wordForms] of Object.entries(numberEquivalents)) {
-      const userMatches = wordForms.some(w => cleanUser === w || userDigits === digit);
-      const targetMatches = wordForms.some(w => cleanTarget === w || targetDigits === digit);
+    // 2. User typed a digit (e.g. "1" or "15") and target is a word form (e.g. "quince", "one")
+    if (userDigit !== null && NUMBER_TABLE[userDigit]) {
+      const allowed = NUMBER_TABLE[userDigit].allWords;
+      if (allowed.some(w => cleanTarget === w || cleanTarget.includes(w))) {
+        return true;
+      }
+    }
+
+    // 3. Target contains a digit (e.g. "15 (Fifteen)" or "1 - single unit") and user typed a word form
+    if (targetDigit !== null && NUMBER_TABLE[targetDigit]) {
+      const allowed = NUMBER_TABLE[targetDigit].allWords;
+      if (allowed.some(w => cleanUser === w || cleanUser.includes(w))) {
+        return true;
+      }
+    }
+
+    // 4. Word-to-word cross-language number matching (e.g. user typed "quince" and target is "fifteen")
+    for (const mapping of Object.values(NUMBER_TABLE)) {
+      const userMatches = mapping.allWords.some(w => cleanUser === w || cleanUser.includes(w));
+      const targetMatches = mapping.allWords.some(w => cleanTarget === w || cleanTarget.includes(w));
       if (userMatches && targetMatches) {
         return true;
       }
@@ -587,30 +586,98 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       } else {
         const item = selected.item as PhraseItem;
         const targetWord = (item.russian || item.phrase || item.target || '').toString();
-        const meaningWord = (item.english || item.meaning || item.translation || '').toString();
+        const rawMeaning = (item.english || item.meaning || item.translation || '').toString();
+        const baseWord = resolveTranslation(item, currentLanguage, baseLanguage);
 
-        if (selected.isRussianToEnglish) {
-          setCurrentQuestion({
-            type: selected.category,
-            prompt: targetWord,
-            answer: meaningWord.toLowerCase(),
-            hint: `What does "${targetWord}" mean?`,
-            targetAudioWord: targetWord,
-            russian: targetWord,
-            isTargetPrompt: true,
-            id: selected.id
-          });
+        // 1. Check if the item is a number
+        const digit = extractDigit(targetWord) ?? extractDigit(rawMeaning);
+        if (digit !== null && NUMBER_TABLE[digit]) {
+          const numItem = NUMBER_TABLE[digit];
+          const targetNumWord = numItem[currentLanguage] || numItem.en;
+          const baseNumWord = numItem[baseLanguage] || numItem.en;
+          const cleanTargetAnswer = `${targetNumWord}/${digit}/${targetWord}`;
+          const cleanBaseAnswer = `${baseNumWord}/${digit}/${baseWord}`;
+
+          if (selected.isRussianToEnglish) {
+            // Target -> Base (e.g. Prompt is "quince", User can answer "15", "quince", or base language "пятнадцать")
+            const promptText = targetWord;
+            setCurrentQuestion({
+              type: selected.category,
+              prompt: promptText,
+              answer: cleanBaseAnswer.toLowerCase(),
+              hint: buildQuizQuestionHint(promptText, true, currentLanguage, baseLanguage),
+              targetAudioWord: promptText,
+              promptAudioWord: promptText,
+              russian: promptText,
+              isTargetPrompt: true,
+              id: selected.id
+            });
+          } else {
+            // Base -> Target (e.g. Prompt is "15 (Пятнадцать)", User answers "quince" or "15")
+            const promptText = `${digit} (${baseNumWord})`;
+            setCurrentQuestion({
+              type: selected.category,
+              prompt: promptText,
+              answer: cleanTargetAnswer.toLowerCase(),
+              hint: buildQuizQuestionHint(promptText, false, currentLanguage, baseLanguage),
+              targetAudioWord: targetWord,
+              promptAudioWord: baseNumWord,
+              russian: targetWord,
+              isTargetPrompt: false,
+              id: selected.id
+            });
+          }
         } else {
-          setCurrentQuestion({
-            type: selected.category,
-            prompt: meaningWord,
-            answer: targetWord.toLowerCase(),
-            hint: `How do you say "${meaningWord}" in ${currentMeta.name}?`,
-            targetAudioWord: targetWord,
-            russian: targetWord,
-            isTargetPrompt: false,
-            id: selected.id
-          });
+          // 2. Check if rawMeaning is a descriptive definition (e.g. starts with Noun:, Verb:, or > 25 chars)
+          const isVerboseDefinition = /^noun:\s*/i.test(rawMeaning) ||
+            /^verb:\s*/i.test(rawMeaning) ||
+            rawMeaning.length > 25 ||
+            rawMeaning.includes('Asking for') ||
+            rawMeaning.includes('Universal friendly');
+
+          if (isVerboseDefinition) {
+            // Pedagogical Rule: Complex definition is the prompt, simplest single word is the answer!
+            const promptText = rawMeaning.replace(/^(Noun|Verb):\s*/i, '').trim();
+            setCurrentQuestion({
+              type: selected.category,
+              prompt: promptText,
+              answer: targetWord.toLowerCase(),
+              hint: buildQuizQuestionHint(promptText, false, currentLanguage, baseLanguage),
+              targetAudioWord: targetWord,
+              promptAudioWord: promptText,
+              russian: targetWord,
+              isTargetPrompt: false,
+              id: selected.id
+            });
+          } else if (selected.isRussianToEnglish) {
+            // Standard Target -> Base
+            const promptText = targetWord;
+            setCurrentQuestion({
+              type: selected.category,
+              prompt: promptText,
+              answer: baseWord.toLowerCase(),
+              hint: buildQuizQuestionHint(promptText, true, currentLanguage, baseLanguage),
+              targetAudioWord: promptText,
+              promptAudioWord: promptText,
+              russian: promptText,
+              isTargetPrompt: true,
+              id: selected.id
+            });
+          } else {
+            // Standard Base -> Target
+            const promptText = baseWord;
+            setCurrentQuestion({
+              type: selected.category,
+              prompt: promptText,
+              answer: targetWord.toLowerCase(),
+              hint: buildQuizQuestionHint(promptText, false, currentLanguage, baseLanguage),
+              targetAudioWord: targetWord,
+              promptAudioWord: promptText,
+              russian: targetWord,
+              isTargetPrompt: false,
+              id: selected.id
+            });
+          }
         }
       }
 
@@ -1312,6 +1379,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                 {QUIZ_CATEGORIES.map(cat => {
                   const isActive = activeCategory === cat.id;
                   const countInfo = categoryCounts[cat.id];
+                  const label = getCategoryLabel(cat.id, ui);
                   return (
                     <button
                       key={cat.id}
@@ -1320,10 +1388,10 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                       aria-selected={isActive}
                       className={`recap-topic-pill ${isActive ? 'active' : ''}`}
                       onClick={() => handleCategoryChange(cat.id)}
-                      title={`Switch to ${cat.label} (${countInfo?.total || 0} questions)`}
+                      title={`Switch to ${label} (${countInfo?.total || 0} questions)`}
                     >
                       <span className="cat-icon">{cat.icon}</span>
-                      <span className="cat-label">{cat.label}</span>
+                      <span className="cat-label">{label}</span>
                     </button>
                   );
                 })}
@@ -1420,7 +1488,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
   return (
     <div className="section quiz-section">
-      <h2 className="quiz-page-title">Test Your Knowledge</h2>
+      <h2 className="quiz-page-title">{ui.testYourKnowledge}</h2>
 
       {/* Modern Horizontal Category Filter Bar */}
       <div className="quiz-category-filter-bar" role="tablist" aria-label="Filter quiz by category">
@@ -1429,6 +1497,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             const isActive = activeCategory === cat.id;
             const countInfo = categoryCounts[cat.id];
             const isFullyMastered = countInfo && countInfo.total > 0 && countInfo.mastered >= countInfo.total;
+            const label = getCategoryLabel(cat.id, ui);
             return (
               <button
                 key={cat.id}
@@ -1437,10 +1506,10 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                 aria-selected={isActive}
                 className={`category-filter-pill ${isActive ? 'active' : ''} ${isFullyMastered ? 'mastered' : ''}`}
                 onClick={() => handleCategoryChange(cat.id)}
-                title={`Filter quiz to ${cat.label} (${countInfo?.total || 0} questions)`}
+                title={`Filter quiz to ${label} (${countInfo?.total || 0} questions)`}
               >
                 <span className="cat-icon" aria-hidden="true">{cat.icon}</span>
-                <span className="cat-label">{cat.label}</span>
+                <span className="cat-label">{label}</span>
                 <span className="cat-count-badge">
                   {countInfo?.mastered ? `${countInfo.mastered}/${countInfo.total}` : (countInfo?.total || 0)}
                 </span>
@@ -1461,13 +1530,13 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
         <div className="quiz-top-bar">
           <div className="session-progress-counter">
-            <span className="counter-label">Question</span>
+            <span className="counter-label">{ui.questionOf}</span>
             <span className="counter-current">{sessionIndex}</span>
             <span className="counter-total">of {sessionGoal}</span>
           </div>
 
           <div className="session-score-badge">
-            <span>Score: <strong>{sessionScore}</strong> / {sessionAnswered}</span>
+            <span>{ui.scoreLabel} <strong>{sessionScore}</strong> / {sessionAnswered}</span>
           </div>
 
           <div className="quiz-goal-selector" role="group" aria-label="Session question count">
@@ -1487,8 +1556,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
         <div className="curriculum-pool-badge" title="Mastered words are removed from future questions">
           <span className="pool-icon">🏆</span>
-          <span>Mastered: <strong>{activeMasteredCount}</strong> / {activeTotalQuestions}</span>
-          <span className="pool-remaining-tag">({activeRemainingToMaster} remaining)</span>
+          <span>{ui.masteredLabel} <strong>{activeMasteredCount}</strong> / {activeTotalQuestions}</span>
+          <span className="pool-remaining-tag">({activeRemainingToMaster} {ui.remainingLabel})</span>
         </div>
       </div>
 
@@ -1496,15 +1565,13 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         <h3 className="quiz-question-hint">{currentQuestion.hint}</h3>
         <div className="quiz-prompt">
           <span className="quiz-prompt-text">{currentQuestion.prompt}</span>
-          {/* Render audio next to the prompt when prompt is in target language or alphabet */}
-          {currentQuestion.isTargetPrompt && (
-            <PronunciationButton 
-              text={currentQuestion.targetAudioWord || currentQuestion.russian || currentQuestion.prompt}
-              lang={currentLanguage}
-              className="quiz-prompt-audio margin-left"
-              audioCategory={getAudioCategory(currentQuestion.type)}
-            />
-          )}
+          {/* Audio for prompt: in target language if target prompt, else base language */}
+          <PronunciationButton 
+            text={currentQuestion.promptAudioWord || currentQuestion.targetAudioWord || currentQuestion.russian || currentQuestion.prompt}
+            lang={currentQuestion.isTargetPrompt ? currentLanguage : baseLanguage}
+            className="quiz-prompt-audio margin-left"
+            audioCategory={getAudioCategory(currentQuestion.type)}
+          />
         </div>
         <div className="input-container">
           <input
@@ -1514,7 +1581,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             value={userAnswer}
             onChange={handleInputChange} 
             onKeyDown={handleKeyDown}
-            placeholder={needsRussianKeyboard ? "Type in English (press SPACE)..." : "Your answer here..."}
+            placeholder={needsRussianKeyboard ? "Type in English (press SPACE)..." : ui.yourAnswerHere}
             disabled={showNext}
           />
           {needsRussianKeyboard && !showNext && (
@@ -1606,10 +1673,10 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
         <div className="quiz-buttons">
           {!showNext && (
-            <button className="check-button" onClick={handleCheckAnswer} aria-label="Check Answer">
-              <span className="btn-main-label">Check Answer</span>
+            <button className="check-button" onClick={handleCheckAnswer} aria-label={ui.checkAnswer}>
+              <span className="btn-main-label">{ui.checkAnswer}</span>
               <span className="btn-hint-badge">
-                press <span className="btn-kbd">↵ Enter</span>
+                {ui.pressEnter}
               </span>
             </button>
           )}
@@ -1633,11 +1700,11 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                 )}
                 <div className="feedback-text-content">
                   <span className="feedback-title">
-                    {isCorrect ? 'Correct!' : 'Not quite'}
+                    {isCorrect ? ui.correct : ui.incorrect}
                   </span>
                   {!isCorrect && (
                     <div className="feedback-answer-line">
-                      <span>The correct answer is: </span>
+                      <span>{ui.correctAnswerIs} </span>
                       <strong className="feedback-correct-word">
                         {getCleanDisplayAnswer(currentQuestion.answer, currentQuestion.prompt, currentQuestion.type)}
                       </strong>
@@ -1684,11 +1751,11 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                   className={`feedback-continue-button ${isCorrect ? 'btn-next-correct' : 'btn-next-incorrect'}`} 
                   onClick={handleNextQuestion} 
                   autoFocus
-                  aria-label={`Next Question (${sessionIndex + 1}/${sessionGoal})`}
+                  aria-label={`${ui.nextQuestion} (${sessionIndex + 1}/${sessionGoal})`}
                 >
-                  <span className="btn-main-label">Next Question ({sessionIndex + 1}/{sessionGoal})</span>
+                  <span className="btn-main-label">{ui.nextQuestion} ({sessionIndex + 1}/${sessionGoal})</span>
                   <span className="btn-hint-badge">
-                    press <span className="btn-kbd">↵ Enter</span>
+                    {ui.pressEnter}
                   </span>
                 </button>
               ) : (
@@ -1696,10 +1763,10 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                   className="feedback-continue-button finish-quiz-button" 
                   onClick={handleCompleteSession} 
                   autoFocus
-                  aria-label="Complete Quiz & View Results"
+                  aria-label={ui.completeQuiz}
                 >
                   <span className="btn-main-label">
-                    <FaCheckCircle className="btn-icon" /> Complete Quiz & View Results 🎉
+                    <FaCheckCircle className="btn-icon" /> {ui.completeQuiz} 🎉
                   </span>
                   <span className="btn-hint-badge">
                     press <span className="btn-kbd">↵ Enter</span>
