@@ -3,14 +3,31 @@ import { SupportedLanguageId, LanguageMeta } from '../data/languages/types';
 import { SUPPORTED_LANGUAGES, DEFAULT_LANGUAGE, getLanguageMeta } from '../data/languages';
 import { ProgressService } from '../services/progressService';
 import { cancelAllSpeech } from '../utils/speech';
+import { detectInitialLanguagePair, detectDeviceLanguage } from '../utils/localeDetection';
+import { UI_TRANSLATIONS, UIStrings } from '../data/translations';
 
 export type SpeechSpeed = 0.5 | 0.75 | 0.9 | 1.0 | 1.1 | 1.25;
 
 interface LanguageContextType {
+  // Target language (the language the user is actively learning)
   currentLanguage: SupportedLanguageId;
+  targetLanguage: SupportedLanguageId;
   currentMeta: LanguageMeta;
-  supportedLanguages: LanguageMeta[];
+  targetMeta: LanguageMeta;
   setLanguage: (langId: SupportedLanguageId) => void;
+  setTargetLanguage: (langId: SupportedLanguageId) => void;
+
+  // Base / Native language (user's device/reference language)
+  baseLanguage: SupportedLanguageId;
+  baseMeta: LanguageMeta;
+  setBaseLanguage: (langId: SupportedLanguageId) => void;
+  swapLanguages: () => void;
+
+  // Localized UI strings for buttons, titles, actions
+  ui: UIStrings;
+
+  // Metadata & Platform options
+  supportedLanguages: LanguageMeta[];
   availableLanguages: { id: string; name: string; nativeName: string; flag: string; available: boolean }[];
   speechSpeed: SpeechSpeed;
   setSpeechSpeed: (speed: SpeechSpeed) => void;
@@ -28,54 +45,24 @@ export const ALL_PLATFORM_LANGUAGES = [
   { id: 'it', name: 'Italian', nativeName: 'Italiano', flag: '🇮🇹', available: false },
 ];
 
-/**
- * Intelligent language detector:
- * 1. Checks URL path (e.g. /learn/ru/..., /learn/en/..., /ru/..., /en/...)
- * 2. Checks localStorage preference
- * 3. Checks browser primary language (navigator.language)
- * 4. Fallback to default
- */
-const detectInitialLanguage = (): SupportedLanguageId => {
-  if (typeof window === 'undefined') return DEFAULT_LANGUAGE;
-
-  // 1. Check pathname
-  const pathParts = window.location.pathname.toLowerCase().split('/').filter(Boolean);
-  for (const part of pathParts) {
-    if (part in SUPPORTED_LANGUAGES) {
-      return part as SupportedLanguageId;
-    }
-  }
-
-  // 2. Check localStorage
-  try {
-    const saved = localStorage.getItem('basic_language_active_lang');
-    if (saved && saved in SUPPORTED_LANGUAGES) {
-      return saved as SupportedLanguageId;
-    }
-  } catch (err) {
-    console.warn('Could not read saved language from localStorage:', err);
-  }
-
-  // 3. Browser language detection (foundation for native language matching)
-  try {
-    const browserLang = (navigator.language || (navigator as any).userLanguage || '').toLowerCase();
-    if (browserLang.startsWith('ru') && 'ru' in SUPPORTED_LANGUAGES) {
-      return 'ru';
-    }
-    // If user's browser is non-English, they may be coming to learn English
-    if (browserLang.startsWith('en') && 'ru' in SUPPORTED_LANGUAGES) {
-      // Default to Russian for English speakers learning Russian
-      return 'ru';
-    }
-  } catch {
-    // ignore
-  }
-
-  return DEFAULT_LANGUAGE;
-};
-
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [currentLanguage, setCurrentLanguageState] = useState<SupportedLanguageId>(detectInitialLanguage);
+  const [targetLanguage, setTargetLanguageState] = useState<SupportedLanguageId>(() => {
+    return detectInitialLanguagePair().targetLanguage;
+  });
+  const [baseLanguage, setBaseLanguageState] = useState<SupportedLanguageId>(() => {
+    return detectInitialLanguagePair().baseLanguage;
+  });
+
+  // Listen to popstate in LanguageProvider as well so context stays synced with URL changes
+  useEffect(() => {
+    const handleUrlSync = () => {
+      const pair = detectInitialLanguagePair();
+      setTargetLanguageState(prev => prev !== pair.targetLanguage ? pair.targetLanguage : prev);
+    };
+    window.addEventListener('popstate', handleUrlSync);
+    return () => window.removeEventListener('popstate', handleUrlSync);
+  }, []);
+
   const [speechSpeed, setSpeechSpeedState] = useState<SpeechSpeed>(() => {
     if (typeof window !== "undefined") {
       try {
@@ -96,43 +83,118 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     } catch { /* ignore */ }
   }, []);
 
-  const currentMeta = getLanguageMeta(currentLanguage);
+  const targetMeta = getLanguageMeta(targetLanguage);
+  const baseMeta = getLanguageMeta(baseLanguage);
   const supportedLanguages = Object.values(SUPPORTED_LANGUAGES);
+  const ui = UI_TRANSLATIONS[baseLanguage] || UI_TRANSLATIONS.en;
 
-  const setLanguage = useCallback((langId: SupportedLanguageId) => {
+  // Set target language (the language being learned)
+  const setTargetLanguage = useCallback((langId: SupportedLanguageId) => {
     if (!(langId in SUPPORTED_LANGUAGES)) return;
 
-    // Halt any playing speech/audio
     cancelAllSpeech();
     document.querySelectorAll('audio').forEach(a => {
       try { a.pause(); } catch { /* ignore */ }
     });
 
-    setCurrentLanguageState(langId);
+    setTargetLanguageState(langId);
 
-    // Save locally and to backend profile
+    // If new target matches base, flip base to a sensible counterpart
+    if (langId === baseLanguage) {
+      const fallbackBase: SupportedLanguageId = langId === 'en' ? 'es' : 'en';
+      setBaseLanguageState(fallbackBase);
+      try {
+        localStorage.setItem('basic_language_base_lang', fallbackBase);
+      } catch { /* ignore */ }
+    }
+
+    try {
+      localStorage.setItem('basic_language_target_lang', langId);
+      localStorage.setItem('basic_language_active_lang', langId);
+    } catch { /* ignore */ }
+
     ProgressService.setActiveLanguage(langId);
 
-    // Update document language attribute
     if (typeof document !== 'undefined') {
       document.documentElement.lang = langId;
     }
-  }, []);
+  }, [baseLanguage]);
 
-  // Sync html lang tag on initial mount
+  // Backward compatibility alias for setLanguage
+  const setLanguage = setTargetLanguage;
+
+  // Set base language (user's native language)
+  const setBaseLanguage = useCallback((langId: SupportedLanguageId) => {
+    if (!(langId in SUPPORTED_LANGUAGES)) return;
+
+    setBaseLanguageState(langId);
+
+    // If new base matches target, flip target to a sensible counterpart
+    if (langId === targetLanguage) {
+      const fallbackTarget: SupportedLanguageId = langId === 'en' ? 'es' : 'en';
+      setTargetLanguageState(fallbackTarget);
+      try {
+        localStorage.setItem('basic_language_target_lang', fallbackTarget);
+        localStorage.setItem('basic_language_active_lang', fallbackTarget);
+      } catch { /* ignore */ }
+      ProgressService.setActiveLanguage(fallbackTarget);
+    }
+
+    try {
+      localStorage.setItem('basic_language_base_lang', langId);
+    } catch { /* ignore */ }
+  }, [targetLanguage]);
+
+  // Quick swap pair (e.g. Spanish -> English becomes English -> Spanish)
+  const swapLanguages = useCallback(() => {
+    cancelAllSpeech();
+    const oldTarget = targetLanguage;
+    const oldBase = baseLanguage;
+
+    setTargetLanguageState(oldBase);
+    setBaseLanguageState(oldTarget);
+
+    try {
+      localStorage.setItem('basic_language_target_lang', oldBase);
+      localStorage.setItem('basic_language_active_lang', oldBase);
+      localStorage.setItem('basic_language_base_lang', oldTarget);
+    } catch { /* ignore */ }
+
+    ProgressService.setActiveLanguage(oldBase);
+    if (typeof document !== 'undefined') {
+      document.documentElement.lang = oldBase;
+    }
+  }, [targetLanguage, baseLanguage]);
+
+  // Sync html lang tag on initial mount & updates
   useEffect(() => {
     if (typeof document !== 'undefined') {
-      document.documentElement.lang = currentLanguage;
+      document.documentElement.lang = targetLanguage;
     }
-  }, [currentLanguage]);
+  }, [targetLanguage]);
 
   return (
     <LanguageContext.Provider
       value={{
-        currentLanguage,
-        currentMeta,
-        supportedLanguages,
+        // Target / active language
+        currentLanguage: targetLanguage,
+        targetLanguage,
+        currentMeta: targetMeta,
+        targetMeta,
         setLanguage,
+        setTargetLanguage,
+
+        // Native / reference language
+        baseLanguage,
+        baseMeta,
+        setBaseLanguage,
+        swapLanguages,
+
+        // Localized UI strings
+        ui,
+
+        // Platform metadata
+        supportedLanguages,
         availableLanguages: ALL_PLATFORM_LANGUAGES,
         speechSpeed,
         setSpeechSpeed
@@ -148,9 +210,17 @@ export const useLanguage = (): LanguageContextType => {
   if (!context) {
     return {
       currentLanguage: DEFAULT_LANGUAGE,
+      targetLanguage: DEFAULT_LANGUAGE,
       currentMeta: SUPPORTED_LANGUAGES[DEFAULT_LANGUAGE],
-      supportedLanguages: Object.values(SUPPORTED_LANGUAGES),
+      targetMeta: SUPPORTED_LANGUAGES[DEFAULT_LANGUAGE],
       setLanguage: () => {},
+      setTargetLanguage: () => {},
+      baseLanguage: 'en',
+      baseMeta: SUPPORTED_LANGUAGES.en,
+      setBaseLanguage: () => {},
+      swapLanguages: () => {},
+      ui: UI_TRANSLATIONS.en,
+      supportedLanguages: Object.values(SUPPORTED_LANGUAGES),
       availableLanguages: ALL_PLATFORM_LANGUAGES,
       speechSpeed: 1.0,
       setSpeechSpeed: () => {}
