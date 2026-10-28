@@ -64,7 +64,7 @@ const parsePath = (): { langId?: SupportedLanguageId; section: string } => {
 };
 
 const AppContent: React.FC = () => {
-  const { currentLanguage, currentMeta, setLanguage } = useLanguage();
+  const { currentLanguage, currentMeta, setLanguage, baseLanguage } = useLanguage();
   const [activeSection, setActiveSection] = useState<string>(() => parsePath().section);
   const [installPrompt, setInstallPrompt] = useState<any>(null);
   const [speechInitialized, setSpeechInitialized] = useState(false);
@@ -218,6 +218,7 @@ const AppContent: React.FC = () => {
       case 'quiz':
         return (
           <Quiz 
+            key={`${currentLanguage}-${baseLanguage}`}
             data={{
               alphabet: currentMeta.data.alphabet.map(item => ({
                 character: item.letter,

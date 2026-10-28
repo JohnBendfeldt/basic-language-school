@@ -5,6 +5,7 @@ import PronunciationButton from './PronunciationButton';
 import { transliterate, containsCyrillic } from '../utils/transliteration';
 import { ProgressService } from '../services/progressService';
 import { useLanguage } from '../contexts/LanguageContext';
+import { getAlphabetAcceptedAnswers } from '../utils/alphabetAnswers';
 
 // Define interfaces for the data structure
 interface AlphabetItem {
@@ -105,9 +106,9 @@ const getAudioCategory = (questionType: string): 'alphabet' | 'phrases' | 'numbe
 const Quiz: React.FC<QuizProps> = ({ data }) => {
   const { currentLanguage, currentMeta } = useLanguage();
 
-  // Session Goal: 5, 10, or 20 questions (persisted across sessions)
+  // Session Goal: 5, 10, or 20 questions (persisted per language)
   const [sessionGoal, setSessionGoal] = useState<number>(() => {
-    const saved = localStorage.getItem('quiz_goal');
+    const saved = localStorage.getItem(`basic_quiz_goal_${currentLanguage}`) || localStorage.getItem('quiz_goal') || localStorage.getItem('russian_quiz_goal');
     if (saved) {
       const num = parseInt(saved, 10);
       if ([5, 10, 20].includes(num)) return num;
@@ -117,7 +118,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
   // Active Category Filter: 'all', 'alphabet', 'basicPhrases', 'commonWords', 'numbers', 'time'
   const [activeCategory, setActiveCategory] = useState<QuizCategoryFilter>(() => {
-    const saved = localStorage.getItem('quiz_category');
+    const saved = localStorage.getItem(`basic_quiz_category_${currentLanguage}`) || localStorage.getItem('quiz_category');
     if (saved && ['all', 'alphabet', 'basicPhrases', 'commonWords', 'numbers', 'time'].includes(saved)) {
       return saved as QuizCategoryFilter;
     }
@@ -176,7 +177,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         });
       })
       .catch(err => console.warn('Could not load mastered word IDs:', err));
-  }, [sessionAnswered]);
+  }, [currentLanguage, sessionAnswered]);
 
   // Ensure view glides to top when quiz completes so user never misses celebration banner
   useEffect(() => {
@@ -184,6 +185,34 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [isSessionComplete]);
+
+  // Extract a clean, user-friendly display answer (avoids leading slashes or empty strings)
+  const getCleanDisplayAnswer = (answer: string, prompt?: string, type?: string): string => {
+    if (!answer) return prompt || '';
+    const parts = answer
+      .split('/')
+      .map(p => p.trim())
+      .filter(Boolean);
+
+    if (parts.length === 0) return prompt || answer;
+
+    // For alphabet questions, show the letter and its phonetic name (e.g. "R (erre)", "H (hache)")
+    if (type === 'alphabet' && prompt) {
+      const name = parts.find(p => p.toLowerCase() !== prompt.toLowerCase() && !p.startsWith('/') && !p.includes('('));
+      if (name) {
+        return `${prompt} (${name})`;
+      }
+      return prompt;
+    }
+
+    // Filter out parts that start with / or are purely phonetic metadata
+    const cleanCandidates = parts.filter(p => !p.startsWith('/') && !p.startsWith('('));
+    if (cleanCandidates.length > 0) {
+      return cleanCandidates[0];
+    }
+
+    return parts[0].replace(/[/()]/g, '').trim();
+  };
 
   const normalizeText = (text: string): string => {
     let mainText = text;
@@ -541,11 +570,14 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             id: selected.id
           });
         } else {
+          const acceptedAnswers = getAlphabetAcceptedAnswers(character, pronunciation, currentLanguage);
           setCurrentQuestion({
             type: 'alphabet',
             prompt: character,
-            answer: pronunciation.toLowerCase(),
-            hint: `How is the letter "${character}" pronounced in ${currentMeta.name}?`,
+            answer: acceptedAnswers.join('/'),
+            hint: currentLanguage === 'ru'
+              ? `What sound does the Cyrillic letter "${character}" make?`
+              : `Type the letter "${character}" or listen to its sound in ${currentMeta.name}:`,
             targetAudioWord: character,
             russian: character,
             isTargetPrompt: true,
@@ -750,6 +782,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     if (isSoftSign(currentQuestion.prompt) && isSoftSignAnswer(userAnswerNormalized)) {
       isAnswerCorrect = true;
     } else if (isHardSign(currentQuestion.prompt) && isHardSignAnswer(userAnswerNormalized)) {
+      isAnswerCorrect = true;
+    } else if (currentQuestion.type === 'alphabet' && userAnswerNormalized === normalizeText(currentQuestion.prompt)) {
       isAnswerCorrect = true;
     } else {
       // Collect all valid target answers (split by '/' if present)
@@ -1110,31 +1144,87 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     const masteredCount = masteredWordIds.size;
     const remainingToMaster = Math.max(0, totalCurriculumQuestions - masteredCount);
 
-    let headlineRussian = '';
+    let headlineTitle = '';
     let headlinePronunciation = '';
-    let headlineEnglish = '';
+    let headlineSubtitle = '';
     let recapIcon = null;
 
     if (percentage === 100) {
-      headlineRussian = 'Отлично!';
-      headlinePronunciation = 'Otlichno!';
-      headlineEnglish = 'Perfect score! You mastered every question in this session.';
       recapIcon = <FaTrophy className="recap-icon gold" />;
+      if (currentLanguage === 'es') {
+        headlineTitle = '¡Excelente!';
+        headlinePronunciation = '¡Puntaje perfecto!';
+        headlineSubtitle = '¡Puntaje perfecto! Has dominado todas las preguntas de esta sesión.';
+      } else if (currentLanguage === 'fr') {
+        headlineTitle = 'Parfait !';
+        headlinePronunciation = 'Score parfait !';
+        headlineSubtitle = 'Score parfait ! Vous avez maîtrisé toutes les questions de cette session.';
+      } else if (currentLanguage === 'en') {
+        headlineTitle = 'Outstanding!';
+        headlinePronunciation = 'Perfect score!';
+        headlineSubtitle = 'Perfect score! You mastered every single question in this session.';
+      } else {
+        headlineTitle = 'Отлично!';
+        headlinePronunciation = 'Otlichno!';
+        headlineSubtitle = 'Perfect score! You mastered every question in this session.';
+      }
     } else if (percentage >= 80) {
-      headlineRussian = 'Молодец!';
-      headlinePronunciation = 'Molodets!';
-      headlineEnglish = 'Outstanding job! Your Russian skills are getting stronger.';
       recapIcon = <FaTrophy className="recap-icon silver" />;
+      if (currentLanguage === 'es') {
+        headlineTitle = '¡Muy bien!';
+        headlinePronunciation = '¡Mwee byehn!';
+        headlineSubtitle = '¡Excelente trabajo! Tus habilidades en español están mejorando mucho.';
+      } else if (currentLanguage === 'fr') {
+        headlineTitle = 'Très bien !';
+        headlinePronunciation = 'Treh byahn !';
+        headlineSubtitle = 'Excellent travail ! Vos compétences en français progressent à grands pas.';
+      } else if (currentLanguage === 'en') {
+        headlineTitle = 'Great Job!';
+        headlinePronunciation = 'Well done!';
+        headlineSubtitle = 'Outstanding effort! Your English communication skills are growing stronger.';
+      } else {
+        headlineTitle = 'Молодец!';
+        headlinePronunciation = 'Molodets!';
+        headlineSubtitle = 'Outstanding job! Your Russian skills are getting stronger.';
+      }
     } else if (percentage >= 60) {
-      headlineRussian = 'Хорошо!';
-      headlinePronunciation = 'Khorosho!';
-      headlineEnglish = 'Solid progress! A little more practice and you will ace it.';
       recapIcon = <FaStar className="recap-icon bronze" />;
+      if (currentLanguage === 'es') {
+        headlineTitle = '¡Buen trabajo!';
+        headlinePronunciation = '¡Bwehn trah-BAH-hoh!';
+        headlineSubtitle = '¡Buen progreso! Un poco más de práctica y lo dominarás.';
+      } else if (currentLanguage === 'fr') {
+        headlineTitle = 'Bien joué !';
+        headlinePronunciation = 'Byahn zhoo-AY !';
+        headlineSubtitle = 'Des progrès solides ! Encore un peu d’entraînement et vous maîtriserez tout.';
+      } else if (currentLanguage === 'en') {
+        headlineTitle = 'Good Progress!';
+        headlinePronunciation = 'Keep going!';
+        headlineSubtitle = 'Solid progress! A little more practice and you will ace every question.';
+      } else {
+        headlineTitle = 'Хорошо!';
+        headlinePronunciation = 'Khorosho!';
+        headlineSubtitle = 'Solid progress! A little more practice and you will ace it.';
+      }
     } else {
-      headlineRussian = 'Повторение — мать учения';
-      headlinePronunciation = 'Povtorenie — mat ucheniya';
-      headlineEnglish = 'Repetition is the mother of learning. Practice makes perfect!';
       recapIcon = <FaGraduationCap className="recap-icon practice" />;
+      if (currentLanguage === 'es') {
+        headlineTitle = 'La práctica hace al maestro';
+        headlinePronunciation = '¡Sigue practicando!';
+        headlineSubtitle = 'La repetición es la clave del aprendizaje. ¡Cada intento te acerca a la fluidez!';
+      } else if (currentLanguage === 'fr') {
+        headlineTitle = 'C’est en forgeant qu’on devient forgeron';
+        headlinePronunciation = 'Continuez à pratiquer !';
+        headlineSubtitle = 'La répétition est la clé de la réussite. Chaque essai renforce votre mémoire !';
+      } else if (currentLanguage === 'en') {
+        headlineTitle = 'Practice makes perfect';
+        headlinePronunciation = 'Step by step';
+        headlineSubtitle = 'Repetition builds lasting confidence. Keep up the great work!';
+      } else {
+        headlineTitle = 'Повторение — мать учения';
+        headlinePronunciation = 'Povtorenie — mat ucheniya';
+        headlineSubtitle = 'Repetition is the mother of learning. Practice makes perfect!';
+      }
     }
 
     return (
@@ -1146,7 +1236,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             <div className="recap-badge-icon-wrap">
               {recapIcon}
             </div>
-            <h3 className="recap-russian-title">{headlineRussian}</h3>
+            <h3 className="recap-russian-title">{headlineTitle}</h3>
             {headlinePronunciation && (
               <div className="recap-pronunciation-wrap">
                 <span className="recap-pronunciation-pill">
@@ -1154,7 +1244,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                 </span>
               </div>
             )}
-            <p className="recap-english-subtitle">{headlineEnglish}</p>
+            <p className="recap-english-subtitle">{headlineSubtitle}</p>
           </div>
 
           <div className="recap-hero-score">
@@ -1406,12 +1496,10 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         <h3 className="quiz-question-hint">{currentQuestion.hint}</h3>
         <div className="quiz-prompt">
           <span className="quiz-prompt-text">{currentQuestion.prompt}</span>
-          {/* Only render audio next to the prompt when the prompt itself is in the target language.
-              If the prompt is in English (asking the user to type the translation), playing audio
-              here would leak the exact answer to the user before they submit! */}
-          {currentQuestion.type !== 'alphabet' && currentQuestion.isTargetPrompt && (
+          {/* Render audio next to the prompt when prompt is in target language or alphabet */}
+          {currentQuestion.isTargetPrompt && (
             <PronunciationButton 
-              text={currentQuestion.targetAudioWord || currentQuestion.russian}
+              text={currentQuestion.targetAudioWord || currentQuestion.russian || currentQuestion.prompt}
               lang={currentLanguage}
               className="quiz-prompt-audio margin-left"
               audioCategory={getAudioCategory(currentQuestion.type)}
@@ -1551,9 +1639,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                     <div className="feedback-answer-line">
                       <span>The correct answer is: </span>
                       <strong className="feedback-correct-word">
-                        {currentQuestion.answer.includes('/') 
-                          ? currentQuestion.answer.split('/')[0]
-                          : currentQuestion.answer}
+                        {getCleanDisplayAnswer(currentQuestion.answer, currentQuestion.prompt, currentQuestion.type)}
                       </strong>
                     </div>
                   )}
