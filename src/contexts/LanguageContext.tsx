@@ -4,12 +4,16 @@ import { SUPPORTED_LANGUAGES, DEFAULT_LANGUAGE, getLanguageMeta } from '../data/
 import { ProgressService } from '../services/progressService';
 import { cancelAllSpeech } from '../utils/speech';
 
+export type SpeechSpeed = 0.5 | 0.75 | 0.9 | 1.0 | 1.1 | 1.25;
+
 interface LanguageContextType {
   currentLanguage: SupportedLanguageId;
   currentMeta: LanguageMeta;
   supportedLanguages: LanguageMeta[];
   setLanguage: (langId: SupportedLanguageId) => void;
   availableLanguages: { id: string; name: string; nativeName: string; flag: string; available: boolean }[];
+  speechSpeed: SpeechSpeed;
+  setSpeechSpeed: (speed: SpeechSpeed) => void;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -72,6 +76,25 @@ const detectInitialLanguage = (): SupportedLanguageId => {
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [currentLanguage, setCurrentLanguageState] = useState<SupportedLanguageId>(detectInitialLanguage);
+  const [speechSpeed, setSpeechSpeedState] = useState<SpeechSpeed>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("basic_language_speech_speed");
+        if (saved) {
+          const parsed = parseFloat(saved);
+          if ([0.5, 0.75, 0.9, 1.0, 1.1, 1.25].includes(parsed)) return parsed as SpeechSpeed;
+        }
+      } catch { /* ignore */ }
+    }
+    return 1.0;
+  });
+
+  const setSpeechSpeed = useCallback((speed: SpeechSpeed) => {
+    setSpeechSpeedState(speed);
+    try {
+      localStorage.setItem("basic_language_speech_speed", speed.toString());
+    } catch { /* ignore */ }
+  }, []);
 
   const currentMeta = getLanguageMeta(currentLanguage);
   const supportedLanguages = Object.values(SUPPORTED_LANGUAGES);
@@ -110,7 +133,9 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
         currentMeta,
         supportedLanguages,
         setLanguage,
-        availableLanguages: ALL_PLATFORM_LANGUAGES
+        availableLanguages: ALL_PLATFORM_LANGUAGES,
+        speechSpeed,
+        setSpeechSpeed
       }}
     >
       {children}
@@ -126,7 +151,9 @@ export const useLanguage = (): LanguageContextType => {
       currentMeta: SUPPORTED_LANGUAGES[DEFAULT_LANGUAGE],
       supportedLanguages: Object.values(SUPPORTED_LANGUAGES),
       setLanguage: () => {},
-      availableLanguages: ALL_PLATFORM_LANGUAGES
+      availableLanguages: ALL_PLATFORM_LANGUAGES,
+      speechSpeed: 1.0,
+      setSpeechSpeed: () => {}
     };
   }
   return context;

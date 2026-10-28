@@ -14,6 +14,7 @@ const speakingButtons = new Map<string, boolean>();
 const speechQueues = new Map<string, Array<{
   text: string;
   lang: string;
+  rate?: number;
   onEnd?: () => void;
   onError?: (err: unknown) => void;
 }>>();
@@ -79,7 +80,8 @@ const processSpeechQueue = async (buttonId: string): Promise<void> => {
         if (onError) onError(error);
         // Process next item in queue
         processSpeechQueue(buttonId);
-      }
+      },
+      rate || 1.0
     );
   } catch (error) {
     console.error('Error during speech:', error);
@@ -96,7 +98,8 @@ export const speak = (
   lang = 'ru-RU',
   buttonId: string,
   onEnd?: () => void,
-  onError?: (err: unknown) => void
+  onError?: (err: unknown) => void,
+  rate = 1.0
 ): void => {
   // Initialize the queue for this button if it doesn't exist
   if (!speechQueues.has(buttonId)) {
@@ -105,7 +108,7 @@ export const speak = (
   
   // Add the speech request to this button's queue
   const buttonQueue = speechQueues.get(buttonId) || [];
-  buttonQueue.push({ text, lang, onEnd, onError });
+  buttonQueue.push({ text, lang, rate, onEnd, onError });
   speechQueues.set(buttonId, buttonQueue);
   
   // Process this button's queue

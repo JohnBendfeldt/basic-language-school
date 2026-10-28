@@ -21,7 +21,7 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
   className,
   audioCategory
 }) => {
-  const { currentLanguage } = useLanguage();
+  const { currentLanguage, speechSpeed } = useLanguage();
   const effectiveLangId = (lang && lang.toLowerCase().startsWith('en'))
     ? 'en'
     : (lang && lang.toLowerCase().startsWith('es'))
@@ -210,6 +210,7 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
       }
       
       // Play the audio
+      audioRef.current.playbackRate = speechSpeed;
       audioRef.current.play().catch(error => {
         console.error('Error playing audio:', error);
         
@@ -257,7 +258,8 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
             console.warn(`Speech synthesis error: ${error.message}`);
           }
         }
-      }
+      },
+      speechSpeed
     );
   };
 
