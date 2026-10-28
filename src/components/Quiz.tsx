@@ -8,10 +8,13 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 // Define interfaces for the data structure
 interface AlphabetItem {
-  character: string;
+  character?: string;
+  letter?: string;
   pronunciation: string;
   example?: string;
   russianWord?: string;
+  word?: string;
+  meaning?: string;
 }
 
 interface PhraseItem {
@@ -19,6 +22,8 @@ interface PhraseItem {
   russian?: string;
   phrase?: string;
   meaning?: string;
+  translation?: string;
+  target?: string;
   pronunciation?: string;
 }
 
@@ -63,6 +68,7 @@ interface MissedWord {
   answer: string;
   userAnswer: string;
   category: string;
+  targetAudioWord?: string;
   russian?: string;
 }
 
@@ -369,12 +375,15 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
     if (data.alphabet && Array.isArray(data.alphabet)) {
       data.alphabet.forEach(item => {
-        questions.push({
-          item,
-          isRussianToEnglish: true,
-          id: `alphabet-${item.character}`,
-          category: 'alphabet'
-        });
+        const char = item.character || item.letter || '';
+        if (char) {
+          questions.push({
+            item,
+            isRussianToEnglish: true,
+            id: `alphabet-${char}`,
+            category: 'alphabet'
+          });
+        }
       });
     }
 
@@ -382,8 +391,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     categories.forEach(cat => {
       if (data[cat] && Array.isArray(data[cat])) {
         data[cat].forEach((item: PhraseItem) => {
-          const target = item.russian || item.phrase || '';
-          const meaning = item.english || item.meaning || '';
+          const target = item.russian || item.phrase || item.target || '';
+          const meaning = item.english || item.meaning || item.translation || '';
           if (target && meaning) {
             questions.push({
               item,
@@ -506,7 +515,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
       if (selected.category === 'alphabet') {
         const item = selected.item as AlphabetItem;
-        const character = item.character?.toString() || '';
+        const character = (item.character || item.letter || '').toString();
         const pronunciation = item.pronunciation?.toString() || '';
 
         if (isSoftSign(character)) {
@@ -515,7 +524,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             prompt: character,
             answer: 'soft sign/soft',
             hint: `What type of sign is "${character}"?`,
+            targetAudioWord: character,
             russian: character,
+            isTargetPrompt: true,
             id: selected.id
           });
         } else if (isHardSign(character)) {
@@ -524,7 +535,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             prompt: character,
             answer: 'hard sign/hard',
             hint: `What type of sign is "${character}"?`,
+            targetAudioWord: character,
             russian: character,
+            isTargetPrompt: true,
             id: selected.id
           });
         } else {
@@ -532,15 +545,17 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             type: 'alphabet',
             prompt: character,
             answer: pronunciation.toLowerCase(),
-            hint: `How is the letter "${character}" pronounced in Russian?`,
+            hint: `How is the letter "${character}" pronounced in ${currentMeta.name}?`,
+            targetAudioWord: character,
             russian: character,
+            isTargetPrompt: true,
             id: selected.id
           });
         }
       } else {
         const item = selected.item as PhraseItem;
-        const targetWord = (item.russian || item.phrase || '').toString();
-        const meaningWord = (item.english || item.meaning || '').toString();
+        const targetWord = (item.russian || item.phrase || item.target || '').toString();
+        const meaningWord = (item.english || item.meaning || item.translation || '').toString();
 
         if (selected.isRussianToEnglish) {
           setCurrentQuestion({
@@ -548,7 +563,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             prompt: targetWord,
             answer: meaningWord.toLowerCase(),
             hint: `What does "${targetWord}" mean?`,
+            targetAudioWord: targetWord,
             russian: targetWord,
+            isTargetPrompt: true,
             id: selected.id
           });
         } else {
@@ -557,7 +574,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             prompt: meaningWord,
             answer: targetWord.toLowerCase(),
             hint: `How do you say "${meaningWord}" in ${currentMeta.name}?`,
+            targetAudioWord: targetWord,
             russian: targetWord,
+            isTargetPrompt: false,
             id: selected.id
           });
         }
@@ -863,6 +882,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           answer: currentQuestion.answer,
           userAnswer: processedAnswer,
           category: currentQuestion.type,
+          targetAudioWord: currentQuestion.targetAudioWord || currentQuestion.russian,
           russian: currentQuestion.russian
         }
       ]);
@@ -877,11 +897,16 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
     // Record word attempt in background and check if it reached mastery (level 5)
     if (currentQuestion) {
+      const targetWord = currentQuestion.targetAudioWord || currentQuestion.russian || (currentQuestion.isTargetPrompt ? currentQuestion.prompt : currentQuestion.answer.split('/')[0]);
+      const meaningWord = currentQuestion.isTargetPrompt ? currentQuestion.answer.split('/')[0] : currentQuestion.prompt;
+
       ProgressService.recordWordAttempt({
         category: currentQuestion.type || 'alphabet',
         wordId: currentQuestion.id || `${currentQuestion.type}-${currentQuestion.prompt}`,
         prompt: currentQuestion.prompt || '',
         answer: currentQuestion.answer || '',
+        targetWord,
+        meaningWord,
         isCorrect: isAnswerCorrect,
         languageId: currentLanguage
       }).then(updatedWord => {
@@ -1272,7 +1297,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                       </div>
                     </div>
                     <PronunciationButton
-                      text={item.russian || item.prompt}
+                      text={item.targetAudioWord || item.russian || item.answer.split('/')[0]}
+                      lang={currentLanguage}
                       audioCategory={getAudioCategory(item.category)}
                     />
                   </div>
@@ -1380,9 +1406,13 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         <h3 className="quiz-question-hint">{currentQuestion.hint}</h3>
         <div className="quiz-prompt">
           <span className="quiz-prompt-text">{currentQuestion.prompt}</span>
-          {currentQuestion.type !== 'alphabet' && (
+          {/* Only render audio next to the prompt when the prompt itself is in the target language.
+              If the prompt is in English (asking the user to type the translation), playing audio
+              here would leak the exact answer to the user before they submit! */}
+          {currentQuestion.type !== 'alphabet' && currentQuestion.isTargetPrompt && (
             <PronunciationButton 
-              text={currentQuestion.russian}
+              text={currentQuestion.targetAudioWord || currentQuestion.russian}
+              lang={currentLanguage}
               className="quiz-prompt-audio margin-left"
               audioCategory={getAudioCategory(currentQuestion.type)}
             />
@@ -1549,11 +1579,12 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                 </div>
               </div>
 
-              {/* Audio button in feedback sheet if available */}
-              {currentQuestion.russian && (
+              {/* Audio button in feedback sheet if available (safe here because answer is already submitted) */}
+              {(currentQuestion.targetAudioWord || currentQuestion.russian) && (
                 <div className="feedback-audio-action">
                   <PronunciationButton 
-                    text={currentQuestion.russian}
+                    text={currentQuestion.targetAudioWord || currentQuestion.russian}
+                    lang={currentLanguage}
                     className="feedback-pronounce-btn"
                     audioCategory={getAudioCategory(currentQuestion.type)}
                   />
