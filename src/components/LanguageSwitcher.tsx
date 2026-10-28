@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { FaChevronDown, FaCheck, FaGlobe, FaStar } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
 import { SupportedLanguageId } from '../data/languages/types';
+import { FlagIcon } from './FlagIcon';
 
 interface LanguageSwitcherProps {
   onLanguageChange?: (langId: SupportedLanguageId) => void;
@@ -61,7 +62,9 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
         title="Switch language"
         aria-label={`Current language: ${currentMeta.name}. Click to switch.`}
       >
-        <span className="language-flag" aria-hidden="true">{currentMeta.flag}</span>
+        <span className="language-flag" aria-hidden="true">
+          <FlagIcon lang={currentMeta.id} size={22} />
+        </span>
         <span className="language-name">{currentMeta.name}</span>
         <FaChevronDown className={`language-chevron ${isOpen ? 'open' : ''}`} />
       </button>
@@ -87,7 +90,9 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                     className={`language-option ${isSelected ? 'active' : ''}`}
                     onClick={() => handleSelectLanguage(lang.id, true)}
                   >
-                    <span className="option-flag" aria-hidden="true">{lang.flag}</span>
+                    <span className="option-flag" aria-hidden="true">
+                      <FlagIcon lang={lang.id} size={22} />
+                    </span>
                     <div className="option-details">
                       <span className="option-name">{lang.name}</span>
                       <span className="option-native">{lang.nativeName}</span>
