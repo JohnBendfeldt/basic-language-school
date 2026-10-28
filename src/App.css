@@ -424,6 +424,64 @@ footer {
   color: var(--text-muted);
 }
 
+/* Alphabet Example Box (Matching Basic English layout with dedicated icon tile) */
+.alphabet-example-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  margin-top: 0.6rem;
+}
+
+.alphabet-example-icon-tile {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  line-height: 1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.alphabet-example-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.alphabet-example-word-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+}
+
+.alphabet-example-word-row .example-label {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.alphabet-example-word-row .example-word {
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.alphabet-example-info .example-translation {
+  color: #64748b;
+  font-size: 0.78rem;
+  margin-top: 1px;
+}
+
 .letter-pronunciation {
   margin-left: 0.5rem;
 }
