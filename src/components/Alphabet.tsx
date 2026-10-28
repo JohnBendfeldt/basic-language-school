@@ -33,8 +33,8 @@ const Alphabet: React.FC<AlphabetProps> = ({ data }) => {
                   <div className="letter-pair">
                     <span className="letter-uppercase">{item.letter}</span>
                     <span className="letter-lowercase">{item.letter.toLowerCase()}</span>
+                    {item.icon && <span className="letter-icon">{item.icon}</span>}
                   </div>
-                  {item.icon && <span className="letter-icon">{item.icon}</span>}
                 </div>
                 
                 <div className="letter-underline"></div>
