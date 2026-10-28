@@ -33,7 +33,6 @@ const Alphabet: React.FC<AlphabetProps> = ({ data }) => {
                   <div className="letter-pair">
                     <span className="letter-uppercase">{item.letter}</span>
                     <span className="letter-lowercase">{item.letter.toLowerCase()}</span>
-                    {item.icon && <span className="letter-icon">{item.icon}</span>}
                   </div>
                 </div>
                 
@@ -54,16 +53,26 @@ const Alphabet: React.FC<AlphabetProps> = ({ data }) => {
               </div>
               
               {exampleWord && (
-                <div className="example">
-                  <strong>Example:</strong> <span className="example-word">{exampleWord}</span> 
-                  {exampleMeaning && <span className="example-translation"> ({exampleMeaning})</span>}
-                  <PronunciationButton 
-                    text={exampleWord} 
-                    className="example-pronunciation"
-                    audioCategory="examples"
-                    useLocalAudio={true}
-                    label={`Pronounce ${exampleWord}`}
-                  />
+                <div className="alphabet-example-box">
+                  {item.icon && (
+                    <div className="alphabet-example-icon-tile" aria-hidden="true">
+                      {item.icon}
+                    </div>
+                  )}
+                  <div className="alphabet-example-info">
+                    <div className="alphabet-example-word-row">
+                      <span className="example-label">Example:</span>
+                      <strong className="example-word">{exampleWord}</strong>
+                      <PronunciationButton 
+                        text={exampleWord} 
+                        className="example-pronunciation"
+                        audioCategory="examples"
+                        useLocalAudio={true}
+                        label={`Pronounce ${exampleWord}`}
+                      />
+                    </div>
+                    {exampleMeaning && <div className="example-translation">{exampleMeaning}</div>}
+                  </div>
                 </div>
               )}
             </div>
