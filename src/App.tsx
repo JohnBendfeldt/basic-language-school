@@ -11,6 +11,8 @@ import LanguageSwitcher from './components/LanguageSwitcher';
 import VoiceSpeedControl from './components/VoiceSpeedControl';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
+import MobileDrawer from './components/MobileDrawer';
+import { FaBars } from 'react-icons/fa';
 import { initVoices, cancelAllSpeech } from './utils/speech';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import { SupportedLanguageId } from './data/languages/types';
@@ -68,6 +70,7 @@ const AppContent: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>(() => parsePath().section);
   const [installPrompt, setInstallPrompt] = useState<any>(null);
   const [speechInitialized, setSpeechInitialized] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   // Update SEO Title & Meta tags dynamically per language and section
   const updateMeta = useCallback((section: string) => {
@@ -392,7 +395,8 @@ const AppContent: React.FC = () => {
             {currentMeta.appName}
           </h1>
 
-          <div className="header-actions">
+          {/* Desktop Actions: Spacious row on wider screens */}
+          <div className="header-actions desktop-header-actions">
             {/* Playback speed selector (.50x to 1.25x) */}
             <VoiceSpeedControl />
 
@@ -406,6 +410,20 @@ const AppContent: React.FC = () => {
             )}
             <UserMenu onNavigate={handleSectionChange} />
           </div>
+
+          {/* Mobile Actions: Clean, uncluttered, thumb-friendly */}
+          <div className="header-actions mobile-header-actions">
+            <LanguageSwitcher onLanguageChange={handleLanguageChange} />
+            <button
+              type="button"
+              className="mobile-hamburger-btn"
+              onClick={() => setIsDrawerOpen(true)}
+              aria-label="Open settings and menu"
+              title="Menu"
+            >
+              <FaBars />
+            </button>
+          </div>
         </div>
 
         <Navigation 
@@ -413,6 +431,15 @@ const AppContent: React.FC = () => {
           setActiveSection={handleSectionChange} 
           isOpen={false}
           _onClose={() => {}}
+        />
+
+        {/* Mobile Pull-out Drawer Menu */}
+        <MobileDrawer
+          isOpen={isDrawerOpen}
+          onClose={() => setIsDrawerOpen(false)}
+          onNavigate={handleSectionChange}
+          installPrompt={installPrompt}
+          onInstallClick={handleInstallClick}
         />
       </header>
       
