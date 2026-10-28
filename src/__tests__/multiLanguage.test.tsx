@@ -110,4 +110,47 @@ describe('Multi-Language Core Architecture', () => {
 
     unmount();
   });
+
+  it('allows swapping the language pair with the quick swap button', async () => {
+    window.history.pushState({}, '', '/learn/es');
+    render(
+      <LanguageProvider>
+        <LanguageSwitcher />
+      </LanguageProvider>
+    );
+
+    // Initial pair: English -> Spanish
+    expect(screen.getByText('Spanish')).toBeInTheDocument();
+
+    // Click the quick swap button
+    const swapBtn = screen.getByLabelText('Swap language pair');
+    fireEvent.click(swapBtn);
+
+    // Now learning English
+    await waitFor(() => {
+      expect(screen.getByText('English')).toBeInTheDocument();
+    });
+  });
+
+  it('selects quick pair like EN -> FR from dropdown', async () => {
+    window.history.pushState({}, '', '/learn/ru');
+    render(
+      <LanguageProvider>
+        <LanguageSwitcher />
+      </LanguageProvider>
+    );
+
+    // Open dropdown
+    const trigger = screen.getByRole('button', { name: /Current language pair/i });
+    fireEvent.click(trigger);
+
+    // Click EN -> FR quick pair chip
+    const enFrChip = screen.getByText('🇬🇧 EN → 🇫🇷 FR');
+    fireEvent.click(enFrChip);
+
+    // Now target is French
+    await waitFor(() => {
+      expect(screen.getByText('French')).toBeInTheDocument();
+    });
+  });
 });
