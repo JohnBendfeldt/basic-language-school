@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FaVolumeUp } from 'react-icons/fa';
 import { speak, initVoices } from '../utils/speech';
 import { containsCyrillic } from '../utils/transliteration';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface PronunciationButtonProps {
   text: string;
@@ -15,11 +16,18 @@ interface PronunciationButtonProps {
 
 const PronunciationButton: React.FC<PronunciationButtonProps> = ({ 
   text, 
-  lang = 'ru-RU',
+  lang,
   label,
   className,
   audioCategory
 }) => {
+  const { currentLanguage } = useLanguage();
+  const effectiveLangId = (lang && lang.toLowerCase().startsWith('en'))
+    ? 'en'
+    : (lang && lang.toLowerCase().startsWith('ru'))
+      ? 'ru'
+      : currentLanguage;
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [initialized, setInitialized] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -123,7 +131,7 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
         category = 'alphabet';
       } else if (/\s/.test(normalizedText)) {
         category = 'phrases';
-      } else if (/^\d+$/.test(normalizedText) || ['один', 'два', 'три'].includes(normalizedText)) {
+      } else if (/^\d+$/.test(normalizedText) || ['one', 'two', 'three', 'один', 'два', 'три'].includes(normalizedText)) {
         category = 'numbers';
       } else {
         category = 'words';
@@ -142,23 +150,26 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
       .trim();
     const fileName = cleanText.replace(/\s+/g, '_');
     
-    return `/audio/${category}/${fileName}.mp3`;
+    return `/audio/${effectiveLangId}/${category}/${fileName}.mp3`;
   };
 
   const handleSpeak = () => {
     if (isPlaying) return;
     
-    // Safety guard: PronunciationButton is designed for Russian pronunciation.
-    // Never pronounce English text even if inadvertently passed.
-    if (!text || !containsCyrillic(text)) {
-      console.warn('PronunciationButton: Skipped playing non-Russian text:', text);
+    // Safety guard: In Russian mode, ensure text is Cyrillic or digits
+    if (effectiveLangId === 'ru' && !containsCyrillic(text) && !/^\d+$/.test(text.trim())) {
+      console.warn('PronunciationButton: Skipped playing non-Russian text in Russian mode:', text);
+      return;
+    }
+    
+    if (!text || !text.trim()) {
       return;
     }
     
     // Reset fallback attempt tracker for new playback
     fallbackAttemptedRef.current = false;
     
-    // Always try to play local audio first (since we have files for everything now)
+    // Always try to play local audio first
     if (text) {
       setIsPlaying(true);
       
@@ -184,11 +195,8 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
         };
         
         audioRef.current.onerror = () => {
-          // fall back to speech synthesis
-          
           if (isMounted.current && !fallbackAttemptedRef.current) {
             fallbackAttemptedRef.current = true;
-            // Fall back to speech synthesis
             playSpeechSynthesis();
           }
         };
@@ -203,7 +211,6 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
         
         if (isMounted.current && !fallbackAttemptedRef.current) {
           fallbackAttemptedRef.current = true;
-          // Fall back to speech synthesis
           playSpeechSynthesis();
         }
       });
@@ -218,9 +225,10 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
   
   // Speech synthesis fallback
   const playSpeechSynthesis = () => {
+    const speechLang = lang || (effectiveLangId === 'en' ? 'en-US' : 'ru-RU');
     speak(
       text, 
-      lang,
+      speechLang,
       buttonId.current,
       // onEnd callback
       () => {

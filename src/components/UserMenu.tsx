@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FaUser, FaSignOutAlt, FaChartLine, FaSignInAlt, FaGoogle, FaMicrosoft, FaGithub, FaShieldAlt, FaFileContract } from 'react-icons/fa';
 import { supabase, signOutUser } from '../services/supabaseClient';
 import { ProgressService } from '../services/progressService';
+import { useLanguage } from '../contexts/LanguageContext';
 import AuthModal from './AuthModal';
 import ProgressModal from './ProgressModal';
 
@@ -11,6 +12,7 @@ interface UserMenuProps {
 }
 
 export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = null }) => {
+  const { currentLanguage } = useLanguage();
   const [currentUser, setCurrentUser] = useState<any>(initialUser);
   const [menuOpen, setMenuOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
@@ -24,7 +26,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
     supabase.auth.getUser().then(({ data: { user } }) => {
       setCurrentUser(user);
       if (user) {
-        ProgressService.syncGuestDataToCloud();
+        ProgressService.syncGuestDataToCloud(currentLanguage);
       }
     });
 
@@ -33,14 +35,14 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
       const user = session?.user ?? null;
       setCurrentUser(user);
       if (user) {
-        ProgressService.syncGuestDataToCloud();
+        ProgressService.syncGuestDataToCloud(currentLanguage);
       }
     });
 
     return () => {
       subscription.unsubscribe();
     };
-  }, []);
+  }, [currentLanguage]);
 
   // Close dropdown on click outside
   useEffect(() => {
@@ -203,6 +205,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
         isOpen={progressModalOpen}
         onClose={() => setProgressModalOpen(false)}
         userEmail={currentUser?.email}
+        languageId={currentLanguage}
       />
     </div>
   );

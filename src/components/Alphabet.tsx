@@ -1,64 +1,74 @@
 import React from 'react';
 import PronunciationButton from './PronunciationButton';
-
-interface AlphabetItemProps {
-  letter: string;
-  pronunciation: string;
-  example: string;
-  russianWord?: string;
-  englishWord?: string;
-}
+import { AlphabetItem } from '../types/index';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface AlphabetProps {
-  data: AlphabetItemProps[];
+  data: AlphabetItem[];
 }
 
 const Alphabet: React.FC<AlphabetProps> = ({ data }) => {
+  const { currentLanguage, currentMeta } = useLanguage();
+
   return (
     <div className="section">
-      <h2>Russian Alphabet</h2>
+      <div className="alphabet-header">
+        <h2>{currentLanguage === 'ru' ? 'Russian Alphabet (Cyrillic)' : 'English Alphabet & Phonics'}</h2>
+        <p className="section-subtitle">
+          {currentLanguage === 'ru'
+            ? '33 letters with pronunciation guides, example words, and studio neural audio'
+            : '26 letters with phonics sounds, example vocabulary, and native studio audio'}
+        </p>
+      </div>
+
       <div className="alphabet-container">
-        {data.map((item, index) => (
-          <div className="alphabet-card" key={index}>
-            <div className="letter-container">
-              <div className="letter-header">
-                <div className="letter-pair">
-                  <span className="letter-uppercase">{item.letter}</span>
-                  <span className="letter-lowercase">{item.letter.toLowerCase()}</span>
+        {data.map((item, index) => {
+          const exampleWord = item.russianWord || item.word;
+          const exampleMeaning = item.englishWord || item.meaning;
+
+          return (
+            <div className="alphabet-card" key={index}>
+              <div className="letter-container">
+                <div className="letter-header">
+                  <div className="letter-pair">
+                    <span className="letter-uppercase">{item.letter}</span>
+                    <span className="letter-lowercase">{item.letter.toLowerCase()}</span>
+                  </div>
+                  {item.icon && <span className="letter-icon">{item.icon}</span>}
+                </div>
+                
+                <div className="letter-underline"></div>
+                
+                <div className="pronunciation-button-wrapper">
+                  <PronunciationButton 
+                    text={item.letter.toLowerCase()} 
+                    audioCategory="alphabet"
+                    useLocalAudio={true}
+                    label={`Pronounce letter ${item.letter}`}
+                  />
                 </div>
               </div>
               
-              <div className="letter-underline"></div>
-              
-              <div className="pronunciation-button-wrapper">
-                <PronunciationButton 
-                  text={item.letter.toLowerCase()} 
-                  audioCategory="alphabet"
-                  useLocalAudio={true}
-                />
+              <div className="pronunciation">
+                <strong>Sound:</strong> <span className="pronunciation-text">{item.pronunciation} {item.example}</span>
               </div>
-            </div>
-            
-            <div className="pronunciation">
-              <strong>Pronunciation:</strong> <span className="pronunciation-text">{item.pronunciation} {item.example}</span>
-            </div>
-            
-            {item.russianWord && (
-              <div className="example">
-                <strong>Example:</strong> <span className="example-word">{item.russianWord}</span> 
-                {item.englishWord && <span className="example-translation"> ({item.englishWord})</span>}
-                {item.russianWord && (
+              
+              {exampleWord && (
+                <div className="example">
+                  <strong>Example:</strong> <span className="example-word">{exampleWord}</span> 
+                  {exampleMeaning && <span className="example-translation"> ({exampleMeaning})</span>}
                   <PronunciationButton 
-                    text={item.russianWord} 
+                    text={exampleWord} 
                     className="example-pronunciation"
                     audioCategory="examples"
                     useLocalAudio={true}
+                    label={`Pronounce ${exampleWord}`}
                   />
-                )}
-              </div>
-            )}
-          </div>
-        ))}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

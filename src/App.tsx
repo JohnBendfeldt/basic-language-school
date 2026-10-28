@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import Alphabet from './components/Alphabet';
 import Phrases from './components/Phrases';
@@ -7,109 +7,108 @@ import NumbersAndTime from './components/NumbersAndTime';
 import Quiz from './components/Quiz';
 import BottomNavigation from './components/BottomNavigation';
 import UserMenu from './components/UserMenu';
+import LanguageSwitcher from './components/LanguageSwitcher';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
-import russianData from './data/russianData';
 import { initVoices, cancelAllSpeech } from './utils/speech';
+import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
+import { SupportedLanguageId } from './data/languages/types';
 
-// Map URL paths to section IDs and SEO metadata
-const SECTION_META: Record<string, { title: string; description: string }> = {
-  alphabet: {
-    title: 'Russian Alphabet (Cyrillic) | Basic Russian',
-    description: 'Learn the 33 letters of the Russian alphabet (Cyrillic) with pronunciation guides, audio examples, and transliteration. Free interactive Russian alphabet chart for beginners.',
-  },
-  phrases: {
-    title: 'Basic Russian Phrases | Basic Russian',
-    description: 'Learn essential Russian phrases for beginners with audio pronunciation. Greetings, introductions, common expressions, and everyday Russian phrases with English translations.',
-  },
-  numbers: {
-    title: 'Russian Numbers & Time | Basic Russian',
-    description: 'Learn Russian numbers and telling time with authentic native audio. Count in Russian from 1 to 1000 and tell time accurately.',
-  },
-  time: {
-    title: 'Russian Time & Telling Time | Basic Russian',
-    description: 'Learn how to tell time in Russian with authentic native audio pronunciation. Hours, minutes, and practical time expressions for beginners.',
-  },
-  words: {
-    title: 'Common Russian Words | Basic Russian',
-    description: 'Learn the most common Russian words with audio pronunciation and English translations. Build your Russian vocabulary with essential everyday words for beginners.',
-  },
-  quiz: {
-    title: 'Russian Quiz | Basic Russian',
-    description: 'Test your Russian knowledge with interactive quizzes covering the alphabet, phrases, numbers, and vocabulary. Free Russian language practice for beginners.',
-  },
-  privacy: {
-    title: 'Privacy Policy | Basic Russian',
-    description: 'Privacy Policy for Basic Russian (basicrussian.org). Learn how we handle your data, quiz progress, and account information with privacy and security.',
-  },
-  terms: {
-    title: 'Terms of Service | Basic Russian',
-    description: 'Terms of Service for Basic Russian (basicrussian.org). Free Russian language learning application terms and guidelines.',
-  },
-};
-
+// Map path segments to section IDs
 const PATH_TO_SECTION: Record<string, string> = {
-  '/': 'alphabet',
-  '/alphabet': 'alphabet',
-  '/phrases': 'phrases',
-  '/numbers': 'numbers',
-  '/time': 'time',
-  '/words': 'words',
-  '/quiz': 'quiz',
-  '/privacy': 'privacy',
-  '/terms': 'terms',
+  '': 'alphabet',
+  'alphabet': 'alphabet',
+  'phrases': 'phrases',
+  'numbers': 'numbers',
+  'time': 'time',
+  'words': 'words',
+  'quiz': 'quiz',
+  'privacy': 'privacy',
+  'terms': 'terms',
 };
 
-const SECTION_TO_PATH: Record<string, string> = {
-  alphabet: '/alphabet',
-  phrases: '/phrases',
-  numbers: '/numbers',
-  time: '/time',
-  words: '/words',
-  quiz: '/quiz',
-  privacy: '/privacy',
-  terms: '/terms',
+const parsePath = (): { langId?: SupportedLanguageId; section: string } => {
+  if (typeof window === 'undefined') return { section: 'alphabet' };
+
+  const segments = window.location.pathname
+    .toLowerCase()
+    .split('/')
+    .filter(Boolean);
+
+  let langId: SupportedLanguageId | undefined;
+  let section = 'alphabet';
+
+  if (segments.length === 0) {
+    return { section: 'alphabet' };
+  }
+
+  // Handle /learn/:lang/:section or /learn/:lang
+  if (segments[0] === 'learn') {
+    if (segments[1] && ['ru', 'en'].includes(segments[1])) {
+      langId = segments[1] as SupportedLanguageId;
+      section = segments[2] && PATH_TO_SECTION[segments[2]] ? PATH_TO_SECTION[segments[2]] : 'alphabet';
+    } else if (segments[1] && PATH_TO_SECTION[segments[1]]) {
+      section = PATH_TO_SECTION[segments[1]];
+    }
+  } else if (['ru', 'en'].includes(segments[0])) {
+    // Handle /:lang/:section or /:lang
+    langId = segments[0] as SupportedLanguageId;
+    section = segments[1] && PATH_TO_SECTION[segments[1]] ? PATH_TO_SECTION[segments[1]] : 'alphabet';
+  } else if (PATH_TO_SECTION[segments[0]]) {
+    // Handle root /:section (e.g. /alphabet, /quiz)
+    section = PATH_TO_SECTION[segments[0]];
+  }
+
+  return { langId, section };
 };
 
-const getSectionFromPath = (): string => {
-  const path = window.location.pathname.toLowerCase().replace(/\/+$/, '') || '/';
-  return PATH_TO_SECTION[path] || 'alphabet';
-};
-
-const updateMeta = (section: string) => {
-  const meta = SECTION_META[section] || SECTION_META.alphabet;
-  document.title = meta.title;
-  const descTag = document.querySelector('meta[name="description"]');
-  if (descTag) descTag.setAttribute('content', meta.description);
-  const ogTitle = document.querySelector('meta[property="og:title"]');
-  if (ogTitle) ogTitle.setAttribute('content', meta.title);
-  const ogDesc = document.querySelector('meta[property="og:description"]');
-  if (ogDesc) ogDesc.setAttribute('content', meta.description);
-  const canonical = document.querySelector('link[rel="canonical"]');
-  if (canonical) canonical.setAttribute('href', `https://basicrussian.org${SECTION_TO_PATH[section] || '/alphabet'}`);
-};
-
-const App: React.FC = () => {
-  const [activeSection, setActiveSection] = useState<string>(getSectionFromPath);
+const AppContent: React.FC = () => {
+  const { currentLanguage, currentMeta, setLanguage } = useLanguage();
+  const [activeSection, setActiveSection] = useState<string>(() => parsePath().section);
   const [installPrompt, setInstallPrompt] = useState<any>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
   const [speechInitialized, setSpeechInitialized] = useState(false);
 
-  // Handle browser back/forward navigation
+  // Update SEO Title & Meta tags dynamically per language and section
+  const updateMeta = useCallback((section: string) => {
+    const seoInfo = currentMeta.seo[section] || currentMeta.seo.alphabet;
+    if (seoInfo) {
+      document.title = seoInfo.title;
+
+      const descTag = document.querySelector('meta[name="description"]');
+      if (descTag) descTag.setAttribute('content', seoInfo.description);
+
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.setAttribute('content', seoInfo.title);
+
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) ogDesc.setAttribute('content', seoInfo.description);
+
+      const canonical = document.querySelector('link[rel="canonical"]');
+      if (canonical) {
+        canonical.setAttribute('href', `https://basiclanguage.school/learn/${currentLanguage}/${section}`);
+      }
+    }
+  }, [currentLanguage, currentMeta]);
+
+  // Handle browser back/forward buttons
   useEffect(() => {
     const onPopState = () => {
-      const section = getSectionFromPath();
-      setActiveSection(section);
-      updateMeta(section);
+      const parsed = parsePath();
+      if (parsed.langId && parsed.langId !== currentLanguage) {
+        setLanguage(parsed.langId);
+      }
+      setActiveSection(parsed.section);
+      updateMeta(parsed.section);
       window.scrollTo(0, 0);
     };
-    window.addEventListener('popstate', onPopState);
-    // Set initial meta
-    updateMeta(activeSection);
-    return () => window.removeEventListener('popstate', onPopState);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
+    window.addEventListener('popstate', onPopState);
+    updateMeta(activeSection);
+
+    return () => window.removeEventListener('popstate', onPopState);
+  }, [currentLanguage, setLanguage, activeSection, updateMeta]);
+
+  // Handle PWA installation prompt
   useEffect(() => {
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
@@ -129,6 +128,7 @@ const App: React.FC = () => {
     };
   }, []);
 
+  // Initialize Speech Synthesis
   useEffect(() => {
     const initSpeech = async () => {
       try {
@@ -139,53 +139,38 @@ const App: React.FC = () => {
         setSpeechInitialized(true);
       }
     };
-    
     initSpeech();
   }, []);
 
   const handleInstallClick = () => {
     if (!installPrompt) return;
-
     (installPrompt as any).prompt();
-
-    (installPrompt as any).userChoice.then((choiceResult: { outcome: string }) => {
-      if (choiceResult.outcome === 'accepted') {
-      } else {
-      }
+    (installPrompt as any).userChoice.then(() => {
       setInstallPrompt(null);
     });
   };
 
-  const _toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
-
   const handleSectionChange = (section: string) => {
-    // Cancel any ongoing speech or audio when changing sections
     cancelAllSpeech();
-    
-    // Stop any potentially playing audio elements
     document.querySelectorAll('audio').forEach(audio => {
-      try {
-        audio.pause();
-      } catch (e) {
-        console.warn('Error pausing audio:', e);
-      }
+      try { audio.pause(); } catch (e) { console.warn('Error pausing audio:', e); }
     });
-    
-    // Update URL without full page reload
-    const newPath = SECTION_TO_PATH[section] || '/alphabet';
+
+    const isLearnPrefix = window.location.pathname.startsWith('/learn');
+    const newPath = isLearnPrefix ? `/learn/${currentLanguage}/${section}` : `/${section}`;
     if (window.location.pathname !== newPath) {
-      window.history.pushState({ section }, '', newPath);
+      window.history.pushState({ section, lang: currentLanguage }, '', newPath);
     }
-    updateMeta(section);
-    
+
     setActiveSection(section);
-    closeMenu();
+    updateMeta(section);
+    window.scrollTo(0, 0);
+  };
+
+  const handleLanguageChange = (newLangId: SupportedLanguageId) => {
+    setLanguage(newLangId);
+    const newPath = `/learn/${newLangId}/${activeSection}`;
+    window.history.pushState({ section: activeSection, lang: newLangId }, '', newPath);
     window.scrollTo(0, 0);
   };
 
@@ -193,54 +178,65 @@ const App: React.FC = () => {
     if (!speechInitialized) {
       return (
         <div className="section loading-section">
-          <h2>Loading Speech Functionality</h2>
+          <h2>Loading Speech Engine</h2>
           <p className="loading-message">Initializing voice capabilities. This may take a moment...</p>
           <div className="loading-spinner"></div>
         </div>
       );
     }
-    
+
     switch (activeSection) {
       case 'alphabet':
-        return <Alphabet data={russianData.alphabet} />;
+        return <Alphabet data={currentMeta.data.alphabet} />;
       case 'phrases':
-        return <Phrases 
-          data={russianData.basicPhrases} 
-          title="Basic Phrases" 
-          contentType="phrases"
-        />;
+        return (
+          <Phrases 
+            data={currentMeta.data.basicPhrases} 
+            title={currentLanguage === 'ru' ? 'Basic Russian Phrases' : 'Essential English Phrases'} 
+            contentType="phrases"
+          />
+        );
       case 'numbers':
       case 'time':
-        return <NumbersAndTime 
-          numbersData={russianData.numbers} 
-          timeData={russianData.time}
-          activeTab={activeSection === 'time' ? 'time' : 'numbers'}
-          onTabChange={(tab) => handleSectionChange(tab)}
-        />;
+        return (
+          <NumbersAndTime 
+            numbersData={currentMeta.data.numbers} 
+            timeData={currentMeta.data.time || []}
+            activeTab={activeSection === 'time' ? 'time' : 'numbers'}
+            onTabChange={(tab) => handleSectionChange(tab)}
+          />
+        );
       case 'words':
-        return <Phrases 
-          data={russianData.commonWords} 
-          title="Common Words" 
-          contentType="words"
-        />;
+        return (
+          <Phrases 
+            data={currentMeta.data.commonWords} 
+            title={currentLanguage === 'ru' ? 'Common Russian Words' : 'High-Frequency English Vocabulary'} 
+            contentType="words"
+          />
+        );
       case 'quiz':
-        return <Quiz data={{
-          alphabet: russianData.alphabet.map(item => ({
-            character: item.letter,
-            pronunciation: item.pronunciation,
-            example: item.example,
-          })),
-          basicPhrases: russianData.basicPhrases,
-          numbers: russianData.numbers,
-          commonWords: russianData.commonWords,
-          time: russianData.time
-        }} />;
+        return (
+          <Quiz 
+            data={{
+              alphabet: currentMeta.data.alphabet.map(item => ({
+                character: item.letter,
+                pronunciation: item.pronunciation,
+                example: item.example,
+                russianWord: item.russianWord || item.word
+              })),
+              basicPhrases: currentMeta.data.basicPhrases,
+              numbers: currentMeta.data.numbers,
+              commonWords: currentMeta.data.commonWords,
+              time: currentMeta.data.time || []
+            }} 
+          />
+        );
       case 'privacy':
         return <PrivacyPolicy onNavigate={handleSectionChange} />;
       case 'terms':
         return <TermsOfService onNavigate={handleSectionChange} />;
       default:
-        return <Alphabet data={russianData.alphabet} />;
+        return <Alphabet data={currentMeta.data.alphabet} />;
     }
   };
 
@@ -248,38 +244,75 @@ const App: React.FC = () => {
     <div className="app">
       <header>
         <div className="header-content">
-          <h1 onClick={() => handleSectionChange('alphabet')} style={{ cursor: 'pointer' }} title="Return to alphabet lessons">
-            <svg className="app-emblem russia-flag" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Basic Russian logo" role="img">
-              <defs>
-                <linearGradient id="rusEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#2563eb"/>
-                  <stop offset="50%" stopColor="#1e40af"/>
-                  <stop offset="100%" stopColor="#0f172a"/>
-                </linearGradient>
-                <linearGradient id="rusGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#fde047"/>
-                  <stop offset="60%" stopColor="#f59e0b"/>
-                  <stop offset="100%" stopColor="#d97706"/>
-                </linearGradient>
-              </defs>
-              <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#rusEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5"/>
-              {/* Russian Flag Accent in Top Corner */}
-              <g transform="translate(6, 6)">
-                <rect x="0" y="0" width="10" height="2" rx="1" fill="#ffffff" opacity="0.95"/>
-                <rect x="0" y="2.5" width="10" height="2" rx="1" fill="#3b82f6"/>
-                <rect x="0" y="5" width="10" height="2" rx="1" fill="#ef4444"/>
-              </g>
-              {/* Graduation Cap School Crest from OG image */}
-              <g transform="translate(0, 3)">
-                <path d="M24 13L8 20.5L24 28L40 20.5L24 13Z" fill="url(#rusGoldGrad)"/>
-                <path d="M14 24.5V32C14 35.5 18 38 24 38C30 38 34 35.5 34 32V24.5" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
-                <path d="M40 21V30.5" stroke="url(#rusGoldGrad)" strokeWidth="2" strokeLinecap="round"/>
-                <circle cx="40" cy="31.5" r="1.5" fill="url(#rusGoldGrad)"/>
-              </g>
-            </svg>
-            Basic Russian
+          <h1 
+            onClick={() => handleSectionChange('alphabet')} 
+            style={{ cursor: 'pointer' }} 
+            title={`Return to ${currentMeta.appName} lessons`}
+          >
+            {/* Dynamic Emblem: Russian Tricolor Crest or English Royal Blue Crest */}
+            {currentLanguage === 'ru' ? (
+              <svg className="app-emblem russia-flag" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Basic Russian emblem" role="img">
+                <defs>
+                  <linearGradient id="rusEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#2563eb"/>
+                    <stop offset="50%" stopColor="#1e40af"/>
+                    <stop offset="100%" stopColor="#0f172a"/>
+                  </linearGradient>
+                  <linearGradient id="rusGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#fde047"/>
+                    <stop offset="60%" stopColor="#f59e0b"/>
+                    <stop offset="100%" stopColor="#d97706"/>
+                  </linearGradient>
+                </defs>
+                <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#rusEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5"/>
+                <g transform="translate(6, 6)">
+                  <rect x="0" y="0" width="10" height="2" rx="1" fill="#ffffff" opacity="0.95"/>
+                  <rect x="0" y="2.5" width="10" height="2" rx="1" fill="#3b82f6"/>
+                  <rect x="0" y="5" width="10" height="2" rx="1" fill="#ef4444"/>
+                </g>
+                <g transform="translate(0, 3)">
+                  <path d="M24 13L8 20.5L24 28L40 20.5L24 13Z" fill="url(#rusGoldGrad)"/>
+                  <path d="M14 24.5V32C14 35.5 18 38 24 38C30 38 34 35.5 34 32V24.5" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+                  <path d="M40 21V30.5" stroke="url(#rusGoldGrad)" strokeWidth="2" strokeLinecap="round"/>
+                  <circle cx="40" cy="31.5" r="1.5" fill="url(#rusGoldGrad)"/>
+                </g>
+              </svg>
+            ) : (
+              <svg className="app-emblem english-flag" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Basic English emblem" role="img">
+                <defs>
+                  <linearGradient id="enEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#1e3a8a"/>
+                    <stop offset="50%" stopColor="#0f172a"/>
+                    <stop offset="100%" stopColor="#312e81"/>
+                  </linearGradient>
+                  <linearGradient id="enGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#fef08a"/>
+                    <stop offset="60%" stopColor="#f59e0b"/>
+                    <stop offset="100%" stopColor="#b45309"/>
+                  </linearGradient>
+                </defs>
+                <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#enEmblemBg)" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5"/>
+                {/* UK/US Accent */}
+                <g transform="translate(6, 6)">
+                  <rect x="0" y="0" width="10" height="2" rx="1" fill="#ef4444"/>
+                  <rect x="0" y="2.5" width="10" height="2" rx="1" fill="#ffffff"/>
+                  <rect x="0" y="5" width="10" height="2" rx="1" fill="#2563eb"/>
+                </g>
+                <g transform="translate(0, 3)">
+                  <path d="M24 13L8 20.5L24 28L40 20.5L24 13Z" fill="url(#enGoldGrad)"/>
+                  <path d="M14 24.5V32C14 35.5 18 38 24 38C30 38 34 35.5 34 32V24.5" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+                  <path d="M40 21V30.5" stroke="url(#enGoldGrad)" strokeWidth="2" strokeLinecap="round"/>
+                  <circle cx="40" cy="31.5" r="1.5" fill="url(#enGoldGrad)"/>
+                </g>
+              </svg>
+            )}
+            {currentMeta.appName}
           </h1>
+
           <div className="header-actions">
+            {/* Duolingo-style language switcher */}
+            <LanguageSwitcher onLanguageChange={handleLanguageChange} />
+
             {installPrompt && (
               <button onClick={handleInstallClick} className="install-button">
                 Install App
@@ -288,11 +321,12 @@ const App: React.FC = () => {
             <UserMenu onNavigate={handleSectionChange} />
           </div>
         </div>
+
         <Navigation 
           activeSection={activeSection} 
           setActiveSection={handleSectionChange} 
           isOpen={false}
-          _onClose={closeMenu}
+          _onClose={() => {}}
         />
       </header>
       
@@ -307,7 +341,7 @@ const App: React.FC = () => {
       
       <footer>
         <p>
-          © {new Date().getFullYear()} Basic Russian Learning ·{' '}
+          © {new Date().getFullYear()} Basic Language School · All Rights Reserved ·{' '}
           <a
             href="/privacy"
             className="footer-link"
@@ -332,6 +366,14 @@ const App: React.FC = () => {
         </p>
       </footer>
     </div>
+  );
+};
+
+export const App: React.FC = () => {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
   );
 };
 

@@ -4,48 +4,53 @@ import { ProgressService } from '../services/progressService';
 import { UserStats, WordProgress } from '../types/progress';
 import PronunciationButton from './PronunciationButton';
 import { containsCyrillic } from '../utils/transliteration';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface ProgressModalProps {
   isOpen: boolean;
   onClose: () => void;
   userEmail?: string | null;
+  languageId?: string;
 }
 
-const getWordReviewDetails = (item: WordProgress) => {
-  const isPromptRussian = containsCyrillic(item.prompt);
-  const isAnswerRussian = containsCyrillic(item.answer);
+const getWordReviewDetails = (item: WordProgress, currentLanguage: string) => {
+  let target = item.prompt;
+  let meaning = item.answer;
 
-  let russian = item.prompt;
-  let english = item.answer;
-
-  if (!isPromptRussian && isAnswerRussian) {
-    russian = item.answer;
-    english = item.prompt;
+  if (currentLanguage === 'ru') {
+    const isPromptRussian = containsCyrillic(item.prompt);
+    const isAnswerRussian = containsCyrillic(item.answer);
+    if (!isPromptRussian && isAnswerRussian) {
+      target = item.answer;
+      meaning = item.prompt;
+    }
   }
 
-  // Clean Russian for audio (strip slashes/alternatives)
-  const audioRussian = russian.includes('/') ? russian.split('/')[0].trim() : russian;
+  // Clean target for audio (strip slashes/alternatives)
+  const audioTarget = target.includes('/') ? target.split('/')[0].trim() : target;
 
   return {
-    russian,
-    audioRussian,
-    english
+    target,
+    audioTarget,
+    meaning
   };
 };
 
-export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, userEmail }) => {
+export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, userEmail, languageId }) => {
+  const { currentLanguage: contextLang, currentMeta } = useLanguage();
+  const effectiveLang = languageId || contextLang;
   const [stats, setStats] = useState<UserStats | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (isOpen) {
       setLoading(true);
-      ProgressService.getUserStats()
+      ProgressService.getUserStats(effectiveLang)
         .then(data => setStats(data))
         .catch(err => console.error('Error fetching progress stats:', err))
         .finally(() => setLoading(false));
     }
-  }, [isOpen]);
+  }, [isOpen, effectiveLang]);
 
   if (!isOpen) return null;
 
@@ -137,12 +142,12 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
 
                 <div className="review-words-list">
                   {stats.wordsToReview.map((item) => {
-                    const { russian, audioRussian, english } = getWordReviewDetails(item);
+                    const { target, audioTarget, meaning } = getWordReviewDetails(item, effectiveLang);
                     return (
                       <div key={item.wordId} className="review-word-card">
                         <div className="review-word-info">
-                          <span className="russian-text">{russian}</span>
-                          <span className="english-translation">{english}</span>
+                          <span className="russian-text">{target}</span>
+                          <span className="english-translation">{meaning}</span>
                         </div>
 
                         <div className="review-word-actions">
@@ -150,7 +155,8 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
                             {item.timesCorrect}✓ / {item.timesIncorrect}✗
                           </span>
                           <PronunciationButton
-                            text={audioRussian}
+                            text={audioTarget}
+                            lang={effectiveLang}
                             audioCategory={item.category as any}
                           />
                         </div>

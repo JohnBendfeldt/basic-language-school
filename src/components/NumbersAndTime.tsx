@@ -2,10 +2,11 @@ import React from 'react';
 import { PhraseItem } from '../types/index';
 import Phrases from './Phrases';
 import { FaCalculator, FaClock, FaLightbulb, FaInfoCircle } from 'react-icons/fa';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface NumbersAndTimeProps {
   numbersData: PhraseItem[];
-  timeData: PhraseItem[];
+  timeData?: PhraseItem[];
   activeTab: 'numbers' | 'time';
   onTabChange: (tab: 'numbers' | 'time') => void;
 }
@@ -16,6 +17,16 @@ const NumbersAndTime: React.FC<NumbersAndTimeProps> = ({
   activeTab,
   onTabChange,
 }) => {
+  const { currentLanguage, currentMeta } = useLanguage();
+
+  // For languages without separate time arrays, filter or provide fallback
+  const resolvedTimeData = (timeData && timeData.length > 0)
+    ? timeData
+    : numbersData.filter(item => {
+        const text = (item.phrase || item.russian || '').toLowerCase();
+        return text.includes('clock') || text.includes('time') || text.includes('past') || text.includes('quarter');
+      });
+
   return (
     <div className="numbers-and-time-section">
       <div className="section-tab-container">
@@ -43,7 +54,7 @@ const NumbersAndTime: React.FC<NumbersAndTimeProps> = ({
         </div>
       </div>
 
-      {activeTab === 'time' && (
+      {activeTab === 'time' && currentLanguage === 'ru' && (
         <div className="time-grammar-guide">
           <div className="guide-header">
             <FaLightbulb className="guide-icon" aria-hidden="true" />
@@ -91,16 +102,63 @@ const NumbersAndTime: React.FC<NumbersAndTimeProps> = ({
         </div>
       )}
 
+      {activeTab === 'time' && currentLanguage === 'en' && (
+        <div className="time-grammar-guide">
+          <div className="guide-header">
+            <FaLightbulb className="guide-icon" aria-hidden="true" />
+            <h3>English Telling Time Rules</h3>
+          </div>
+          <div className="guide-grid">
+            <div className="guide-card">
+              <span className="guide-badge">Rule 1</span>
+              <h4>O&apos;clock &amp; Exact Hours</h4>
+              <p>Used strictly on the hour when there are no minutes:</p>
+              <ul>
+                <li><strong>2:00</strong> — <em>Two o&apos;clock</em></li>
+                <li><strong>7:00</strong> — <em>Seven o&apos;clock</em></li>
+                <li><strong>12:00</strong> — <em>Noon / Midnight</em></li>
+              </ul>
+            </div>
+
+            <div className="guide-card">
+              <span className="guide-badge">Rule 2</span>
+              <h4>Past &amp; To (Fractions of an Hour)</h4>
+              <p>British and standard international English time expressions:</p>
+              <ul>
+                <li><strong>:15</strong> — <em>Quarter past</em> (e.g. Quarter past two = 2:15)</li>
+                <li><strong>:30</strong> — <em>Half past</em> (e.g. Half past two = 2:30)</li>
+                <li><strong>:45</strong> — <em>Quarter to</em> (e.g. Quarter to three = 2:45)</li>
+              </ul>
+            </div>
+
+            <div className="guide-card">
+              <span className="guide-badge">Rule 3</span>
+              <h4>AM vs PM</h4>
+              <p>English uses 12-hour format with day periods:</p>
+              <ul>
+                <li><strong>AM</strong> — Morning (Midnight until 11:59 AM)</li>
+                <li><strong>PM</strong> — Afternoon &amp; Night (Noon until 11:59 PM)</li>
+                <li><strong>Question:</strong> <em>&quot;What time is it?&quot;</em></li>
+              </ul>
+            </div>
+          </div>
+          <div className="guide-footer-hint">
+            <FaInfoCircle aria-hidden="true" />
+            <span>All numbers and time expressions feature studio-quality native American English neural audio!</span>
+          </div>
+        </div>
+      )}
+
       {activeTab === 'numbers' ? (
         <Phrases
           data={numbersData}
-          title="Russian Numbers (0–1,000)"
+          title={currentLanguage === 'ru' ? 'Russian Numbers (0–1,000)' : `${currentMeta.name} Numbers (0–1,000)`}
           contentType="numbers"
         />
       ) : (
         <Phrases
-          data={timeData}
-          title="Telling Time & Time Phrases"
+          data={resolvedTimeData}
+          title={currentLanguage === 'ru' ? 'Telling Time & Time Phrases' : `${currentMeta.name} Telling Time & Expressions`}
           contentType="time"
         />
       )}
