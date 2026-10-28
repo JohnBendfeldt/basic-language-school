@@ -16,6 +16,7 @@ import { FaBars } from 'react-icons/fa';
 import { initVoices, cancelAllSpeech } from './utils/speech';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import { SupportedLanguageId } from './data/languages/types';
+import { getPageContent } from './utils/pageDictionary';
 
 // Map path segments to section IDs
 const PATH_TO_SECTION: Record<string, string> = {
@@ -190,28 +191,13 @@ const AppContent: React.FC = () => {
     }
 
     const getSectionTitle = (sectionType: 'phrases' | 'words' | 'numbers' | 'time') => {
-      if (baseLanguage === 'es') {
-        if (sectionType === 'phrases') return `Frases Básicas (${currentMeta.nativeName})`;
-        if (sectionType === 'words') return `Palabras Comunes (${currentMeta.nativeName})`;
-        if (sectionType === 'numbers') return `Números (${currentMeta.nativeName})`;
-        return `Tiempo y Expresiones (${currentMeta.nativeName})`;
+      if (baseLanguage === 'en') {
+        if (sectionType === 'phrases') return `${currentMeta.name} Essential Phrases`;
+        if (sectionType === 'words') return `Common ${currentMeta.name} Words & Vocabulary`;
+        if (sectionType === 'numbers') return `${currentMeta.name} Numbers`;
+        return `${currentMeta.name} Time Expressions`;
       }
-      if (baseLanguage === 'ru') {
-        if (sectionType === 'phrases') return `Основные фразы (${currentMeta.nativeName})`;
-        if (sectionType === 'words') return `Популярные слова (${currentMeta.nativeName})`;
-        if (sectionType === 'numbers') return `Числа (${currentMeta.nativeName})`;
-        return `Время и выражения (${currentMeta.nativeName})`;
-      }
-      if (baseLanguage === 'fr') {
-        if (sectionType === 'phrases') return `Phrases de Base (${currentMeta.nativeName})`;
-        if (sectionType === 'words') return `Mots Courants (${currentMeta.nativeName})`;
-        if (sectionType === 'numbers') return `Nombres (${currentMeta.nativeName})`;
-        return `Heure et Expressions (${currentMeta.nativeName})`;
-      }
-      if (sectionType === 'phrases') return `${currentMeta.name} Essential Phrases`;
-      if (sectionType === 'words') return `Common ${currentMeta.name} Words & Vocabulary`;
-      if (sectionType === 'numbers') return `${currentMeta.name} Numbers`;
-      return `${currentMeta.name} Time Expressions`;
+      return getPageContent(sectionType, currentLanguage, baseLanguage).title;
     };
 
     switch (activeSection) {

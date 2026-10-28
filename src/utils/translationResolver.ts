@@ -109,6 +109,85 @@ export const EXTENDED_DICTIONARY: Record<string, Record<SupportedLanguageId, str
   'time': { en: 'Time', es: 'Tiempo / Hora', fr: 'Temps / Heure', ru: 'Время' },
   'work': { en: 'Work / Job', es: 'Trabajo', fr: 'Travail', ru: 'Работа' },
   'office': { en: 'Office', es: 'Oficina', fr: 'Bureau', ru: 'Офис' },
+
+  // Days of the Week
+  'monday': { en: 'Monday', es: 'Lunes', fr: 'Lundi', ru: 'Понедельник' },
+  'tuesday': { en: 'Tuesday', es: 'Martes', fr: 'Mardi', ru: 'Вторник' },
+  'wednesday': { en: 'Wednesday', es: 'Miércoles', fr: 'Mercredi', ru: 'Среда' },
+  'thursday': { en: 'Thursday', es: 'Jueves', fr: 'Jeudi', ru: 'Четверг' },
+  'friday': { en: 'Friday', es: 'Viernes', fr: 'Vendredi', ru: 'Пятница' },
+  'saturday': { en: 'Saturday', es: 'Sábado', fr: 'Samedi', ru: 'Суббота' },
+  'sunday': { en: 'Sunday', es: 'Domingo', fr: 'Dimanche', ru: 'Воскресенье' },
+
+  // Animals & Nature
+  'dog': { en: 'Dog', es: 'Perro', fr: 'Chien', ru: 'Собака' },
+  'cat': { en: 'Cat', es: 'Gato', fr: 'Chat', ru: 'Кот / Кошка' },
+  'bird': { en: 'Bird', es: 'Pájaro / Ave', fr: 'Oiseau', ru: 'Птица' },
+  'sun': { en: 'Sun', es: 'Sol', fr: 'Soleil', ru: 'Солнце' },
+  'moon': { en: 'Moon', es: 'Luna', fr: 'Lune', ru: 'Луна' },
+  'star': { en: 'Star', es: 'Estrella', fr: 'Étoile', ru: 'Звезда' },
+  'hedgehog': { en: 'Hedgehog', es: 'Erizo', fr: 'Hérisson', ru: 'Ёж' },
+  'beetle': { en: 'Beetle / Bug', es: 'Escarabajo', fr: 'Scarabée', ru: 'Жук' },
+  'flower': { en: 'Flower', es: 'Flor', fr: 'Fleur', ru: 'Цветок' },
+  'tree': { en: 'Tree', es: 'Árbol', fr: 'Arbre', ru: 'Дерево' },
+
+  // Alphabet & Beginner Vocabulary
+  'apple': { en: 'Apple', es: 'Manzana', fr: 'Pomme', ru: 'Яблоко' },
+  'egg': { en: 'Egg', es: 'Huevo', fr: 'Œuf', ru: 'Яйцо' },
+  'good': { en: 'Good', es: 'Bueno', fr: 'Bon', ru: 'Хороший' },
+  'ice': { en: 'Ice', es: 'Hielo', fr: 'Glace', ru: 'Лёд' },
+  'juice': { en: 'Juice', es: 'Jugo', fr: 'Jus', ru: 'Сок' },
+  'key': { en: 'Key', es: 'Llave', fr: 'Clé', ru: 'Ключ' },
+  'light': { en: 'Light', es: 'Luz', fr: 'Lumière', ru: 'Свет' },
+  'name': { en: 'Name', es: 'Nombre', fr: 'Nom', ru: 'Имя' },
+  'orange': { en: 'Orange', es: 'Naranja', fr: 'Orange', ru: 'Апельсин' },
+  'quiet': { en: 'Quiet', es: 'Tranquilo / Silencioso', fr: 'Silencieux / Calme', ru: 'Тихий' },
+  'road': { en: 'Road', es: 'Camino / Carretera', fr: 'Route', ru: 'Дорога' },
+  'school': { en: 'School', es: 'Escuela', fr: 'École', ru: 'Школа' },
+  'umbrella': { en: 'Umbrella', es: 'Paraguas', fr: 'Parapluie', ru: 'Зонт' },
+  'voice': { en: 'Voice', es: 'Voz', fr: 'Voix', ru: 'Голос' },
+  'x-ray': { en: 'X-ray', es: 'Rayos X', fr: 'Rayons X', ru: 'Рентген' },
+  'yellow': { en: 'Yellow', es: 'Amarillo', fr: 'Jaune', ru: 'Жёлтый' },
+  'zero': { en: 'Zero', es: 'Cero', fr: 'Zéro', ru: 'Ноль' },
+  'love': { en: 'Love', es: 'Amor', fr: 'Amour', ru: 'Любовь' },
+  'boat': { en: 'Boat', es: 'Barco', fr: 'Bateau', ru: 'Лодка' },
+  'day': { en: 'Day', es: 'Día', fr: 'Jour', ru: 'День' },
+  'island': { en: 'Island', es: 'Isla', fr: 'Île', ru: 'Остров' },
+  'kilogram': { en: 'Kilogram', es: 'Kilo', fr: 'Kilo', ru: 'Килограмм' },
+  'kilo': { en: 'Kilogram', es: 'Kilo', fr: 'Kilo', ru: 'Килограмм' },
+  'night': { en: 'Night', es: 'Noche', fr: 'Nuit', ru: 'Ночь' },
+  'eye': { en: 'Eye', es: 'Ojo', fr: 'Œil', ru: 'Глаз' },
+  'eyes': { en: 'Eyes', es: 'Ojos', fr: 'Yeux', ru: 'Глаза' },
+  'cheese': { en: 'Cheese', es: 'Queso', fr: 'Fromage', ru: 'Сыр' },
+  'clock': { en: 'Clock / Watch', es: 'Reloj', fr: 'Horloge / Montre', ru: 'Часы' },
+  'watch': { en: 'Watch / Clock', es: 'Reloj', fr: 'Montre', ru: 'Часы' },
+  'grape': { en: 'Grape', es: 'Uva', fr: 'Raisin', ru: 'Виноград' },
+  'glass': { en: 'Glass (cup)', es: 'Vaso', fr: 'Verre', ru: 'Стакан' },
+  'web': { en: 'Web', es: 'Web', fr: 'Web', ru: 'Веб' },
+  'success': { en: 'Success', es: 'Éxito', fr: 'Succès', ru: 'Успех' },
+  'yolk': { en: 'Yolk', es: 'Yema', fr: 'Jaune d\'œuf', ru: 'Желток' },
+  'shoe': { en: 'Shoe', es: 'Zapato', fr: 'Chaussure', ru: 'Обувь' },
+  'idea': { en: 'Idea', es: 'Idea', fr: 'Idée', ru: 'Идея' },
+  'question': { en: 'Question', es: 'Pregunta', fr: 'Question', ru: 'Вопрос' },
+  'wagon': { en: 'Wagon / Car', es: 'Vagón', fr: 'Wagon', ru: 'Вагон' },
+  'example': { en: 'Example', es: 'Ejemplo', fr: 'Exemple', ru: 'Пример' },
+  'brother': { en: 'Brother', es: 'Hermano', fr: 'Frère', ru: 'Брат' },
+  'sister': { en: 'Sister', es: 'Hermana', fr: 'Sœur', ru: 'Сестра' },
+  'lemon': { en: 'Lemon', es: 'Limón', fr: 'Citron', ru: 'Лимон' },
+  'nose': { en: 'Nose', es: 'Nariz', fr: 'Nez', ru: 'Нос' },
+  'window': { en: 'Window', es: 'Ventana', fr: 'Fenêtre', ru: 'Окно' },
+  'dad': { en: 'Dad', es: 'Papá', fr: 'Papa', ru: 'Папа' },
+  'kettle': { en: 'Kettle', es: 'Tetera', fr: 'Bouilloire', ru: 'Чайник' },
+  'morning': { en: 'Morning', es: 'Mañana', fr: 'Matin', ru: 'Утро' },
+  'photo': { en: 'Photo', es: 'Foto', fr: 'Photo', ru: 'Фото' },
+  'czar': { en: 'Czar / King', es: 'Zar', fr: 'Tsar', ru: 'Царь' },
+  'borscht': { en: 'Borscht', es: 'Borsch', fr: 'Bortsch', ru: 'Борщ' },
+  'entrance': { en: 'Entrance', es: 'Entrada', fr: 'Entrée', ru: 'Подъезд' },
+  'south': { en: 'South', es: 'Sur', fr: 'Sud', ru: 'Юг' },
+  'yogurt': { en: 'Yogurt', es: 'Yogur', fr: 'Yaourt', ru: 'Йогурт' },
+  'or': { en: 'Or', es: 'O', fr: 'Ou', ru: 'Или' },
+  'this': { en: 'This', es: 'Esto', fr: 'Ceci', ru: 'Это' },
+  'i eat': { en: 'I eat', es: 'Como', fr: 'Je mange', ru: 'Ем' },
   'yes': { en: 'Yes', es: 'Sí', fr: 'Oui', ru: 'Да' },
   'no': { en: 'No', es: 'No', fr: 'Non', ru: 'Нет' },
   'today': { en: 'Today', es: 'Hoy', fr: 'Aujourd\'hui', ru: 'Сегодня' },
@@ -196,6 +275,9 @@ export const getLocalizedNumber = (
 export interface TranslatableItem {
   english?: string;
   russian?: string;
+  russianWord?: string;
+  word?: string;
+  englishWord?: string;
   phrase?: string;
   meaning?: string;
   translation?: string;
@@ -215,12 +297,12 @@ export const resolveTranslation = (
 
   // If user speaks the target language, show primary text
   if (baseLang === targetLang) {
-    return (item.russian || item.phrase || item.target || '').toString();
+    return ((item as any).word || (item as any).russianWord || item.russian || item.phrase || item.target || '').toString();
   }
 
   // 1. Check if item is a number
-  const rawEnglish = (item.english || item.translation || item.meaning || item.phrase || '').toString();
-  const digit = extractDigit(rawEnglish) ?? extractDigit((item.phrase || item.russian || '').toString());
+  const rawEnglish = (item.english || (item as any).englishWord || item.translation || item.meaning || item.phrase || '').toString();
+  const digit = extractDigit(rawEnglish) ?? extractDigit((item.phrase || item.russian || (item as any).word || '').toString());
   if (digit !== null && NUMBER_TABLE[digit]) {
     const numEntry = NUMBER_TABLE[digit];
     if (baseLang in numEntry) {
@@ -228,7 +310,23 @@ export const resolveTranslation = (
     }
   }
 
-  // 2. Clean key for dictionary lookup
+  // 2. Direct word lookup (especially for Alphabet items like Apple, Book, Amor, Ami)
+  const directWord = ((item as any).word || (item as any).englishWord || '').toString().toLowerCase().trim();
+  if (directWord && EXTENDED_DICTIONARY[directWord] && EXTENDED_DICTIONARY[directWord][baseLang]) {
+    return EXTENDED_DICTIONARY[directWord][baseLang];
+  }
+
+  // 3. Direct Russian word lookup
+  const directRu = ((item as any).russianWord || (item as any).russian || '').toString().toLowerCase().trim();
+  if (directRu) {
+    for (const mapping of Object.values(EXTENDED_DICTIONARY)) {
+      if (mapping.ru && mapping.ru.toLowerCase() === directRu) {
+        if (mapping[baseLang]) return mapping[baseLang];
+      }
+    }
+  }
+
+  // 4. Clean key for dictionary lookup
   const cleanKey = rawEnglish
     .toLowerCase()
     .replace(/^noun:\s*/i, '')
@@ -240,16 +338,19 @@ export const resolveTranslation = (
     return EXTENDED_DICTIONARY[cleanKey][baseLang];
   }
 
-  // 3. Check for partial matches in dictionary
+  // 5. Check for multi-word or token matches in dictionary using word boundaries
   for (const [key, mapping] of Object.entries(EXTENDED_DICTIONARY)) {
-    if (cleanKey.includes(key) || key.includes(cleanKey)) {
-      if (mapping[baseLang]) {
-        return mapping[baseLang];
+    if (key.length >= 3 && cleanKey.length >= 3) {
+      const wholeWordRegex = new RegExp(`(^|\\s)${key}(\\s|$)`, 'i');
+      if (wholeWordRegex.test(cleanKey)) {
+        if (mapping[baseLang]) {
+          return mapping[baseLang];
+        }
       }
     }
   }
 
-  // 4. Check Universal Concept Matrix
+  // 6. Check Universal Concept Matrix
   const matrixMatch = CONCEPT_MATRIX.find(c => {
     return Object.values(c.translations).some(t => {
       const tText = t.text.toLowerCase();
@@ -261,8 +362,8 @@ export const resolveTranslation = (
     return matrixMatch.translations[baseLang].text;
   }
 
-  // 5. Fallback: English translation or primary text
-  return item.english || item.translation || item.meaning || item.phrase || item.russian || '';
+  // 7. Fallback: English translation or primary text
+  return item.english || (item as any).englishWord || item.translation || item.meaning || item.phrase || item.russian || '';
 };
 
 /**
@@ -273,6 +374,42 @@ export const LANGUAGE_NAMES_IN_BASE: Record<SupportedLanguageId, Record<Supporte
   es: { en: 'inglés', es: 'español', fr: 'francés', ru: 'ruso' },
   fr: { en: 'anglais', es: 'espagnol', fr: 'français', ru: 'russe' },
   ru: { en: 'английском', es: 'испанском', fr: 'французском', ru: 'русском' }
+};
+
+/**
+ * Localized hint for alphabet quiz cards
+ */
+export const getAlphabetQuizHint = (
+  character: string,
+  targetLang: SupportedLanguageId,
+  baseLang: SupportedLanguageId,
+  metaName: string
+): string => {
+  if (targetLang === 'ru') {
+    switch (baseLang) {
+      case 'ru':
+        return `Какой звук передаёт русская буква «${character}»?`;
+      case 'es':
+        return `¿Qué sonido hace la letra cirílica «${character}»?`;
+      case 'fr':
+        return `Quel son fait la lettre cyrillique « ${character} » ?`;
+      case 'en':
+      default:
+        return `What sound does the Cyrillic letter "${character}" make?`;
+    }
+  }
+
+  switch (baseLang) {
+    case 'ru':
+      return `Введите букву «${character}» или послушайте её звучание:`;
+    case 'es':
+      return `Escribe la letra «${character}» o escucha su sonido en ${metaName}:`;
+    case 'fr':
+      return `Tapez la lettre « ${character} » ou écoutez son son en ${metaName} :`;
+    case 'en':
+    default:
+      return `Type the letter "${character}" or listen to its sound in ${metaName}:`;
+  }
 };
 
 /**
