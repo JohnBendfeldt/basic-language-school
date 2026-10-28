@@ -61,7 +61,7 @@ const processSpeechQueue = async (buttonId: string): Promise<void> => {
     return;
   }
   
-  const { text, lang, onEnd, onError } = queueItem;
+  const { text, lang, rate, onEnd, onError } = queueItem;
   
   try {
     // Use browser speech synthesis to play audio
