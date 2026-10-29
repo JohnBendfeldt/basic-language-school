@@ -1,7 +1,7 @@
 {
   "language": "id",
   "voice": "id-ID-ArdiNeural",
-  "generated": "2026-10-29T17:05:41.286046Z",
+  "generated": "2026-10-29T18:36:09.109001Z",
   "files": {
     "alphabet": [
       {
@@ -1163,6 +1163,341 @@
         "text": "Diskon"
       },
       {
+        "filename": "laptop.mp3",
+        "path": "/audio/id/words/laptop.mp3",
+        "text": "Laptop"
+      },
+      {
+        "filename": "tablet.mp3",
+        "path": "/audio/id/words/tablet.mp3",
+        "text": "Tablet"
+      },
+      {
+        "filename": "papan_ketik.mp3",
+        "path": "/audio/id/words/papan_ketik.mp3",
+        "text": "Papan ketik"
+      },
+      {
+        "filename": "tetikus.mp3",
+        "path": "/audio/id/words/tetikus.mp3",
+        "text": "Tetikus"
+      },
+      {
+        "filename": "pengisi_daya.mp3",
+        "path": "/audio/id/words/pengisi_daya.mp3",
+        "text": "Pengisi daya"
+      },
+      {
+        "filename": "kabel.mp3",
+        "path": "/audio/id/words/kabel.mp3",
+        "text": "Kabel"
+      },
+      {
+        "filename": "wi-fi.mp3",
+        "path": "/audio/id/words/wi-fi.mp3",
+        "text": "Wi-Fi"
+      },
+      {
+        "filename": "surel.mp3",
+        "path": "/audio/id/words/surel.mp3",
+        "text": "Surel"
+      },
+      {
+        "filename": "pesan.mp3",
+        "path": "/audio/id/words/pesan.mp3",
+        "text": "Pesan"
+      },
+      {
+        "filename": "situs_web.mp3",
+        "path": "/audio/id/words/situs_web.mp3",
+        "text": "Situs web"
+      },
+      {
+        "filename": "aplikasi.mp3",
+        "path": "/audio/id/words/aplikasi.mp3",
+        "text": "Aplikasi"
+      },
+      {
+        "filename": "folder.mp3",
+        "path": "/audio/id/words/folder.mp3",
+        "text": "Folder"
+      },
+      {
+        "filename": "kamera.mp3",
+        "path": "/audio/id/words/kamera.mp3",
+        "text": "Kamera"
+      },
+      {
+        "filename": "mikrofon.mp3",
+        "path": "/audio/id/words/mikrofon.mp3",
+        "text": "Mikrofon"
+      },
+      {
+        "filename": "headphone.mp3",
+        "path": "/audio/id/words/headphone.mp3",
+        "text": "Headphone"
+      },
+      {
+        "filename": "pencetak.mp3",
+        "path": "/audio/id/words/pencetak.mp3",
+        "text": "Pencetak"
+      },
+      {
+        "filename": "cari.mp3",
+        "path": "/audio/id/words/cari.mp3",
+        "text": "Cari"
+      },
+      {
+        "filename": "simpan.mp3",
+        "path": "/audio/id/words/simpan.mp3",
+        "text": "Simpan"
+      },
+      {
+        "filename": "hapus.mp3",
+        "path": "/audio/id/words/hapus.mp3",
+        "text": "Hapus"
+      },
+      {
+        "filename": "kirim.mp3",
+        "path": "/audio/id/words/kirim.mp3",
+        "text": "Kirim"
+      },
+      {
+        "filename": "mengunduh.mp3",
+        "path": "/audio/id/words/mengunduh.mp3",
+        "text": "Mengunduh"
+      },
+      {
+        "filename": "mengunggah.mp3",
+        "path": "/audio/id/words/mengunggah.mp3",
+        "text": "Mengunggah"
+      },
+      {
+        "filename": "daring.mp3",
+        "path": "/audio/id/words/daring.mp3",
+        "text": "Daring"
+      },
+      {
+        "filename": "luring.mp3",
+        "path": "/audio/id/words/luring.mp3",
+        "text": "Luring"
+      },
+      {
+        "filename": "pekerjaan.mp3",
+        "path": "/audio/id/words/pekerjaan.mp3",
+        "text": "Pekerjaan"
+      },
+      {
+        "filename": "kantor.mp3",
+        "path": "/audio/id/words/kantor.mp3",
+        "text": "Kantor"
+      },
+      {
+        "filename": "beli.mp3",
+        "path": "/audio/id/words/beli.mp3",
+        "text": "Beli"
+      },
+      {
+        "filename": "jual.mp3",
+        "path": "/audio/id/words/jual.mp3",
+        "text": "Jual"
+      },
+      {
+        "filename": "bayar.mp3",
+        "path": "/audio/id/words/bayar.mp3",
+        "text": "Bayar"
+      },
+      {
+        "filename": "struk.mp3",
+        "path": "/audio/id/words/struk.mp3",
+        "text": "Struk"
+      },
+      {
+        "filename": "dukungan.mp3",
+        "path": "/audio/id/words/dukungan.mp3",
+        "text": "Dukungan"
+      },
+      {
+        "filename": "buka.mp3",
+        "path": "/audio/id/words/buka.mp3",
+        "text": "Buka"
+      },
+      {
+        "filename": "tutup.mp3",
+        "path": "/audio/id/words/tutup.mp3",
+        "text": "Tutup"
+      },
+      {
+        "filename": "perbarui.mp3",
+        "path": "/audio/id/words/perbarui.mp3",
+        "text": "Perbarui"
+      },
+      {
+        "filename": "bos.mp3",
+        "path": "/audio/id/words/bos.mp3",
+        "text": "Bos"
+      },
+      {
+        "filename": "rekan_kerja.mp3",
+        "path": "/audio/id/words/rekan_kerja.mp3",
+        "text": "Rekan kerja"
+      },
+      {
+        "filename": "karyawan.mp3",
+        "path": "/audio/id/words/karyawan.mp3",
+        "text": "Karyawan"
+      },
+      {
+        "filename": "tugas.mp3",
+        "path": "/audio/id/words/tugas.mp3",
+        "text": "Tugas"
+      },
+      {
+        "filename": "laporan.mp3",
+        "path": "/audio/id/words/laporan.mp3",
+        "text": "Laporan"
+      },
+      {
+        "filename": "presentasi.mp3",
+        "path": "/audio/id/words/presentasi.mp3",
+        "text": "Presentasi"
+      },
+      {
+        "filename": "tanda_tangan.mp3",
+        "path": "/audio/id/words/tanda_tangan.mp3",
+        "text": "Tanda tangan"
+      },
+      {
+        "filename": "liburan.mp3",
+        "path": "/audio/id/words/liburan.mp3",
+        "text": "Liburan"
+      },
+      {
+        "filename": "riwayat_hidup.mp3",
+        "path": "/audio/id/words/riwayat_hidup.mp3",
+        "text": "Riwayat hidup"
+      },
+      {
+        "filename": "wawancara.mp3",
+        "path": "/audio/id/words/wawancara.mp3",
+        "text": "Wawancara"
+      },
+      {
+        "filename": "tujuan.mp3",
+        "path": "/audio/id/words/tujuan.mp3",
+        "text": "Tujuan"
+      },
+      {
+        "filename": "produk.mp3",
+        "path": "/audio/id/words/produk.mp3",
+        "text": "Produk"
+      },
+      {
+        "filename": "layanan.mp3",
+        "path": "/audio/id/words/layanan.mp3",
+        "text": "Layanan"
+      },
+      {
+        "filename": "bank.mp3",
+        "path": "/audio/id/words/bank.mp3",
+        "text": "Bank"
+      },
+      {
+        "filename": "transfer.mp3",
+        "path": "/audio/id/words/transfer.mp3",
+        "text": "Transfer"
+      },
+      {
+        "filename": "pengembalian_dana.mp3",
+        "path": "/audio/id/words/pengembalian_dana.mp3",
+        "text": "Pengembalian dana"
+      },
+      {
+        "filename": "pengiriman.mp3",
+        "path": "/audio/id/words/pengiriman.mp3",
+        "text": "Pengiriman"
+      },
+      {
+        "filename": "paket.mp3",
+        "path": "/audio/id/words/paket.mp3",
+        "text": "Paket"
+      },
+      {
+        "filename": "perangkat_lunak.mp3",
+        "path": "/audio/id/words/perangkat_lunak.mp3",
+        "text": "Perangkat lunak"
+      },
+      {
+        "filename": "perangkat_keras.mp3",
+        "path": "/audio/id/words/perangkat_keras.mp3",
+        "text": "Perangkat keras"
+      },
+      {
+        "filename": "basis_data.mp3",
+        "path": "/audio/id/words/basis_data.mp3",
+        "text": "Basis data"
+      },
+      {
+        "filename": "peladen.mp3",
+        "path": "/audio/id/words/peladen.mp3",
+        "text": "Peladen"
+      },
+      {
+        "filename": "penyimpanan_awan.mp3",
+        "path": "/audio/id/words/penyimpanan_awan.mp3",
+        "text": "Penyimpanan awan"
+      },
+      {
+        "filename": "kecerdasan_buatan.mp3",
+        "path": "/audio/id/words/kecerdasan_buatan.mp3",
+        "text": "Kecerdasan buatan"
+      },
+      {
+        "filename": "algoritma.mp3",
+        "path": "/audio/id/words/algoritma.mp3",
+        "text": "Algoritma"
+      },
+      {
+        "filename": "pengembang.mp3",
+        "path": "/audio/id/words/pengembang.mp3",
+        "text": "Pengembang"
+      },
+      {
+        "filename": "keamanan_siber.mp3",
+        "path": "/audio/id/words/keamanan_siber.mp3",
+        "text": "Keamanan siber"
+      },
+      {
+        "filename": "sistem_operasi.mp3",
+        "path": "/audio/id/words/sistem_operasi.mp3",
+        "text": "Sistem operasi"
+      },
+      {
+        "filename": "anggaran.mp3",
+        "path": "/audio/id/words/anggaran.mp3",
+        "text": "Anggaran"
+      },
+      {
+        "filename": "investasi.mp3",
+        "path": "/audio/id/words/investasi.mp3",
+        "text": "Investasi"
+      },
+      {
+        "filename": "pendapatan.mp3",
+        "path": "/audio/id/words/pendapatan.mp3",
+        "text": "Pendapatan"
+      },
+      {
+        "filename": "startup.mp3",
+        "path": "/audio/id/words/startup.mp3",
+        "text": "Startup"
+      },
+      {
+        "filename": "kerja_jarak_jauh.mp3",
+        "path": "/audio/id/words/kerja_jarak_jauh.mp3",
+        "text": "Kerja jarak jauh"
+      },
+      {
         "filename": "anak_laki-laki.mp3",
         "path": "/audio/id/words/anak_laki-laki.mp3",
         "text": "Anak laki-laki"
@@ -1293,11 +1628,6 @@
         "text": "Apotek"
       },
       {
-        "filename": "bank.mp3",
-        "path": "/audio/id/words/bank.mp3",
-        "text": "Bank"
-      },
-      {
         "filename": "kantor_pos.mp3",
         "path": "/audio/id/words/kantor_pos.mp3",
         "text": "Kantor pos"
@@ -1396,16 +1726,6 @@
         "filename": "waktu.mp3",
         "path": "/audio/id/words/waktu.mp3",
         "text": "Waktu"
-      },
-      {
-        "filename": "pekerjaan.mp3",
-        "path": "/audio/id/words/pekerjaan.mp3",
-        "text": "Pekerjaan"
-      },
-      {
-        "filename": "kantor.mp3",
-        "path": "/audio/id/words/kantor.mp3",
-        "text": "Kantor"
       },
       {
         "filename": "kartu.mp3",
@@ -1576,16 +1896,6 @@
         "filename": "tua.mp3",
         "path": "/audio/id/words/tua.mp3",
         "text": "Tua / Lama"
-      },
-      {
-        "filename": "buka.mp3",
-        "path": "/audio/id/words/buka.mp3",
-        "text": "Buka"
-      },
-      {
-        "filename": "tutup.mp3",
-        "path": "/audio/id/words/tutup.mp3",
-        "text": "Tutup"
       },
       {
         "filename": "cepat.mp3",

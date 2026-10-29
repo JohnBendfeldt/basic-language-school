@@ -1,7 +1,7 @@
 {
   "language": "fr",
   "voice": "fr-FR-HenriNeural",
-  "generated": "2026-10-29T17:04:06.172442Z",
+  "generated": "2026-10-29T18:31:39.316694Z",
   "files": {
     "alphabet": [
       {
@@ -1043,6 +1043,351 @@
         "text": "Réduction"
       },
       {
+        "filename": "ordinateur_portable.mp3",
+        "path": "/audio/fr/words/ordinateur_portable.mp3",
+        "text": "Ordinateur portable"
+      },
+      {
+        "filename": "tablette.mp3",
+        "path": "/audio/fr/words/tablette.mp3",
+        "text": "Tablette"
+      },
+      {
+        "filename": "clavier.mp3",
+        "path": "/audio/fr/words/clavier.mp3",
+        "text": "Clavier"
+      },
+      {
+        "filename": "souris.mp3",
+        "path": "/audio/fr/words/souris.mp3",
+        "text": "Souris"
+      },
+      {
+        "filename": "chargeur.mp3",
+        "path": "/audio/fr/words/chargeur.mp3",
+        "text": "Chargeur"
+      },
+      {
+        "filename": "câble.mp3",
+        "path": "/audio/fr/words/câble.mp3",
+        "text": "Câble"
+      },
+      {
+        "filename": "wi-fi.mp3",
+        "path": "/audio/fr/words/wi-fi.mp3",
+        "text": "Wi-Fi"
+      },
+      {
+        "filename": "e-mail.mp3",
+        "path": "/audio/fr/words/e-mail.mp3",
+        "text": "E-mail"
+      },
+      {
+        "filename": "message.mp3",
+        "path": "/audio/fr/words/message.mp3",
+        "text": "Message"
+      },
+      {
+        "filename": "site_web.mp3",
+        "path": "/audio/fr/words/site_web.mp3",
+        "text": "Site web"
+      },
+      {
+        "filename": "application.mp3",
+        "path": "/audio/fr/words/application.mp3",
+        "text": "Application"
+      },
+      {
+        "filename": "dossier.mp3",
+        "path": "/audio/fr/words/dossier.mp3",
+        "text": "Dossier"
+      },
+      {
+        "filename": "caméra.mp3",
+        "path": "/audio/fr/words/caméra.mp3",
+        "text": "Caméra"
+      },
+      {
+        "filename": "microphone.mp3",
+        "path": "/audio/fr/words/microphone.mp3",
+        "text": "Microphone"
+      },
+      {
+        "filename": "écouteurs.mp3",
+        "path": "/audio/fr/words/écouteurs.mp3",
+        "text": "Écouteurs"
+      },
+      {
+        "filename": "imprimante.mp3",
+        "path": "/audio/fr/words/imprimante.mp3",
+        "text": "Imprimante"
+      },
+      {
+        "filename": "rechercher.mp3",
+        "path": "/audio/fr/words/rechercher.mp3",
+        "text": "Rechercher"
+      },
+      {
+        "filename": "enregistrer.mp3",
+        "path": "/audio/fr/words/enregistrer.mp3",
+        "text": "Enregistrer"
+      },
+      {
+        "filename": "supprimer.mp3",
+        "path": "/audio/fr/words/supprimer.mp3",
+        "text": "Supprimer"
+      },
+      {
+        "filename": "envoyer.mp3",
+        "path": "/audio/fr/words/envoyer.mp3",
+        "text": "Envoyer"
+      },
+      {
+        "filename": "télécharger.mp3",
+        "path": "/audio/fr/words/télécharger.mp3",
+        "text": "Télécharger"
+      },
+      {
+        "filename": "téléverser.mp3",
+        "path": "/audio/fr/words/téléverser.mp3",
+        "text": "Téléverser"
+      },
+      {
+        "filename": "en_ligne.mp3",
+        "path": "/audio/fr/words/en_ligne.mp3",
+        "text": "En ligne"
+      },
+      {
+        "filename": "hors_ligne.mp3",
+        "path": "/audio/fr/words/hors_ligne.mp3",
+        "text": "Hors ligne"
+      },
+      {
+        "filename": "magasin.mp3",
+        "path": "/audio/fr/words/magasin.mp3",
+        "text": "Magasin"
+      },
+      {
+        "filename": "acheter.mp3",
+        "path": "/audio/fr/words/acheter.mp3",
+        "text": "Acheter"
+      },
+      {
+        "filename": "vendre.mp3",
+        "path": "/audio/fr/words/vendre.mp3",
+        "text": "Vendre"
+      },
+      {
+        "filename": "payer.mp3",
+        "path": "/audio/fr/words/payer.mp3",
+        "text": "Payer"
+      },
+      {
+        "filename": "carte_de_crédit.mp3",
+        "path": "/audio/fr/words/carte_de_crédit.mp3",
+        "text": "Carte de crédit"
+      },
+      {
+        "filename": "bon_marché.mp3",
+        "path": "/audio/fr/words/bon_marché.mp3",
+        "text": "Bon marché"
+      },
+      {
+        "filename": "reçu.mp3",
+        "path": "/audio/fr/words/reçu.mp3",
+        "text": "Reçu"
+      },
+      {
+        "filename": "assistance.mp3",
+        "path": "/audio/fr/words/assistance.mp3",
+        "text": "Assistance"
+      },
+      {
+        "filename": "ouvrir.mp3",
+        "path": "/audio/fr/words/ouvrir.mp3",
+        "text": "Ouvrir"
+      },
+      {
+        "filename": "fermer.mp3",
+        "path": "/audio/fr/words/fermer.mp3",
+        "text": "Fermer"
+      },
+      {
+        "filename": "mettre_à_jour.mp3",
+        "path": "/audio/fr/words/mettre_à_jour.mp3",
+        "text": "Mettre à jour"
+      },
+      {
+        "filename": "patron.mp3",
+        "path": "/audio/fr/words/patron.mp3",
+        "text": "Patron"
+      },
+      {
+        "filename": "collègue.mp3",
+        "path": "/audio/fr/words/collègue.mp3",
+        "text": "Collègue"
+      },
+      {
+        "filename": "employé.mp3",
+        "path": "/audio/fr/words/employé.mp3",
+        "text": "Employé"
+      },
+      {
+        "filename": "emploi_du_temps.mp3",
+        "path": "/audio/fr/words/emploi_du_temps.mp3",
+        "text": "Emploi du temps"
+      },
+      {
+        "filename": "tâche.mp3",
+        "path": "/audio/fr/words/tâche.mp3",
+        "text": "Tâche"
+      },
+      {
+        "filename": "rapport.mp3",
+        "path": "/audio/fr/words/rapport.mp3",
+        "text": "Rapport"
+      },
+      {
+        "filename": "présentation.mp3",
+        "path": "/audio/fr/words/présentation.mp3",
+        "text": "Présentation"
+      },
+      {
+        "filename": "signature.mp3",
+        "path": "/audio/fr/words/signature.mp3",
+        "text": "Signature"
+      },
+      {
+        "filename": "congé.mp3",
+        "path": "/audio/fr/words/congé.mp3",
+        "text": "Congé"
+      },
+      {
+        "filename": "curriculum_vitae.mp3",
+        "path": "/audio/fr/words/curriculum_vitae.mp3",
+        "text": "Curriculum vitae"
+      },
+      {
+        "filename": "entretien.mp3",
+        "path": "/audio/fr/words/entretien.mp3",
+        "text": "Entretien"
+      },
+      {
+        "filename": "objectif.mp3",
+        "path": "/audio/fr/words/objectif.mp3",
+        "text": "Objectif"
+      },
+      {
+        "filename": "produit.mp3",
+        "path": "/audio/fr/words/produit.mp3",
+        "text": "Produit"
+      },
+      {
+        "filename": "service.mp3",
+        "path": "/audio/fr/words/service.mp3",
+        "text": "Service"
+      },
+      {
+        "filename": "banque.mp3",
+        "path": "/audio/fr/words/banque.mp3",
+        "text": "Banque"
+      },
+      {
+        "filename": "virement.mp3",
+        "path": "/audio/fr/words/virement.mp3",
+        "text": "Virement"
+      },
+      {
+        "filename": "remboursement.mp3",
+        "path": "/audio/fr/words/remboursement.mp3",
+        "text": "Remboursement"
+      },
+      {
+        "filename": "livraison.mp3",
+        "path": "/audio/fr/words/livraison.mp3",
+        "text": "Livraison"
+      },
+      {
+        "filename": "colis.mp3",
+        "path": "/audio/fr/words/colis.mp3",
+        "text": "Colis"
+      },
+      {
+        "filename": "logiciel.mp3",
+        "path": "/audio/fr/words/logiciel.mp3",
+        "text": "Logiciel"
+      },
+      {
+        "filename": "matériel_informatique.mp3",
+        "path": "/audio/fr/words/matériel_informatique.mp3",
+        "text": "Matériel informatique"
+      },
+      {
+        "filename": "base_de_données.mp3",
+        "path": "/audio/fr/words/base_de_données.mp3",
+        "text": "Base de données"
+      },
+      {
+        "filename": "serveur.mp3",
+        "path": "/audio/fr/words/serveur.mp3",
+        "text": "Serveur"
+      },
+      {
+        "filename": "stockage_dans_le_cloud.mp3",
+        "path": "/audio/fr/words/stockage_dans_le_cloud.mp3",
+        "text": "Stockage dans le cloud"
+      },
+      {
+        "filename": "intelligence_artificielle.mp3",
+        "path": "/audio/fr/words/intelligence_artificielle.mp3",
+        "text": "Intelligence artificielle"
+      },
+      {
+        "filename": "algorithme.mp3",
+        "path": "/audio/fr/words/algorithme.mp3",
+        "text": "Algorithme"
+      },
+      {
+        "filename": "développeur.mp3",
+        "path": "/audio/fr/words/développeur.mp3",
+        "text": "Développeur"
+      },
+      {
+        "filename": "cybersécurité.mp3",
+        "path": "/audio/fr/words/cybersécurité.mp3",
+        "text": "Cybersécurité"
+      },
+      {
+        "filename": "système_dexploitation.mp3",
+        "path": "/audio/fr/words/système_dexploitation.mp3",
+        "text": "Système d'exploitation"
+      },
+      {
+        "filename": "budget.mp3",
+        "path": "/audio/fr/words/budget.mp3",
+        "text": "Budget"
+      },
+      {
+        "filename": "investissement.mp3",
+        "path": "/audio/fr/words/investissement.mp3",
+        "text": "Investissement"
+      },
+      {
+        "filename": "revenus.mp3",
+        "path": "/audio/fr/words/revenus.mp3",
+        "text": "Revenus"
+      },
+      {
+        "filename": "jeune_pousse.mp3",
+        "path": "/audio/fr/words/jeune_pousse.mp3",
+        "text": "Jeune pousse"
+      },
+      {
+        "filename": "télétravail.mp3",
+        "path": "/audio/fr/words/télétravail.mp3",
+        "text": "Télétravail"
+      },
+      {
         "filename": "homme.mp3",
         "path": "/audio/fr/words/homme.mp3",
         "text": "Homme"
@@ -1178,11 +1523,6 @@
         "text": "Sel"
       },
       {
-        "filename": "magasin.mp3",
-        "path": "/audio/fr/words/magasin.mp3",
-        "text": "Magasin"
-      },
-      {
         "filename": "restaurant.mp3",
         "path": "/audio/fr/words/restaurant.mp3",
         "text": "Restaurant"
@@ -1226,11 +1566,6 @@
         "filename": "pharmacie.mp3",
         "path": "/audio/fr/words/pharmacie.mp3",
         "text": "Pharmacie"
-      },
-      {
-        "filename": "banque.mp3",
-        "path": "/audio/fr/words/banque.mp3",
-        "text": "Banque"
       },
       {
         "filename": "bureau_de_poste.mp3",
@@ -1891,11 +2226,6 @@
         "filename": "avoir_besoin_de.mp3",
         "path": "/audio/fr/words/avoir_besoin_de.mp3",
         "text": "Avoir besoin de"
-      },
-      {
-        "filename": "acheter.mp3",
-        "path": "/audio/fr/words/acheter.mp3",
-        "text": "Acheter"
       },
       {
         "filename": "aider.mp3",

@@ -32,6 +32,7 @@ export interface PhraseItem {
   pronunciation: string;
   category?: string;
   icon?: string;
+  level?: 1 | 2 | 3;
 }
 
 // Quiz-related interfaces

@@ -963,6 +963,131 @@ footer {
   flex-shrink: 0;
 }
 
+/* Level Selector Bar */
+.quiz-level-filter-bar {
+  margin-bottom: 0.85rem;
+}
+
+.level-filter-scroll {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.level-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.85rem;
+  background: var(--card-bg);
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.level-filter-pill:hover:not(.active) {
+  border-color: rgba(74, 90, 244, 0.4);
+  background: rgba(74, 90, 244, 0.04);
+}
+
+.level-filter-pill.active {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #ffffff;
+  border-color: #059669;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.35);
+}
+
+.level-badge {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.level-count-badge {
+  font-size: 0.72rem;
+  padding: 2px 6px;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.level-filter-pill.active .level-count-badge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* Session Combo Streak Badge */
+.session-streak-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #ffedd5;
+  color: #c2410c;
+  border: 1px solid #fed7aa;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  animation: streakPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes streakPop {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Level Checkpoint Graduation Banner */
+.level-checkpoint-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+  border: 1.5px solid #6ee7b7;
+  border-radius: 12px;
+  padding: 0.85rem 1.15rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.12);
+}
+
+.checkpoint-icon {
+  font-size: 1.75rem;
+  flex-shrink: 0;
+}
+
+.checkpoint-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.checkpoint-text strong {
+  font-size: 0.95rem;
+  color: #065f46;
+}
+
+.checkpoint-text span {
+  font-size: 0.82rem;
+  color: #047857;
+}
+
+.recap-stat-card.streak-stat {
+  border-color: #fed7aa;
+  background: #fff7ed;
+}
+
+.recap-stat-card.streak-stat .stat-label {
+  color: #c2410c;
+}
+
+.recap-stat-card.streak-stat .stat-value {
+  color: #ea580c;
+}
+
 .category-section-label {
   font-size: 0.78rem;
   font-weight: 700;
@@ -4169,8 +4294,8 @@ html {
 /* Stats Grid */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.15rem;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1rem;
   margin-bottom: 2rem;
 }
 
@@ -4199,6 +4324,11 @@ html {
   justify-content: center;
   font-size: 1.1rem;
   flex-shrink: 0;
+}
+
+.stat-icon.streak-icon {
+  background: #ffedd5;
+  color: #ea580c;
 }
 
 .stat-icon.trophy-icon {

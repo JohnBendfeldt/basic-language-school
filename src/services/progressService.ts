@@ -482,6 +482,66 @@ export class ProgressService {
     }
   }
 
+  private static calculateStreaks(sessions: QuizSession[]): { currentStreak: number; longestStreak: number } {
+    if (!sessions || sessions.length === 0) {
+      return { currentStreak: 0, longestStreak: 0 };
+    }
+
+    // Extract unique ISO dates (YYYY-MM-DD)
+    const uniqueDates = Array.from(
+      new Set(
+        sessions
+          .map(s => s.completedAt ? s.completedAt.split('T')[0] : '')
+          .filter(Boolean)
+      )
+    ).sort().reverse();
+
+    if (uniqueDates.length === 0) {
+      return { currentStreak: 0, longestStreak: 0 };
+    }
+
+    const todayStr = new Date().toISOString().split('T')[0];
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yesterdayStr = yesterday.toISOString().split('T')[0];
+
+    // Check if the streak is active (practiced today or yesterday)
+    let currentStreak = 0;
+    const latestDate = uniqueDates[0];
+    const isStreakActive = latestDate === todayStr || latestDate === yesterdayStr;
+
+    if (isStreakActive) {
+      let expectedDate = new Date(latestDate);
+      for (const dateStr of uniqueDates) {
+        const currentDate = new Date(dateStr);
+        const diffDays = Math.round((expectedDate.getTime() - currentDate.getTime()) / (1000 * 3600 * 24));
+        if (diffDays === 0) {
+          currentStreak++;
+          expectedDate.setDate(expectedDate.getDate() - 1);
+        } else {
+          break;
+        }
+      }
+    }
+
+    // Calculate longest consecutive streak
+    let longestStreak = currentStreak;
+    let tempStreak = 1;
+    for (let i = 0; i < uniqueDates.length - 1; i++) {
+      const d1 = new Date(uniqueDates[i]);
+      const d2 = new Date(uniqueDates[i + 1]);
+      const diff = Math.round((d1.getTime() - d2.getTime()) / (1000 * 3600 * 24));
+      if (diff === 1) {
+        tempStreak++;
+        if (tempStreak > longestStreak) longestStreak = tempStreak;
+      } else {
+        tempStreak = 1;
+      }
+    }
+
+    return { currentStreak, longestStreak };
+  }
+
   private static aggregateStats(sessions: QuizSession[], words: WordProgress[]): UserStats {
     const totalQuizzesTaken = sessions.length;
     const averageScore = totalQuizzesTaken > 0
@@ -496,13 +556,17 @@ export class ProgressService {
       .sort((a, b) => b.timesIncorrect - a.timesIncorrect)
       .slice(0, 10);
 
+    const { currentStreak, longestStreak } = this.calculateStreaks(sessions);
+
     return {
       totalQuizzesTaken,
       averageScore,
       wordsMasteredCount,
       wordsLearningCount,
       wordsToReview,
-      recentSessions: sessions.slice(0, 10)
+      recentSessions: sessions.slice(0, 10),
+      currentDailyStreak: currentStreak,
+      longestDailyStreak: longestStreak
     };
   }
 }

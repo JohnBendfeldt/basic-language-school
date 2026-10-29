@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { FaTimes, FaTrophy, FaGraduationCap, FaRedo, FaCheckCircle, FaChartBar, FaArrowRight } from 'react-icons/fa';
+import { FaTimes, FaTrophy, FaGraduationCap, FaRedo, FaCheckCircle, FaChartBar, FaArrowRight, FaFire } from 'react-icons/fa';
 import { ProgressService } from '../services/progressService';
 import { UserStats, WordProgress } from '../types/progress';
 import PronunciationButton from './PronunciationButton';
@@ -138,6 +138,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
           masteryCountDesc: (mastered: number, total: number) =>
             `Изучено ${mastered} из ${total} основных слов и фраз (уровень 5+)`,
           studyBtn: (langName: string) => `Учить ${langName}`,
+          dailyStreak: 'Дневная серия',
           quizzesCompleted: 'Пройдено тестов',
           averageScore: 'Средний результат',
           wordsMastered: 'Выучено слов',
@@ -162,6 +163,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
           masteryCountDesc: (mastered: number, total: number) =>
             `${mastered} de ${total} palabras y frases clave dominadas en Nivel 5+`,
           studyBtn: (langName: string) => `Estudiar ${langName}`,
+          dailyStreak: 'Racha Diaria',
           quizzesCompleted: 'Cuestionarios Completados',
           averageScore: 'Puntuación Media',
           wordsMastered: 'Palabras Dominadas',
@@ -186,6 +188,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
           masteryCountDesc: (mastered: number, total: number) =>
             `${mastered} sur ${total} mots et phrases clés maîtrisés au Niveau 5+`,
           studyBtn: (langName: string) => `Étudier : ${langName}`,
+          dailyStreak: 'Série Quotidienne',
           quizzesCompleted: 'Quiz Terminés',
           averageScore: 'Score Moyen',
           wordsMastered: 'Mots Maîtrisés',
@@ -211,6 +214,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
           masteryCountDesc: (mastered: number, total: number) =>
             `${mastered} of ${total} core words & phrases mastered at Level 5+`,
           studyBtn: (langName: string) => `Study ${langName}`,
+          dailyStreak: 'Daily Streak',
           quizzesCompleted: 'Quizzes Completed',
           averageScore: 'Average Score',
           wordsMastered: 'Words Mastered',
@@ -341,6 +345,16 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
 
             {/* Stat Cards Grid */}
             <div className="stats-grid">
+              <div className="stat-card">
+                <div className="stat-icon streak-icon">
+                  <FaFire />
+                </div>
+                <div className="stat-content">
+                  <span className="stat-value">{stats.currentDailyStreak || 0}</span>
+                  <span className="stat-label">{modalCopy.dailyStreak}</span>
+                </div>
+              </div>
+
               <div className="stat-card">
                 <div className="stat-icon trophy-icon">
                   <FaTrophy />

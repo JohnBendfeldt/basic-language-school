@@ -1,7 +1,7 @@
 {
   "language": "en",
   "voice": "en-US-JennyNeural",
-  "generated": "2026-10-29T17:04:20.529859Z",
+  "generated": "2026-10-29T18:32:28.720944Z",
   "files": {
     "alphabet": [
       {
@@ -1173,6 +1173,336 @@
         "text": "Discount"
       },
       {
+        "filename": "laptop.mp3",
+        "path": "/audio/en/words/laptop.mp3",
+        "text": "Laptop"
+      },
+      {
+        "filename": "tablet.mp3",
+        "path": "/audio/en/words/tablet.mp3",
+        "text": "Tablet"
+      },
+      {
+        "filename": "keyboard.mp3",
+        "path": "/audio/en/words/keyboard.mp3",
+        "text": "Keyboard"
+      },
+      {
+        "filename": "mouse.mp3",
+        "path": "/audio/en/words/mouse.mp3",
+        "text": "Mouse"
+      },
+      {
+        "filename": "charger.mp3",
+        "path": "/audio/en/words/charger.mp3",
+        "text": "Charger"
+      },
+      {
+        "filename": "cable.mp3",
+        "path": "/audio/en/words/cable.mp3",
+        "text": "Cable"
+      },
+      {
+        "filename": "wi-fi.mp3",
+        "path": "/audio/en/words/wi-fi.mp3",
+        "text": "Wi-Fi"
+      },
+      {
+        "filename": "message.mp3",
+        "path": "/audio/en/words/message.mp3",
+        "text": "Message"
+      },
+      {
+        "filename": "website.mp3",
+        "path": "/audio/en/words/website.mp3",
+        "text": "Website"
+      },
+      {
+        "filename": "application.mp3",
+        "path": "/audio/en/words/application.mp3",
+        "text": "Application"
+      },
+      {
+        "filename": "folder.mp3",
+        "path": "/audio/en/words/folder.mp3",
+        "text": "Folder"
+      },
+      {
+        "filename": "camera.mp3",
+        "path": "/audio/en/words/camera.mp3",
+        "text": "Camera"
+      },
+      {
+        "filename": "microphone.mp3",
+        "path": "/audio/en/words/microphone.mp3",
+        "text": "Microphone"
+      },
+      {
+        "filename": "headphones.mp3",
+        "path": "/audio/en/words/headphones.mp3",
+        "text": "Headphones"
+      },
+      {
+        "filename": "printer.mp3",
+        "path": "/audio/en/words/printer.mp3",
+        "text": "Printer"
+      },
+      {
+        "filename": "search.mp3",
+        "path": "/audio/en/words/search.mp3",
+        "text": "Search"
+      },
+      {
+        "filename": "save.mp3",
+        "path": "/audio/en/words/save.mp3",
+        "text": "Save"
+      },
+      {
+        "filename": "delete.mp3",
+        "path": "/audio/en/words/delete.mp3",
+        "text": "Delete"
+      },
+      {
+        "filename": "send.mp3",
+        "path": "/audio/en/words/send.mp3",
+        "text": "Send"
+      },
+      {
+        "filename": "download.mp3",
+        "path": "/audio/en/words/download.mp3",
+        "text": "Download"
+      },
+      {
+        "filename": "upload.mp3",
+        "path": "/audio/en/words/upload.mp3",
+        "text": "Upload"
+      },
+      {
+        "filename": "online.mp3",
+        "path": "/audio/en/words/online.mp3",
+        "text": "Online"
+      },
+      {
+        "filename": "offline.mp3",
+        "path": "/audio/en/words/offline.mp3",
+        "text": "Offline"
+      },
+      {
+        "filename": "job.mp3",
+        "path": "/audio/en/words/job.mp3",
+        "text": "Job"
+      },
+      {
+        "filename": "office.mp3",
+        "path": "/audio/en/words/office.mp3",
+        "text": "Office"
+      },
+      {
+        "filename": "store.mp3",
+        "path": "/audio/en/words/store.mp3",
+        "text": "Store"
+      },
+      {
+        "filename": "buy.mp3",
+        "path": "/audio/en/words/buy.mp3",
+        "text": "Buy"
+      },
+      {
+        "filename": "sell.mp3",
+        "path": "/audio/en/words/sell.mp3",
+        "text": "Sell"
+      },
+      {
+        "filename": "pay.mp3",
+        "path": "/audio/en/words/pay.mp3",
+        "text": "Pay"
+      },
+      {
+        "filename": "receipt.mp3",
+        "path": "/audio/en/words/receipt.mp3",
+        "text": "Receipt"
+      },
+      {
+        "filename": "support.mp3",
+        "path": "/audio/en/words/support.mp3",
+        "text": "Support"
+      },
+      {
+        "filename": "open.mp3",
+        "path": "/audio/en/words/open.mp3",
+        "text": "Open"
+      },
+      {
+        "filename": "close.mp3",
+        "path": "/audio/en/words/close.mp3",
+        "text": "Close"
+      },
+      {
+        "filename": "update.mp3",
+        "path": "/audio/en/words/update.mp3",
+        "text": "Update"
+      },
+      {
+        "filename": "boss.mp3",
+        "path": "/audio/en/words/boss.mp3",
+        "text": "Boss"
+      },
+      {
+        "filename": "colleague.mp3",
+        "path": "/audio/en/words/colleague.mp3",
+        "text": "Colleague"
+      },
+      {
+        "filename": "employee.mp3",
+        "path": "/audio/en/words/employee.mp3",
+        "text": "Employee"
+      },
+      {
+        "filename": "task.mp3",
+        "path": "/audio/en/words/task.mp3",
+        "text": "Task"
+      },
+      {
+        "filename": "report.mp3",
+        "path": "/audio/en/words/report.mp3",
+        "text": "Report"
+      },
+      {
+        "filename": "presentation.mp3",
+        "path": "/audio/en/words/presentation.mp3",
+        "text": "Presentation"
+      },
+      {
+        "filename": "signature.mp3",
+        "path": "/audio/en/words/signature.mp3",
+        "text": "Signature"
+      },
+      {
+        "filename": "vacation.mp3",
+        "path": "/audio/en/words/vacation.mp3",
+        "text": "Vacation"
+      },
+      {
+        "filename": "resume.mp3",
+        "path": "/audio/en/words/resume.mp3",
+        "text": "Resume"
+      },
+      {
+        "filename": "interview.mp3",
+        "path": "/audio/en/words/interview.mp3",
+        "text": "Interview"
+      },
+      {
+        "filename": "goal.mp3",
+        "path": "/audio/en/words/goal.mp3",
+        "text": "Goal"
+      },
+      {
+        "filename": "product.mp3",
+        "path": "/audio/en/words/product.mp3",
+        "text": "Product"
+      },
+      {
+        "filename": "service.mp3",
+        "path": "/audio/en/words/service.mp3",
+        "text": "Service"
+      },
+      {
+        "filename": "transfer.mp3",
+        "path": "/audio/en/words/transfer.mp3",
+        "text": "Transfer"
+      },
+      {
+        "filename": "refund.mp3",
+        "path": "/audio/en/words/refund.mp3",
+        "text": "Refund"
+      },
+      {
+        "filename": "shipping.mp3",
+        "path": "/audio/en/words/shipping.mp3",
+        "text": "Shipping"
+      },
+      {
+        "filename": "package.mp3",
+        "path": "/audio/en/words/package.mp3",
+        "text": "Package"
+      },
+      {
+        "filename": "software.mp3",
+        "path": "/audio/en/words/software.mp3",
+        "text": "Software"
+      },
+      {
+        "filename": "hardware.mp3",
+        "path": "/audio/en/words/hardware.mp3",
+        "text": "Hardware"
+      },
+      {
+        "filename": "database.mp3",
+        "path": "/audio/en/words/database.mp3",
+        "text": "Database"
+      },
+      {
+        "filename": "server.mp3",
+        "path": "/audio/en/words/server.mp3",
+        "text": "Server"
+      },
+      {
+        "filename": "cloud_storage.mp3",
+        "path": "/audio/en/words/cloud_storage.mp3",
+        "text": "Cloud storage"
+      },
+      {
+        "filename": "artificial_intelligence.mp3",
+        "path": "/audio/en/words/artificial_intelligence.mp3",
+        "text": "Artificial intelligence"
+      },
+      {
+        "filename": "algorithm.mp3",
+        "path": "/audio/en/words/algorithm.mp3",
+        "text": "Algorithm"
+      },
+      {
+        "filename": "developer.mp3",
+        "path": "/audio/en/words/developer.mp3",
+        "text": "Developer"
+      },
+      {
+        "filename": "cybersecurity.mp3",
+        "path": "/audio/en/words/cybersecurity.mp3",
+        "text": "Cybersecurity"
+      },
+      {
+        "filename": "operating_system.mp3",
+        "path": "/audio/en/words/operating_system.mp3",
+        "text": "Operating system"
+      },
+      {
+        "filename": "budget.mp3",
+        "path": "/audio/en/words/budget.mp3",
+        "text": "Budget"
+      },
+      {
+        "filename": "investment.mp3",
+        "path": "/audio/en/words/investment.mp3",
+        "text": "Investment"
+      },
+      {
+        "filename": "revenue.mp3",
+        "path": "/audio/en/words/revenue.mp3",
+        "text": "Revenue"
+      },
+      {
+        "filename": "startup.mp3",
+        "path": "/audio/en/words/startup.mp3",
+        "text": "Startup"
+      },
+      {
+        "filename": "remote_work.mp3",
+        "path": "/audio/en/words/remote_work.mp3",
+        "text": "Remote work"
+      },
+      {
         "filename": "man.mp3",
         "path": "/audio/en/words/man.mp3",
         "text": "Man"
@@ -1261,11 +1591,6 @@
         "filename": "salt.mp3",
         "path": "/audio/en/words/salt.mp3",
         "text": "Salt"
-      },
-      {
-        "filename": "store.mp3",
-        "path": "/audio/en/words/store.mp3",
-        "text": "Store / Shop"
       },
       {
         "filename": "street.mp3",
@@ -1396,11 +1721,6 @@
         "filename": "work.mp3",
         "path": "/audio/en/words/work.mp3",
         "text": "Work / Job"
-      },
-      {
-        "filename": "office.mp3",
-        "path": "/audio/en/words/office.mp3",
-        "text": "Office"
       },
       {
         "filename": "card.mp3",
@@ -1591,11 +1911,6 @@
         "filename": "bad.mp3",
         "path": "/audio/en/words/bad.mp3",
         "text": "Bad"
-      },
-      {
-        "filename": "open.mp3",
-        "path": "/audio/en/words/open.mp3",
-        "text": "Open"
       },
       {
         "filename": "closed.mp3",

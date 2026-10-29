@@ -403,6 +403,70 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
     const isTechWord = prompt?.textContent?.includes('Компьютер') || prompt?.textContent?.includes('Computer');
     expect(isTechWord).toBe(true);
   });
+
+  it('filters by Vocabulary Levels (Level 1, Level 2, Level 3)', async () => {
+    render(<Quiz data={{
+      commonWords: [
+        { english: 'Computer', russian: 'Компьютер', category: 'Tech', level: 1 },
+        { english: 'Algorithm', russian: 'Алгоритм', category: 'Tech', level: 3 }
+      ]
+    }} />);
+
+    // Check level pills
+    expect(screen.getByRole('tab', { name: /Level 1: Foundations/i })).toBeInTheDocument();
+    expect(screen.getByRole('tab', { name: /Level 2: Workplace/i })).toBeInTheDocument();
+    expect(screen.getByRole('tab', { name: /Level 3: Professional/i })).toBeInTheDocument();
+
+    // Click Level 3 tab
+    const lvl3Tab = screen.getByRole('tab', { name: /Level 3: Professional/i });
+    fireEvent.click(lvl3Tab);
+    expect(lvl3Tab).toHaveClass('active');
+
+    // Prompt must be from Level 3 item (Algorithm)
+    const prompt = document.querySelector('.quiz-prompt');
+    const isLevel3Word = prompt?.textContent?.includes('Алгоритм') || prompt?.textContent?.includes('Algorithm');
+    expect(isLevel3Word).toBe(true);
+  });
+
+  it('tracks in-quiz combo streak on consecutive correct answers', async () => {
+    render(<Quiz data={{
+      basicPhrases: [
+        { english: 'Hello', russian: 'Привет' },
+        { english: 'Thank you', russian: 'Спасибо' }
+      ]
+    }} />);
+
+    // Answer first question correctly
+    const promptText1 = document.querySelector('.quiz-prompt')?.textContent || '';
+    let answer1 = 'Привет';
+    if (promptText1.includes('Привет')) answer1 = 'Hello';
+    else if (promptText1.includes('Hello')) answer1 = 'Привет';
+    else if (promptText1.includes('Спасибо')) answer1 = 'Thank you';
+    else if (promptText1.includes('Thank you')) answer1 = 'Спасибо';
+
+    const input = screen.getByRole('textbox');
+    fireEvent.change(input, { target: { value: answer1 } });
+    fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+
+    // Proceed to question 2
+    fireEvent.click(screen.getByRole('button', { name: /Next Question/i }));
+
+    // Answer second question correctly
+    const promptText2 = document.querySelector('.quiz-prompt')?.textContent || '';
+    let answer2 = 'Hello';
+    if (promptText2.includes('Привет')) answer2 = 'Hello';
+    else if (promptText2.includes('Hello')) answer2 = 'Привет';
+    else if (promptText2.includes('Спасибо')) answer2 = 'Thank you';
+    else if (promptText2.includes('Thank you')) answer2 = 'Спасибо';
+
+    const input2 = screen.getByRole('textbox');
+    fireEvent.change(input2, { target: { value: answer2 } });
+    fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+
+    // Check that combo streak badge appears
+    expect(screen.getByText(/in a row!/i)).toBeInTheDocument();
+  });
 });
+
 
 

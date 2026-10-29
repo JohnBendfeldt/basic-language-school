@@ -49,4 +49,6 @@ export interface UserStats {
   wordsLearningCount: number;
   wordsToReview: WordProgress[];
   recentSessions: QuizSession[];
+  currentDailyStreak?: number;
+  longestDailyStreak?: number;
 }
