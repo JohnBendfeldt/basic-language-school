@@ -17,18 +17,25 @@ export const NumberBadge: React.FC<NumberBadgeProps> = ({
   size = 36,
 }) => {
   const displayVal = String(value).trim();
-  const isLarge = displayVal.length >= 3;
+  const isExtraLarge = displayVal.length >= 4;
+  const isLarge = displayVal.length === 3;
   const isMedium = displayVal.length === 2;
 
-  const width = isLarge ? Math.round(size * 1.5) : Math.round(size * 1.15);
+  const width = isExtraLarge
+    ? Math.round(size * 1.78)
+    : isLarge
+      ? Math.round(size * 1.5)
+      : Math.round(size * 1.15);
   const height = size;
   const rx = Math.round(size * 0.28);
 
-  const fontSize = isLarge
-    ? Math.round(size * 0.42)
-    : isMedium
-      ? Math.round(size * 0.52)
-      : Math.round(size * 0.58);
+  const fontSize = isExtraLarge
+    ? Math.round(size * 0.39)
+    : isLarge
+      ? Math.round(size * 0.42)
+      : isMedium
+        ? Math.round(size * 0.52)
+        : Math.round(size * 0.58);
 
   return (
     <svg

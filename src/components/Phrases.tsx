@@ -4,7 +4,7 @@ import PronunciationButton from './PronunciationButton';
 import { NumberBadge } from './NumberBadge';
 import { FaSyncAlt } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
-import { resolveTranslation } from '../utils/translationResolver';
+import { resolveTranslation, extractDigit } from '../utils/translationResolver';
 import { localizeCategoryBadge } from '../utils/pageDictionary';
 
 interface PhraseCardProps {
@@ -36,9 +36,14 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
   // Extract numeric digits from translatedText/targetText if this is numbers mode
   let numericValue: string | null = null;
   if (contentType === 'numbers') {
-    const numMatch = (translatedText || targetText).match(/\b\d+([,.]\d+)?\b/);
-    if (numMatch) {
-      numericValue = numMatch[0];
+    const resolvedDigit = extractDigit(translatedText) ?? extractDigit(targetText);
+    if (resolvedDigit !== null) {
+      numericValue = String(resolvedDigit);
+    } else {
+      const numMatch = (translatedText || targetText).match(/\b\d{1,3}(?:[,.]\d{3})+\b|\b\d+\b/);
+      if (numMatch) {
+        numericValue = numMatch[0];
+      }
     }
   }
 

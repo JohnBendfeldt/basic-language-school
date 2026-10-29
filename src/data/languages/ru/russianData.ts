@@ -398,152 +398,182 @@ const numbers: PhraseItem[] = [
   {
     russian: 'ноль',
     english: 'Zero',
-    pronunciation: 'nohl'
+    pronunciation: 'nohl',
+    category: 'Numbers 0-10'
   },
   {
     russian: 'один',
     english: 'One',
-    pronunciation: 'ah-deen'
+    pronunciation: 'ah-deen',
+    category: 'Numbers 0-10'
   },
   {
     russian: 'два',
     english: 'Two',
-    pronunciation: 'dvah'
+    pronunciation: 'dvah',
+    category: 'Numbers 0-10'
   },
   {
     russian: 'три',
     english: 'Three',
-    pronunciation: 'tree'
+    pronunciation: 'tree',
+    category: 'Numbers 0-10'
   },
   {
     russian: 'четыре',
     english: 'Four',
-    pronunciation: 'chee-tih-rye'
+    pronunciation: 'chee-tih-rye',
+    category: 'Numbers 0-10'
   },
   {
     russian: 'пять',
     english: 'Five',
-    pronunciation: 'pyat'
+    pronunciation: 'pyat',
+    category: 'Numbers 0-10'
   },
   {
     russian: 'шесть',
     english: 'Six',
-    pronunciation: 'shest'
+    pronunciation: 'shest',
+    category: 'Numbers 0-10'
   },
   {
     russian: 'семь',
     english: 'Seven',
-    pronunciation: 'syem'
+    pronunciation: 'syem',
+    category: 'Numbers 0-10'
   },
   {
     russian: 'восемь',
     english: 'Eight',
-    pronunciation: 'voh-seem'
+    pronunciation: 'voh-seem',
+    category: 'Numbers 0-10'
   },
   {
     russian: 'девять',
     english: 'Nine',
-    pronunciation: 'dyeh-vyet'
+    pronunciation: 'dyeh-vyet',
+    category: 'Numbers 0-10'
   },
   {
     russian: 'десять',
     english: 'Ten',
-    pronunciation: 'dyeh-syet'
+    pronunciation: 'dyeh-syet',
+    category: 'Numbers 0-10'
   },
   {
     russian: 'одиннадцать',
     english: 'Eleven',
-    pronunciation: 'ah-deen-nad-tsat'
+    pronunciation: 'ah-deen-nad-tsat',
+    category: 'Numbers 11-20'
   },
   {
     russian: 'двенадцать',
     english: 'Twelve',
-    pronunciation: 'dvye-nad-tsat'
+    pronunciation: 'dvye-nad-tsat',
+    category: 'Numbers 11-20'
   },
   {
     russian: 'тринадцать',
     english: 'Thirteen',
-    pronunciation: 'tree-nad-tsat'
+    pronunciation: 'tree-nad-tsat',
+    category: 'Numbers 11-20'
   },
   {
     russian: 'четырнадцать',
     english: 'Fourteen',
-    pronunciation: 'chee-tir-nad-tsat'
+    pronunciation: 'chee-tir-nad-tsat',
+    category: 'Numbers 11-20'
   },
   {
     russian: 'пятнадцать',
     english: 'Fifteen',
-    pronunciation: 'peet-nad-tsat'
+    pronunciation: 'peet-nad-tsat',
+    category: 'Numbers 11-20'
   },
   {
     russian: 'шестнадцать',
     english: 'Sixteen',
-    pronunciation: 'shest-nad-tsat'
+    pronunciation: 'shest-nad-tsat',
+    category: 'Numbers 11-20'
   },
   {
     russian: 'семнадцать',
     english: 'Seventeen',
-    pronunciation: 'seem-nad-tsat'
+    pronunciation: 'seem-nad-tsat',
+    category: 'Numbers 11-20'
   },
   {
     russian: 'восемнадцать',
     english: 'Eighteen',
-    pronunciation: 'vah-seem-nad-tsat'
+    pronunciation: 'vah-seem-nad-tsat',
+    category: 'Numbers 11-20'
   },
   {
     russian: 'девятнадцать',
     english: 'Nineteen',
-    pronunciation: 'dee-veet-nad-tsat'
+    pronunciation: 'dee-veet-nad-tsat',
+    category: 'Numbers 11-20'
   },
   {
     russian: 'двадцать',
     english: 'Twenty',
-    pronunciation: 'dvad-tsat'
+    pronunciation: 'dvad-tsat',
+    category: 'Tens'
   },
   {
     russian: 'тридцать',
     english: 'Thirty',
-    pronunciation: 'treed-tsat'
+    pronunciation: 'treed-tsat',
+    category: 'Tens'
   },
   {
     russian: 'сорок',
     english: 'Forty',
-    pronunciation: 'soh-rak'
+    pronunciation: 'soh-rak',
+    category: 'Tens'
   },
   {
     russian: 'пятьдесят',
     english: 'Fifty',
-    pronunciation: 'pee-dee-seat'
+    pronunciation: 'pee-dee-seat',
+    category: 'Tens'
   },
   {
     russian: 'шестьдесят',
     english: 'Sixty',
-    pronunciation: 'shest-dee-seat'
+    pronunciation: 'shest-dee-seat',
+    category: 'Tens'
   },
   {
     russian: 'семьдесят',
     english: 'Seventy',
-    pronunciation: 'sem-dee-seat'
+    pronunciation: 'sem-dee-seat',
+    category: 'Tens'
   },
   {
     russian: 'восемьдесят',
     english: 'Eighty',
-    pronunciation: 'voh-seem-dee-seat'
+    pronunciation: 'voh-seem-dee-seat',
+    category: 'Tens'
   },
   {
     russian: 'девяносто',
     english: 'Ninety',
-    pronunciation: 'dev-ya-noh-stah'
+    pronunciation: 'dev-ya-noh-stah',
+    category: 'Tens'
   },
   {
     russian: 'сто',
     english: 'One hundred',
-    pronunciation: 'stoh'
+    pronunciation: 'stoh',
+    category: 'Hundreds'
   },
   {
     russian: 'тысяча',
     english: 'One thousand',
-    pronunciation: 'tih-see-cha'
+    pronunciation: 'tih-see-cha',
+    category: 'Thousands'
   }
 ];
 
