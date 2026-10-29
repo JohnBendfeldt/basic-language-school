@@ -63,8 +63,13 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
 
   const handleSelectBase = (langId: string, available: boolean) => {
     if (!available) return;
-    setBaseLanguage(langId as SupportedLanguageId);
-    setIsOpen(false);
+    const nextBase = langId as SupportedLanguageId;
+    if (nextBase === targetLanguage && onLanguageChange && baseLanguage !== nextBase) {
+      onLanguageChange(baseLanguage);
+    }
+    setBaseLanguage(nextBase);
+    // Keep modal open and focus target tab so user can confirm or pick the language they want to learn
+    setActiveTab('target');
   };
 
   const handleQuickPair = (base: SupportedLanguageId, target: SupportedLanguageId) => {

@@ -4,6 +4,8 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Alphabet from '../components/Alphabet';
 import NumbersAndTime from '../components/NumbersAndTime';
 import Quiz from '../components/Quiz';
+import VoiceSpeedControl from '../components/VoiceSpeedControl';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 import { LanguageProvider, useLanguage } from '../contexts/LanguageContext';
 import { getPageContent, getAlphabetLabels, getTimeTabs, getEnglishTimeGuide, getLocalizedAppName, getLocalizedLanguageName, localizeCategoryBadge } from '../utils/pageDictionary';
 import { resolveTranslation, getAlphabetQuizHint } from '../utils/translationResolver';
@@ -146,5 +148,57 @@ describe('Page Dictionary & Multilingual Alphabet Localization', () => {
     expect(getLocalizedLanguageName('en', 'ru', 'English')).toBe('Английский');
     expect(localizeCategoryBadge('Greetings', 'ru')).toBe('Приветствия');
     expect(localizeCategoryBadge('Food & Drink', 'ru')).toBe('Еда и напитки');
+
+    // Test Spanish time expression "Son las cinco menos cuarto" for French speakers
+    expect(
+      resolveTranslation(
+        { phrase: 'Son las cinco menos cuarto', translation: 'It is 4:45 (quarter to five)' },
+        'es',
+        'fr'
+      )
+    ).toBe('Il est cinq heures moins le quart');
+  });
+
+  it('opens VoiceSpeedControl modal with localized speed labels when clicked', () => {
+    render(
+      <TestLanguagePairWrapper targetLang="en" baseLang="ru">
+        <VoiceSpeedControl />
+      </TestLanguagePairWrapper>
+    );
+
+    const trigger = screen.getByRole('button', { name: /Voice speed/i });
+    fireEvent.click(trigger);
+
+    expect(screen.getByRole('dialog', { name: /Audio Playback Speed/i })).toBeInTheDocument();
+    expect(screen.getByText('Скорость аудио')).toBeInTheDocument();
+    expect(screen.getByText('Учебный темп')).toBeInTheDocument();
+  });
+
+  it('keeps LanguageSwitcher open and preserves target language when changing I speak from Russian to French', () => {
+    localStorage.setItem('basic_language_base_lang', 'ru');
+    localStorage.setItem('basic_language_target_lang', 'en');
+    window.history.pushState({}, '', '/learn/en/alphabet');
+
+    render(
+      <LanguageProvider>
+        <LanguageSwitcher />
+      </LanguageProvider>
+    );
+
+    // Open modal
+    const trigger = screen.getByRole('button', { name: /Current language pair/i });
+    fireEvent.click(trigger);
+
+    // Switch to "I speak" tab (Я говорю)
+    const iSpeakTab = screen.getAllByRole('button', { name: /Я говорю/i })[0];
+    fireEvent.click(iSpeakTab);
+
+    // Select French (Французский) as native language
+    const frenchOption = screen.getByRole('menuitem', { name: /Французский/i });
+    fireEvent.click(frenchOption);
+
+    // Modal should remain open and pair should now be French -> English (Anglais), NOT Spanish!
+    expect(screen.getByRole('dialog', { name: /Language selection modal/i })).toBeInTheDocument();
+    expect(screen.getAllByText('Anglais').length).toBeGreaterThan(0);
   });
 });

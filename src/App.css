@@ -5124,84 +5124,56 @@ html {
   opacity: 0.9;
 }
 
-/* Desktop positioning for Voice Speed Dropdown */
-@media (min-width: 769px) {
-  .voice-speed-backdrop {
-    position: fixed;
-    inset: 0;
-    z-index: 1500;
-    background: transparent;
-  }
-
-  .voice-speed-dropdown {
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    right: auto;
-    width: 280px;
-    background: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.22), 0 2px 8px rgba(15, 23, 42, 0.08);
-    border: 1px solid #e2e8f0;
-    overflow: hidden;
-    animation: dropdownSlideIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .speed-modal-close {
-    display: none;
-  }
+/* Centered Modal for Voice Speed (Desktop & Mobile) */
+.voice-speed-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2200;
+  padding: 1rem;
+  animation: modalFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Mobile Centered Modal for Voice Speed */
-@media (max-width: 768px) {
-  .voice-speed-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(15, 23, 42, 0.72);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2200;
-    padding: 1rem;
-    animation: modalFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  }
+.voice-speed-dropdown,
+.voice-speed-dropdown.voice-speed-modal {
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  width: 100%;
+  max-width: 380px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 0;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  margin: auto;
+  animation: modalSlideUp 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
-  .voice-speed-dropdown.voice-speed-modal {
-    position: relative;
-    top: auto;
-    left: auto;
-    right: auto;
-    width: 100%;
-    max-width: 340px;
-    background: #ffffff;
-    border-radius: 20px;
-    padding: 0;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
-    overflow: hidden;
-    margin: auto;
-    animation: modalSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  }
+.speed-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
 
-  .speed-modal-close {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: #f1f5f9;
-    border: none;
-    color: #64748b;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .speed-modal-close:hover {
-    background: #e2e8f0;
-    color: #0f172a;
-  }
+.speed-modal-close:hover {
+  background: #e2e8f0;
+  color: #0f172a;
 }
 
 .speed-dropdown-header {

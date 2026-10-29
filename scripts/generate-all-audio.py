@@ -70,9 +70,44 @@ def get_audio_filename(text: str) -> str:
     # Remove punctuation, notes in parentheses, slashes
     clean = text.split('/')[0]
     clean = re.sub(r"\s*\([^)]*\)\s*", "", clean)
-    clean = re.sub(r"[?.,!¡¿'’\"]", "", clean).strip().lower()
+    clean = re.sub(r"[?.,!¡¿'’\"«»:]", "", clean).strip().lower()
     clean = unicodedata.normalize("NFC", clean)
     return re.sub(r"\s+", "_", clean) + ".mp3"
+
+
+def extract_ts_strings(field_name: str, block: str):
+    pattern = rf"{field_name}:\s*'((?:\\'|[^'])+)'|{field_name}:\s*\"((?:\\\"|[^\"])+)\""
+    results = []
+    for m in re.finditer(pattern, block):
+        raw = m.group(1) if m.group(1) is not None else m.group(2)
+        unescaped = raw.replace("\\'", "'").replace('\\"', '"')
+        results.append(normalize_text(unescaped))
+    return results
+
+
+def parse_extended_dictionary(lang_id: str):
+    resolver_file = PROJECT_ROOT / "src" / "utils" / "translationResolver.ts"
+    if not resolver_file.exists():
+        return []
+    content = resolver_file.read_text(encoding="utf-8")
+    dict_match = re.search(r"export const EXTENDED_DICTIONARY[\s\S]*?=\s*\{([\s\S]*?)\n\};", content)
+    if not dict_match:
+        return []
+    block = dict_match.group(1)
+    entries = extract_ts_strings(lang_id, block)
+    seen = set()
+    items = []
+    for raw_val in entries:
+        # Take primary variant before '/' and strip parentheticals for spoken audio
+        primary = raw_val.split('/')[0]
+        spoken = re.sub(r"\s*\([^)]*\)\s*", " ", primary).strip()
+        if not spoken:
+            continue
+        fname = get_audio_filename(raw_val)
+        if fname not in seen and fname != ".mp3":
+            seen.add(fname)
+            items.append({"text": raw_val, "spoken": spoken, "filename": fname})
+    return items
 
 
 def parse_russian(data_file: Path):
@@ -115,6 +150,12 @@ def parse_russian(data_file: Path):
         for t in re.findall(r"russian:\s*['\"]([^'\"]+)['\"]", t_match.group(1)):
             categories["time"].append({"text": t, "spoken": t, "filename": get_audio_filename(t)})
 
+    existing_word_files = {item["filename"] for item in categories["words"]}
+    for dict_item in parse_extended_dictionary("ru"):
+        if dict_item["filename"] not in existing_word_files:
+            existing_word_files.add(dict_item["filename"])
+            categories["words"].append(dict_item)
+
     return categories
 
 
@@ -125,8 +166,8 @@ def parse_standard_lang(data_file: Path, lang_id: str):
     # Alphabet
     alpha_match = re.search(r"const alphabet:\s*AlphabetItem\[\]\s*=\s*\[([\s\S]*?)\];", content)
     if alpha_match:
-        letters = [normalize_text(m) for m in re.findall(r"letter:\s*['\"]([^'\"]+)['\"]", alpha_match.group(1))]
-        words = [normalize_text(m) for m in re.findall(r"word:\s*['\"]([^'\"]+)['\"]", alpha_match.group(1))]
+        letters = extract_ts_strings("letter", alpha_match.group(1))
+        words = extract_ts_strings("word", alpha_match.group(1))
         for l in letters:
             categories["alphabet"].append({"text": l, "spoken": l, "filename": f"{l.lower()}.mp3"})
         for w in words:
@@ -135,26 +176,37 @@ def parse_standard_lang(data_file: Path, lang_id: str):
     # Phrases
     p_match = re.search(r"const basicPhrases:\s*PhraseItem\[\]\s*=\s*\[([\s\S]*?)\];", content)
     if p_match:
-        for p in re.findall(r"phrase:\s*['\"]([^'\"]+)['\"]", p_match.group(1)):
-            categories["phrases"].append({"text": p, "spoken": p, "filename": get_audio_filename(p)})
+        for p in extract_ts_strings("phrase", p_match.group(1)):
+            spoken = p.split('/')[0].strip()
+            categories["phrases"].append({"text": p, "spoken": spoken, "filename": get_audio_filename(p)})
 
     # Numbers
     num_match = re.search(r"const numbers:\s*PhraseItem\[\]\s*=\s*\[([\s\S]*?)\];", content)
     if num_match:
-        for n in re.findall(r"phrase:\s*['\"]([^'\"]+)['\"]", num_match.group(1)):
-            categories["numbers"].append({"text": n, "spoken": n, "filename": get_audio_filename(n)})
+        for n in extract_ts_strings("phrase", num_match.group(1)):
+            spoken = n.split('/')[0].strip()
+            categories["numbers"].append({"text": n, "spoken": spoken, "filename": get_audio_filename(n)})
 
     # Words
     w_match = re.search(r"const commonWords:\s*PhraseItem\[\]\s*=\s*\[([\s\S]*?)\];", content)
     if w_match:
-        for w in re.findall(r"phrase:\s*['\"]([^'\"]+)['\"]", w_match.group(1)):
-            categories["words"].append({"text": w, "spoken": w, "filename": get_audio_filename(w)})
+        for w in extract_ts_strings("phrase", w_match.group(1)):
+            spoken = w.split('/')[0].strip()
+            categories["words"].append({"text": w, "spoken": spoken, "filename": get_audio_filename(w)})
 
     # Time
     t_match = re.search(r"const time:\s*PhraseItem\[\]\s*=\s*\[([\s\S]*?)\];", content)
     if t_match:
-        for t in re.findall(r"phrase:\s*['\"]([^'\"]+)['\"]", t_match.group(1)):
-            categories["time"].append({"text": t, "spoken": t, "filename": get_audio_filename(t)})
+        for t in extract_ts_strings("phrase", t_match.group(1)):
+            spoken = t.split('/')[0].strip()
+            categories["time"].append({"text": t, "spoken": spoken, "filename": get_audio_filename(t)})
+
+    # Also include EXTENDED_DICTIONARY words/phrases so translated card meanings have native neural audio
+    existing_word_files = {item["filename"] for item in categories["words"]}
+    for dict_item in parse_extended_dictionary(lang_id):
+        if dict_item["filename"] not in existing_word_files:
+            existing_word_files.add(dict_item["filename"])
+            categories["words"].append(dict_item)
 
     return categories
 
@@ -195,7 +247,7 @@ async def process_language(lang_id: str, force: bool = False):
     print("=" * 60)
 
     categories = parse_russian(data_file) if lang_id == "ru" else parse_standard_lang(data_file, lang_id)
-    sem = asyncio.Semaphore(5)
+    sem = asyncio.Semaphore(12)
 
     success = 0
     skipped = 0

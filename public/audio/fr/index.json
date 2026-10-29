@@ -1,7 +1,7 @@
 {
   "language": "fr",
   "voice": "fr-FR-HenriNeural",
-  "generated": "2026-10-28T20:09:49.363762Z",
+  "generated": "2026-10-28T23:54:44.367983Z",
   "files": {
     "alphabet": [
       {
@@ -304,9 +304,9 @@
         "text": "Et vous ?"
       },
       {
-        "filename": "s\\.mp3",
-        "path": "/audio/fr/phrases/s\\.mp3",
-        "text": "S\\"
+        "filename": "sil_vous_plaît.mp3",
+        "path": "/audio/fr/phrases/sil_vous_plaît.mp3",
+        "text": "S'il vous plaît"
       },
       {
         "filename": "merci_beaucoup.mp3",
@@ -329,9 +329,9 @@
         "text": "Comment vous appelez-vous ?"
       },
       {
-        "filename": "je_m\\.mp3",
-        "path": "/audio/fr/phrases/je_m\\.mp3",
-        "text": "Je m\\"
+        "filename": "je_mappelle.mp3",
+        "path": "/audio/fr/phrases/je_mappelle.mp3",
+        "text": "Je m'appelle..."
       },
       {
         "filename": "enchanté.mp3",
@@ -349,9 +349,9 @@
         "text": "Combien ça coûte ?"
       },
       {
-        "filename": "l\\.mp3",
-        "path": "/audio/fr/phrases/l\\.mp3",
-        "text": "L\\"
+        "filename": "laddition_sil_vous_plaît.mp3",
+        "path": "/audio/fr/phrases/laddition_sil_vous_plaît.mp3",
+        "text": "L'addition, s'il vous plaît"
       },
       {
         "filename": "parlez-vous_anglais.mp3",
@@ -548,9 +548,9 @@
         "text": "Temps"
       },
       {
-        "filename": "aujourd\\.mp3",
-        "path": "/audio/fr/words/aujourd\\.mp3",
-        "text": "Aujourd\\"
+        "filename": "aujourdhui.mp3",
+        "path": "/audio/fr/words/aujourdhui.mp3",
+        "text": "Aujourd'hui"
       },
       {
         "filename": "demain.mp3",
@@ -616,6 +616,1446 @@
         "filename": "train.mp3",
         "path": "/audio/fr/words/train.mp3",
         "text": "Train"
+      },
+      {
+        "filename": "homme.mp3",
+        "path": "/audio/fr/words/homme.mp3",
+        "text": "Homme"
+      },
+      {
+        "filename": "femme.mp3",
+        "path": "/audio/fr/words/femme.mp3",
+        "text": "Femme"
+      },
+      {
+        "filename": "enfant.mp3",
+        "path": "/audio/fr/words/enfant.mp3",
+        "text": "Enfant"
+      },
+      {
+        "filename": "garçon.mp3",
+        "path": "/audio/fr/words/garçon.mp3",
+        "text": "Garçon"
+      },
+      {
+        "filename": "fille.mp3",
+        "path": "/audio/fr/words/fille.mp3",
+        "text": "Fille"
+      },
+      {
+        "filename": "père.mp3",
+        "path": "/audio/fr/words/père.mp3",
+        "text": "Père"
+      },
+      {
+        "filename": "mère.mp3",
+        "path": "/audio/fr/words/mère.mp3",
+        "text": "Mère"
+      },
+      {
+        "filename": "maman.mp3",
+        "path": "/audio/fr/words/maman.mp3",
+        "text": "Maman"
+      },
+      {
+        "filename": "mari.mp3",
+        "path": "/audio/fr/words/mari.mp3",
+        "text": "Mari"
+      },
+      {
+        "filename": "enseignant.mp3",
+        "path": "/audio/fr/words/enseignant.mp3",
+        "text": "Enseignant"
+      },
+      {
+        "filename": "étudiant.mp3",
+        "path": "/audio/fr/words/étudiant.mp3",
+        "text": "Étudiant"
+      },
+      {
+        "filename": "médecin.mp3",
+        "path": "/audio/fr/words/médecin.mp3",
+        "text": "Médecin / Docteur"
+      },
+      {
+        "filename": "nous.mp3",
+        "path": "/audio/fr/words/nous.mp3",
+        "text": "Nous"
+      },
+      {
+        "filename": "pain.mp3",
+        "path": "/audio/fr/words/pain.mp3",
+        "text": "Pain"
+      },
+      {
+        "filename": "lait.mp3",
+        "path": "/audio/fr/words/lait.mp3",
+        "text": "Lait"
+      },
+      {
+        "filename": "viande.mp3",
+        "path": "/audio/fr/words/viande.mp3",
+        "text": "Viande"
+      },
+      {
+        "filename": "poisson.mp3",
+        "path": "/audio/fr/words/poisson.mp3",
+        "text": "Poisson"
+      },
+      {
+        "filename": "légumes.mp3",
+        "path": "/audio/fr/words/légumes.mp3",
+        "text": "Légumes"
+      },
+      {
+        "filename": "fruits.mp3",
+        "path": "/audio/fr/words/fruits.mp3",
+        "text": "Fruits"
+      },
+      {
+        "filename": "fruit.mp3",
+        "path": "/audio/fr/words/fruit.mp3",
+        "text": "Fruit"
+      },
+      {
+        "filename": "riz.mp3",
+        "path": "/audio/fr/words/riz.mp3",
+        "text": "Riz"
+      },
+      {
+        "filename": "thé.mp3",
+        "path": "/audio/fr/words/thé.mp3",
+        "text": "Thé"
+      },
+      {
+        "filename": "bière.mp3",
+        "path": "/audio/fr/words/bière.mp3",
+        "text": "Bière"
+      },
+      {
+        "filename": "vin.mp3",
+        "path": "/audio/fr/words/vin.mp3",
+        "text": "Vin"
+      },
+      {
+        "filename": "petit-déjeuner.mp3",
+        "path": "/audio/fr/words/petit-déjeuner.mp3",
+        "text": "Petit-déjeuner"
+      },
+      {
+        "filename": "déjeuner.mp3",
+        "path": "/audio/fr/words/déjeuner.mp3",
+        "text": "Déjeuner"
+      },
+      {
+        "filename": "dîner.mp3",
+        "path": "/audio/fr/words/dîner.mp3",
+        "text": "Dîner"
+      },
+      {
+        "filename": "magasin.mp3",
+        "path": "/audio/fr/words/magasin.mp3",
+        "text": "Magasin"
+      },
+      {
+        "filename": "restaurant.mp3",
+        "path": "/audio/fr/words/restaurant.mp3",
+        "text": "Restaurant"
+      },
+      {
+        "filename": "hôtel.mp3",
+        "path": "/audio/fr/words/hôtel.mp3",
+        "text": "Hôtel"
+      },
+      {
+        "filename": "gare.mp3",
+        "path": "/audio/fr/words/gare.mp3",
+        "text": "Gare / Station"
+      },
+      {
+        "filename": "aéroport.mp3",
+        "path": "/audio/fr/words/aéroport.mp3",
+        "text": "Aéroport"
+      },
+      {
+        "filename": "rue.mp3",
+        "path": "/audio/fr/words/rue.mp3",
+        "text": "Rue"
+      },
+      {
+        "filename": "place.mp3",
+        "path": "/audio/fr/words/place.mp3",
+        "text": "Place"
+      },
+      {
+        "filename": "parc.mp3",
+        "path": "/audio/fr/words/parc.mp3",
+        "text": "Parc"
+      },
+      {
+        "filename": "hôpital.mp3",
+        "path": "/audio/fr/words/hôpital.mp3",
+        "text": "Hôpital"
+      },
+      {
+        "filename": "pharmacie.mp3",
+        "path": "/audio/fr/words/pharmacie.mp3",
+        "text": "Pharmacie"
+      },
+      {
+        "filename": "banque.mp3",
+        "path": "/audio/fr/words/banque.mp3",
+        "text": "Banque"
+      },
+      {
+        "filename": "bureau_de_poste.mp3",
+        "path": "/audio/fr/words/bureau_de_poste.mp3",
+        "text": "Bureau de poste"
+      },
+      {
+        "filename": "supermarché.mp3",
+        "path": "/audio/fr/words/supermarché.mp3",
+        "text": "Supermarché"
+      },
+      {
+        "filename": "police.mp3",
+        "path": "/audio/fr/words/police.mp3",
+        "text": "Police"
+      },
+      {
+        "filename": "musée.mp3",
+        "path": "/audio/fr/words/musée.mp3",
+        "text": "Musée"
+      },
+      {
+        "filename": "théâtre.mp3",
+        "path": "/audio/fr/words/théâtre.mp3",
+        "text": "Théâtre"
+      },
+      {
+        "filename": "cinéma.mp3",
+        "path": "/audio/fr/words/cinéma.mp3",
+        "text": "Cinéma"
+      },
+      {
+        "filename": "bus.mp3",
+        "path": "/audio/fr/words/bus.mp3",
+        "text": "Bus"
+      },
+      {
+        "filename": "avion.mp3",
+        "path": "/audio/fr/words/avion.mp3",
+        "text": "Avion"
+      },
+      {
+        "filename": "taxi.mp3",
+        "path": "/audio/fr/words/taxi.mp3",
+        "text": "Taxi"
+      },
+      {
+        "filename": "métro.mp3",
+        "path": "/audio/fr/words/métro.mp3",
+        "text": "Métro"
+      },
+      {
+        "filename": "carte.mp3",
+        "path": "/audio/fr/words/carte.mp3",
+        "text": "Carte / Plan"
+      },
+      {
+        "filename": "visa.mp3",
+        "path": "/audio/fr/words/visa.mp3",
+        "text": "Visa"
+      },
+      {
+        "filename": "centre.mp3",
+        "path": "/audio/fr/words/centre.mp3",
+        "text": "Centre"
+      },
+      {
+        "filename": "usine.mp3",
+        "path": "/audio/fr/words/usine.mp3",
+        "text": "Usine"
+      },
+      {
+        "filename": "billet.mp3",
+        "path": "/audio/fr/words/billet.mp3",
+        "text": "Billet"
+      },
+      {
+        "filename": "passeport.mp3",
+        "path": "/audio/fr/words/passeport.mp3",
+        "text": "Passeport"
+      },
+      {
+        "filename": "téléphone.mp3",
+        "path": "/audio/fr/words/téléphone.mp3",
+        "text": "Téléphone"
+      },
+      {
+        "filename": "ordinateur.mp3",
+        "path": "/audio/fr/words/ordinateur.mp3",
+        "text": "Ordinateur"
+      },
+      {
+        "filename": "livre.mp3",
+        "path": "/audio/fr/words/livre.mp3",
+        "text": "Livre"
+      },
+      {
+        "filename": "magazine.mp3",
+        "path": "/audio/fr/words/magazine.mp3",
+        "text": "Magazine"
+      },
+      {
+        "filename": "table.mp3",
+        "path": "/audio/fr/words/table.mp3",
+        "text": "Table"
+      },
+      {
+        "filename": "chaise.mp3",
+        "path": "/audio/fr/words/chaise.mp3",
+        "text": "Chaise"
+      },
+      {
+        "filename": "porte.mp3",
+        "path": "/audio/fr/words/porte.mp3",
+        "text": "Porte"
+      },
+      {
+        "filename": "sac.mp3",
+        "path": "/audio/fr/words/sac.mp3",
+        "text": "Sac"
+      },
+      {
+        "filename": "vêtements.mp3",
+        "path": "/audio/fr/words/vêtements.mp3",
+        "text": "Vêtements"
+      },
+      {
+        "filename": "chaussures.mp3",
+        "path": "/audio/fr/words/chaussures.mp3",
+        "text": "Chaussures"
+      },
+      {
+        "filename": "objet.mp3",
+        "path": "/audio/fr/words/objet.mp3",
+        "text": "Objet"
+      },
+      {
+        "filename": "qui.mp3",
+        "path": "/audio/fr/words/qui.mp3",
+        "text": "Qui"
+      },
+      {
+        "filename": "quoi.mp3",
+        "path": "/audio/fr/words/quoi.mp3",
+        "text": "Quoi / Que"
+      },
+      {
+        "filename": "où.mp3",
+        "path": "/audio/fr/words/où.mp3",
+        "text": "Où"
+      },
+      {
+        "filename": "quand.mp3",
+        "path": "/audio/fr/words/quand.mp3",
+        "text": "Quand"
+      },
+      {
+        "filename": "pourquoi.mp3",
+        "path": "/audio/fr/words/pourquoi.mp3",
+        "text": "Pourquoi"
+      },
+      {
+        "filename": "comment.mp3",
+        "path": "/audio/fr/words/comment.mp3",
+        "text": "Comment"
+      },
+      {
+        "filename": "combien.mp3",
+        "path": "/audio/fr/words/combien.mp3",
+        "text": "Combien"
+      },
+      {
+        "filename": "lundi.mp3",
+        "path": "/audio/fr/words/lundi.mp3",
+        "text": "Lundi"
+      },
+      {
+        "filename": "mardi.mp3",
+        "path": "/audio/fr/words/mardi.mp3",
+        "text": "Mardi"
+      },
+      {
+        "filename": "mercredi.mp3",
+        "path": "/audio/fr/words/mercredi.mp3",
+        "text": "Mercredi"
+      },
+      {
+        "filename": "jeudi.mp3",
+        "path": "/audio/fr/words/jeudi.mp3",
+        "text": "Jeudi"
+      },
+      {
+        "filename": "vendredi.mp3",
+        "path": "/audio/fr/words/vendredi.mp3",
+        "text": "Vendredi"
+      },
+      {
+        "filename": "samedi.mp3",
+        "path": "/audio/fr/words/samedi.mp3",
+        "text": "Samedi"
+      },
+      {
+        "filename": "dimanche.mp3",
+        "path": "/audio/fr/words/dimanche.mp3",
+        "text": "Dimanche"
+      },
+      {
+        "filename": "semaine.mp3",
+        "path": "/audio/fr/words/semaine.mp3",
+        "text": "Semaine"
+      },
+      {
+        "filename": "mois.mp3",
+        "path": "/audio/fr/words/mois.mp3",
+        "text": "Mois"
+      },
+      {
+        "filename": "an.mp3",
+        "path": "/audio/fr/words/an.mp3",
+        "text": "An / Année"
+      },
+      {
+        "filename": "chien.mp3",
+        "path": "/audio/fr/words/chien.mp3",
+        "text": "Chien"
+      },
+      {
+        "filename": "chat.mp3",
+        "path": "/audio/fr/words/chat.mp3",
+        "text": "Chat"
+      },
+      {
+        "filename": "oiseau.mp3",
+        "path": "/audio/fr/words/oiseau.mp3",
+        "text": "Oiseau"
+      },
+      {
+        "filename": "soleil.mp3",
+        "path": "/audio/fr/words/soleil.mp3",
+        "text": "Soleil"
+      },
+      {
+        "filename": "lune.mp3",
+        "path": "/audio/fr/words/lune.mp3",
+        "text": "Lune"
+      },
+      {
+        "filename": "étoile.mp3",
+        "path": "/audio/fr/words/étoile.mp3",
+        "text": "Étoile"
+      },
+      {
+        "filename": "pluie.mp3",
+        "path": "/audio/fr/words/pluie.mp3",
+        "text": "Pluie"
+      },
+      {
+        "filename": "neige.mp3",
+        "path": "/audio/fr/words/neige.mp3",
+        "text": "Neige"
+      },
+      {
+        "filename": "froid.mp3",
+        "path": "/audio/fr/words/froid.mp3",
+        "text": "Froid"
+      },
+      {
+        "filename": "chaud.mp3",
+        "path": "/audio/fr/words/chaud.mp3",
+        "text": "Chaud"
+      },
+      {
+        "filename": "hérisson.mp3",
+        "path": "/audio/fr/words/hérisson.mp3",
+        "text": "Hérisson"
+      },
+      {
+        "filename": "scarabée.mp3",
+        "path": "/audio/fr/words/scarabée.mp3",
+        "text": "Scarabée"
+      },
+      {
+        "filename": "fleur.mp3",
+        "path": "/audio/fr/words/fleur.mp3",
+        "text": "Fleur"
+      },
+      {
+        "filename": "arbre.mp3",
+        "path": "/audio/fr/words/arbre.mp3",
+        "text": "Arbre"
+      },
+      {
+        "filename": "sapin_de_noël.mp3",
+        "path": "/audio/fr/words/sapin_de_noël.mp3",
+        "text": "Sapin de Noël"
+      },
+      {
+        "filename": "bon.mp3",
+        "path": "/audio/fr/words/bon.mp3",
+        "text": "Bon"
+      },
+      {
+        "filename": "mauvais.mp3",
+        "path": "/audio/fr/words/mauvais.mp3",
+        "text": "Mauvais"
+      },
+      {
+        "filename": "grand.mp3",
+        "path": "/audio/fr/words/grand.mp3",
+        "text": "Grand"
+      },
+      {
+        "filename": "petit.mp3",
+        "path": "/audio/fr/words/petit.mp3",
+        "text": "Petit"
+      },
+      {
+        "filename": "nouveau.mp3",
+        "path": "/audio/fr/words/nouveau.mp3",
+        "text": "Nouveau"
+      },
+      {
+        "filename": "vieux.mp3",
+        "path": "/audio/fr/words/vieux.mp3",
+        "text": "Vieux / Ancien"
+      },
+      {
+        "filename": "ouvert.mp3",
+        "path": "/audio/fr/words/ouvert.mp3",
+        "text": "Ouvert"
+      },
+      {
+        "filename": "fermé.mp3",
+        "path": "/audio/fr/words/fermé.mp3",
+        "text": "Fermé"
+      },
+      {
+        "filename": "rapide.mp3",
+        "path": "/audio/fr/words/rapide.mp3",
+        "text": "Rapide"
+      },
+      {
+        "filename": "lent.mp3",
+        "path": "/audio/fr/words/lent.mp3",
+        "text": "Lent"
+      },
+      {
+        "filename": "heureux.mp3",
+        "path": "/audio/fr/words/heureux.mp3",
+        "text": "Heureux"
+      },
+      {
+        "filename": "prêt.mp3",
+        "path": "/audio/fr/words/prêt.mp3",
+        "text": "Prêt"
+      },
+      {
+        "filename": "pomme.mp3",
+        "path": "/audio/fr/words/pomme.mp3",
+        "text": "Pomme"
+      },
+      {
+        "filename": "œuf.mp3",
+        "path": "/audio/fr/words/œuf.mp3",
+        "text": "Œuf"
+      },
+      {
+        "filename": "glace.mp3",
+        "path": "/audio/fr/words/glace.mp3",
+        "text": "Glace"
+      },
+      {
+        "filename": "jus.mp3",
+        "path": "/audio/fr/words/jus.mp3",
+        "text": "Jus"
+      },
+      {
+        "filename": "clé.mp3",
+        "path": "/audio/fr/words/clé.mp3",
+        "text": "Clé"
+      },
+      {
+        "filename": "lumière.mp3",
+        "path": "/audio/fr/words/lumière.mp3",
+        "text": "Lumière"
+      },
+      {
+        "filename": "nom.mp3",
+        "path": "/audio/fr/words/nom.mp3",
+        "text": "Nom"
+      },
+      {
+        "filename": "orange.mp3",
+        "path": "/audio/fr/words/orange.mp3",
+        "text": "Orange"
+      },
+      {
+        "filename": "silencieux.mp3",
+        "path": "/audio/fr/words/silencieux.mp3",
+        "text": "Silencieux / Calme"
+      },
+      {
+        "filename": "route.mp3",
+        "path": "/audio/fr/words/route.mp3",
+        "text": "Route"
+      },
+      {
+        "filename": "école.mp3",
+        "path": "/audio/fr/words/école.mp3",
+        "text": "École"
+      },
+      {
+        "filename": "parapluie.mp3",
+        "path": "/audio/fr/words/parapluie.mp3",
+        "text": "Parapluie"
+      },
+      {
+        "filename": "voix.mp3",
+        "path": "/audio/fr/words/voix.mp3",
+        "text": "Voix"
+      },
+      {
+        "filename": "rayons_x.mp3",
+        "path": "/audio/fr/words/rayons_x.mp3",
+        "text": "Rayons X"
+      },
+      {
+        "filename": "xylophone.mp3",
+        "path": "/audio/fr/words/xylophone.mp3",
+        "text": "Xylophone"
+      },
+      {
+        "filename": "jaune.mp3",
+        "path": "/audio/fr/words/jaune.mp3",
+        "text": "Jaune"
+      },
+      {
+        "filename": "zéro.mp3",
+        "path": "/audio/fr/words/zéro.mp3",
+        "text": "Zéro"
+      },
+      {
+        "filename": "amour.mp3",
+        "path": "/audio/fr/words/amour.mp3",
+        "text": "Amour"
+      },
+      {
+        "filename": "bateau.mp3",
+        "path": "/audio/fr/words/bateau.mp3",
+        "text": "Bateau"
+      },
+      {
+        "filename": "jour.mp3",
+        "path": "/audio/fr/words/jour.mp3",
+        "text": "Jour"
+      },
+      {
+        "filename": "île.mp3",
+        "path": "/audio/fr/words/île.mp3",
+        "text": "Île"
+      },
+      {
+        "filename": "kilo.mp3",
+        "path": "/audio/fr/words/kilo.mp3",
+        "text": "Kilo"
+      },
+      {
+        "filename": "nuit.mp3",
+        "path": "/audio/fr/words/nuit.mp3",
+        "text": "Nuit"
+      },
+      {
+        "filename": "œil.mp3",
+        "path": "/audio/fr/words/œil.mp3",
+        "text": "Œil"
+      },
+      {
+        "filename": "yeux.mp3",
+        "path": "/audio/fr/words/yeux.mp3",
+        "text": "Yeux"
+      },
+      {
+        "filename": "joue.mp3",
+        "path": "/audio/fr/words/joue.mp3",
+        "text": "Joue"
+      },
+      {
+        "filename": "fromage.mp3",
+        "path": "/audio/fr/words/fromage.mp3",
+        "text": "Fromage"
+      },
+      {
+        "filename": "horloge.mp3",
+        "path": "/audio/fr/words/horloge.mp3",
+        "text": "Horloge / Montre"
+      },
+      {
+        "filename": "montre.mp3",
+        "path": "/audio/fr/words/montre.mp3",
+        "text": "Montre"
+      },
+      {
+        "filename": "raisin.mp3",
+        "path": "/audio/fr/words/raisin.mp3",
+        "text": "Raisin"
+      },
+      {
+        "filename": "verre.mp3",
+        "path": "/audio/fr/words/verre.mp3",
+        "text": "Verre"
+      },
+      {
+        "filename": "web.mp3",
+        "path": "/audio/fr/words/web.mp3",
+        "text": "Web"
+      },
+      {
+        "filename": "succès.mp3",
+        "path": "/audio/fr/words/succès.mp3",
+        "text": "Succès"
+      },
+      {
+        "filename": "jaune_dœuf.mp3",
+        "path": "/audio/fr/words/jaune_dœuf.mp3",
+        "text": "Jaune d'œuf"
+      },
+      {
+        "filename": "chaussure.mp3",
+        "path": "/audio/fr/words/chaussure.mp3",
+        "text": "Chaussure"
+      },
+      {
+        "filename": "idée.mp3",
+        "path": "/audio/fr/words/idée.mp3",
+        "text": "Idée"
+      },
+      {
+        "filename": "question.mp3",
+        "path": "/audio/fr/words/question.mp3",
+        "text": "Question"
+      },
+      {
+        "filename": "wagon.mp3",
+        "path": "/audio/fr/words/wagon.mp3",
+        "text": "Wagon"
+      },
+      {
+        "filename": "exemple.mp3",
+        "path": "/audio/fr/words/exemple.mp3",
+        "text": "Exemple"
+      },
+      {
+        "filename": "frère.mp3",
+        "path": "/audio/fr/words/frère.mp3",
+        "text": "Frère"
+      },
+      {
+        "filename": "sœur.mp3",
+        "path": "/audio/fr/words/sœur.mp3",
+        "text": "Sœur"
+      },
+      {
+        "filename": "citron.mp3",
+        "path": "/audio/fr/words/citron.mp3",
+        "text": "Citron"
+      },
+      {
+        "filename": "nez.mp3",
+        "path": "/audio/fr/words/nez.mp3",
+        "text": "Nez"
+      },
+      {
+        "filename": "fenêtre.mp3",
+        "path": "/audio/fr/words/fenêtre.mp3",
+        "text": "Fenêtre"
+      },
+      {
+        "filename": "papa.mp3",
+        "path": "/audio/fr/words/papa.mp3",
+        "text": "Papa"
+      },
+      {
+        "filename": "bouilloire.mp3",
+        "path": "/audio/fr/words/bouilloire.mp3",
+        "text": "Bouilloire"
+      },
+      {
+        "filename": "matin.mp3",
+        "path": "/audio/fr/words/matin.mp3",
+        "text": "Matin"
+      },
+      {
+        "filename": "après-midi.mp3",
+        "path": "/audio/fr/words/après-midi.mp3",
+        "text": "Après-midi"
+      },
+      {
+        "filename": "soir.mp3",
+        "path": "/audio/fr/words/soir.mp3",
+        "text": "Soir"
+      },
+      {
+        "filename": "photo.mp3",
+        "path": "/audio/fr/words/photo.mp3",
+        "text": "Photo"
+      },
+      {
+        "filename": "tsar.mp3",
+        "path": "/audio/fr/words/tsar.mp3",
+        "text": "Tsar"
+      },
+      {
+        "filename": "bortsch.mp3",
+        "path": "/audio/fr/words/bortsch.mp3",
+        "text": "Bortsch"
+      },
+      {
+        "filename": "entrée.mp3",
+        "path": "/audio/fr/words/entrée.mp3",
+        "text": "Entrée"
+      },
+      {
+        "filename": "sud.mp3",
+        "path": "/audio/fr/words/sud.mp3",
+        "text": "Sud"
+      },
+      {
+        "filename": "yaourt.mp3",
+        "path": "/audio/fr/words/yaourt.mp3",
+        "text": "Yaourt"
+      },
+      {
+        "filename": "ou.mp3",
+        "path": "/audio/fr/words/ou.mp3",
+        "text": "Ou"
+      },
+      {
+        "filename": "ceci.mp3",
+        "path": "/audio/fr/words/ceci.mp3",
+        "text": "Ceci"
+      },
+      {
+        "filename": "je_mange.mp3",
+        "path": "/audio/fr/words/je_mange.mp3",
+        "text": "Je mange"
+      },
+      {
+        "filename": "peut-être.mp3",
+        "path": "/audio/fr/words/peut-être.mp3",
+        "text": "Peut-être"
+      },
+      {
+        "filename": "apprendre.mp3",
+        "path": "/audio/fr/words/apprendre.mp3",
+        "text": "Apprendre"
+      },
+      {
+        "filename": "parler.mp3",
+        "path": "/audio/fr/words/parler.mp3",
+        "text": "Parler"
+      },
+      {
+        "filename": "manger.mp3",
+        "path": "/audio/fr/words/manger.mp3",
+        "text": "Manger"
+      },
+      {
+        "filename": "boire.mp3",
+        "path": "/audio/fr/words/boire.mp3",
+        "text": "Boire"
+      },
+      {
+        "filename": "aller.mp3",
+        "path": "/audio/fr/words/aller.mp3",
+        "text": "Aller"
+      },
+      {
+        "filename": "venir.mp3",
+        "path": "/audio/fr/words/venir.mp3",
+        "text": "Venir"
+      },
+      {
+        "filename": "comprendre.mp3",
+        "path": "/audio/fr/words/comprendre.mp3",
+        "text": "Comprendre"
+      },
+      {
+        "filename": "savoir.mp3",
+        "path": "/audio/fr/words/savoir.mp3",
+        "text": "Savoir / Connaître"
+      },
+      {
+        "filename": "vouloir.mp3",
+        "path": "/audio/fr/words/vouloir.mp3",
+        "text": "Vouloir"
+      },
+      {
+        "filename": "avoir_besoin_de.mp3",
+        "path": "/audio/fr/words/avoir_besoin_de.mp3",
+        "text": "Avoir besoin de"
+      },
+      {
+        "filename": "acheter.mp3",
+        "path": "/audio/fr/words/acheter.mp3",
+        "text": "Acheter"
+      },
+      {
+        "filename": "aider.mp3",
+        "path": "/audio/fr/words/aider.mp3",
+        "text": "Aider"
+      },
+      {
+        "filename": "travailler.mp3",
+        "path": "/audio/fr/words/travailler.mp3",
+        "text": "Travailler"
+      },
+      {
+        "filename": "bonjour.mp3",
+        "path": "/audio/fr/words/bonjour.mp3",
+        "text": "Bonjour"
+      },
+      {
+        "filename": "salut.mp3",
+        "path": "/audio/fr/words/salut.mp3",
+        "text": "Salut (informel)"
+      },
+      {
+        "filename": "bon_après-midi.mp3",
+        "path": "/audio/fr/words/bon_après-midi.mp3",
+        "text": "Bon après-midi"
+      },
+      {
+        "filename": "bonsoir.mp3",
+        "path": "/audio/fr/words/bonsoir.mp3",
+        "text": "Bonsoir"
+      },
+      {
+        "filename": "bonne_nuit.mp3",
+        "path": "/audio/fr/words/bonne_nuit.mp3",
+        "text": "Bonne nuit"
+      },
+      {
+        "filename": "comment_allez-vous.mp3",
+        "path": "/audio/fr/words/comment_allez-vous.mp3",
+        "text": "Comment allez-vous ?"
+      },
+      {
+        "filename": "je_vais_bien_merci.mp3",
+        "path": "/audio/fr/words/je_vais_bien_merci.mp3",
+        "text": "Je vais bien, merci"
+      },
+      {
+        "filename": "très_bien_merci.mp3",
+        "path": "/audio/fr/words/très_bien_merci.mp3",
+        "text": "Très bien, merci"
+      },
+      {
+        "filename": "bien.mp3",
+        "path": "/audio/fr/words/bien.mp3",
+        "text": "Bien"
+      },
+      {
+        "filename": "mal.mp3",
+        "path": "/audio/fr/words/mal.mp3",
+        "text": "Mal"
+      },
+      {
+        "filename": "et_vous.mp3",
+        "path": "/audio/fr/words/et_vous.mp3",
+        "text": "Et vous ?"
+      },
+      {
+        "filename": "sil_vous_plaît.mp3",
+        "path": "/audio/fr/words/sil_vous_plaît.mp3",
+        "text": "S'il vous plaît"
+      },
+      {
+        "filename": "merci.mp3",
+        "path": "/audio/fr/words/merci.mp3",
+        "text": "Merci"
+      },
+      {
+        "filename": "merci_beaucoup.mp3",
+        "path": "/audio/fr/words/merci_beaucoup.mp3",
+        "text": "Merci beaucoup"
+      },
+      {
+        "filename": "de_rien.mp3",
+        "path": "/audio/fr/words/de_rien.mp3",
+        "text": "De rien"
+      },
+      {
+        "filename": "pas_de_problème.mp3",
+        "path": "/audio/fr/words/pas_de_problème.mp3",
+        "text": "Pas de problème"
+      },
+      {
+        "filename": "excusez-moi.mp3",
+        "path": "/audio/fr/words/excusez-moi.mp3",
+        "text": "Excusez-moi"
+      },
+      {
+        "filename": "pardon.mp3",
+        "path": "/audio/fr/words/pardon.mp3",
+        "text": "Pardon / Désolé"
+      },
+      {
+        "filename": "comment_vous_appelez-vous.mp3",
+        "path": "/audio/fr/words/comment_vous_appelez-vous.mp3",
+        "text": "Comment vous appelez-vous ?"
+      },
+      {
+        "filename": "je_mappelle.mp3",
+        "path": "/audio/fr/words/je_mappelle.mp3",
+        "text": "Je m'appelle..."
+      },
+      {
+        "filename": "enchanté.mp3",
+        "path": "/audio/fr/words/enchanté.mp3",
+        "text": "Enchanté(e)"
+      },
+      {
+        "filename": "doù_venez-vous.mp3",
+        "path": "/audio/fr/words/doù_venez-vous.mp3",
+        "text": "D'où venez-vous ?"
+      },
+      {
+        "filename": "je_viens_de.mp3",
+        "path": "/audio/fr/words/je_viens_de.mp3",
+        "text": "Je viens de..."
+      },
+      {
+        "filename": "au_revoir.mp3",
+        "path": "/audio/fr/words/au_revoir.mp3",
+        "text": "Au revoir"
+      },
+      {
+        "filename": "à_bientôt.mp3",
+        "path": "/audio/fr/words/à_bientôt.mp3",
+        "text": "À bientôt"
+      },
+      {
+        "filename": "bonne_journée.mp3",
+        "path": "/audio/fr/words/bonne_journée.mp3",
+        "text": "Bonne journée"
+      },
+      {
+        "filename": "je_comprends.mp3",
+        "path": "/audio/fr/words/je_comprends.mp3",
+        "text": "Je comprends"
+      },
+      {
+        "filename": "je_ne_comprends_pas.mp3",
+        "path": "/audio/fr/words/je_ne_comprends_pas.mp3",
+        "text": "Je ne comprends pas"
+      },
+      {
+        "filename": "pouvez-vous_répéter.mp3",
+        "path": "/audio/fr/words/pouvez-vous_répéter.mp3",
+        "text": "Pouvez-vous répéter ?"
+      },
+      {
+        "filename": "répétez_sil_vous_plaît.mp3",
+        "path": "/audio/fr/words/répétez_sil_vous_plaît.mp3",
+        "text": "Répétez, s'il vous plaît"
+      },
+      {
+        "filename": "parlez_plus_lentement_sil_vous_plaît.mp3",
+        "path": "/audio/fr/words/parlez_plus_lentement_sil_vous_plaît.mp3",
+        "text": "Parlez plus lentement, s'il vous plaît"
+      },
+      {
+        "filename": "parlez_plus_lentement.mp3",
+        "path": "/audio/fr/words/parlez_plus_lentement.mp3",
+        "text": "Parlez plus lentement"
+      },
+      {
+        "filename": "parlez-vous_anglais.mp3",
+        "path": "/audio/fr/words/parlez-vous_anglais.mp3",
+        "text": "Parlez-vous anglais ?"
+      },
+      {
+        "filename": "je_parle_un_peu_russe.mp3",
+        "path": "/audio/fr/words/je_parle_un_peu_russe.mp3",
+        "text": "Je parle un peu russe"
+      },
+      {
+        "filename": "quest-ce_que_cela_signifie.mp3",
+        "path": "/audio/fr/words/quest-ce_que_cela_signifie.mp3",
+        "text": "Qu'est-ce que cela signifie ?"
+      },
+      {
+        "filename": "comment_dit-on.mp3",
+        "path": "/audio/fr/words/comment_dit-on.mp3",
+        "text": "Comment dit-on... ?"
+      },
+      {
+        "filename": "comment_dit-on_cela_en_russe.mp3",
+        "path": "/audio/fr/words/comment_dit-on_cela_en_russe.mp3",
+        "text": "Comment dit-on cela en russe ?"
+      },
+      {
+        "filename": "pouvez-vous_maider.mp3",
+        "path": "/audio/fr/words/pouvez-vous_maider.mp3",
+        "text": "Pouvez-vous m'aider ?"
+      },
+      {
+        "filename": "aidez-moi.mp3",
+        "path": "/audio/fr/words/aidez-moi.mp3",
+        "text": "Aidez-moi"
+      },
+      {
+        "filename": "à_laide.mp3",
+        "path": "/audio/fr/words/à_laide.mp3",
+        "text": "À l'aide ! / Au secours !"
+      },
+      {
+        "filename": "où_sont_les_toilettes.mp3",
+        "path": "/audio/fr/words/où_sont_les_toilettes.mp3",
+        "text": "Où sont les toilettes ?"
+      },
+      {
+        "filename": "où_est_la_gare.mp3",
+        "path": "/audio/fr/words/où_est_la_gare.mp3",
+        "text": "Où est la gare ?"
+      },
+      {
+        "filename": "où_est_laéroport.mp3",
+        "path": "/audio/fr/words/où_est_laéroport.mp3",
+        "text": "Où est l'aéroport ?"
+      },
+      {
+        "filename": "où_est_lhôtel.mp3",
+        "path": "/audio/fr/words/où_est_lhôtel.mp3",
+        "text": "Où est l'hôtel ?"
+      },
+      {
+        "filename": "combien_coûte_un_billet.mp3",
+        "path": "/audio/fr/words/combien_coûte_un_billet.mp3",
+        "text": "Combien coûte un billet ?"
+      },
+      {
+        "filename": "jai_besoin_dun_taxi.mp3",
+        "path": "/audio/fr/words/jai_besoin_dun_taxi.mp3",
+        "text": "J'ai besoin d'un taxi"
+      },
+      {
+        "filename": "tournez_à_gauche.mp3",
+        "path": "/audio/fr/words/tournez_à_gauche.mp3",
+        "text": "Tournez à gauche"
+      },
+      {
+        "filename": "tournez_à_droite.mp3",
+        "path": "/audio/fr/words/tournez_à_droite.mp3",
+        "text": "Tournez à droite"
+      },
+      {
+        "filename": "allez_tout_droit.mp3",
+        "path": "/audio/fr/words/allez_tout_droit.mp3",
+        "text": "Allez tout droit"
+      },
+      {
+        "filename": "une_table_pour_deux_sil_vous_plaît.mp3",
+        "path": "/audio/fr/words/une_table_pour_deux_sil_vous_plaît.mp3",
+        "text": "Une table pour deux, s'il vous plaît"
+      },
+      {
+        "filename": "la_carte_sil_vous_plaît.mp3",
+        "path": "/audio/fr/words/la_carte_sil_vous_plaît.mp3",
+        "text": "La carte, s'il vous plaît"
+      },
+      {
+        "filename": "je_voudrais_de_leau.mp3",
+        "path": "/audio/fr/words/je_voudrais_de_leau.mp3",
+        "text": "Je voudrais de l'eau"
+      },
+      {
+        "filename": "je_veux_manger.mp3",
+        "path": "/audio/fr/words/je_veux_manger.mp3",
+        "text": "Je veux manger"
+      },
+      {
+        "filename": "je_veux_boire.mp3",
+        "path": "/audio/fr/words/je_veux_boire.mp3",
+        "text": "Je veux boire"
+      },
+      {
+        "filename": "que_recommandez-vous.mp3",
+        "path": "/audio/fr/words/que_recommandez-vous.mp3",
+        "text": "Que recommandez-vous ?"
+      },
+      {
+        "filename": "cest_délicieux.mp3",
+        "path": "/audio/fr/words/cest_délicieux.mp3",
+        "text": "C'est délicieux !"
+      },
+      {
+        "filename": "laddition_sil_vous_plaît.mp3",
+        "path": "/audio/fr/words/laddition_sil_vous_plaît.mp3",
+        "text": "L'addition, s'il vous plaît"
+      },
+      {
+        "filename": "combien_ça_coûte.mp3",
+        "path": "/audio/fr/words/combien_ça_coûte.mp3",
+        "text": "Combien ça coûte ?"
+      },
+      {
+        "filename": "acceptez-vous_les_cartes_bancaires.mp3",
+        "path": "/audio/fr/words/acceptez-vous_les_cartes_bancaires.mp3",
+        "text": "Acceptez-vous les cartes bancaires ?"
+      },
+      {
+        "filename": "je_regarde_seulement.mp3",
+        "path": "/audio/fr/words/je_regarde_seulement.mp3",
+        "text": "Je regarde seulement"
+      },
+      {
+        "filename": "avez-vous_ceci_dans_une_autre_taille.mp3",
+        "path": "/audio/fr/words/avez-vous_ceci_dans_une_autre_taille.mp3",
+        "text": "Avez-vous ceci dans une autre taille ?"
+      },
+      {
+        "filename": "cest_trop_cher.mp3",
+        "path": "/audio/fr/words/cest_trop_cher.mp3",
+        "text": "C'est trop cher"
+      },
+      {
+        "filename": "jai_besoin_dun_médecin.mp3",
+        "path": "/audio/fr/words/jai_besoin_dun_médecin.mp3",
+        "text": "J'ai besoin d'un médecin"
+      },
+      {
+        "filename": "appelez_la_police.mp3",
+        "path": "/audio/fr/words/appelez_la_police.mp3",
+        "text": "Appelez la police"
+      },
+      {
+        "filename": "jai_perdu_mon_passeport.mp3",
+        "path": "/audio/fr/words/jai_perdu_mon_passeport.mp3",
+        "text": "J'ai perdu mon passeport"
+      },
+      {
+        "filename": "quelle_heure_est-il.mp3",
+        "path": "/audio/fr/words/quelle_heure_est-il.mp3",
+        "text": "Quelle heure est-il ?"
+      },
+      {
+        "filename": "quelle_heure_est-il_maintenant.mp3",
+        "path": "/audio/fr/words/quelle_heure_est-il_maintenant.mp3",
+        "text": "Quelle heure est-il maintenant ?"
+      },
+      {
+        "filename": "à_quelle_heure.mp3",
+        "path": "/audio/fr/words/à_quelle_heure.mp3",
+        "text": "À quelle heure ?"
+      },
+      {
+        "filename": "maintenant.mp3",
+        "path": "/audio/fr/words/maintenant.mp3",
+        "text": "Maintenant"
+      },
+      {
+        "filename": "heure.mp3",
+        "path": "/audio/fr/words/heure.mp3",
+        "text": "Heure"
+      },
+      {
+        "filename": "minute.mp3",
+        "path": "/audio/fr/words/minute.mp3",
+        "text": "Minute"
+      },
+      {
+        "filename": "seconde.mp3",
+        "path": "/audio/fr/words/seconde.mp3",
+        "text": "Seconde"
+      },
+      {
+        "filename": "il_est_une_heure.mp3",
+        "path": "/audio/fr/words/il_est_une_heure.mp3",
+        "text": "Il est une heure (1:00)"
+      },
+      {
+        "filename": "il_est_une_heure_pile.mp3",
+        "path": "/audio/fr/words/il_est_une_heure_pile.mp3",
+        "text": "Il est une heure pile"
+      },
+      {
+        "filename": "il_est_deux_heures.mp3",
+        "path": "/audio/fr/words/il_est_deux_heures.mp3",
+        "text": "Il est deux heures (2:00)"
+      },
+      {
+        "filename": "il_est_trois_heures.mp3",
+        "path": "/audio/fr/words/il_est_trois_heures.mp3",
+        "text": "Il est trois heures (3:00)"
+      },
+      {
+        "filename": "trois_heures_pile.mp3",
+        "path": "/audio/fr/words/trois_heures_pile.mp3",
+        "text": "Trois heures pile"
+      },
+      {
+        "filename": "il_est_quatre_heures.mp3",
+        "path": "/audio/fr/words/il_est_quatre_heures.mp3",
+        "text": "Il est quatre heures (4:00)"
+      },
+      {
+        "filename": "il_est_cinq_heures.mp3",
+        "path": "/audio/fr/words/il_est_cinq_heures.mp3",
+        "text": "Il est cinq heures (5:00)"
+      },
+      {
+        "filename": "il_est_six_heures.mp3",
+        "path": "/audio/fr/words/il_est_six_heures.mp3",
+        "text": "Il est six heures (6:00)"
+      },
+      {
+        "filename": "il_est_sept_heures.mp3",
+        "path": "/audio/fr/words/il_est_sept_heures.mp3",
+        "text": "Il est sept heures (7:00)"
+      },
+      {
+        "filename": "il_est_huit_heures.mp3",
+        "path": "/audio/fr/words/il_est_huit_heures.mp3",
+        "text": "Il est huit heures (8:00)"
+      },
+      {
+        "filename": "il_est_neuf_heures.mp3",
+        "path": "/audio/fr/words/il_est_neuf_heures.mp3",
+        "text": "Il est neuf heures (9:00)"
+      },
+      {
+        "filename": "il_est_dix_heures.mp3",
+        "path": "/audio/fr/words/il_est_dix_heures.mp3",
+        "text": "Il est dix heures (10:00)"
+      },
+      {
+        "filename": "il_est_onze_heures.mp3",
+        "path": "/audio/fr/words/il_est_onze_heures.mp3",
+        "text": "Il est onze heures (11:00)"
+      },
+      {
+        "filename": "il_est_douze_heures.mp3",
+        "path": "/audio/fr/words/il_est_douze_heures.mp3",
+        "text": "Il est douze heures (12:00)"
+      },
+      {
+        "filename": "deux_heures_et_demie.mp3",
+        "path": "/audio/fr/words/deux_heures_et_demie.mp3",
+        "text": "Deux heures et demie (2:30)"
+      },
+      {
+        "filename": "trois_heures_moins_le_quart.mp3",
+        "path": "/audio/fr/words/trois_heures_moins_le_quart.mp3",
+        "text": "Trois heures moins le quart (2:45)"
+      },
+      {
+        "filename": "il_est_trois_heures_et_demie.mp3",
+        "path": "/audio/fr/words/il_est_trois_heures_et_demie.mp3",
+        "text": "Il est trois heures et demie"
+      },
+      {
+        "filename": "il_est_quatre_heures_et_quart.mp3",
+        "path": "/audio/fr/words/il_est_quatre_heures_et_quart.mp3",
+        "text": "Il est quatre heures et quart"
+      },
+      {
+        "filename": "il_est_cinq_heures_moins_le_quart.mp3",
+        "path": "/audio/fr/words/il_est_cinq_heures_moins_le_quart.mp3",
+        "text": "Il est cinq heures moins le quart"
+      },
+      {
+        "filename": "midi_et_demi.mp3",
+        "path": "/audio/fr/words/midi_et_demi.mp3",
+        "text": "Midi et demi (12:30)"
+      },
+      {
+        "filename": "deux_heures_moins_dix.mp3",
+        "path": "/audio/fr/words/deux_heures_moins_dix.mp3",
+        "text": "Deux heures moins dix (1:50)"
+      },
+      {
+        "filename": "une_demi-heure.mp3",
+        "path": "/audio/fr/words/une_demi-heure.mp3",
+        "text": "Une demi-heure"
+      },
+      {
+        "filename": "un_quart_dheure.mp3",
+        "path": "/audio/fr/words/un_quart_dheure.mp3",
+        "text": "Un quart d'heure"
+      },
+      {
+        "filename": "du_matin.mp3",
+        "path": "/audio/fr/words/du_matin.mp3",
+        "text": "Du matin"
+      },
+      {
+        "filename": "de_laprès-midi.mp3",
+        "path": "/audio/fr/words/de_laprès-midi.mp3",
+        "text": "De l'après-midi"
+      },
+      {
+        "filename": "du_soir.mp3",
+        "path": "/audio/fr/words/du_soir.mp3",
+        "text": "Du soir"
+      },
+      {
+        "filename": "la_nuit.mp3",
+        "path": "/audio/fr/words/la_nuit.mp3",
+        "text": "La nuit"
+      },
+      {
+        "filename": "midi.mp3",
+        "path": "/audio/fr/words/midi.mp3",
+        "text": "Midi"
+      },
+      {
+        "filename": "minuit.mp3",
+        "path": "/audio/fr/words/minuit.mp3",
+        "text": "Minuit"
+      },
+      {
+        "filename": "à_lheure.mp3",
+        "path": "/audio/fr/words/à_lheure.mp3",
+        "text": "À l'heure"
+      },
+      {
+        "filename": "tôt.mp3",
+        "path": "/audio/fr/words/tôt.mp3",
+        "text": "Tôt"
+      },
+      {
+        "filename": "en_retard.mp3",
+        "path": "/audio/fr/words/en_retard.mp3",
+        "text": "En retard / Tard"
+      },
+      {
+        "filename": "comment_vas-tu.mp3",
+        "path": "/audio/fr/words/comment_vas-tu.mp3",
+        "text": "Comment vas-tu ? / Ça va ?"
+      },
+      {
+        "filename": "ça_va.mp3",
+        "path": "/audio/fr/words/ça_va.mp3",
+        "text": "Ça va ?"
+      },
+      {
+        "filename": "ça_va_bien_merci.mp3",
+        "path": "/audio/fr/words/ça_va_bien_merci.mp3",
+        "text": "Ça va bien, merci"
       }
     ],
     "time": [
