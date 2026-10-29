@@ -279,17 +279,11 @@ const Phrases: React.FC<PhrasesProps> = ({
           </button>
           {categoryPills.map((pill) => {
             const isSelected = activeCategory === pill.id;
-            const isFeaturedPack =
-              pill.id === 'Tech' ||
-              pill.id === 'Business' ||
-              pill.id === 'Health' ||
-              pill.id === 'Colors' ||
-              pill.id === 'Weather';
             return (
               <button
                 key={pill.id}
                 type="button"
-                className={`topic-pack-pill ${isSelected ? 'active' : ''} ${isFeaturedPack ? 'featured-pack' : ''}`}
+                className={`topic-pack-pill ${isSelected ? 'active' : ''}`}
                 aria-pressed={isSelected}
                 data-category={pill.id}
                 onClick={() => setActiveCategory(pill.id)}

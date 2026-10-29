@@ -1564,6 +1564,66 @@ export const localizeCategoryBadge = (
   return map[key]?.[baseLang] || category;
 };
 
+export const localizeLevelBadge = (level: 'all' | 1 | 2 | 3, baseLang: SupportedLanguageId = 'en'): string => {
+  const map: Record<string, Record<SupportedLanguageId, string>> = {
+    'all': {
+      en: 'All Levels',
+      es: 'Todos los niveles',
+      fr: 'Tous les niveaux',
+      ru: 'Все уровни',
+      pt: 'Todos os níveis',
+      de: 'Alle Stufen',
+      id: 'Semua Tingkat',
+      tr: 'Tüm Seviyeler'
+    },
+    '1': {
+      en: 'Level 1: Foundations',
+      es: 'Nivel 1: Fundamentos',
+      fr: 'Niveau 1 : Fondations',
+      ru: 'Уровень 1: Базовый',
+      pt: 'Nível 1: Fundamentos',
+      de: 'Stufe 1: Grundlagen',
+      id: 'Tingkat 1: Dasar',
+      tr: 'Seviye 1: Temel'
+    },
+    '2': {
+      en: 'Level 2: Workplace',
+      es: 'Nivel 2: Laboral',
+      fr: 'Niveau 2 : Professionnel',
+      ru: 'Уровень 2: Для работы',
+      pt: 'Nível 2: Trabalho',
+      de: 'Stufe 2: Arbeitswelt',
+      id: 'Tingkat 2: Tempat Kerja',
+      tr: 'Seviye 2: İş Yeri'
+    },
+    '3': {
+      en: 'Level 3: Professional',
+      es: 'Nivel 3: Profesional',
+      fr: 'Niveau 3 : Avancé',
+      ru: 'Уровень 3: Профессиональный',
+      pt: 'Nível 3: Profissional',
+      de: 'Stufe 3: Fachkompetenz',
+      id: 'Tingkat 3: Mahir',
+      tr: 'Seviye 3: İleri'
+    }
+  };
+  return map[String(level)]?.[baseLang] || `Level ${level}`;
+};
+
+export const getQuizToolbarLabels = (baseLang: SupportedLanguageId = 'en') => {
+  const map: Record<SupportedLanguageId, { topic: string; level: string; modality: string; questionOf: (current: number, total: number) => string }> = {
+    en: { topic: 'Curriculum Topic', level: 'Proficiency Level', modality: 'Practice Modality', questionOf: (c, t) => `Question ${c} of ${t}` },
+    es: { topic: 'Tema del curso', level: 'Nivel de dominio', modality: 'Modalidad de práctica', questionOf: (c, t) => `Pregunta ${c} de ${t}` },
+    fr: { topic: 'Thème du cours', level: 'Niveau de maîtrise', modality: 'Mode d’entraînement', questionOf: (c, t) => `Question ${c} sur ${t}` },
+    ru: { topic: 'Тема курса', level: 'Уровень сложности', modality: 'Режим тренировки', questionOf: (c, t) => `Вопрос ${c} из ${t}` },
+    pt: { topic: 'Tópico do curso', level: 'Nível de domínio', modality: 'Modalidade de prática', questionOf: (c, t) => `Pergunta ${c} de ${t}` },
+    de: { topic: 'Themenbereich', level: 'Schwierigkeitsgrad', modality: 'Übungsmodus', questionOf: (c, t) => `Frage ${c} von ${t}` },
+    id: { topic: 'Topik Materi', level: 'Tingkat Kemahiran', modality: 'Mode Latihan', questionOf: (c, t) => `Pertanyaan ${c} dari ${t}` },
+    tr: { topic: 'Ders Konusu', level: 'Yeterlilik Seviyesi', modality: 'Pratik Modu', questionOf: (c, t) => `Soru ${c} / ${t}` },
+  };
+  return map[baseLang] || map.en;
+};
+
 export interface ComponentChromeStrings {
   // App Header & Footer
   installApp: string;

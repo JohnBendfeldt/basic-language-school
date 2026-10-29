@@ -14,7 +14,7 @@ import {
   buildQuizQuestionHint,
   getAlphabetQuizHint 
 } from '../utils/translationResolver';
-import { localizeCategoryBadge } from '../utils/pageDictionary';
+import { localizeCategoryBadge, localizeLevelBadge, getQuizToolbarLabels } from '../utils/pageDictionary';
 import { UIStrings } from '../data/translations';
 import { SupportedLanguageId } from '../data/languages/types';
 
@@ -1864,18 +1864,22 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     ? `${activeLevelCountInfo.mastered}/${activeLevelCountInfo.total}`
     : (activeLevelCountInfo?.total ?? allCurriculumQuestions.length);
 
+  const toolbarLabels = getQuizToolbarLabels(baseLanguage);
+  const localizedActiveLevel = localizeLevelBadge(activeLevel, baseLanguage);
+
   return (
     <div className="section quiz-section">
       <h2 className="quiz-page-title">{ui.testYourKnowledge}</h2>
 
       {/* Unified Quiz Controls Toolbar with Dropdowns (Eliminates horizontal scrollers) */}
       <div className="quiz-toolbar-card">
-        <div className="quiz-toolbar-grid">
+        {/* Row 1: The two Dropdowns side-by-side */}
+        <div className="quiz-toolbar-dropdowns-row">
           {/* Topic & Curriculum Module Dropdown */}
           <div className="quiz-dropdown-group" ref={topicDropdownRef}>
             <label id="topic-dropdown-label" className="quiz-toolbar-label">
               <span className="label-icon">📚</span>
-              <span>Curriculum Topic</span>
+              <span>{toolbarLabels.topic}</span>
             </label>
             <div className="quiz-dropdown-wrapper">
               <button
@@ -1975,7 +1979,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           <div className="quiz-dropdown-group" ref={levelDropdownRef}>
             <label id="level-dropdown-label" className="quiz-toolbar-label">
               <span className="label-icon">🎯</span>
-              <span>Proficiency Level</span>
+              <span>{toolbarLabels.level}</span>
             </label>
             <div className="quiz-dropdown-wrapper">
               <button
@@ -1993,7 +1997,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               >
                 <div className="quiz-dropdown-trigger-main">
                   <span className="dropdown-trigger-icon" aria-hidden="true">{activeLevelItem.badge}</span>
-                  <span className="dropdown-trigger-title">{activeLevelItem.label}</span>
+                  <span className="dropdown-trigger-title">{localizedActiveLevel}</span>
                 </div>
                 <div className="quiz-dropdown-trigger-end">
                   <span className="dropdown-count-pill">{activeLevelCountDisplay}</span>
@@ -2008,6 +2012,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                     const countInfo = lvl.id === 'all'
                       ? { total: allCurriculumQuestions.length, mastered: masteredWordIds.size }
                       : levelCounts[lvl.id as 1 | 2 | 3];
+                    const localizedLevelName = localizeLevelBadge(lvl.id, baseLanguage);
                     return (
                       <button
                         key={String(lvl.id)}
@@ -2022,7 +2027,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                       >
                         <div className="quiz-dropdown-item-left">
                           <span className="quiz-dropdown-item-icon">{lvl.badge}</span>
-                          <span className="quiz-dropdown-item-name">{lvl.label}</span>
+                          <span className="quiz-dropdown-item-name">{localizedLevelName}</span>
                         </div>
                         <div className="quiz-dropdown-item-right">
                           <span className="quiz-dropdown-item-badge">
@@ -2037,52 +2042,52 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               )}
             </div>
           </div>
+        </div>
 
-          {/* Quiz Practice Modality Segmented Control */}
-          <div className="quiz-dropdown-group quiz-mode-group">
-            <label className="quiz-toolbar-label">
-              <span className="label-icon">⚡</span>
-              <span>Modality</span>
-            </label>
-            <div className="quiz-mode-segmented-pills" role="radiogroup" aria-label="Quiz mode">
-              <button
-                type="button"
-                role="radio"
-                aria-checked={quizMode === 'writing'}
-                className={`mode-segmented-pill ${quizMode === 'writing' ? 'active' : ''}`}
-                onClick={() => handleModeChange('writing')}
-                title="Writing & Reading Mode (Prompt visible, type translation)"
-              >
-                <span className="mode-icon">✍️</span>
-                <span>{ui.writingMode}</span>
-              </button>
-              <button
-                type="button"
-                role="radio"
-                aria-checked={quizMode === 'listening'}
-                className={`mode-segmented-pill ${quizMode === 'listening' ? 'active' : ''}`}
-                onClick={() => handleModeChange('listening')}
-                title="Listening Ear-Training Mode (Listen to audio, type what you hear)"
-              >
-                <span className="mode-icon">🎧</span>
-                <span>{ui.listeningMode}</span>
-              </button>
-              <button
-                type="button"
-                role="radio"
-                aria-checked={quizMode === 'all'}
-                className={`mode-segmented-pill ${quizMode === 'all' ? 'active' : ''}`}
-                onClick={() => handleModeChange('all')}
-                title="All Modes (Alternates writing and listening questions)"
-              >
-                <span className="mode-icon">🎯</span>
-                <span>{ui.allModes}</span>
-              </button>
-            </div>
+        {/* Row 2: Practice Modality Segmented Control (Full Width) */}
+        <div className="quiz-toolbar-modality-row">
+          <label className="quiz-toolbar-label">
+            <span className="label-icon">⚡</span>
+            <span>{toolbarLabels.modality}</span>
+          </label>
+          <div className="quiz-mode-segmented-pills" role="radiogroup" aria-label="Quiz mode">
+            <button
+              type="button"
+              role="radio"
+              aria-checked={quizMode === 'writing'}
+              className={`mode-segmented-pill ${quizMode === 'writing' ? 'active' : ''}`}
+              onClick={() => handleModeChange('writing')}
+              title="Writing & Reading Mode (Prompt visible, type translation)"
+            >
+              <span className="mode-icon">✍️</span>
+              <span>{ui.writingMode}</span>
+            </button>
+            <button
+              type="button"
+              role="radio"
+              aria-checked={quizMode === 'listening'}
+              className={`mode-segmented-pill ${quizMode === 'listening' ? 'active' : ''}`}
+              onClick={() => handleModeChange('listening')}
+              title="Listening Ear-Training Mode (Listen to audio, type what you hear)"
+            >
+              <span className="mode-icon">🎧</span>
+              <span>{ui.listeningMode}</span>
+            </button>
+            <button
+              type="button"
+              role="radio"
+              aria-checked={quizMode === 'all'}
+              className={`mode-segmented-pill ${quizMode === 'all' ? 'active' : ''}`}
+              onClick={() => handleModeChange('all')}
+              title="All Modes (Alternates writing and listening questions)"
+            >
+              <span className="mode-icon">🎯</span>
+              <span>{ui.allModes}</span>
+            </button>
           </div>
         </div>
 
-        {/* Audio repeat & speed hint banner */}
+        {/* Row 3: Audio repeat & speed hint banner */}
         <div className="quiz-repeat-tip-banner">
           <span className="tip-icon">🗣️</span>
           <span>{ui.repeatHint}</span>
@@ -2102,7 +2107,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           <div className="session-progress-counter">
             <span className="counter-label">{ui.questionOf}</span>
             <span className="counter-current">{sessionIndex}</span>
-            <span className="counter-total">of {sessionGoal}</span>
+            <span className="counter-total">{baseLanguage === 'ru' ? 'из' : baseLanguage === 'es' || baseLanguage === 'pt' ? 'de' : baseLanguage === 'fr' ? 'sur' : baseLanguage === 'de' ? 'von' : baseLanguage === 'id' ? 'dari' : baseLanguage === 'tr' ? '/' : 'of'} {sessionGoal}</span>
           </div>
 
           <div className="session-score-badge">
