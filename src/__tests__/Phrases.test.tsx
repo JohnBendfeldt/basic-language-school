@@ -73,4 +73,46 @@ describe('Phrases Component - Intuitive Reveal & Study Mode', () => {
     expect(screen.queryByText('Thank you')).not.toBeInTheDocument();
     expect(screen.getByRole('button', { name: /reveal all/i })).toBeInTheDocument();
   });
+
+  it('plays translation audio without hiding the revealed card when clicking the mini speaker button', () => {
+    const audioPaths: string[] = [];
+    const OriginalAudio = window.Audio;
+    class MockAudio {
+      src: string;
+      preload = 'auto';
+      playbackRate = 1;
+      onended: any = null;
+      onerror: any = null;
+      constructor(src: string) {
+        this.src = src;
+        audioPaths.push(src);
+      }
+      play() {
+        return Promise.resolve();
+      }
+      pause() {}
+      load() {}
+    }
+    // @ts-ignore
+    window.Audio = MockAudio;
+
+    try {
+      render(<Phrases data={samplePhrases} title="Basic Phrases" contentType="phrases" />);
+
+      // Reveal first card
+      const revealButton = screen.getAllByRole('button', { name: /reveal translation for/i })[0];
+      fireEvent.click(revealButton);
+      expect(screen.getByText('Hello')).toBeInTheDocument();
+
+      // Click the mini translation speaker button inside the revealed area
+      const translationAudioBtn = screen.getByRole('button', { name: /Listen to translation Hello/i });
+      fireEvent.click(translationAudioBtn);
+
+      // Card must remain revealed and audio must be played
+      expect(screen.getByText('Hello')).toBeInTheDocument();
+      expect(audioPaths[audioPaths.length - 1]).toBe('/audio/en/words/hello.mp3');
+    } finally {
+      window.Audio = OriginalAudio;
+    }
+  });
 });

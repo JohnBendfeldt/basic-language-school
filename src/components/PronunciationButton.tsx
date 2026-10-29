@@ -147,7 +147,8 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
     );
   };
 
-  const handleSpeak = () => {
+  const handleSpeak = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     if (isPlaying) return;
     
     // Warm up audio subsystem on click (unlocks Web Audio & AudioContext immediately)
@@ -257,6 +258,7 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
 
   return (
     <button
+      type="button"
       className={`pronunciation-button ${isPlaying ? 'playing' : ''} ${className || ''}`}
       onClick={handleSpeak}
       disabled={isPlaying}
