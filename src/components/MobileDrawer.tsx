@@ -9,6 +9,7 @@ import {
   FaExchangeAlt,
   FaShieldAlt,
   FaFileContract,
+  FaInfoCircle,
   FaDownload,
   FaCheck,
   FaGlobe
@@ -287,6 +288,17 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
 
             {/* Section 6: Legal & About Links */}
             <div className="drawer-legal-links">
+              <button
+                type="button"
+                className="drawer-legal-link"
+                onClick={() => {
+                  onNavigate('about');
+                  onClose();
+                }}
+              >
+                <FaInfoCircle />
+                <span>{chrome.aboutContact}</span>
+              </button>
               <button
                 type="button"
                 className="drawer-legal-link"

@@ -11,6 +11,7 @@ import LanguageSwitcher from './components/LanguageSwitcher';
 import VoiceSpeedControl from './components/VoiceSpeedControl';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
+import About from './components/About';
 import MobileDrawer from './components/MobileDrawer';
 import AppEmblem from './components/AppEmblem';
 import { FaBars } from 'react-icons/fa';
@@ -31,6 +32,8 @@ const PATH_TO_SECTION: Record<string, string> = {
   'quiz': 'quiz',
   'privacy': 'privacy',
   'terms': 'terms',
+  'about': 'about',
+  'contact': 'about',
 };
 
 const parsePath = (): { langId?: SupportedLanguageId; section: string } => {
@@ -253,6 +256,8 @@ const AppContent: React.FC = () => {
         return <PrivacyPolicy onNavigate={handleSectionChange} />;
       case 'terms':
         return <TermsOfService onNavigate={handleSectionChange} />;
+      case 'about':
+        return <About onNavigate={handleSectionChange} />;
       default:
         return <Alphabet data={currentMeta.data.alphabet} />;
     }
@@ -334,6 +339,17 @@ const AppContent: React.FC = () => {
       <footer>
         <p>
           © {new Date().getFullYear()} Basic Language School · {chrome.allRightsReserved.replace(/\.$/, '')} ·{' '}
+          <a
+            href="/about"
+            className="footer-link"
+            onClick={(e) => {
+              e.preventDefault();
+              handleSectionChange('about');
+            }}
+          >
+            {chrome.aboutContact}
+          </a>{' '}
+          ·{' '}
           <a
             href="/privacy"
             className="footer-link"
