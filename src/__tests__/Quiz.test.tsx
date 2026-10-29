@@ -323,6 +323,86 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
       totalQuestions: 5
     });
   });
+
+  it('renders modality pills (Writing, Listening, All Modes) and displays repeat tip banner', async () => {
+    render(<Quiz data={sampleData} />);
+
+    // Check repeat hint banner
+    expect(screen.getByText(/Tip: Repeat words and phrases aloud as you hear them!/i)).toBeInTheDocument();
+
+    // Check modality pills
+    const writingPill = screen.getByRole('radio', { name: /Writing/i });
+    const listeningPill = screen.getByRole('radio', { name: /Listening/i });
+    const allModesPill = screen.getByRole('radio', { name: /All Modes/i });
+
+    expect(writingPill).toBeInTheDocument();
+    expect(listeningPill).toBeInTheDocument();
+    expect(allModesPill).toBeInTheDocument();
+
+    // Default is Writing mode
+    expect(writingPill).toHaveClass('active');
+  });
+
+  it('switches to Listening Ear-Training Mode: renders audio card, hides prompt text, and allows hint toggle', async () => {
+    render(<Quiz data={{
+      basicPhrases: [
+        { english: 'Hello', russian: 'Привет', pronunciation: 'pree-vyet' }
+      ]
+    }} />);
+
+    // Switch to Listening Mode
+    const listeningPill = screen.getByRole('radio', { name: /Listening/i });
+    fireEvent.click(listeningPill);
+
+    expect(listeningPill).toHaveClass('active');
+    expect(localStorage.getItem('basic_quiz_mode')).toBe('listening');
+
+    // In listening mode, the listening card is rendered
+    expect(screen.getByText(/Listen to the audio and type what you hear/i)).toBeInTheDocument();
+    expect(screen.getByText(/Tap to play audio again/i)).toBeInTheDocument();
+    expect(document.querySelector('.quiz-listening-audio-btn')).toBeInTheDocument();
+
+    // The prompt text is hidden from the main card so learner cannot read the word
+    expect(document.querySelector('.quiz-prompt-text')).not.toBeInTheDocument();
+
+    // Toggle hint
+    const hintBtn = screen.getByRole('button', { name: /Need a hint\?/i });
+    fireEvent.click(hintBtn);
+    expect(document.querySelector('.listening-hint-box')).toBeInTheDocument();
+
+    // Answering what was heard (or typing in transliterated Russian) works
+    const input = screen.getByRole('textbox');
+    fireEvent.change(input, { target: { value: 'Привет' } });
+    fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+
+    expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
+  });
+
+  it('filters by Industry & Topic Packs (e.g. Tech & IT, Business, Healthcare)', async () => {
+    render(<Quiz data={{
+      basicPhrases: [
+        { english: 'Hello', russian: 'Привет', category: 'Greetings' }
+      ],
+      commonWords: [
+        { english: 'Computer', russian: 'Компьютер', category: 'Tech' },
+        { english: 'Contract', russian: 'Договор', category: 'Business' }
+      ]
+    }} />);
+
+    // Check that topic packs are displayed
+    expect(screen.getByText('Industry & Topic Packs')).toBeInTheDocument();
+    const techTab = screen.getByRole('tab', { name: /Tech & IT/i });
+    expect(techTab).toBeInTheDocument();
+
+    // Click Tech & IT tab
+    fireEvent.click(techTab);
+    expect(techTab).toHaveClass('active');
+
+    // Prompt must be from Tech item
+    const prompt = document.querySelector('.quiz-prompt');
+    const isTechWord = prompt?.textContent?.includes('Компьютер') || prompt?.textContent?.includes('Computer');
+    expect(isTechWord).toBe(true);
+  });
 });
 
 

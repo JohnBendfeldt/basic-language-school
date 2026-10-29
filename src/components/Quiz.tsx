@@ -13,7 +13,9 @@ import {
   buildQuizQuestionHint,
   getAlphabetQuizHint 
 } from '../utils/translationResolver';
+import { localizeCategoryBadge } from '../utils/pageDictionary';
 import { UIStrings } from '../data/translations';
+import { SupportedLanguageId } from '../data/languages/types';
 
 // Define interfaces for the data structure
 interface AlphabetItem {
@@ -34,9 +36,26 @@ interface PhraseItem {
   translation?: string;
   target?: string;
   pronunciation?: string;
+  category?: string;
 }
 
-export type QuizCategoryFilter = 'all' | 'alphabet' | 'basicPhrases' | 'commonWords' | 'numbers' | 'time';
+export type QuizCategoryFilter = 
+  | 'all' 
+  | 'alphabet' 
+  | 'basicPhrases' 
+  | 'commonWords' 
+  | 'numbers' 
+  | 'time'
+  | 'tech'
+  | 'business'
+  | 'health'
+  | 'travel'
+  | 'dining'
+  | 'shopping'
+  | 'colors'
+  | 'weather';
+
+export type QuizMode = 'writing' | 'listening' | 'all';
 
 export interface QuizCategoryInfo {
   id: QuizCategoryFilter;
@@ -45,24 +64,72 @@ export interface QuizCategoryInfo {
   description: string;
 }
 
-export const QUIZ_CATEGORIES: QuizCategoryInfo[] = [
-  { id: 'all', label: 'All Topics', icon: '🎯', description: 'Curated mix of the entire Russian curriculum' },
-  { id: 'alphabet', label: 'Alphabet', icon: '🔤', description: '33 Cyrillic letters and pronunciations' },
+export const CORE_MODULE_CATEGORIES: QuizCategoryInfo[] = [
+  { id: 'all', label: 'All Topics', icon: '🎯', description: 'Curated mix of the entire curriculum' },
+  { id: 'alphabet', label: 'Alphabet', icon: '🔤', description: 'Letters and pronunciations' },
   { id: 'basicPhrases', label: 'Phrases & Greetings', icon: '💬', description: 'Greetings, politeness, and essential dialogue' },
-  { id: 'commonWords', label: 'Common Words', icon: '📖', description: 'Question words, family, transit, and essentials' },
+  { id: 'commonWords', label: 'Common Words', icon: '📖', description: 'Question words, family, and essentials' },
   { id: 'numbers', label: 'Numbers', icon: '🔢', description: 'Counting 0 through 1,000' },
-  { id: 'time', label: 'Time & Days', icon: '⏰', description: 'Days of the week, relative days, and clock phrases' },
+  { id: 'time', label: 'Time & Days', icon: '⏰', description: 'Days of the week and clock phrases' },
 ];
 
-export const getCategoryLabel = (id: QuizCategoryFilter, ui?: UIStrings): string => {
+export const TOPIC_PACK_CATEGORIES: QuizCategoryInfo[] = [
+  { id: 'tech', label: 'Tech & IT', icon: '💻', description: 'Computers, internet, passwords, and remote work' },
+  { id: 'business', label: 'Business & Work', icon: '💼', description: 'Office, meetings, contracts, and finance' },
+  { id: 'health', label: 'Healthcare', icon: '🏥', description: 'Doctors, medicine, pharmacy, and emergency' },
+  { id: 'travel', label: 'Travel & Transit', icon: '✈️', description: 'Airports, hotels, transit, and directions' },
+  { id: 'dining', label: 'Food & Dining', icon: '🍽️', description: 'Restaurants, menu, drinks, and meals' },
+  { id: 'shopping', label: 'Shopping & Money', icon: '🛍️', description: 'Prices, cards, payment, and sizes' },
+  { id: 'colors', label: 'Colors', icon: '🎨', description: 'Colors of everyday life' },
+  { id: 'weather', label: 'Weather & Nature', icon: '☀️', description: 'Sun, rain, wind, seasons, and temperature' },
+];
+
+export const ALL_QUIZ_CATEGORIES: QuizCategoryInfo[] = [
+  ...CORE_MODULE_CATEGORIES,
+  ...TOPIC_PACK_CATEGORIES
+];
+
+export const QUIZ_CATEGORIES = ALL_QUIZ_CATEGORIES;
+
+export const mapToSubCategoryKey = (cat: string | undefined): QuizCategoryFilter | null => {
+  if (!cat) return null;
+  const lower = cat.toLowerCase();
+  if (lower.includes('tech') || lower.includes('it')) return 'tech';
+  if (lower.includes('business') || lower.includes('work') || lower.includes('office') || lower.includes('finance')) return 'business';
+  if (lower.includes('health') || lower.includes('medical') || lower.includes('doctor') || lower.includes('emergency')) return 'health';
+  if (lower.includes('travel') || lower.includes('transit') || lower.includes('transport') || lower.includes('places')) return 'travel';
+  if (lower.includes('dining') || lower.includes('food') || lower.includes('drink')) return 'dining';
+  if (lower.includes('shop') || lower.includes('money')) return 'shopping';
+  if (lower.includes('color')) return 'colors';
+  if (lower.includes('weather') || lower.includes('nature')) return 'weather';
+  return null;
+};
+
+export const getCategoryLabel = (id: QuizCategoryFilter, ui?: UIStrings, baseLang?: SupportedLanguageId): string => {
+  if (baseLang && baseLang !== 'en') {
+    const localized = localizeCategoryBadge(id, baseLang);
+    if (localized && localized.toLowerCase() !== id.toLowerCase()) {
+      return localized;
+    }
+  }
+  const defaultInfo = ALL_QUIZ_CATEGORIES.find(c => c.id === id);
+  if (defaultInfo) return defaultInfo.label;
   if (!ui) return id;
   switch (id) {
     case 'all': return ui.allTopics || 'All Topics';
     case 'alphabet': return ui.alphabet || 'Alphabet';
-    case 'basicPhrases': return ui.basicPhrases || 'Phrases';
+    case 'basicPhrases': return 'Phrases & Greetings';
     case 'commonWords': return ui.commonWords || 'Common Words';
     case 'numbers': return ui.numbers || 'Numbers';
     case 'time': return ui.time || 'Time & Days';
+    case 'tech': return 'Tech & IT';
+    case 'business': return 'Business & Work';
+    case 'health': return 'Healthcare';
+    case 'travel': return 'Travel & Transit';
+    case 'dining': return 'Food & Dining';
+    case 'shopping': return 'Shopping & Money';
+    case 'colors': return 'Colors';
+    case 'weather': return 'Weather & Nature';
     default: return id;
   }
 };
@@ -83,6 +150,7 @@ interface QuestionDef {
   isRussianToEnglish: boolean;
   id: string;
   category: string;
+  subCategoryKey?: QuizCategoryFilter | null;
 }
 
 interface MissedWord {
@@ -137,14 +205,25 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     return 10;
   });
 
-  // Active Category Filter: 'all', 'alphabet', 'basicPhrases', 'commonWords', 'numbers', 'time'
+  // Active Category Filter: 'all', 'alphabet', 'basicPhrases', 'commonWords', 'numbers', 'time', plus topic packs
   const [activeCategory, setActiveCategory] = useState<QuizCategoryFilter>(() => {
-    const saved = localStorage.getItem(`basic_quiz_category_${currentLanguage}`) || localStorage.getItem('quiz_category');
-    if (saved && ['all', 'alphabet', 'basicPhrases', 'commonWords', 'numbers', 'time'].includes(saved)) {
+    const saved = localStorage.getItem(`basic_quiz_category_${currentLanguage}`) || localStorage.getItem('quiz_category') || localStorage.getItem('russian_quiz_category');
+    if (saved && ALL_QUIZ_CATEGORIES.some(c => c.id === saved)) {
       return saved as QuizCategoryFilter;
     }
     return 'all';
   });
+
+  // Practice Modality Mode: 'writing' | 'listening' | 'all'
+  const [quizMode, setQuizMode] = useState<QuizMode>(() => {
+    const saved = localStorage.getItem(`basic_quiz_mode_${currentLanguage}`) || localStorage.getItem('basic_quiz_mode');
+    if (saved && ['writing', 'listening', 'all'].includes(saved)) {
+      return saved as QuizMode;
+    }
+    return 'writing';
+  });
+
+  const [showListeningHint, setShowListeningHint] = useState<boolean>(false);
 
   // Mastered words tracking (masteryLevel >= 5)
   const [masteredWordIds, setMasteredWordIds] = useState<Set<string>>(new Set());
@@ -410,7 +489,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             item,
             isRussianToEnglish: true,
             id: `alphabet-${char}`,
-            category: 'alphabet'
+            category: 'alphabet',
+            subCategoryKey: null
           });
         }
       });
@@ -422,18 +502,21 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         data[cat].forEach((item: PhraseItem) => {
           const target = item.russian || item.phrase || item.target || '';
           const meaning = item.english || item.meaning || item.translation || '';
+          const subCat = mapToSubCategoryKey(item.category);
           if (target && meaning) {
             questions.push({
               item,
               isRussianToEnglish: true,
               id: `${cat}-${target}-to-meaning`,
-              category: cat
+              category: cat,
+              subCategoryKey: subCat
             });
             questions.push({
               item,
               isRussianToEnglish: false,
               id: `${cat}-${meaning}-to-target`,
-              category: cat
+              category: cat,
+              subCategoryKey: subCat
             });
           }
         });
@@ -450,7 +533,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   // Filter questions for the currently selected category
   const currentCategoryQuestions = useMemo(() => {
     if (activeCategory === 'all') return allCurriculumQuestions;
-    return allCurriculumQuestions.filter(q => q.category === activeCategory);
+    return allCurriculumQuestions.filter(q => q.category === activeCategory || q.subCategoryKey === activeCategory);
   }, [allCurriculumQuestions, activeCategory]);
 
   const activeTotalQuestions = currentCategoryQuestions.length;
@@ -474,7 +557,15 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       basicPhrases: { total: 0, mastered: 0 },
       commonWords: { total: 0, mastered: 0 },
       numbers: { total: 0, mastered: 0 },
-      time: { total: 0, mastered: 0 }
+      time: { total: 0, mastered: 0 },
+      tech: { total: 0, mastered: 0 },
+      business: { total: 0, mastered: 0 },
+      health: { total: 0, mastered: 0 },
+      travel: { total: 0, mastered: 0 },
+      dining: { total: 0, mastered: 0 },
+      shopping: { total: 0, mastered: 0 },
+      colors: { total: 0, mastered: 0 },
+      weather: { total: 0, mastered: 0 }
     };
 
     allCurriculumQuestions.forEach(q => {
@@ -485,17 +576,24 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           counts[cat].mastered += 1;
         }
       }
+      if (q.subCategoryKey && counts[q.subCategoryKey]) {
+        counts[q.subCategoryKey].total += 1;
+        if (masteredWordIds.has(q.id)) {
+          counts[q.subCategoryKey].mastered += 1;
+        }
+      }
     });
 
     return counts;
   }, [allCurriculumQuestions, masteredWordIds]);
 
-  const getRandomQuestion = useCallback((overrideMastered?: Set<string>, categoryOverride?: QuizCategoryFilter) => {
+  const getRandomQuestion = useCallback((overrideMastered?: Set<string>, categoryOverride?: QuizCategoryFilter, modeOverride?: QuizMode) => {
     setUserAnswer('');
     setIsCorrect(null);
     setShowNext(false);
     setSpellingDiff(null);
     setIsWordJustMastered(false);
+    setShowListeningHint(false);
 
     if (!data) return;
 
@@ -504,7 +602,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       const targetCat = categoryOverride !== undefined ? categoryOverride : activeCategory;
       const targetPool = targetCat === 'all'
         ? allQuestions
-        : allQuestions.filter(q => q.category === targetCat);
+        : allQuestions.filter(q => q.category === targetCat || q.subCategoryKey === targetCat);
 
       if (targetPool.length === 0) {
         setCurrentQuestion({
@@ -542,6 +640,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       const selected = candidatePool[Math.floor(Math.random() * candidatePool.length)];
       askedQuestionsRef.current.add(selected.id);
 
+      const effectiveMode = modeOverride || quizMode;
+      const isListening = effectiveMode === 'listening' ? true : (effectiveMode === 'writing' ? false : Math.random() < 0.45);
+
       if (selected.category === 'alphabet') {
         const item = selected.item as AlphabetItem;
         const character = (item.character || item.letter || '').toString();
@@ -562,6 +663,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             targetAudioWord: character,
             russian: character,
             isTargetPrompt: true,
+            isListeningMode: isListening,
             id: selected.id
           });
         } else if (isHardSign(character)) {
@@ -579,6 +681,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             targetAudioWord: character,
             russian: character,
             isTargetPrompt: true,
+            isListeningMode: isListening,
             id: selected.id
           });
         } else {
@@ -591,6 +694,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             targetAudioWord: character,
             russian: character,
             isTargetPrompt: true,
+            isListeningMode: isListening,
             id: selected.id
           });
         }
@@ -608,8 +712,22 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           const baseNumWord = numItem[baseLanguage] || numItem.en;
           const cleanTargetAnswer = `${targetNumWord}/${digit}/${targetWord}`;
           const cleanBaseAnswer = `${baseNumWord}/${digit}/${baseWord}`;
+          const combinedAnswer = `${cleanTargetAnswer}/${cleanBaseAnswer}`.toLowerCase();
 
-          if (selected.isRussianToEnglish) {
+          if (isListening) {
+            setCurrentQuestion({
+              type: selected.category,
+              prompt: targetWord,
+              answer: combinedAnswer,
+              hint: buildQuizQuestionHint(targetWord, true, currentLanguage, baseLanguage),
+              targetAudioWord: targetWord,
+              promptAudioWord: targetWord,
+              russian: targetWord,
+              isTargetPrompt: true,
+              isListeningMode: true,
+              id: selected.id
+            });
+          } else if (selected.isRussianToEnglish) {
             // Target -> Base (e.g. Prompt is "quince", User can answer "15", "quince", or base language "пятнадцать")
             const promptText = targetWord;
             setCurrentQuestion({
@@ -621,6 +739,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               promptAudioWord: promptText,
               russian: promptText,
               isTargetPrompt: true,
+              isListeningMode: false,
               id: selected.id
             });
           } else {
@@ -635,6 +754,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               promptAudioWord: baseNumWord,
               russian: targetWord,
               isTargetPrompt: false,
+              isListeningMode: false,
               id: selected.id
             });
           }
@@ -646,7 +766,21 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             rawMeaning.includes('Asking for') ||
             rawMeaning.includes('Universal friendly');
 
-          if (isVerboseDefinition && baseLanguage === currentLanguage) {
+          if (isListening) {
+            const combinedAnswer = `${targetWord}/${baseWord}/${rawMeaning}`.toLowerCase();
+            setCurrentQuestion({
+              type: selected.category,
+              prompt: targetWord,
+              answer: combinedAnswer,
+              hint: buildQuizQuestionHint(targetWord, true, currentLanguage, baseLanguage),
+              targetAudioWord: targetWord,
+              promptAudioWord: targetWord,
+              russian: targetWord,
+              isTargetPrompt: true,
+              isListeningMode: true,
+              id: selected.id
+            });
+          } else if (isVerboseDefinition && baseLanguage === currentLanguage) {
             // Pedagogical Rule for monolingual practice: Complex definition is the prompt, simplest single word is the answer!
             const promptText = rawMeaning.replace(/^(Noun|Verb):\s*/i, '').trim();
             setCurrentQuestion({
@@ -658,6 +792,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               promptAudioWord: promptText,
               russian: targetWord,
               isTargetPrompt: false,
+              isListeningMode: false,
               id: selected.id
             });
           } else if (selected.isRussianToEnglish) {
@@ -673,6 +808,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               promptAudioWord: promptText,
               russian: promptText,
               isTargetPrompt: true,
+              isListeningMode: false,
               id: selected.id
             });
           } else {
@@ -688,6 +824,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               promptAudioWord: promptText,
               russian: targetWord,
               isTargetPrompt: false,
+              isListeningMode: false,
               id: selected.id
             });
           }
@@ -710,12 +847,12 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         id: 'emergency-hello'
       });
     }
-  }, [data, getAllQuestions, activeCategory, masteredWordIds]);
+  }, [data, getAllQuestions, activeCategory, quizMode, masteredWordIds, baseLanguage, currentLanguage, currentMeta.name]);
 
   const handleNextQuestion = useCallback(() => {
     setSessionIndex(prev => prev + 1);
-    getRandomQuestion(undefined, activeCategory);
-  }, [getRandomQuestion, activeCategory]);
+    getRandomQuestion(undefined, activeCategory, quizMode);
+  }, [getRandomQuestion, activeCategory, quizMode]);
 
   const handleCompleteSession = useCallback(async () => {
     setIsSessionComplete(true);
@@ -731,15 +868,17 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     } catch (err) {
       console.warn('Could not record completed quiz session:', err);
     }
-  }, [sessionScore, sessionGoal, activeCategory]);
+  }, [sessionScore, sessionGoal, activeCategory, currentLanguage]);
 
-  const startNewQuizSession = useCallback((newGoal?: number, newCategory?: QuizCategoryFilter) => {
+  const startNewQuizSession = useCallback((newGoal?: number, newCategory?: QuizCategoryFilter, newMode?: QuizMode) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const goal = newGoal !== undefined ? newGoal : sessionGoal;
     const cat = newCategory !== undefined ? newCategory : activeCategory;
+    const mode = newMode !== undefined ? newMode : quizMode;
     if (newGoal !== undefined && newGoal !== sessionGoal) {
       setSessionGoal(goal);
       localStorage.setItem('russian_quiz_goal', goal.toString());
+      localStorage.setItem(`basic_quiz_goal_${currentLanguage}`, goal.toString());
     }
     setSessionIndex(1);
     setSessionScore(0);
@@ -751,21 +890,32 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     setIsCorrect(null);
     setSpellingDiff(null);
     setIsWordJustMastered(false);
+    setShowListeningHint(false);
     sessionStatsRef.current = {
       score: 0,
       total: 0,
       category: cat === 'all' ? 'mixed' : cat,
       isSaved: false
     };
-    getRandomQuestion(undefined, cat);
-  }, [sessionGoal, activeCategory, getRandomQuestion]);
+    getRandomQuestion(undefined, cat, mode);
+  }, [sessionGoal, activeCategory, quizMode, currentLanguage, getRandomQuestion]);
 
   const handleCategoryChange = (newCategory: QuizCategoryFilter) => {
     if (newCategory === activeCategory) return;
     setActiveCategory(newCategory);
     localStorage.setItem('russian_quiz_category', newCategory);
+    localStorage.setItem(`basic_quiz_category_${currentLanguage}`, newCategory);
     askedQuestionsRef.current.clear();
-    startNewQuizSession(sessionGoal, newCategory);
+    startNewQuizSession(sessionGoal, newCategory, quizMode);
+  };
+
+  const handleModeChange = (newMode: QuizMode) => {
+    if (newMode === quizMode) return;
+    setQuizMode(newMode);
+    localStorage.setItem('basic_quiz_mode', newMode);
+    localStorage.setItem(`basic_quiz_mode_${currentLanguage}`, newMode);
+    askedQuestionsRef.current.clear();
+    startNewQuizSession(sessionGoal, activeCategory, newMode);
   };
 
   const handleGoalChange = (newGoal: number) => {
@@ -1192,7 +1342,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     currentQuestion && 
     !currentQuestion.type.includes('alphabet') && 
     (
-      (currentLanguage === 'ru' && !currentQuestion.isTargetPrompt) ||
+      (currentLanguage === 'ru' && (!currentQuestion.isTargetPrompt || currentQuestion.isListeningMode)) ||
       (baseLanguage === 'ru' && currentQuestion.isTargetPrompt) ||
       currentQuestion.hint.includes('Russian') ||
       currentQuestion.hint.includes('русском')
@@ -1396,10 +1546,10 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             <div className="recap-topic-selector">
               <span className="goal-picker-label">Choose topic:</span>
               <div className="recap-topic-pills" role="tablist" aria-label="Choose quiz topic">
-                {QUIZ_CATEGORIES.map(cat => {
+                {ALL_QUIZ_CATEGORIES.map(cat => {
                   const isActive = activeCategory === cat.id;
                   const countInfo = categoryCounts[cat.id];
-                  const label = getCategoryLabel(cat.id, ui);
+                  const label = getCategoryLabel(cat.id, ui, baseLanguage);
                   return (
                     <button
                       key={cat.id}
@@ -1510,14 +1660,60 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     <div className="section quiz-section">
       <h2 className="quiz-page-title">{ui.testYourKnowledge}</h2>
 
+      {/* Quiz Mode Selector Bar & Modality Pills */}
+      <div className="quiz-mode-selector-bar" role="toolbar" aria-label="Practice modality">
+        <div className="quiz-mode-pills" role="radiogroup" aria-label="Quiz mode">
+          <button
+            type="button"
+            role="radio"
+            aria-checked={quizMode === 'writing'}
+            className={`mode-pill ${quizMode === 'writing' ? 'active' : ''}`}
+            onClick={() => handleModeChange('writing')}
+            title="Writing & Reading Mode (Prompt text visible, type the translation)"
+          >
+            <span className="mode-icon">✍️</span>
+            <span>{ui.writingMode}</span>
+          </button>
+          <button
+            type="button"
+            role="radio"
+            aria-checked={quizMode === 'listening'}
+            className={`mode-pill ${quizMode === 'listening' ? 'active' : ''}`}
+            onClick={() => handleModeChange('listening')}
+            title="Listening Ear-Training Mode (Listen to audio, type what you hear)"
+          >
+            <span className="mode-icon">🎧</span>
+            <span>{ui.listeningMode}</span>
+          </button>
+          <button
+            type="button"
+            role="radio"
+            aria-checked={quizMode === 'all'}
+            className={`mode-pill ${quizMode === 'all' ? 'active' : ''}`}
+            onClick={() => handleModeChange('all')}
+            title="All Modes (Alternates writing and listening questions)"
+          >
+            <span className="mode-icon">🎯</span>
+            <span>{ui.allModes}</span>
+          </button>
+        </div>
+
+        {/* Audio repeat & speed hint banner */}
+        <div className="quiz-repeat-tip-banner">
+          <span className="tip-icon">🗣️</span>
+          <span>{ui.repeatHint}</span>
+        </div>
+      </div>
+
       {/* Modern Horizontal Category Filter Bar */}
       <div className="quiz-category-filter-bar" role="tablist" aria-label="Filter quiz by category">
+        <div className="category-section-label">Curriculum Modules</div>
         <div className="category-filter-scroll">
-          {QUIZ_CATEGORIES.map(cat => {
+          {CORE_MODULE_CATEGORIES.map(cat => {
             const isActive = activeCategory === cat.id;
             const countInfo = categoryCounts[cat.id];
             const isFullyMastered = countInfo && countInfo.total > 0 && countInfo.mastered >= countInfo.total;
-            const label = getCategoryLabel(cat.id, ui);
+            const label = getCategoryLabel(cat.id, ui, baseLanguage);
             return (
               <button
                 key={cat.id}
@@ -1525,6 +1721,33 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                 role="tab"
                 aria-selected={isActive}
                 className={`category-filter-pill ${isActive ? 'active' : ''} ${isFullyMastered ? 'mastered' : ''}`}
+                onClick={() => handleCategoryChange(cat.id)}
+                title={`Filter quiz to ${label} (${countInfo?.total || 0} questions)`}
+              >
+                <span className="cat-icon" aria-hidden="true">{cat.icon}</span>
+                <span className="cat-label">{label}</span>
+                <span className="cat-count-badge">
+                  {countInfo?.mastered ? `${countInfo.mastered}/${countInfo.total}` : (countInfo?.total || 0)}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="category-section-label" style={{ marginTop: '0.65rem' }}>Industry & Topic Packs</div>
+        <div className="category-filter-scroll">
+          {TOPIC_PACK_CATEGORIES.map(cat => {
+            const isActive = activeCategory === cat.id;
+            const countInfo = categoryCounts[cat.id];
+            const isFullyMastered = countInfo && countInfo.total > 0 && countInfo.mastered >= countInfo.total;
+            const label = getCategoryLabel(cat.id, ui, baseLanguage);
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                className={`category-filter-pill topic-pack-pill ${isActive ? 'active' : ''} ${isFullyMastered ? 'mastered' : ''}`}
                 onClick={() => handleCategoryChange(cat.id)}
                 title={`Filter quiz to ${label} (${countInfo?.total || 0} questions)`}
               >
@@ -1584,14 +1807,47 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       <div className="quiz-card">
         <h3 className="quiz-question-hint">{currentQuestion.hint}</h3>
         <div className="quiz-prompt">
-          <span className="quiz-prompt-text">{currentQuestion.prompt}</span>
-          {/* Audio for prompt: in target language if target prompt, else base language */}
-          <PronunciationButton 
-            text={currentQuestion.promptAudioWord || currentQuestion.targetAudioWord || currentQuestion.russian || currentQuestion.prompt}
-            lang={currentQuestion.isTargetPrompt ? currentLanguage : baseLanguage}
-            className="quiz-prompt-audio margin-left"
-            audioCategory={getAudioCategory(currentQuestion.type)}
-          />
+          {currentQuestion.isListeningMode && !showNext ? (
+            <div className="quiz-listening-card">
+              <div className="listening-badge-row">
+                <span className="listening-badge">🎧 {ui.listeningMode}</span>
+                <span className="listening-hint-text">{ui.listeningPromptHint}</span>
+              </div>
+              <div className="listening-audio-player">
+                <PronunciationButton 
+                  text={currentQuestion.promptAudioWord || currentQuestion.targetAudioWord || currentQuestion.russian || currentQuestion.prompt}
+                  lang={currentLanguage}
+                  className="quiz-listening-audio-btn"
+                  audioCategory={getAudioCategory(currentQuestion.type)}
+                />
+                <span className="listening-replay-hint">Tap to play audio again</span>
+              </div>
+              {showListeningHint ? (
+                <div className="listening-hint-box">
+                  💡 {currentQuestion.hint}
+                </div>
+              ) : (
+                <button 
+                  type="button" 
+                  className="show-listening-hint-btn"
+                  onClick={() => setShowListeningHint(true)}
+                >
+                  Need a hint?
+                </button>
+              )}
+            </div>
+          ) : (
+            <>
+              <span className="quiz-prompt-text">{currentQuestion.prompt}</span>
+              {/* Audio for prompt: in target language if target prompt, else base language */}
+              <PronunciationButton 
+                text={currentQuestion.promptAudioWord || currentQuestion.targetAudioWord || currentQuestion.russian || currentQuestion.prompt}
+                lang={currentQuestion.isTargetPrompt ? currentLanguage : baseLanguage}
+                className="quiz-prompt-audio margin-left"
+                audioCategory={getAudioCategory(currentQuestion.type)}
+              />
+            </>
+          )}
         </div>
         <div className="input-container">
           <input
