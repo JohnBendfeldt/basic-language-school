@@ -167,6 +167,7 @@ interface QuestionDef {
   item: AlphabetItem | PhraseItem;
   isRussianToEnglish: boolean;
   id: string;
+  wordId: string;
   category: string;
   subCategoryKey?: QuizCategoryFilter | null;
   level?: 1 | 2 | 3;
@@ -592,6 +593,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             item,
             isRussianToEnglish: true,
             id: `alphabet-${char}`,
+            wordId: `alphabet-${char}`,
             category: 'alphabet',
             subCategoryKey: null,
             level: 1
@@ -609,10 +611,12 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           const subCat = mapToSubCategoryKey(item.category);
           const itemLevel = item.level || 1;
           if (target && meaning) {
+            const canonicalWordId = `${cat}-${target}`;
             questions.push({
               item,
               isRussianToEnglish: true,
               id: `${cat}-${target}-to-meaning`,
+              wordId: canonicalWordId,
               category: cat,
               subCategoryKey: subCat,
               level: itemLevel
@@ -621,6 +625,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               item,
               isRussianToEnglish: false,
               id: `${cat}-${meaning}-to-target`,
+              wordId: canonicalWordId,
               category: cat,
               subCategoryKey: subCat,
               level: itemLevel
@@ -633,9 +638,16 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     return questions;
   }, [data]);
 
+  // Helper to determine if a question or word is mastered (handles both canonical wordId and legacy question id)
+  const isQuestionMastered = useCallback((q: QuestionDef, masteredSet: Set<string>): boolean => {
+    return (
+      (Boolean(q.wordId) && masteredSet.has(q.wordId)) ||
+      masteredSet.has(q.id)
+    );
+  }, []);
+
   // All curriculum questions memoized
   const allCurriculumQuestions = useMemo(() => getAllQuestions(), [getAllQuestions]);
-  const totalCurriculumQuestions = allCurriculumQuestions.length;
 
   // Filter questions for the currently selected category & level
   const currentCategoryQuestions = useMemo(() => {
@@ -650,75 +662,118 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     return pool;
   }, [allCurriculumQuestions, activeCategory, activeLevel]);
 
-  const activeTotalQuestions = currentCategoryQuestions.length;
+  // Total unique curriculum words across all topics
+  const totalCurriculumWords = useMemo(() => {
+    const set = new Set<string>();
+    allCurriculumQuestions.forEach(q => set.add(q.wordId || q.id));
+    return set.size;
+  }, [allCurriculumQuestions]);
 
-  // Mastered count specifically within the active filter
-  const activeMasteredCount = useMemo(() => {
+  // Total mastered words count across all curriculum items
+  const totalMasteredWordsCount = useMemo(() => {
     let count = 0;
-    currentCategoryQuestions.forEach(q => {
-      if (masteredWordIds.has(q.id)) count++;
+    const evaluatedWords = new Set<string>();
+    allCurriculumQuestions.forEach(q => {
+      const wId = q.wordId || q.id;
+      if (!evaluatedWords.has(wId)) {
+        evaluatedWords.add(wId);
+        if (isQuestionMastered(q, masteredWordIds)) {
+          count++;
+        }
+      }
     });
     return count;
-  }, [currentCategoryQuestions, masteredWordIds]);
+  }, [allCurriculumQuestions, masteredWordIds, isQuestionMastered]);
+
+  // Unique vocabulary words in active category & level
+  const activeWordIds = useMemo(() => {
+    const set = new Set<string>();
+    currentCategoryQuestions.forEach(q => set.add(q.wordId || q.id));
+    return set;
+  }, [currentCategoryQuestions]);
+
+  // Active total words for display and mastery calculation (not question permutations)
+  const activeTotalQuestions = activeWordIds.size;
+
+  // Mastered words count specifically within the active filter
+  const activeMasteredCount = useMemo(() => {
+    let count = 0;
+    const evaluatedWords = new Set<string>();
+    currentCategoryQuestions.forEach(q => {
+      const wId = q.wordId || q.id;
+      if (!evaluatedWords.has(wId)) {
+        evaluatedWords.add(wId);
+        if (isQuestionMastered(q, masteredWordIds)) {
+          count++;
+        }
+      }
+    });
+    return count;
+  }, [currentCategoryQuestions, masteredWordIds, isQuestionMastered]);
 
   const activeRemainingToMaster = Math.max(0, activeTotalQuestions - activeMasteredCount);
 
-  // Per-category counts (total and mastered) for category filter badges
+  // Per-category counts (total unique words and mastered words) for category filter badges
   const categoryCounts = useMemo(() => {
-    const counts: Record<QuizCategoryFilter, { total: number; mastered: number }> = {
-      all: { total: allCurriculumQuestions.length, mastered: masteredWordIds.size },
-      alphabet: { total: 0, mastered: 0 },
-      basicPhrases: { total: 0, mastered: 0 },
-      commonWords: { total: 0, mastered: 0 },
-      numbers: { total: 0, mastered: 0 },
-      time: { total: 0, mastered: 0 },
-      tech: { total: 0, mastered: 0 },
-      business: { total: 0, mastered: 0 },
-      health: { total: 0, mastered: 0 },
-      travel: { total: 0, mastered: 0 },
-      dining: { total: 0, mastered: 0 },
-      shopping: { total: 0, mastered: 0 },
-      colors: { total: 0, mastered: 0 },
-      weather: { total: 0, mastered: 0 }
+    const counts: Record<QuizCategoryFilter, { total: number; mastered: number; wordIds: Set<string> }> = {
+      all: { total: totalCurriculumWords, mastered: totalMasteredWordsCount, wordIds: new Set() },
+      alphabet: { total: 0, mastered: 0, wordIds: new Set() },
+      basicPhrases: { total: 0, mastered: 0, wordIds: new Set() },
+      commonWords: { total: 0, mastered: 0, wordIds: new Set() },
+      numbers: { total: 0, mastered: 0, wordIds: new Set() },
+      time: { total: 0, mastered: 0, wordIds: new Set() },
+      tech: { total: 0, mastered: 0, wordIds: new Set() },
+      business: { total: 0, mastered: 0, wordIds: new Set() },
+      health: { total: 0, mastered: 0, wordIds: new Set() },
+      travel: { total: 0, mastered: 0, wordIds: new Set() },
+      dining: { total: 0, mastered: 0, wordIds: new Set() },
+      shopping: { total: 0, mastered: 0, wordIds: new Set() },
+      colors: { total: 0, mastered: 0, wordIds: new Set() },
+      weather: { total: 0, mastered: 0, wordIds: new Set() }
     };
 
     allCurriculumQuestions.forEach(q => {
+      const wId = q.wordId || q.id;
+      const isMastered = isQuestionMastered(q, masteredWordIds);
+
+      const addWord = (key: QuizCategoryFilter) => {
+        if (!counts[key].wordIds.has(wId)) {
+          counts[key].wordIds.add(wId);
+          counts[key].total += 1;
+          if (isMastered) {
+            counts[key].mastered += 1;
+          }
+        }
+      };
+
       const cat = q.category as QuizCategoryFilter;
-      if (counts[cat]) {
-        counts[cat].total += 1;
-        if (masteredWordIds.has(q.id)) {
-          counts[cat].mastered += 1;
-        }
-      }
-      if (q.subCategoryKey && counts[q.subCategoryKey]) {
-        counts[q.subCategoryKey].total += 1;
-        if (masteredWordIds.has(q.id)) {
-          counts[q.subCategoryKey].mastered += 1;
-        }
-      }
+      if (counts[cat]) addWord(cat);
+      if (q.subCategoryKey && counts[q.subCategoryKey]) addWord(q.subCategoryKey);
     });
 
     return counts;
-  }, [allCurriculumQuestions, masteredWordIds]);
+  }, [allCurriculumQuestions, masteredWordIds, totalCurriculumWords, totalMasteredWordsCount, isQuestionMastered]);
 
-  // Per-level counts (total and mastered) for level badges and test gates
+  // Per-level counts (total unique words and mastered words) for level badges and test gates
   const levelCounts = useMemo(() => {
-    const counts: Record<1 | 2 | 3, { total: number; mastered: number }> = {
-      1: { total: 0, mastered: 0 },
-      2: { total: 0, mastered: 0 },
-      3: { total: 0, mastered: 0 }
+    const counts: Record<1 | 2 | 3, { total: number; mastered: number; wordIds: Set<string> }> = {
+      1: { total: 0, mastered: 0, wordIds: new Set() },
+      2: { total: 0, mastered: 0, wordIds: new Set() },
+      3: { total: 0, mastered: 0, wordIds: new Set() }
     };
     allCurriculumQuestions.forEach(q => {
+      const wId = q.wordId || q.id;
       const lvl = (q.level || 1) as 1 | 2 | 3;
-      if (counts[lvl]) {
+      if (counts[lvl] && !counts[lvl].wordIds.has(wId)) {
+        counts[lvl].wordIds.add(wId);
         counts[lvl].total += 1;
-        if (masteredWordIds.has(q.id)) {
+        if (isQuestionMastered(q, masteredWordIds)) {
           counts[lvl].mastered += 1;
         }
       }
     });
     return counts;
-  }, [allCurriculumQuestions, masteredWordIds]);
+  }, [allCurriculumQuestions, masteredWordIds, isQuestionMastered]);
 
   const getRandomQuestion = useCallback((overrideMastered?: Set<string>, categoryOverride?: QuizCategoryFilter, modeOverride?: QuizMode, levelOverride?: QuizLevelFilter) => {
     setUserAnswer('');
@@ -758,13 +813,13 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
       // Priority 1: Unmastered (masteryLevel < 5) AND not yet asked in current rotation
       let candidatePool = targetPool.filter(q => 
-        !activeMastered.has(q.id) && !askedQuestionsRef.current.has(q.id)
+        !isQuestionMastered(q, activeMastered) && !askedQuestionsRef.current.has(q.id)
       );
 
       // Priority 2: If all unmastered were asked in this rotation, reset rotation and pick from unmastered
       if (candidatePool.length === 0) {
         askedQuestionsRef.current.clear();
-        candidatePool = targetPool.filter(q => !activeMastered.has(q.id));
+        candidatePool = targetPool.filter(q => !isQuestionMastered(q, activeMastered));
       }
 
       // Priority 3: If ALL questions in this category are mastered, allow practicing mastered questions
@@ -803,7 +858,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             russian: character,
             isTargetPrompt: true,
             isListeningMode: isListening,
-            id: selected.id
+            id: selected.id,
+            wordId: selected.wordId || selected.id
           });
         } else if (isHardSign(character)) {
           setCurrentQuestion({
@@ -821,7 +877,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             russian: character,
             isTargetPrompt: true,
             isListeningMode: isListening,
-            id: selected.id
+            id: selected.id,
+            wordId: selected.wordId || selected.id
           });
         } else {
           const acceptedAnswers = getAlphabetAcceptedAnswers(character, pronunciation, currentLanguage);
@@ -837,7 +894,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             russian: character,
             isTargetPrompt: true,
             isListeningMode: isListening,
-            id: selected.id
+            id: selected.id,
+            wordId: selected.wordId || selected.id
           });
         }
       } else {
@@ -869,7 +927,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               russian: targetWord,
               isTargetPrompt: true,
               isListeningMode: true,
-              id: selected.id
+              id: selected.id,
+              wordId: selected.wordId || selected.id
             });
           } else if (selected.isRussianToEnglish) {
             // Target -> Base (e.g. Prompt is "quince", User can answer "15", "quince", or base language "пятнадцать")
@@ -884,7 +943,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               russian: promptText,
               isTargetPrompt: true,
               isListeningMode: false,
-              id: selected.id
+              id: selected.id,
+              wordId: selected.wordId || selected.id
             });
           } else {
             // Base -> Target (e.g. Prompt is "15 (Пятнадцать)", User answers "quince" or "15")
@@ -899,7 +959,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               russian: targetWord,
               isTargetPrompt: false,
               isListeningMode: false,
-              id: selected.id
+              id: selected.id,
+              wordId: selected.wordId || selected.id
             });
           }
         } else {
@@ -926,7 +987,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               russian: targetWord,
               isTargetPrompt: true,
               isListeningMode: true,
-              id: selected.id
+              id: selected.id,
+              wordId: selected.wordId || selected.id
             });
           } else if (isVerboseDefinition && baseLanguage === currentLanguage) {
             // Pedagogical Rule for monolingual practice: Complex definition is the prompt, simplest single word is the answer!
@@ -941,7 +1003,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               russian: targetWord,
               isTargetPrompt: false,
               isListeningMode: false,
-              id: selected.id
+              id: selected.id,
+              wordId: selected.wordId || selected.id
             });
           } else if (selected.isRussianToEnglish) {
             // Target -> Base: prompt is target word in foreign language, answer must be in learner's base/native language
@@ -957,7 +1020,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               russian: promptText,
               isTargetPrompt: true,
               isListeningMode: false,
-              id: selected.id
+              id: selected.id,
+              wordId: selected.wordId || selected.id
             });
           } else {
             // Base -> Target: prompt is base word in learner's native tongue, answer must be in target language
@@ -973,7 +1037,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               russian: targetWord,
               isTargetPrompt: false,
               isListeningMode: false,
-              id: selected.id
+              id: selected.id,
+              wordId: selected.wordId || selected.id
             });
           }
         }
@@ -1347,7 +1412,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
       ProgressService.recordWordAttempt({
         category: currentQuestion.type || 'alphabet',
-        wordId: currentQuestion.id || `${currentQuestion.type}-${currentQuestion.prompt}`,
+        wordId: currentQuestion.wordId || currentQuestion.id || `${currentQuestion.type}-${currentQuestion.prompt}`,
         prompt: currentQuestion.prompt || '',
         answer: currentQuestion.answer || '',
         targetWord,
@@ -1358,9 +1423,17 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         if (updatedWord && updatedWord.masteryLevel >= MASTERY_THRESHOLD) {
           setIsWordJustMastered(true);
           masteredWordIdsRef.current.add(updatedWord.wordId);
+          if (currentQuestion.id) {
+            masteredWordIdsRef.current.add(currentQuestion.id);
+          }
+          if (currentQuestion.wordId) {
+            masteredWordIdsRef.current.add(currentQuestion.wordId);
+          }
           setMasteredWordIds(prev => {
             const next = new Set(prev);
             next.add(updatedWord.wordId);
+            if (currentQuestion.id) next.add(currentQuestion.id);
+            if (currentQuestion.wordId) next.add(currentQuestion.wordId);
             return next;
           });
         }
@@ -1559,8 +1632,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   // --- RENDER RECAP SCREEN WHEN SESSION IS COMPLETE ---
   if (isSessionComplete) {
     const percentage = sessionGoal > 0 ? Math.round((sessionScore / sessionGoal) * 100) : 0;
-    const masteredCount = masteredWordIds.size;
-    const remainingToMaster = Math.max(0, totalCurriculumQuestions - masteredCount);
+    const masteredCount = totalMasteredWordsCount;
+    const remainingToMaster = Math.max(0, totalCurriculumWords - masteredCount);
 
     let headlineTitle = '';
     let headlinePronunciation = '';
@@ -1856,15 +1929,15 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   const activeCategoryCountInfo = categoryCounts[activeCategoryItem.id];
   const activeCategoryCountDisplay = activeCategoryCountInfo?.mastered
     ? `${activeCategoryCountInfo.mastered}/${activeCategoryCountInfo.total}`
-    : (activeCategoryCountInfo?.total ?? allCurriculumQuestions.length);
+    : (activeCategoryCountInfo?.total ?? totalCurriculumWords);
 
   const activeLevelItem = ALL_QUIZ_LEVELS.find(l => l.id === activeLevel) || ALL_QUIZ_LEVELS[0];
   const activeLevelCountInfo = activeLevelItem.id === 'all'
-    ? { total: allCurriculumQuestions.length, mastered: masteredWordIds.size }
+    ? { total: totalCurriculumWords, mastered: totalMasteredWordsCount }
     : levelCounts[activeLevelItem.id as 1 | 2 | 3];
   const activeLevelCountDisplay = activeLevelCountInfo?.mastered
     ? `${activeLevelCountInfo.mastered}/${activeLevelCountInfo.total}`
-    : (activeLevelCountInfo?.total ?? allCurriculumQuestions.length);
+    : (activeLevelCountInfo?.total ?? totalCurriculumWords);
 
   const toolbarLabels = getQuizToolbarLabels(baseLanguage);
   const localizedActiveLevel = localizeLevelBadge(activeLevel, baseLanguage);
@@ -2012,7 +2085,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                   {ALL_QUIZ_LEVELS.map(lvl => {
                     const isSelected = activeLevel === lvl.id;
                     const countInfo = lvl.id === 'all'
-                      ? { total: allCurriculumQuestions.length, mastered: masteredWordIds.size }
+                      ? { total: totalCurriculumWords, mastered: totalMasteredWordsCount }
                       : levelCounts[lvl.id as 1 | 2 | 3];
                     const localizedLevelName = localizeLevelBadge(lvl.id, baseLanguage);
                     return (
@@ -2148,7 +2221,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         <h3 className="quiz-question-hint">
           {currentQuestion.isListeningMode && !showNext
             ? getListeningHeader(currentLanguage, baseLanguage, currentMeta.name)
-            : currentQuestion.hint}
+            : currentQuestion.isListeningMode && showNext
+              ? `🎧 ${baseLanguage === 'es' ? 'Escuchaste' : baseLanguage === 'ru' ? 'Вы услышали' : baseLanguage === 'fr' ? 'Vous avez entendu' : baseLanguage === 'de' ? 'Du hast gehört' : baseLanguage === 'pt' ? 'Você ouviu' : baseLanguage === 'id' ? 'Anda mendengar' : baseLanguage === 'tr' ? 'Duyduğunuz' : 'You heard'}: "${currentQuestion.prompt}"`
+              : currentQuestion.hint}
         </h3>
         <div className="quiz-prompt">
           {currentQuestion.isListeningMode && !showNext ? (
@@ -2186,14 +2261,24 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             </div>
           ) : (
             <>
-              <span className="quiz-prompt-text">{currentQuestion.prompt}</span>
-              {/* Audio for prompt: in target language if target prompt, else base language */}
-              <PronunciationButton 
-                text={currentQuestion.promptAudioWord || currentQuestion.targetAudioWord || currentQuestion.russian || currentQuestion.prompt}
-                lang={currentQuestion.isTargetPrompt ? currentLanguage : baseLanguage}
-                className="quiz-prompt-audio margin-left"
-                audioCategory={getAudioCategory(currentQuestion.type)}
-              />
+              <div className="quiz-prompt-main-row">
+                <span className="quiz-prompt-text">{currentQuestion.prompt}</span>
+                {/* Audio for prompt: in target language if target prompt, else base language */}
+                <PronunciationButton 
+                  text={currentQuestion.promptAudioWord || currentQuestion.targetAudioWord || currentQuestion.russian || currentQuestion.prompt}
+                  lang={currentQuestion.isTargetPrompt ? currentLanguage : baseLanguage}
+                  className="quiz-prompt-audio margin-left"
+                  audioCategory={getAudioCategory(currentQuestion.type)}
+                />
+              </div>
+              {showNext && (currentQuestion.baseMeaning || currentQuestion.meaningHint) && (
+                <div className="quiz-prompt-meaning-badge">
+                  <span className="meaning-label">
+                    {baseLanguage === 'es' ? 'Significado' : baseLanguage === 'ru' ? 'Значение' : baseLanguage === 'fr' ? 'Signification' : baseLanguage === 'de' ? 'Bedeutung' : baseLanguage === 'pt' ? 'Significado' : baseLanguage === 'id' ? 'Arti' : baseLanguage === 'tr' ? 'Anlamı' : 'Meaning'}:
+                  </span>{' '}
+                  <strong>{currentQuestion.baseMeaning || currentQuestion.meaningHint}</strong>
+                </div>
+              )}
             </>
           )}
         </div>
@@ -2370,6 +2455,14 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                   {isCorrect && isWordJustMastered && (
                     <div className="word-mastered-note">
                       🏆 <strong>Word Mastered (5/5)!</strong> Removed from upcoming questions.
+                    </div>
+                  )}
+                  {(currentQuestion.baseMeaning || currentQuestion.meaningHint) && (
+                    <div className="feedback-meaning-line">
+                      <span className="feedback-meaning-tag">
+                        💡 {baseLanguage === 'es' ? 'Significado' : baseLanguage === 'ru' ? 'Значение' : baseLanguage === 'fr' ? 'Signification' : baseLanguage === 'de' ? 'Bedeutung' : baseLanguage === 'pt' ? 'Significado' : baseLanguage === 'id' ? 'Arti' : baseLanguage === 'tr' ? 'Anlamı' : 'Meaning'}:
+                      </span>{' '}
+                      <strong>{currentQuestion.baseMeaning || currentQuestion.meaningHint}</strong>
                     </div>
                   )}
                 </div>

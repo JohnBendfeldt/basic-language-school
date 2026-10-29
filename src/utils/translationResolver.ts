@@ -416,6 +416,13 @@ export const EXTENDED_DICTIONARY: Record<string, Record<SupportedLanguageId, str
   'it is 3:30 (half past three)': { en: '3:30 (half past three)', es: 'Son las tres y media', fr: 'Il est trois heures et demie', ru: 'Половина четвёртого (3:30)', pt: 'São três e meia', de: 'Es ist halb vier', id: 'Sekarang jam setengah empat', tr: 'Saat üç buçuk' },
   'it is 4:15 (quarter past four)': { en: '4:15 (quarter past four)', es: 'Son las cuatro y cuarto', fr: 'Il est quatre heures et quart', ru: 'Четверть пятого (4:15)', pt: 'São quatro e quinze', de: 'Es ist Viertel nach vier', id: 'Sekarang jam empat lewat seperempat', tr: 'Saat dördü çeyrek geçiyor' },
   'it is 4:45 (quarter to five)': { en: '4:45 (quarter to five)', es: 'Son las cinco menos cuarto', fr: 'Il est cinq heures moins le quart', ru: 'Без четверти пять (4:45)', pt: 'São quinze para as cinco', de: 'Es ist Viertel vor fünf', id: 'Sekarang jam lima kurang seperempat', tr: 'Saat beşe çeyrek var' },
+  '3:30 (half past three)': { en: '3:30 (half past three)', es: 'Son las tres y media', fr: 'Il est trois heures et demie', ru: 'Половина четвёртого (3:30)', pt: 'São três e meia', de: 'Es ist halb vier', id: 'Sekarang jam setengah empat', tr: 'Saat üç buçuk' },
+  '4:15 (quarter past four)': { en: '4:15 (quarter past four)', es: 'Son las cuatro y cuarto', fr: 'Il est quatre heures et quart', ru: 'Четверть пятого (4:15)', pt: 'São quatro e quinze', de: 'Es ist Viertel nach vier', id: 'Sekarang jam empat lewat seperempat', tr: 'Saat dördü çeyrek geçiyor' },
+  '4:45 (quarter to five)': { en: '4:45 (quarter to five)', es: 'Son las cinco menos cuarto', fr: 'Il est cinq heures moins le quart', ru: 'Без четверти пять (4:45)', pt: 'São quinze para as cinco', de: 'Es ist Viertel vor fünf', id: 'Sekarang jam lima kurang seperempat', tr: 'Saat beşe çeyrek var' },
+  'it is 1:00 sharp': { en: 'It is 1:00 sharp', es: 'Es la una en punto', fr: 'Il est une heure pile', ru: 'Ровно один час', pt: 'É uma hora em ponto', de: 'Es ist Punkt ein Uhr', id: 'Sekarang jam satu tepat', tr: 'Saat tam bir' },
+  'it is 2:00': { en: 'It is 2:00', es: 'Son las dos', fr: 'Il est deux heures', ru: 'Два часа', pt: 'São duas horas', de: 'Es ist zwei Uhr', id: 'Sekarang jam dua', tr: 'Saat iki' },
+  'hi / bye': { en: 'Hi / Bye', es: 'Hola', fr: 'Salut', ru: 'Привет', pt: 'Olá', de: 'Hallo', id: 'Halo', tr: 'Merhaba' },
+  'es ist elf uhr': { en: 'Eleven o\'clock (11:00)', es: 'Son las once', fr: 'Il est onze heures', ru: 'Одиннадцать часов (11:00)', pt: 'São onze horas', de: 'Es ist elf Uhr', id: 'Jam sebelas', tr: 'Saat on bir' },
   'son las cuatro y cuarto': { en: '4:15 (quarter past four)', es: 'Son las cuatro y cuarto', fr: 'Il est quatre heures et quart', ru: 'Четверть пятого (4:15)', pt: 'São quatro e quinze', de: 'Es ist Viertel nach vier', id: 'Sekarang jam empat lewat seperempat', tr: 'Saat dördü çeyrek geçiyor' },
   'son las cinco menos cuarto': { en: '4:45 (quarter to five)', es: 'Son las cinco menos cuarto', fr: 'Il est cinq heures moins le quart', ru: 'Без четверти пять (4:45)', pt: 'São quinze para as cinco', de: 'Es ist Viertel vor fünf', id: 'Sekarang jam lima kurang seperempat', tr: 'Saat beşe çeyrek var' },
   'il est quatre heures et quart': { en: '4:15 (quarter past four)', es: 'Son las cuatro y cuarto', fr: 'Il est quatre heures et quart', ru: 'Четверть пятого (4:15)', pt: 'São quatro e quinze', de: 'Es ist Viertel nach vier', id: 'Sekarang jam empat lewat seperempat', tr: 'Saat dördü çeyrek geçiyor' },
@@ -803,16 +810,18 @@ export const resolveTranslation = (
 
   // 3. Direct target word lookup across dictionary values
   const directTarget = ((item as any).russianWord || (item as any).russian || (item as any).word || item.phrase || '').toString().toLowerCase().trim();
+  const directTargetClean = directTarget.replace(/\s*\([^)]*\)\s*/g, ' ').trim();
   if (directTarget) {
     for (const mapping of Object.values(EXTENDED_DICTIONARY)) {
       if (
-        (mapping.ru && mapping.ru.toLowerCase() === directTarget) ||
-        (mapping.es && mapping.es.toLowerCase() === directTarget) ||
-        (mapping.fr && mapping.fr.toLowerCase() === directTarget) ||
-        (mapping.pt && mapping.pt.toLowerCase() === directTarget) ||
-        (mapping.de && mapping.de.toLowerCase() === directTarget) ||
-        (mapping.id && mapping.id.toLowerCase() === directTarget) ||
-        (mapping.tr && mapping.tr.toLowerCase() === directTarget)
+        (mapping.en && (mapping.en.toLowerCase() === directTarget || mapping.en.toLowerCase().replace(/\s*\([^)]*\)\s*/g, ' ').trim() === directTargetClean)) ||
+        (mapping.ru && (mapping.ru.toLowerCase() === directTarget || mapping.ru.toLowerCase().replace(/\s*\([^)]*\)\s*/g, ' ').trim() === directTargetClean)) ||
+        (mapping.es && (mapping.es.toLowerCase() === directTarget || mapping.es.toLowerCase().replace(/\s*\([^)]*\)\s*/g, ' ').trim() === directTargetClean)) ||
+        (mapping.fr && (mapping.fr.toLowerCase() === directTarget || mapping.fr.toLowerCase().replace(/\s*\([^)]*\)\s*/g, ' ').trim() === directTargetClean)) ||
+        (mapping.pt && (mapping.pt.toLowerCase() === directTarget || mapping.pt.toLowerCase().replace(/\s*\([^)]*\)\s*/g, ' ').trim() === directTargetClean)) ||
+        (mapping.de && (mapping.de.toLowerCase() === directTarget || mapping.de.toLowerCase().replace(/\s*\([^)]*\)\s*/g, ' ').trim() === directTargetClean)) ||
+        (mapping.id && (mapping.id.toLowerCase() === directTarget || mapping.id.toLowerCase().replace(/\s*\([^)]*\)\s*/g, ' ').trim() === directTargetClean)) ||
+        (mapping.tr && (mapping.tr.toLowerCase() === directTarget || mapping.tr.toLowerCase().replace(/\s*\([^)]*\)\s*/g, ' ').trim() === directTargetClean))
       ) {
         if (mapping[baseLang]) return mapping[baseLang];
       }

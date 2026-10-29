@@ -29,7 +29,7 @@ export interface PhraseItem {
   meaning?: string;
   translation?: string;
   // Phonetic guide
-  pronunciation: string;
+  pronunciation?: string;
   category?: string;
   icon?: string;
   level?: 1 | 2 | 3;
