@@ -207,4 +207,37 @@ describe('Multi-Language Core Architecture', () => {
     fireEvent.click(backdrop!);
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
+
+  it('renders unique emblems with correct aria-labels for all 8 supported languages', async () => {
+    const { AppEmblem } = await import('../components/AppEmblem');
+    const { getAlphabetQuizHint } = await import('../utils/translationResolver');
+
+    const expectedLabels: Record<string, string> = {
+      ru: 'Basic Russian emblem',
+      de: 'Basic German emblem',
+      es: 'Basic Spanish emblem',
+      fr: 'Basic French emblem',
+      pt: 'Basic Portuguese emblem',
+      id: 'Basic Indonesian emblem',
+      tr: 'Basic Turkish emblem',
+      en: 'Basic English emblem'
+    };
+
+    for (const [lang, label] of Object.entries(expectedLabels)) {
+      const { unmount } = render(<AppEmblem language={lang as any} />);
+      const emblem = screen.getByRole('img', { name: label });
+      expect(emblem).toBeInTheDocument();
+      unmount();
+    }
+
+    // Verify listening mode never leaks letter in alphabet hint
+    const listeningHint = getAlphabetQuizHint('B', 'fr', 'en', 'French', true);
+    expect(listeningHint).not.toContain('"B"');
+    expect(listeningHint).toContain('Listen to the audio and type the letter in French');
+
+    // Verify non-listening mode asks for pronunciation rather than commanding "Type B"
+    const standardHint = getAlphabetQuizHint('B', 'fr', 'en', 'French', false);
+    expect(standardHint).toContain('What is the pronunciation or name of the letter "B" in French?');
+    expect(standardHint).not.toContain('Type the letter "B"');
+  });
 });
