@@ -107,7 +107,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
 
     // Answer questions 1 through 5
     for (let i = 1; i <= 5; i++) {
-      const input = screen.getByPlaceholderText(/Your answer here/i);
+      const input = screen.getByRole('textbox');
       fireEvent.change(input, { target: { value: 'ah' } });
       fireEvent.click(screen.getByRole('button', { name: 'Check Answer' }));
 
@@ -187,7 +187,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
       alphabet: [{ character: 'А', pronunciation: 'ah' }]
     }} />);
 
-    const input = await screen.findByPlaceholderText(/Your answer here/i);
+    const input = await screen.findByRole('textbox');
     fireEvent.change(input, { target: { value: 'wrong' } });
     fireEvent.click(screen.getByRole('button', { name: 'Check Answer' }));
 
