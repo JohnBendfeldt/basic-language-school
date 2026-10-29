@@ -57,6 +57,9 @@ const basicPhrases: PhraseItem[] = [
   { phrase: '¿Puede repetir, por favor?', translation: 'Can you repeat, please?', pronunciation: 'PWEH-deh reh-peh-TEER pohr fah-BVOHR', category: 'Conversation', icon: '🔄' },
   { phrase: 'Hasta luego', translation: 'See you later', pronunciation: 'AHS-tah LWEH-goh', category: 'Farewells', icon: '👋' },
   { phrase: 'Adiós', translation: 'Goodbye', pronunciation: 'ah-DYOHS', category: 'Farewells', icon: '🚪' },
+  { phrase: '¿Me escucha?', translation: 'Can you hear me?', pronunciation: 'meh ehs-KOO-chah', category: 'Tech', icon: '🎧' },
+  { phrase: '¿Puede ver mi pantalla?', translation: 'Can you see my screen?', pronunciation: 'PWEH-deh bvehr mee pahn-TAH-yah', category: 'Tech', icon: '🖥️' },
+  { phrase: '¿Cuál es la contraseña del wifi?', translation: 'What is the Wi-Fi password?', pronunciation: 'kwahl ehs lah kohn-trah-SEH-nyah dehl wee-fee', category: 'Tech', icon: '📶' },
 ];
 
 // Spanish numbers
@@ -115,6 +118,39 @@ const commonWords: PhraseItem[] = [
   { phrase: 'País', translation: 'Country', pronunciation: 'pah-EES', category: 'Places', icon: '🗺️' },
   { phrase: 'Carro / Coche', translation: 'Car', pronunciation: 'KAH-rroh / KOH-cheh', category: 'Transport', icon: '🚗' },
   { phrase: 'Tren', translation: 'Train', pronunciation: 'trehn', category: 'Transport', icon: '🚆' },
+  // Colors & Descriptions
+  { phrase: 'Rojo', translation: 'Red', pronunciation: 'ROH-hoh', category: 'Colors', icon: '🔴' },
+  { phrase: 'Azul', translation: 'Blue', pronunciation: 'ah-SOOL', category: 'Colors', icon: '🔵' },
+  { phrase: 'Verde', translation: 'Green', pronunciation: 'BEHR-deh', category: 'Colors', icon: '🟢' },
+  { phrase: 'Amarillo', translation: 'Yellow', pronunciation: 'ah-mah-REE-yoh', category: 'Colors', icon: '🟡' },
+  { phrase: 'Negro', translation: 'Black', pronunciation: 'NEH-groh', category: 'Colors', icon: '⚫' },
+  { phrase: 'Blanco', translation: 'White', pronunciation: 'BLAHN-koh', category: 'Colors', icon: '⚪' },
+  { phrase: 'Grande', translation: 'Big', pronunciation: 'GRAHN-deh', category: 'Colors', icon: '🐘' },
+  { phrase: 'Pequeño', translation: 'Small', pronunciation: 'peh-KEH-nyoh', category: 'Colors', icon: '🐁' },
+  { phrase: 'Nuevo', translation: 'New', pronunciation: 'NWEH-bvoh', category: 'Colors', icon: '✨' },
+  { phrase: 'Viejo', translation: 'Old', pronunciation: 'BYEH-hoh', category: 'Colors', icon: '🕰️' },
+  // Weather & Seasons
+  { phrase: 'Sol', translation: 'Sun', pronunciation: 'sohl', category: 'Weather', icon: '☀️' },
+  { phrase: 'Lluvia', translation: 'Rain', pronunciation: 'YOO-bvyah', category: 'Weather', icon: '🌧️' },
+  { phrase: 'Nieve', translation: 'Snow', pronunciation: 'NYEH-bveh', category: 'Weather', icon: '❄️' },
+  { phrase: 'Viento', translation: 'Wind', pronunciation: 'BYEHN-toh', category: 'Weather', icon: '💨' },
+  { phrase: 'Nube', translation: 'Cloud', pronunciation: 'NOO-bveh', category: 'Weather', icon: '☁️' },
+  { phrase: 'Tormenta', translation: 'Storm', pronunciation: 'tohr-MEHN-tah', category: 'Weather', icon: '⛈️' },
+  { phrase: 'Caliente', translation: 'Hot', pronunciation: 'kah-LYEHN-teh', category: 'Weather', icon: '🔥' },
+  { phrase: 'Frío', translation: 'Cold', pronunciation: 'FREE-oh', category: 'Weather', icon: '🥶' },
+  // Tech & Remote Work
+  { phrase: 'Computadora', translation: 'Computer', pronunciation: 'kohm-poo-tah-DOH-rah', category: 'Tech', icon: '💻' },
+  { phrase: 'Teléfono', translation: 'Phone', pronunciation: 'teh-LEH-foh-noh', category: 'Tech', icon: '📱' },
+  { phrase: 'Internet', translation: 'Internet', pronunciation: 'een-tehr-NEHT', category: 'Tech', icon: '🌐' },
+  { phrase: 'Contraseña', translation: 'Password', pronunciation: 'kohn-trah-SEH-nyah', category: 'Tech', icon: '🔐' },
+  { phrase: 'Correo electrónico', translation: 'Email', pronunciation: 'koh-RREH-oh eh-lehk-TROH-nee-koh', category: 'Tech', icon: '📧' },
+  { phrase: 'Pantalla', translation: 'Screen', pronunciation: 'pahn-TAH-yah', category: 'Tech', icon: '🖥️' },
+  { phrase: 'Reunión', translation: 'Meeting', pronunciation: 'reh-oo-NYOHN', category: 'Tech', icon: '📅' },
+  { phrase: 'Archivo', translation: 'File', pronunciation: 'ahr-CHEE-bvoh', category: 'Tech', icon: '📁' },
+  { phrase: 'Enlace', translation: 'Link', pronunciation: 'ehn-LAH-seh', category: 'Tech', icon: '🔗' },
+  { phrase: 'Código', translation: 'Code', pronunciation: 'KOH-dee-goh', category: 'Tech', icon: '🧑‍💻' },
+  { phrase: 'Error', translation: 'Error', pronunciation: 'eh-RROHR', category: 'Tech', icon: '🐛' },
+  { phrase: 'Batería', translation: 'Battery', pronunciation: 'bah-teh-REE-ah', category: 'Tech', icon: '🔋' },
 ];
 
 // Telling time in Spanish

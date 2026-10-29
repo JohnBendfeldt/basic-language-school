@@ -172,5 +172,42 @@ test.describe('Playwright E2E: Layout, Modals, Alignment & Neural Audio Matrix',
     const synthCalls = await page.evaluate(() => (window as any).__speechSynthCalls || 0);
     expect(synthCalls).toBe(0);
   });
+
+  test('Topic & Industry Pack Filter Pills: filters Common Words into Tech & IT, Colors, and Weather packs with native neural audio', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.addInitScript(() => {
+      localStorage.setItem('basic_language_base_lang', 'en');
+      localStorage.setItem('basic_language_target_lang', 'es');
+    });
+
+    await page.goto('/learn/es/words');
+
+    const filterBar = page.getByRole('group', { name: /Filter by topic or industry pack/i });
+    await expect(filterBar).toBeVisible();
+
+    const techPill = filterBar.locator('button[data-category="Tech"]');
+    const colorsPill = filterBar.locator('button[data-category="Colors"]');
+    const weatherPill = filterBar.locator('button[data-category="Weather"]');
+
+    await expect(techPill).toBeVisible();
+    await expect(colorsPill).toBeVisible();
+    await expect(weatherPill).toBeVisible();
+
+    // Filter to Tech & IT pack
+    await techPill.click();
+    await expect(page.locator('h3.phrase-text', { hasText: /^Contraseña$/ })).toBeVisible();
+    await expect(page.locator('h3.phrase-text', { hasText: /^Agua$/ })).toBeHidden();
+
+    // Filter to Colors pack
+    await colorsPill.click();
+    await expect(page.locator('h3.phrase-text', { hasText: /^Rojo$/ })).toBeVisible();
+    await expect(page.locator('h3.phrase-text', { hasText: /^Contraseña$/ })).toBeHidden();
+
+    // Filter to Weather pack
+    await weatherPill.click();
+    await expect(page.locator('h3.phrase-text', { hasText: /^Tormenta$/ })).toBeVisible();
+  });
 });
 

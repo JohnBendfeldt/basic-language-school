@@ -54,6 +54,9 @@ const basicPhrases: PhraseItem[] = [
   { phrase: 'Pouvez-vous répéter ?', translation: 'Can you repeat?', pronunciation: 'poo-vay voo ray-pay-TAY', category: 'Conversation', icon: '🔄' },
   { phrase: 'À bientôt', translation: 'See you soon', pronunciation: 'ah byehn-TOH', category: 'Farewells', icon: '👋' },
   { phrase: 'Au revoir', translation: 'Goodbye', pronunciation: 'oh ruh-VWAHR', category: 'Farewells', icon: '🚪' },
+  { phrase: 'Vous m\'entendez ?', translation: 'Can you hear me?', pronunciation: 'voo mahn-tahn-DAY', category: 'Tech', icon: '🎧' },
+  { phrase: 'Voyez-vous mon écran ?', translation: 'Can you see my screen?', pronunciation: 'vwah-yay voo mohn ay-KRAHN', category: 'Tech', icon: '🖥️' },
+  { phrase: 'Quel est le mot de passe du Wi-Fi ?', translation: 'What is the Wi-Fi password?', pronunciation: 'kehl eh luh moh duh pahs dew wee-fee', category: 'Tech', icon: '📶' },
 ];
 
 // French numbers
@@ -112,6 +115,39 @@ const commonWords: PhraseItem[] = [
   { phrase: 'Pays', translation: 'Country', pronunciation: 'pay-EE', category: 'Places', icon: '🗺️' },
   { phrase: 'Voiture', translation: 'Car', pronunciation: 'vwah-TYOOR', category: 'Transport', icon: '🚗' },
   { phrase: 'Train', translation: 'Train', pronunciation: 'trahn', category: 'Transport', icon: '🚆' },
+  // Colors & Descriptions
+  { phrase: 'Rouge', translation: 'Red', pronunciation: 'roozh', category: 'Colors', icon: '🔴' },
+  { phrase: 'Bleu', translation: 'Blue', pronunciation: 'bluh', category: 'Colors', icon: '🔵' },
+  { phrase: 'Vert', translation: 'Green', pronunciation: 'vehr', category: 'Colors', icon: '🟢' },
+  { phrase: 'Jaune', translation: 'Yellow', pronunciation: 'zhohn', category: 'Colors', icon: '🟡' },
+  { phrase: 'Noir', translation: 'Black', pronunciation: 'nwahr', category: 'Colors', icon: '⚫' },
+  { phrase: 'Blanc', translation: 'White', pronunciation: 'blahn', category: 'Colors', icon: '⚪' },
+  { phrase: 'Grand', translation: 'Big', pronunciation: 'grahn', category: 'Colors', icon: '🐘' },
+  { phrase: 'Petit', translation: 'Small', pronunciation: 'puh-TEE', category: 'Colors', icon: '🐁' },
+  { phrase: 'Nouveau', translation: 'New', pronunciation: 'noo-VOH', category: 'Colors', icon: '✨' },
+  { phrase: 'Vieux', translation: 'Old', pronunciation: 'vyuh', category: 'Colors', icon: '🕰️' },
+  // Weather & Seasons
+  { phrase: 'Soleil', translation: 'Sun', pronunciation: 'soh-LAY', category: 'Weather', icon: '☀️' },
+  { phrase: 'Pluie', translation: 'Rain', pronunciation: 'plwee', category: 'Weather', icon: '🌧️' },
+  { phrase: 'Neige', translation: 'Snow', pronunciation: 'nehzh', category: 'Weather', icon: '❄️' },
+  { phrase: 'Vent', translation: 'Wind', pronunciation: 'vahn', category: 'Weather', icon: '💨' },
+  { phrase: 'Nuage', translation: 'Cloud', pronunciation: 'new-AZH', category: 'Weather', icon: '☁️' },
+  { phrase: 'Orage', translation: 'Storm', pronunciation: 'oh-RAZH', category: 'Weather', icon: '⛈️' },
+  { phrase: 'Chaud', translation: 'Hot', pronunciation: 'shoh', category: 'Weather', icon: '🔥' },
+  { phrase: 'Froid', translation: 'Cold', pronunciation: 'frwah', category: 'Weather', icon: '🥶' },
+  // Tech & Remote Work
+  { phrase: 'Ordinateur', translation: 'Computer', pronunciation: 'ohr-dee-nah-TER', category: 'Tech', icon: '💻' },
+  { phrase: 'Téléphone', translation: 'Phone', pronunciation: 'tay-lay-FOHN', category: 'Tech', icon: '📱' },
+  { phrase: 'Internet', translation: 'Internet', pronunciation: 'ahn-tehr-NET', category: 'Tech', icon: '🌐' },
+  { phrase: 'Mot de passe', translation: 'Password', pronunciation: 'moh duh PAHS', category: 'Tech', icon: '🔐' },
+  { phrase: 'Courriel', translation: 'Email', pronunciation: 'koo-RYEL', category: 'Tech', icon: '📧' },
+  { phrase: 'Écran', translation: 'Screen', pronunciation: 'ay-KRAHN', category: 'Tech', icon: '🖥️' },
+  { phrase: 'Réunion', translation: 'Meeting', pronunciation: 'ray-ew-NYOHN', category: 'Tech', icon: '📅' },
+  { phrase: 'Fichier', translation: 'File', pronunciation: 'fee-SHYAY', category: 'Tech', icon: '📁' },
+  { phrase: 'Lien', translation: 'Link', pronunciation: 'lyahn', category: 'Tech', icon: '🔗' },
+  { phrase: 'Code', translation: 'Code', pronunciation: 'kohd', category: 'Tech', icon: '🧑‍💻' },
+  { phrase: 'Erreur', translation: 'Error', pronunciation: 'eh-RER', category: 'Tech', icon: '🐛' },
+  { phrase: 'Batterie', translation: 'Battery', pronunciation: 'bah-TREE', category: 'Tech', icon: '🔋' },
 ];
 
 // Telling time in French

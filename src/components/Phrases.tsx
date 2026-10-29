@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { PhraseItem } from '../types/index';
 import PronunciationButton from './PronunciationButton';
 import { NumberBadge } from './NumberBadge';
@@ -6,6 +6,33 @@ import { FaSyncAlt } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
 import { resolveTranslation, extractDigit } from '../utils/translationResolver';
 import { localizeCategoryBadge } from '../utils/pageDictionary';
+
+const CATEGORY_ICONS: Record<string, string> = {
+  'all': '✨',
+  'colors': '🎨',
+  'weather': '☀️',
+  'tech': '💻',
+  'food & drink': '🍲',
+  'dining': '🍽️',
+  'travel': '✈️',
+  'places': '🏙️',
+  'transport': '🚆',
+  'people': '👥',
+  'greetings': '👋',
+  'conversation': '💬',
+  'introductions': '🤝',
+  'politeness': '🙏',
+  'responses': '✅',
+  'farewells': '🚪',
+  'shopping': '🛍️',
+  'emergency': '🆘',
+  'essentials': '⭐',
+  'work': '💼',
+  'finance': '💵',
+  'time': '⏱️',
+  'questions': '❓',
+  'common verbs': '🏃'
+};
 
 interface PhraseCardProps {
   targetText: string;
@@ -149,15 +176,55 @@ const Phrases: React.FC<PhrasesProps> = ({
   contentType = 'phrases'
 }) => {
   const { currentLanguage, baseLanguage, ui } = useLanguage();
+  const [activeCategory, setActiveCategory] = useState<string>('all');
   const [revealedCards, setRevealedCards] = useState<boolean[]>(
     new Array(data.length).fill(false)
   );
   const [lastToggledCard, setLastToggledCard] = useState<number | null>(null);
 
+  // Build available category pills with counts
+  const categoryPills = useMemo(() => {
+    if (contentType === 'numbers' || contentType === 'time') return [];
+    const counts = new Map<string, number>();
+    for (const item of data) {
+      if (item.category) {
+        counts.set(item.category, (counts.get(item.category) || 0) + 1);
+      }
+    }
+    if (counts.size < 2) return [];
+
+    // Highlight industry & everyday topic packs first (Tech, Colors, Weather), then remaining categories
+    const priorityOrder = ['Tech', 'Colors', 'Weather', 'Food & Drink', 'Dining', 'Travel', 'Places', 'Transport', 'People', 'Greetings', 'Conversation', 'Politeness', 'Shopping', 'Emergency', 'Essentials', 'Work', 'Finance', 'Time', 'Questions', 'Common Verbs'];
+    const entries = Array.from(counts.entries()).sort((a, b) => {
+      const idxA = priorityOrder.indexOf(a[0]);
+      const idxB = priorityOrder.indexOf(b[0]);
+      if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+      if (idxA !== -1) return -1;
+      if (idxB !== -1) return 1;
+      return a[0].localeCompare(b[0]);
+    });
+
+    return entries.map(([cat, count]) => ({
+      id: cat,
+      label: localizeCategoryBadge(cat, baseLanguage) || cat,
+      icon: CATEGORY_ICONS[cat.toLowerCase()] || '📌',
+      count
+    }));
+  }, [data, contentType, baseLanguage]);
+
+  const filteredData = useMemo(() => {
+    if (activeCategory === 'all') return data;
+    return data.filter(item => item.category === activeCategory);
+  }, [data, activeCategory]);
+
   useEffect(() => {
-    setRevealedCards(new Array(data.length).fill(false));
+    setActiveCategory('all');
+  }, [data, title, currentLanguage]);
+
+  useEffect(() => {
+    setRevealedCards(new Array(filteredData.length).fill(false));
     setLastToggledCard(null);
-  }, [data, title, baseLanguage]);
+  }, [filteredData, title, baseLanguage, activeCategory]);
 
   const toggleReveal = (index: number) => {
     const newRevealedCards = [...revealedCards];
@@ -170,8 +237,10 @@ const Phrases: React.FC<PhrasesProps> = ({
 
   const toggleAll = () => {
     const nextState = !allRevealed;
-    setRevealedCards(new Array(data.length).fill(nextState));
+    setRevealedCards(new Array(filteredData.length).fill(nextState));
   };
+
+  const allLabel = localizeCategoryBadge('all', baseLanguage) || 'All';
 
   return (
     <div className="section">
@@ -193,14 +262,48 @@ const Phrases: React.FC<PhrasesProps> = ({
         </button>
       </div>
 
+      {categoryPills.length > 0 && (
+        <div className="topic-pack-filter-bar" role="group" aria-label="Filter by topic or industry pack">
+          <button
+            type="button"
+            className={`topic-pack-pill ${activeCategory === 'all' ? 'active' : ''}`}
+            aria-pressed={activeCategory === 'all'}
+            data-category="all"
+            onClick={() => setActiveCategory('all')}
+          >
+            <span className="topic-pack-icon" aria-hidden="true">✨</span>
+            <span className="topic-pack-label">{allLabel}</span>
+            <span className="topic-pack-count">{data.length}</span>
+          </button>
+          {categoryPills.map((pill) => {
+            const isSelected = activeCategory === pill.id;
+            const isFeaturedPack = pill.id === 'Tech' || pill.id === 'Colors' || pill.id === 'Weather';
+            return (
+              <button
+                key={pill.id}
+                type="button"
+                className={`topic-pack-pill ${isSelected ? 'active' : ''} ${isFeaturedPack ? 'featured-pack' : ''}`}
+                aria-pressed={isSelected}
+                data-category={pill.id}
+                onClick={() => setActiveCategory(pill.id)}
+              >
+                <span className="topic-pack-icon" aria-hidden="true">{pill.icon}</span>
+                <span className="topic-pack-label">{pill.label}</span>
+                <span className="topic-pack-count">{pill.count}</span>
+              </button>
+            );
+          })}
+        </div>
+      )}
+
       <div className="phrases-container">
-        {data.map((item, index) => {
+        {filteredData.map((item, index) => {
           const targetText = (item.russian || item.phrase || item.target || '').toString();
           const translatedText = resolveTranslation(item, currentLanguage, baseLanguage);
 
           return (
             <PhraseCard 
-              key={index}
+              key={`${activeCategory}-${index}`}
               targetText={targetText}
               translatedText={translatedText}
               pronunciation={item.pronunciation || ''}

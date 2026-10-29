@@ -115,4 +115,39 @@ describe('Phrases Component - Intuitive Reveal & Study Mode', () => {
       window.Audio = OriginalAudio;
     }
   });
+
+  it('renders Topic & Industry Pack filter pills and filters cards when a category pill is clicked', () => {
+    const packData: PhraseItem[] = [
+      { phrase: 'Computadora', translation: 'Computer', pronunciation: 'kohm-poo-tah-DOH-rah', category: 'Tech', icon: '💻' },
+      { phrase: 'Contraseña', translation: 'Password', pronunciation: 'kohn-trah-SEH-nyah', category: 'Tech', icon: '🔐' },
+      { phrase: 'Rojo', translation: 'Red', pronunciation: 'ROH-hoh', category: 'Colors', icon: '🔴' },
+      { phrase: 'Lluvia', translation: 'Rain', pronunciation: 'YOO-bvyah', category: 'Weather', icon: '🌧️' }
+    ];
+
+    render(<Phrases data={packData} title="Common Words" contentType="words" />);
+
+    const filterGroup = screen.getByRole('group', { name: /Filter by topic or industry pack/i });
+    expect(filterGroup).toBeInTheDocument();
+
+    // Initially All (4) is selected and all 4 cards are shown
+    expect(screen.getByText('Computadora')).toBeInTheDocument();
+    expect(screen.getByText('Rojo')).toBeInTheDocument();
+    expect(screen.getByText('Lluvia')).toBeInTheDocument();
+
+    // Click the Colors pill
+    const colorsPill = screen.getByRole('button', { name: /Colors/i });
+    fireEvent.click(colorsPill);
+
+    expect(screen.getByText('Rojo')).toBeInTheDocument();
+    expect(screen.queryByText('Computadora')).not.toBeInTheDocument();
+    expect(screen.queryByText('Lluvia')).not.toBeInTheDocument();
+
+    // Click Tech & IT pill
+    const techPill = screen.getByRole('button', { name: /Tech & IT/i });
+    fireEvent.click(techPill);
+
+    expect(screen.getByText('Computadora')).toBeInTheDocument();
+    expect(screen.getByText('Contraseña')).toBeInTheDocument();
+    expect(screen.queryByText('Rojo')).not.toBeInTheDocument();
+  });
 });

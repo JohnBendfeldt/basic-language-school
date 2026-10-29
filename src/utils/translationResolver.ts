@@ -428,7 +428,34 @@ export const EXTENDED_DICTIONARY: Record<string, Record<SupportedLanguageId, str
   'one hundred': { en: 'One hundred', es: 'Cien', fr: 'Cent', ru: 'Сто' },
   'one thousand': { en: 'One thousand', es: 'Mil', fr: 'Mille', ru: 'Тысяча' },
   'is it far from here?': { en: 'Is it far from here?', es: '¿Está lejos de aquí?', fr: 'Est-ce loin d\'ici ?', ru: 'Это далеко отсюда?' },
-  'could you speak slower, please?': { en: 'Could you speak slower, please?', es: 'Hable más despacio, por favor', fr: 'Parlez plus lentement, s\'il vous plaît', ru: 'Говорите медленнее, пожалуйста' }
+  'could you speak slower, please?': { en: 'Could you speak slower, please?', es: 'Hable más despacio, por favor', fr: 'Parlez plus lentement, s\'il vous plaît', ru: 'Говорите медленнее, пожалуйста' },
+
+  // Colors & Descriptions Pack
+  'red': { en: 'Red', es: 'Rojo', fr: 'Rouge', ru: 'Красный' },
+  'blue': { en: 'Blue', es: 'Azul', fr: 'Bleu', ru: 'Синий' },
+  'green': { en: 'Green', es: 'Verde', fr: 'Vert', ru: 'Зелёный' },
+  'black': { en: 'Black', es: 'Negro', fr: 'Noir', ru: 'Чёрный' },
+  'white': { en: 'White', es: 'Blanco', fr: 'Blanc', ru: 'Белый' },
+
+  // Weather & Seasons Pack
+  'wind': { en: 'Wind', es: 'Viento', fr: 'Vent', ru: 'Ветер' },
+  'cloud': { en: 'Cloud', es: 'Nube', fr: 'Nuage', ru: 'Облако' },
+  'storm': { en: 'Storm', es: 'Tormenta', fr: 'Orage', ru: 'Гроза' },
+
+  // Tech & Remote Work Pack
+  'internet': { en: 'Internet', es: 'Internet', fr: 'Internet', ru: 'Интернет' },
+  'password': { en: 'Password', es: 'Contraseña', fr: 'Mot de passe', ru: 'Пароль' },
+  'email': { en: 'Email', es: 'Correo electrónico', fr: 'Courriel', ru: 'Электронная почта' },
+  'screen': { en: 'Screen', es: 'Pantalla', fr: 'Écran', ru: 'Экран' },
+  'meeting': { en: 'Meeting', es: 'Reunión', fr: 'Réunion', ru: 'Встреча' },
+  'file': { en: 'File', es: 'Archivo', fr: 'Fichier', ru: 'Файл' },
+  'link': { en: 'Link', es: 'Enlace', fr: 'Lien', ru: 'Ссылка' },
+  'code': { en: 'Code', es: 'Código', fr: 'Code', ru: 'Код' },
+  'error': { en: 'Error', es: 'Error', fr: 'Erreur', ru: 'Ошибка' },
+  'battery': { en: 'Battery', es: 'Batería', fr: 'Batterie', ru: 'Батарея' },
+  'can you hear me?': { en: 'Can you hear me?', es: '¿Me escucha?', fr: 'Vous m\'entendez ?', ru: 'Вы меня слышите?' },
+  'can you see my screen?': { en: 'Can you see my screen?', es: '¿Puede ver mi pantalla?', fr: 'Voyez-vous mon écran ?', ru: 'Видно мой экран?' },
+  'what is the wi-fi password?': { en: 'What is the Wi-Fi password?', es: '¿Cuál es la contraseña del wifi?', fr: 'Quel est le mot de passe du Wi-Fi ?', ru: 'Какой пароль от вайфая?' }
 };
 
 /**

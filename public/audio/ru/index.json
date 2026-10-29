@@ -1,7 +1,7 @@
 {
   "language": "ru",
   "voice": "ru-RU-SvetlanaNeural",
-  "generated": "2026-10-29T14:35:46.858652Z",
+  "generated": "2026-10-29T15:07:50.730308Z",
   "files": {
     "alphabet": [
       {
@@ -487,6 +487,21 @@
         "filename": "как_это_по-русски.mp3",
         "path": "/audio/ru/phrases/как_это_по-русски.mp3",
         "text": "Как это по-русски?"
+      },
+      {
+        "filename": "вы_меня_слышите.mp3",
+        "path": "/audio/ru/phrases/вы_меня_слышите.mp3",
+        "text": "Вы меня слышите?"
+      },
+      {
+        "filename": "видно_мой_экран.mp3",
+        "path": "/audio/ru/phrases/видно_мой_экран.mp3",
+        "text": "Видно мой экран?"
+      },
+      {
+        "filename": "какой_пароль_от_вайфая.mp3",
+        "path": "/audio/ru/phrases/какой_пароль_от_вайфая.mp3",
+        "text": "Какой пароль от вайфая?"
       }
     ],
     "numbers": [
@@ -933,6 +948,156 @@
         "text": "самолёт"
       },
       {
+        "filename": "красный.mp3",
+        "path": "/audio/ru/words/красный.mp3",
+        "text": "красный"
+      },
+      {
+        "filename": "синий.mp3",
+        "path": "/audio/ru/words/синий.mp3",
+        "text": "синий"
+      },
+      {
+        "filename": "зелёный.mp3",
+        "path": "/audio/ru/words/зелёный.mp3",
+        "text": "зелёный"
+      },
+      {
+        "filename": "жёлтый.mp3",
+        "path": "/audio/ru/words/жёлтый.mp3",
+        "text": "жёлтый"
+      },
+      {
+        "filename": "чёрный.mp3",
+        "path": "/audio/ru/words/чёрный.mp3",
+        "text": "чёрный"
+      },
+      {
+        "filename": "белый.mp3",
+        "path": "/audio/ru/words/белый.mp3",
+        "text": "белый"
+      },
+      {
+        "filename": "большой.mp3",
+        "path": "/audio/ru/words/большой.mp3",
+        "text": "большой"
+      },
+      {
+        "filename": "маленький.mp3",
+        "path": "/audio/ru/words/маленький.mp3",
+        "text": "маленький"
+      },
+      {
+        "filename": "новый.mp3",
+        "path": "/audio/ru/words/новый.mp3",
+        "text": "новый"
+      },
+      {
+        "filename": "старый.mp3",
+        "path": "/audio/ru/words/старый.mp3",
+        "text": "старый"
+      },
+      {
+        "filename": "солнце.mp3",
+        "path": "/audio/ru/words/солнце.mp3",
+        "text": "солнце"
+      },
+      {
+        "filename": "дождь.mp3",
+        "path": "/audio/ru/words/дождь.mp3",
+        "text": "дождь"
+      },
+      {
+        "filename": "снег.mp3",
+        "path": "/audio/ru/words/снег.mp3",
+        "text": "снег"
+      },
+      {
+        "filename": "ветер.mp3",
+        "path": "/audio/ru/words/ветер.mp3",
+        "text": "ветер"
+      },
+      {
+        "filename": "облако.mp3",
+        "path": "/audio/ru/words/облако.mp3",
+        "text": "облако"
+      },
+      {
+        "filename": "гроза.mp3",
+        "path": "/audio/ru/words/гроза.mp3",
+        "text": "гроза"
+      },
+      {
+        "filename": "жарко.mp3",
+        "path": "/audio/ru/words/жарко.mp3",
+        "text": "жарко"
+      },
+      {
+        "filename": "холодно.mp3",
+        "path": "/audio/ru/words/холодно.mp3",
+        "text": "холодно"
+      },
+      {
+        "filename": "компьютер.mp3",
+        "path": "/audio/ru/words/компьютер.mp3",
+        "text": "компьютер"
+      },
+      {
+        "filename": "телефон.mp3",
+        "path": "/audio/ru/words/телефон.mp3",
+        "text": "телефон"
+      },
+      {
+        "filename": "интернет.mp3",
+        "path": "/audio/ru/words/интернет.mp3",
+        "text": "интернет"
+      },
+      {
+        "filename": "пароль.mp3",
+        "path": "/audio/ru/words/пароль.mp3",
+        "text": "пароль"
+      },
+      {
+        "filename": "электронная_почта.mp3",
+        "path": "/audio/ru/words/электронная_почта.mp3",
+        "text": "электронная почта"
+      },
+      {
+        "filename": "экран.mp3",
+        "path": "/audio/ru/words/экран.mp3",
+        "text": "экран"
+      },
+      {
+        "filename": "встреча.mp3",
+        "path": "/audio/ru/words/встреча.mp3",
+        "text": "встреча"
+      },
+      {
+        "filename": "файл.mp3",
+        "path": "/audio/ru/words/файл.mp3",
+        "text": "файл"
+      },
+      {
+        "filename": "ссылка.mp3",
+        "path": "/audio/ru/words/ссылка.mp3",
+        "text": "ссылка"
+      },
+      {
+        "filename": "код.mp3",
+        "path": "/audio/ru/words/код.mp3",
+        "text": "код"
+      },
+      {
+        "filename": "ошибка.mp3",
+        "path": "/audio/ru/words/ошибка.mp3",
+        "text": "ошибка"
+      },
+      {
+        "filename": "батарея.mp3",
+        "path": "/audio/ru/words/батарея.mp3",
+        "text": "батарея"
+      },
+      {
         "filename": "ребёнок.mp3",
         "path": "/audio/ru/words/ребёнок.mp3",
         "text": "Ребёнок"
@@ -1026,16 +1191,6 @@
         "filename": "завод.mp3",
         "path": "/audio/ru/words/завод.mp3",
         "text": "Завод"
-      },
-      {
-        "filename": "телефон.mp3",
-        "path": "/audio/ru/words/телефон.mp3",
-        "text": "Телефон"
-      },
-      {
-        "filename": "компьютер.mp3",
-        "path": "/audio/ru/words/компьютер.mp3",
-        "text": "Компьютер"
       },
       {
         "filename": "книга.mp3",
@@ -1168,11 +1323,6 @@
         "text": "Птица"
       },
       {
-        "filename": "солнце.mp3",
-        "path": "/audio/ru/words/солнце.mp3",
-        "text": "Солнце"
-      },
-      {
         "filename": "луна.mp3",
         "path": "/audio/ru/words/луна.mp3",
         "text": "Луна"
@@ -1181,26 +1331,6 @@
         "filename": "звезда.mp3",
         "path": "/audio/ru/words/звезда.mp3",
         "text": "Звезда"
-      },
-      {
-        "filename": "дождь.mp3",
-        "path": "/audio/ru/words/дождь.mp3",
-        "text": "Дождь"
-      },
-      {
-        "filename": "снег.mp3",
-        "path": "/audio/ru/words/снег.mp3",
-        "text": "Снег"
-      },
-      {
-        "filename": "холодно.mp3",
-        "path": "/audio/ru/words/холодно.mp3",
-        "text": "Холодно / Холодный"
-      },
-      {
-        "filename": "жарко.mp3",
-        "path": "/audio/ru/words/жарко.mp3",
-        "text": "Жарко / Горячий"
       },
       {
         "filename": "ёж.mp3",
@@ -1236,26 +1366,6 @@
         "filename": "плохой.mp3",
         "path": "/audio/ru/words/плохой.mp3",
         "text": "Плохой / Плохо"
-      },
-      {
-        "filename": "большой.mp3",
-        "path": "/audio/ru/words/большой.mp3",
-        "text": "Большой"
-      },
-      {
-        "filename": "маленький.mp3",
-        "path": "/audio/ru/words/маленький.mp3",
-        "text": "Маленький"
-      },
-      {
-        "filename": "новый.mp3",
-        "path": "/audio/ru/words/новый.mp3",
-        "text": "Новый"
-      },
-      {
-        "filename": "старый.mp3",
-        "path": "/audio/ru/words/старый.mp3",
-        "text": "Старый"
       },
       {
         "filename": "открыто.mp3",
@@ -1361,11 +1471,6 @@
         "filename": "ксилофон.mp3",
         "path": "/audio/ru/words/ксилофон.mp3",
         "text": "Ксилофон"
-      },
-      {
-        "filename": "жёлтый.mp3",
-        "path": "/audio/ru/words/жёлтый.mp3",
-        "text": "Жёлтый"
       },
       {
         "filename": "ноль.mp3",
@@ -2216,6 +2321,21 @@
         "filename": "это_далеко_отсюда.mp3",
         "path": "/audio/ru/words/это_далеко_отсюда.mp3",
         "text": "Это далеко отсюда?"
+      },
+      {
+        "filename": "вы_меня_слышите.mp3",
+        "path": "/audio/ru/words/вы_меня_слышите.mp3",
+        "text": "Вы меня слышите?"
+      },
+      {
+        "filename": "видно_мой_экран.mp3",
+        "path": "/audio/ru/words/видно_мой_экран.mp3",
+        "text": "Видно мой экран?"
+      },
+      {
+        "filename": "какой_пароль_от_вайфая.mp3",
+        "path": "/audio/ru/words/какой_пароль_от_вайфая.mp3",
+        "text": "Какой пароль от вайфая?"
       }
     ],
     "time": [

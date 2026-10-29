@@ -569,6 +569,76 @@ footer {
   transform: rotate(180deg);
 }
 
+/* Topic & Industry Pack Filter Bar */
+.topic-pack-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.55rem;
+  margin: 0 auto 1.75rem auto;
+  max-width: 980px;
+  padding: 0 0.5rem;
+}
+
+.topic-pack-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  background-color: var(--card-bg);
+  border: 1.5px solid rgba(74, 90, 244, 0.16);
+  color: var(--text-color);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+  white-space: nowrap;
+}
+
+.topic-pack-pill:hover {
+  border-color: var(--primary-color);
+  background-color: var(--primary-light);
+  transform: translateY(-1px);
+}
+
+.topic-pack-pill.featured-pack {
+  border-color: rgba(74, 90, 244, 0.32);
+  background: linear-gradient(135deg, rgba(74, 90, 244, 0.05), rgba(99, 102, 241, 0.09));
+}
+
+.topic-pack-pill.active {
+  background: linear-gradient(135deg, var(--primary-color), #3b49df);
+  border-color: var(--primary-color);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(74, 90, 244, 0.25);
+}
+
+.topic-pack-icon {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.topic-pack-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.35rem;
+  height: 1.25rem;
+  padding: 0 0.38rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background-color: rgba(74, 90, 244, 0.1);
+  color: var(--primary-color);
+}
+
+.topic-pack-pill.active .topic-pack-count {
+  background-color: rgba(255, 255, 255, 0.24);
+  color: #ffffff;
+}
+
 .phrases-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

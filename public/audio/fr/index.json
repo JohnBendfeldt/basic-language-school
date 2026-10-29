@@ -1,7 +1,7 @@
 {
   "language": "fr",
   "voice": "fr-FR-HenriNeural",
-  "generated": "2026-10-29T14:35:40.573261Z",
+  "generated": "2026-10-29T15:03:02.312948Z",
   "files": {
     "alphabet": [
       {
@@ -377,6 +377,21 @@
         "filename": "au_revoir.mp3",
         "path": "/audio/fr/phrases/au_revoir.mp3",
         "text": "Au revoir"
+      },
+      {
+        "filename": "vous_mentendez.mp3",
+        "path": "/audio/fr/phrases/vous_mentendez.mp3",
+        "text": "Vous m'entendez ?"
+      },
+      {
+        "filename": "voyez-vous_mon_écran.mp3",
+        "path": "/audio/fr/phrases/voyez-vous_mon_écran.mp3",
+        "text": "Voyez-vous mon écran ?"
+      },
+      {
+        "filename": "quel_est_le_mot_de_passe_du_wi-fi.mp3",
+        "path": "/audio/fr/phrases/quel_est_le_mot_de_passe_du_wi-fi.mp3",
+        "text": "Quel est le mot de passe du Wi-Fi ?"
       }
     ],
     "numbers": [
@@ -631,6 +646,156 @@
         "filename": "train.mp3",
         "path": "/audio/fr/words/train.mp3",
         "text": "Train"
+      },
+      {
+        "filename": "rouge.mp3",
+        "path": "/audio/fr/words/rouge.mp3",
+        "text": "Rouge"
+      },
+      {
+        "filename": "bleu.mp3",
+        "path": "/audio/fr/words/bleu.mp3",
+        "text": "Bleu"
+      },
+      {
+        "filename": "vert.mp3",
+        "path": "/audio/fr/words/vert.mp3",
+        "text": "Vert"
+      },
+      {
+        "filename": "jaune.mp3",
+        "path": "/audio/fr/words/jaune.mp3",
+        "text": "Jaune"
+      },
+      {
+        "filename": "noir.mp3",
+        "path": "/audio/fr/words/noir.mp3",
+        "text": "Noir"
+      },
+      {
+        "filename": "blanc.mp3",
+        "path": "/audio/fr/words/blanc.mp3",
+        "text": "Blanc"
+      },
+      {
+        "filename": "grand.mp3",
+        "path": "/audio/fr/words/grand.mp3",
+        "text": "Grand"
+      },
+      {
+        "filename": "petit.mp3",
+        "path": "/audio/fr/words/petit.mp3",
+        "text": "Petit"
+      },
+      {
+        "filename": "nouveau.mp3",
+        "path": "/audio/fr/words/nouveau.mp3",
+        "text": "Nouveau"
+      },
+      {
+        "filename": "vieux.mp3",
+        "path": "/audio/fr/words/vieux.mp3",
+        "text": "Vieux"
+      },
+      {
+        "filename": "soleil.mp3",
+        "path": "/audio/fr/words/soleil.mp3",
+        "text": "Soleil"
+      },
+      {
+        "filename": "pluie.mp3",
+        "path": "/audio/fr/words/pluie.mp3",
+        "text": "Pluie"
+      },
+      {
+        "filename": "neige.mp3",
+        "path": "/audio/fr/words/neige.mp3",
+        "text": "Neige"
+      },
+      {
+        "filename": "vent.mp3",
+        "path": "/audio/fr/words/vent.mp3",
+        "text": "Vent"
+      },
+      {
+        "filename": "nuage.mp3",
+        "path": "/audio/fr/words/nuage.mp3",
+        "text": "Nuage"
+      },
+      {
+        "filename": "orage.mp3",
+        "path": "/audio/fr/words/orage.mp3",
+        "text": "Orage"
+      },
+      {
+        "filename": "chaud.mp3",
+        "path": "/audio/fr/words/chaud.mp3",
+        "text": "Chaud"
+      },
+      {
+        "filename": "froid.mp3",
+        "path": "/audio/fr/words/froid.mp3",
+        "text": "Froid"
+      },
+      {
+        "filename": "ordinateur.mp3",
+        "path": "/audio/fr/words/ordinateur.mp3",
+        "text": "Ordinateur"
+      },
+      {
+        "filename": "téléphone.mp3",
+        "path": "/audio/fr/words/téléphone.mp3",
+        "text": "Téléphone"
+      },
+      {
+        "filename": "internet.mp3",
+        "path": "/audio/fr/words/internet.mp3",
+        "text": "Internet"
+      },
+      {
+        "filename": "mot_de_passe.mp3",
+        "path": "/audio/fr/words/mot_de_passe.mp3",
+        "text": "Mot de passe"
+      },
+      {
+        "filename": "courriel.mp3",
+        "path": "/audio/fr/words/courriel.mp3",
+        "text": "Courriel"
+      },
+      {
+        "filename": "écran.mp3",
+        "path": "/audio/fr/words/écran.mp3",
+        "text": "Écran"
+      },
+      {
+        "filename": "réunion.mp3",
+        "path": "/audio/fr/words/réunion.mp3",
+        "text": "Réunion"
+      },
+      {
+        "filename": "fichier.mp3",
+        "path": "/audio/fr/words/fichier.mp3",
+        "text": "Fichier"
+      },
+      {
+        "filename": "lien.mp3",
+        "path": "/audio/fr/words/lien.mp3",
+        "text": "Lien"
+      },
+      {
+        "filename": "code.mp3",
+        "path": "/audio/fr/words/code.mp3",
+        "text": "Code"
+      },
+      {
+        "filename": "erreur.mp3",
+        "path": "/audio/fr/words/erreur.mp3",
+        "text": "Erreur"
+      },
+      {
+        "filename": "batterie.mp3",
+        "path": "/audio/fr/words/batterie.mp3",
+        "text": "Batterie"
       },
       {
         "filename": "homme.mp3",
@@ -903,16 +1068,6 @@
         "text": "Passeport"
       },
       {
-        "filename": "téléphone.mp3",
-        "path": "/audio/fr/words/téléphone.mp3",
-        "text": "Téléphone"
-      },
-      {
-        "filename": "ordinateur.mp3",
-        "path": "/audio/fr/words/ordinateur.mp3",
-        "text": "Ordinateur"
-      },
-      {
         "filename": "livre.mp3",
         "path": "/audio/fr/words/livre.mp3",
         "text": "Livre"
@@ -1058,11 +1213,6 @@
         "text": "Oiseau"
       },
       {
-        "filename": "soleil.mp3",
-        "path": "/audio/fr/words/soleil.mp3",
-        "text": "Soleil"
-      },
-      {
         "filename": "lune.mp3",
         "path": "/audio/fr/words/lune.mp3",
         "text": "Lune"
@@ -1071,26 +1221,6 @@
         "filename": "étoile.mp3",
         "path": "/audio/fr/words/étoile.mp3",
         "text": "Étoile"
-      },
-      {
-        "filename": "pluie.mp3",
-        "path": "/audio/fr/words/pluie.mp3",
-        "text": "Pluie"
-      },
-      {
-        "filename": "neige.mp3",
-        "path": "/audio/fr/words/neige.mp3",
-        "text": "Neige"
-      },
-      {
-        "filename": "froid.mp3",
-        "path": "/audio/fr/words/froid.mp3",
-        "text": "Froid"
-      },
-      {
-        "filename": "chaud.mp3",
-        "path": "/audio/fr/words/chaud.mp3",
-        "text": "Chaud"
       },
       {
         "filename": "hérisson.mp3",
@@ -1126,26 +1256,6 @@
         "filename": "mauvais.mp3",
         "path": "/audio/fr/words/mauvais.mp3",
         "text": "Mauvais"
-      },
-      {
-        "filename": "grand.mp3",
-        "path": "/audio/fr/words/grand.mp3",
-        "text": "Grand"
-      },
-      {
-        "filename": "petit.mp3",
-        "path": "/audio/fr/words/petit.mp3",
-        "text": "Petit"
-      },
-      {
-        "filename": "nouveau.mp3",
-        "path": "/audio/fr/words/nouveau.mp3",
-        "text": "Nouveau"
-      },
-      {
-        "filename": "vieux.mp3",
-        "path": "/audio/fr/words/vieux.mp3",
-        "text": "Vieux / Ancien"
       },
       {
         "filename": "ouvert.mp3",
@@ -1251,11 +1361,6 @@
         "filename": "xylophone.mp3",
         "path": "/audio/fr/words/xylophone.mp3",
         "text": "Xylophone"
-      },
-      {
-        "filename": "jaune.mp3",
-        "path": "/audio/fr/words/jaune.mp3",
-        "text": "Jaune"
       },
       {
         "filename": "zéro.mp3",
@@ -2086,6 +2191,21 @@
         "filename": "est-ce_loin_dici.mp3",
         "path": "/audio/fr/words/est-ce_loin_dici.mp3",
         "text": "Est-ce loin d'ici ?"
+      },
+      {
+        "filename": "vous_mentendez.mp3",
+        "path": "/audio/fr/words/vous_mentendez.mp3",
+        "text": "Vous m'entendez ?"
+      },
+      {
+        "filename": "voyez-vous_mon_écran.mp3",
+        "path": "/audio/fr/words/voyez-vous_mon_écran.mp3",
+        "text": "Voyez-vous mon écran ?"
+      },
+      {
+        "filename": "quel_est_le_mot_de_passe_du_wi-fi.mp3",
+        "path": "/audio/fr/words/quel_est_le_mot_de_passe_du_wi-fi.mp3",
+        "text": "Quel est le mot de passe du Wi-Fi ?"
       }
     ],
     "time": [
