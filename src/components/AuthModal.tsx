@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaTimes, FaGoogle, FaMicrosoft, FaGithub, FaLock } from 'react-icons/fa';
 import { signInWithGoogle, signInWithEntra, signInWithGithub, isSupabaseConfigured } from '../services/supabaseClient';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -8,11 +9,58 @@ interface AuthModalProps {
 }
 
 export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
+  const { baseLanguage } = useLanguage();
   const [loadingProvider, setLoadingProvider] = useState<'google' | 'azure' | 'github' | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const configured = isSupabaseConfigured();
 
   if (!isOpen) return null;
+
+  const copy = (() => {
+    switch (baseLanguage) {
+      case 'ru':
+        return {
+          title: 'Синхронизация прогресса',
+          subtitle: 'Выберите сервис, чтобы сохранить историю тестов, выученные слова и синхронизировать данные на всех устройствах.',
+          guestLabel: 'Гостевой режим:',
+          guestBody: 'Сейчас ваш прогресс сохранён локально в браузере. Для облачной синхронизации укажите ключи Supabase в ',
+          connecting: 'Подключение к',
+          privacy1: 'Мы уважаем вашу конфиденциальность.',
+          privacy2: 'Без спама — только ваш прогресс обучения.'
+        };
+      case 'es':
+        return {
+          title: 'Sincroniza tu Progreso de Aprendizaje',
+          subtitle: 'Elige un proveedor para guardar tu historial de cuestionarios, palabras dominadas y sincronizar en todos tus dispositivos.',
+          guestLabel: 'Modo Invitado:',
+          guestBody: 'Tu progreso se guarda actualmente en tu navegador. Para activar la sincronización en la nube, conecta Supabase en ',
+          connecting: 'Conectando con',
+          privacy1: 'Respetamos tu privacidad.',
+          privacy2: 'Sin spam, solo tu progreso de aprendizaje.'
+        };
+      case 'fr':
+        return {
+          title: 'Synchronisez Votre Progression',
+          subtitle: 'Choisissez un fournisseur pour sauvegarder votre historique de quiz, vos mots maîtrisés et synchroniser sur tous vos appareils.',
+          guestLabel: 'Mode Invité :',
+          guestBody: 'Votre progression est enregistrée dans votre navigateur. Pour activer le cloud, configurez Supabase dans ',
+          connecting: 'Connexion à',
+          privacy1: 'Nous respectons votre vie privée.',
+          privacy2: 'Pas de spam, uniquement votre progression linguistique.'
+        };
+      case 'en':
+      default:
+        return {
+          title: 'Sync Your Learning Progress',
+          subtitle: 'Choose a provider to save your quiz history, track words mastered, and sync across all your devices.',
+          guestLabel: 'Running in Guest Mode:',
+          guestBody: 'Your progress is currently saved offline in your browser. To enable live cloud sync, connect your Supabase project credentials in ',
+          connecting: 'Connecting to',
+          privacy1: 'We respect your privacy.',
+          privacy2: 'No spam, only your language learning progress.'
+        };
+    }
+  })();
 
   const handleGoogleLogin = async () => {
     setLoadingProvider('google');
@@ -64,9 +112,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
           <div className="auth-modal-icon">
             <FaLock />
           </div>
-          <h2>Sync Your Learning Progress</h2>
+          <h2>{copy.title}</h2>
           <p>
-            Choose a provider to save your quiz history, track words mastered, and sync across all your devices.
+            {copy.subtitle}
           </p>
         </div>
 
@@ -78,7 +126,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
 
         {!configured && (
           <div className="auth-modal-alert auth-modal-info">
-            <strong>Running in Guest Mode:</strong> Your progress is currently saved offline in your browser. To enable live cloud sync, connect your Supabase project credentials in <code>.env.local</code>.
+            <strong>{copy.guestLabel}</strong> {copy.guestBody}<code>.env.local</code>.
           </div>
         )}
 
@@ -137,13 +185,13 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
 
         {loadingProvider && (
           <div className="auth-loading-notice">
-            Connecting to {loadingProvider === 'azure' ? 'Microsoft' : loadingProvider === 'github' ? 'GitHub' : 'Google'}...
+            {copy.connecting} {loadingProvider === 'azure' ? 'Microsoft' : loadingProvider === 'github' ? 'GitHub' : 'Google'}...
           </div>
         )}
 
         <div className="auth-modal-footer">
-          <p>We respect your privacy.</p>
-          <p>No spam, only your language learning progress.</p>
+          <p>{copy.privacy1}</p>
+          <p>{copy.privacy2}</p>
         </div>
       </div>
     </div>

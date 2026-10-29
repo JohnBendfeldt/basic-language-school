@@ -34,7 +34,6 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
           : currentLanguage;
 
   const [isPlaying, setIsPlaying] = useState(false);
-  const [initialized, setInitialized] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioPathRef = useRef<string>('');
   const fallbackAttemptedRef = useRef<boolean>(false);
@@ -45,30 +44,9 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
   // Track mounting state to avoid state updates after unmount
   const isMounted = useRef(true);
 
-  // Initialize speech synthesis on component mount
+  // Track mount lifecycle and cleanup audio resources on unmount
   useEffect(() => {
-    // Reset mount status on component mount
     isMounted.current = true;
-    
-    const init = async () => {
-      try {
-        // Initialize voices but don't worry about Russian voice availability
-        await initVoices();
-        
-        // If not mounted anymore, abort
-        if (!isMounted.current) return;
-        
-        setInitialized(true);
-      } catch (err) {
-        console.error('Error initializing speech in button:', err);
-        if (isMounted.current) {
-          setInitialized(true);
-        }
-      }
-    };
-    
-    // Execute initialization
-    init();
     
     // Enhanced cleanup function
     return () => {
@@ -123,41 +101,50 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
     };
   }, [text, audioCategory]);
 
-  const getAudioPath = (): string => {
-    if (!text) return '';
+  const getCandidateAudioPaths = (): string[] => {
+    if (!text) return [];
     
     const normalizedText = text.toLowerCase().trim();
     
+    // Check if text is a formatted number like "1 (Un)" or "15 (Quince)"
+    const numParenMatch = normalizedText.match(/^\d+\s*\(([^)]+)\)$/);
+    const effectiveRawText = numParenMatch ? numParenMatch[1].trim() : normalizedText;
+
     // Use provided audioCategory if available
-    let category = audioCategory;
-    if (!category) {
-      // Simple heuristic to determine category
-      if (normalizedText.length === 1) {
-        category = 'alphabet';
-      } else if (/\s/.test(normalizedText)) {
-        category = 'phrases';
-      } else if (/^\d+$/.test(normalizedText) || ['one', 'two', 'three', 'один', 'два', 'три'].includes(normalizedText)) {
-        category = 'numbers';
+    let primaryCategory = audioCategory;
+    if (!primaryCategory) {
+      if (numParenMatch) {
+        primaryCategory = 'numbers';
+      } else if (effectiveRawText.length === 1) {
+        primaryCategory = 'alphabet';
+      } else if (/\s/.test(effectiveRawText)) {
+        primaryCategory = 'phrases';
+      } else if (/^\d+$/.test(effectiveRawText) || ['one', 'two', 'three', 'один', 'два', 'три', 'un', 'deux', 'trois', 'uno', 'dos', 'tres'].includes(effectiveRawText)) {
+        primaryCategory = 'numbers';
       } else {
-        category = 'words';
+        primaryCategory = 'words';
       }
     }
     
-    // Convert any non-standard category names to our standard folders
-    if (category === 'basicPhrases') category = 'phrases';
-    if (category === 'commonWords') category = 'words';
+    if (primaryCategory === 'basicPhrases') primaryCategory = 'phrases';
+    if (primaryCategory === 'commonWords') primaryCategory = 'words';
     
-    // Format filename - normalize to NFC (standard precomposed Cyrillic characters),
-    // strip slashes, parenthesized notes, punctuation, and encode URI component safely.
-    const cleanText = normalizedText
+    const cleanText = effectiveRawText
       .normalize('NFC')
       .split('/')[0]
       .replace(/\s*\([^)]*\)\s*/g, '')
-      .replace(/[?.,!¡¿'’"]/g, '')
+      .replace(/[?.,!¡¿'’"«»:]/g, '')
       .trim();
     const fileName = cleanText.replace(/\s+/g, '_');
-    
-    return `/audio/${effectiveLangId}/${category}/${encodeURIComponent(fileName)}.mp3`;
+    if (!fileName) return [];
+
+    const folders = Array.from(
+      new Set([primaryCategory, 'words', 'phrases', 'examples', 'numbers', 'time'])
+    );
+
+    return folders.map(
+      folder => `/audio/${effectiveLangId}/${folder}/${encodeURIComponent(fileName)}.mp3`
+    );
   };
 
   const handleSpeak = () => {
@@ -176,67 +163,65 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
       return;
     }
     
-    // Reset fallback attempt tracker for new playback
     fallbackAttemptedRef.current = false;
+    const candidatePaths = getCandidateAudioPaths();
     
-    // Always try to play local audio first
-    if (text) {
+    if (candidatePaths.length > 0) {
       setIsPlaying(true);
-      
-      const audioPath = getAudioPath();
-      
-      // Create a new audio instance if we need one or if the path changed
-      if (!audioRef.current || audioPathRef.current !== audioPath) {
-        // Clean up previous audio if it exists
+
+      const tryPlayCandidate = (index: number) => {
+        if (!isMounted.current) return;
+        if (index >= candidatePaths.length) {
+          if (!fallbackAttemptedRef.current) {
+            fallbackAttemptedRef.current = true;
+            playSpeechSynthesis();
+          }
+          return;
+        }
+
+        const audioPath = candidatePaths[index];
         if (audioRef.current) {
           audioRef.current.pause();
           audioRef.current.src = '';
           audioRef.current.onended = null;
           audioRef.current.onerror = null;
         }
-        
+
         audioRef.current = new Audio(audioPath);
         audioRef.current.preload = 'auto';
         audioPathRef.current = audioPath;
-        
+
         audioRef.current.onended = () => {
           if (isMounted.current) {
             setIsPlaying(false);
           }
         };
-        
+
         audioRef.current.onerror = () => {
-          if (isMounted.current && !fallbackAttemptedRef.current) {
-            fallbackAttemptedRef.current = true;
-            playSpeechSynthesis();
+          if (isMounted.current) {
+            tryPlayCandidate(index + 1);
           }
         };
-      } else {
-        // Reset audio position to the beginning if reusing
-        audioRef.current.currentTime = 0;
-      }
-      
-      // Play the audio
-      audioRef.current.playbackRate = speechSpeed;
-      audioRef.current.play().catch(error => {
-        console.error('Error playing audio:', error);
-        
-        if (isMounted.current && !fallbackAttemptedRef.current) {
-          fallbackAttemptedRef.current = true;
-          playSpeechSynthesis();
-        }
-      });
-      
+
+        audioRef.current.playbackRate = speechSpeed;
+        audioRef.current.play().catch(() => {
+          if (isMounted.current) {
+            tryPlayCandidate(index + 1);
+          }
+        });
+      };
+
+      tryPlayCandidate(0);
       return;
     }
     
-    // If no text provided, use speech synthesis directly
     setIsPlaying(true);
     playSpeechSynthesis();
   };
   
   // Speech synthesis fallback
   const playSpeechSynthesis = () => {
+    initVoices().catch(() => {});
     const langCodeMap: Record<string, string> = {
       en: 'en-US',
       es: 'es-ES',
@@ -274,7 +259,7 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
     <button
       className={`pronunciation-button ${isPlaying ? 'playing' : ''} ${className || ''}`}
       onClick={handleSpeak}
-      disabled={isPlaying || !initialized}
+      disabled={isPlaying}
       title={isPlaying ? "Speaking..." : (label || "Pronounce")}
       aria-label={isPlaying ? "Speaking..." : (label || "Pronounce")}
       data-button-id={buttonId.current}

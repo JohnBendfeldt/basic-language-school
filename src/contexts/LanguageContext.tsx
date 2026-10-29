@@ -99,9 +99,12 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
 
     setTargetLanguageState(langId);
 
-    // If new target matches base, flip base to a sensible counterpart
+    // If new target matches base, swap base to previous target (never hardcode Spanish unless identical)
     if (langId === baseLanguage) {
-      const fallbackBase: SupportedLanguageId = langId === 'en' ? 'es' : 'en';
+      const fallbackBase: SupportedLanguageId =
+        targetLanguage !== langId
+          ? targetLanguage
+          : (langId === 'en' ? 'es' : 'en');
       setBaseLanguageState(fallbackBase);
       try {
         localStorage.setItem('basic_language_base_lang', fallbackBase);
@@ -118,7 +121,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     if (typeof document !== 'undefined') {
       document.documentElement.lang = langId;
     }
-  }, [baseLanguage]);
+  }, [baseLanguage, targetLanguage]);
 
   // Backward compatibility alias for setLanguage
   const setLanguage = setTargetLanguage;
@@ -129,9 +132,12 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
 
     setBaseLanguageState(langId);
 
-    // If new base matches target, flip target to a sensible counterpart
+    // If new base matches target, swap target to previous base (never hardcode Spanish unless identical)
     if (langId === targetLanguage) {
-      const fallbackTarget: SupportedLanguageId = langId === 'en' ? 'es' : 'en';
+      const fallbackTarget: SupportedLanguageId =
+        baseLanguage !== langId
+          ? baseLanguage
+          : (langId === 'en' ? 'es' : 'en');
       setTargetLanguageState(fallbackTarget);
       try {
         localStorage.setItem('basic_language_target_lang', fallbackTarget);
@@ -143,7 +149,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     try {
       localStorage.setItem('basic_language_base_lang', langId);
     } catch { /* ignore */ }
-  }, [targetLanguage]);
+  }, [targetLanguage, baseLanguage]);
 
   // Quick swap pair (e.g. Spanish -> English becomes English -> Spanish)
   const swapLanguages = useCallback(() => {

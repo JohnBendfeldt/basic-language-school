@@ -7,6 +7,8 @@ import { containsCyrillic } from '../utils/transliteration';
 import { useLanguage } from '../contexts/LanguageContext';
 import { SUPPORTED_LANGUAGES } from '../data/languages';
 import { SupportedLanguageId } from '../data/languages/types';
+import { getLocalizedLanguageName, localizeCategoryBadge } from '../utils/pageDictionary';
+import { resolveTranslation } from '../utils/translationResolver';
 
 interface ProgressModalProps {
   isOpen: boolean;
@@ -67,7 +69,7 @@ const getWordReviewDetails = (item: WordProgress, currentLanguage: string) => {
 };
 
 export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, userEmail, languageId }) => {
-  const { currentLanguage: contextLang, setLanguage } = useLanguage();
+  const { currentLanguage: contextLang, baseLanguage, setLanguage } = useLanguage();
   const [selectedLang, setSelectedLang] = useState<string>(() => languageId || contextLang || 'ru');
   const [stats, setStats] = useState<UserStats | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -117,6 +119,110 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
 
   if (!isOpen) return null;
 
+  const localizedActiveLangName = getLocalizedLanguageName(selectedLang, baseLanguage, activeMeta.name);
+
+  const modalCopy = (() => {
+    switch (baseLanguage) {
+      case 'ru':
+        return {
+          title: 'Ваш прогресс обучения',
+          loggedInAs: (email: string) => `Вы вошли как ${email}`,
+          guestMode: 'Гостевой режим (сохранено в браузере)',
+          loading: 'Загрузка статистики...',
+          noHistoryTitle: 'Истории тестов пока нет',
+          noHistoryDesc: (langName: string) =>
+            `Проходите тесты и изучайте фразы (${langName}), чтобы отслеживать точность, серию и выученные слова!`,
+          switchToPractice: (langName: string) => `Перейти к практике: ${langName}`,
+          masteredBadge: 'Изучено',
+          curriculumMastery: (langName: string) => `Освоение курса: ${langName}`,
+          masteryCountDesc: (mastered: number, total: number) =>
+            `Изучено ${mastered} из ${total} основных слов и фраз (уровень 5+)`,
+          studyBtn: (langName: string) => `Учить ${langName}`,
+          quizzesCompleted: 'Пройдено тестов',
+          averageScore: 'Средний результат',
+          wordsMastered: 'Выучено слов',
+          wordsLearning: 'На изучении',
+          wordsToReviewTitle: 'Слова и фразы для повторения',
+          wordsToReviewDesc: (langName: string) =>
+            `Недавние ошибки в курсе «${langName}». Прослушайте произношение, чтобы закрепить их в памяти.`,
+          recentSessionsTitle: 'Недавние тесты'
+        };
+      case 'es':
+        return {
+          title: 'Tu Progreso de Aprendizaje',
+          loggedInAs: (email: string) => `Sesión iniciada como ${email}`,
+          guestMode: 'Modo Invitado (Guardado en este navegador)',
+          loading: 'Cargando tus estadísticas...',
+          noHistoryTitle: 'Aún no hay historial de cuestionarios',
+          noHistoryDesc: (langName: string) =>
+            `¡Empieza a tomar cuestionarios o practicar frases en ${langName} para seguir tu precisión y vocabulario!`,
+          switchToPractice: (langName: string) => `Cambiar para practicar ${langName}`,
+          masteredBadge: 'Dominado',
+          curriculumMastery: (langName: string) => `Dominio del Curso de ${langName}`,
+          masteryCountDesc: (mastered: number, total: number) =>
+            `${mastered} de ${total} palabras y frases clave dominadas en Nivel 5+`,
+          studyBtn: (langName: string) => `Estudiar ${langName}`,
+          quizzesCompleted: 'Cuestionarios Completados',
+          averageScore: 'Puntuación Media',
+          wordsMastered: 'Palabras Dominadas',
+          wordsLearning: 'Palabras en Estudio',
+          wordsToReviewTitle: 'Palabras y Frases para Repasar',
+          wordsToReviewDesc: (langName: string) =>
+            `Estos elementos se fallaron recientemente en ${langName}. Practica su pronunciación para reforzar tu memoria.`,
+          recentSessionsTitle: 'Sesiones de Cuestionario Recientes'
+        };
+      case 'fr':
+        return {
+          title: 'Votre Progression d\'Apprentissage',
+          loggedInAs: (email: string) => `Connecté en tant que ${email}`,
+          guestMode: 'Mode Invité (Enregistré dans ce navigateur)',
+          loading: 'Chargement de vos statistiques...',
+          noHistoryTitle: 'Aucun Historique de Quiz',
+          noHistoryDesc: (langName: string) =>
+            `Commencez à faire des quiz ou à pratiquer des phrases en ${langName} pour suivre votre précision et votre vocabulaire !`,
+          switchToPractice: (langName: string) => `Passer à la pratique : ${langName}`,
+          masteredBadge: 'Maîtrisé',
+          curriculumMastery: (langName: string) => `Maîtrise du Programme (${langName})`,
+          masteryCountDesc: (mastered: number, total: number) =>
+            `${mastered} sur ${total} mots et phrases clés maîtrisés au Niveau 5+`,
+          studyBtn: (langName: string) => `Étudier : ${langName}`,
+          quizzesCompleted: 'Quiz Terminés',
+          averageScore: 'Score Moyen',
+          wordsMastered: 'Mots Maîtrisés',
+          wordsLearning: 'Mots en Cours',
+          wordsToReviewTitle: 'Mots et Phrases à Réviser',
+          wordsToReviewDesc: (langName: string) =>
+            `Ces éléments ont été manqués récemment en ${langName}. Écoutez leur prononciation pour renforcer votre mémoire.`,
+          recentSessionsTitle: 'Sessions de Quiz Récentes'
+        };
+      case 'en':
+      default:
+        return {
+          title: 'Your Learning Progress',
+          loggedInAs: (email: string) => `Logged in as ${email}`,
+          guestMode: 'Guest Mode (Saved in this browser)',
+          loading: 'Loading your statistics...',
+          noHistoryTitle: 'No Quiz History Yet',
+          noHistoryDesc: (langName: string) =>
+            `Start taking quizzes or practicing phrases in ${langName} to track your accuracy, mastery, and vocabulary over time!`,
+          switchToPractice: (langName: string) => `Switch to Practice ${langName}`,
+          masteredBadge: 'Mastered',
+          curriculumMastery: (langName: string) => `${langName} Curriculum Mastery`,
+          masteryCountDesc: (mastered: number, total: number) =>
+            `${mastered} of ${total} core words & phrases mastered at Level 5+`,
+          studyBtn: (langName: string) => `Study ${langName}`,
+          quizzesCompleted: 'Quizzes Completed',
+          averageScore: 'Average Score',
+          wordsMastered: 'Words Mastered',
+          wordsLearning: 'Words Learning',
+          wordsToReviewTitle: 'Words & Phrases to Review',
+          wordsToReviewDesc: (langName: string) =>
+            `These items were missed recently in ${langName}. Practice their pronunciation to reinforce your memory.`,
+          recentSessionsTitle: 'Recent Quiz Sessions'
+        };
+    }
+  })();
+
   return (
     <div className="progress-modal-backdrop" onClick={onClose} role="dialog" aria-modal="true">
       <div className="progress-modal-container" onClick={(e) => e.stopPropagation()}>
@@ -128,9 +234,9 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
           <div className="progress-header-title">
             <FaChartBar className="header-icon" />
             <div>
-              <h2>Your Learning Progress</h2>
+              <h2>{modalCopy.title}</h2>
               <p className="user-indicator">
-                {userEmail ? `Logged in as ${userEmail}` : 'Guest Mode (Saved in this browser)'}
+                {userEmail ? modalCopy.loggedInAs(userEmail) : modalCopy.guestMode}
               </p>
             </div>
           </div>
@@ -142,6 +248,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
             const isSelected = lang.id === selectedLang;
             const overview = masteryOverview[lang.id];
             const percent = overview?.percentMastered ?? (lang.id === selectedLang ? percentMastered : 0);
+            const localizedTabName = getLocalizedLanguageName(lang.id, baseLanguage, lang.name);
             return (
               <button
                 key={lang.id}
@@ -152,7 +259,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
                 onClick={() => setSelectedLang(lang.id)}
               >
                 <span className="lang-tab-flag">{lang.flag}</span>
-                <span className="lang-tab-name">{lang.name}</span>
+                <span className="lang-tab-name">{localizedTabName}</span>
                 <span className={`lang-tab-badge ${percent > 0 ? 'has-mastery' : ''}`}>
                   {percent}%
                 </span>
@@ -164,14 +271,14 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
         {loading ? (
           <div className="progress-loading">
             <div className="loading-spinner"></div>
-            <p>Loading your statistics...</p>
+            <p>{modalCopy.loading}</p>
           </div>
         ) : !stats || (stats.totalQuizzesTaken === 0 && stats.wordsMasteredCount === 0 && stats.wordsLearningCount === 0) ? (
           <div className="progress-empty-state">
             <FaGraduationCap className="empty-icon" />
-            <h3>No Quiz History Yet</h3>
+            <h3>{modalCopy.noHistoryTitle}</h3>
             <p>
-              Start taking quizzes or practicing phrases in <strong>{activeMeta.name}</strong> to track your accuracy, mastery, and vocabulary over time!
+              {modalCopy.noHistoryDesc(localizedActiveLangName)}
             </p>
             {selectedLang !== contextLang ? (
               <button
@@ -182,7 +289,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
                   onClose();
                 }}
               >
-                <span>Switch to Practice {activeMeta.name}</span>
+                <span>{modalCopy.switchToPractice(localizedActiveLangName)}</span>
                 <FaArrowRight />
               </button>
             ) : null}
@@ -194,12 +301,18 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
               <div className="mastery-card-left">
                 <div className="mastery-percent-display">
                   <span className="mastery-percent-number">{percentMastered}%</span>
-                  <span className="mastery-percent-label">Mastered</span>
+                  <span className="mastery-percent-label">{modalCopy.masteredBadge}</span>
                 </div>
                 <div className="mastery-meta-info">
-                  <h3>{activeMeta.name} Curriculum Mastery</h3>
+                  <h3>{modalCopy.curriculumMastery(localizedActiveLangName)}</h3>
                   <p>
-                    <strong>{stats.wordsMasteredCount}</strong> of <strong>{totalCurriculum}</strong> core words &amp; phrases mastered at Level 5+
+                    {baseLanguage === 'en' ? (
+                      <>
+                        <strong>{stats.wordsMasteredCount}</strong> of <strong>{totalCurriculum}</strong> core words &amp; phrases mastered at Level 5+
+                      </>
+                    ) : (
+                      modalCopy.masteryCountDesc(stats.wordsMasteredCount, totalCurriculum)
+                    )}
                   </p>
                   <div className="mastery-progress-track">
                     <div 
@@ -218,9 +331,9 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
                     setLanguage(selectedLang as SupportedLanguageId);
                     onClose();
                   }}
-                  title={`Switch active app language to ${activeMeta.name}`}
+                  title={`Switch active app language to ${localizedActiveLangName}`}
                 >
-                  <span>Study {activeMeta.name}</span>
+                  <span>{modalCopy.studyBtn(localizedActiveLangName)}</span>
                   <span className="btn-flag">{activeMeta.flag}</span>
                 </button>
               )}
@@ -234,7 +347,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
                 </div>
                 <div className="stat-content">
                   <span className="stat-value">{stats.totalQuizzesTaken}</span>
-                  <span className="stat-label">Quizzes Completed</span>
+                  <span className="stat-label">{modalCopy.quizzesCompleted}</span>
                 </div>
               </div>
 
@@ -244,7 +357,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
                 </div>
                 <div className="stat-content">
                   <span className="stat-value">{stats.averageScore}%</span>
-                  <span className="stat-label">Average Score</span>
+                  <span className="stat-label">{modalCopy.averageScore}</span>
                 </div>
               </div>
 
@@ -254,7 +367,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
                 </div>
                 <div className="stat-content">
                   <span className="stat-value">{stats.wordsMasteredCount}</span>
-                  <span className="stat-label">Words Mastered</span>
+                  <span className="stat-label">{modalCopy.wordsMastered}</span>
                 </div>
               </div>
 
@@ -264,7 +377,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
                 </div>
                 <div className="stat-content">
                   <span className="stat-value">{stats.wordsLearningCount}</span>
-                  <span className="stat-label">Words Learning</span>
+                  <span className="stat-label">{modalCopy.wordsLearning}</span>
                 </div>
               </div>
             </div>
@@ -274,20 +387,34 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
               <div className="progress-section">
                 <div className="section-title">
                   <FaRedo className="section-icon" />
-                  <h3>Words & Phrases to Review</h3>
+                  <h3>{modalCopy.wordsToReviewTitle}</h3>
                 </div>
                 <p className="section-subtitle">
-                  These items were missed recently in {activeMeta.name}. Practice their pronunciation to reinforce your memory.
+                  {modalCopy.wordsToReviewDesc(localizedActiveLangName)}
                 </p>
 
                 <div className="review-words-list">
                   {stats.wordsToReview.map((item) => {
                     const { target, audioTarget, meaning } = getWordReviewDetails(item, selectedLang);
+                    const localizedMeaning =
+                      baseLanguage !== 'en' && baseLanguage !== (selectedLang as SupportedLanguageId)
+                        ? resolveTranslation(
+                            {
+                              phrase: target,
+                              russian: target,
+                              word: target,
+                              translation: meaning,
+                              english: meaning
+                            },
+                            selectedLang as SupportedLanguageId,
+                            baseLanguage
+                          ) || meaning
+                        : meaning;
                     return (
                       <div key={item.wordId} className="review-word-card">
                         <div className="review-word-info">
                           <span className="russian-text">{target}</span>
-                          <span className="english-translation">{meaning}</span>
+                          <span className="english-translation">{localizedMeaning}</span>
                         </div>
 
                         <div className="review-word-actions">
@@ -312,14 +439,16 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
               <div className="progress-section">
                 <div className="section-title">
                   <FaTrophy className="section-icon" />
-                  <h3>Recent Quiz Sessions</h3>
+                  <h3>{modalCopy.recentSessionsTitle}</h3>
                 </div>
 
                 <div className="recent-sessions-list">
                   {stats.recentSessions.map((session) => (
                     <div key={session.id} className="session-item">
                       <div className="session-meta">
-                        <span className="session-category">{session.category}</span>
+                        <span className="session-category">
+                          {localizeCategoryBadge(session.category, baseLanguage) || session.category}
+                        </span>
                         <span className="session-date">
                           {new Date(session.completedAt).toLocaleDateString(undefined, {
                             month: 'short',
