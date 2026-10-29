@@ -1,7 +1,7 @@
 {
   "language": "fr",
   "voice": "fr-FR-HenriNeural",
-  "generated": "2026-10-29T15:55:17.192128Z",
+  "generated": "2026-10-29T17:04:06.172442Z",
   "files": {
     "alphabet": [
       {
@@ -1173,6 +1173,11 @@
         "text": "Dîner"
       },
       {
+        "filename": "sel.mp3",
+        "path": "/audio/fr/words/sel.mp3",
+        "text": "Sel"
+      },
+      {
         "filename": "magasin.mp3",
         "path": "/audio/fr/words/magasin.mp3",
         "text": "Magasin"
@@ -1296,6 +1301,11 @@
         "filename": "usine.mp3",
         "path": "/audio/fr/words/usine.mp3",
         "text": "Usine"
+      },
+      {
+        "filename": "mer.mp3",
+        "path": "/audio/fr/words/mer.mp3",
+        "text": "Mer"
       },
       {
         "filename": "billet.mp3",
@@ -1486,6 +1496,11 @@
         "filename": "sapin_de_noël.mp3",
         "path": "/audio/fr/words/sapin_de_noël.mp3",
         "text": "Sapin de Noël"
+      },
+      {
+        "filename": "zèbre.mp3",
+        "path": "/audio/fr/words/zèbre.mp3",
+        "text": "Zèbre"
       },
       {
         "filename": "bon.mp3",
@@ -2048,6 +2063,11 @@
         "text": "Parlez plus lentement, s'il vous plaît"
       },
       {
+        "filename": "pouvez-vous_parler_plus_lentement.mp3",
+        "path": "/audio/fr/words/pouvez-vous_parler_plus_lentement.mp3",
+        "text": "Pouvez-vous parler plus lentement ?"
+      },
+      {
         "filename": "parlez_plus_lentement.mp3",
         "path": "/audio/fr/words/parlez_plus_lentement.mp3",
         "text": "Parlez plus lentement"
@@ -2083,6 +2103,11 @@
         "text": "Pouvez-vous m'aider ?"
       },
       {
+        "filename": "jai_besoin_daide.mp3",
+        "path": "/audio/fr/words/jai_besoin_daide.mp3",
+        "text": "J'ai besoin d'aide"
+      },
+      {
         "filename": "aidez-moi.mp3",
         "path": "/audio/fr/words/aidez-moi.mp3",
         "text": "Aidez-moi"
@@ -2106,6 +2131,16 @@
         "filename": "où_est_laéroport.mp3",
         "path": "/audio/fr/words/où_est_laéroport.mp3",
         "text": "Où est l'aéroport ?"
+      },
+      {
+        "filename": "je_voudrais_aller_à_laéroport.mp3",
+        "path": "/audio/fr/words/je_voudrais_aller_à_laéroport.mp3",
+        "text": "Je voudrais aller à l'aéroport"
+      },
+      {
+        "filename": "à_quelle_heure_est_le_départ.mp3",
+        "path": "/audio/fr/words/à_quelle_heure_est_le_départ.mp3",
+        "text": "À quelle heure est le départ ?"
       },
       {
         "filename": "où_est_lhôtel.mp3",
@@ -2148,6 +2183,11 @@
         "text": "La carte, s'il vous plaît"
       },
       {
+        "filename": "puis-je_voir_la_carte.mp3",
+        "path": "/audio/fr/words/puis-je_voir_la_carte.mp3",
+        "text": "Puis-je voir la carte ?"
+      },
+      {
         "filename": "je_voudrais_de_leau.mp3",
         "path": "/audio/fr/words/je_voudrais_de_leau.mp3",
         "text": "Je voudrais de l'eau"
@@ -2188,9 +2228,19 @@
         "text": "Acceptez-vous les cartes bancaires ?"
       },
       {
+        "filename": "puis-je_payer_par_carte.mp3",
+        "path": "/audio/fr/words/puis-je_payer_par_carte.mp3",
+        "text": "Puis-je payer par carte ?"
+      },
+      {
         "filename": "je_regarde_seulement.mp3",
         "path": "/audio/fr/words/je_regarde_seulement.mp3",
         "text": "Je regarde seulement"
+      },
+      {
+        "filename": "je_regarde_seulement_merci.mp3",
+        "path": "/audio/fr/words/je_regarde_seulement_merci.mp3",
+        "text": "Je regarde seulement, merci"
       },
       {
         "filename": "avez-vous_ceci_dans_une_autre_taille.mp3",
@@ -2206,6 +2256,11 @@
         "filename": "jai_besoin_dun_médecin.mp3",
         "path": "/audio/fr/words/jai_besoin_dun_médecin.mp3",
         "text": "J'ai besoin d'un médecin"
+      },
+      {
+        "filename": "je_ne_me_sens_pas_bien.mp3",
+        "path": "/audio/fr/words/je_ne_me_sens_pas_bien.mp3",
+        "text": "Je ne me sens pas bien"
       },
       {
         "filename": "appelez_la_police.mp3",
@@ -2443,6 +2498,21 @@
         "text": "Est-ce loin d'ici ?"
       },
       {
+        "filename": "violet.mp3",
+        "path": "/audio/fr/words/violet.mp3",
+        "text": "Violet"
+      },
+      {
+        "filename": "rose.mp3",
+        "path": "/audio/fr/words/rose.mp3",
+        "text": "Rose"
+      },
+      {
+        "filename": "gris.mp3",
+        "path": "/audio/fr/words/gris.mp3",
+        "text": "Gris"
+      },
+      {
         "filename": "vous_mentendez.mp3",
         "path": "/audio/fr/words/vous_mentendez.mp3",
         "text": "Vous m'entendez ?"
@@ -2453,9 +2523,29 @@
         "text": "Voyez-vous mon écran ?"
       },
       {
+        "filename": "je_vais_partager_mon_écran.mp3",
+        "path": "/audio/fr/words/je_vais_partager_mon_écran.mp3",
+        "text": "Je vais partager mon écran"
+      },
+      {
         "filename": "quel_est_le_mot_de_passe_du_wi-fi.mp3",
         "path": "/audio/fr/words/quel_est_le_mot_de_passe_du_wi-fi.mp3",
         "text": "Quel est le mot de passe du Wi-Fi ?"
+      },
+      {
+        "filename": "la_connexion_internet_est_lente.mp3",
+        "path": "/audio/fr/words/la_connexion_internet_est_lente.mp3",
+        "text": "La connexion internet est lente"
+      },
+      {
+        "filename": "pouvez-vous_lenvoyer_par_courriel.mp3",
+        "path": "/audio/fr/words/pouvez-vous_lenvoyer_par_courriel.mp3",
+        "text": "Pouvez-vous l'envoyer par courriel ?"
+      },
+      {
+        "filename": "ma_batterie_est_presque_vide.mp3",
+        "path": "/audio/fr/words/ma_batterie_est_presque_vide.mp3",
+        "text": "Ma batterie est presque vide"
       },
       {
         "filename": "planifions_une_réunion.mp3",

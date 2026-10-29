@@ -1,7 +1,7 @@
 {
   "language": "pt",
   "voice": "pt-BR-AntonioNeural",
-  "generated": "2026-10-29T15:55:32.646817Z",
+  "generated": "2026-10-29T17:05:18.180466Z",
   "files": {
     "alphabet": [
       {
@@ -1193,6 +1193,11 @@
         "text": "Jantar"
       },
       {
+        "filename": "sal.mp3",
+        "path": "/audio/pt/words/sal.mp3",
+        "text": "Sal"
+      },
+      {
         "filename": "loja.mp3",
         "path": "/audio/pt/words/loja.mp3",
         "text": "Loja"
@@ -1313,6 +1318,11 @@
         "text": "Fábrica"
       },
       {
+        "filename": "mar.mp3",
+        "path": "/audio/pt/words/mar.mp3",
+        "text": "Mar"
+      },
+      {
         "filename": "passagem.mp3",
         "path": "/audio/pt/words/passagem.mp3",
         "text": "Passagem"
@@ -1383,6 +1393,11 @@
         "text": "O que"
       },
       {
+        "filename": "o_quê.mp3",
+        "path": "/audio/pt/words/o_quê.mp3",
+        "text": "O quê?"
+      },
+      {
         "filename": "onde.mp3",
         "path": "/audio/pt/words/onde.mp3",
         "text": "Onde"
@@ -1396,6 +1411,11 @@
         "filename": "por_que.mp3",
         "path": "/audio/pt/words/por_que.mp3",
         "text": "Por que"
+      },
+      {
+        "filename": "por_quê.mp3",
+        "path": "/audio/pt/words/por_quê.mp3",
+        "text": "Por quê?"
       },
       {
         "filename": "como.mp3",
@@ -1506,6 +1526,11 @@
         "filename": "árvore_de_natal.mp3",
         "path": "/audio/pt/words/árvore_de_natal.mp3",
         "text": "Árvore de Natal"
+      },
+      {
+        "filename": "zebra.mp3",
+        "path": "/audio/pt/words/zebra.mp3",
+        "text": "Zebra"
       },
       {
         "filename": "bom.mp3",
@@ -2058,6 +2083,11 @@
         "text": "Fale mais devagar, por favor"
       },
       {
+        "filename": "pode_falar_mais_devagar.mp3",
+        "path": "/audio/pt/words/pode_falar_mais_devagar.mp3",
+        "text": "Pode falar mais devagar?"
+      },
+      {
         "filename": "fale_mais_devagar.mp3",
         "path": "/audio/pt/words/fale_mais_devagar.mp3",
         "text": "Fale mais devagar"
@@ -2093,6 +2123,11 @@
         "text": "Pode me ajudar?"
       },
       {
+        "filename": "preciso_de_ajuda.mp3",
+        "path": "/audio/pt/words/preciso_de_ajuda.mp3",
+        "text": "Preciso de ajuda"
+      },
+      {
         "filename": "ajude-me.mp3",
         "path": "/audio/pt/words/ajude-me.mp3",
         "text": "Ajude-me"
@@ -2116,6 +2151,16 @@
         "filename": "onde_fica_o_aeroporto.mp3",
         "path": "/audio/pt/words/onde_fica_o_aeroporto.mp3",
         "text": "Onde fica o aeroporto?"
+      },
+      {
+        "filename": "gostaria_de_ir_ao_aeroporto.mp3",
+        "path": "/audio/pt/words/gostaria_de_ir_ao_aeroporto.mp3",
+        "text": "Gostaria de ir ao aeroporto"
+      },
+      {
+        "filename": "a_que_horas_é_a_partida.mp3",
+        "path": "/audio/pt/words/a_que_horas_é_a_partida.mp3",
+        "text": "A que horas é a partida?"
       },
       {
         "filename": "onde_fica_o_hotel.mp3",
@@ -2156,6 +2201,11 @@
         "filename": "o_cardápio_por_favor.mp3",
         "path": "/audio/pt/words/o_cardápio_por_favor.mp3",
         "text": "O cardápio, por favor"
+      },
+      {
+        "filename": "posso_ver_o_cardápio.mp3",
+        "path": "/audio/pt/words/posso_ver_o_cardápio.mp3",
+        "text": "Posso ver o cardápio?"
       },
       {
         "filename": "eu_gostaria_de_água.mp3",
@@ -2203,9 +2253,19 @@
         "text": "Vocês aceitam cartão de crédito?"
       },
       {
+        "filename": "posso_pagar_com_cartão.mp3",
+        "path": "/audio/pt/words/posso_pagar_com_cartão.mp3",
+        "text": "Posso pagar com cartão?"
+      },
+      {
         "filename": "só_estou_olhando.mp3",
         "path": "/audio/pt/words/só_estou_olhando.mp3",
         "text": "Só estou olhando"
+      },
+      {
+        "filename": "só_estou_olhando_obrigado.mp3",
+        "path": "/audio/pt/words/só_estou_olhando_obrigado.mp3",
+        "text": "Só estou olhando, obrigado"
       },
       {
         "filename": "tem_isto_em_outro_tamanho.mp3",
@@ -2221,6 +2281,11 @@
         "filename": "preciso_de_um_médico.mp3",
         "path": "/audio/pt/words/preciso_de_um_médico.mp3",
         "text": "Preciso de um médico"
+      },
+      {
+        "filename": "não_estou_me_sentindo_bem.mp3",
+        "path": "/audio/pt/words/não_estou_me_sentindo_bem.mp3",
+        "text": "Não estou me sentindo bem"
       },
       {
         "filename": "chame_a_polícia.mp3",
@@ -2458,6 +2523,21 @@
         "text": "É longe daqui?"
       },
       {
+        "filename": "roxo.mp3",
+        "path": "/audio/pt/words/roxo.mp3",
+        "text": "Roxo"
+      },
+      {
+        "filename": "rosa.mp3",
+        "path": "/audio/pt/words/rosa.mp3",
+        "text": "Rosa"
+      },
+      {
+        "filename": "cinza.mp3",
+        "path": "/audio/pt/words/cinza.mp3",
+        "text": "Cinza"
+      },
+      {
         "filename": "você_me_ouve.mp3",
         "path": "/audio/pt/words/você_me_ouve.mp3",
         "text": "Você me ouve?"
@@ -2468,9 +2548,29 @@
         "text": "Você vê minha tela?"
       },
       {
+        "filename": "vou_compartilhar_minha_tela.mp3",
+        "path": "/audio/pt/words/vou_compartilhar_minha_tela.mp3",
+        "text": "Vou compartilhar minha tela"
+      },
+      {
         "filename": "qual_é_a_senha_do_wi-fi.mp3",
         "path": "/audio/pt/words/qual_é_a_senha_do_wi-fi.mp3",
         "text": "Qual é a senha do Wi-Fi?"
+      },
+      {
+        "filename": "a_conexão_com_a_internet_está_lenta.mp3",
+        "path": "/audio/pt/words/a_conexão_com_a_internet_está_lenta.mp3",
+        "text": "A conexão com a internet está lenta"
+      },
+      {
+        "filename": "pode_enviar_por_e-mail.mp3",
+        "path": "/audio/pt/words/pode_enviar_por_e-mail.mp3",
+        "text": "Pode enviar por e-mail?"
+      },
+      {
+        "filename": "minha_bateria_está_quase_acabando.mp3",
+        "path": "/audio/pt/words/minha_bateria_está_quase_acabando.mp3",
+        "text": "Minha bateria está quase acabando"
       },
       {
         "filename": "vamos_agendar_uma_reunião.mp3",

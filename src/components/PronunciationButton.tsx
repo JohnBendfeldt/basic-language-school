@@ -22,7 +22,10 @@ export const getCandidateAudioPathsForText = (
 ): string[] => {
   if (!text) return [];
   
-  const normalizedText = text.toLowerCase().trim();
+  const rawLower = effectiveLangId === 'tr'
+    ? text.replace(/İ/g, 'i').replace(/I/g, 'ı').replace(/\u0307/g, '').toLowerCase()
+    : text.toLowerCase();
+  const normalizedText = rawLower.trim();
   
   // Check if text is a formatted number like "1 (Un)", "15 (Quince)", or "1,000 (One Thousand)"
   const numParenMatch = normalizedText.match(/^[\d,.\s]+\(([^)]+)\)$/);
@@ -85,7 +88,11 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
             ? 'pt'
             : (lang && lang.toLowerCase().startsWith('de'))
               ? 'de'
-              : currentLanguage;
+              : (lang && lang.toLowerCase().startsWith('id'))
+                ? 'id'
+                : (lang && lang.toLowerCase().startsWith('tr'))
+                  ? 'tr'
+                  : currentLanguage;
 
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
