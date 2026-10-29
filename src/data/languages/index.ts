@@ -1,6 +1,6 @@
 import { LanguageMeta, SupportedLanguageId } from './types';
-import russianData from '../russianData';
-import englishData from './enData';
+import russianData from './ru/russianData';
+import englishData from './en/englishData';
 import spanishData from './es/spanishData';
 import frenchData from './fr/frenchData';
 

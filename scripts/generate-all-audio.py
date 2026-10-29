@@ -217,16 +217,20 @@ async def synthesize_file(sem, spoken_text: str, voice: str, out_path: Path, for
             return "skipped"
 
         temp_path = out_path.with_suffix(".tmp.mp3")
-        try:
-            communicate = edge_tts.Communicate(spoken_text, voice, volume="+20%")
-            await communicate.save(str(temp_path))
-            temp_path.replace(out_path)
-            return "success"
-        except Exception as e:
-            if temp_path.exists():
-                temp_path.unlink()
-            print(f"    ❌ Error generating '{spoken_text}' -> {out_path.name}: {e}")
-            return "error"
+        last_err = None
+        for attempt in range(4):
+            try:
+                communicate = edge_tts.Communicate(spoken_text, voice, volume="+20%")
+                await communicate.save(str(temp_path))
+                temp_path.replace(out_path)
+                return "success"
+            except Exception as e:
+                last_err = e
+                if temp_path.exists():
+                    temp_path.unlink()
+                await asyncio.sleep(0.6 * (attempt + 1))
+        print(f"    ❌ Error generating '{spoken_text}' -> {out_path.name}: {last_err}")
+        return "error"
 
 
 async def process_language(lang_id: str, force: bool = False):
@@ -247,7 +251,7 @@ async def process_language(lang_id: str, force: bool = False):
     print("=" * 60)
 
     categories = parse_russian(data_file) if lang_id == "ru" else parse_standard_lang(data_file, lang_id)
-    sem = asyncio.Semaphore(12)
+    sem = asyncio.Semaphore(4)
 
     success = 0
     skipped = 0

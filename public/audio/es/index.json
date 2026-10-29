@@ -1,7 +1,7 @@
 {
   "language": "es",
   "voice": "es-MX-JorgeNeural",
-  "generated": "2026-10-29T14:36:12.668105Z",
+  "generated": "2026-10-29T15:02:44.962049Z",
   "files": {
     "alphabet": [
       {
@@ -397,6 +397,21 @@
         "filename": "adiós.mp3",
         "path": "/audio/es/phrases/adiós.mp3",
         "text": "Adiós"
+      },
+      {
+        "filename": "me_escucha.mp3",
+        "path": "/audio/es/phrases/me_escucha.mp3",
+        "text": "¿Me escucha?"
+      },
+      {
+        "filename": "puede_ver_mi_pantalla.mp3",
+        "path": "/audio/es/phrases/puede_ver_mi_pantalla.mp3",
+        "text": "¿Puede ver mi pantalla?"
+      },
+      {
+        "filename": "cuál_es_la_contraseña_del_wifi.mp3",
+        "path": "/audio/es/phrases/cuál_es_la_contraseña_del_wifi.mp3",
+        "text": "¿Cuál es la contraseña del wifi?"
       }
     ],
     "numbers": [
@@ -651,6 +666,156 @@
         "filename": "tren.mp3",
         "path": "/audio/es/words/tren.mp3",
         "text": "Tren"
+      },
+      {
+        "filename": "rojo.mp3",
+        "path": "/audio/es/words/rojo.mp3",
+        "text": "Rojo"
+      },
+      {
+        "filename": "azul.mp3",
+        "path": "/audio/es/words/azul.mp3",
+        "text": "Azul"
+      },
+      {
+        "filename": "verde.mp3",
+        "path": "/audio/es/words/verde.mp3",
+        "text": "Verde"
+      },
+      {
+        "filename": "amarillo.mp3",
+        "path": "/audio/es/words/amarillo.mp3",
+        "text": "Amarillo"
+      },
+      {
+        "filename": "negro.mp3",
+        "path": "/audio/es/words/negro.mp3",
+        "text": "Negro"
+      },
+      {
+        "filename": "blanco.mp3",
+        "path": "/audio/es/words/blanco.mp3",
+        "text": "Blanco"
+      },
+      {
+        "filename": "grande.mp3",
+        "path": "/audio/es/words/grande.mp3",
+        "text": "Grande"
+      },
+      {
+        "filename": "pequeño.mp3",
+        "path": "/audio/es/words/pequeño.mp3",
+        "text": "Pequeño"
+      },
+      {
+        "filename": "nuevo.mp3",
+        "path": "/audio/es/words/nuevo.mp3",
+        "text": "Nuevo"
+      },
+      {
+        "filename": "viejo.mp3",
+        "path": "/audio/es/words/viejo.mp3",
+        "text": "Viejo"
+      },
+      {
+        "filename": "sol.mp3",
+        "path": "/audio/es/words/sol.mp3",
+        "text": "Sol"
+      },
+      {
+        "filename": "lluvia.mp3",
+        "path": "/audio/es/words/lluvia.mp3",
+        "text": "Lluvia"
+      },
+      {
+        "filename": "nieve.mp3",
+        "path": "/audio/es/words/nieve.mp3",
+        "text": "Nieve"
+      },
+      {
+        "filename": "viento.mp3",
+        "path": "/audio/es/words/viento.mp3",
+        "text": "Viento"
+      },
+      {
+        "filename": "nube.mp3",
+        "path": "/audio/es/words/nube.mp3",
+        "text": "Nube"
+      },
+      {
+        "filename": "tormenta.mp3",
+        "path": "/audio/es/words/tormenta.mp3",
+        "text": "Tormenta"
+      },
+      {
+        "filename": "caliente.mp3",
+        "path": "/audio/es/words/caliente.mp3",
+        "text": "Caliente"
+      },
+      {
+        "filename": "frío.mp3",
+        "path": "/audio/es/words/frío.mp3",
+        "text": "Frío"
+      },
+      {
+        "filename": "computadora.mp3",
+        "path": "/audio/es/words/computadora.mp3",
+        "text": "Computadora"
+      },
+      {
+        "filename": "teléfono.mp3",
+        "path": "/audio/es/words/teléfono.mp3",
+        "text": "Teléfono"
+      },
+      {
+        "filename": "internet.mp3",
+        "path": "/audio/es/words/internet.mp3",
+        "text": "Internet"
+      },
+      {
+        "filename": "contraseña.mp3",
+        "path": "/audio/es/words/contraseña.mp3",
+        "text": "Contraseña"
+      },
+      {
+        "filename": "correo_electrónico.mp3",
+        "path": "/audio/es/words/correo_electrónico.mp3",
+        "text": "Correo electrónico"
+      },
+      {
+        "filename": "pantalla.mp3",
+        "path": "/audio/es/words/pantalla.mp3",
+        "text": "Pantalla"
+      },
+      {
+        "filename": "reunión.mp3",
+        "path": "/audio/es/words/reunión.mp3",
+        "text": "Reunión"
+      },
+      {
+        "filename": "archivo.mp3",
+        "path": "/audio/es/words/archivo.mp3",
+        "text": "Archivo"
+      },
+      {
+        "filename": "enlace.mp3",
+        "path": "/audio/es/words/enlace.mp3",
+        "text": "Enlace"
+      },
+      {
+        "filename": "código.mp3",
+        "path": "/audio/es/words/código.mp3",
+        "text": "Código"
+      },
+      {
+        "filename": "error.mp3",
+        "path": "/audio/es/words/error.mp3",
+        "text": "Error"
+      },
+      {
+        "filename": "batería.mp3",
+        "path": "/audio/es/words/batería.mp3",
+        "text": "Batería"
       },
       {
         "filename": "hombre.mp3",
@@ -923,16 +1088,6 @@
         "text": "Pasaporte"
       },
       {
-        "filename": "teléfono.mp3",
-        "path": "/audio/es/words/teléfono.mp3",
-        "text": "Teléfono"
-      },
-      {
-        "filename": "computadora.mp3",
-        "path": "/audio/es/words/computadora.mp3",
-        "text": "Computadora"
-      },
-      {
         "filename": "libro.mp3",
         "path": "/audio/es/words/libro.mp3",
         "text": "Libro"
@@ -1083,11 +1238,6 @@
         "text": "Pájaro / Ave"
       },
       {
-        "filename": "sol.mp3",
-        "path": "/audio/es/words/sol.mp3",
-        "text": "Sol"
-      },
-      {
         "filename": "luna.mp3",
         "path": "/audio/es/words/luna.mp3",
         "text": "Luna"
@@ -1096,26 +1246,6 @@
         "filename": "estrella.mp3",
         "path": "/audio/es/words/estrella.mp3",
         "text": "Estrella"
-      },
-      {
-        "filename": "lluvia.mp3",
-        "path": "/audio/es/words/lluvia.mp3",
-        "text": "Lluvia"
-      },
-      {
-        "filename": "nieve.mp3",
-        "path": "/audio/es/words/nieve.mp3",
-        "text": "Nieve"
-      },
-      {
-        "filename": "frío.mp3",
-        "path": "/audio/es/words/frío.mp3",
-        "text": "Frío"
-      },
-      {
-        "filename": "caliente.mp3",
-        "path": "/audio/es/words/caliente.mp3",
-        "text": "Caliente / Calor"
       },
       {
         "filename": "erizo.mp3",
@@ -1151,26 +1281,6 @@
         "filename": "malo.mp3",
         "path": "/audio/es/words/malo.mp3",
         "text": "Malo"
-      },
-      {
-        "filename": "grande.mp3",
-        "path": "/audio/es/words/grande.mp3",
-        "text": "Grande"
-      },
-      {
-        "filename": "pequeño.mp3",
-        "path": "/audio/es/words/pequeño.mp3",
-        "text": "Pequeño"
-      },
-      {
-        "filename": "nuevo.mp3",
-        "path": "/audio/es/words/nuevo.mp3",
-        "text": "Nuevo"
-      },
-      {
-        "filename": "viejo.mp3",
-        "path": "/audio/es/words/viejo.mp3",
-        "text": "Viejo / Antiguo"
       },
       {
         "filename": "abierto.mp3",
@@ -1276,11 +1386,6 @@
         "filename": "xilófono.mp3",
         "path": "/audio/es/words/xilófono.mp3",
         "text": "Xilófono"
-      },
-      {
-        "filename": "amarillo.mp3",
-        "path": "/audio/es/words/amarillo.mp3",
-        "text": "Amarillo"
       },
       {
         "filename": "cero.mp3",
@@ -2106,6 +2211,21 @@
         "filename": "está_lejos_de_aquí.mp3",
         "path": "/audio/es/words/está_lejos_de_aquí.mp3",
         "text": "¿Está lejos de aquí?"
+      },
+      {
+        "filename": "me_escucha.mp3",
+        "path": "/audio/es/words/me_escucha.mp3",
+        "text": "¿Me escucha?"
+      },
+      {
+        "filename": "puede_ver_mi_pantalla.mp3",
+        "path": "/audio/es/words/puede_ver_mi_pantalla.mp3",
+        "text": "¿Puede ver mi pantalla?"
+      },
+      {
+        "filename": "cuál_es_la_contraseña_del_wifi.mp3",
+        "path": "/audio/es/words/cuál_es_la_contraseña_del_wifi.mp3",
+        "text": "¿Cuál es la contraseña del wifi?"
       }
     ],
     "time": [

@@ -1,7 +1,7 @@
 {
   "language": "en",
   "voice": "en-US-JennyNeural",
-  "generated": "2026-10-29T14:35:44.110965Z",
+  "generated": "2026-10-29T15:03:19.626443Z",
   "files": {
     "alphabet": [
       {
@@ -417,6 +417,21 @@
         "filename": "can_you_help_me.mp3",
         "path": "/audio/en/phrases/can_you_help_me.mp3",
         "text": "Can you help me?"
+      },
+      {
+        "filename": "can_you_hear_me.mp3",
+        "path": "/audio/en/phrases/can_you_hear_me.mp3",
+        "text": "Can you hear me?"
+      },
+      {
+        "filename": "can_you_see_my_screen.mp3",
+        "path": "/audio/en/phrases/can_you_see_my_screen.mp3",
+        "text": "Can you see my screen?"
+      },
+      {
+        "filename": "what_is_the_wi-fi_password.mp3",
+        "path": "/audio/en/phrases/what_is_the_wi-fi_password.mp3",
+        "text": "What is the Wi-Fi password?"
       }
     ],
     "numbers": [
@@ -728,16 +743,6 @@
         "text": "Passport"
       },
       {
-        "filename": "phone.mp3",
-        "path": "/audio/en/words/phone.mp3",
-        "text": "Phone"
-      },
-      {
-        "filename": "computer.mp3",
-        "path": "/audio/en/words/computer.mp3",
-        "text": "Computer"
-      },
-      {
         "filename": "book.mp3",
         "path": "/audio/en/words/book.mp3",
         "text": "Book"
@@ -771,6 +776,156 @@
         "filename": "to_understand.mp3",
         "path": "/audio/en/words/to_understand.mp3",
         "text": "To understand"
+      },
+      {
+        "filename": "red.mp3",
+        "path": "/audio/en/words/red.mp3",
+        "text": "Red"
+      },
+      {
+        "filename": "blue.mp3",
+        "path": "/audio/en/words/blue.mp3",
+        "text": "Blue"
+      },
+      {
+        "filename": "green.mp3",
+        "path": "/audio/en/words/green.mp3",
+        "text": "Green"
+      },
+      {
+        "filename": "yellow.mp3",
+        "path": "/audio/en/words/yellow.mp3",
+        "text": "Yellow"
+      },
+      {
+        "filename": "black.mp3",
+        "path": "/audio/en/words/black.mp3",
+        "text": "Black"
+      },
+      {
+        "filename": "white.mp3",
+        "path": "/audio/en/words/white.mp3",
+        "text": "White"
+      },
+      {
+        "filename": "big.mp3",
+        "path": "/audio/en/words/big.mp3",
+        "text": "Big"
+      },
+      {
+        "filename": "small.mp3",
+        "path": "/audio/en/words/small.mp3",
+        "text": "Small"
+      },
+      {
+        "filename": "new.mp3",
+        "path": "/audio/en/words/new.mp3",
+        "text": "New"
+      },
+      {
+        "filename": "old.mp3",
+        "path": "/audio/en/words/old.mp3",
+        "text": "Old"
+      },
+      {
+        "filename": "sun.mp3",
+        "path": "/audio/en/words/sun.mp3",
+        "text": "Sun"
+      },
+      {
+        "filename": "rain.mp3",
+        "path": "/audio/en/words/rain.mp3",
+        "text": "Rain"
+      },
+      {
+        "filename": "snow.mp3",
+        "path": "/audio/en/words/snow.mp3",
+        "text": "Snow"
+      },
+      {
+        "filename": "wind.mp3",
+        "path": "/audio/en/words/wind.mp3",
+        "text": "Wind"
+      },
+      {
+        "filename": "cloud.mp3",
+        "path": "/audio/en/words/cloud.mp3",
+        "text": "Cloud"
+      },
+      {
+        "filename": "storm.mp3",
+        "path": "/audio/en/words/storm.mp3",
+        "text": "Storm"
+      },
+      {
+        "filename": "hot.mp3",
+        "path": "/audio/en/words/hot.mp3",
+        "text": "Hot"
+      },
+      {
+        "filename": "cold.mp3",
+        "path": "/audio/en/words/cold.mp3",
+        "text": "Cold"
+      },
+      {
+        "filename": "computer.mp3",
+        "path": "/audio/en/words/computer.mp3",
+        "text": "Computer"
+      },
+      {
+        "filename": "phone.mp3",
+        "path": "/audio/en/words/phone.mp3",
+        "text": "Phone"
+      },
+      {
+        "filename": "internet.mp3",
+        "path": "/audio/en/words/internet.mp3",
+        "text": "Internet"
+      },
+      {
+        "filename": "password.mp3",
+        "path": "/audio/en/words/password.mp3",
+        "text": "Password"
+      },
+      {
+        "filename": "email.mp3",
+        "path": "/audio/en/words/email.mp3",
+        "text": "Email"
+      },
+      {
+        "filename": "screen.mp3",
+        "path": "/audio/en/words/screen.mp3",
+        "text": "Screen"
+      },
+      {
+        "filename": "meeting.mp3",
+        "path": "/audio/en/words/meeting.mp3",
+        "text": "Meeting"
+      },
+      {
+        "filename": "file.mp3",
+        "path": "/audio/en/words/file.mp3",
+        "text": "File"
+      },
+      {
+        "filename": "link.mp3",
+        "path": "/audio/en/words/link.mp3",
+        "text": "Link"
+      },
+      {
+        "filename": "code.mp3",
+        "path": "/audio/en/words/code.mp3",
+        "text": "Code"
+      },
+      {
+        "filename": "error.mp3",
+        "path": "/audio/en/words/error.mp3",
+        "text": "Error"
+      },
+      {
+        "filename": "battery.mp3",
+        "path": "/audio/en/words/battery.mp3",
+        "text": "Battery"
       },
       {
         "filename": "man.mp3",
@@ -1143,11 +1298,6 @@
         "text": "Bird"
       },
       {
-        "filename": "sun.mp3",
-        "path": "/audio/en/words/sun.mp3",
-        "text": "Sun"
-      },
-      {
         "filename": "moon.mp3",
         "path": "/audio/en/words/moon.mp3",
         "text": "Moon"
@@ -1156,26 +1306,6 @@
         "filename": "star.mp3",
         "path": "/audio/en/words/star.mp3",
         "text": "Star"
-      },
-      {
-        "filename": "rain.mp3",
-        "path": "/audio/en/words/rain.mp3",
-        "text": "Rain"
-      },
-      {
-        "filename": "snow.mp3",
-        "path": "/audio/en/words/snow.mp3",
-        "text": "Snow"
-      },
-      {
-        "filename": "cold.mp3",
-        "path": "/audio/en/words/cold.mp3",
-        "text": "Cold"
-      },
-      {
-        "filename": "hot.mp3",
-        "path": "/audio/en/words/hot.mp3",
-        "text": "Hot"
       },
       {
         "filename": "hedgehog.mp3",
@@ -1211,26 +1341,6 @@
         "filename": "bad.mp3",
         "path": "/audio/en/words/bad.mp3",
         "text": "Bad"
-      },
-      {
-        "filename": "big.mp3",
-        "path": "/audio/en/words/big.mp3",
-        "text": "Big / Large"
-      },
-      {
-        "filename": "small.mp3",
-        "path": "/audio/en/words/small.mp3",
-        "text": "Small / Little"
-      },
-      {
-        "filename": "new.mp3",
-        "path": "/audio/en/words/new.mp3",
-        "text": "New"
-      },
-      {
-        "filename": "old.mp3",
-        "path": "/audio/en/words/old.mp3",
-        "text": "Old"
       },
       {
         "filename": "open.mp3",
@@ -1336,11 +1446,6 @@
         "filename": "xylophone.mp3",
         "path": "/audio/en/words/xylophone.mp3",
         "text": "Xylophone"
-      },
-      {
-        "filename": "yellow.mp3",
-        "path": "/audio/en/words/yellow.mp3",
-        "text": "Yellow"
       },
       {
         "filename": "zero.mp3",
@@ -2221,6 +2326,21 @@
         "filename": "could_you_speak_slower_please.mp3",
         "path": "/audio/en/words/could_you_speak_slower_please.mp3",
         "text": "Could you speak slower, please?"
+      },
+      {
+        "filename": "can_you_hear_me.mp3",
+        "path": "/audio/en/words/can_you_hear_me.mp3",
+        "text": "Can you hear me?"
+      },
+      {
+        "filename": "can_you_see_my_screen.mp3",
+        "path": "/audio/en/words/can_you_see_my_screen.mp3",
+        "text": "Can you see my screen?"
+      },
+      {
+        "filename": "what_is_the_wi-fi_password.mp3",
+        "path": "/audio/en/words/what_is_the_wi-fi_password.mp3",
+        "text": "What is the Wi-Fi password?"
       }
     ]
   }

@@ -844,7 +844,7 @@ export const localizeCategoryBadge = (
   category: string | undefined,
   baseLang: SupportedLanguageId
 ): string | undefined => {
-  if (!category || baseLang === 'en') return category;
+  if (!category) return category;
 
   const key = category.trim().toLowerCase();
   const map: Record<string, Record<SupportedLanguageId, string>> = {
@@ -884,7 +884,11 @@ export const localizeCategoryBadge = (
     'hour': { en: 'Hour', es: 'Horas', fr: 'Heures', ru: 'Часы' },
     'minutes': { en: 'Minutes', es: 'Minutos', fr: 'Minutes', ru: 'Минуты' },
     'special': { en: 'Special', es: 'Especial', fr: 'Spécial', ru: 'Особое' },
-    'mixed': { en: 'Mixed', es: 'Mixto', fr: 'Mixte', ru: 'Смешанный' }
+    'mixed': { en: 'Mixed', es: 'Mixto', fr: 'Mixte', ru: 'Смешанный' },
+    'colors': { en: 'Colors', es: 'Colores', fr: 'Couleurs', ru: 'Цвета' },
+    'weather': { en: 'Weather', es: 'Clima', fr: 'Météo', ru: 'Погода' },
+    'tech': { en: 'Tech & IT', es: 'Tecnología', fr: 'Tech et IT', ru: 'Технологии' },
+    'all': { en: 'All', es: 'Todos', fr: 'Tous', ru: 'Все' }
   };
 
   return map[key]?.[baseLang] || category;
