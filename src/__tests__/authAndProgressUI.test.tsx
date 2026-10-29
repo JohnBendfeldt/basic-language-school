@@ -159,6 +159,29 @@ describe('ProgressModal Component', () => {
     const englishSub = document.querySelector('.review-word-info .english-translation');
     expect(englishSub?.textContent).toBe('Nineteen');
   });
+
+  it('opens and closes the course language dropdown, and switches selected course progress', async () => {
+    render(<ProgressModal isOpen={true} onClose={vi.fn()} />);
+
+    await waitFor(() => {
+      expect(screen.getByText('No Quiz History Yet')).toBeInTheDocument();
+    });
+
+    const trigger = screen.getByRole('button', { name: /Current course|Select course language/i });
+    expect(trigger).toBeInTheDocument();
+
+    // Open dropdown
+    fireEvent.click(trigger);
+    expect(screen.getByRole('listbox', { name: /Available languages/i })).toBeInTheDocument();
+
+    // Select German course
+    const germanOption = screen.getByRole('option', { name: /German/i });
+    fireEvent.click(germanOption);
+
+    // Dropdown should close and trigger should reflect German selection
+    expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /German/i })).toBeInTheDocument();
+  });
 });
 
 describe('Supabase Client Configuration & Auth Functions', () => {

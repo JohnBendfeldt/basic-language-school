@@ -4085,75 +4085,208 @@ html {
   margin: 0 0 0.5rem;
 }
 
-/* Multi-Language Progress Navigation Tabs */
-.progress-lang-tabs {
+/* Multi-Language Progress Dropdown Selector (Replaces horizontal scrollbar) */
+.progress-lang-selector-card {
+  margin-bottom: 1.25rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0.65rem 0.9rem;
+}
+
+.progress-lang-selector-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.45rem;
+}
+
+.progress-lang-label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+}
+
+.progress-lang-sublabel {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.progress-dropdown-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.progress-dropdown-trigger {
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-  overflow-x: auto;
-  padding-bottom: 0.25rem;
-  -webkit-overflow-scrolling: touch;
-}
-
-.progress-lang-tab {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.45rem 0.85rem;
-  background: #f1f5f9;
-  border: 1px solid #e2e8f0;
-  border-radius: 9999px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #475569;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 0.85rem;
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  white-space: nowrap;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-.progress-lang-tab:hover {
-  background: #e2e8f0;
+.progress-dropdown-trigger:hover {
+  border-color: #6366f1;
+  background: #fafafa;
+}
+
+.progress-dropdown-trigger.open {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.dropdown-trigger-main {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.95rem;
+  font-weight: 600;
   color: #0f172a;
 }
 
-.progress-lang-tab.active {
-  background: #4338ca;
-  color: #ffffff;
-  border-color: #4338ca;
-  box-shadow: 0 2px 8px rgba(67, 56, 202, 0.25);
-}
-
-.lang-tab-flag {
-  font-size: 1.05rem;
+.dropdown-trigger-flag {
+  font-size: 1.25rem;
   line-height: 1;
 }
 
-.lang-tab-name {
-  line-height: 1;
+.dropdown-trigger-name {
+  color: #1e293b;
 }
 
-.lang-tab-badge {
+.dropdown-trigger-end {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.dropdown-trigger-badge {
   display: inline-block;
-  padding: 0.15rem 0.45rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.dropdown-trigger-badge.has-mastery {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.dropdown-chevron {
+  font-size: 0.75rem;
+  color: #64748b;
+  transition: transform 0.2s ease;
+}
+
+.dropdown-chevron.rotated {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menu Popup */
+.progress-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  padding: 0.35rem;
+  max-height: 280px;
+  overflow-y: auto;
+  z-index: 100;
+  animation: fadeInDown 0.15s ease-out;
+}
+
+.progress-dropdown-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  font-family: inherit;
+  text-align: left;
+}
+
+.progress-dropdown-item:hover {
+  background: #f1f5f9;
+}
+
+.progress-dropdown-item.selected {
+  background: #eef2ff;
+}
+
+.dropdown-item-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.dropdown-item-flag {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.dropdown-item-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.progress-dropdown-item.selected .dropdown-item-name {
+  color: #4338ca;
+  font-weight: 700;
+}
+
+.dropdown-item-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.dropdown-item-badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
   border-radius: 9999px;
   font-size: 0.72rem;
   font-weight: 700;
-  background: rgba(0, 0, 0, 0.08);
-  color: inherit;
+  background: #f1f5f9;
+  color: #64748b;
 }
 
-.progress-lang-tab.active .lang-tab-badge {
-  background: rgba(255, 255, 255, 0.22);
-  color: #ffffff;
+.dropdown-item-badge.has-mastery {
+  background: #ecfdf5;
+  color: #059669;
 }
 
-.lang-tab-badge.has-mastery {
-  color: #10b981;
+.dropdown-item-check {
+  font-size: 0.85rem;
+  color: #4338ca;
 }
 
-.progress-lang-tab.active .lang-tab-badge.has-mastery {
-  color: #fde047;
+.dropdown-item-check-placeholder {
+  width: 0.85rem;
+  display: inline-block;
 }
 
 /* Mastery Summary Hero Card */
