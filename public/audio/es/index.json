@@ -1,7 +1,7 @@
 {
   "language": "es",
   "voice": "es-MX-JorgeNeural",
-  "generated": "2026-10-28T23:51:34.901683Z",
+  "generated": "2026-10-29T14:36:12.668105Z",
   "files": {
     "alphabet": [
       {
@@ -519,6 +519,26 @@
         "filename": "cincuenta.mp3",
         "path": "/audio/es/numbers/cincuenta.mp3",
         "text": "Cincuenta"
+      },
+      {
+        "filename": "sesenta.mp3",
+        "path": "/audio/es/numbers/sesenta.mp3",
+        "text": "Sesenta"
+      },
+      {
+        "filename": "setenta.mp3",
+        "path": "/audio/es/numbers/setenta.mp3",
+        "text": "Setenta"
+      },
+      {
+        "filename": "ochenta.mp3",
+        "path": "/audio/es/numbers/ochenta.mp3",
+        "text": "Ochenta"
+      },
+      {
+        "filename": "noventa.mp3",
+        "path": "/audio/es/numbers/noventa.mp3",
+        "text": "Noventa"
       },
       {
         "filename": "cien.mp3",
@@ -2071,6 +2091,21 @@
         "filename": "estación_de_tren.mp3",
         "path": "/audio/es/words/estación_de_tren.mp3",
         "text": "Estación de tren"
+      },
+      {
+        "filename": "cien.mp3",
+        "path": "/audio/es/words/cien.mp3",
+        "text": "Cien"
+      },
+      {
+        "filename": "mil.mp3",
+        "path": "/audio/es/words/mil.mp3",
+        "text": "Mil"
+      },
+      {
+        "filename": "está_lejos_de_aquí.mp3",
+        "path": "/audio/es/words/está_lejos_de_aquí.mp3",
+        "text": "¿Está lejos de aquí?"
       }
     ],
     "time": [

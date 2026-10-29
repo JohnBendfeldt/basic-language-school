@@ -83,6 +83,9 @@ const numbers: PhraseItem[] = [
   { phrase: 'Quarante', translation: '40 (Forty)', pronunciation: 'kah-RAHNT', category: 'Tens', icon: '🔢' },
   { phrase: 'Cinquante', translation: '50 (Fifty)', pronunciation: 'san-KAHNT', category: 'Tens', icon: '🔢' },
   { phrase: 'Soixante', translation: '60 (Sixty)', pronunciation: 'swah-SAHNT', category: 'Tens', icon: '🔢' },
+  { phrase: 'Soixante-dix', translation: '70 (Seventy)', pronunciation: 'swah-sahnt-DEES', category: 'Tens', icon: '🔢' },
+  { phrase: 'Quatre-vingts', translation: '80 (Eighty)', pronunciation: 'kat-ruh-VAHN', category: 'Tens', icon: '🔢' },
+  { phrase: 'Quatre-vingt-dix', translation: '90 (Ninety)', pronunciation: 'kat-ruh-vahn-DEES', category: 'Tens', icon: '🔢' },
   { phrase: 'Cent', translation: '100 (One Hundred)', pronunciation: 'sahn', category: 'Hundreds', icon: '💯' },
   { phrase: 'Mille', translation: '1,000 (One Thousand)', pronunciation: 'meel', category: 'Thousands', icon: '🏆' },
 ];

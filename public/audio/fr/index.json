@@ -1,7 +1,7 @@
 {
   "language": "fr",
   "voice": "fr-FR-HenriNeural",
-  "generated": "2026-10-28T23:54:44.367983Z",
+  "generated": "2026-10-29T14:35:40.573261Z",
   "files": {
     "alphabet": [
       {
@@ -504,6 +504,21 @@
         "filename": "soixante.mp3",
         "path": "/audio/fr/numbers/soixante.mp3",
         "text": "Soixante"
+      },
+      {
+        "filename": "soixante-dix.mp3",
+        "path": "/audio/fr/numbers/soixante-dix.mp3",
+        "text": "Soixante-dix"
+      },
+      {
+        "filename": "quatre-vingts.mp3",
+        "path": "/audio/fr/numbers/quatre-vingts.mp3",
+        "text": "Quatre-vingts"
+      },
+      {
+        "filename": "quatre-vingt-dix.mp3",
+        "path": "/audio/fr/numbers/quatre-vingt-dix.mp3",
+        "text": "Quatre-vingt-dix"
       },
       {
         "filename": "cent.mp3",
@@ -2056,6 +2071,21 @@
         "filename": "ça_va_bien_merci.mp3",
         "path": "/audio/fr/words/ça_va_bien_merci.mp3",
         "text": "Ça va bien, merci"
+      },
+      {
+        "filename": "cent.mp3",
+        "path": "/audio/fr/words/cent.mp3",
+        "text": "Cent"
+      },
+      {
+        "filename": "mille.mp3",
+        "path": "/audio/fr/words/mille.mp3",
+        "text": "Mille"
+      },
+      {
+        "filename": "est-ce_loin_dici.mp3",
+        "path": "/audio/fr/words/est-ce_loin_dici.mp3",
+        "text": "Est-ce loin d'ici ?"
       }
     ],
     "time": [
