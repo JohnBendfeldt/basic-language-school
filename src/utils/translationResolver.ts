@@ -120,6 +120,7 @@ export const EXTENDED_DICTIONARY: Record<string, Record<SupportedLanguageId, str
   'airplane': { en: 'Airplane', es: 'Avión', fr: 'Avion', ru: 'Самолёт', pt: 'Avião', de: 'Flugzeug', id: 'Pesawat', tr: 'Uçak' },
   'taxi': { en: 'Taxi', es: 'Taxi', fr: 'Taxi', ru: 'Такси', pt: 'Táxi', de: 'Taxi', id: 'Taksi', tr: 'Taksi' },
   'subway / metro': { en: 'Subway / Metro', es: 'Metro', fr: 'Métro', ru: 'Метро', pt: 'Metrô', de: 'U-Bahn', id: 'Metro', tr: 'Metro' },
+  'subway': { en: 'Subway', es: 'Metro', fr: 'Métro', ru: 'Метро', pt: 'Metrô', de: 'U-Bahn', id: 'Metro', tr: 'Metro' },
   'map': { en: 'Map', es: 'Mapa', fr: 'Carte / Plan', ru: 'Карта', pt: 'Mapa', de: 'Karte', id: 'Peta', tr: 'Harita' },
   'visa': { en: 'Visa', es: 'Visa / Visado', fr: 'Visa', ru: 'Виза', pt: 'Visto', de: 'Visum', id: 'Visa', tr: 'Vize' },
   'center': { en: 'Center', es: 'Centro', fr: 'Centre', ru: 'Центр', pt: 'Centro', de: 'Zentrum', id: 'Pusat', tr: 'Merkez' },
@@ -162,6 +163,7 @@ export const EXTENDED_DICTIONARY: Record<string, Record<SupportedLanguageId, str
   'how': { en: 'How', es: 'Cómo', fr: 'Comment', ru: 'Как', pt: 'Como', de: 'Wie', id: 'Bagaimana', tr: 'Nasıl' },
   'how?': { en: 'How?', es: '¿Cómo?', fr: 'Comment ?', ru: 'Как?', pt: 'Como?', de: 'Wie?', id: 'Bagaimana?', tr: 'Nasıl?' },
   'how much / how many': { en: 'How much / How many', es: 'Cuánto / Cuántos', fr: 'Combien', ru: 'Сколько', pt: 'Quanto', de: 'Wie viel', id: 'Berapa', tr: 'Ne kadar' },
+  'how much': { en: 'How much', es: 'Cuánto', fr: 'Combien', ru: 'Сколько', pt: 'Quanto', de: 'Wie viel', id: 'Berapa', tr: 'Ne kadar' },
 
   // Days of the Week & Calendar
   'monday': { en: 'Monday', es: 'Lunes', fr: 'Lundi', ru: 'Понедельник', pt: 'Segunda-feira', de: 'Montag', id: 'Senin', tr: 'Pazartesi' },
@@ -288,6 +290,7 @@ export const EXTENDED_DICTIONARY: Record<string, Record<SupportedLanguageId, str
   'to understand': { en: 'To understand', es: 'Entender / Comprender', fr: 'Comprendre', ru: 'Понимать', pt: 'Entender', de: 'Verstehen', id: 'Mengerti', tr: 'Anlamak' },
   'to know': { en: 'To know', es: 'Saber / Conocer', fr: 'Savoir / Connaître', ru: 'Знать', pt: 'Saber', de: 'Wissen', id: 'Tahu', tr: 'Bilmek' },
   'to want': { en: 'To want', es: 'Querer', fr: 'Vouloir', ru: 'Хотеть', pt: 'Querer', de: 'Wollen', id: 'Ingin', tr: 'İstemek' },
+  'want': { en: 'To want', es: 'Querer', fr: 'Vouloir', ru: 'Хотеть', pt: 'Querer', de: 'Wollen', id: 'Ingin', tr: 'İstemek' },
   'to need': { en: 'To need', es: 'Necesitar', fr: 'Avoir besoin de', ru: 'Нуждаться (нужно)', pt: 'Precisar', de: 'Brauchen', id: 'Butuh', tr: 'İhtiyacı olmak' },
   'to buy': { en: 'To buy', es: 'Comprar', fr: 'Acheter', ru: 'Покупать', pt: 'Comprar', de: 'Kaufen', id: 'Membeli', tr: 'Satın almak' },
   'to help': { en: 'To help', es: 'Ayudar', fr: 'Aider', ru: 'Помогать', pt: 'Ajudar', de: 'Helfen', id: 'Membantu', tr: 'Yardım etmek' },
