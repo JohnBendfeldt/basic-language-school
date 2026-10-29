@@ -64,12 +64,20 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
   const handleSelectBase = (langId: string, available: boolean) => {
     if (!available) return;
     const nextBase = langId as SupportedLanguageId;
-    if (nextBase === targetLanguage && onLanguageChange && baseLanguage !== nextBase) {
-      onLanguageChange(baseLanguage);
+    if (nextBase === targetLanguage) {
+      // Swapping case: learner sets native language to the current target (e.g. learning French, sets native to French).
+      // Swap target language to previous base language so target and base are never identical.
+      const newTarget = baseLanguage !== nextBase ? baseLanguage : (nextBase === 'en' ? 'es' : 'en');
+      setBaseLanguage(nextBase);
+      setTargetLanguage(newTarget);
+      if (onLanguageChange) {
+        onLanguageChange(newTarget);
+      }
+    } else {
+      // Normal case: learner is learning French, and changes native language from Russian to Indonesian.
+      // Target MUST stay French! Base becomes Indonesian!
+      setBaseLanguage(nextBase);
     }
-    setBaseLanguage(nextBase);
-    // Keep modal open and focus target tab so user can confirm or pick the language they want to learn
-    setActiveTab('target');
   };
 
   const handleQuickPair = (base: SupportedLanguageId, target: SupportedLanguageId) => {
@@ -418,6 +426,14 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
 
             <div className="language-dropdown-footer">
               <span>{chrome.bidirectionalNotice}</span>
+              <button
+                type="button"
+                className="language-modal-done-btn"
+                onClick={() => setIsOpen(false)}
+                aria-label="Confirm selection and close modal"
+              >
+                {baseLanguage === 'es' ? 'Listo' : baseLanguage === 'fr' ? 'Terminé' : baseLanguage === 'ru' ? 'Готово' : baseLanguage === 'de' ? 'Fertig' : baseLanguage === 'pt' ? 'Concluir' : baseLanguage === 'id' ? 'Selesai' : baseLanguage === 'tr' ? 'Tamam' : 'Done'}
+              </button>
             </div>
           </div>
         </div>
