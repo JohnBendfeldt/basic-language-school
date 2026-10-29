@@ -241,7 +241,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
           masteredBadge: 'Mastered',
           curriculumMastery: (langName: string) => `${langName} Curriculum Mastery`,
           masteryCountDesc: (mastered: number, total: number) =>
-            `${mastered} of ${total} core words & phrases mastered at Level 5+`,
+            `${mastered} of ${total} core words & phrases mastered at Level 3+`,
           studyBtn: (langName: string) => `Study ${langName}`,
           dailyStreak: 'Daily Streak',
           quizzesCompleted: 'Quizzes Completed',
@@ -386,7 +386,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
                   <p>
                     {baseLanguage === 'en' ? (
                       <>
-                        <strong>{stats.wordsMasteredCount}</strong> of <strong>{totalCurriculum}</strong> core words &amp; phrases mastered at Level 5+
+                        <strong>{stats.wordsMasteredCount}</strong> of <strong>{totalCurriculum}</strong> core words &amp; phrases mastered at Level 3+
                       </>
                     ) : (
                       modalCopy.masteryCountDesc(stats.wordsMasteredCount, totalCurriculum)

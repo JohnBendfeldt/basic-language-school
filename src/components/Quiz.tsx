@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { FaCheck, FaTimes, FaKeyboard, FaTrophy, FaRedo, FaCheckCircle, FaTimesCircle, FaStar, FaGraduationCap } from 'react-icons/fa';
+import { FaCheck, FaTimes, FaKeyboard, FaTrophy, FaRedo, FaCheckCircle, FaTimesCircle, FaStar, FaGraduationCap, FaChevronDown } from 'react-icons/fa';
 import RussianKeyboard from './RussianKeyboard';
 import PronunciationButton from './PronunciationButton';
 import { transliterate, containsCyrillic } from '../utils/transliteration';
 import { ProgressService } from '../services/progressService';
+import { MASTERY_THRESHOLD } from '../types/progress';
 import { useLanguage } from '../contexts/LanguageContext';
 import { getAlphabetAcceptedAnswers } from '../utils/alphabetAnswers';
 import { 
@@ -256,10 +257,17 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
   const [showListeningHint, setShowListeningHint] = useState<boolean>(false);
 
-  // Mastered words tracking (masteryLevel >= 5)
+  // Mastered words tracking (masteryLevel >= MASTERY_THRESHOLD)
   const [masteredWordIds, setMasteredWordIds] = useState<Set<string>>(new Set());
   const masteredWordIdsRef = useRef<Set<string>>(new Set());
   const [isWordJustMastered, setIsWordJustMastered] = useState(false);
+
+  // Dropdown states for topic and level filter selectors (replaces horizontal scrollers)
+  const [isTopicDropdownOpen, setIsTopicDropdownOpen] = useState(false);
+  const [isLevelDropdownOpen, setIsLevelDropdownOpen] = useState(false);
+  const topicDropdownRef = useRef<HTMLDivElement>(null);
+  const levelDropdownRef = useRef<HTMLDivElement>(null);
+  const isCompletingRef = useRef(false);
 
   // Current session tracking
   const [sessionIndex, setSessionIndex] = useState(1);
@@ -316,6 +324,32 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [isSessionComplete]);
+
+  // Close topic and level dropdown menus on outside click or Escape key
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (topicDropdownRef.current && !topicDropdownRef.current.contains(e.target as Node)) {
+        setIsTopicDropdownOpen(false);
+      }
+      if (levelDropdownRef.current && !levelDropdownRef.current.contains(e.target as Node)) {
+        setIsLevelDropdownOpen(false);
+      }
+    };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsTopicDropdownOpen(false);
+        setIsLevelDropdownOpen(false);
+      }
+    };
+    if (isTopicDropdownOpen || isLevelDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleKeyDown);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isTopicDropdownOpen, isLevelDropdownOpen]);
 
   // Extract a clean, user-friendly display answer (avoids leading slashes or empty strings)
   const getCleanDisplayAnswer = (
@@ -967,6 +1001,11 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   }, [getRandomQuestion, activeCategory, quizMode, activeLevel]);
 
   const handleCompleteSession = useCallback(async () => {
+    // Debounce guard: prevent multi-clicks, Enter key repeats, or duplicate network saves
+    if (sessionStatsRef.current.isSaved || isCompletingRef.current) {
+      return;
+    }
+    isCompletingRef.current = true;
     setIsSessionComplete(true);
     sessionStatsRef.current.isSaved = true;
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -979,10 +1018,15 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       });
     } catch (err) {
       console.warn('Could not record completed quiz session:', err);
+    } finally {
+      setTimeout(() => {
+        isCompletingRef.current = false;
+      }, 1000);
     }
   }, [sessionScore, sessionGoal, activeCategory, currentLanguage]);
 
   const startNewQuizSession = useCallback((newGoal?: number, newCategory?: QuizCategoryFilter, newMode?: QuizMode, newLevel?: QuizLevelFilter) => {
+    isCompletingRef.current = false;
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const goal = newGoal !== undefined ? newGoal : sessionGoal;
     const cat = newCategory !== undefined ? newCategory : activeCategory;
@@ -1046,8 +1090,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     localStorage.setItem('russian_quiz_goal', newGoal.toString());
     setSessionGoal(newGoal);
 
-    // If user already reached or exceeded the new goal, finish session right away
-    if (sessionAnswered >= newGoal) {
+    // If user already reached or exceeded the new goal, finish session right away (debounced)
+    if (sessionAnswered >= newGoal && !sessionStatsRef.current.isSaved && !isCompletingRef.current) {
+      isCompletingRef.current = true;
       setIsSessionComplete(true);
       sessionStatsRef.current.isSaved = true;
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1056,7 +1101,12 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         score: sessionScore,
         totalQuestions: sessionAnswered,
         ...(currentLanguage && currentLanguage !== 'ru' ? { languageId: currentLanguage } : {})
-      }).catch(err => console.warn('Could not save quiz session on goal adjustment:', err));
+      }).catch(err => console.warn('Could not save quiz session on goal adjustment:', err))
+      .finally(() => {
+        setTimeout(() => {
+          isCompletingRef.current = false;
+        }, 1000);
+      });
     }
   };
 
@@ -1303,7 +1353,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         isCorrect: isAnswerCorrect,
         languageId: currentLanguage
       }).then(updatedWord => {
-        if (updatedWord && updatedWord.masteryLevel >= 5) {
+        if (updatedWord && updatedWord.masteryLevel >= MASTERY_THRESHOLD) {
           setIsWordJustMastered(true);
           masteredWordIdsRef.current.add(updatedWord.wordId);
           setMasteredWordIds(prev => {
@@ -1799,138 +1849,243 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   const progressPercent = sessionGoal > 0 ? Math.min(100, Math.round((sessionAnswered / sessionGoal) * 100)) : 0;
   const questionsLeft = Math.max(0, sessionGoal - sessionAnswered);
 
+  const activeCategoryItem = ALL_QUIZ_CATEGORIES.find(c => c.id === activeCategory) || ALL_QUIZ_CATEGORIES[0];
+  const activeCategoryLabel = getCategoryLabel(activeCategoryItem.id, ui, baseLanguage);
+  const activeCategoryCountInfo = categoryCounts[activeCategoryItem.id];
+  const activeCategoryCountDisplay = activeCategoryCountInfo?.mastered
+    ? `${activeCategoryCountInfo.mastered}/${activeCategoryCountInfo.total}`
+    : (activeCategoryCountInfo?.total ?? allCurriculumQuestions.length);
+
+  const activeLevelItem = ALL_QUIZ_LEVELS.find(l => l.id === activeLevel) || ALL_QUIZ_LEVELS[0];
+  const activeLevelCountInfo = activeLevelItem.id === 'all'
+    ? { total: allCurriculumQuestions.length, mastered: masteredWordIds.size }
+    : levelCounts[activeLevelItem.id as 1 | 2 | 3];
+  const activeLevelCountDisplay = activeLevelCountInfo?.mastered
+    ? `${activeLevelCountInfo.mastered}/${activeLevelCountInfo.total}`
+    : (activeLevelCountInfo?.total ?? allCurriculumQuestions.length);
+
   return (
     <div className="section quiz-section">
       <h2 className="quiz-page-title">{ui.testYourKnowledge}</h2>
 
-      {/* Quiz Mode Selector Bar & Modality Pills */}
-      <div className="quiz-mode-selector-bar" role="toolbar" aria-label="Practice modality">
-        <div className="quiz-mode-pills" role="radiogroup" aria-label="Quiz mode">
-          <button
-            type="button"
-            role="radio"
-            aria-checked={quizMode === 'writing'}
-            className={`mode-pill ${quizMode === 'writing' ? 'active' : ''}`}
-            onClick={() => handleModeChange('writing')}
-            title="Writing & Reading Mode (Prompt text visible, type the translation)"
-          >
-            <span className="mode-icon">✍️</span>
-            <span>{ui.writingMode}</span>
-          </button>
-          <button
-            type="button"
-            role="radio"
-            aria-checked={quizMode === 'listening'}
-            className={`mode-pill ${quizMode === 'listening' ? 'active' : ''}`}
-            onClick={() => handleModeChange('listening')}
-            title="Listening Ear-Training Mode (Listen to audio, type what you hear)"
-          >
-            <span className="mode-icon">🎧</span>
-            <span>{ui.listeningMode}</span>
-          </button>
-          <button
-            type="button"
-            role="radio"
-            aria-checked={quizMode === 'all'}
-            className={`mode-pill ${quizMode === 'all' ? 'active' : ''}`}
-            onClick={() => handleModeChange('all')}
-            title="All Modes (Alternates writing and listening questions)"
-          >
-            <span className="mode-icon">🎯</span>
-            <span>{ui.allModes}</span>
-          </button>
+      {/* Unified Quiz Controls Toolbar with Dropdowns (Eliminates horizontal scrollers) */}
+      <div className="quiz-toolbar-card">
+        <div className="quiz-toolbar-grid">
+          {/* Topic & Curriculum Module Dropdown */}
+          <div className="quiz-dropdown-group" ref={topicDropdownRef}>
+            <label id="topic-dropdown-label" className="quiz-toolbar-label">
+              <span className="label-icon">📚</span>
+              <span>Curriculum Topic</span>
+            </label>
+            <div className="quiz-dropdown-wrapper">
+              <button
+                type="button"
+                id="topic-dropdown-trigger"
+                data-testid="topic-dropdown-trigger"
+                className={`quiz-dropdown-trigger ${isTopicDropdownOpen ? 'open' : ''}`}
+                onClick={() => {
+                  setIsTopicDropdownOpen(prev => !prev);
+                  setIsLevelDropdownOpen(false);
+                }}
+                aria-haspopup="listbox"
+                aria-expanded={isTopicDropdownOpen}
+                aria-labelledby="topic-dropdown-label topic-dropdown-trigger"
+              >
+                <div className="quiz-dropdown-trigger-main">
+                  <span className="dropdown-trigger-icon" aria-hidden="true">{activeCategoryItem.icon}</span>
+                  <span className="dropdown-trigger-title">{activeCategoryLabel}</span>
+                </div>
+                <div className="quiz-dropdown-trigger-end">
+                  <span className="dropdown-count-pill">{activeCategoryCountDisplay}</span>
+                  <FaChevronDown className={`quiz-dropdown-chevron ${isTopicDropdownOpen ? 'rotated' : ''}`} />
+                </div>
+              </button>
+
+              {isTopicDropdownOpen && (
+                <div className="quiz-dropdown-menu" role="listbox" aria-labelledby="topic-dropdown-label">
+                  <div className="quiz-dropdown-section-title">Core Curriculum</div>
+                  {CORE_MODULE_CATEGORIES.map(cat => {
+                    const isSelected = activeCategory === cat.id;
+                    const countInfo = categoryCounts[cat.id];
+                    const label = getCategoryLabel(cat.id, ui, baseLanguage);
+                    const isFullyMastered = countInfo && countInfo.total > 0 && countInfo.mastered >= countInfo.total;
+                    return (
+                      <button
+                        key={cat.id}
+                        type="button"
+                        role="option"
+                        aria-selected={isSelected}
+                        className={`quiz-dropdown-item ${isSelected ? 'selected' : ''}`}
+                        onClick={() => {
+                          handleCategoryChange(cat.id);
+                          setIsTopicDropdownOpen(false);
+                        }}
+                      >
+                        <div className="quiz-dropdown-item-left">
+                          <span className="quiz-dropdown-item-icon">{cat.icon}</span>
+                          <span className="quiz-dropdown-item-name">{label}</span>
+                        </div>
+                        <div className="quiz-dropdown-item-right">
+                          <span className={`quiz-dropdown-item-badge ${isFullyMastered ? 'mastered' : ''}`}>
+                            {countInfo?.mastered ? `${countInfo.mastered}/${countInfo.total}` : (countInfo?.total || 0)}
+                          </span>
+                          {isSelected ? <FaCheck className="quiz-dropdown-item-check" /> : <span className="quiz-dropdown-item-check-placeholder" />}
+                        </div>
+                      </button>
+                    );
+                  })}
+
+                  <div className="quiz-dropdown-section-title">Industry &amp; Specialized Packs</div>
+                  {TOPIC_PACK_CATEGORIES.map(cat => {
+                    const isSelected = activeCategory === cat.id;
+                    const countInfo = categoryCounts[cat.id];
+                    const label = getCategoryLabel(cat.id, ui, baseLanguage);
+                    const isFullyMastered = countInfo && countInfo.total > 0 && countInfo.mastered >= countInfo.total;
+                    return (
+                      <button
+                        key={cat.id}
+                        type="button"
+                        role="option"
+                        aria-selected={isSelected}
+                        className={`quiz-dropdown-item ${isSelected ? 'selected' : ''}`}
+                        onClick={() => {
+                          handleCategoryChange(cat.id);
+                          setIsTopicDropdownOpen(false);
+                        }}
+                      >
+                        <div className="quiz-dropdown-item-left">
+                          <span className="quiz-dropdown-item-icon">{cat.icon}</span>
+                          <span className="quiz-dropdown-item-name">{label}</span>
+                        </div>
+                        <div className="quiz-dropdown-item-right">
+                          <span className={`quiz-dropdown-item-badge ${isFullyMastered ? 'mastered' : ''}`}>
+                            {countInfo?.mastered ? `${countInfo.mastered}/${countInfo.total}` : (countInfo?.total || 0)}
+                          </span>
+                          {isSelected ? <FaCheck className="quiz-dropdown-item-check" /> : <span className="quiz-dropdown-item-check-placeholder" />}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Proficiency Level Dropdown */}
+          <div className="quiz-dropdown-group" ref={levelDropdownRef}>
+            <label id="level-dropdown-label" className="quiz-toolbar-label">
+              <span className="label-icon">🎯</span>
+              <span>Proficiency Level</span>
+            </label>
+            <div className="quiz-dropdown-wrapper">
+              <button
+                type="button"
+                id="level-dropdown-trigger"
+                data-testid="level-dropdown-trigger"
+                className={`quiz-dropdown-trigger ${isLevelDropdownOpen ? 'open' : ''}`}
+                onClick={() => {
+                  setIsLevelDropdownOpen(prev => !prev);
+                  setIsTopicDropdownOpen(false);
+                }}
+                aria-haspopup="listbox"
+                aria-expanded={isLevelDropdownOpen}
+                aria-labelledby="level-dropdown-label level-dropdown-trigger"
+              >
+                <div className="quiz-dropdown-trigger-main">
+                  <span className="dropdown-trigger-icon" aria-hidden="true">{activeLevelItem.badge}</span>
+                  <span className="dropdown-trigger-title">{activeLevelItem.label}</span>
+                </div>
+                <div className="quiz-dropdown-trigger-end">
+                  <span className="dropdown-count-pill">{activeLevelCountDisplay}</span>
+                  <FaChevronDown className={`quiz-dropdown-chevron ${isLevelDropdownOpen ? 'rotated' : ''}`} />
+                </div>
+              </button>
+
+              {isLevelDropdownOpen && (
+                <div className="quiz-dropdown-menu" role="listbox" aria-labelledby="level-dropdown-label">
+                  {ALL_QUIZ_LEVELS.map(lvl => {
+                    const isSelected = activeLevel === lvl.id;
+                    const countInfo = lvl.id === 'all'
+                      ? { total: allCurriculumQuestions.length, mastered: masteredWordIds.size }
+                      : levelCounts[lvl.id as 1 | 2 | 3];
+                    return (
+                      <button
+                        key={String(lvl.id)}
+                        type="button"
+                        role="option"
+                        aria-selected={isSelected}
+                        className={`quiz-dropdown-item ${isSelected ? 'selected' : ''}`}
+                        onClick={() => {
+                          handleLevelChange(lvl.id);
+                          setIsLevelDropdownOpen(false);
+                        }}
+                      >
+                        <div className="quiz-dropdown-item-left">
+                          <span className="quiz-dropdown-item-icon">{lvl.badge}</span>
+                          <span className="quiz-dropdown-item-name">{lvl.label}</span>
+                        </div>
+                        <div className="quiz-dropdown-item-right">
+                          <span className="quiz-dropdown-item-badge">
+                            {countInfo?.mastered ? `${countInfo.mastered}/${countInfo.total}` : (countInfo?.total || 0)}
+                          </span>
+                          {isSelected ? <FaCheck className="quiz-dropdown-item-check" /> : <span className="quiz-dropdown-item-check-placeholder" />}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Quiz Practice Modality Segmented Control */}
+          <div className="quiz-dropdown-group quiz-mode-group">
+            <label className="quiz-toolbar-label">
+              <span className="label-icon">⚡</span>
+              <span>Modality</span>
+            </label>
+            <div className="quiz-mode-segmented-pills" role="radiogroup" aria-label="Quiz mode">
+              <button
+                type="button"
+                role="radio"
+                aria-checked={quizMode === 'writing'}
+                className={`mode-segmented-pill ${quizMode === 'writing' ? 'active' : ''}`}
+                onClick={() => handleModeChange('writing')}
+                title="Writing & Reading Mode (Prompt visible, type translation)"
+              >
+                <span className="mode-icon">✍️</span>
+                <span>{ui.writingMode}</span>
+              </button>
+              <button
+                type="button"
+                role="radio"
+                aria-checked={quizMode === 'listening'}
+                className={`mode-segmented-pill ${quizMode === 'listening' ? 'active' : ''}`}
+                onClick={() => handleModeChange('listening')}
+                title="Listening Ear-Training Mode (Listen to audio, type what you hear)"
+              >
+                <span className="mode-icon">🎧</span>
+                <span>{ui.listeningMode}</span>
+              </button>
+              <button
+                type="button"
+                role="radio"
+                aria-checked={quizMode === 'all'}
+                className={`mode-segmented-pill ${quizMode === 'all' ? 'active' : ''}`}
+                onClick={() => handleModeChange('all')}
+                title="All Modes (Alternates writing and listening questions)"
+              >
+                <span className="mode-icon">🎯</span>
+                <span>{ui.allModes}</span>
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Audio repeat & speed hint banner */}
         <div className="quiz-repeat-tip-banner">
           <span className="tip-icon">🗣️</span>
           <span>{ui.repeatHint}</span>
-        </div>
-      </div>
-
-      {/* Modern Horizontal Level Selector Bar */}
-      <div className="quiz-level-filter-bar" role="tablist" aria-label="Filter quiz by level">
-        <div className="level-filter-scroll">
-          {ALL_QUIZ_LEVELS.map(lvl => {
-            const isActive = activeLevel === lvl.id;
-            const countInfo = lvl.id === 'all'
-              ? { total: allCurriculumQuestions.length, mastered: masteredWordIds.size }
-              : levelCounts[lvl.id as 1 | 2 | 3];
-            return (
-              <button
-                key={String(lvl.id)}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                className={`level-filter-pill ${isActive ? 'active' : ''}`}
-                onClick={() => handleLevelChange(lvl.id)}
-                title={lvl.description}
-              >
-                <span className="level-badge" aria-hidden="true">{lvl.badge}</span>
-                <span className="level-label">{lvl.label}</span>
-                <span className="level-count-badge">
-                  {countInfo?.mastered ? `${countInfo.mastered}/${countInfo.total}` : (countInfo?.total || 0)}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Modern Horizontal Category Filter Bar */}
-      <div className="quiz-category-filter-bar" role="tablist" aria-label="Filter quiz by category">
-        <div className="category-section-label">Curriculum Modules</div>
-        <div className="category-filter-scroll">
-          {CORE_MODULE_CATEGORIES.map(cat => {
-            const isActive = activeCategory === cat.id;
-            const countInfo = categoryCounts[cat.id];
-            const isFullyMastered = countInfo && countInfo.total > 0 && countInfo.mastered >= countInfo.total;
-            const label = getCategoryLabel(cat.id, ui, baseLanguage);
-            return (
-              <button
-                key={cat.id}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                className={`category-filter-pill ${isActive ? 'active' : ''} ${isFullyMastered ? 'mastered' : ''}`}
-                onClick={() => handleCategoryChange(cat.id)}
-                title={`Filter quiz to ${label} (${countInfo?.total || 0} questions)`}
-              >
-                <span className="cat-icon" aria-hidden="true">{cat.icon}</span>
-                <span className="cat-label">{label}</span>
-                <span className="cat-count-badge">
-                  {countInfo?.mastered ? `${countInfo.mastered}/${countInfo.total}` : (countInfo?.total || 0)}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="category-section-label" style={{ marginTop: '0.65rem' }}>Industry & Topic Packs</div>
-        <div className="category-filter-scroll">
-          {TOPIC_PACK_CATEGORIES.map(cat => {
-            const isActive = activeCategory === cat.id;
-            const countInfo = categoryCounts[cat.id];
-            const isFullyMastered = countInfo && countInfo.total > 0 && countInfo.mastered >= countInfo.total;
-            const label = getCategoryLabel(cat.id, ui, baseLanguage);
-            return (
-              <button
-                key={cat.id}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                className={`category-filter-pill topic-pack-pill ${isActive ? 'active' : ''} ${isFullyMastered ? 'mastered' : ''}`}
-                onClick={() => handleCategoryChange(cat.id)}
-                title={`Filter quiz to ${label} (${countInfo?.total || 0} questions)`}
-              >
-                <span className="cat-icon" aria-hidden="true">{cat.icon}</span>
-                <span className="cat-label">{label}</span>
-                <span className="cat-count-badge">
-                  {countInfo?.mastered ? `${countInfo.mastered}/${countInfo.total}` : (countInfo?.total || 0)}
-                </span>
-              </button>
-            );
-          })}
         </div>
       </div>
 

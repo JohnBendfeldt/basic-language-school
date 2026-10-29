@@ -26,6 +26,8 @@ export interface QuizSession {
   completedAt: string;
 }
 
+export const MASTERY_THRESHOLD = 3;
+
 export interface WordProgress {
   id?: string;
   userId: string;
@@ -39,7 +41,7 @@ export interface WordProgress {
   timesCorrect: number;
   timesIncorrect: number;
   lastTestedAt: string;
-  masteryLevel: number; // 0 (learning) to 5 (mastered)
+  masteryLevel: number; // 0 (learning) to 3 (mastered, 3 net correct answers)
 }
 
 export interface UserStats {
