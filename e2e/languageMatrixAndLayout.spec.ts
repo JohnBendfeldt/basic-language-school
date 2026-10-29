@@ -310,5 +310,42 @@ test.describe('Playwright E2E: Layout, Modals, Alignment & Neural Audio Matrix',
       )
       .toBe(true);
   });
+
+  test('Quiz E2E: topic packs filter questions, modality switch renders listening card, and repeat advice banner is visible', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.addInitScript(() => {
+      localStorage.setItem('basic_language_base_lang', 'en');
+      localStorage.setItem('basic_language_target_lang', 'es');
+    });
+
+    await page.goto('/learn/es/quiz');
+
+    // 1. Verify repeat guidance tip banner
+    await expect(page.locator('.quiz-repeat-tip-banner')).toBeVisible();
+
+    // 2. Verify modality toggles
+    const writingBtn = page.getByRole('radio', { name: /Writing/i });
+    const listeningBtn = page.getByRole('radio', { name: /Listening/i });
+    const allModesBtn = page.getByRole('radio', { name: /All Modes/i });
+    await expect(writingBtn).toBeVisible();
+    await expect(listeningBtn).toBeVisible();
+    await expect(allModesBtn).toBeVisible();
+    await expect(writingBtn).toHaveClass(/active/);
+
+    // 3. Verify topic pack filter (e.g. Tech & IT)
+    const techPill = page.getByRole('tab', { name: /Tech & IT/i });
+    await expect(techPill).toBeVisible();
+    await techPill.click();
+    await expect(techPill).toHaveClass(/active/);
+
+    // 4. Switch to Listening Ear-Training Mode
+    await listeningBtn.click();
+    await expect(listeningBtn).toHaveClass(/active/);
+    await expect(page.locator('.quiz-listening-card')).toBeVisible();
+    await expect(page.locator('.quiz-listening-audio-btn')).toBeVisible();
+    await expect(page.locator('.show-listening-hint-btn')).toBeVisible();
+  });
 });
 

@@ -50,6 +50,11 @@ export interface UIStrings {
   masteredLabel: string;
   remainingLabel: string;
   questionOf: string;
+  allModes: string;
+  writingMode: string;
+  listeningMode: string;
+  repeatHint: string;
+  listeningPromptHint: string;
 }
 
 export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
@@ -98,7 +103,12 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     scoreLabel: 'Score:',
     masteredLabel: 'Mastered:',
     remainingLabel: 'remaining',
-    questionOf: 'Question'
+    questionOf: 'Question',
+    allModes: 'All Modes',
+    writingMode: 'Writing',
+    listeningMode: 'Listening',
+    repeatHint: 'Tip: Repeat words and phrases aloud as you hear them! Slow down speed anytime.',
+    listeningPromptHint: 'Listen to the audio and type what you hear:'
   },
 
   es: {
@@ -146,7 +156,12 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     scoreLabel: 'Puntuación:',
     masteredLabel: 'Dominadas:',
     remainingLabel: 'restantes',
-    questionOf: 'Pregunta'
+    questionOf: 'Pregunta',
+    allModes: 'Todos los modos',
+    writingMode: 'Escritura',
+    listeningMode: 'Escucha',
+    repeatHint: 'Consejo: ¡Repite las palabras y frases en voz alta! Ajusta la velocidad si lo necesitas.',
+    listeningPromptHint: 'Escucha el audio y escribe lo que oyes:'
   },
 
   fr: {
@@ -194,7 +209,12 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     scoreLabel: 'Score :',
     masteredLabel: 'Maîtrisés :',
     remainingLabel: 'restants',
-    questionOf: 'Question'
+    questionOf: 'Question',
+    allModes: 'Tous les modes',
+    writingMode: 'Écriture',
+    listeningMode: 'Écoute',
+    repeatHint: 'Conseil : Répétez les mots à voix haute ! Ralentissez la vitesse si besoin.',
+    listeningPromptHint: 'Écoutez l’audio et écrivez ce que vous entendez :'
   },
 
   ru: {
@@ -242,7 +262,12 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     scoreLabel: 'Счёт:',
     masteredLabel: 'Изучено:',
     remainingLabel: 'осталось',
-    questionOf: 'Вопрос'
+    questionOf: 'Вопрос',
+    allModes: 'Все режимы',
+    writingMode: 'Письмо',
+    listeningMode: 'Аудирование',
+    repeatHint: 'Совет: повторяйте слова вслух! При необходимости замедлите скорость аудио.',
+    listeningPromptHint: 'Послушайте аудио и напишите то, что слышите:'
   },
 
   pt: {
@@ -290,7 +315,12 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     scoreLabel: 'Pontuação:',
     masteredLabel: 'Dominadas:',
     remainingLabel: 'restantes',
-    questionOf: 'Pergunta'
+    questionOf: 'Pergunta',
+    allModes: 'Todos os modos',
+    writingMode: 'Escrita',
+    listeningMode: 'Audição',
+    repeatHint: 'Dica: Repita as palavras em voz alta! Reduza a velocidade do áudio se necessário.',
+    listeningPromptHint: 'Ouça o áudio e digite o que você ouvir:'
   },
 
   de: {
@@ -338,7 +368,12 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     scoreLabel: 'Punkte:',
     masteredLabel: 'Gemeistert:',
     remainingLabel: 'übrig',
-    questionOf: 'Frage'
+    questionOf: 'Frage',
+    allModes: 'Alle Modi',
+    writingMode: 'Schreiben',
+    listeningMode: 'Hören',
+    repeatHint: 'Tipp: Wiederholen Sie Wörter laut! Sie können das Sprechtempo jederzeit anpassen.',
+    listeningPromptHint: 'Hören Sie zu und schreiben Sie, was Sie hören:'
   },
 
   id: {
@@ -364,7 +399,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     meaning: 'Arti',
     listen: 'Dengarkan',
     tapToReveal: 'Ketuk untuk melihat',
-    tapToHide: 'Ketuk untuk menyembunyikan',
+    tapToHide: 'Ketuk para menyembunyikan',
     hide: 'Sembunyikan',
     revealAll: 'Tampilkan Semua',
     hideAll: 'Sembunyikan Semua',
@@ -386,7 +421,12 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     scoreLabel: 'Skor:',
     masteredLabel: 'Dikuasai:',
     remainingLabel: 'tersisa',
-    questionOf: 'Pertanyaan'
+    questionOf: 'Pertanyaan',
+    allModes: 'Semua Mode',
+    writingMode: 'Menulis',
+    listeningMode: 'Mendengarkan',
+    repeatHint: 'Tips: Ucapkan kata-kata dengan lantang! Kurangi kecepatan suara jika diperlukan.',
+    listeningPromptHint: 'Dengarkan audio dan ketik apa yang Anda dengar:'
   },
 
   tr: {
@@ -434,6 +474,11 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     scoreLabel: 'Puan:',
     masteredLabel: 'Öğrenilen:',
     remainingLabel: 'kaldı',
-    questionOf: 'Soru'
-  },
+    questionOf: 'Soru',
+    allModes: 'Tüm Modlar',
+    writingMode: 'Yazma',
+    listeningMode: 'Dinleme',
+    repeatHint: 'İpucu: Duyduğunuz kelimeleri sesli tekrarlayın! Gerekirse hızı yavaşlatabilirsiniz.',
+    listeningPromptHint: 'Sesi dinleyin ve duyduğunuzu yazın:'
+  }
 };
