@@ -1,7 +1,7 @@
 {
   "language": "es",
   "voice": "es-MX-JorgeNeural",
-  "generated": "2026-10-29T15:55:14.196930Z",
+  "generated": "2026-10-29T17:03:45.969890Z",
   "files": {
     "alphabet": [
       {
@@ -1193,6 +1193,11 @@
         "text": "Cena"
       },
       {
+        "filename": "sal.mp3",
+        "path": "/audio/es/words/sal.mp3",
+        "text": "Sal"
+      },
+      {
         "filename": "tienda.mp3",
         "path": "/audio/es/words/tienda.mp3",
         "text": "Tienda"
@@ -1311,6 +1316,11 @@
         "filename": "fábrica.mp3",
         "path": "/audio/es/words/fábrica.mp3",
         "text": "Fábrica"
+      },
+      {
+        "filename": "mar.mp3",
+        "path": "/audio/es/words/mar.mp3",
+        "text": "Mar"
       },
       {
         "filename": "boleto.mp3",
@@ -1506,6 +1516,11 @@
         "filename": "árbol_de_navidad.mp3",
         "path": "/audio/es/words/árbol_de_navidad.mp3",
         "text": "Árbol de Navidad"
+      },
+      {
+        "filename": "cebra.mp3",
+        "path": "/audio/es/words/cebra.mp3",
+        "text": "Cebra"
       },
       {
         "filename": "bueno.mp3",
@@ -2053,6 +2068,11 @@
         "text": "Hable más despacio, por favor"
       },
       {
+        "filename": "puede_hablar_más_despacio.mp3",
+        "path": "/audio/es/words/puede_hablar_más_despacio.mp3",
+        "text": "¿Puede hablar más despacio?"
+      },
+      {
         "filename": "hable_más_despacio.mp3",
         "path": "/audio/es/words/hable_más_despacio.mp3",
         "text": "Hable más despacio"
@@ -2088,6 +2108,11 @@
         "text": "¿Puede ayudarme?"
       },
       {
+        "filename": "necesito_ayuda.mp3",
+        "path": "/audio/es/words/necesito_ayuda.mp3",
+        "text": "Necesito ayuda"
+      },
+      {
         "filename": "ayúdeme.mp3",
         "path": "/audio/es/words/ayúdeme.mp3",
         "text": "Ayúdeme"
@@ -2106,6 +2131,16 @@
         "filename": "dónde_está_el_aeropuerto.mp3",
         "path": "/audio/es/words/dónde_está_el_aeropuerto.mp3",
         "text": "¿Dónde está el aeropuerto?"
+      },
+      {
+        "filename": "quisiera_ir_al_aeropuerto.mp3",
+        "path": "/audio/es/words/quisiera_ir_al_aeropuerto.mp3",
+        "text": "Quisiera ir al aeropuerto"
+      },
+      {
+        "filename": "a_qué_hora_es_la_salida.mp3",
+        "path": "/audio/es/words/a_qué_hora_es_la_salida.mp3",
+        "text": "¿A qué hora es la salida?"
       },
       {
         "filename": "dónde_está_el_hotel.mp3",
@@ -2146,6 +2181,11 @@
         "filename": "el_menú_por_favor.mp3",
         "path": "/audio/es/words/el_menú_por_favor.mp3",
         "text": "El menú, por favor"
+      },
+      {
+        "filename": "puedo_ver_el_menú_por_favor.mp3",
+        "path": "/audio/es/words/puedo_ver_el_menú_por_favor.mp3",
+        "text": "¿Puedo ver el menú, por favor?"
       },
       {
         "filename": "quisiera_agua.mp3",
@@ -2193,9 +2233,19 @@
         "text": "¿Aceptan tarjetas de crédito?"
       },
       {
+        "filename": "puedo_pagar_con_tarjeta.mp3",
+        "path": "/audio/es/words/puedo_pagar_con_tarjeta.mp3",
+        "text": "¿Puedo pagar con tarjeta?"
+      },
+      {
         "filename": "solo_estoy_mirando.mp3",
         "path": "/audio/es/words/solo_estoy_mirando.mp3",
         "text": "Solo estoy mirando"
+      },
+      {
+        "filename": "solo_estoy_mirando_gracias.mp3",
+        "path": "/audio/es/words/solo_estoy_mirando_gracias.mp3",
+        "text": "Solo estoy mirando, gracias"
       },
       {
         "filename": "tiene_esto_en_otra_talla.mp3",
@@ -2211,6 +2261,11 @@
         "filename": "necesito_un_médico.mp3",
         "path": "/audio/es/words/necesito_un_médico.mp3",
         "text": "Necesito un médico"
+      },
+      {
+        "filename": "no_me_siento_bien.mp3",
+        "path": "/audio/es/words/no_me_siento_bien.mp3",
+        "text": "No me siento bien"
       },
       {
         "filename": "llame_a_la_policía.mp3",
@@ -2458,6 +2513,21 @@
         "text": "¿Está lejos de aquí?"
       },
       {
+        "filename": "morado.mp3",
+        "path": "/audio/es/words/morado.mp3",
+        "text": "Morado"
+      },
+      {
+        "filename": "rosa.mp3",
+        "path": "/audio/es/words/rosa.mp3",
+        "text": "Rosa"
+      },
+      {
+        "filename": "gris.mp3",
+        "path": "/audio/es/words/gris.mp3",
+        "text": "Gris"
+      },
+      {
         "filename": "me_escucha.mp3",
         "path": "/audio/es/words/me_escucha.mp3",
         "text": "¿Me escucha?"
@@ -2468,9 +2538,29 @@
         "text": "¿Puede ver mi pantalla?"
       },
       {
+        "filename": "voy_a_compartir_mi_pantalla.mp3",
+        "path": "/audio/es/words/voy_a_compartir_mi_pantalla.mp3",
+        "text": "Voy a compartir mi pantalla"
+      },
+      {
         "filename": "cuál_es_la_contraseña_del_wifi.mp3",
         "path": "/audio/es/words/cuál_es_la_contraseña_del_wifi.mp3",
         "text": "¿Cuál es la contraseña del wifi?"
+      },
+      {
+        "filename": "la_conexión_a_internet_es_lenta.mp3",
+        "path": "/audio/es/words/la_conexión_a_internet_es_lenta.mp3",
+        "text": "La conexión a internet es lenta"
+      },
+      {
+        "filename": "puede_enviarlo_por_correo.mp3",
+        "path": "/audio/es/words/puede_enviarlo_por_correo.mp3",
+        "text": "¿Puede enviarlo por correo?"
+      },
+      {
+        "filename": "mi_batería_está_casi_agotada.mp3",
+        "path": "/audio/es/words/mi_batería_está_casi_agotada.mp3",
+        "text": "Mi batería está casi agotada"
       },
       {
         "filename": "programemos_una_reunión.mp3",

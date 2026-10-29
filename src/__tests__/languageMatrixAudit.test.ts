@@ -8,6 +8,8 @@ import frenchData from '../data/languages/fr/frenchData';
 import russianData from '../data/languages/ru/russianData';
 import portugueseData from '../data/languages/pt/portugueseData';
 import germanData from '../data/languages/de/germanData';
+import indonesianData from '../data/languages/id/indonesianData';
+import turkishData from '../data/languages/tr/turkishData';
 import { resolveTranslation, extractDigit } from '../utils/translationResolver';
 import { getCandidateAudioPathsForText } from '../components/PronunciationButton';
 import {
@@ -17,7 +19,7 @@ import {
   getLocalizedAppName,
 } from '../utils/pageDictionary';
 
-const LANGUAGES: SupportedLanguageId[] = ['en', 'es', 'fr', 'ru', 'pt', 'de'];
+const LANGUAGES: SupportedLanguageId[] = ['en', 'es', 'fr', 'ru', 'pt', 'de', 'id', 'tr'];
 
 const DATA_BY_LANG: Record<SupportedLanguageId, typeof englishData> = {
   en: englishData,
@@ -26,6 +28,8 @@ const DATA_BY_LANG: Record<SupportedLanguageId, typeof englishData> = {
   ru: russianData,
   pt: portugueseData,
   de: germanData,
+  id: indonesianData,
+  tr: turkishData,
 };
 
 const PUBLIC_DIR = path.resolve(__dirname, '../../public');
@@ -38,7 +42,7 @@ function diskFileExistsForCandidates(candidateUrls: string[]): boolean {
   });
 }
 
-describe('12-Language-Pair Matrix Audit (Translations, Numbers, UI Chrome & Neural Audio)', () => {
+describe('56-Language-Pair Matrix Audit (Translations, Numbers, UI Chrome & Neural Audio)', () => {
   it('verifies every target-language curriculum item has a physical neural MP3 file on disk', () => {
     const missingTargetAudio: string[] = [];
 

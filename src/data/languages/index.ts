@@ -5,6 +5,8 @@ import spanishData from './es/spanishData';
 import frenchData from './fr/frenchData';
 import portugueseData from './pt/portugueseData';
 import germanData from './de/germanData';
+import indonesianData from './id/indonesianData';
+import turkishData from './tr/turkishData';
 
 export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
   ru: {
@@ -246,6 +248,86 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
       },
     },
     data: germanData,
+  },
+  id: {
+    id: 'id',
+    name: 'Indonesian',
+    nativeName: 'Bahasa Indonesia',
+    flag: '🇮🇩',
+    code: 'id-ID',
+    ttsVoice: 'id-ID-ArdiNeural',
+    hasKeyboard: false,
+    hasAlphabet: true,
+    hasTimeGuide: true,
+    appName: 'Basic Indonesian',
+    domain: 'basicindonesian.school',
+    seo: {
+      alphabet: {
+        title: 'Indonesian Alphabet & Pronunciation | Basic Indonesian',
+        description: 'Master the 26 letters of the Indonesian alphabet with native studio audio.',
+      },
+      phrases: {
+        title: 'Essential Indonesian Phrases | Basic Indonesian',
+        description: 'Learn practical Bahasa Indonesia phrases for conversation, business, and travel.',
+      },
+      numbers: {
+        title: 'Indonesian Numbers | Basic Indonesian',
+        description: 'Master numbers in Indonesian from 0 to 1,000 with native audio.',
+      },
+      time: {
+        title: 'Telling Time in Indonesian | Basic Indonesian',
+        description: 'Learn how to ask and tell time in Bahasa Indonesia.',
+      },
+      words: {
+        title: 'Core Indonesian Vocabulary | Basic Indonesian',
+        description: 'Essential high-frequency Indonesian words across everyday topics and industries.',
+      },
+      quiz: {
+        title: 'Indonesian Practice Quiz | Basic Indonesian',
+        description: 'Test your Bahasa Indonesia knowledge with interactive quizzes.',
+      },
+    },
+    data: indonesianData,
+  },
+  tr: {
+    id: 'tr',
+    name: 'Turkish',
+    nativeName: 'Türkçe',
+    flag: '🇹🇷',
+    code: 'tr-TR',
+    ttsVoice: 'tr-TR-AhmetNeural',
+    hasKeyboard: false,
+    hasAlphabet: true,
+    hasTimeGuide: true,
+    appName: 'Basic Turkish',
+    domain: 'basicturkish.school',
+    seo: {
+      alphabet: {
+        title: 'Turkish Alphabet (29 Letters inkl. Ç, Ğ, I/ı, İ/i, Ö, Ş, Ü) | Basic Turkish',
+        description: 'Master the 29 letters of the Turkish alphabet with native studio audio.',
+      },
+      phrases: {
+        title: 'Essential Turkish Phrases | Basic Turkish',
+        description: 'Learn practical Turkish phrases for conversation, business, and travel.',
+      },
+      numbers: {
+        title: 'Turkish Numbers | Basic Turkish',
+        description: 'Master numbers in Turkish from 0 to 1,000 with native audio.',
+      },
+      time: {
+        title: 'Telling Time in Turkish | Basic Turkish',
+        description: 'Learn how to ask and tell time in Turkish.',
+      },
+      words: {
+        title: 'Core Turkish Vocabulary | Basic Turkish',
+        description: 'Essential high-frequency Turkish words across everyday topics and industries.',
+      },
+      quiz: {
+        title: 'Turkish Practice Quiz | Basic Turkish',
+        description: 'Test your Turkish knowledge with interactive quizzes.',
+      },
+    },
+    data: turkishData,
   },
 };
 

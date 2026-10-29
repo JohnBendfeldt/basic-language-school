@@ -265,5 +265,50 @@ test.describe('Playwright E2E: Layout, Modals, Alignment & Neural Audio Matrix',
       )
       .toBe(true);
   });
+
+  test('Indonesian (ID) & Turkish (TR) Courses: renders unique alphabet letters (Ç, Ğ, I, İ, Ö, Ş, Ü), filters by topic, and plays 200 OK neural audio', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.addInitScript(() => {
+      localStorage.setItem('basic_language_base_lang', 'en');
+      localStorage.setItem('basic_language_target_lang', 'tr');
+    });
+
+    const audioResponses: Array<{ url: string; status: number }> = [];
+    page.on('response', (res) => {
+      if (res.url().includes('/audio/') && res.url().endsWith('.mp3')) {
+        audioResponses.push({ url: res.url(), status: res.status() });
+      }
+    });
+
+    await page.goto('/learn/tr/alphabet');
+
+    // Verify Turkish Alphabet letters including Ç, Ğ, I, İ, Ş
+    await expect(page.locator('.letter-uppercase', { hasText: /^Ç$/ })).toBeVisible();
+    await expect(page.locator('.letter-uppercase', { hasText: /^Ğ$/ })).toBeVisible();
+    await expect(page.locator('.letter-uppercase', { hasText: /^I$/ })).toBeVisible();
+    await expect(page.locator('.letter-uppercase', { hasText: /^İ$/ })).toBeVisible();
+    await expect(page.locator('.letter-uppercase', { hasText: /^Ş$/ })).toBeVisible();
+
+    // Verify Indonesian course loading and audio
+    await page.goto('/learn/id/words');
+    const filterBar = page.getByRole('group', { name: /Filter by topic or industry pack/i });
+    await filterBar.locator('button[data-category="Tech"]').click();
+
+    const kataSandiCard = page.locator('.phrase-card').filter({
+      has: page.locator('h3.phrase-text', { hasText: /^Kata sandi$/ }),
+    });
+    await expect(kataSandiCard).toBeVisible();
+    await kataSandiCard.getByRole('button', { name: /Pronounce word Kata sandi/i }).click();
+
+    await expect
+      .poll(() =>
+        audioResponses.some(
+          (r) => r.url.endsWith('/audio/id/words/kata_sandi.mp3') && (r.status === 200 || r.status === 206)
+        )
+      )
+      .toBe(true);
+  });
 });
 

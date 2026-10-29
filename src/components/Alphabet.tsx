@@ -46,10 +46,14 @@ const Alphabet: React.FC<AlphabetProps> = ({ data }) => {
             exampleMeaning = resolveTranslation(item, currentLanguage, baseLanguage);
           }
 
-          // Format phonetic example phrase with localized "as in" (e.g. "as in", "comme dans", "como en", "как в", "como em", "wie in")
+          // Format phonetic example phrase with localized "as in" (e.g. "as in", "comme dans", "como en", "как в", "como em", "wie in", "seperti di", "gibi")
           const localizedExamplePhrase = item.example
-            ? item.example.replace(/^(as in|comme dans|como en|как в|como em|wie in)\s*/i, `${labels.asIn} `)
+            ? item.example.replace(/^(as in|comme dans|como en|как в|como em|wie in|seperti di)\s*/i, `${labels.asIn} `)
             : '';
+
+          const lowerLetter = currentLanguage === 'tr'
+            ? item.letter.replace(/İ/g, 'i').replace(/I/g, 'ı').toLowerCase()
+            : item.letter.toLowerCase();
 
           return (
             <div className="alphabet-card" key={index}>
@@ -57,7 +61,7 @@ const Alphabet: React.FC<AlphabetProps> = ({ data }) => {
                 <div className="letter-header">
                   <div className="letter-pair">
                     <span className="letter-uppercase">{item.letter}</span>
-                    <span className="letter-lowercase">{item.letter.toLowerCase()}</span>
+                    <span className="letter-lowercase">{lowerLetter}</span>
                   </div>
                 </div>
                 
@@ -65,7 +69,7 @@ const Alphabet: React.FC<AlphabetProps> = ({ data }) => {
                 
                 <div className="pronunciation-button-wrapper">
                   <PronunciationButton 
-                    text={item.letter.toLowerCase()} 
+                    text={lowerLetter} 
                     audioCategory="alphabet"
                     useLocalAudio={true}
                     label={`Pronounce letter ${item.letter}`}

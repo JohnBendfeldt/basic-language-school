@@ -1,7 +1,7 @@
 {
   "language": "en",
   "voice": "en-US-JennyNeural",
-  "generated": "2026-10-29T15:55:20.128597Z",
+  "generated": "2026-10-29T17:04:20.529859Z",
   "files": {
     "alphabet": [
       {
@@ -1258,6 +1258,11 @@
         "text": "Wine"
       },
       {
+        "filename": "salt.mp3",
+        "path": "/audio/en/words/salt.mp3",
+        "text": "Salt"
+      },
+      {
         "filename": "store.mp3",
         "path": "/audio/en/words/store.mp3",
         "text": "Store / Shop"
@@ -1361,6 +1366,11 @@
         "filename": "factory.mp3",
         "path": "/audio/en/words/factory.mp3",
         "text": "Factory"
+      },
+      {
+        "filename": "sea.mp3",
+        "path": "/audio/en/words/sea.mp3",
+        "text": "Sea"
       },
       {
         "filename": "telephone.mp3",
@@ -1566,6 +1576,11 @@
         "filename": "christmas_tree.mp3",
         "path": "/audio/en/words/christmas_tree.mp3",
         "text": "Christmas tree"
+      },
+      {
+        "filename": "zebra.mp3",
+        "path": "/audio/en/words/zebra.mp3",
+        "text": "Zebra"
       },
       {
         "filename": "good.mp3",
@@ -2035,7 +2050,7 @@
       {
         "filename": "youre_welcome.mp3",
         "path": "/audio/en/words/youre_welcome.mp3",
-        "text": "You're welcome / Not at all"
+        "text": "You're welcome"
       },
       {
         "filename": "no_problem.mp3",
@@ -2138,6 +2153,11 @@
         "text": "Please speak more slowly"
       },
       {
+        "filename": "can_you_speak_more_slowly.mp3",
+        "path": "/audio/en/words/can_you_speak_more_slowly.mp3",
+        "text": "Can you speak more slowly?"
+      },
+      {
         "filename": "speak_more_slowly.mp3",
         "path": "/audio/en/words/speak_more_slowly.mp3",
         "text": "Speak more slowly"
@@ -2173,6 +2193,11 @@
         "text": "Can you help me?"
       },
       {
+        "filename": "i_need_help.mp3",
+        "path": "/audio/en/words/i_need_help.mp3",
+        "text": "I need help"
+      },
+      {
         "filename": "help_me.mp3",
         "path": "/audio/en/words/help_me.mp3",
         "text": "Help me"
@@ -2196,6 +2221,16 @@
         "filename": "where_is_the_airport.mp3",
         "path": "/audio/en/words/where_is_the_airport.mp3",
         "text": "Where is the airport?"
+      },
+      {
+        "filename": "i_would_like_to_go_to_the_airport.mp3",
+        "path": "/audio/en/words/i_would_like_to_go_to_the_airport.mp3",
+        "text": "I would like to go to the airport"
+      },
+      {
+        "filename": "what_time_is_the_departure.mp3",
+        "path": "/audio/en/words/what_time_is_the_departure.mp3",
+        "text": "What time is the departure?"
       },
       {
         "filename": "where_is_the_hotel.mp3",
@@ -2236,6 +2271,11 @@
         "filename": "the_menu_please.mp3",
         "path": "/audio/en/words/the_menu_please.mp3",
         "text": "The menu, please"
+      },
+      {
+        "filename": "can_i_see_the_menu_please.mp3",
+        "path": "/audio/en/words/can_i_see_the_menu_please.mp3",
+        "text": "Can I see the menu, please?"
       },
       {
         "filename": "i_would_like_water.mp3",
@@ -2288,9 +2328,19 @@
         "text": "Do you accept credit cards?"
       },
       {
+        "filename": "can_i_pay_by_card.mp3",
+        "path": "/audio/en/words/can_i_pay_by_card.mp3",
+        "text": "Can I pay by card?"
+      },
+      {
         "filename": "i_am_just_looking.mp3",
         "path": "/audio/en/words/i_am_just_looking.mp3",
         "text": "I am just looking"
+      },
+      {
+        "filename": "i_am_just_looking_thank_you.mp3",
+        "path": "/audio/en/words/i_am_just_looking_thank_you.mp3",
+        "text": "I am just looking, thank you"
       },
       {
         "filename": "do_you_have_this_in_another_size.mp3",
@@ -2306,6 +2356,11 @@
         "filename": "i_need_a_doctor.mp3",
         "path": "/audio/en/words/i_need_a_doctor.mp3",
         "text": "I need a doctor"
+      },
+      {
+        "filename": "i_dont_feel_well.mp3",
+        "path": "/audio/en/words/i_dont_feel_well.mp3",
+        "text": "I don't feel well"
       },
       {
         "filename": "call_the_police.mp3",
@@ -2573,6 +2628,21 @@
         "text": "Could you speak slower, please?"
       },
       {
+        "filename": "purple.mp3",
+        "path": "/audio/en/words/purple.mp3",
+        "text": "Purple"
+      },
+      {
+        "filename": "pink.mp3",
+        "path": "/audio/en/words/pink.mp3",
+        "text": "Pink"
+      },
+      {
+        "filename": "gray.mp3",
+        "path": "/audio/en/words/gray.mp3",
+        "text": "Gray"
+      },
+      {
         "filename": "can_you_hear_me.mp3",
         "path": "/audio/en/words/can_you_hear_me.mp3",
         "text": "Can you hear me?"
@@ -2583,9 +2653,29 @@
         "text": "Can you see my screen?"
       },
       {
+        "filename": "let_me_share_my_screen.mp3",
+        "path": "/audio/en/words/let_me_share_my_screen.mp3",
+        "text": "Let me share my screen"
+      },
+      {
         "filename": "what_is_the_wi-fi_password.mp3",
         "path": "/audio/en/words/what_is_the_wi-fi_password.mp3",
         "text": "What is the Wi-Fi password?"
+      },
+      {
+        "filename": "the_internet_connection_is_slow.mp3",
+        "path": "/audio/en/words/the_internet_connection_is_slow.mp3",
+        "text": "The internet connection is slow"
+      },
+      {
+        "filename": "can_you_send_it_by_email.mp3",
+        "path": "/audio/en/words/can_you_send_it_by_email.mp3",
+        "text": "Can you send it by email?"
+      },
+      {
+        "filename": "my_battery_is_almost_dead.mp3",
+        "path": "/audio/en/words/my_battery_is_almost_dead.mp3",
+        "text": "My battery is almost dead"
       },
       {
         "filename": "lets_schedule_a_meeting.mp3",

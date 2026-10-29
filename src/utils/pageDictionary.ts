@@ -206,11 +206,113 @@ export const getPageContent = (
             title: 'Deutsches Alphabet',
             subtitle: '30 Buchstaben (inkl. Ä, Ö, Ü, ß) mit Aussprachehilfen, Beispielwörtern und Studio-Audio'
           };
+        case 'id':
+          return {
+            title: 'Alfabet Jerman',
+            subtitle: '30 huruf (termasuk Ä, Ö, Ü, ß) dengan panduan pelafalan dan audio studio'
+          };
+        case 'tr':
+          return {
+            title: 'Alman Alfabesi',
+            subtitle: 'Telaffuz rehberi, örnek kelimeler ve stüdyo sesiyle 30 harf (Ä, Ö, Ü, ß dahil)'
+          };
         case 'en':
         default:
           return {
             title: 'German Alphabet',
             subtitle: '30 letters (including Ä, Ö, Ü, ß) with pronunciation guides, example vocabulary, and native studio audio'
+          };
+      }
+    }
+
+    if (targetLang === 'id') {
+      switch (baseLang) {
+        case 'ru':
+          return {
+            title: 'Индонезийский алфавит',
+            subtitle: '26 букв с правилами произношения, примерами слов и студийным аудио'
+          };
+        case 'es':
+          return {
+            title: 'Alfabeto indonesio',
+            subtitle: '26 letras con guías de pronunciación, vocabulario de ejemplo y audio nativo'
+          };
+        case 'fr':
+          return {
+            title: 'Alphabet indonésien',
+            subtitle: '26 lettres avec guides de prononciation, vocabulaire et audio natif'
+          };
+        case 'pt':
+          return {
+            title: 'Alfabeto indonésio',
+            subtitle: '26 letras com guias de pronúncia, vocabulário de exemplo e áudio nativo'
+          };
+        case 'de':
+          return {
+            title: 'Indonesisches Alphabet',
+            subtitle: '26 Buchstaben mit Aussprachehilfen, Beispielwörtern und Studio-Audio'
+          };
+        case 'id':
+          return {
+            title: 'Alfabet Bahasa Indonesia',
+            subtitle: '26 huruf dengan panduan pelafalan, kosakata contoh, dan audio studio'
+          };
+        case 'tr':
+          return {
+            title: 'Endonezce Alfabesi',
+            subtitle: 'Telaffuz rehberi, örnek kelimeler ve stüdyo sesiyle 26 harf'
+          };
+        case 'en':
+        default:
+          return {
+            title: 'Indonesian Alphabet',
+            subtitle: '26 letters with pronunciation guides, example vocabulary, and native studio audio'
+          };
+      }
+    }
+
+    if (targetLang === 'tr') {
+      switch (baseLang) {
+        case 'ru':
+          return {
+            title: 'Турецкий алфавит',
+            subtitle: '29 букв (включая Ç, Ğ, I/ı, İ/i, Ö, Ş, Ü) с произношением и студийным аудио'
+          };
+        case 'es':
+          return {
+            title: 'Alfabeto turco',
+            subtitle: '29 letras (incluyendo Ç, Ğ, I/ı, İ/i, Ö, Ş, Ü) con guías de pronunciación y audio nativo'
+          };
+        case 'fr':
+          return {
+            title: 'Alphabet turc',
+            subtitle: '29 lettres (dont Ç, Ğ, I/ı, İ/i, Ö, Ş, Ü) avec guides de prononciation et audio natif'
+          };
+        case 'pt':
+          return {
+            title: 'Alfabeto turco',
+            subtitle: '29 letras (incluindo Ç, Ğ, I/ı, İ/i, Ö, Ş, Ü) com guias de pronúncia e áudio nativo'
+          };
+        case 'de':
+          return {
+            title: 'Türkisches Alphabet',
+            subtitle: '29 Buchstaben (inkl. Ç, Ğ, I/ı, İ/i, Ö, Ş, Ü) mit Aussprachehilfen und Studio-Audio'
+          };
+        case 'id':
+          return {
+            title: 'Alfabet Turki',
+            subtitle: '29 huruf (termasuk Ç, Ğ, I/ı, İ/i, Ö, Ş, Ü) dengan panduan pelafalan dan audio studio'
+          };
+        case 'tr':
+          return {
+            title: 'Türk Alfabesi',
+            subtitle: 'Telaffuz rehberi, örnek kelimeler ve stüdyo sesiyle 29 harf (Ç, Ğ, I/ı, İ/i, Ö, Ş, Ü dahil)'
+          };
+        case 'en':
+        default:
+          return {
+            title: 'Turkish Alphabet',
+            subtitle: '29 letters (including Ç, Ğ, I/ı, İ/i, Ö, Ş, Ü) with pronunciation guides, example vocabulary, and native studio audio'
           };
       }
     }
@@ -224,7 +326,9 @@ export const getPageContent = (
       fr: 'Appuyez sur une carte pour voir sa traduction et sa prononciation',
       ru: 'Нажмите на любую карточку, чтобы увидеть перевод и произношение',
       pt: 'Toque em qualquer cartão para ver sua tradução e pronúncia',
-      de: 'Tippe auf eine Karte, um Übersetzung und Aussprache anzuzeigen'
+      de: 'Tippe auf eine Karte, um Übersetzung und Aussprache anzuzeigen',
+      id: 'Ketuk kartu mana saja untuk melihat terjemahan dan pelafalannya',
+      tr: 'Çevirisini ve telaffuzunu görmek için herhangi bir karta dokunun'
     };
 
     if (targetLang === 'en') {
@@ -317,9 +421,57 @@ export const getPageContent = (
           return { title: 'Frases essenciais em alemão', subtitle: subtitleByBase.pt };
         case 'de':
           return { title: 'Wichtige deutsche Sätze', subtitle: subtitleByBase.de };
+        case 'id':
+          return { title: 'Frasa Dasar Bahasa Jerman', subtitle: subtitleByBase.id };
+        case 'tr':
+          return { title: 'Temel Almanca İfadeler', subtitle: subtitleByBase.tr };
         case 'en':
         default:
           return { title: 'Essential German Phrases & Greetings', subtitle: subtitleByBase.en };
+      }
+    }
+
+    if (targetLang === 'id') {
+      switch (baseLang) {
+        case 'ru':
+          return { title: 'Основные индонезийские фразы', subtitle: subtitleByBase.ru };
+        case 'es':
+          return { title: 'Frases esenciales en indonesio', subtitle: subtitleByBase.es };
+        case 'fr':
+          return { title: 'Phrases de base en indonésien', subtitle: subtitleByBase.fr };
+        case 'pt':
+          return { title: 'Frases essenciais em indonésio', subtitle: subtitleByBase.pt };
+        case 'de':
+          return { title: 'Wichtige indonesische Sätze', subtitle: subtitleByBase.de };
+        case 'id':
+          return { title: 'Frasa Dasar Bahasa Indonesia', subtitle: subtitleByBase.id };
+        case 'tr':
+          return { title: 'Temel Endonezce İfadeler', subtitle: subtitleByBase.tr };
+        case 'en':
+        default:
+          return { title: 'Essential Indonesian Phrases & Greetings', subtitle: subtitleByBase.en };
+      }
+    }
+
+    if (targetLang === 'tr') {
+      switch (baseLang) {
+        case 'ru':
+          return { title: 'Основные турецкие фразы', subtitle: subtitleByBase.ru };
+        case 'es':
+          return { title: 'Frases esenciales en turco', subtitle: subtitleByBase.es };
+        case 'fr':
+          return { title: 'Phrases de base en turc', subtitle: subtitleByBase.fr };
+        case 'pt':
+          return { title: 'Frases essenciais em turco', subtitle: subtitleByBase.pt };
+        case 'de':
+          return { title: 'Wichtige türkische Sätze', subtitle: subtitleByBase.de };
+        case 'id':
+          return { title: 'Frasa Dasar Bahasa Turki', subtitle: subtitleByBase.id };
+        case 'tr':
+          return { title: 'Temel Türkçe İfadeler', subtitle: subtitleByBase.tr };
+        case 'en':
+        default:
+          return { title: 'Essential Turkish Phrases & Greetings', subtitle: subtitleByBase.en };
       }
     }
   }
@@ -332,7 +484,9 @@ export const getPageContent = (
       fr: 'Appuyez sur une carte pour voir sa traduction et sa prononciation',
       ru: 'Нажмите на любую карточку, чтобы увидеть перевод и произношение',
       pt: 'Toque em qualquer cartão para ver sua tradução e pronúncia',
-      de: 'Tippe auf eine Karte, um Übersetzung und Aussprache anzuzeigen'
+      de: 'Tippe auf eine Karte, um Übersetzung und Aussprache anzuzeigen',
+      id: 'Ketuk kartu mana saja untuk melihat terjemahan dan pelafalannya',
+      tr: 'Çevirisini ve telaffuzunu görmek için herhangi bir karta dokunun'
     };
 
     if (targetLang === 'en') {
@@ -425,15 +579,106 @@ export const getPageContent = (
           return { title: 'Palavras comuns em alemão', subtitle: subtitleByBase.pt };
         case 'de':
           return { title: 'Häufige deutsche Wörter', subtitle: subtitleByBase.de };
+        case 'id':
+          return { title: 'Kata Umum Bahasa Jerman', subtitle: subtitleByBase.id };
+        case 'tr':
+          return { title: 'Yaygın Almanca Kelimeler', subtitle: subtitleByBase.tr };
         case 'en':
         default:
           return { title: 'Common German Words & Vocabulary', subtitle: subtitleByBase.en };
+      }
+    }
+
+    if (targetLang === 'id') {
+      switch (baseLang) {
+        case 'ru':
+          return { title: 'Популярные индонезийские слова', subtitle: subtitleByBase.ru };
+        case 'es':
+          return { title: 'Palabras comunes en indonesio', subtitle: subtitleByBase.es };
+        case 'fr':
+          return { title: 'Mots courants en indonésien', subtitle: subtitleByBase.fr };
+        case 'pt':
+          return { title: 'Palavras comuns em indonésio', subtitle: subtitleByBase.pt };
+        case 'de':
+          return { title: 'Häufige indonesische Wörter', subtitle: subtitleByBase.de };
+        case 'id':
+          return { title: 'Kata Umum Bahasa Indonesia', subtitle: subtitleByBase.id };
+        case 'tr':
+          return { title: 'Yaygın Endonezce Kelimeler', subtitle: subtitleByBase.tr };
+        case 'en':
+        default:
+          return { title: 'Common Indonesian Words & Vocabulary', subtitle: subtitleByBase.en };
+      }
+    }
+
+    if (targetLang === 'tr') {
+      switch (baseLang) {
+        case 'ru':
+          return { title: 'Популярные турецкие слова', subtitle: subtitleByBase.ru };
+        case 'es':
+          return { title: 'Palabras comunes en turco', subtitle: subtitleByBase.es };
+        case 'fr':
+          return { title: 'Mots courants en turc', subtitle: subtitleByBase.fr };
+        case 'pt':
+          return { title: 'Palavras comuns em turco', subtitle: subtitleByBase.pt };
+        case 'de':
+          return { title: 'Häufige türkische Wörter', subtitle: subtitleByBase.de };
+        case 'id':
+          return { title: 'Kata Umum Bahasa Turki', subtitle: subtitleByBase.id };
+        case 'tr':
+          return { title: 'Yaygın Türkçe Kelimeler', subtitle: subtitleByBase.tr };
+        case 'en':
+        default:
+          return { title: 'Common Turkish Words & Vocabulary', subtitle: subtitleByBase.en };
       }
     }
   }
 
   // 4. NUMBERS
   if (section === 'numbers') {
+    if (targetLang === 'id') {
+      switch (baseLang) {
+        case 'ru':
+          return { title: 'Индонезийские числа (0–1000)', subtitle: 'Количественные числительные с правильным произношением' };
+        case 'es':
+          return { title: 'Números en indonesio (0–1.000)', subtitle: 'Números cardinales con pronunciación nativa' };
+        case 'fr':
+          return { title: 'Nombres en indonésien (0–1 000)', subtitle: 'Nombres cardinaux avec prononciation native' };
+        case 'pt':
+          return { title: 'Números em indonésio (0–1.000)', subtitle: 'Números cardinais com pronúncia nativa' };
+        case 'de':
+          return { title: 'Indonesische Zahlen (0–1.000)', subtitle: 'Grundzahlen mit Studio-Audio' };
+        case 'id':
+          return { title: 'Angka Bahasa Indonesia (0–1.000)', subtitle: 'Angka kardinal dari nol hingga seribu dengan pelafalan asli' };
+        case 'tr':
+          return { title: 'Endonezce Sayılar (0–1.000)', subtitle: 'Sıfırdan bine kadar temel sayılar ve telaffuzları' };
+        case 'en':
+        default:
+          return { title: 'Indonesian Numbers (0–1,000)', subtitle: 'Cardinal numbers from zero to one thousand with native pronunciation' };
+      }
+    }
+
+    if (targetLang === 'tr') {
+      switch (baseLang) {
+        case 'ru':
+          return { title: 'Турецкие числа (0–1000)', subtitle: 'Количественные числительные с правильным произношением' };
+        case 'es':
+          return { title: 'Números en turco (0–1.000)', subtitle: 'Números cardinales con pronunciación nativa' };
+        case 'fr':
+          return { title: 'Nombres en turc (0–1 000)', subtitle: 'Nombres cardinaux avec prononciation native' };
+        case 'pt':
+          return { title: 'Números em turco (0–1.000)', subtitle: 'Números cardinais com pronúncia nativa' };
+        case 'de':
+          return { title: 'Türkische Zahlen (0–1.000)', subtitle: 'Grundzahlen mit Studio-Audio' };
+        case 'id':
+          return { title: 'Angka Bahasa Turki (0–1.000)', subtitle: 'Angka kardinal dari nol hingga seribu dengan pelafalan asli' };
+        case 'tr':
+          return { title: 'Türkçe Sayılar (0–1.000)', subtitle: 'Sıfırdan bine kadar temel sayılar ve telaffuzları' };
+        case 'en':
+        default:
+          return { title: 'Turkish Numbers (0–1,000)', subtitle: 'Cardinal numbers from zero to one thousand with native pronunciation' };
+      }
+    }
     if (targetLang === 'pt') {
       switch (baseLang) {
         case 'ru':
@@ -618,9 +863,57 @@ export const getPageContent = (
           return { title: 'As horas em alemão e expressões', subtitle: 'Aprenda horas, minutos e expressões de tempo cotidianas' };
         case 'de':
           return { title: 'Uhrzeit auf Deutsch & Ausdrücke', subtitle: 'Stunden, Minuten und alltägliche Zeitausdrücke' };
+        case 'id':
+          return { title: 'Waktu dalam Bahasa Jerman', subtitle: 'Pelajari jam, menit, dan ungkapan waktu sehari-hari' };
+        case 'tr':
+          return { title: 'Almanca Saatler ve Zaman İfadeleri', subtitle: 'Saatleri, dakikaları ve günlük zaman ifadelerini öğrenin' };
         case 'en':
         default:
           return { title: 'German Telling Time & Expressions', subtitle: 'Learn hours, minutes, and essential daily time expressions' };
+      }
+    }
+
+    if (targetLang === 'id') {
+      switch (baseLang) {
+        case 'ru':
+          return { title: 'Определение времени на индонезийском', subtitle: 'Часы, минуты и повседневные фразы о времени' };
+        case 'es':
+          return { title: 'La hora en indonesio y expresiones', subtitle: 'Aprende horas, minutos y expresiones de tiempo cotidianas' };
+        case 'fr':
+          return { title: 'Dire l\'heure en indonésien et expressions', subtitle: 'Heures, minutes et expressions de temps quotidiennes' };
+        case 'pt':
+          return { title: 'As horas em indonésio e expressões', subtitle: 'Aprenda horas, minutos e expressões de tempo cotidianas' };
+        case 'de':
+          return { title: 'Uhrzeit auf Indonesisch & Ausdrücke', subtitle: 'Stunden, Minuten und alltägliche Zeitausdrücke' };
+        case 'id':
+          return { title: 'Waktu & Jam dalam Bahasa Indonesia', subtitle: 'Pelajari jam, menit, dan ungkapan waktu sehari-hari' };
+        case 'tr':
+          return { title: 'Endonezce Saatler ve Zaman İfadeleri', subtitle: 'Saatleri, dakikaları ve günlük zaman ifadelerini öğrenin' };
+        case 'en':
+        default:
+          return { title: 'Indonesian Telling Time & Expressions', subtitle: 'Learn hours, minutes, and essential daily time expressions' };
+      }
+    }
+
+    if (targetLang === 'tr') {
+      switch (baseLang) {
+        case 'ru':
+          return { title: 'Определение времени на турецком', subtitle: 'Часы, минуты и повседневные фразы о времени' };
+        case 'es':
+          return { title: 'La hora en turco y expresiones', subtitle: 'Aprende horas, minutos y expresiones de tiempo cotidianas' };
+        case 'fr':
+          return { title: 'Dire l\'heure en turc et expressions', subtitle: 'Heures, minutes et expressions de temps quotidiennes' };
+        case 'pt':
+          return { title: 'As horas em turco e expressões', subtitle: 'Aprenda horas, minutos e expressões de tempo cotidianas' };
+        case 'de':
+          return { title: 'Uhrzeit auf Türkisch & Ausdrücke', subtitle: 'Stunden, Minuten und alltägliche Zeitausdrücke' };
+        case 'id':
+          return { title: 'Waktu dalam Bahasa Turki', subtitle: 'Pelajari jam, menit, dan ungkapan waktu sehari-hari' };
+        case 'tr':
+          return { title: 'Türkçe Saatler ve Zaman İfadeleri', subtitle: 'Saatleri, dakikaları ve günlük zaman ifadelerini öğrenin' };
+        case 'en':
+        default:
+          return { title: 'Turkish Telling Time & Expressions', subtitle: 'Learn hours, minutes, and essential daily time expressions' };
       }
     }
   }
@@ -647,6 +940,10 @@ export const getAlphabetLabels = (baseLang: SupportedLanguageId) => {
       return { sound: 'Som:', example: 'Exemplo:', asIn: 'como em' };
     case 'de':
       return { sound: 'Klang:', example: 'Beispiel:', asIn: 'wie in' };
+    case 'id':
+      return { sound: 'Bunyi:', example: 'Contoh:', asIn: 'seperti di' };
+    case 'tr':
+      return { sound: 'Ses:', example: 'Örnek:', asIn: 'örneğin:' };
     case 'en':
     default:
       return { sound: 'Sound:', example: 'Example:', asIn: 'as in' };
@@ -668,6 +965,10 @@ export const getTimeTabs = (baseLang: SupportedLanguageId) => {
       return { numbers: 'Números', time: 'As horas' };
     case 'de':
       return { numbers: 'Zahlen', time: 'Uhrzeit' };
+    case 'id':
+      return { numbers: 'Angka', time: 'Waktu' };
+    case 'tr':
+      return { numbers: 'Sayılar', time: 'Saatler' };
     case 'en':
     default:
       return { numbers: 'Numbers', time: 'Telling Time' };
@@ -1010,7 +1311,9 @@ export const getLocalizedAppName = (
       fr: 'Базовый Французский',
       ru: 'Базовый Русский',
       pt: 'Базовый Португальский',
-      de: 'Базовый Немецкий'
+      de: 'Базовый Немецкий',
+      id: 'Базовый Индонезийский',
+      tr: 'Базовый Турецкий'
     },
     es: {
       en: 'Inglés Básico',
@@ -1018,7 +1321,9 @@ export const getLocalizedAppName = (
       fr: 'Francés Básico',
       ru: 'Ruso Básico',
       pt: 'Portugués Básico',
-      de: 'Alemán Básico'
+      de: 'Alemán Básico',
+      id: 'Indonesio Básico',
+      tr: 'Turco Básico'
     },
     fr: {
       en: 'Anglais de Base',
@@ -1026,7 +1331,9 @@ export const getLocalizedAppName = (
       fr: 'Français de Base',
       ru: 'Russe de Base',
       pt: 'Portugais de Base',
-      de: 'Allemand de Base'
+      de: 'Allemand de Base',
+      id: 'Indonésien de Base',
+      tr: 'Turc de Base'
     },
     pt: {
       en: 'Inglês Básico',
@@ -1034,7 +1341,9 @@ export const getLocalizedAppName = (
       fr: 'Francês Básico',
       ru: 'Russo Básico',
       pt: 'Português Básico',
-      de: 'Alemão Básico'
+      de: 'Alemão Básico',
+      id: 'Indonésio Básico',
+      tr: 'Turco Básico'
     },
     de: {
       en: 'Basis-Englisch',
@@ -1042,7 +1351,29 @@ export const getLocalizedAppName = (
       fr: 'Basis-Französisch',
       ru: 'Basis-Russisch',
       pt: 'Basis-Portugiesisch',
-      de: 'Basis-Deutsch'
+      de: 'Basis-Deutsch',
+      id: 'Basis-Indonesisch',
+      tr: 'Basis-Türkisch'
+    },
+    id: {
+      en: 'Bahasa Inggris Dasar',
+      es: 'Bahasa Spanyol Dasar',
+      fr: 'Bahasa Prancis Dasar',
+      ru: 'Bahasa Rusia Dasar',
+      pt: 'Bahasa Portugis Dasar',
+      de: 'Bahasa Jerman Dasar',
+      id: 'Bahasa Indonesia Dasar',
+      tr: 'Bahasa Turki Dasar'
+    },
+    tr: {
+      en: 'Temel İngilizce',
+      es: 'Temel İspanyolca',
+      fr: 'Temel Fransızca',
+      ru: 'Temel Rusça',
+      pt: 'Temel Portekizce',
+      de: 'Temel Almanca',
+      id: 'Temel Endonezce',
+      tr: 'Temel Türkçe'
     },
     en: {
       en: 'Basic English',
@@ -1050,7 +1381,9 @@ export const getLocalizedAppName = (
       fr: 'Basic French',
       ru: 'Basic Russian',
       pt: 'Basic Portuguese',
-      de: 'Basic German'
+      de: 'Basic German',
+      id: 'Basic Indonesian',
+      tr: 'Basic Turkish'
     }
   };
 
@@ -1076,6 +1409,8 @@ export const getLocalizedLanguageName = (
       de: 'Немецкий',
       it: 'Итальянский',
       pt: 'Португальский',
+      id: 'Индонезийский',
+      tr: 'Турецкий',
       ja: 'Японский',
       zh: 'Китайский',
       ko: 'Корейский'
@@ -1088,6 +1423,8 @@ export const getLocalizedLanguageName = (
       de: 'Alemán',
       it: 'Italiano',
       pt: 'Portugués',
+      id: 'Indonesio',
+      tr: 'Turco',
       ja: 'Japonés',
       zh: 'Chino',
       ko: 'Coreano'
@@ -1134,6 +1471,34 @@ export const getLocalizedLanguageName = (
       zh: 'Chinesisch',
       ko: 'Koreanisch'
     },
+    id: {
+      en: 'Inggris',
+      es: 'Spanyol',
+      fr: 'Prancis',
+      ru: 'Rusia',
+      de: 'Jerman',
+      it: 'Italia',
+      pt: 'Portugis',
+      id: 'Indonesia',
+      tr: 'Turki',
+      ja: 'Jepang',
+      zh: 'Mandarin',
+      ko: 'Korea'
+    },
+    tr: {
+      en: 'İngilizce',
+      es: 'İspanyolca',
+      fr: 'Fransızca',
+      ru: 'Rusça',
+      de: 'Almanca',
+      it: 'İtalyanca',
+      pt: 'Portekizce',
+      id: 'Endonezce',
+      tr: 'Türkçe',
+      ja: 'Japonca',
+      zh: 'Çince',
+      ko: 'Korece'
+    },
     en: {}
   };
 
@@ -1151,49 +1516,49 @@ export const localizeCategoryBadge = (
 
   const key = category.trim().toLowerCase();
   const map: Record<string, Record<SupportedLanguageId, string>> = {
-    'greetings': { en: 'Greetings', es: 'Saludos', fr: 'Salutations', ru: 'Приветствия', pt: 'Saudações', de: 'Begrüßungen' },
-    'conversation': { en: 'Conversation', es: 'Conversación', fr: 'Conversation', ru: 'Разговор', pt: 'Conversação', de: 'Gespräch' },
-    'introductions': { en: 'Introductions', es: 'Presentaciones', fr: 'Présentations', ru: 'Знакомство', pt: 'Apresentações', de: 'Vorstellung' },
-    'farewells': { en: 'Farewells', es: 'Despedidas', fr: 'Au revoir', ru: 'Прощание', pt: 'Despedidas', de: 'Abschied' },
-    'politeness': { en: 'Politeness', es: 'Cortesía', fr: 'Politesse', ru: 'Вежливость', pt: 'Cortesia', de: 'Höflichkeit' },
-    'responses': { en: 'Responses', es: 'Respuestas', fr: 'Réponses', ru: 'Ответы', pt: 'Respostas', de: 'Antworten' },
-    'communication': { en: 'Communication', es: 'Comunicación', fr: 'Communication', ru: 'Общение', pt: 'Comunicação', de: 'Kommunikation' },
-    'travel': { en: 'Travel', es: 'Viajes', fr: 'Voyage', ru: 'Путешествия', pt: 'Viagem', de: 'Reisen' },
-    'food & drink': { en: 'Food & Drink', es: 'Comida y Bebida', fr: 'Nourriture et Boissons', ru: 'Еда и напитки', pt: 'Comida e Bebida', de: 'Essen & Trinken' },
-    'dining': { en: 'Dining', es: 'Restaurante', fr: 'Au Restaurant', ru: 'В ресторане', pt: 'Restaurante', de: 'Im Restaurant' },
-    'shopping': { en: 'Shopping', es: 'Compras', fr: 'Achats', ru: 'Покупки', pt: 'Compras', de: 'Einkaufen' },
-    'emergency': { en: 'Emergency', es: 'Emergencia', fr: 'Urgence', ru: 'Экстренные случаи', pt: 'Emergência', de: 'Notfall' },
-    'people & family': { en: 'People & Family', es: 'Gente y Familia', fr: 'Personnes et Famille', ru: 'Люди и семья', pt: 'Pessoas e Família', de: 'Menschen & Familie' },
-    'people': { en: 'People', es: 'Gente', fr: 'Personnes', ru: 'Люди', pt: 'Pessoas', de: 'Menschen' },
-    'places': { en: 'Places', es: 'Lugares', fr: 'Lieux', ru: 'Места', pt: 'Lugares', de: 'Orte' },
-    'transport': { en: 'Transport', es: 'Transporte', fr: 'Transports', ru: 'Транспорт', pt: 'Transporte', de: 'Verkehr' },
-    'everyday objects': { en: 'Everyday Objects', es: 'Objetos Cotidianos', fr: 'Objets du Quotidien', ru: 'Повседневные предметы', pt: 'Objetos do Dia a Dia', de: 'Alltagsgegenstände' },
-    'everyday essentials': { en: 'Everyday Essentials', es: 'Esenciales Diarios', fr: 'Essentiels du Quotidien', ru: 'Повседневные вещи', pt: 'Essenciais Diários', de: 'Alltägliches' },
-    'essentials': { en: 'Essentials', es: 'Esenciales', fr: 'Essentiels', ru: 'Основное', pt: 'Essenciais', de: 'Grundlagen' },
-    'work': { en: 'Work', es: 'Trabajo', fr: 'Travail', ru: 'Работа', pt: 'Trabalho', de: 'Arbeit' },
-    'finance': { en: 'Finance', es: 'Finanzas', fr: 'Finances', ru: 'Финансы', pt: 'Finanças', de: 'Finanzen' },
-    'time & weather': { en: 'Time & Weather', es: 'Tiempo y Clima', fr: 'Temps et Météo', ru: 'Время и погода', pt: 'Tempo e Clima', de: 'Zeit & Wetter' },
-    'descriptions': { en: 'Descriptions', es: 'Descripciones', fr: 'Descriptions', ru: 'Описания', pt: 'Descrições', de: 'Beschreibungen' },
-    'common verbs': { en: 'Common Verbs', es: 'Verbos Comunes', fr: 'Verbes Courants', ru: 'Основные глаголы', pt: 'Verbos Comuns', de: 'Häufige Verben' },
-    'core actions': { en: 'Core Actions', es: 'Acciones Básicas', fr: 'Actions de Base', ru: 'Основные действия', pt: 'Ações Básicas', de: 'Grundverben' },
-    'numbers': { en: 'Numbers', es: 'Números', fr: 'Nombres', ru: 'Числа', pt: 'Números', de: 'Zahlen' },
-    'numbers 0-10': { en: 'Numbers 0-10', es: 'Números 0-10', fr: 'Nombres 0-10', ru: 'Числа 0–10', pt: 'Números 0–10', de: 'Zahlen 0–10' },
-    'numbers 11-20': { en: 'Numbers 11-20', es: 'Números 11-20', fr: 'Nombres 11-20', ru: 'Числа 11–20', pt: 'Números 11–20', de: 'Zahlen 11–20' },
-    'tens': { en: 'Tens', es: 'Decenas', fr: 'Dizaines', ru: 'Десятки', pt: 'Dezenas', de: 'Zehner' },
-    'hundreds': { en: 'Hundreds', es: 'Centenas', fr: 'Centaines', ru: 'Сотни', pt: 'Centenas', de: 'Hunderter' },
-    'thousands': { en: 'Thousands', es: 'Miles', fr: 'Milliers', ru: 'Тысячи', pt: 'Milhares', de: 'Tausender' },
-    'time': { en: 'Time', es: 'Hora y Tiempo', fr: 'Heure et Temps', ru: 'Время', pt: 'Hora e Tempo', de: 'Zeit' },
-    'questions': { en: 'Questions', es: 'Preguntas', fr: 'Questions', ru: 'Вопросы', pt: 'Perguntas', de: 'Fragen' },
-    'hour': { en: 'Hour', es: 'Horas', fr: 'Heures', ru: 'Часы', pt: 'Horas', de: 'Stunden' },
-    'minutes': { en: 'Minutes', es: 'Minutos', fr: 'Minutes', ru: 'Минуты', pt: 'Minutos', de: 'Minuten' },
-    'special': { en: 'Special', es: 'Especial', fr: 'Spécial', ru: 'Особое', pt: 'Especial', de: 'Spezial' },
-    'mixed': { en: 'Mixed', es: 'Mixto', fr: 'Mixte', ru: 'Смешанный', pt: 'Misto', de: 'Gemischt' },
-    'colors': { en: 'Colors', es: 'Colores', fr: 'Couleurs', ru: 'Цвета', pt: 'Cores', de: 'Farben' },
-    'weather': { en: 'Weather', es: 'Clima', fr: 'Météo', ru: 'Погода', pt: 'Clima', de: 'Wetter' },
-    'tech': { en: 'Tech & IT', es: 'Tecnología', fr: 'Tech et IT', ru: 'Технологии', pt: 'Tecnologia', de: 'Tech & IT' },
-    'business': { en: 'Business', es: 'Negocios', fr: 'Affaires', ru: 'Бизнес', pt: 'Negócios', de: 'Wirtschaft & Büro' },
-    'health': { en: 'Healthcare', es: 'Salud', fr: 'Santé', ru: 'Здоровье', pt: 'Saúde', de: 'Gesundheit' },
-    'all': { en: 'All', es: 'Todos', fr: 'Tous', ru: 'Все', pt: 'Todos', de: 'Alle' }
+    'greetings': { en: 'Greetings', es: 'Saludos', fr: 'Salutations', ru: 'Приветствия', pt: 'Saudações', de: 'Begrüßungen', id: 'Sapaan', tr: 'Selamlaşma' },
+    'conversation': { en: 'Conversation', es: 'Conversación', fr: 'Conversation', ru: 'Разговор', pt: 'Conversação', de: 'Gespräch', id: 'Percakapan', tr: 'Sohbet' },
+    'introductions': { en: 'Introductions', es: 'Presentaciones', fr: 'Présentations', ru: 'Знакомство', pt: 'Apresentações', de: 'Vorstellung', id: 'Perkenalan', tr: 'Tanışma' },
+    'farewells': { en: 'Farewells', es: 'Despedidas', fr: 'Au revoir', ru: 'Прощание', pt: 'Despedidas', de: 'Abschied', id: 'Perpisahan', tr: 'Vedalaşma' },
+    'politeness': { en: 'Politeness', es: 'Cortesía', fr: 'Politesse', ru: 'Вежливость', pt: 'Cortesia', de: 'Höflichkeit', id: 'Kesopanan', tr: 'Nezaket' },
+    'responses': { en: 'Responses', es: 'Respuestas', fr: 'Réponses', ru: 'Ответы', pt: 'Respostas', de: 'Antworten', id: 'Tanggapan', tr: 'Yanıtlar' },
+    'communication': { en: 'Communication', es: 'Comunicación', fr: 'Communication', ru: 'Общение', pt: 'Comunicação', de: 'Kommunikation', id: 'Komunikasi', tr: 'İletişim' },
+    'travel': { en: 'Travel', es: 'Viajes', fr: 'Voyage', ru: 'Путешествия', pt: 'Viagem', de: 'Reisen', id: 'Perjalanan', tr: 'Seyahat' },
+    'food & drink': { en: 'Food & Drink', es: 'Comida y Bebida', fr: 'Nourriture et Boissons', ru: 'Еда и напитки', pt: 'Comida e Bebida', de: 'Essen & Trinken', id: 'Makanan & Minuman', tr: 'Yiyecek ve İçecek' },
+    'dining': { en: 'Dining', es: 'Restaurante', fr: 'Au Restaurant', ru: 'В ресторане', pt: 'Restaurante', de: 'Im Restaurant', id: 'Restoran', tr: 'Restoran' },
+    'shopping': { en: 'Shopping', es: 'Compras', fr: 'Achats', ru: 'Покупки', pt: 'Compras', de: 'Einkaufen', id: 'Belanja', tr: 'Alışveriş' },
+    'emergency': { en: 'Emergency', es: 'Emergencia', fr: 'Urgence', ru: 'Экстренные случаи', pt: 'Emergência', de: 'Notfall', id: 'Darurat', tr: 'Acil Durum' },
+    'people & family': { en: 'People & Family', es: 'Gente y Familia', fr: 'Personnes et Famille', ru: 'Люди и семья', pt: 'Pessoas e Família', de: 'Menschen & Familie', id: 'Orang & Keluarga', tr: 'İnsanlar ve Aile' },
+    'people': { en: 'People', es: 'Gente', fr: 'Personnes', ru: 'Люди', pt: 'Pessoas', de: 'Menschen', id: 'Orang', tr: 'İnsanlar' },
+    'places': { en: 'Places', es: 'Lugares', fr: 'Lieux', ru: 'Места', pt: 'Lugares', de: 'Orte', id: 'Tempat', tr: 'Yerler' },
+    'transport': { en: 'Transport', es: 'Transporte', fr: 'Transports', ru: 'Транспорт', pt: 'Transporte', de: 'Verkehr', id: 'Transportasi', tr: 'Ulaşım' },
+    'everyday objects': { en: 'Everyday Objects', es: 'Objetos Cotidianos', fr: 'Objets du Quotidien', ru: 'Повседневные предметы', pt: 'Objetos do Dia a Dia', de: 'Alltagsgegenstände', id: 'Benda Sehari-hari', tr: 'Günlük Eşyalar' },
+    'everyday essentials': { en: 'Everyday Essentials', es: 'Esenciales Diarios', fr: 'Essentiels du Quotidien', ru: 'Повседневные вещи', pt: 'Essenciais Diários', de: 'Alltägliches', id: 'Kebutuhan Harian', tr: 'Günlük İhtiyaçlar' },
+    'essentials': { en: 'Essentials', es: 'Esenciales', fr: 'Essentiels', ru: 'Основное', pt: 'Essenciais', de: 'Grundlagen', id: 'Penting', tr: 'Temel' },
+    'work': { en: 'Work', es: 'Trabajo', fr: 'Travail', ru: 'Работа', pt: 'Trabalho', de: 'Arbeit', id: 'Pekerjaan', tr: 'İş' },
+    'finance': { en: 'Finance', es: 'Finanzas', fr: 'Finances', ru: 'Финансы', pt: 'Finanças', de: 'Finanzen', id: 'Keuangan', tr: 'Finans' },
+    'time & weather': { en: 'Time & Weather', es: 'Tiempo y Clima', fr: 'Temps et Météo', ru: 'Время и погода', pt: 'Tempo e Clima', de: 'Zeit & Wetter', id: 'Waktu & Cuaca', tr: 'Zaman ve Hava' },
+    'descriptions': { en: 'Descriptions', es: 'Descripciones', fr: 'Descriptions', ru: 'Описания', pt: 'Descrições', de: 'Beschreibungen', id: 'Deskripsi', tr: 'Tanımlar' },
+    'common verbs': { en: 'Common Verbs', es: 'Verbos Comunes', fr: 'Verbes Courants', ru: 'Основные глаголы', pt: 'Verbos Comuns', de: 'Häufige Verben', id: 'Kata Kerja Umum', tr: 'Yaygın Fiiller' },
+    'core actions': { en: 'Core Actions', es: 'Acciones Básicas', fr: 'Actions de Base', ru: 'Основные действия', pt: 'Ações Básicas', de: 'Grundverben', id: 'Tindakan Dasar', tr: 'Temel Eylemler' },
+    'numbers': { en: 'Numbers', es: 'Números', fr: 'Nombres', ru: 'Числа', pt: 'Números', de: 'Zahlen', id: 'Angka', tr: 'Sayılar' },
+    'numbers 0-10': { en: 'Numbers 0-10', es: 'Números 0-10', fr: 'Nombres 0-10', ru: 'Числа 0–10', pt: 'Números 0–10', de: 'Zahlen 0–10', id: 'Angka 0–10', tr: 'Sayılar 0–10' },
+    'numbers 11-20': { en: 'Numbers 11-20', es: 'Números 11-20', fr: 'Nombres 11-20', ru: 'Числа 11–20', pt: 'Números 11–20', de: 'Zahlen 11–20', id: 'Angka 11–20', tr: 'Sayılar 11–20' },
+    'tens': { en: 'Tens', es: 'Decenas', fr: 'Dizaines', ru: 'Десятки', pt: 'Dezenas', de: 'Zehner', id: 'Puluhan', tr: 'Onluklar' },
+    'hundreds': { en: 'Hundreds', es: 'Centenas', fr: 'Centaines', ru: 'Сотни', pt: 'Centenas', de: 'Hunderter', id: 'Ratusan', tr: 'Yüzlükler' },
+    'thousands': { en: 'Thousands', es: 'Miles', fr: 'Milliers', ru: 'Тысячи', pt: 'Milhares', de: 'Tausender', id: 'Ribuan', tr: 'Binlikler' },
+    'time': { en: 'Time', es: 'Hora y Tiempo', fr: 'Heure et Temps', ru: 'Время', pt: 'Hora e Tempo', de: 'Zeit', id: 'Waktu', tr: 'Zaman' },
+    'questions': { en: 'Questions', es: 'Preguntas', fr: 'Questions', ru: 'Вопросы', pt: 'Perguntas', de: 'Fragen', id: 'Pertanyaan', tr: 'Sorular' },
+    'hour': { en: 'Hour', es: 'Horas', fr: 'Heures', ru: 'Часы', pt: 'Horas', de: 'Stunden', id: 'Jam', tr: 'Saat' },
+    'minutes': { en: 'Minutes', es: 'Minutos', fr: 'Minutes', ru: 'Минуты', pt: 'Minutos', de: 'Minuten', id: 'Menit', tr: 'Dakika' },
+    'special': { en: 'Special', es: 'Especial', fr: 'Spécial', ru: 'Особое', pt: 'Especial', de: 'Spezial', id: 'Khusus', tr: 'Özel' },
+    'mixed': { en: 'Mixed', es: 'Mixto', fr: 'Mixte', ru: 'Смешанный', pt: 'Misto', de: 'Gemischt', id: 'Campuran', tr: 'Karışık' },
+    'colors': { en: 'Colors', es: 'Colores', fr: 'Couleurs', ru: 'Цвета', pt: 'Cores', de: 'Farben', id: 'Warna', tr: 'Renkler' },
+    'weather': { en: 'Weather', es: 'Clima', fr: 'Météo', ru: 'Погода', pt: 'Clima', de: 'Wetter', id: 'Cuaca', tr: 'Hava Durumu' },
+    'tech': { en: 'Tech & IT', es: 'Tecnología', fr: 'Tech et IT', ru: 'Технологии', pt: 'Tecnologia', de: 'Tech & IT', id: 'Teknologi & IT', tr: 'Teknoloji ve Bilişim' },
+    'business': { en: 'Business', es: 'Negocios', fr: 'Affaires', ru: 'Бизнес', pt: 'Negócios', de: 'Wirtschaft & Büro', id: 'Bisnis & Kantor', tr: 'İş ve Ofis' },
+    'health': { en: 'Healthcare', es: 'Salud', fr: 'Santé', ru: 'Здоровье', pt: 'Saúde', de: 'Gesundheit', id: 'Kesehatan', tr: 'Sağlık' },
+    'all': { en: 'All', es: 'Todos', fr: 'Tous', ru: 'Все', pt: 'Todos', de: 'Alle', id: 'Semua', tr: 'Tümü' }
   };
 
   return map[key]?.[baseLang] || category;
@@ -1522,6 +1887,112 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         resetAllStats: 'Statistik zurücksetzen',
         confirmResetStats: 'Möchtest du wirklich deinen gesamten Lernfortschritt zurücksetzen?',
         doneBtn: 'Fertig'
+      };
+    case 'id':
+      return {
+        installApp: 'Instal Aplikasi',
+        installAppTitle: 'Instal aplikasi di perangkat Anda',
+        loadingLessons: 'Memuat pelajaran...',
+        allRightsReserved: 'Hak Cipta Dilindungi.',
+        privacyPolicy: 'Kebijakan Privasi',
+        termsOfService: 'Ketentuan Layanan',
+
+        customizingBadge: 'Menyesuaikan',
+        popularPairs: 'Pasangan Populer',
+        chooseLanguageToLearn: 'Pilih Bahasa untuk Dipelajari',
+        upcomingCourses: 'Kursus Mendatang',
+        soonBadge: 'Segera',
+        bidirectionalNotice: 'Kurikulum dua arah · Suara neural studio',
+        switchDirectionTitle: (baseName, targetName) =>
+          `Tukar arah: Belajar ${baseName} dari ${targetName}`,
+
+        audioSpeedLabel: 'Kecepatan Audio',
+        studioVoicePace: 'Tempo suara studio',
+        speedDesc05: 'Gerak lambat untuk suku kata jelas',
+        speedDesc075: 'Tempo pelajar',
+        speedDesc1: 'Kecepatan asli alami',
+        speedDesc125: 'Latihan mendengar cepat',
+
+        personalStudyDashboard: 'Dasbor Belajar Pribadi',
+        learningPair: 'Pasangan Bahasa',
+        audioPlaybackSpeed: 'Kecepatan Pemutaran Audio',
+        myLearningProgress: 'Kemajuan Belajar Saya',
+        accountCloudSync: 'Akun & Sinkronisasi Cloud',
+        signOut: 'Keluar',
+        syncSignIn: 'Sinkronkan & Masuk',
+
+        myStats: 'Statistik Saya',
+        signIn: 'Masuk',
+        signOutTitle: 'Keluar',
+        progressModalTitle: 'Kemajuan Saya',
+        overallAccuracy: 'Akurasi Keseluruhan',
+        questionsAttempted: 'Pertanyaan Dijawab',
+        streak: 'Beruntun',
+        mastered: 'Dikuasai',
+        accuracyByCategory: 'Akurasi per Kategori',
+        alphabetCat: 'Alfabet',
+        phrasesCat: 'Frasa Dasar',
+        commonWordsCat: 'Kata Umum',
+        numbersCat: 'Angka',
+        correctOfTotal: (correct, total) => `${correct} dari ${total} benar`,
+        syncPromoText: 'Ingin menyimpan kemajuan Anda di semua perangkat?',
+        signInRegister: 'Masuk / Daftar',
+        resetAllStats: 'Atur Ulang Statistik',
+        confirmResetStats: 'Apakah Anda yakin ingin mengatur ulang semua statistik kemajuan?',
+        doneBtn: 'Selesai'
+      };
+    case 'tr':
+      return {
+        installApp: 'Uygulamayı Yükle',
+        installAppTitle: 'Uygulamayı cihazınıza yükleyin',
+        loadingLessons: 'Dersler yükleniyor...',
+        allRightsReserved: 'Tüm Hakları Saklıdır.',
+        privacyPolicy: 'Gizlilik Politikası',
+        termsOfService: 'Hizmet Şartları',
+
+        customizingBadge: 'Özelleştirme',
+        popularPairs: 'Popüler Çiftler',
+        chooseLanguageToLearn: 'Öğrenilecek Dili Seçin',
+        upcomingCourses: 'Yakında Gelecek Kurslar',
+        soonBadge: 'Yakında',
+        bidirectionalNotice: 'Çift yönlü müfredat · Stüdyo nöral ses',
+        switchDirectionTitle: (baseName, targetName) =>
+          `Yönü değiştir: ${targetName} dilinden ${baseName} öğren`,
+
+        audioSpeedLabel: 'Ses Hızı',
+        studioVoicePace: 'Stüdyo ses temposu',
+        speedDesc05: 'Net heceler için yavaş çekim',
+        speedDesc075: 'Öğrenci temposu',
+        speedDesc1: 'Doğal ana dil hızı',
+        speedDesc125: 'Hızlı akıcı dinleme',
+
+        personalStudyDashboard: 'Kişisel Çalışma Paneli',
+        learningPair: 'Dil Çifti',
+        audioPlaybackSpeed: 'Ses Çalma Hızı',
+        myLearningProgress: 'Öğrenme İlerlemem',
+        accountCloudSync: 'Hesap ve Bulut Senkronizasyonu',
+        signOut: 'Çıkış Yap',
+        syncSignIn: 'Senkronize Et ve Giriş Yap',
+
+        myStats: 'İstatistiklerim',
+        signIn: 'Giriş Yap',
+        signOutTitle: 'Çıkış yap',
+        progressModalTitle: 'İlerlemem',
+        overallAccuracy: 'Genel Doğruluk',
+        questionsAttempted: 'Cevaplanan Sorular',
+        streak: 'Seri',
+        mastered: 'Öğrenilen',
+        accuracyByCategory: 'Kategoriye Göre Doğruluk',
+        alphabetCat: 'Alfabe',
+        phrasesCat: 'Temel İfadeler',
+        commonWordsCat: 'Yaygın Kelimeler',
+        numbersCat: 'Sayılar',
+        correctOfTotal: (correct, total) => `${total} soruda ${correct} doğru`,
+        syncPromoText: 'İlerlemenizi tüm cihazlarınızda kaydetmek ister misiniz?',
+        signInRegister: 'Giriş Yap / Kayıt Ol',
+        resetAllStats: 'Tüm İstatistikleri Sıfırla',
+        confirmResetStats: 'Tüm ilerleme istatistiklerinizi sıfırlamak istediğinizden emin misiniz?',
+        doneBtn: 'Tamam'
       };
     case 'en':
     default:
