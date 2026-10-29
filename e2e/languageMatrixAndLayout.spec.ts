@@ -334,11 +334,14 @@ test.describe('Playwright E2E: Layout, Modals, Alignment & Neural Audio Matrix',
     await expect(allModesBtn).toBeVisible();
     await expect(writingBtn).toHaveClass(/active/);
 
-    // 3. Verify topic pack filter (e.g. Tech & IT)
-    const techPill = page.getByRole('tab', { name: /Tech & IT/i });
-    await expect(techPill).toBeVisible();
-    await techPill.click();
-    await expect(techPill).toHaveClass(/active/);
+    // 3. Verify topic pack filter (e.g. Tech & IT via dropdown)
+    const topicTrigger = page.locator('#topic-dropdown-trigger');
+    await expect(topicTrigger).toBeVisible();
+    await topicTrigger.click();
+    const techOption = page.locator('.quiz-dropdown-item', { hasText: 'Tech & IT' });
+    await expect(techOption).toBeVisible();
+    await techOption.click();
+    await expect(topicTrigger).toContainText('Tech & IT');
 
     // 4. Switch to Listening Ear-Training Mode
     await listeningBtn.click();

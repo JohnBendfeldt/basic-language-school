@@ -1,4 +1,4 @@
-import { QuizSession, WordProgress, UserStats } from '../types/progress';
+import { QuizSession, WordProgress, UserStats, MASTERY_THRESHOLD } from '../types/progress';
 import { supabase } from './supabaseClient';
 
 const getGuestUserId = (): string => 'guest_user';
@@ -132,7 +132,7 @@ export class ProgressService {
           const timesCorrect = (existing?.times_correct || 0) + (isCorrect ? 1 : 0);
           const timesIncorrect = (existing?.times_incorrect || 0) + (isCorrect ? 0 : 1);
           const currentMastery = existing?.mastery_level || 0;
-          const masteryLevel = Math.max(0, Math.min(5, currentMastery + (isCorrect ? 1 : -1)));
+          const masteryLevel = Math.max(0, Math.min(MASTERY_THRESHOLD, currentMastery + (isCorrect ? 1 : -1)));
 
           const upsertPayload: any = {
             user_id: user.id,
@@ -195,7 +195,7 @@ export class ProgressService {
 
     const timesCorrect = existing.timesCorrect + (isCorrect ? 1 : 0);
     const timesIncorrect = existing.timesIncorrect + (isCorrect ? 0 : 1);
-    const masteryLevel = Math.max(0, Math.min(5, existing.masteryLevel + (isCorrect ? 1 : -1)));
+    const masteryLevel = Math.max(0, Math.min(MASTERY_THRESHOLD, existing.masteryLevel + (isCorrect ? 1 : -1)));
 
     const updated: WordProgress = {
       ...existing,
@@ -216,14 +216,14 @@ export class ProgressService {
   }
 
   /**
-   * Return all word IDs that have reached full mastery (masteryLevel >= 5)
+   * Return all word IDs that have reached full mastery (masteryLevel >= MASTERY_THRESHOLD)
    */
   static async getMasteredWordIds(languageId: string = 'ru'): Promise<Set<string>> {
     const mastered = new Set<string>();
 
     const localWords = getLocalWordProgress(languageId);
     for (const [id, word] of Object.entries(localWords)) {
-      if (word.masteryLevel >= 5) {
+      if (word.masteryLevel >= MASTERY_THRESHOLD) {
         mastered.add(id);
       }
     }
@@ -236,7 +236,7 @@ export class ProgressService {
             .from('word_progress')
             .select('word_id, language_id')
             .eq('user_id', user.id)
-            .gte('mastery_level', 5);
+            .gte('mastery_level', MASTERY_THRESHOLD);
 
           const { data } = await query;
           if (data) {
@@ -548,8 +548,8 @@ export class ProgressService {
       ? Math.round(sessions.reduce((acc, s) => acc + s.percentage, 0) / totalQuizzesTaken)
       : 0;
 
-    const wordsMasteredCount = words.filter(w => w.masteryLevel >= 5).length;
-    const wordsLearningCount = words.filter(w => w.masteryLevel < 5).length;
+    const wordsMasteredCount = words.filter(w => w.masteryLevel >= MASTERY_THRESHOLD).length;
+    const wordsLearningCount = words.filter(w => w.masteryLevel < MASTERY_THRESHOLD).length;
 
     const wordsToReview = words
       .filter(w => w.timesIncorrect > 0 && w.masteryLevel < 2)

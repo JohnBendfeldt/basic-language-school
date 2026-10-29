@@ -237,7 +237,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
   });
 
-  it('renders category filter pills for all topics and switches active category', async () => {
+  it('renders category dropdown for all topics and switches active category', async () => {
     render(<Quiz data={{
       ...sampleData,
       time: [
@@ -245,22 +245,26 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
       ]
     }} />);
 
-    // Check that all category filter tabs are rendered
-    expect(screen.getByRole('tab', { name: /All Topics/i })).toBeInTheDocument();
-    expect(screen.getByRole('tab', { name: /Alphabet/i })).toBeInTheDocument();
-    expect(screen.getByRole('tab', { name: /Phrases & Greetings/i })).toBeInTheDocument();
-    expect(screen.getByRole('tab', { name: /Common Words/i })).toBeInTheDocument();
-    expect(screen.getByRole('tab', { name: /Numbers/i })).toBeInTheDocument();
-    expect(screen.getByRole('tab', { name: /Time & Days/i })).toBeInTheDocument();
+    // Default trigger shows All Topics
+    const trigger = screen.getByTestId('topic-dropdown-trigger');
+    expect(trigger).toHaveTextContent(/All Topics/i);
 
-    // Default active is All Topics
-    expect(screen.getByRole('tab', { name: /All Topics/i })).toHaveClass('active');
+    // Open dropdown
+    fireEvent.click(trigger);
+
+    // Check that category filter options are rendered in dropdown
+    expect(screen.getByRole('option', { name: /All Topics/i })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: /Alphabet/i })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: /Phrases & Greetings/i })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: /Common Words/i })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: /Numbers/i })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: /Time & Days/i })).toBeInTheDocument();
 
     // Click Time & Days category
-    const timeTab = screen.getByRole('tab', { name: /Time & Days/i });
-    fireEvent.click(timeTab);
+    const timeOption = screen.getByRole('option', { name: /Time & Days/i });
+    fireEvent.click(timeOption);
 
-    expect(timeTab).toHaveClass('active');
+    expect(screen.getByTestId('topic-dropdown-trigger')).toHaveTextContent(/Time & Days/i);
     expect(localStorage.getItem('russian_quiz_category')).toBe('time');
 
     // Prompt should strictly come from the time dataset
@@ -287,9 +291,10 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
       ]
     }} />);
 
-    // Switch to Time & Days
-    const timeTab = screen.getByRole('tab', { name: /Time & Days/i });
-    fireEvent.click(timeTab);
+    // Switch to Time & Days via dropdown
+    fireEvent.click(screen.getByTestId('topic-dropdown-trigger'));
+    const timeOption = screen.getByRole('option', { name: /Time & Days/i });
+    fireEvent.click(timeOption);
 
     // Set goal to 5
     const fivePill = screen.getByRole('button', { name: '5 Qs' });
@@ -389,14 +394,15 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
       ]
     }} />);
 
-    // Check that topic packs are displayed
-    expect(screen.getByText('Industry & Topic Packs')).toBeInTheDocument();
-    const techTab = screen.getByRole('tab', { name: /Tech & IT/i });
-    expect(techTab).toBeInTheDocument();
+    // Open topic dropdown
+    fireEvent.click(screen.getByTestId('topic-dropdown-trigger'));
+    expect(screen.getByText('Industry & Specialized Packs')).toBeInTheDocument();
+    const techOption = screen.getByRole('option', { name: /Tech & IT/i });
+    expect(techOption).toBeInTheDocument();
 
-    // Click Tech & IT tab
-    fireEvent.click(techTab);
-    expect(techTab).toHaveClass('active');
+    // Click Tech & IT option
+    fireEvent.click(techOption);
+    expect(screen.getByTestId('topic-dropdown-trigger')).toHaveTextContent(/Tech & IT/i);
 
     // Prompt must be from Tech item
     const prompt = document.querySelector('.quiz-prompt');
@@ -412,15 +418,18 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
       ]
     }} />);
 
-    // Check level pills
-    expect(screen.getByRole('tab', { name: /Level 1: Foundations/i })).toBeInTheDocument();
-    expect(screen.getByRole('tab', { name: /Level 2: Workplace/i })).toBeInTheDocument();
-    expect(screen.getByRole('tab', { name: /Level 3: Professional/i })).toBeInTheDocument();
+    // Open level dropdown
+    fireEvent.click(screen.getByTestId('level-dropdown-trigger'));
 
-    // Click Level 3 tab
-    const lvl3Tab = screen.getByRole('tab', { name: /Level 3: Professional/i });
-    fireEvent.click(lvl3Tab);
-    expect(lvl3Tab).toHaveClass('active');
+    // Check level options
+    expect(screen.getByRole('option', { name: /Level 1: Foundations/i })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: /Level 2: Workplace/i })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: /Level 3: Professional/i })).toBeInTheDocument();
+
+    // Click Level 3 option
+    const lvl3Option = screen.getByRole('option', { name: /Level 3: Professional/i });
+    fireEvent.click(lvl3Option);
+    expect(screen.getByTestId('level-dropdown-trigger')).toHaveTextContent(/Level 3: Professional/i);
 
     // Prompt must be from Level 3 item (Algorithm)
     const prompt = document.querySelector('.quiz-prompt');
