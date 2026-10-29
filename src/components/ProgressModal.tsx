@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import { FaTimes, FaTrophy, FaGraduationCap, FaRedo, FaCheckCircle, FaChartBar, FaArrowRight, FaFire } from 'react-icons/fa';
+import React, { useEffect, useState, useMemo, useRef } from 'react';
+import { FaTimes, FaTrophy, FaGraduationCap, FaRedo, FaCheckCircle, FaChartBar, FaArrowRight, FaFire, FaChevronDown, FaCheck } from 'react-icons/fa';
 import { ProgressService } from '../services/progressService';
 import { UserStats, WordProgress } from '../types/progress';
 import PronunciationButton from './PronunciationButton';
@@ -74,13 +74,38 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
   const [stats, setStats] = useState<UserStats | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [masteryOverview, setMasteryOverview] = useState<Record<string, { wordsMastered: number; totalItems: number; percentMastered: number }>>({});
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Sync selected language when modal opens or languageId changes
   useEffect(() => {
     if (isOpen) {
       setSelectedLang(languageId || contextLang || 'ru');
+      setIsDropdownOpen(false);
     }
   }, [isOpen, languageId, contextLang]);
+
+  // Click outside and Escape key listeners to close language dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isDropdownOpen) {
+        setIsDropdownOpen(false);
+      }
+    };
+    if (isDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleKeyDown);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isDropdownOpen]);
 
   // Fetch stats for active selected language and multi-language overview
   useEffect(() => {
@@ -126,6 +151,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
       case 'ru':
         return {
           title: 'Ваш прогресс обучения',
+          selectLanguageLabel: 'Язык курса',
           loggedInAs: (email: string) => `Вы вошли как ${email}`,
           guestMode: 'Гостевой режим (сохранено в браузере)',
           loading: 'Загрузка статистики...',
@@ -151,6 +177,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
       case 'es':
         return {
           title: 'Tu Progreso de Aprendizaje',
+          selectLanguageLabel: 'Curso de idioma',
           loggedInAs: (email: string) => `Sesión iniciada como ${email}`,
           guestMode: 'Modo Invitado (Guardado en este navegador)',
           loading: 'Cargando tus estadísticas...',
@@ -176,6 +203,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
       case 'fr':
         return {
           title: 'Votre Progression d\'Apprentissage',
+          selectLanguageLabel: 'Cours de langue',
           loggedInAs: (email: string) => `Connecté en tant que ${email}`,
           guestMode: 'Mode Invité (Enregistré dans ce navigateur)',
           loading: 'Chargement de vos statistiques...',
@@ -202,6 +230,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
       default:
         return {
           title: 'Your Learning Progress',
+          selectLanguageLabel: 'Course Language',
           loggedInAs: (email: string) => `Logged in as ${email}`,
           guestMode: 'Guest Mode (Saved in this browser)',
           loading: 'Loading your statistics...',
@@ -246,30 +275,75 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
           </div>
         </div>
 
-        {/* Multi-Language Overview Tabs */}
-        <div className="progress-lang-tabs" role="tablist" aria-label="Choose language progress">
-          {Object.values(SUPPORTED_LANGUAGES).map(lang => {
-            const isSelected = lang.id === selectedLang;
-            const overview = masteryOverview[lang.id];
-            const percent = overview?.percentMastered ?? (lang.id === selectedLang ? percentMastered : 0);
-            const localizedTabName = getLocalizedLanguageName(lang.id, baseLanguage, lang.name);
-            return (
-              <button
-                key={lang.id}
-                type="button"
-                role="tab"
-                aria-selected={isSelected}
-                className={`progress-lang-tab ${isSelected ? 'active' : ''}`}
-                onClick={() => setSelectedLang(lang.id)}
-              >
-                <span className="lang-tab-flag">{lang.flag}</span>
-                <span className="lang-tab-name">{localizedTabName}</span>
-                <span className={`lang-tab-badge ${percent > 0 ? 'has-mastery' : ''}`}>
-                  {percent}%
+        {/* Course Language Dropdown (Replaces horizontal scrolling tab strip) */}
+        <div className="progress-lang-selector-card">
+          <div className="progress-lang-selector-header">
+            <label htmlFor="progress-lang-dropdown" className="progress-lang-label">
+              {modalCopy.selectLanguageLabel}
+            </label>
+            <span className="progress-lang-sublabel">8 languages</span>
+          </div>
+          <div className="progress-dropdown-wrapper" ref={dropdownRef}>
+            <button
+              id="progress-lang-dropdown"
+              type="button"
+              className={`progress-dropdown-trigger ${isDropdownOpen ? 'open' : ''}`}
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              aria-expanded={isDropdownOpen}
+              aria-haspopup="listbox"
+              aria-label={`Current course: ${localizedActiveLangName}. Click to change course progress.`}
+            >
+              <div className="dropdown-trigger-main">
+                <span className="dropdown-trigger-flag">{activeMeta.flag}</span>
+                <span className="dropdown-trigger-name">{localizedActiveLangName}</span>
+              </div>
+              <div className="dropdown-trigger-end">
+                <span className={`dropdown-trigger-badge ${percentMastered > 0 ? 'has-mastery' : ''}`}>
+                  {percentMastered}% {modalCopy.masteredBadge}
                 </span>
-              </button>
-            );
-          })}
+                <FaChevronDown className={`dropdown-chevron ${isDropdownOpen ? 'rotated' : ''}`} />
+              </div>
+            </button>
+
+            {isDropdownOpen && (
+              <div className="progress-dropdown-menu" role="listbox" aria-label="Available languages">
+                {Object.values(SUPPORTED_LANGUAGES).map(lang => {
+                  const isSelected = lang.id === selectedLang;
+                  const overview = masteryOverview[lang.id];
+                  const percent = overview?.percentMastered ?? (lang.id === selectedLang ? percentMastered : 0);
+                  const localizedName = getLocalizedLanguageName(lang.id, baseLanguage, lang.name);
+                  return (
+                    <button
+                      key={lang.id}
+                      type="button"
+                      role="option"
+                      aria-selected={isSelected}
+                      className={`progress-dropdown-item ${isSelected ? 'selected' : ''}`}
+                      onClick={() => {
+                        setSelectedLang(lang.id);
+                        setIsDropdownOpen(false);
+                      }}
+                    >
+                      <div className="dropdown-item-left">
+                        <span className="dropdown-item-flag">{lang.flag}</span>
+                        <span className="dropdown-item-name">{localizedName}</span>
+                      </div>
+                      <div className="dropdown-item-right">
+                        <span className={`dropdown-item-badge ${percent > 0 ? 'has-mastery' : ''}`}>
+                          {percent}%
+                        </span>
+                        {isSelected ? (
+                          <FaCheck className="dropdown-item-check" />
+                        ) : (
+                          <span className="dropdown-item-check-placeholder" />
+                        )}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         </div>
 
         {loading ? (
