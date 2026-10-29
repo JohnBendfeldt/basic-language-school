@@ -1,7 +1,7 @@
 {
   "language": "es",
   "voice": "es-MX-JorgeNeural",
-  "generated": "2026-10-29T15:02:44.962049Z",
+  "generated": "2026-10-29T15:22:47.645496Z",
   "files": {
     "alphabet": [
       {
@@ -412,6 +412,71 @@
         "filename": "cuál_es_la_contraseña_del_wifi.mp3",
         "path": "/audio/es/phrases/cuál_es_la_contraseña_del_wifi.mp3",
         "text": "¿Cuál es la contraseña del wifi?"
+      },
+      {
+        "filename": "programemos_una_reunión.mp3",
+        "path": "/audio/es/phrases/programemos_una_reunión.mp3",
+        "text": "Programemos una reunión"
+      },
+      {
+        "filename": "le_enviaré_un_correo.mp3",
+        "path": "/audio/es/phrases/le_enviaré_un_correo.mp3",
+        "text": "Le enviaré un correo"
+      },
+      {
+        "filename": "cuándo_es_la_fecha_límite.mp3",
+        "path": "/audio/es/phrases/cuándo_es_la_fecha_límite.mp3",
+        "text": "¿Cuándo es la fecha límite?"
+      },
+      {
+        "filename": "necesito_un_médico.mp3",
+        "path": "/audio/es/phrases/necesito_un_médico.mp3",
+        "text": "Necesito un médico"
+      },
+      {
+        "filename": "dónde_está_la_farmacia_más_cercana.mp3",
+        "path": "/audio/es/phrases/dónde_está_la_farmacia_más_cercana.mp3",
+        "text": "¿Dónde está la farmacia más cercana?"
+      },
+      {
+        "filename": "soy_alérgico_a_las_nueces.mp3",
+        "path": "/audio/es/phrases/soy_alérgico_a_las_nueces.mp3",
+        "text": "Soy alérgico a las nueces"
+      },
+      {
+        "filename": "tengo_una_reserva.mp3",
+        "path": "/audio/es/phrases/tengo_una_reserva.mp3",
+        "text": "Tengo una reserva"
+      },
+      {
+        "filename": "dónde_está_la_estación_de_tren.mp3",
+        "path": "/audio/es/phrases/dónde_está_la_estación_de_tren.mp3",
+        "text": "¿Dónde está la estación de tren?"
+      },
+      {
+        "filename": "necesito_un_taxi.mp3",
+        "path": "/audio/es/phrases/necesito_un_taxi.mp3",
+        "text": "Necesito un taxi"
+      },
+      {
+        "filename": "una_mesa_para_dos_por_favor.mp3",
+        "path": "/audio/es/phrases/una_mesa_para_dos_por_favor.mp3",
+        "text": "Una mesa para dos, por favor"
+      },
+      {
+        "filename": "el_menú_por_favor.mp3",
+        "path": "/audio/es/phrases/el_menú_por_favor.mp3",
+        "text": "El menú, por favor"
+      },
+      {
+        "filename": "aceptan_tarjetas_de_crédito.mp3",
+        "path": "/audio/es/phrases/aceptan_tarjetas_de_crédito.mp3",
+        "text": "¿Aceptan tarjetas de crédito?"
+      },
+      {
+        "filename": "es_demasiado_caro.mp3",
+        "path": "/audio/es/phrases/es_demasiado_caro.mp3",
+        "text": "Es demasiado caro"
       }
     ],
     "numbers": [
@@ -818,6 +883,186 @@
         "text": "Batería"
       },
       {
+        "filename": "proyecto.mp3",
+        "path": "/audio/es/words/proyecto.mp3",
+        "text": "Proyecto"
+      },
+      {
+        "filename": "cliente.mp3",
+        "path": "/audio/es/words/cliente.mp3",
+        "text": "Cliente"
+      },
+      {
+        "filename": "equipo.mp3",
+        "path": "/audio/es/words/equipo.mp3",
+        "text": "Equipo"
+      },
+      {
+        "filename": "gerente.mp3",
+        "path": "/audio/es/words/gerente.mp3",
+        "text": "Gerente"
+      },
+      {
+        "filename": "empresa.mp3",
+        "path": "/audio/es/words/empresa.mp3",
+        "text": "Empresa"
+      },
+      {
+        "filename": "contrato.mp3",
+        "path": "/audio/es/words/contrato.mp3",
+        "text": "Contrato"
+      },
+      {
+        "filename": "horario.mp3",
+        "path": "/audio/es/words/horario.mp3",
+        "text": "Horario"
+      },
+      {
+        "filename": "fecha_límite.mp3",
+        "path": "/audio/es/words/fecha_límite.mp3",
+        "text": "Fecha límite"
+      },
+      {
+        "filename": "factura.mp3",
+        "path": "/audio/es/words/factura.mp3",
+        "text": "Factura"
+      },
+      {
+        "filename": "salario.mp3",
+        "path": "/audio/es/words/salario.mp3",
+        "text": "Salario"
+      },
+      {
+        "filename": "médico.mp3",
+        "path": "/audio/es/words/médico.mp3",
+        "text": "Médico"
+      },
+      {
+        "filename": "medicina.mp3",
+        "path": "/audio/es/words/medicina.mp3",
+        "text": "Medicina"
+      },
+      {
+        "filename": "dolor.mp3",
+        "path": "/audio/es/words/dolor.mp3",
+        "text": "Dolor"
+      },
+      {
+        "filename": "fiebre.mp3",
+        "path": "/audio/es/words/fiebre.mp3",
+        "text": "Fiebre"
+      },
+      {
+        "filename": "alergia.mp3",
+        "path": "/audio/es/words/alergia.mp3",
+        "text": "Alergia"
+      },
+      {
+        "filename": "dolor_de_cabeza.mp3",
+        "path": "/audio/es/words/dolor_de_cabeza.mp3",
+        "text": "Dolor de cabeza"
+      },
+      {
+        "filename": "emergencia.mp3",
+        "path": "/audio/es/words/emergencia.mp3",
+        "text": "Emergencia"
+      },
+      {
+        "filename": "receta_médica.mp3",
+        "path": "/audio/es/words/receta_médica.mp3",
+        "text": "Receta médica"
+      },
+      {
+        "filename": "venda.mp3",
+        "path": "/audio/es/words/venda.mp3",
+        "text": "Venda"
+      },
+      {
+        "filename": "salud.mp3",
+        "path": "/audio/es/words/salud.mp3",
+        "text": "Salud"
+      },
+      {
+        "filename": "vuelo.mp3",
+        "path": "/audio/es/words/vuelo.mp3",
+        "text": "Vuelo"
+      },
+      {
+        "filename": "equipaje.mp3",
+        "path": "/audio/es/words/equipaje.mp3",
+        "text": "Equipaje"
+      },
+      {
+        "filename": "reserva.mp3",
+        "path": "/audio/es/words/reserva.mp3",
+        "text": "Reserva"
+      },
+      {
+        "filename": "llave.mp3",
+        "path": "/audio/es/words/llave.mp3",
+        "text": "Llave"
+      },
+      {
+        "filename": "habitación.mp3",
+        "path": "/audio/es/words/habitación.mp3",
+        "text": "Habitación"
+      },
+      {
+        "filename": "puerta_de_embarque.mp3",
+        "path": "/audio/es/words/puerta_de_embarque.mp3",
+        "text": "Puerta de embarque"
+      },
+      {
+        "filename": "mapa.mp3",
+        "path": "/audio/es/words/mapa.mp3",
+        "text": "Mapa"
+      },
+      {
+        "filename": "entrada.mp3",
+        "path": "/audio/es/words/entrada.mp3",
+        "text": "Entrada"
+      },
+      {
+        "filename": "salida.mp3",
+        "path": "/audio/es/words/salida.mp3",
+        "text": "Salida"
+      },
+      {
+        "filename": "aduana.mp3",
+        "path": "/audio/es/words/aduana.mp3",
+        "text": "Aduana"
+      },
+      {
+        "filename": "tarjeta_de_crédito.mp3",
+        "path": "/audio/es/words/tarjeta_de_crédito.mp3",
+        "text": "Tarjeta de crédito"
+      },
+      {
+        "filename": "efectivo.mp3",
+        "path": "/audio/es/words/efectivo.mp3",
+        "text": "Efectivo"
+      },
+      {
+        "filename": "precio.mp3",
+        "path": "/audio/es/words/precio.mp3",
+        "text": "Precio"
+      },
+      {
+        "filename": "barato.mp3",
+        "path": "/audio/es/words/barato.mp3",
+        "text": "Barato"
+      },
+      {
+        "filename": "caro.mp3",
+        "path": "/audio/es/words/caro.mp3",
+        "text": "Caro"
+      },
+      {
+        "filename": "descuento.mp3",
+        "path": "/audio/es/words/descuento.mp3",
+        "text": "Descuento"
+      },
+      {
         "filename": "hombre.mp3",
         "path": "/audio/es/words/hombre.mp3",
         "text": "Hombre"
@@ -871,11 +1116,6 @@
         "filename": "estudiante.mp3",
         "path": "/audio/es/words/estudiante.mp3",
         "text": "Estudiante / Alumno"
-      },
-      {
-        "filename": "médico.mp3",
-        "path": "/audio/es/words/médico.mp3",
-        "text": "Médico / Doctor"
       },
       {
         "filename": "nosotros.mp3",
@@ -1056,11 +1296,6 @@
         "filename": "metro.mp3",
         "path": "/audio/es/words/metro.mp3",
         "text": "Metro"
-      },
-      {
-        "filename": "mapa.mp3",
-        "path": "/audio/es/words/mapa.mp3",
-        "text": "Mapa"
       },
       {
         "filename": "visa.mp3",
@@ -1333,11 +1568,6 @@
         "text": "Jugo"
       },
       {
-        "filename": "llave.mp3",
-        "path": "/audio/es/words/llave.mp3",
-        "text": "Llave"
-      },
-      {
         "filename": "luz.mp3",
         "path": "/audio/es/words/luz.mp3",
         "text": "Luz"
@@ -1551,11 +1781,6 @@
         "filename": "borsch.mp3",
         "path": "/audio/es/words/borsch.mp3",
         "text": "Borsch"
-      },
-      {
-        "filename": "entrada.mp3",
-        "path": "/audio/es/words/entrada.mp3",
-        "text": "Entrada"
       },
       {
         "filename": "sur.mp3",
@@ -2226,6 +2451,56 @@
         "filename": "cuál_es_la_contraseña_del_wifi.mp3",
         "path": "/audio/es/words/cuál_es_la_contraseña_del_wifi.mp3",
         "text": "¿Cuál es la contraseña del wifi?"
+      },
+      {
+        "filename": "programemos_una_reunión.mp3",
+        "path": "/audio/es/words/programemos_una_reunión.mp3",
+        "text": "Programemos una reunión"
+      },
+      {
+        "filename": "le_enviaré_un_correo.mp3",
+        "path": "/audio/es/words/le_enviaré_un_correo.mp3",
+        "text": "Le enviaré un correo"
+      },
+      {
+        "filename": "cuándo_es_la_fecha_límite.mp3",
+        "path": "/audio/es/words/cuándo_es_la_fecha_límite.mp3",
+        "text": "¿Cuándo es la fecha límite?"
+      },
+      {
+        "filename": "dónde_está_la_farmacia_más_cercana.mp3",
+        "path": "/audio/es/words/dónde_está_la_farmacia_más_cercana.mp3",
+        "text": "¿Dónde está la farmacia más cercana?"
+      },
+      {
+        "filename": "soy_alérgico_a_las_nueces.mp3",
+        "path": "/audio/es/words/soy_alérgico_a_las_nueces.mp3",
+        "text": "Soy alérgico a las nueces"
+      },
+      {
+        "filename": "tengo_una_reserva.mp3",
+        "path": "/audio/es/words/tengo_una_reserva.mp3",
+        "text": "Tengo una reserva"
+      },
+      {
+        "filename": "dónde_está_la_parada_de_autobús.mp3",
+        "path": "/audio/es/words/dónde_está_la_parada_de_autobús.mp3",
+        "text": "¿Dónde está la parada de autobús?"
+      },
+      {
+        "filename": "cómo_llego_al_aeropuerto.mp3",
+        "path": "/audio/es/words/cómo_llego_al_aeropuerto.mp3",
+        "text": "¿Cómo llego al aeropuerto?"
+      },
+      {
+        "filename": "quisiera_un_café_por_favor.mp3",
+        "path": "/audio/es/words/quisiera_un_café_por_favor.mp3",
+        "text": "Quisiera un café, por favor"
+      },
+      {
+        "filename": "una_botella_de_agua_por_favor.mp3",
+        "path": "/audio/es/words/una_botella_de_agua_por_favor.mp3",
+        "text": "Una botella de agua, por favor"
       }
     ],
     "time": [

@@ -1,7 +1,7 @@
 {
   "language": "ru",
   "voice": "ru-RU-SvetlanaNeural",
-  "generated": "2026-10-29T15:07:50.730308Z",
+  "generated": "2026-10-29T15:24:50.378761Z",
   "files": {
     "alphabet": [
       {
@@ -502,6 +502,71 @@
         "filename": "какой_пароль_от_вайфая.mp3",
         "path": "/audio/ru/phrases/какой_пароль_от_вайфая.mp3",
         "text": "Какой пароль от вайфая?"
+      },
+      {
+        "filename": "давайте_назначим_встречу.mp3",
+        "path": "/audio/ru/phrases/давайте_назначим_встречу.mp3",
+        "text": "Давайте назначим встречу"
+      },
+      {
+        "filename": "я_отправлю_вам_письмо.mp3",
+        "path": "/audio/ru/phrases/я_отправлю_вам_письмо.mp3",
+        "text": "Я отправлю вам письмо"
+      },
+      {
+        "filename": "какой_крайний_срок.mp3",
+        "path": "/audio/ru/phrases/какой_крайний_срок.mp3",
+        "text": "Какой крайний срок?"
+      },
+      {
+        "filename": "мне_нужен_врач.mp3",
+        "path": "/audio/ru/phrases/мне_нужен_врач.mp3",
+        "text": "Мне нужен врач"
+      },
+      {
+        "filename": "где_ближайшая_аптека.mp3",
+        "path": "/audio/ru/phrases/где_ближайшая_аптека.mp3",
+        "text": "Где ближайшая аптека?"
+      },
+      {
+        "filename": "у_меня_аллергия_на_орехи.mp3",
+        "path": "/audio/ru/phrases/у_меня_аллергия_на_орехи.mp3",
+        "text": "У меня аллергия на орехи"
+      },
+      {
+        "filename": "у_меня_есть_бронь.mp3",
+        "path": "/audio/ru/phrases/у_меня_есть_бронь.mp3",
+        "text": "У меня есть бронь"
+      },
+      {
+        "filename": "где_находится_вокзал.mp3",
+        "path": "/audio/ru/phrases/где_находится_вокзал.mp3",
+        "text": "Где находится вокзал?"
+      },
+      {
+        "filename": "мне_нужно_такси.mp3",
+        "path": "/audio/ru/phrases/мне_нужно_такси.mp3",
+        "text": "Мне нужно такси"
+      },
+      {
+        "filename": "столик_на_двоих_пожалуйста.mp3",
+        "path": "/audio/ru/phrases/столик_на_двоих_пожалуйста.mp3",
+        "text": "Столик на двоих, пожалуйста"
+      },
+      {
+        "filename": "меню_пожалуйста.mp3",
+        "path": "/audio/ru/phrases/меню_пожалуйста.mp3",
+        "text": "Меню, пожалуйста"
+      },
+      {
+        "filename": "вы_принимаете_банковские_карты.mp3",
+        "path": "/audio/ru/phrases/вы_принимаете_банковские_карты.mp3",
+        "text": "Вы принимаете банковские карты?"
+      },
+      {
+        "filename": "это_слишком_дорого.mp3",
+        "path": "/audio/ru/phrases/это_слишком_дорого.mp3",
+        "text": "Это слишком дорого"
       }
     ],
     "numbers": [
@@ -1098,6 +1163,186 @@
         "text": "батарея"
       },
       {
+        "filename": "проект.mp3",
+        "path": "/audio/ru/words/проект.mp3",
+        "text": "проект"
+      },
+      {
+        "filename": "клиент.mp3",
+        "path": "/audio/ru/words/клиент.mp3",
+        "text": "клиент"
+      },
+      {
+        "filename": "команда.mp3",
+        "path": "/audio/ru/words/команда.mp3",
+        "text": "команда"
+      },
+      {
+        "filename": "руководитель.mp3",
+        "path": "/audio/ru/words/руководитель.mp3",
+        "text": "руководитель"
+      },
+      {
+        "filename": "компания.mp3",
+        "path": "/audio/ru/words/компания.mp3",
+        "text": "компания"
+      },
+      {
+        "filename": "контракт.mp3",
+        "path": "/audio/ru/words/контракт.mp3",
+        "text": "контракт"
+      },
+      {
+        "filename": "расписание.mp3",
+        "path": "/audio/ru/words/расписание.mp3",
+        "text": "расписание"
+      },
+      {
+        "filename": "срок.mp3",
+        "path": "/audio/ru/words/срок.mp3",
+        "text": "срок"
+      },
+      {
+        "filename": "счёт.mp3",
+        "path": "/audio/ru/words/счёт.mp3",
+        "text": "счёт"
+      },
+      {
+        "filename": "зарплата.mp3",
+        "path": "/audio/ru/words/зарплата.mp3",
+        "text": "зарплата"
+      },
+      {
+        "filename": "врач.mp3",
+        "path": "/audio/ru/words/врач.mp3",
+        "text": "врач"
+      },
+      {
+        "filename": "лекарство.mp3",
+        "path": "/audio/ru/words/лекарство.mp3",
+        "text": "лекарство"
+      },
+      {
+        "filename": "боль.mp3",
+        "path": "/audio/ru/words/боль.mp3",
+        "text": "боль"
+      },
+      {
+        "filename": "температура.mp3",
+        "path": "/audio/ru/words/температура.mp3",
+        "text": "температура"
+      },
+      {
+        "filename": "аллергия.mp3",
+        "path": "/audio/ru/words/аллергия.mp3",
+        "text": "аллергия"
+      },
+      {
+        "filename": "головная_боль.mp3",
+        "path": "/audio/ru/words/головная_боль.mp3",
+        "text": "головная боль"
+      },
+      {
+        "filename": "скорая_помощь.mp3",
+        "path": "/audio/ru/words/скорая_помощь.mp3",
+        "text": "скорая помощь"
+      },
+      {
+        "filename": "рецепт.mp3",
+        "path": "/audio/ru/words/рецепт.mp3",
+        "text": "рецепт"
+      },
+      {
+        "filename": "бинт.mp3",
+        "path": "/audio/ru/words/бинт.mp3",
+        "text": "бинт"
+      },
+      {
+        "filename": "здоровье.mp3",
+        "path": "/audio/ru/words/здоровье.mp3",
+        "text": "здоровье"
+      },
+      {
+        "filename": "рейс.mp3",
+        "path": "/audio/ru/words/рейс.mp3",
+        "text": "рейс"
+      },
+      {
+        "filename": "багаж.mp3",
+        "path": "/audio/ru/words/багаж.mp3",
+        "text": "багаж"
+      },
+      {
+        "filename": "бронь.mp3",
+        "path": "/audio/ru/words/бронь.mp3",
+        "text": "бронь"
+      },
+      {
+        "filename": "ключ.mp3",
+        "path": "/audio/ru/words/ключ.mp3",
+        "text": "ключ"
+      },
+      {
+        "filename": "номер.mp3",
+        "path": "/audio/ru/words/номер.mp3",
+        "text": "номер"
+      },
+      {
+        "filename": "выход_на_посадку.mp3",
+        "path": "/audio/ru/words/выход_на_посадку.mp3",
+        "text": "выход на посадку"
+      },
+      {
+        "filename": "карта.mp3",
+        "path": "/audio/ru/words/карта.mp3",
+        "text": "карта"
+      },
+      {
+        "filename": "вход.mp3",
+        "path": "/audio/ru/words/вход.mp3",
+        "text": "вход"
+      },
+      {
+        "filename": "выход.mp3",
+        "path": "/audio/ru/words/выход.mp3",
+        "text": "выход"
+      },
+      {
+        "filename": "таможня.mp3",
+        "path": "/audio/ru/words/таможня.mp3",
+        "text": "таможня"
+      },
+      {
+        "filename": "банковская_карта.mp3",
+        "path": "/audio/ru/words/банковская_карта.mp3",
+        "text": "банковская карта"
+      },
+      {
+        "filename": "наличные.mp3",
+        "path": "/audio/ru/words/наличные.mp3",
+        "text": "наличные"
+      },
+      {
+        "filename": "цена.mp3",
+        "path": "/audio/ru/words/цена.mp3",
+        "text": "цена"
+      },
+      {
+        "filename": "дешёвый.mp3",
+        "path": "/audio/ru/words/дешёвый.mp3",
+        "text": "дешёвый"
+      },
+      {
+        "filename": "дорогой.mp3",
+        "path": "/audio/ru/words/дорогой.mp3",
+        "text": "дорогой"
+      },
+      {
+        "filename": "скидка.mp3",
+        "path": "/audio/ru/words/скидка.mp3",
+        "text": "скидка"
+      },
+      {
         "filename": "ребёнок.mp3",
         "path": "/audio/ru/words/ребёнок.mp3",
         "text": "Ребёнок"
@@ -1121,11 +1366,6 @@
         "filename": "студент.mp3",
         "path": "/audio/ru/words/студент.mp3",
         "text": "Студент"
-      },
-      {
-        "filename": "врач.mp3",
-        "path": "/audio/ru/words/врач.mp3",
-        "text": "Врач / Доктор"
       },
       {
         "filename": "мы.mp3",
@@ -1176,11 +1416,6 @@
         "filename": "дом.mp3",
         "path": "/audio/ru/words/дом.mp3",
         "text": "Дом"
-      },
-      {
-        "filename": "карта.mp3",
-        "path": "/audio/ru/words/карта.mp3",
-        "text": "Карта"
       },
       {
         "filename": "центр.mp3",
@@ -1416,11 +1651,6 @@
         "filename": "сок.mp3",
         "path": "/audio/ru/words/сок.mp3",
         "text": "Сок"
-      },
-      {
-        "filename": "ключ.mp3",
-        "path": "/audio/ru/words/ключ.mp3",
-        "text": "Ключ"
       },
       {
         "filename": "свет.mp3",
@@ -2336,6 +2566,56 @@
         "filename": "какой_пароль_от_вайфая.mp3",
         "path": "/audio/ru/words/какой_пароль_от_вайфая.mp3",
         "text": "Какой пароль от вайфая?"
+      },
+      {
+        "filename": "давайте_назначим_встречу.mp3",
+        "path": "/audio/ru/words/давайте_назначим_встречу.mp3",
+        "text": "Давайте назначим встречу"
+      },
+      {
+        "filename": "я_отправлю_вам_письмо.mp3",
+        "path": "/audio/ru/words/я_отправлю_вам_письмо.mp3",
+        "text": "Я отправлю вам письмо"
+      },
+      {
+        "filename": "какой_крайний_срок.mp3",
+        "path": "/audio/ru/words/какой_крайний_срок.mp3",
+        "text": "Какой крайний срок?"
+      },
+      {
+        "filename": "где_ближайшая_аптека.mp3",
+        "path": "/audio/ru/words/где_ближайшая_аптека.mp3",
+        "text": "Где ближайшая аптека?"
+      },
+      {
+        "filename": "у_меня_аллергия_на_орехи.mp3",
+        "path": "/audio/ru/words/у_меня_аллергия_на_орехи.mp3",
+        "text": "У меня аллергия на орехи"
+      },
+      {
+        "filename": "у_меня_есть_бронь.mp3",
+        "path": "/audio/ru/words/у_меня_есть_бронь.mp3",
+        "text": "У меня есть бронь"
+      },
+      {
+        "filename": "где_автобусная_остановка.mp3",
+        "path": "/audio/ru/words/где_автобусная_остановка.mp3",
+        "text": "Где автобусная остановка?"
+      },
+      {
+        "filename": "как_добраться_до_аэропорта.mp3",
+        "path": "/audio/ru/words/как_добраться_до_аэропорта.mp3",
+        "text": "Как добраться до аэропорта?"
+      },
+      {
+        "filename": "я_бы_хотел_кофе_пожалуйста.mp3",
+        "path": "/audio/ru/words/я_бы_хотел_кофе_пожалуйста.mp3",
+        "text": "Я бы хотел кофе, пожалуйста"
+      },
+      {
+        "filename": "бутылку_воды_пожалуйста.mp3",
+        "path": "/audio/ru/words/бутылку_воды_пожалуйста.mp3",
+        "text": "Бутылку воды, пожалуйста"
       }
     ],
     "time": [

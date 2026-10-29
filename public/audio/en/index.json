@@ -1,7 +1,7 @@
 {
   "language": "en",
   "voice": "en-US-JennyNeural",
-  "generated": "2026-10-29T15:03:19.626443Z",
+  "generated": "2026-10-29T15:24:08.513921Z",
   "files": {
     "alphabet": [
       {
@@ -432,6 +432,71 @@
         "filename": "what_is_the_wi-fi_password.mp3",
         "path": "/audio/en/phrases/what_is_the_wi-fi_password.mp3",
         "text": "What is the Wi-Fi password?"
+      },
+      {
+        "filename": "lets_schedule_a_meeting.mp3",
+        "path": "/audio/en/phrases/lets_schedule_a_meeting.mp3",
+        "text": "Let's schedule a meeting"
+      },
+      {
+        "filename": "i_will_send_you_an_email.mp3",
+        "path": "/audio/en/phrases/i_will_send_you_an_email.mp3",
+        "text": "I will send you an email"
+      },
+      {
+        "filename": "when_is_the_deadline.mp3",
+        "path": "/audio/en/phrases/when_is_the_deadline.mp3",
+        "text": "When is the deadline?"
+      },
+      {
+        "filename": "i_need_a_doctor.mp3",
+        "path": "/audio/en/phrases/i_need_a_doctor.mp3",
+        "text": "I need a doctor"
+      },
+      {
+        "filename": "where_is_the_nearest_pharmacy.mp3",
+        "path": "/audio/en/phrases/where_is_the_nearest_pharmacy.mp3",
+        "text": "Where is the nearest pharmacy?"
+      },
+      {
+        "filename": "i_am_allergic_to_nuts.mp3",
+        "path": "/audio/en/phrases/i_am_allergic_to_nuts.mp3",
+        "text": "I am allergic to nuts"
+      },
+      {
+        "filename": "i_have_a_reservation.mp3",
+        "path": "/audio/en/phrases/i_have_a_reservation.mp3",
+        "text": "I have a reservation"
+      },
+      {
+        "filename": "where_is_the_train_station.mp3",
+        "path": "/audio/en/phrases/where_is_the_train_station.mp3",
+        "text": "Where is the train station?"
+      },
+      {
+        "filename": "i_need_a_taxi.mp3",
+        "path": "/audio/en/phrases/i_need_a_taxi.mp3",
+        "text": "I need a taxi"
+      },
+      {
+        "filename": "a_table_for_two_please.mp3",
+        "path": "/audio/en/phrases/a_table_for_two_please.mp3",
+        "text": "A table for two, please"
+      },
+      {
+        "filename": "the_menu_please.mp3",
+        "path": "/audio/en/phrases/the_menu_please.mp3",
+        "text": "The menu, please"
+      },
+      {
+        "filename": "do_you_accept_credit_cards.mp3",
+        "path": "/audio/en/phrases/do_you_accept_credit_cards.mp3",
+        "text": "Do you accept credit cards?"
+      },
+      {
+        "filename": "it_is_too_expensive.mp3",
+        "path": "/audio/en/phrases/it_is_too_expensive.mp3",
+        "text": "It is too expensive"
       }
     ],
     "numbers": [
@@ -928,6 +993,186 @@
         "text": "Battery"
       },
       {
+        "filename": "project.mp3",
+        "path": "/audio/en/words/project.mp3",
+        "text": "Project"
+      },
+      {
+        "filename": "client.mp3",
+        "path": "/audio/en/words/client.mp3",
+        "text": "Client"
+      },
+      {
+        "filename": "team.mp3",
+        "path": "/audio/en/words/team.mp3",
+        "text": "Team"
+      },
+      {
+        "filename": "manager.mp3",
+        "path": "/audio/en/words/manager.mp3",
+        "text": "Manager"
+      },
+      {
+        "filename": "company.mp3",
+        "path": "/audio/en/words/company.mp3",
+        "text": "Company"
+      },
+      {
+        "filename": "contract.mp3",
+        "path": "/audio/en/words/contract.mp3",
+        "text": "Contract"
+      },
+      {
+        "filename": "schedule.mp3",
+        "path": "/audio/en/words/schedule.mp3",
+        "text": "Schedule"
+      },
+      {
+        "filename": "deadline.mp3",
+        "path": "/audio/en/words/deadline.mp3",
+        "text": "Deadline"
+      },
+      {
+        "filename": "invoice.mp3",
+        "path": "/audio/en/words/invoice.mp3",
+        "text": "Invoice"
+      },
+      {
+        "filename": "salary.mp3",
+        "path": "/audio/en/words/salary.mp3",
+        "text": "Salary"
+      },
+      {
+        "filename": "doctor.mp3",
+        "path": "/audio/en/words/doctor.mp3",
+        "text": "Doctor"
+      },
+      {
+        "filename": "medicine.mp3",
+        "path": "/audio/en/words/medicine.mp3",
+        "text": "Medicine"
+      },
+      {
+        "filename": "pain.mp3",
+        "path": "/audio/en/words/pain.mp3",
+        "text": "Pain"
+      },
+      {
+        "filename": "fever.mp3",
+        "path": "/audio/en/words/fever.mp3",
+        "text": "Fever"
+      },
+      {
+        "filename": "allergy.mp3",
+        "path": "/audio/en/words/allergy.mp3",
+        "text": "Allergy"
+      },
+      {
+        "filename": "headache.mp3",
+        "path": "/audio/en/words/headache.mp3",
+        "text": "Headache"
+      },
+      {
+        "filename": "emergency.mp3",
+        "path": "/audio/en/words/emergency.mp3",
+        "text": "Emergency"
+      },
+      {
+        "filename": "prescription.mp3",
+        "path": "/audio/en/words/prescription.mp3",
+        "text": "Prescription"
+      },
+      {
+        "filename": "bandage.mp3",
+        "path": "/audio/en/words/bandage.mp3",
+        "text": "Bandage"
+      },
+      {
+        "filename": "health.mp3",
+        "path": "/audio/en/words/health.mp3",
+        "text": "Health"
+      },
+      {
+        "filename": "flight.mp3",
+        "path": "/audio/en/words/flight.mp3",
+        "text": "Flight"
+      },
+      {
+        "filename": "luggage.mp3",
+        "path": "/audio/en/words/luggage.mp3",
+        "text": "Luggage"
+      },
+      {
+        "filename": "reservation.mp3",
+        "path": "/audio/en/words/reservation.mp3",
+        "text": "Reservation"
+      },
+      {
+        "filename": "key.mp3",
+        "path": "/audio/en/words/key.mp3",
+        "text": "Key"
+      },
+      {
+        "filename": "room.mp3",
+        "path": "/audio/en/words/room.mp3",
+        "text": "Room"
+      },
+      {
+        "filename": "gate.mp3",
+        "path": "/audio/en/words/gate.mp3",
+        "text": "Gate"
+      },
+      {
+        "filename": "map.mp3",
+        "path": "/audio/en/words/map.mp3",
+        "text": "Map"
+      },
+      {
+        "filename": "entrance.mp3",
+        "path": "/audio/en/words/entrance.mp3",
+        "text": "Entrance"
+      },
+      {
+        "filename": "exit.mp3",
+        "path": "/audio/en/words/exit.mp3",
+        "text": "Exit"
+      },
+      {
+        "filename": "customs.mp3",
+        "path": "/audio/en/words/customs.mp3",
+        "text": "Customs"
+      },
+      {
+        "filename": "credit_card.mp3",
+        "path": "/audio/en/words/credit_card.mp3",
+        "text": "Credit card"
+      },
+      {
+        "filename": "cash.mp3",
+        "path": "/audio/en/words/cash.mp3",
+        "text": "Cash"
+      },
+      {
+        "filename": "price.mp3",
+        "path": "/audio/en/words/price.mp3",
+        "text": "Price"
+      },
+      {
+        "filename": "cheap.mp3",
+        "path": "/audio/en/words/cheap.mp3",
+        "text": "Cheap"
+      },
+      {
+        "filename": "expensive.mp3",
+        "path": "/audio/en/words/expensive.mp3",
+        "text": "Expensive"
+      },
+      {
+        "filename": "discount.mp3",
+        "path": "/audio/en/words/discount.mp3",
+        "text": "Discount"
+      },
+      {
         "filename": "man.mp3",
         "path": "/audio/en/words/man.mp3",
         "text": "Man"
@@ -961,11 +1206,6 @@
         "filename": "wife.mp3",
         "path": "/audio/en/words/wife.mp3",
         "text": "Wife"
-      },
-      {
-        "filename": "doctor.mp3",
-        "path": "/audio/en/words/doctor.mp3",
-        "text": "Doctor"
       },
       {
         "filename": "we.mp3",
@@ -1106,11 +1346,6 @@
         "filename": "subway.mp3",
         "path": "/audio/en/words/subway.mp3",
         "text": "Subway / Metro"
-      },
-      {
-        "filename": "map.mp3",
-        "path": "/audio/en/words/map.mp3",
-        "text": "Map"
       },
       {
         "filename": "visa.mp3",
@@ -1393,11 +1628,6 @@
         "text": "Juice"
       },
       {
-        "filename": "key.mp3",
-        "path": "/audio/en/words/key.mp3",
-        "text": "Key"
-      },
-      {
         "filename": "light.mp3",
         "path": "/audio/en/words/light.mp3",
         "text": "Light"
@@ -1626,11 +1856,6 @@
         "filename": "borscht.mp3",
         "path": "/audio/en/words/borscht.mp3",
         "text": "Borscht"
-      },
-      {
-        "filename": "entrance.mp3",
-        "path": "/audio/en/words/entrance.mp3",
-        "text": "Entrance"
       },
       {
         "filename": "south.mp3",
@@ -2341,6 +2566,56 @@
         "filename": "what_is_the_wi-fi_password.mp3",
         "path": "/audio/en/words/what_is_the_wi-fi_password.mp3",
         "text": "What is the Wi-Fi password?"
+      },
+      {
+        "filename": "lets_schedule_a_meeting.mp3",
+        "path": "/audio/en/words/lets_schedule_a_meeting.mp3",
+        "text": "Let's schedule a meeting"
+      },
+      {
+        "filename": "i_will_send_you_an_email.mp3",
+        "path": "/audio/en/words/i_will_send_you_an_email.mp3",
+        "text": "I will send you an email"
+      },
+      {
+        "filename": "when_is_the_deadline.mp3",
+        "path": "/audio/en/words/when_is_the_deadline.mp3",
+        "text": "When is the deadline?"
+      },
+      {
+        "filename": "where_is_the_nearest_pharmacy.mp3",
+        "path": "/audio/en/words/where_is_the_nearest_pharmacy.mp3",
+        "text": "Where is the nearest pharmacy?"
+      },
+      {
+        "filename": "i_am_allergic_to_nuts.mp3",
+        "path": "/audio/en/words/i_am_allergic_to_nuts.mp3",
+        "text": "I am allergic to nuts"
+      },
+      {
+        "filename": "i_have_a_reservation.mp3",
+        "path": "/audio/en/words/i_have_a_reservation.mp3",
+        "text": "I have a reservation"
+      },
+      {
+        "filename": "where_is_the_bus_stop.mp3",
+        "path": "/audio/en/words/where_is_the_bus_stop.mp3",
+        "text": "Where is the bus stop?"
+      },
+      {
+        "filename": "how_do_i_get_to_the_airport.mp3",
+        "path": "/audio/en/words/how_do_i_get_to_the_airport.mp3",
+        "text": "How do I get to the airport?"
+      },
+      {
+        "filename": "i_would_like_a_coffee_please.mp3",
+        "path": "/audio/en/words/i_would_like_a_coffee_please.mp3",
+        "text": "I would like a coffee, please"
+      },
+      {
+        "filename": "a_bottle_of_water_please.mp3",
+        "path": "/audio/en/words/a_bottle_of_water_please.mp3",
+        "text": "A bottle of water, please"
       }
     ]
   }

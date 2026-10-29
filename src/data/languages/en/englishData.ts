@@ -458,6 +458,101 @@ const basicPhrases: PhraseItem[] = [
     pronunciation: '/wʌt ɪz ðə ˈwaɪfaɪ ˈpæswɜːrd/ (wuht iz the WY-fy PASS-werd)',
     category: 'Tech',
     icon: '📶'
+  },
+  // Business & Office
+  {
+    phrase: 'Let\'s schedule a meeting',
+    meaning: 'Setting up a work call or appointment',
+    pronunciation: '/lɛts ˈskɛdʒuːl ə ˈmiːtɪŋ/ (lets SKEJ-ool a MEE-ting)',
+    category: 'Business',
+    icon: '📅'
+  },
+  {
+    phrase: 'I will send you an email',
+    meaning: 'Promising to follow up in writing',
+    pronunciation: '/aɪ wɪl sɛnd juː ən ˈiːmeɪl/ (eye wil send yoo an EE-mayl)',
+    category: 'Business',
+    icon: '📧'
+  },
+  {
+    phrase: 'When is the deadline?',
+    meaning: 'Asking when a project or task is due',
+    pronunciation: '/wɛn ɪz ðə ˈdɛdlaɪn/ (wen iz the DED-lyn)',
+    category: 'Business',
+    icon: '⏳'
+  },
+  // Healthcare & Pharmacy
+  {
+    phrase: 'I need a doctor',
+    meaning: 'Requesting urgent medical care',
+    pronunciation: '/aɪ niːd ə ˈdɒktər/ (eye need a DAHK-ter)',
+    category: 'Health',
+    icon: '🩺'
+  },
+  {
+    phrase: 'Where is the nearest pharmacy?',
+    meaning: 'Asking where to buy medicine nearby',
+    pronunciation: '/wɛər ɪz ðə ˈnɪərɪst ˈfɑːrməsi/ (wear iz the NEER-ist FAR-muh-see)',
+    category: 'Health',
+    icon: '💊'
+  },
+  {
+    phrase: 'I am allergic to nuts',
+    meaning: 'Communicating a food allergy clearly',
+    pronunciation: '/aɪ æm əˈlɜːrdʒɪk tuː nʌts/ (eye am uh-LER-jik to nuts)',
+    category: 'Health',
+    icon: '⚠️'
+  },
+  // Hotel, Airport & Travel
+  {
+    phrase: 'I have a reservation',
+    meaning: 'Checking in at a hotel or restaurant',
+    pronunciation: '/aɪ hæv ə ˌrɛzərˈveɪʃən/ (eye hav a rez-er-VAY-shun)',
+    category: 'Travel',
+    icon: '🛎️'
+  },
+  {
+    phrase: 'Where is the train station?',
+    meaning: 'Asking for directions to rail transit',
+    pronunciation: '/wɛər ɪz ðə treɪn ˈsteɪʃən/ (wear iz the trayn STAY-shun)',
+    category: 'Travel',
+    icon: '🚉'
+  },
+  {
+    phrase: 'I need a taxi',
+    meaning: 'Requesting a cab ride',
+    pronunciation: '/aɪ niːd ə ˈtæksi/ (eye need a TAK-see)',
+    category: 'Travel',
+    icon: '🚕'
+  },
+  // Dining & Shopping
+  {
+    phrase: 'A table for two, please',
+    meaning: 'Requesting seating at a restaurant',
+    pronunciation: '/ə ˈteɪbəl fɔːr tuː pliːz/ (a TAY-bul for too pleez)',
+    category: 'Dining',
+    icon: '🍽️'
+  },
+  {
+    phrase: 'The menu, please',
+    meaning: 'Asking the server for the food list',
+    pronunciation: '/ðə ˈmɛnjuː pliːz/ (the MEN-yoo pleez)',
+    category: 'Dining',
+    icon: '📖'
+  },
+  {
+    phrase: 'Do you accept credit cards?',
+    meaning: 'Checking payment options before buying',
+    pronunciation: '/duː juː əkˈsɛpt ˈkrɛdɪt kɑːrdz/ (doo yoo ak-SEPT KRED-it kardz)',
+    category: 'Shopping',
+    icon: '💳'
+  },
+  {
+    phrase: 'It is too expensive',
+    meaning: 'Stating that a price is too high',
+    pronunciation: '/ɪt ɪz tuː ɪkˈspɛnsɪv/ (it iz too ik-SPEN-siv)',
+    category: 'Shopping',
+    icon: '💸'
   }
 ];
 
@@ -579,7 +674,51 @@ const commonWords: PhraseItem[] = [
   { phrase: 'Link', meaning: 'Noun: Website URL or hyperlink', pronunciation: '/lɪŋk/ (link)', category: 'Tech', icon: '🔗' },
   { phrase: 'Code', meaning: 'Noun: Software programming or passcode', pronunciation: '/koʊd/ (kohd)', category: 'Tech', icon: '🧑‍💻' },
   { phrase: 'Error', meaning: 'Noun: Software bug or mistake', pronunciation: '/ˈɛrər/ (EHR-er)', category: 'Tech', icon: '🐛' },
-  { phrase: 'Battery', meaning: 'Noun: Device power charge', pronunciation: '/ˈbætəri/ (BAT-uh-ree)', category: 'Tech', icon: '🔋' }
+  { phrase: 'Battery', meaning: 'Noun: Device power charge', pronunciation: '/ˈbætəri/ (BAT-uh-ree)', category: 'Tech', icon: '🔋' },
+
+  // Business & Office
+  { phrase: 'Project', meaning: 'Noun: Planned work assignment', pronunciation: '/ˈprɒdʒɛkt/ (PRAH-jekt)', category: 'Business', icon: '📊' },
+  { phrase: 'Client', meaning: 'Noun: Customer or business partner', pronunciation: '/ˈklaɪənt/ (KLY-unt)', category: 'Business', icon: '🤝' },
+  { phrase: 'Team', meaning: 'Noun: Group working together', pronunciation: '/tiːm/ (teem)', category: 'Business', icon: '👥' },
+  { phrase: 'Manager', meaning: 'Noun: Supervisor or team lead', pronunciation: '/ˈmænɪdʒər/ (MAN-i-jer)', category: 'Business', icon: '👔' },
+  { phrase: 'Company', meaning: 'Noun: Business organization or firm', pronunciation: '/ˈkʌmpəni/ (KUM-puh-nee)', category: 'Business', icon: '🏢' },
+  { phrase: 'Contract', meaning: 'Noun: Written legal agreement', pronunciation: '/ˈkɒntrækt/ (KAHN-trakt)', category: 'Business', icon: '📝' },
+  { phrase: 'Schedule', meaning: 'Noun: Timetable or calendar plan', pronunciation: '/ˈskɛdʒuːl/ (SKEJ-ool)', category: 'Business', icon: '🗓️' },
+  { phrase: 'Deadline', meaning: 'Noun: Due date for completing work', pronunciation: '/ˈdɛdlaɪn/ (DED-lyn)', category: 'Business', icon: '⏳' },
+  { phrase: 'Invoice', meaning: 'Noun: Bill for goods or services', pronunciation: '/ˈɪnvɔɪs/ (IN-voys)', category: 'Business', icon: '🧾' },
+  { phrase: 'Salary', meaning: 'Noun: Regular employment pay', pronunciation: '/ˈsæləri/ (SAL-uh-ree)', category: 'Business', icon: '💵' },
+
+  // Healthcare & Pharmacy
+  { phrase: 'Doctor', meaning: 'Noun: Medical physician', pronunciation: '/ˈdɒktər/ (DAHK-ter)', category: 'Health', icon: '🩺' },
+  { phrase: 'Medicine', meaning: 'Noun: Treatment or drug from a pharmacy', pronunciation: '/ˈmɛdɪsɪn/ (MED-i-sin)', category: 'Health', icon: '💊' },
+  { phrase: 'Pain', meaning: 'Noun: Physical hurt or ache', pronunciation: '/peɪn/ (payn)', category: 'Health', icon: '🤕' },
+  { phrase: 'Fever', meaning: 'Noun: High body temperature', pronunciation: '/ˈfiːvər/ (FEE-ver)', category: 'Health', icon: '🤒' },
+  { phrase: 'Allergy', meaning: 'Noun: Adverse reaction to food/pollen', pronunciation: '/ˈælərdʒi/ (AL-er-jee)', category: 'Health', icon: '⚠️' },
+  { phrase: 'Headache', meaning: 'Noun: Pain in the head', pronunciation: '/ˈhɛdeɪk/ (HED-ayk)', category: 'Health', icon: '🧠' },
+  { phrase: 'Emergency', meaning: 'Noun: Urgent crisis requiring help', pronunciation: '/ɪˈmɜːrdʒənsi/ (ee-MER-jun-see)', category: 'Health', icon: '🚑' },
+  { phrase: 'Prescription', meaning: 'Noun: Doctor\'s medicine order', pronunciation: '/prɪˈskrɪpʃən/ (pri-SKRIP-shun)', category: 'Health', icon: '📋' },
+  { phrase: 'Bandage', meaning: 'Noun: Protective strip for a cut', pronunciation: '/ˈbændɪdʒ/ (BAN-dij)', category: 'Health', icon: '🩹' },
+  { phrase: 'Health', meaning: 'Noun: Physical well-being', pronunciation: '/hɛlθ/ (helth)', category: 'Health', icon: '❤️' },
+
+  // Hotel, Airport & Travel
+  { phrase: 'Flight', meaning: 'Noun: Airplane journey', pronunciation: '/flaɪt/ (flyt)', category: 'Travel', icon: '🛫' },
+  { phrase: 'Luggage', meaning: 'Noun: Suitcases and travel bags', pronunciation: '/ˈlʌɡɪdʒ/ (LUG-ij)', category: 'Travel', icon: '🧳' },
+  { phrase: 'Reservation', meaning: 'Noun: Advance booking for room or table', pronunciation: '/ˌrɛzərˈveɪʃən/ (rez-er-VAY-shun)', category: 'Travel', icon: '🛎️' },
+  { phrase: 'Key', meaning: 'Noun: Room or door opener', pronunciation: '/kiː/ (kee)', category: 'Travel', icon: '🔑' },
+  { phrase: 'Room', meaning: 'Noun: Hotel accommodation space', pronunciation: '/ruːm/ (room)', category: 'Travel', icon: '🛏️' },
+  { phrase: 'Gate', meaning: 'Noun: Airport boarding exit', pronunciation: '/ɡeɪt/ (gayt)', category: 'Travel', icon: '🚪' },
+  { phrase: 'Map', meaning: 'Noun: Visual guide of streets', pronunciation: '/mæp/ (map)', category: 'Travel', icon: '🗺️' },
+  { phrase: 'Entrance', meaning: 'Noun: Way in to a building', pronunciation: '/ˈɛntrəns/ (EN-truns)', category: 'Travel', icon: '➡️' },
+  { phrase: 'Exit', meaning: 'Noun: Way out of a building', pronunciation: '/ˈɛɡzɪt/ (EG-zit)', category: 'Travel', icon: '⬅️' },
+  { phrase: 'Customs', meaning: 'Noun: Border inspection at airport', pronunciation: '/ˈkʌstəmz/ (KUS-tumz)', category: 'Travel', icon: '🛂' },
+
+  // Shopping & Money
+  { phrase: 'Credit card', meaning: 'Noun: Payment card', pronunciation: '/ˈkrɛdɪt kɑːrd/ (KRED-it kard)', category: 'Shopping', icon: '💳' },
+  { phrase: 'Cash', meaning: 'Noun: Physical bills and coins', pronunciation: '/kæʃ/ (kash)', category: 'Shopping', icon: '💵' },
+  { phrase: 'Price', meaning: 'Noun: Cost of an item', pronunciation: '/praɪs/ (prys)', category: 'Shopping', icon: '🏷️' },
+  { phrase: 'Cheap', meaning: 'Adjective: Low in price / affordable', pronunciation: '/tʃiːp/ (cheep)', category: 'Shopping', icon: '👇' },
+  { phrase: 'Expensive', meaning: 'Adjective: High in price', pronunciation: '/ɪkˈspɛnsɪv/ (ik-SPEN-siv)', category: 'Shopping', icon: '💎' },
+  { phrase: 'Discount', meaning: 'Noun: Price reduction or sale', pronunciation: '/ˈdɪskaʊnt/ (DIS-kownt)', category: 'Shopping', icon: '🏷️' }
 ];
 
 export const englishData: AppData = {

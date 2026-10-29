@@ -1,7 +1,7 @@
 {
   "language": "fr",
   "voice": "fr-FR-HenriNeural",
-  "generated": "2026-10-29T15:03:02.312948Z",
+  "generated": "2026-10-29T15:23:29.358003Z",
   "files": {
     "alphabet": [
       {
@@ -392,6 +392,71 @@
         "filename": "quel_est_le_mot_de_passe_du_wi-fi.mp3",
         "path": "/audio/fr/phrases/quel_est_le_mot_de_passe_du_wi-fi.mp3",
         "text": "Quel est le mot de passe du Wi-Fi ?"
+      },
+      {
+        "filename": "planifions_une_réunion.mp3",
+        "path": "/audio/fr/phrases/planifions_une_réunion.mp3",
+        "text": "Planifions une réunion"
+      },
+      {
+        "filename": "je_vous_enverrai_un_courriel.mp3",
+        "path": "/audio/fr/phrases/je_vous_enverrai_un_courriel.mp3",
+        "text": "Je vous enverrai un courriel"
+      },
+      {
+        "filename": "quelle_est_la_date_limite.mp3",
+        "path": "/audio/fr/phrases/quelle_est_la_date_limite.mp3",
+        "text": "Quelle est la date limite ?"
+      },
+      {
+        "filename": "jai_besoin_dun_médecin.mp3",
+        "path": "/audio/fr/phrases/jai_besoin_dun_médecin.mp3",
+        "text": "J'ai besoin d'un médecin"
+      },
+      {
+        "filename": "où_est_la_pharmacie_la_plus_proche.mp3",
+        "path": "/audio/fr/phrases/où_est_la_pharmacie_la_plus_proche.mp3",
+        "text": "Où est la pharmacie la plus proche ?"
+      },
+      {
+        "filename": "je_suis_allergique_aux_noix.mp3",
+        "path": "/audio/fr/phrases/je_suis_allergique_aux_noix.mp3",
+        "text": "Je suis allergique aux noix"
+      },
+      {
+        "filename": "jai_une_réservation.mp3",
+        "path": "/audio/fr/phrases/jai_une_réservation.mp3",
+        "text": "J'ai une réservation"
+      },
+      {
+        "filename": "où_est_la_gare.mp3",
+        "path": "/audio/fr/phrases/où_est_la_gare.mp3",
+        "text": "Où est la gare ?"
+      },
+      {
+        "filename": "jai_besoin_dun_taxi.mp3",
+        "path": "/audio/fr/phrases/jai_besoin_dun_taxi.mp3",
+        "text": "J'ai besoin d'un taxi"
+      },
+      {
+        "filename": "une_table_pour_deux_sil_vous_plaît.mp3",
+        "path": "/audio/fr/phrases/une_table_pour_deux_sil_vous_plaît.mp3",
+        "text": "Une table pour deux, s'il vous plaît"
+      },
+      {
+        "filename": "la_carte_sil_vous_plaît.mp3",
+        "path": "/audio/fr/phrases/la_carte_sil_vous_plaît.mp3",
+        "text": "La carte, s'il vous plaît"
+      },
+      {
+        "filename": "acceptez-vous_les_cartes_bancaires.mp3",
+        "path": "/audio/fr/phrases/acceptez-vous_les_cartes_bancaires.mp3",
+        "text": "Acceptez-vous les cartes bancaires ?"
+      },
+      {
+        "filename": "cest_trop_cher.mp3",
+        "path": "/audio/fr/phrases/cest_trop_cher.mp3",
+        "text": "C'est trop cher"
       }
     ],
     "numbers": [
@@ -798,6 +863,186 @@
         "text": "Batterie"
       },
       {
+        "filename": "projet.mp3",
+        "path": "/audio/fr/words/projet.mp3",
+        "text": "Projet"
+      },
+      {
+        "filename": "client.mp3",
+        "path": "/audio/fr/words/client.mp3",
+        "text": "Client"
+      },
+      {
+        "filename": "équipe.mp3",
+        "path": "/audio/fr/words/équipe.mp3",
+        "text": "Équipe"
+      },
+      {
+        "filename": "directeur.mp3",
+        "path": "/audio/fr/words/directeur.mp3",
+        "text": "Directeur"
+      },
+      {
+        "filename": "entreprise.mp3",
+        "path": "/audio/fr/words/entreprise.mp3",
+        "text": "Entreprise"
+      },
+      {
+        "filename": "contrat.mp3",
+        "path": "/audio/fr/words/contrat.mp3",
+        "text": "Contrat"
+      },
+      {
+        "filename": "horaire.mp3",
+        "path": "/audio/fr/words/horaire.mp3",
+        "text": "Horaire"
+      },
+      {
+        "filename": "date_limite.mp3",
+        "path": "/audio/fr/words/date_limite.mp3",
+        "text": "Date limite"
+      },
+      {
+        "filename": "facture.mp3",
+        "path": "/audio/fr/words/facture.mp3",
+        "text": "Facture"
+      },
+      {
+        "filename": "salaire.mp3",
+        "path": "/audio/fr/words/salaire.mp3",
+        "text": "Salaire"
+      },
+      {
+        "filename": "médecin.mp3",
+        "path": "/audio/fr/words/médecin.mp3",
+        "text": "Médecin"
+      },
+      {
+        "filename": "médicament.mp3",
+        "path": "/audio/fr/words/médicament.mp3",
+        "text": "Médicament"
+      },
+      {
+        "filename": "douleur.mp3",
+        "path": "/audio/fr/words/douleur.mp3",
+        "text": "Douleur"
+      },
+      {
+        "filename": "fièvre.mp3",
+        "path": "/audio/fr/words/fièvre.mp3",
+        "text": "Fièvre"
+      },
+      {
+        "filename": "allergie.mp3",
+        "path": "/audio/fr/words/allergie.mp3",
+        "text": "Allergie"
+      },
+      {
+        "filename": "mal_de_tête.mp3",
+        "path": "/audio/fr/words/mal_de_tête.mp3",
+        "text": "Mal de tête"
+      },
+      {
+        "filename": "urgence.mp3",
+        "path": "/audio/fr/words/urgence.mp3",
+        "text": "Urgence"
+      },
+      {
+        "filename": "ordonnance.mp3",
+        "path": "/audio/fr/words/ordonnance.mp3",
+        "text": "Ordonnance"
+      },
+      {
+        "filename": "pansement.mp3",
+        "path": "/audio/fr/words/pansement.mp3",
+        "text": "Pansement"
+      },
+      {
+        "filename": "santé.mp3",
+        "path": "/audio/fr/words/santé.mp3",
+        "text": "Santé"
+      },
+      {
+        "filename": "vol.mp3",
+        "path": "/audio/fr/words/vol.mp3",
+        "text": "Vol"
+      },
+      {
+        "filename": "bagage.mp3",
+        "path": "/audio/fr/words/bagage.mp3",
+        "text": "Bagage"
+      },
+      {
+        "filename": "réservation.mp3",
+        "path": "/audio/fr/words/réservation.mp3",
+        "text": "Réservation"
+      },
+      {
+        "filename": "clé.mp3",
+        "path": "/audio/fr/words/clé.mp3",
+        "text": "Clé"
+      },
+      {
+        "filename": "chambre.mp3",
+        "path": "/audio/fr/words/chambre.mp3",
+        "text": "Chambre"
+      },
+      {
+        "filename": "porte_dembarquement.mp3",
+        "path": "/audio/fr/words/porte_dembarquement.mp3",
+        "text": "Porte d'embarquement"
+      },
+      {
+        "filename": "plan.mp3",
+        "path": "/audio/fr/words/plan.mp3",
+        "text": "Plan"
+      },
+      {
+        "filename": "entrée.mp3",
+        "path": "/audio/fr/words/entrée.mp3",
+        "text": "Entrée"
+      },
+      {
+        "filename": "sortie.mp3",
+        "path": "/audio/fr/words/sortie.mp3",
+        "text": "Sortie"
+      },
+      {
+        "filename": "douane.mp3",
+        "path": "/audio/fr/words/douane.mp3",
+        "text": "Douane"
+      },
+      {
+        "filename": "carte_bancaire.mp3",
+        "path": "/audio/fr/words/carte_bancaire.mp3",
+        "text": "Carte bancaire"
+      },
+      {
+        "filename": "espèces.mp3",
+        "path": "/audio/fr/words/espèces.mp3",
+        "text": "Espèces"
+      },
+      {
+        "filename": "prix.mp3",
+        "path": "/audio/fr/words/prix.mp3",
+        "text": "Prix"
+      },
+      {
+        "filename": "pas_cher.mp3",
+        "path": "/audio/fr/words/pas_cher.mp3",
+        "text": "Pas cher"
+      },
+      {
+        "filename": "cher.mp3",
+        "path": "/audio/fr/words/cher.mp3",
+        "text": "Cher"
+      },
+      {
+        "filename": "réduction.mp3",
+        "path": "/audio/fr/words/réduction.mp3",
+        "text": "Réduction"
+      },
+      {
         "filename": "homme.mp3",
         "path": "/audio/fr/words/homme.mp3",
         "text": "Homme"
@@ -851,11 +1096,6 @@
         "filename": "étudiant.mp3",
         "path": "/audio/fr/words/étudiant.mp3",
         "text": "Étudiant"
-      },
-      {
-        "filename": "médecin.mp3",
-        "path": "/audio/fr/words/médecin.mp3",
-        "text": "Médecin / Docteur"
       },
       {
         "filename": "nous.mp3",
@@ -1308,11 +1548,6 @@
         "text": "Jus"
       },
       {
-        "filename": "clé.mp3",
-        "path": "/audio/fr/words/clé.mp3",
-        "text": "Clé"
-      },
-      {
         "filename": "lumière.mp3",
         "path": "/audio/fr/words/lumière.mp3",
         "text": "Lumière"
@@ -1541,11 +1776,6 @@
         "filename": "bortsch.mp3",
         "path": "/audio/fr/words/bortsch.mp3",
         "text": "Bortsch"
-      },
-      {
-        "filename": "entrée.mp3",
-        "path": "/audio/fr/words/entrée.mp3",
-        "text": "Entrée"
       },
       {
         "filename": "sud.mp3",
@@ -2206,6 +2436,56 @@
         "filename": "quel_est_le_mot_de_passe_du_wi-fi.mp3",
         "path": "/audio/fr/words/quel_est_le_mot_de_passe_du_wi-fi.mp3",
         "text": "Quel est le mot de passe du Wi-Fi ?"
+      },
+      {
+        "filename": "planifions_une_réunion.mp3",
+        "path": "/audio/fr/words/planifions_une_réunion.mp3",
+        "text": "Planifions une réunion"
+      },
+      {
+        "filename": "je_vous_enverrai_un_courriel.mp3",
+        "path": "/audio/fr/words/je_vous_enverrai_un_courriel.mp3",
+        "text": "Je vous enverrai un courriel"
+      },
+      {
+        "filename": "quelle_est_la_date_limite.mp3",
+        "path": "/audio/fr/words/quelle_est_la_date_limite.mp3",
+        "text": "Quelle est la date limite ?"
+      },
+      {
+        "filename": "où_est_la_pharmacie_la_plus_proche.mp3",
+        "path": "/audio/fr/words/où_est_la_pharmacie_la_plus_proche.mp3",
+        "text": "Où est la pharmacie la plus proche ?"
+      },
+      {
+        "filename": "je_suis_allergique_aux_noix.mp3",
+        "path": "/audio/fr/words/je_suis_allergique_aux_noix.mp3",
+        "text": "Je suis allergique aux noix"
+      },
+      {
+        "filename": "jai_une_réservation.mp3",
+        "path": "/audio/fr/words/jai_une_réservation.mp3",
+        "text": "J'ai une réservation"
+      },
+      {
+        "filename": "où_est_larrêt_de_bus.mp3",
+        "path": "/audio/fr/words/où_est_larrêt_de_bus.mp3",
+        "text": "Où est l'arrêt de bus ?"
+      },
+      {
+        "filename": "comment_aller_à_laéroport.mp3",
+        "path": "/audio/fr/words/comment_aller_à_laéroport.mp3",
+        "text": "Comment aller à l'aéroport ?"
+      },
+      {
+        "filename": "je_voudrais_un_café_sil_vous_plaît.mp3",
+        "path": "/audio/fr/words/je_voudrais_un_café_sil_vous_plaît.mp3",
+        "text": "Je voudrais un café, s'il vous plaît"
+      },
+      {
+        "filename": "une_bouteille_deau_sil_vous_plaît.mp3",
+        "path": "/audio/fr/words/une_bouteille_deau_sil_vous_plaît.mp3",
+        "text": "Une bouteille d'eau, s'il vous plaît"
       }
     ],
     "time": [

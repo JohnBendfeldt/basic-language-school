@@ -188,10 +188,14 @@ test.describe('Playwright E2E: Layout, Modals, Alignment & Neural Audio Matrix',
     await expect(filterBar).toBeVisible();
 
     const techPill = filterBar.locator('button[data-category="Tech"]');
+    const businessPill = filterBar.locator('button[data-category="Business"]');
+    const healthPill = filterBar.locator('button[data-category="Health"]');
     const colorsPill = filterBar.locator('button[data-category="Colors"]');
     const weatherPill = filterBar.locator('button[data-category="Weather"]');
 
     await expect(techPill).toBeVisible();
+    await expect(businessPill).toBeVisible();
+    await expect(healthPill).toBeVisible();
     await expect(colorsPill).toBeVisible();
     await expect(weatherPill).toBeVisible();
 
@@ -199,6 +203,15 @@ test.describe('Playwright E2E: Layout, Modals, Alignment & Neural Audio Matrix',
     await techPill.click();
     await expect(page.locator('h3.phrase-text', { hasText: /^Contraseña$/ })).toBeVisible();
     await expect(page.locator('h3.phrase-text', { hasText: /^Agua$/ })).toBeHidden();
+
+    // Filter to Business pack
+    await businessPill.click();
+    await expect(page.locator('h3.phrase-text', { hasText: /^Proyecto$/ })).toBeVisible();
+    await expect(page.locator('h3.phrase-text', { hasText: /^Contraseña$/ })).toBeHidden();
+
+    // Filter to Healthcare pack
+    await healthPill.click();
+    await expect(page.locator('h3.phrase-text', { hasText: /^Médico$/ })).toBeVisible();
 
     // Filter to Colors pack
     await colorsPill.click();

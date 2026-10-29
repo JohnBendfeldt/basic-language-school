@@ -60,6 +60,23 @@ const basicPhrases: PhraseItem[] = [
   { phrase: '¿Me escucha?', translation: 'Can you hear me?', pronunciation: 'meh ehs-KOO-chah', category: 'Tech', icon: '🎧' },
   { phrase: '¿Puede ver mi pantalla?', translation: 'Can you see my screen?', pronunciation: 'PWEH-deh bvehr mee pahn-TAH-yah', category: 'Tech', icon: '🖥️' },
   { phrase: '¿Cuál es la contraseña del wifi?', translation: 'What is the Wi-Fi password?', pronunciation: 'kwahl ehs lah kohn-trah-SEH-nyah dehl wee-fee', category: 'Tech', icon: '📶' },
+  // Business & Office
+  { phrase: 'Programemos una reunión', translation: 'Let\'s schedule a meeting', pronunciation: 'proh-grah-MEH-mohs OO-nah reh-oo-NYOHN', category: 'Business', icon: '📅' },
+  { phrase: 'Le enviaré un correo', translation: 'I will send you an email', pronunciation: 'leh ehn-bvyah-REH oon koh-RREH-oh', category: 'Business', icon: '📧' },
+  { phrase: '¿Cuándo es la fecha límite?', translation: 'When is the deadline?', pronunciation: 'KWAHN-doh ehs lah FEH-chah LEE-mee-teh', category: 'Business', icon: '⏳' },
+  // Healthcare & Pharmacy
+  { phrase: 'Necesito un médico', translation: 'I need a doctor', pronunciation: 'neh-seh-SEE-toh oon MEH-dee-koh', category: 'Health', icon: '🩺' },
+  { phrase: '¿Dónde está la farmacia más cercana?', translation: 'Where is the nearest pharmacy?', pronunciation: 'DOHN-deh ehs-TAH lah fahr-MAH-syah mahs sehr-KAH-nah', category: 'Health', icon: '💊' },
+  { phrase: 'Soy alérgico a las nueces', translation: 'I am allergic to nuts', pronunciation: 'soy ah-LEHR-hee-koh ah lahs NWEH-sehs', category: 'Health', icon: '⚠️' },
+  // Hotel, Airport & Travel
+  { phrase: 'Tengo una reserva', translation: 'I have a reservation', pronunciation: 'TEHN-goh OO-nah reh-SEHR-bvah', category: 'Travel', icon: '🛎️' },
+  { phrase: '¿Dónde está la estación de tren?', translation: 'Where is the train station?', pronunciation: 'DOHN-deh ehs-TAH lah ehs-tah-SYOHN deh trehn', category: 'Travel', icon: '🚉' },
+  { phrase: 'Necesito un taxi', translation: 'I need a taxi', pronunciation: 'neh-seh-SEE-toh oon TAHK-see', category: 'Travel', icon: '🚕' },
+  // Dining & Shopping
+  { phrase: 'Una mesa para dos, por favor', translation: 'A table for two, please', pronunciation: 'OO-nah MEH-sah PAH-rah dohs pohr fah-BVOHR', category: 'Dining', icon: '🍽️' },
+  { phrase: 'El menú, por favor', translation: 'The menu, please', pronunciation: 'ehl meh-NOO pohr fah-BVOHR', category: 'Dining', icon: '📖' },
+  { phrase: '¿Aceptan tarjetas de crédito?', translation: 'Do you accept credit cards?', pronunciation: 'ah-SEHP-tahn tahr-HEH-tahs deh KREH-dee-toh', category: 'Shopping', icon: '💳' },
+  { phrase: 'Es demasiado caro', translation: 'It is too expensive', pronunciation: 'ehs deh-mah-SYAH-doh KAH-roh', category: 'Shopping', icon: '💸' },
 ];
 
 // Spanish numbers
@@ -151,6 +168,46 @@ const commonWords: PhraseItem[] = [
   { phrase: 'Código', translation: 'Code', pronunciation: 'KOH-dee-goh', category: 'Tech', icon: '🧑‍💻' },
   { phrase: 'Error', translation: 'Error', pronunciation: 'eh-RROHR', category: 'Tech', icon: '🐛' },
   { phrase: 'Batería', translation: 'Battery', pronunciation: 'bah-teh-REE-ah', category: 'Tech', icon: '🔋' },
+  // Business & Office
+  { phrase: 'Proyecto', translation: 'Project', pronunciation: 'proh-YEHK-toh', category: 'Business', icon: '📊' },
+  { phrase: 'Cliente', translation: 'Client', pronunciation: 'klyehn-teh', category: 'Business', icon: '🤝' },
+  { phrase: 'Equipo', translation: 'Team', pronunciation: 'eh-KEE-poh', category: 'Business', icon: '👥' },
+  { phrase: 'Gerente', translation: 'Manager', pronunciation: 'heh-REHN-teh', category: 'Business', icon: '👔' },
+  { phrase: 'Empresa', translation: 'Company', pronunciation: 'ehm-PREH-sah', category: 'Business', icon: '🏢' },
+  { phrase: 'Contrato', translation: 'Contract', pronunciation: 'kohn-TRAH-toh', category: 'Business', icon: '📝' },
+  { phrase: 'Horario', translation: 'Schedule', pronunciation: 'oh-RAH-ryoh', category: 'Business', icon: '🗓️' },
+  { phrase: 'Fecha límite', translation: 'Deadline', pronunciation: 'FEH-chah LEE-mee-teh', category: 'Business', icon: '⏳' },
+  { phrase: 'Factura', translation: 'Invoice', pronunciation: 'fahk-TOO-rah', category: 'Business', icon: '🧾' },
+  { phrase: 'Salario', translation: 'Salary', pronunciation: 'sah-LAH-ryoh', category: 'Business', icon: '💵' },
+  // Healthcare & Pharmacy
+  { phrase: 'Médico', translation: 'Doctor', pronunciation: 'MEH-dee-koh', category: 'Health', icon: '🩺' },
+  { phrase: 'Medicina', translation: 'Medicine', pronunciation: 'meh-dee-SEE-nah', category: 'Health', icon: '💊' },
+  { phrase: 'Dolor', translation: 'Pain', pronunciation: 'doh-LOHR', category: 'Health', icon: '🤕' },
+  { phrase: 'Fiebre', translation: 'Fever', pronunciation: 'FYEH-bvreh', category: 'Health', icon: '🤒' },
+  { phrase: 'Alergia', translation: 'Allergy', pronunciation: 'ah-LEHR-hyah', category: 'Health', icon: '⚠️' },
+  { phrase: 'Dolor de cabeza', translation: 'Headache', pronunciation: 'doh-LOHR deh kah-BEH-sah', category: 'Health', icon: '🧠' },
+  { phrase: 'Emergencia', translation: 'Emergency', pronunciation: 'eh-mehr-HEHN-syah', category: 'Health', icon: '🚑' },
+  { phrase: 'Receta médica', translation: 'Prescription', pronunciation: 'rreh-SEH-tah MEH-dee-kah', category: 'Health', icon: '📋' },
+  { phrase: 'Venda', translation: 'Bandage', pronunciation: 'BEHN-dah', category: 'Health', icon: '🩹' },
+  { phrase: 'Salud', translation: 'Health', pronunciation: 'sah-LOOD', category: 'Health', icon: '❤️' },
+  // Hotel, Airport & Travel
+  { phrase: 'Vuelo', translation: 'Flight', pronunciation: 'BWEH-loh', category: 'Travel', icon: '🛫' },
+  { phrase: 'Equipaje', translation: 'Luggage', pronunciation: 'eh-kee-PAH-heh', category: 'Travel', icon: '🧳' },
+  { phrase: 'Reserva', translation: 'Reservation', pronunciation: 'rreh-SEHR-bvah', category: 'Travel', icon: '🛎️' },
+  { phrase: 'Llave', translation: 'Key', pronunciation: 'YAH-bveh', category: 'Travel', icon: '🔑' },
+  { phrase: 'Habitación', translation: 'Room', pronunciation: 'ah-bee-tah-SYOHN', category: 'Travel', icon: '🛏️' },
+  { phrase: 'Puerta de embarque', translation: 'Gate', pronunciation: 'PWEHR-tah deh ehm-BAHR-keh', category: 'Travel', icon: '🚪' },
+  { phrase: 'Mapa', translation: 'Map', pronunciation: 'MAH-pah', category: 'Travel', icon: '🗺️' },
+  { phrase: 'Entrada', translation: 'Entrance', pronunciation: 'ehn-TRAH-dah', category: 'Travel', icon: '➡️' },
+  { phrase: 'Salida', translation: 'Exit', pronunciation: 'sah-LEE-dah', category: 'Travel', icon: '⬅️' },
+  { phrase: 'Aduana', translation: 'Customs', pronunciation: 'ah-DWAH-nah', category: 'Travel', icon: '🛂' },
+  // Shopping & Money
+  { phrase: 'Tarjeta de crédito', translation: 'Credit card', pronunciation: 'tahr-HEH-tah deh KREH-dee-toh', category: 'Shopping', icon: '💳' },
+  { phrase: 'Efectivo', translation: 'Cash', pronunciation: 'eh-fehk-TEE-bvoh', category: 'Shopping', icon: '💵' },
+  { phrase: 'Precio', translation: 'Price', pronunciation: 'PREH-syoh', category: 'Shopping', icon: '🏷️' },
+  { phrase: 'Barato', translation: 'Cheap', pronunciation: 'bah-RAH-toh', category: 'Shopping', icon: '👇' },
+  { phrase: 'Caro', translation: 'Expensive', pronunciation: 'KAH-roh', category: 'Shopping', icon: '💎' },
+  { phrase: 'Descuento', translation: 'Discount', pronunciation: 'dehs-KWEHN-toh', category: 'Shopping', icon: '🏷️' },
 ];
 
 // Telling time in Spanish

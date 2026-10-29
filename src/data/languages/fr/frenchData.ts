@@ -57,6 +57,23 @@ const basicPhrases: PhraseItem[] = [
   { phrase: 'Vous m\'entendez ?', translation: 'Can you hear me?', pronunciation: 'voo mahn-tahn-DAY', category: 'Tech', icon: '🎧' },
   { phrase: 'Voyez-vous mon écran ?', translation: 'Can you see my screen?', pronunciation: 'vwah-yay voo mohn ay-KRAHN', category: 'Tech', icon: '🖥️' },
   { phrase: 'Quel est le mot de passe du Wi-Fi ?', translation: 'What is the Wi-Fi password?', pronunciation: 'kehl eh luh moh duh pahs dew wee-fee', category: 'Tech', icon: '📶' },
+  // Business & Office
+  { phrase: 'Planifions une réunion', translation: 'Let\'s schedule a meeting', pronunciation: 'plah-nee-FYOHN ewn ray-ew-NYOHN', category: 'Business', icon: '📅' },
+  { phrase: 'Je vous enverrai un courriel', translation: 'I will send you an email', pronunciation: 'zhuh voo zahn-veh-RAY ahn koo-RYEL', category: 'Business', icon: '📧' },
+  { phrase: 'Quelle est la date limite ?', translation: 'When is the deadline?', pronunciation: 'kehl eh lah daht lee-MEET', category: 'Business', icon: '⏳' },
+  // Healthcare & Pharmacy
+  { phrase: 'J\'ai besoin d\'un médecin', translation: 'I need a doctor', pronunciation: 'zhay buh-ZWAN dahn mayd-SAHN', category: 'Health', icon: '🩺' },
+  { phrase: 'Où est la pharmacie la plus proche ?', translation: 'Where is the nearest pharmacy?', pronunciation: 'oo eh lah fahr-mah-SEE lah plew PROHSH', category: 'Health', icon: '💊' },
+  { phrase: 'Je suis allergique aux noix', translation: 'I am allergic to nuts', pronunciation: 'zhuh swee zah-lehr-ZHEEK oh NWAH', category: 'Health', icon: '⚠️' },
+  // Hotel, Airport & Travel
+  { phrase: 'J\'ai une réservation', translation: 'I have a reservation', pronunciation: 'zhay ewn ray-zehr-vah-SYOHN', category: 'Travel', icon: '🛎️' },
+  { phrase: 'Où est la gare ?', translation: 'Where is the train station?', pronunciation: 'oo eh lah GAHR', category: 'Travel', icon: '🚉' },
+  { phrase: 'J\'ai besoin d\'un taxi', translation: 'I need a taxi', pronunciation: 'zhay buh-ZWAN dahn tahk-SEE', category: 'Travel', icon: '🚕' },
+  // Dining & Shopping
+  { phrase: 'Une table pour deux, s\'il vous plaît', translation: 'A table for two, please', pronunciation: 'ewn TAH-bluh poor duh seel voo PLEH', category: 'Dining', icon: '🍽️' },
+  { phrase: 'La carte, s\'il vous plaît', translation: 'The menu, please', pronunciation: 'lah KAHRT seel voo PLEH', category: 'Dining', icon: '📖' },
+  { phrase: 'Acceptez-vous les cartes bancaires ?', translation: 'Do you accept credit cards?', pronunciation: 'ahk-sehp-tay voo lay kahrt bahn-KEHR', category: 'Shopping', icon: '💳' },
+  { phrase: 'C\'est trop cher', translation: 'It is too expensive', pronunciation: 'seh troh SHEHR', category: 'Shopping', icon: '💸' },
 ];
 
 // French numbers
@@ -148,6 +165,46 @@ const commonWords: PhraseItem[] = [
   { phrase: 'Code', translation: 'Code', pronunciation: 'kohd', category: 'Tech', icon: '🧑‍💻' },
   { phrase: 'Erreur', translation: 'Error', pronunciation: 'eh-RER', category: 'Tech', icon: '🐛' },
   { phrase: 'Batterie', translation: 'Battery', pronunciation: 'bah-TREE', category: 'Tech', icon: '🔋' },
+  // Business & Office
+  { phrase: 'Projet', translation: 'Project', pronunciation: 'proh-ZHEH', category: 'Business', icon: '📊' },
+  { phrase: 'Client', translation: 'Client', pronunciation: 'klee-YAHN', category: 'Business', icon: '🤝' },
+  { phrase: 'Équipe', translation: 'Team', pronunciation: 'ay-KEEP', category: 'Business', icon: '👥' },
+  { phrase: 'Directeur', translation: 'Manager', pronunciation: 'dee-rehk-TER', category: 'Business', icon: '👔' },
+  { phrase: 'Entreprise', translation: 'Company', pronunciation: 'ahn-truh-PREEZ', category: 'Business', icon: '🏢' },
+  { phrase: 'Contrat', translation: 'Contract', pronunciation: 'kohn-TRAH', category: 'Business', icon: '📝' },
+  { phrase: 'Horaire', translation: 'Schedule', pronunciation: 'oh-REHR', category: 'Business', icon: '🗓️' },
+  { phrase: 'Date limite', translation: 'Deadline', pronunciation: 'daht lee-MEET', category: 'Business', icon: '⏳' },
+  { phrase: 'Facture', translation: 'Invoice', pronunciation: 'fahk-TYOOR', category: 'Business', icon: '🧾' },
+  { phrase: 'Salaire', translation: 'Salary', pronunciation: 'sah-LEHR', category: 'Business', icon: '💵' },
+  // Healthcare & Pharmacy
+  { phrase: 'Médecin', translation: 'Doctor', pronunciation: 'mayd-SAHN', category: 'Health', icon: '🩺' },
+  { phrase: 'Médicament', translation: 'Medicine', pronunciation: 'may-dee-kah-MAHN', category: 'Health', icon: '💊' },
+  { phrase: 'Douleur', translation: 'Pain', pronunciation: 'doo-LER', category: 'Health', icon: '🤕' },
+  { phrase: 'Fièvre', translation: 'Fever', pronunciation: 'fyeh-vruh', category: 'Health', icon: '🤒' },
+  { phrase: 'Allergie', translation: 'Allergy', pronunciation: 'ah-lehr-ZHEE', category: 'Health', icon: '⚠️' },
+  { phrase: 'Mal de tête', translation: 'Headache', pronunciation: 'mahl duh TEHT', category: 'Health', icon: '🧠' },
+  { phrase: 'Urgence', translation: 'Emergency', pronunciation: 'ewr-ZHAHNS', category: 'Health', icon: '🚑' },
+  { phrase: 'Ordonnance', translation: 'Prescription', pronunciation: 'ohr-doh-NAHNS', category: 'Health', icon: '📋' },
+  { phrase: 'Pansement', translation: 'Bandage', pronunciation: 'pahn-suh-MAHN', category: 'Health', icon: '🩹' },
+  { phrase: 'Santé', translation: 'Health', pronunciation: 'sahn-TAY', category: 'Health', icon: '❤️' },
+  // Hotel, Airport & Travel
+  { phrase: 'Vol', translation: 'Flight', pronunciation: 'vohl', category: 'Travel', icon: '🛫' },
+  { phrase: 'Bagage', translation: 'Luggage', pronunciation: 'bah-GAHZH', category: 'Travel', icon: '🧳' },
+  { phrase: 'Réservation', translation: 'Reservation', pronunciation: 'ray-zehr-vah-SYOHN', category: 'Travel', icon: '🛎️' },
+  { phrase: 'Clé', translation: 'Key', pronunciation: 'klay', category: 'Travel', icon: '🔑' },
+  { phrase: 'Chambre', translation: 'Room', pronunciation: 'shahm-bruh', category: 'Travel', icon: '🛏️' },
+  { phrase: 'Porte d\'embarquement', translation: 'Gate', pronunciation: 'pohrt dahm-bahr-kuh-MAHN', category: 'Travel', icon: '🚪' },
+  { phrase: 'Plan', translation: 'Map', pronunciation: 'plahn', category: 'Travel', icon: '🗺️' },
+  { phrase: 'Entrée', translation: 'Entrance', pronunciation: 'ahn-TRAY', category: 'Travel', icon: '➡️' },
+  { phrase: 'Sortie', translation: 'Exit', pronunciation: 'sohr-TEE', category: 'Travel', icon: '⬅️' },
+  { phrase: 'Douane', translation: 'Customs', pronunciation: 'dwahn', category: 'Travel', icon: '🛂' },
+  // Shopping & Money
+  { phrase: 'Carte bancaire', translation: 'Credit card', pronunciation: 'kahrt bahn-KEHR', category: 'Shopping', icon: '💳' },
+  { phrase: 'Espèces', translation: 'Cash', pronunciation: 'ehs-PEHS', category: 'Shopping', icon: '💵' },
+  { phrase: 'Prix', translation: 'Price', pronunciation: 'pree', category: 'Shopping', icon: '🏷️' },
+  { phrase: 'Pas cher', translation: 'Cheap', pronunciation: 'pah SHEHR', category: 'Shopping', icon: '👇' },
+  { phrase: 'Cher', translation: 'Expensive', pronunciation: 'shehr', category: 'Shopping', icon: '💎' },
+  { phrase: 'Réduction', translation: 'Discount', pronunciation: 'ray-dewk-SYOHN', category: 'Shopping', icon: '🏷️' },
 ];
 
 // Telling time in French

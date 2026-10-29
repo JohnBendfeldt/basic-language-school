@@ -455,7 +455,57 @@ export const EXTENDED_DICTIONARY: Record<string, Record<SupportedLanguageId, str
   'battery': { en: 'Battery', es: 'Batería', fr: 'Batterie', ru: 'Батарея' },
   'can you hear me?': { en: 'Can you hear me?', es: '¿Me escucha?', fr: 'Vous m\'entendez ?', ru: 'Вы меня слышите?' },
   'can you see my screen?': { en: 'Can you see my screen?', es: '¿Puede ver mi pantalla?', fr: 'Voyez-vous mon écran ?', ru: 'Видно мой экран?' },
-  'what is the wi-fi password?': { en: 'What is the Wi-Fi password?', es: '¿Cuál es la contraseña del wifi?', fr: 'Quel est le mot de passe du Wi-Fi ?', ru: 'Какой пароль от вайфая?' }
+  'what is the wi-fi password?': { en: 'What is the Wi-Fi password?', es: '¿Cuál es la contraseña del wifi?', fr: 'Quel est le mot de passe du Wi-Fi ?', ru: 'Какой пароль от вайфая?' },
+
+  // Business & Office Pack
+  'project': { en: 'Project', es: 'Proyecto', fr: 'Projet', ru: 'Проект' },
+  'client': { en: 'Client', es: 'Cliente', fr: 'Client', ru: 'Клиент' },
+  'team': { en: 'Team', es: 'Equipo', fr: 'Équipe', ru: 'Команда' },
+  'manager': { en: 'Manager', es: 'Gerente', fr: 'Directeur', ru: 'Руководитель' },
+  'company': { en: 'Company', es: 'Empresa', fr: 'Entreprise', ru: 'Компания' },
+  'contract': { en: 'Contract', es: 'Contrato', fr: 'Contrat', ru: 'Контракт' },
+  'schedule': { en: 'Schedule', es: 'Horario', fr: 'Horaire', ru: 'Расписание' },
+  'deadline': { en: 'Deadline', es: 'Fecha límite', fr: 'Date limite', ru: 'Срок' },
+  'invoice': { en: 'Invoice', es: 'Factura', fr: 'Facture', ru: 'Счёт' },
+  'salary': { en: 'Salary', es: 'Salario', fr: 'Salaire', ru: 'Зарплата' },
+  'let\'s schedule a meeting': { en: 'Let\'s schedule a meeting', es: 'Programemos una reunión', fr: 'Planifions une réunion', ru: 'Давайте назначим встречу' },
+  'i will send you an email': { en: 'I will send you an email', es: 'Le enviaré un correo', fr: 'Je vous enverrai un courriel', ru: 'Я отправлю вам письмо' },
+  'when is the deadline?': { en: 'When is the deadline?', es: '¿Cuándo es la fecha límite?', fr: 'Quelle est la date limite ?', ru: 'Какой крайний срок?' },
+
+  // Healthcare & Pharmacy Pack
+  'medicine': { en: 'Medicine', es: 'Medicina', fr: 'Médicament', ru: 'Лекарство' },
+  'pain': { en: 'Pain', es: 'Dolor', fr: 'Douleur', ru: 'Боль' },
+  'fever': { en: 'Fever', es: 'Fiebre', fr: 'Fièvre', ru: 'Температура' },
+  'allergy': { en: 'Allergy', es: 'Alergia', fr: 'Allergie', ru: 'Аллергия' },
+  'headache': { en: 'Headache', es: 'Dolor de cabeza', fr: 'Mal de tête', ru: 'Головная боль' },
+  'emergency': { en: 'Emergency', es: 'Emergencia', fr: 'Urgence', ru: 'Скорая помощь' },
+  'prescription': { en: 'Prescription', es: 'Receta médica', fr: 'Ordonnance', ru: 'Рецепт' },
+  'bandage': { en: 'Bandage', es: 'Venda', fr: 'Pansement', ru: 'Бинт' },
+  'health': { en: 'Health', es: 'Salud', fr: 'Santé', ru: 'Здоровье' },
+  'where is the nearest pharmacy?': { en: 'Where is the nearest pharmacy?', es: '¿Dónde está la farmacia más cercana?', fr: 'Où est la pharmacie la plus proche ?', ru: 'Где ближайшая аптека?' },
+  'i am allergic to nuts': { en: 'I am allergic to nuts', es: 'Soy alérgico a las nueces', fr: 'Je suis allergique aux noix', ru: 'У меня аллергия на орехи' },
+
+  // Hotel, Airport & Travel Pack
+  'flight': { en: 'Flight', es: 'Vuelo', fr: 'Vol', ru: 'Рейс' },
+  'luggage': { en: 'Luggage', es: 'Equipaje', fr: 'Bagage', ru: 'Багаж' },
+  'reservation': { en: 'Reservation', es: 'Reserva', fr: 'Réservation', ru: 'Бронь' },
+  'room': { en: 'Room', es: 'Habitación', fr: 'Chambre', ru: 'Номер' },
+  'gate': { en: 'Gate', es: 'Puerta de embarque', fr: 'Porte d\'embarquement', ru: 'Выход на посадку' },
+  'exit': { en: 'Exit', es: 'Salida', fr: 'Sortie', ru: 'Выход' },
+  'customs': { en: 'Customs', es: 'Aduana', fr: 'Douane', ru: 'Таможня' },
+  'i have a reservation': { en: 'I have a reservation', es: 'Tengo una reserva', fr: 'J\'ai une réservation', ru: 'У меня есть бронь' },
+
+  // Shopping & Money Pack
+  'credit card': { en: 'Credit card', es: 'Tarjeta de crédito', fr: 'Carte bancaire', ru: 'Банковская карта' },
+  'cash': { en: 'Cash', es: 'Efectivo', fr: 'Espèces', ru: 'Наличные' },
+  'price': { en: 'Price', es: 'Precio', fr: 'Prix', ru: 'Цена' },
+  'cheap': { en: 'Cheap', es: 'Barato', fr: 'Pas cher', ru: 'Дешёвый' },
+  'expensive': { en: 'Expensive', es: 'Caro', fr: 'Cher', ru: 'Дорогой' },
+  'discount': { en: 'Discount', es: 'Descuento', fr: 'Réduction', ru: 'Скидка' },
+  'where is the bus stop?': { en: 'Where is the bus stop?', es: '¿Dónde está la parada de autobús?', fr: 'Où est l\'arrêt de bus ?', ru: 'Где автобусная остановка?' },
+  'how do i get to the airport?': { en: 'How do I get to the airport?', es: '¿Cómo llego al aeropuerto?', fr: 'Comment aller à l\'aéroport ?', ru: 'Как добраться до аэропорта?' },
+  'i would like a coffee, please': { en: 'I would like a coffee, please', es: 'Quisiera un café, por favor', fr: 'Je voudrais un café, s\'il vous plaît', ru: 'Я бы хотел кофе, пожалуйста' },
+  'a bottle of water, please': { en: 'A bottle of water, please', es: 'Una botella de agua, por favor', fr: 'Une bouteille d\'eau, s\'il vous plaît', ru: 'Бутылку воды, пожалуйста' }
 };
 
 /**
