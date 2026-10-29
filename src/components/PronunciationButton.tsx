@@ -110,25 +110,6 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
     const numParenMatch = normalizedText.match(/^\d+\s*\(([^)]+)\)$/);
     const effectiveRawText = numParenMatch ? numParenMatch[1].trim() : normalizedText;
 
-    // Use provided audioCategory if available
-    let primaryCategory = audioCategory;
-    if (!primaryCategory) {
-      if (numParenMatch) {
-        primaryCategory = 'numbers';
-      } else if (effectiveRawText.length === 1) {
-        primaryCategory = 'alphabet';
-      } else if (/\s/.test(effectiveRawText)) {
-        primaryCategory = 'phrases';
-      } else if (/^\d+$/.test(effectiveRawText) || ['one', 'two', 'three', 'один', 'два', 'три', 'un', 'deux', 'trois', 'uno', 'dos', 'tres'].includes(effectiveRawText)) {
-        primaryCategory = 'numbers';
-      } else {
-        primaryCategory = 'words';
-      }
-    }
-    
-    if (primaryCategory === 'basicPhrases') primaryCategory = 'phrases';
-    if (primaryCategory === 'commonWords') primaryCategory = 'words';
-    
     const cleanText = effectiveRawText
       .normalize('NFC')
       .split('/')[0]
@@ -137,6 +118,25 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
       .trim();
     const fileName = cleanText.replace(/\s+/g, '_');
     if (!fileName) return [];
+
+    // Use provided audioCategory if available, otherwise infer from cleaned primary variant
+    let primaryCategory = audioCategory;
+    if (!primaryCategory) {
+      if (numParenMatch) {
+        primaryCategory = 'numbers';
+      } else if (cleanText.length === 1) {
+        primaryCategory = 'alphabet';
+      } else if (/\s/.test(cleanText)) {
+        primaryCategory = 'phrases';
+      } else if (/^\d+$/.test(cleanText) || ['one', 'two', 'three', 'один', 'два', 'три', 'un', 'deux', 'trois', 'uno', 'dos', 'tres'].includes(cleanText)) {
+        primaryCategory = 'numbers';
+      } else {
+        primaryCategory = 'words';
+      }
+    }
+    
+    if (primaryCategory === 'basicPhrases') primaryCategory = 'phrases';
+    if (primaryCategory === 'commonWords') primaryCategory = 'words';
 
     const folders = Array.from(
       new Set([primaryCategory, 'words', 'phrases', 'examples', 'numbers', 'time'])
@@ -181,34 +181,34 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
 
         const audioPath = candidatePaths[index];
         if (audioRef.current) {
-          audioRef.current.pause();
-          audioRef.current.src = '';
           audioRef.current.onended = null;
           audioRef.current.onerror = null;
+          audioRef.current.pause();
+          audioRef.current.src = '';
         }
 
-        audioRef.current = new Audio(audioPath);
-        audioRef.current.preload = 'auto';
+        const audio = new Audio(audioPath);
+        audio.preload = 'auto';
+        audioRef.current = audio;
         audioPathRef.current = audioPath;
 
-        audioRef.current.onended = () => {
+        let advanced = false;
+        const advanceToNext = () => {
+          if (advanced || !isMounted.current) return;
+          advanced = true;
+          tryPlayCandidate(index + 1);
+        };
+
+        audio.onended = () => {
           if (isMounted.current) {
             setIsPlaying(false);
           }
         };
 
-        audioRef.current.onerror = () => {
-          if (isMounted.current) {
-            tryPlayCandidate(index + 1);
-          }
-        };
+        audio.onerror = advanceToNext;
 
-        audioRef.current.playbackRate = speechSpeed;
-        audioRef.current.play().catch(() => {
-          if (isMounted.current) {
-            tryPlayCandidate(index + 1);
-          }
-        });
+        audio.playbackRate = speechSpeed;
+        audio.play().catch(advanceToNext);
       };
 
       tryPlayCandidate(0);
