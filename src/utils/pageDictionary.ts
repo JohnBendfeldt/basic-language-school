@@ -46,6 +46,26 @@ export const getPageContent = (
             title: 'Alphabet anglais',
             subtitle: '26 lettres avec guides de prononciation, exemples de vocabulaire et audio natif'
           };
+        case 'pt':
+          return {
+            title: 'Alfabeto inglês',
+            subtitle: '26 letras com guias de pronúncia, vocabulário de exemplo e áudio nativo'
+          };
+        case 'de':
+          return {
+            title: 'Englisches Alphabet',
+            subtitle: '26 Buchstaben mit Aussprachehilfen, Beispielwörtern und Studio-Audio'
+          };
+        case 'id':
+          return {
+            title: 'Alfabet Bahasa Inggris',
+            subtitle: '26 huruf dengan panduan pelafalan, contoh kosakata, dan audio studio asli'
+          };
+        case 'tr':
+          return {
+            title: 'İngilizce Alfabesi',
+            subtitle: 'Telaffuz rehberi, örnek kelimeler ve stüdyo sesiyle 26 harf'
+          };
         case 'en':
         default:
           return {
@@ -72,6 +92,26 @@ export const getPageContent = (
             title: 'Alphabet russe (cyrillique)',
             subtitle: '33 lettres avec guides de prononciation, mots d\'exemple et audio de studio'
           };
+        case 'pt':
+          return {
+            title: 'Alfabeto russo (cirílico)',
+            subtitle: '33 letras com guias de pronúncia, palavras de exemplo e áudio nativo'
+          };
+        case 'de':
+          return {
+            title: 'Russisches Alphabet (Kyrillisch)',
+            subtitle: '33 Buchstaben mit Aussprachehilfen, Beispielwörtern und Studio-Audio'
+          };
+        case 'id':
+          return {
+            title: 'Alfabet Rusia (Sirilik)',
+            subtitle: '33 huruf dengan panduan pelafalan, kata contoh, dan audio studio'
+          };
+        case 'tr':
+          return {
+            title: 'Rus Alfabesi (Kiril)',
+            subtitle: 'Telaffuz rehberi, örnek kelimeler ve stüdyo sesiyle 33 harf'
+          };
         case 'en':
         default:
           return {
@@ -97,6 +137,26 @@ export const getPageContent = (
           return {
             title: 'Alphabet espagnol',
             subtitle: '27 lettres avec guides de prononciation, vocabulaire et audio natif'
+          };
+        case 'pt':
+          return {
+            title: 'Alfabeto espanhol',
+            subtitle: '27 letras com guias de pronúncia, vocabulário e áudio nativo'
+          };
+        case 'de':
+          return {
+            title: 'Spanisches Alphabet',
+            subtitle: '27 Buchstaben mit Aussprachehilfen, Beispielwörtern und Studio-Audio'
+          };
+        case 'id':
+          return {
+            title: 'Alfabet Bahasa Spanyol',
+            subtitle: '27 huruf dengan panduan pelafalan, kosakata contoh, dan audio studio'
+          };
+        case 'tr':
+          return {
+            title: 'İspanyolca Alfabesi',
+            subtitle: 'Telaffuz rehberi, örnek kelimeler ve stüdyo sesiyle 27 harf'
           };
         case 'en':
         default:
@@ -134,6 +194,16 @@ export const getPageContent = (
             title: 'Französisches Alphabet',
             subtitle: '26 Buchstaben mit Aussprachehilfen, Beispielwörtern und Studio-Audio'
           };
+        case 'id':
+          return {
+            title: 'Alfabet Bahasa Prancis',
+            subtitle: '26 huruf dengan panduan pelafalan, kosakata contoh, dan audio studio'
+          };
+        case 'tr':
+          return {
+            title: 'Fransızca Alfabesi',
+            subtitle: 'Telaffuz rehberi, örnek kelimeler ve stüdyo sesiyle 26 harf'
+          };
         case 'en':
         default:
           return {
@@ -169,6 +239,16 @@ export const getPageContent = (
           return {
             title: 'Portugiesisches Alphabet',
             subtitle: '27 Buchstaben mit Aussprachehilfen, Beispielwörtern und Studio-Audio'
+          };
+        case 'id':
+          return {
+            title: 'Alfabet Bahasa Portugis',
+            subtitle: '27 huruf dengan panduan pelafalan, contoh kosakata, dan audio studio asli'
+          };
+        case 'tr':
+          return {
+            title: 'Portekizce Alfabesi',
+            subtitle: 'Telaffuz rehberi, örnek kelimeler ve stüdyo sesiyle 27 harf'
           };
         case 'en':
         default:
@@ -339,6 +419,14 @@ export const getPageContent = (
           return { title: 'Frases básicas en inglés', subtitle: subtitleByBase.es };
         case 'fr':
           return { title: 'Phrases de base en anglais', subtitle: subtitleByBase.fr };
+        case 'pt':
+          return { title: 'Frases essenciais em inglês', subtitle: subtitleByBase.pt };
+        case 'de':
+          return { title: 'Wichtige englische Sätze', subtitle: subtitleByBase.de };
+        case 'id':
+          return { title: 'Frasa Dasar Bahasa Inggris', subtitle: subtitleByBase.id };
+        case 'tr':
+          return { title: 'Temel İngilizce İfadeler', subtitle: subtitleByBase.tr };
         case 'en':
         default:
           return { title: 'Essential English Phrases & Greetings', subtitle: subtitleByBase.en };
@@ -353,6 +441,14 @@ export const getPageContent = (
           return { title: 'Frases básicas en ruso', subtitle: subtitleByBase.es };
         case 'fr':
           return { title: 'Phrases de base en russe', subtitle: subtitleByBase.fr };
+        case 'pt':
+          return { title: 'Frases básicas em russo', subtitle: subtitleByBase.pt };
+        case 'de':
+          return { title: 'Wichtige russische Sätze', subtitle: subtitleByBase.de };
+        case 'id':
+          return { title: 'Frasa Dasar Bahasa Rusia', subtitle: subtitleByBase.id };
+        case 'tr':
+          return { title: 'Temel Rusça İfadeler', subtitle: subtitleByBase.tr };
         case 'en':
         default:
           return { title: 'Basic Russian Phrases & Greetings', subtitle: subtitleByBase.en };
@@ -367,6 +463,14 @@ export const getPageContent = (
           return { title: 'Frases básicas en español', subtitle: subtitleByBase.es };
         case 'fr':
           return { title: 'Phrases de base en espagnol', subtitle: subtitleByBase.fr };
+        case 'pt':
+          return { title: 'Frases básicas em espanhol', subtitle: subtitleByBase.pt };
+        case 'de':
+          return { title: 'Wichtige spanische Sätze', subtitle: subtitleByBase.de };
+        case 'id':
+          return { title: 'Frasa Dasar Bahasa Spanyol', subtitle: subtitleByBase.id };
+        case 'tr':
+          return { title: 'Temel İspanyolca İfadeler', subtitle: subtitleByBase.tr };
         case 'en':
         default:
           return { title: 'Basic Spanish Phrases & Greetings', subtitle: subtitleByBase.en };
@@ -385,6 +489,10 @@ export const getPageContent = (
           return { title: 'Frases essenciais em francês', subtitle: subtitleByBase.pt };
         case 'de':
           return { title: 'Wichtige französische Sätze', subtitle: subtitleByBase.de };
+        case 'id':
+          return { title: 'Frasa Dasar Bahasa Prancis', subtitle: subtitleByBase.id };
+        case 'tr':
+          return { title: 'Temel Fransızca İfadeler', subtitle: subtitleByBase.tr };
         case 'en':
         default:
           return { title: 'French Essential Phrases', subtitle: subtitleByBase.en };
@@ -403,6 +511,10 @@ export const getPageContent = (
           return { title: 'Frases básicas em português', subtitle: subtitleByBase.pt };
         case 'de':
           return { title: 'Wichtige portugiesische Sätze', subtitle: subtitleByBase.de };
+        case 'id':
+          return { title: 'Frasa Dasar Bahasa Portugis', subtitle: subtitleByBase.id };
+        case 'tr':
+          return { title: 'Temel Portekizce İfadeler', subtitle: subtitleByBase.tr };
         case 'en':
         default:
           return { title: 'Essential Portuguese Phrases & Greetings', subtitle: subtitleByBase.en };
@@ -497,6 +609,14 @@ export const getPageContent = (
           return { title: 'Palabras comunes en inglés', subtitle: subtitleByBase.es };
         case 'fr':
           return { title: 'Mots courants en anglais', subtitle: subtitleByBase.fr };
+        case 'pt':
+          return { title: 'Palavras comuns em inglês', subtitle: subtitleByBase.pt };
+        case 'de':
+          return { title: 'Häufige englische Wörter', subtitle: subtitleByBase.de };
+        case 'id':
+          return { title: 'Kosakata & Kata Umum Bahasa Inggris', subtitle: subtitleByBase.id };
+        case 'tr':
+          return { title: 'Yaygın İngilizce Kelimeler', subtitle: subtitleByBase.tr };
         case 'en':
         default:
           return { title: 'Common English Words & High-Frequency Vocabulary', subtitle: subtitleByBase.en };
@@ -511,6 +631,14 @@ export const getPageContent = (
           return { title: 'Palabras comunes en ruso', subtitle: subtitleByBase.es };
         case 'fr':
           return { title: 'Mots courants en russe', subtitle: subtitleByBase.fr };
+        case 'pt':
+          return { title: 'Palavras comuns em russo', subtitle: subtitleByBase.pt };
+        case 'de':
+          return { title: 'Häufige russische Wörter', subtitle: subtitleByBase.de };
+        case 'id':
+          return { title: 'Kosakata & Kata Umum Bahasa Rusia', subtitle: subtitleByBase.id };
+        case 'tr':
+          return { title: 'Yaygın Rusça Kelimeler', subtitle: subtitleByBase.tr };
         case 'en':
         default:
           return { title: 'Common Russian Words & Vocabulary', subtitle: subtitleByBase.en };
@@ -525,6 +653,14 @@ export const getPageContent = (
           return { title: 'Palabras comunes en español', subtitle: subtitleByBase.es };
         case 'fr':
           return { title: 'Mots courants en espagnol', subtitle: subtitleByBase.fr };
+        case 'pt':
+          return { title: 'Palavras comuns em espanhol', subtitle: subtitleByBase.pt };
+        case 'de':
+          return { title: 'Häufige spanische Wörter', subtitle: subtitleByBase.de };
+        case 'id':
+          return { title: 'Kosakata & Kata Umum Bahasa Spanyol', subtitle: subtitleByBase.id };
+        case 'tr':
+          return { title: 'Yaygın İspanyolca Kelimeler', subtitle: subtitleByBase.tr };
         case 'en':
         default:
           return { title: 'Common Spanish Words & Vocabulary', subtitle: subtitleByBase.en };
@@ -543,6 +679,10 @@ export const getPageContent = (
           return { title: 'Palavras comuns em francês', subtitle: subtitleByBase.pt };
         case 'de':
           return { title: 'Häufige französische Wörter', subtitle: subtitleByBase.de };
+        case 'id':
+          return { title: 'Kosakata & Kata Umum Bahasa Prancis', subtitle: subtitleByBase.id };
+        case 'tr':
+          return { title: 'Yaygın Fransızca Kelimeler', subtitle: subtitleByBase.tr };
         case 'en':
         default:
           return { title: 'Common French Words & Vocabulary', subtitle: subtitleByBase.en };
@@ -561,6 +701,10 @@ export const getPageContent = (
           return { title: 'Palavras comuns em português', subtitle: subtitleByBase.pt };
         case 'de':
           return { title: 'Häufige portugiesische Wörter', subtitle: subtitleByBase.de };
+        case 'id':
+          return { title: 'Kosakata & Kata Umum Bahasa Portugis', subtitle: subtitleByBase.id };
+        case 'tr':
+          return { title: 'Yaygın Portekizce Kelimeler', subtitle: subtitleByBase.tr };
         case 'en':
         default:
           return { title: 'Common Portuguese Words & Vocabulary', subtitle: subtitleByBase.en };
@@ -691,6 +835,10 @@ export const getPageContent = (
           return { title: 'Números em português (0–1.000)', subtitle: 'Números cardinais com pronúncia nativa' };
         case 'de':
           return { title: 'Portugiesische Zahlen (0–1.000)', subtitle: 'Grundzahlen mit muttersprachlicher Aussprache' };
+        case 'id':
+          return { title: 'Angka Bahasa Portugis (0–1.000)', subtitle: 'Angka kardinal dari nol hingga seribu dengan pelafalan asli' };
+        case 'tr':
+          return { title: 'Portekizce Sayılar (0–1.000)', subtitle: 'Sıfırdan bine kadar temel sayılar ve telaffuzları' };
         case 'en':
         default:
           return { title: 'Portuguese Numbers (0–1,000)', subtitle: 'Cardinal numbers from zero to one thousand with native pronunciation' };
@@ -709,6 +857,10 @@ export const getPageContent = (
           return { title: 'Números em alemão (0–1.000)', subtitle: 'Números cardinais com pronúncia nativa' };
         case 'de':
           return { title: 'Deutsche Zahlen (0–1.000)', subtitle: 'Grundzahlen von null bis tausend mit Studio-Audio' };
+        case 'id':
+          return { title: 'Angka Bahasa Jerman (0–1.000)', subtitle: 'Angka kardinal dari nol hingga seribu dengan pelafalan asli' };
+        case 'tr':
+          return { title: 'Almanca Sayılar (0–1.000)', subtitle: 'Sıfırdan bine kadar temel sayılar ve telaffuzları' };
         case 'en':
         default:
           return { title: 'German Numbers (0–1,000)', subtitle: 'Cardinal numbers from zero to one thousand with native pronunciation' };
@@ -722,6 +874,14 @@ export const getPageContent = (
           return { title: 'Números en inglés (0–1.000)', subtitle: 'Números cardinales con pronunciación nativa' };
         case 'fr':
           return { title: 'Nombres en anglais (0–1 000)', subtitle: 'Nombres cardinaux avec prononciation native' };
+        case 'pt':
+          return { title: 'Números em inglês (0–1.000)', subtitle: 'Números cardinais com pronúncia nativa' };
+        case 'de':
+          return { title: 'Englische Zahlen (0–1.000)', subtitle: 'Grundzahlen von null bis tausend mit Studio-Audio' };
+        case 'id':
+          return { title: 'Angka Bahasa Inggris (0–1.000)', subtitle: 'Angka kardinal dari nol hingga seribu dengan pelafalan asli' };
+        case 'tr':
+          return { title: 'İngilizce Sayılar (0–1.000)', subtitle: 'Sıfırdan bine kadar temel sayılar ve telaffuzları' };
         case 'en':
         default:
           return { title: 'English Numbers (0–1,000)', subtitle: 'Cardinal numbers from zero to one thousand with native pronunciation' };
@@ -736,6 +896,14 @@ export const getPageContent = (
           return { title: 'Números en ruso (0–1.000)', subtitle: 'Números cardinales de cero a mil con pronunciación nativa' };
         case 'fr':
           return { title: 'Nombres en russe (0–1 000)', subtitle: 'Nombres cardinaux avec prononciation native' };
+        case 'pt':
+          return { title: 'Números em russo (0–1.000)', subtitle: 'Números cardinais de zero a mil com pronúncia nativa' };
+        case 'de':
+          return { title: 'Russische Zahlen (0–1.000)', subtitle: 'Grundzahlen von null bis tausend mit Studio-Audio' };
+        case 'id':
+          return { title: 'Angka Bahasa Rusia (0–1.000)', subtitle: 'Angka kardinal dari nol hingga seribu dengan pelafalan asli' };
+        case 'tr':
+          return { title: 'Rusça Sayılar (0–1.000)', subtitle: 'Sıfırdan bine kadar temel sayılar ve telaffuzları' };
         case 'en':
         default:
           return { title: 'Russian Numbers (0–1,000)', subtitle: 'Cardinal numbers from zero to one thousand with native pronunciation' };
@@ -750,6 +918,14 @@ export const getPageContent = (
           return { title: 'Números en español (0–1.000)', subtitle: 'Números cardinales con pronunciación nativa' };
         case 'fr':
           return { title: 'Nombres en espagnol (0–1 000)', subtitle: 'Nombres cardinaux avec prononciation native' };
+        case 'pt':
+          return { title: 'Números em espanhol (0–1.000)', subtitle: 'Números cardinales com pronúncia nativa' };
+        case 'de':
+          return { title: 'Spanische Zahlen (0–1.000)', subtitle: 'Grundzahlen von null bis tausend mit Studio-Audio' };
+        case 'id':
+          return { title: 'Angka Bahasa Spanyol (0–1.000)', subtitle: 'Angka kardinal dari nol hingga seribu dengan pelafalan asli' };
+        case 'tr':
+          return { title: 'İspanyolca Sayılar (0–1.000)', subtitle: 'Sıfırdan bine kadar temel sayılar ve telaffuzları' };
         case 'en':
         default:
           return { title: 'Spanish Numbers (0–1,000)', subtitle: 'Cardinal numbers from zero to one thousand with native pronunciation' };
@@ -764,6 +940,14 @@ export const getPageContent = (
           return { title: 'Números en francés (0–1.000)', subtitle: 'Números cardinales con pronunciación nativa' };
         case 'fr':
           return { title: 'Nombres en français (0–1 000)', subtitle: 'Nombres cardinaux avec prononciation native' };
+        case 'pt':
+          return { title: 'Nombres en français (0–1 000)', subtitle: 'Nombres cardinaux avec prononciation native' };
+        case 'de':
+          return { title: 'Französische Zahlen (0–1.000)', subtitle: 'Grundzahlen von null bis tausend mit Studio-Audio' };
+        case 'id':
+          return { title: 'Angka Bahasa Prancis (0–1.000)', subtitle: 'Angka kardinal dari nol hingga seribu dengan pelafalan asli' };
+        case 'tr':
+          return { title: 'Fransızca Sayılar (0–1.000)', subtitle: 'Sıfırdan bine kadar temel sayılar ve telaffuzları' };
         case 'en':
         default:
           return { title: 'French Numbers (0–1,000)', subtitle: 'Cardinal numbers from zero to one thousand with native pronunciation' };
@@ -781,6 +965,14 @@ export const getPageContent = (
           return { title: 'Cómo decir la hora en inglés', subtitle: 'Aprende horas, minutos y expresiones de tiempo cotidianas' };
         case 'fr':
           return { title: 'Dire l\'heure en anglais', subtitle: 'Heures, minutes et expressions de temps quotidiennes' };
+        case 'pt':
+          return { title: 'Como dizer as horas em inglês', subtitle: 'Aprenda horas, minutos e expressões de tempo cotidianas' };
+        case 'de':
+          return { title: 'Uhrzeit auf Englisch & Ausdrücke', subtitle: 'Stunden, Minuten und alltägliche Zeitausdrücke' };
+        case 'id':
+          return { title: 'Waktu & Jam dalam Bahasa Inggris', subtitle: 'Pelajari jam, menit, dan ungkapan waktu sehari-hari' };
+        case 'tr':
+          return { title: 'İngilizce Saatler ve Zaman İfadeleri', subtitle: 'Saatleri, dakikaları ve günlük zaman ifadelerini öğrenin' };
         case 'en':
         default:
           return { title: 'English Telling Time & Expressions', subtitle: 'Learn hours, minutes, and essential daily time expressions' };
@@ -795,6 +987,14 @@ export const getPageContent = (
           return { title: 'La hora en ruso y expresiones', subtitle: 'Aprende horas, minutos y expresiones de tiempo cotidianas' };
         case 'fr':
           return { title: 'Dire l\'heure en russe et expressions', subtitle: 'Heures, minutes et expressions de temps quotidiennes' };
+        case 'pt':
+          return { title: 'As horas em russo e expressões', subtitle: 'Aprenda horas, minutos e expressões de tempo cotidianas' };
+        case 'de':
+          return { title: 'Uhrzeit auf Russisch & Ausdrücke', subtitle: 'Stunden, Minuten und alltägliche Zeitausdrücke' };
+        case 'id':
+          return { title: 'Waktu dalam Bahasa Rusia', subtitle: 'Pelajari jam, menit, dan ungkapan waktu sehari-hari' };
+        case 'tr':
+          return { title: 'Rusça Saatler ve Zaman İfadeleri', subtitle: 'Saatleri, dakikaları ve günlük zaman ifadelerini öğrenin' };
         case 'en':
         default:
           return { title: 'Telling Time & Time Phrases', subtitle: 'Learn hours, minutes, and essential daily time expressions' };
@@ -809,6 +1009,14 @@ export const getPageContent = (
           return { title: 'La hora en español y expresiones', subtitle: 'Aprende horas, minutos y expresiones de tiempo cotidianas' };
         case 'fr':
           return { title: 'Dire l\'heure en espagnol et expressions', subtitle: 'Heures, minutes et expressions de temps quotidiennes' };
+        case 'pt':
+          return { title: 'As horas em espanhol e expressões', subtitle: 'Aprenda horas, minutos e expressões de tempo cotidianas' };
+        case 'de':
+          return { title: 'Uhrzeit auf Spanisch & Ausdrücke', subtitle: 'Stunden, Minuten und alltägliche Zeitausdrücke' };
+        case 'id':
+          return { title: 'Waktu dalam Bahasa Spanyol', subtitle: 'Pelajari jam, menit, dan ungkapan waktu sehari-hari' };
+        case 'tr':
+          return { title: 'İspanyolca Saatler ve Zaman İfadeleri', subtitle: 'Saatleri, dakikaları ve günlük zaman ifadelerini öğrenin' };
         case 'en':
         default:
           return { title: 'Spanish Telling Time & Expressions', subtitle: 'Learn hours, minutes, and essential daily time expressions' };
@@ -827,6 +1035,10 @@ export const getPageContent = (
           return { title: 'As horas em francês e expressões', subtitle: 'Aprenda horas, minutos e expressões de tempo cotidianas' };
         case 'de':
           return { title: 'Uhrzeit auf Französisch & Ausdrücke', subtitle: 'Stunden, Minuten und alltägliche Zeitausdrücke' };
+        case 'id':
+          return { title: 'Waktu dalam Bahasa Prancis', subtitle: 'Pelajari jam, menit, dan ungkapan waktu sehari-hari' };
+        case 'tr':
+          return { title: 'Fransızca Saatler ve Zaman İfadeleri', subtitle: 'Saatleri, dakikaları ve günlük zaman ifadelerini öğrenin' };
         case 'en':
         default:
           return { title: 'French Telling Time & Expressions', subtitle: 'Learn hours, minutes, and essential daily time expressions' };
@@ -845,6 +1057,10 @@ export const getPageContent = (
           return { title: 'Como dizer as horas em português', subtitle: 'Aprenda horas, minutos e expressões de tempo cotidianas' };
         case 'de':
           return { title: 'Uhrzeit auf Portugiesisch & Ausdrücke', subtitle: 'Stunden, Minuten und alltägliche Zeitausdrücke' };
+        case 'id':
+          return { title: 'Waktu dalam Bahasa Portugis', subtitle: 'Pelajari jam, menit, dan ungkapan waktu sehari-hari' };
+        case 'tr':
+          return { title: 'Portekizce Saatler ve Zaman İfadeleri', subtitle: 'Saatleri, dakikaları ve günlük zaman ifadelerini öğrenin' };
         case 'en':
         default:
           return { title: 'Portuguese Telling Time & Expressions', subtitle: 'Learn hours, minutes, and essential daily time expressions' };
@@ -1091,6 +1307,154 @@ export const getEnglishTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
         ],
         footerHint: 'Toutes les expressions incluent un audio de studio haute qualité !'
       };
+    case 'pt':
+      return {
+        headerTitle: 'Regras para dizer as horas em inglês',
+        rules: [
+          {
+            ruleBadge: 'Regra 1',
+            title: 'O\'clock e horas em ponto',
+            desc: 'Usado estritamente na hora quando não há minutos:',
+            items: [
+              { label: '2:00', text: 'Two o\'clock (Duas em ponto)' },
+              { label: '7:00', text: 'Seven o\'clock (Sete em ponto)' },
+              { label: '12:00', text: 'Noon (Meio-dia) / Midnight (Meia-noite)' }
+            ]
+          },
+          {
+            ruleBadge: 'Regra 2',
+            title: 'Past e To (frações de hora)',
+            desc: 'Past = minutos passados da hora; To = minutos que faltam para a próxima:',
+            items: [
+              { label: ':15', text: 'Quarter past (E quinze): Quarter past two = 2:15' },
+              { label: ':30', text: 'Half past (E meia): Half past two = 2:30' },
+              { label: ':45', text: 'Quarter to (Quinze para as): Quarter to three = 2:45' }
+            ]
+          },
+          {
+            ruleBadge: 'Regra 3',
+            title: 'AM vs PM (formato 12 horas)',
+            desc: 'O inglês usa o formato de 12 horas com divisões do dia:',
+            items: [
+              { label: 'AM', text: 'Manhã (da meia-noite até 11:59 AM)' },
+              { label: 'PM', text: 'Tarde e noite (do meio-dia até 11:59 PM)' },
+              { label: 'Pergunta', text: '«What time is it?» — Que horas são?' }
+            ]
+          }
+        ],
+        footerHint: 'Todas as expressões incluem áudio de estúdio de alta qualidade!'
+      };
+    case 'de':
+      return {
+        headerTitle: 'Regeln für die Uhrzeit im Englischen',
+        rules: [
+          {
+            ruleBadge: 'Regel 1',
+            title: 'O\'clock & Volle Stunden',
+            desc: 'Wird nur zur vollen Stunde ohne Minuten verwendet:',
+            items: [
+              { label: '2:00', text: 'Two o\'clock (Zwei Uhr)' },
+              { label: '7:00', text: 'Seven o\'clock (Sieben Uhr)' },
+              { label: '12:00', text: 'Noon (Mittag) / Midnight (Mitternacht)' }
+            ]
+          },
+          {
+            ruleBadge: 'Regel 2',
+            title: 'Past & To (Minuten vor und nach)',
+            desc: 'Past = nach der vollen Stunde; To = vor der nächsten Stunde:',
+            items: [
+              { label: ':15', text: 'Quarter past (Viertel nach): Quarter past two = 2:15' },
+              { label: ':30', text: 'Half past (Halb nach): Half past two = 2:30' },
+              { label: ':45', text: 'Quarter to (Viertel vor): Quarter to three = 2:45' }
+            ]
+          },
+          {
+            ruleBadge: 'Regel 3',
+            title: 'AM vs PM (12-Stunden-Format)',
+            desc: 'Im Englischen wird das 12-Stunden-Format verwendet:',
+            items: [
+              { label: 'AM', text: 'Morgen/Vormittag (00:00 bis 11:59 Uhr)' },
+              { label: 'PM', text: 'Nachmittag/Abend (12:00 bis 23:59 Uhr)' },
+              { label: 'Frage', text: '«What time is it?» — Wie spät ist es?' }
+            ]
+          }
+        ],
+        footerHint: 'Alle Ausdrücke verfügen über klares Studio-Audio!'
+      };
+    case 'id':
+      return {
+        headerTitle: 'Aturan Menyatakan Waktu dalam Bahasa Inggris',
+        rules: [
+          {
+            ruleBadge: 'Aturan 1',
+            title: 'O\'clock & Jam Tepat',
+            desc: 'Digunakan khusus untuk jam tepat tanpa menit tambahan:',
+            items: [
+              { label: '2:00', text: 'Two o\'clock (Tepat jam dua)' },
+              { label: '7:00', text: 'Seven o\'clock (Tepat jam tujuh)' },
+              { label: '12:00', text: 'Noon (Tengah hari) / Midnight (Tengah malam)' }
+            ]
+          },
+          {
+            ruleBadge: 'Aturan 2',
+            title: 'Past & To (Bagian dari Jam)',
+            desc: 'Past = lewat/lebih; To = kurang/menuju jam berikutnya:',
+            items: [
+              { label: ':15', text: 'Quarter past (Lewat seperempat): Quarter past two = 2:15' },
+              { label: ':30', text: 'Half past (Lewat setengah jam): Half past two = 2:30' },
+              { label: ':45', text: 'Quarter to (Kurang seperempat): Quarter to three = 2:45' }
+            ]
+          },
+          {
+            ruleBadge: 'Aturan 3',
+            title: 'AM vs PM (Format 12 Jam)',
+            desc: 'Bahasa Inggris menggunakan format 12 jam dengan pembagian waktu:',
+            items: [
+              { label: 'AM', text: 'Pagi & Dini hari (Tengah malam hingga 11:59 pagi)' },
+              { label: 'PM', text: 'Siang & Malam (12:00 siang hingga 11:59 malam)' },
+              { label: 'Pertanyaan', text: '«What time is it?» — Jam berapa sekarang?' }
+            ]
+          }
+        ],
+        footerHint: 'Semua angka dan ungkapan waktu dilengkapi audio studio asli!'
+      };
+    case 'tr':
+      return {
+        headerTitle: 'İngilizce Saat Söyleme Kuralları',
+        rules: [
+          {
+            ruleBadge: 'Kural 1',
+            title: 'O\'clock ve Tam Saatler',
+            desc: 'Dakika olmadan tam saatlerde kullanılır:',
+            items: [
+              { label: '2:00', text: 'Two o\'clock (Saat tam iki)' },
+              { label: '7:00', text: 'Seven o\'clock (Saat tam yedi)' },
+              { label: '12:00', text: 'Noon (Öğle) / Midnight (Gece yarısı)' }
+            ]
+          },
+          {
+            ruleBadge: 'Kural 2',
+            title: 'Past ve To (Geçe ve Kala)',
+            desc: 'Past = geçe (1–30 dk); To = kala (31–59 dk):',
+            items: [
+              { label: ':15', text: 'Quarter past (Çeyrek geçe): Quarter past two = 2:15' },
+              { label: ':30', text: 'Half past (Buçuk): Half past two = 2:30' },
+              { label: ':45', text: 'Quarter to (Çeyrek kala): Quarter to three = 2:45' }
+            ]
+          },
+          {
+            ruleBadge: 'Kural 3',
+            title: 'AM ve PM (12 Saatlik Format)',
+            desc: 'İngilizce günün dilimleriyle 12 saatlik formatı kullanır:',
+            items: [
+              { label: 'AM', text: 'Sabah (gece yarısından 11:59\'a kadar)' },
+              { label: 'PM', text: 'Öğleden sonra ve akşam (öğleden 23:59\'a kadar)' },
+              { label: 'Soru', text: '«What time is it?» — Saat kaç?' }
+            ]
+          }
+        ],
+        footerHint: 'Tüm sayılar ve zaman ifadeleri stüdyo ses kaydına sahiptir!'
+      };
     case 'en':
     default:
       return {
@@ -1250,6 +1614,158 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
           }
         ],
         footerHint: 'Все фразы озвучены студийным аудио. Нажмите на карточку, чтобы открыть перевод!'
+      };
+    case 'pt':
+      return {
+        headerTitle: 'Regras da hora em russo',
+        rules: [
+          {
+            ruleBadge: 'Regra 1',
+            title: 'Regra de 1 / 2–4 / 5+ horas',
+            desc: 'A palavra para «hora» muda conforme o número:',
+            items: [
+              { label: '1', text: 'один час (nominativo singular)' },
+              { label: '2, 3, 4', text: 'два, три, четыре часа (genitivo singular)' },
+              { label: '5–12', text: 'пять ... двенадцать часов (genitivo plural)' }
+            ]
+          },
+          {
+            ruleBadge: 'Regra 2',
+            title: 'Sem AM/PM — Momentos do dia',
+            desc: 'O russo especifica o momento do dia em vez de AM/PM:',
+            items: [
+              { label: 'утра', text: '8 часов утра (8:00 AM — manhã)' },
+              { label: 'дня', text: '2 часа дня (2:00 PM — tarde)' },
+              { label: 'вечера', text: '7 часов вечера (7:00 PM — noite)' },
+              { label: 'ночи', text: '2 часа ночи (2:00 AM — madrugada)' }
+            ]
+          },
+          {
+            ruleBadge: 'Regra 3',
+            title: 'Perguntar as horas',
+            desc: 'Formas naturais de perguntar que horas são:',
+            items: [
+              { label: 'Который час?', text: '«Que horas são?» (Mais comum)' },
+              { label: 'Сколько сейчас времени?', text: '«Quanto tempo é agora?»' },
+              { label: 'Во сколько?', text: '«A que horas?»' }
+            ]
+          }
+        ],
+        footerHint: 'Todas as expressões incluem áudio neural nativo de estúdio!'
+      };
+    case 'de':
+      return {
+        headerTitle: 'Grammatikregeln für die Uhrzeit im Russischen',
+        rules: [
+          {
+            ruleBadge: 'Regel 1',
+            title: 'Die 1 / 2–4 / 5+ Stunden-Regel',
+            desc: 'Das Wort für „Stunde“ ändert sich je nach Zahl:',
+            items: [
+              { label: '1', text: 'один час (Nominativ)' },
+              { label: '2, 3, 4', text: 'два, три, четыре часа (Genitiv Singular)' },
+              { label: '5–12', text: 'пять ... двенадцать часов (Genitiv Plural)' }
+            ]
+          },
+          {
+            ruleBadge: 'Regel 2',
+            title: 'Kein AM/PM — Tageszeiten',
+            desc: 'Im Russischen wird die Tageszeit statt AM/PM angegeben:',
+            items: [
+              { label: 'утра', text: '8 часов утра (8 Uhr morgens)' },
+              { label: 'дня', text: '2 часа дня (14 Uhr nachmittags)' },
+              { label: 'вечера', text: '7 часов вечера (19 Uhr abends)' },
+              { label: 'ночи', text: '2 часа ночи (2 Uhr nachts)' }
+            ]
+          },
+          {
+            ruleBadge: 'Regel 3',
+            title: 'Nach der Uhrzeit fragen',
+            desc: 'Natürliche Fragen nach der Uhrzeit:',
+            items: [
+              { label: 'Который час?', text: '„Wie spät ist es?“ (Am gebräuchlichsten)' },
+              { label: 'Сколько сейчас времени?', text: '„Wie viel Zeit ist es jetzt?“' },
+              { label: 'Во сколько?', text: '„Um wie viel Uhr?“' }
+            ]
+          }
+        ],
+        footerHint: 'Alle Sätze verfügen über muttersprachliches russisches Audio!'
+      };
+    case 'id':
+      return {
+        headerTitle: 'Aturan Tata Bahasa Waktu dalam Bahasa Rusia',
+        rules: [
+          {
+            ruleBadge: 'Aturan 1',
+            title: 'Aturan 1 / 2–4 / 5+ Jam',
+            desc: 'Kata untuk "jam" berubah sesuai angka:',
+            items: [
+              { label: '1', text: 'один час (nominatif tunggal)' },
+              { label: '2, 3, 4', text: 'два, три, четыре часа (genitif tunggal)' },
+              { label: '5–12', text: 'пять ... двенадцать часов (genitif jamak)' }
+            ]
+          },
+          {
+            ruleBadge: 'Aturan 2',
+            title: 'Tanpa AM/PM — Bagian Hari',
+            desc: 'Bahasa Rusia menyebutkan bagian waktu hari daripada AM/PM:',
+            items: [
+              { label: 'утра', text: '8 часов утра (jam 8 pagi)' },
+              { label: 'дня', text: '2 часа дня (jam 2 siang)' },
+              { label: 'вечера', text: '7 часов вечера (jam 7 malam)' },
+              { label: 'ночи', text: '2 часа ночи (jam 2 dini hari)' }
+            ]
+          },
+          {
+            ruleBadge: 'Aturan 3',
+            title: 'Menanyakan Waktu',
+            desc: 'Cara alami menanyakan jam berapa sekarang:',
+            items: [
+              { label: 'Который час?', text: '«Jam berapa sekarang?» (Paling sering)' },
+              { label: 'Сколько сейчас времени?', text: '«Berapa waktu sekarang?»' },
+              { label: 'Во сколько?', text: '«Pada jam berapa?»' }
+            ]
+          }
+        ],
+        footerHint: 'Semua rekaman dilengkapi audio studio asli penutur Rusia!'
+      };
+    case 'tr':
+      return {
+        headerTitle: 'Rusça Saat Söyleme Kuralları',
+        rules: [
+          {
+            ruleBadge: 'Kural 1',
+            title: '1 / 2–4 / 5+ Saat Kuralı',
+            desc: '«Saat» kelimesi sayıya göre değişir:',
+            items: [
+              { label: '1', text: 'один час (yalın tekil)' },
+              { label: '2, 3, 4', text: 'два, три, четыре часа (ilgi tekil)' },
+              { label: '5–12', text: 'пять ... двенадцать часов (ilgi çoğul)' }
+            ]
+          },
+          {
+            ruleBadge: 'Kural 2',
+            title: 'AM/PM Yok — Günün Zamanı',
+            desc: 'Rusça AM/PM yerine günün vaktini belirtir:',
+            items: [
+              { label: 'утра', text: '8 часов утра (sabah 8)' },
+              { label: 'дня', text: '2 часа дня (öğleden sonra 2)' },
+              { label: 'вечера', text: '7 часов вечера (akşam 7)' },
+              { label: 'ночи', text: '2 часа ночи (gece 2)' }
+            ]
+          },
+          {
+            ruleBadge: 'Kural 3',
+            title: 'Saati Sorma',
+            desc: 'Saati sormanın doğal yolları:',
+            items: [
+              { label: 'Который час?', text: '«Saat kaç?» (En yaygın)' },
+              { label: 'Сколько сейчас времени?', text: '«Şu an saat kaç?»' },
+              { label: 'Во сколько?', text: '«Saat kaçta?»' }
+            ]
+          }
+        ],
+        footerHint: 'Tüm ifadeler stüdyo kalitesinde Rusça nöral ses içerir!'
       };
     case 'en':
     default:

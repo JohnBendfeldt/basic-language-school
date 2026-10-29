@@ -97,4 +97,34 @@ describe('MobileDrawer Component', () => {
     expect(screen.getByRole('dialog', { name: /settings and options menu/i })).toBeInTheDocument();
     expect(screen.getByText('Personal Study Dashboard')).toBeInTheDocument();
   });
+
+  it('triggers AuthModal and dismisses drawer when clicking Sign In & Sync', () => {
+    const handleClose = vi.fn();
+    render(
+      <LanguageProvider>
+        <MobileDrawer isOpen={true} onClose={handleClose} onNavigate={vi.fn()} />
+      </LanguageProvider>
+    );
+
+    const signInBtn = screen.getByRole('button', { name: /sign in/i });
+    fireEvent.click(signInBtn);
+
+    expect(handleClose).toHaveBeenCalledTimes(1);
+    expect(screen.getByRole('heading', { name: /sync your learning progress/i })).toBeInTheDocument();
+  });
+
+  it('triggers ProgressModal and dismisses drawer when clicking My Learning Progress', () => {
+    const handleClose = vi.fn();
+    render(
+      <LanguageProvider>
+        <MobileDrawer isOpen={true} onClose={handleClose} onNavigate={vi.fn()} />
+      </LanguageProvider>
+    );
+
+    const progressCard = screen.getByText('My Learning Progress').closest('[role="button"]')!;
+    fireEvent.click(progressCard);
+
+    expect(handleClose).toHaveBeenCalledTimes(1);
+    expect(screen.getByRole('heading', { name: /your learning progress/i })).toBeInTheDocument();
+  });
 });

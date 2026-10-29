@@ -3932,7 +3932,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2000;
+  z-index: 3500;
   padding: 1.5rem;
   overflow-y: auto;
   overscroll-behavior: contain;

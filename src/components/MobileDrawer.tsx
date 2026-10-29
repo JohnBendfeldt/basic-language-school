@@ -99,7 +99,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
+  if (!isOpen && !authModalOpen && !progressModalOpen) return null;
 
   const handleSignOut = async () => {
     await signOutUser();
@@ -107,10 +107,12 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
   };
 
   const handleOpenProgress = () => {
+    onClose();
     setProgressModalOpen(true);
   };
 
   const handleOpenAuth = () => {
+    onClose();
     setAuthModalOpen(true);
   };
 
@@ -121,14 +123,15 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
 
   return (
     <>
-      <div className="mobile-drawer-backdrop" onClick={onClose} role="presentation">
-        <aside
-          className="mobile-drawer-panel"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Settings and options menu"
-          onClick={(e) => e.stopPropagation()}
-        >
+      {isOpen && (
+        <div className="mobile-drawer-backdrop" onClick={onClose} role="presentation">
+          <aside
+            className="mobile-drawer-panel"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Settings and options menu"
+            onClick={(e) => e.stopPropagation()}
+          >
           {/* Drawer Top Header */}
           <div className="mobile-drawer-header">
             <div className="drawer-app-identity">
@@ -314,6 +317,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
           </div>
         </aside>
       </div>
+      )}
 
       {/* Nested Modals triggered from Drawer */}
       <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
