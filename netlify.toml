@@ -8,6 +8,24 @@
 
 # Force HTTPS and non-www
 [[redirects]]
+  from = "http://basiclanguage.school/*"
+  to = "https://basiclanguage.school/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.basiclanguage.school/*"
+  to = "https://basiclanguage.school/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.basiclanguage.school/*"
+  to = "https://basiclanguage.school/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "http://basicrussian.org/*"
   to = "https://basicrussian.org/:splat"
   status = 301
