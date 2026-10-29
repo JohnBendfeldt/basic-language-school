@@ -37,6 +37,7 @@ interface PhraseItem {
   target?: string;
   pronunciation?: string;
   category?: string;
+  level?: 1 | 2 | 3;
 }
 
 export type QuizCategoryFilter = 
@@ -134,6 +135,22 @@ export const getCategoryLabel = (id: QuizCategoryFilter, ui?: UIStrings, baseLan
   }
 };
 
+export type QuizLevelFilter = 'all' | 1 | 2 | 3;
+
+export interface QuizLevelInfo {
+  id: QuizLevelFilter;
+  label: string;
+  badge: string;
+  description: string;
+}
+
+export const ALL_QUIZ_LEVELS: QuizLevelInfo[] = [
+  { id: 'all', label: 'All Levels', badge: '🌟', description: 'Complete vocabulary pool across all levels' },
+  { id: 1, label: 'Level 1: Foundations', badge: '🌱', description: 'Core survival & daily tech essentials' },
+  { id: 2, label: 'Level 2: Workplace', badge: '💼', description: 'Office, operations & practical commerce' },
+  { id: 3, label: 'Level 3: Professional', badge: '🚀', description: 'Advanced business, finance & tech fluency' },
+];
+
 interface QuizProps {
   data: {
     alphabet?: AlphabetItem[];
@@ -151,6 +168,7 @@ interface QuestionDef {
   id: string;
   category: string;
   subCategoryKey?: QuizCategoryFilter | null;
+  level?: 1 | 2 | 3;
 }
 
 interface MissedWord {
@@ -213,6 +231,19 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     }
     return 'all';
   });
+
+  // Active Vocabulary Level Filter: 'all' | 1 | 2 | 3
+  const [activeLevel, setActiveLevel] = useState<QuizLevelFilter>(() => {
+    const saved = localStorage.getItem(`basic_quiz_level_${currentLanguage}`);
+    if (saved && ['all', '1', '2', '3'].includes(saved)) {
+      return saved === 'all' ? 'all' : (parseInt(saved, 10) as 1 | 2 | 3);
+    }
+    return 'all';
+  });
+
+  // In-session combo streak tracking
+  const [comboStreak, setComboStreak] = useState<number>(0);
+  const [maxComboStreak, setMaxComboStreak] = useState<number>(0);
 
   // Practice Modality Mode: 'writing' | 'listening' | 'all'
   const [quizMode, setQuizMode] = useState<QuizMode>(() => {
@@ -490,7 +521,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             isRussianToEnglish: true,
             id: `alphabet-${char}`,
             category: 'alphabet',
-            subCategoryKey: null
+            subCategoryKey: null,
+            level: 1
           });
         }
       });
@@ -503,20 +535,23 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           const target = item.russian || item.phrase || item.target || '';
           const meaning = item.english || item.meaning || item.translation || '';
           const subCat = mapToSubCategoryKey(item.category);
+          const itemLevel = item.level || 1;
           if (target && meaning) {
             questions.push({
               item,
               isRussianToEnglish: true,
               id: `${cat}-${target}-to-meaning`,
               category: cat,
-              subCategoryKey: subCat
+              subCategoryKey: subCat,
+              level: itemLevel
             });
             questions.push({
               item,
               isRussianToEnglish: false,
               id: `${cat}-${meaning}-to-target`,
               category: cat,
-              subCategoryKey: subCat
+              subCategoryKey: subCat,
+              level: itemLevel
             });
           }
         });
@@ -530,11 +565,18 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   const allCurriculumQuestions = useMemo(() => getAllQuestions(), [getAllQuestions]);
   const totalCurriculumQuestions = allCurriculumQuestions.length;
 
-  // Filter questions for the currently selected category
+  // Filter questions for the currently selected category & level
   const currentCategoryQuestions = useMemo(() => {
-    if (activeCategory === 'all') return allCurriculumQuestions;
-    return allCurriculumQuestions.filter(q => q.category === activeCategory || q.subCategoryKey === activeCategory);
-  }, [allCurriculumQuestions, activeCategory]);
+    let pool = allCurriculumQuestions;
+    if (activeCategory !== 'all') {
+      pool = pool.filter(q => q.category === activeCategory || q.subCategoryKey === activeCategory);
+    }
+    if (activeLevel !== 'all') {
+      const lvlPool = pool.filter(q => (q.level || 1) === activeLevel);
+      if (lvlPool.length > 0) pool = lvlPool;
+    }
+    return pool;
+  }, [allCurriculumQuestions, activeCategory, activeLevel]);
 
   const activeTotalQuestions = currentCategoryQuestions.length;
 
@@ -587,7 +629,26 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     return counts;
   }, [allCurriculumQuestions, masteredWordIds]);
 
-  const getRandomQuestion = useCallback((overrideMastered?: Set<string>, categoryOverride?: QuizCategoryFilter, modeOverride?: QuizMode) => {
+  // Per-level counts (total and mastered) for level badges and test gates
+  const levelCounts = useMemo(() => {
+    const counts: Record<1 | 2 | 3, { total: number; mastered: number }> = {
+      1: { total: 0, mastered: 0 },
+      2: { total: 0, mastered: 0 },
+      3: { total: 0, mastered: 0 }
+    };
+    allCurriculumQuestions.forEach(q => {
+      const lvl = (q.level || 1) as 1 | 2 | 3;
+      if (counts[lvl]) {
+        counts[lvl].total += 1;
+        if (masteredWordIds.has(q.id)) {
+          counts[lvl].mastered += 1;
+        }
+      }
+    });
+    return counts;
+  }, [allCurriculumQuestions, masteredWordIds]);
+
+  const getRandomQuestion = useCallback((overrideMastered?: Set<string>, categoryOverride?: QuizCategoryFilter, modeOverride?: QuizMode, levelOverride?: QuizLevelFilter) => {
     setUserAnswer('');
     setIsCorrect(null);
     setShowNext(false);
@@ -600,9 +661,15 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     try {
       const allQuestions = getAllQuestions();
       const targetCat = categoryOverride !== undefined ? categoryOverride : activeCategory;
-      const targetPool = targetCat === 'all'
+      const targetLvl = levelOverride !== undefined ? levelOverride : activeLevel;
+      let targetPool = targetCat === 'all'
         ? allQuestions
         : allQuestions.filter(q => q.category === targetCat || q.subCategoryKey === targetCat);
+
+      if (targetLvl !== 'all') {
+        const lvlPool = targetPool.filter(q => (q.level || 1) === targetLvl);
+        if (lvlPool.length > 0) targetPool = lvlPool;
+      }
 
       if (targetPool.length === 0) {
         setCurrentQuestion({
@@ -851,8 +918,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
   const handleNextQuestion = useCallback(() => {
     setSessionIndex(prev => prev + 1);
-    getRandomQuestion(undefined, activeCategory, quizMode);
-  }, [getRandomQuestion, activeCategory, quizMode]);
+    getRandomQuestion(undefined, activeCategory, quizMode, activeLevel);
+  }, [getRandomQuestion, activeCategory, quizMode, activeLevel]);
 
   const handleCompleteSession = useCallback(async () => {
     setIsSessionComplete(true);
@@ -870,11 +937,12 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     }
   }, [sessionScore, sessionGoal, activeCategory, currentLanguage]);
 
-  const startNewQuizSession = useCallback((newGoal?: number, newCategory?: QuizCategoryFilter, newMode?: QuizMode) => {
+  const startNewQuizSession = useCallback((newGoal?: number, newCategory?: QuizCategoryFilter, newMode?: QuizMode, newLevel?: QuizLevelFilter) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     const goal = newGoal !== undefined ? newGoal : sessionGoal;
     const cat = newCategory !== undefined ? newCategory : activeCategory;
     const mode = newMode !== undefined ? newMode : quizMode;
+    const lvl = newLevel !== undefined ? newLevel : activeLevel;
     if (newGoal !== undefined && newGoal !== sessionGoal) {
       setSessionGoal(goal);
       localStorage.setItem('russian_quiz_goal', goal.toString());
@@ -883,6 +951,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     setSessionIndex(1);
     setSessionScore(0);
     setSessionAnswered(0);
+    setComboStreak(0);
+    setMaxComboStreak(0);
     setMissedInSession([]);
     setIsSessionComplete(false);
     setShowNext(false);
@@ -897,8 +967,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       category: cat === 'all' ? 'mixed' : cat,
       isSaved: false
     };
-    getRandomQuestion(undefined, cat, mode);
-  }, [sessionGoal, activeCategory, quizMode, currentLanguage, getRandomQuestion]);
+    getRandomQuestion(undefined, cat, mode, lvl);
+  }, [sessionGoal, activeCategory, quizMode, activeLevel, currentLanguage, getRandomQuestion]);
 
   const handleCategoryChange = (newCategory: QuizCategoryFilter) => {
     if (newCategory === activeCategory) return;
@@ -906,7 +976,15 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     localStorage.setItem('russian_quiz_category', newCategory);
     localStorage.setItem(`basic_quiz_category_${currentLanguage}`, newCategory);
     askedQuestionsRef.current.clear();
-    startNewQuizSession(sessionGoal, newCategory, quizMode);
+    startNewQuizSession(sessionGoal, newCategory, quizMode, activeLevel);
+  };
+
+  const handleLevelChange = (newLevel: QuizLevelFilter) => {
+    if (newLevel === activeLevel) return;
+    setActiveLevel(newLevel);
+    localStorage.setItem(`basic_quiz_level_${currentLanguage}`, String(newLevel));
+    askedQuestionsRef.current.clear();
+    startNewQuizSession(sessionGoal, activeCategory, quizMode, newLevel);
   };
 
   const handleModeChange = (newMode: QuizMode) => {
@@ -915,7 +993,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     localStorage.setItem('basic_quiz_mode', newMode);
     localStorage.setItem(`basic_quiz_mode_${currentLanguage}`, newMode);
     askedQuestionsRef.current.clear();
-    startNewQuizSession(sessionGoal, activeCategory, newMode);
+    startNewQuizSession(sessionGoal, activeCategory, newMode, activeLevel);
   };
 
   const handleGoalChange = (newGoal: number) => {
@@ -1136,8 +1214,14 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
     if (isAnswerCorrect) {
       setSessionScore(newSessionScore);
+      setComboStreak(prev => {
+        const next = prev + 1;
+        setMaxComboStreak(m => Math.max(m, next));
+        return next;
+      });
       playSound(correctSoundRef.current, "correct");
     } else {
+      setComboStreak(0);
       playSound(incorrectSoundRef.current, "incorrect");
       setMissedInSession(prev => [
         ...prev,
@@ -1527,6 +1611,10 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                 <span className="stat-label">✅ Correct</span>
                 <span className="stat-value">{sessionScore}</span>
               </div>
+              <div className="recap-stat-card streak-stat">
+                <span className="stat-label">🔥 Best Streak</span>
+                <span className="stat-value">{maxComboStreak}</span>
+              </div>
               <div className="recap-stat-card highlight">
                 <span className="stat-label">🏆 Mastered</span>
                 <span className="stat-value">{activeMasteredCount} / {activeTotalQuestions}</span>
@@ -1536,6 +1624,16 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                 <span className="stat-value">{activeRemainingToMaster}</span>
               </div>
             </div>
+
+            {activeLevel !== 'all' && percentage >= 80 && (
+              <div className="level-checkpoint-banner" role="status">
+                <span className="checkpoint-icon">🎓</span>
+                <div className="checkpoint-text">
+                  <strong>Level {activeLevel} Checkpoint Passed!</strong>
+                  <span>You proved mastery on Level {activeLevel} vocabulary ({percentage}% accuracy). Keep pushing your streak!</span>
+                </div>
+              </div>
+            )}
 
             <p className="recap-save-notice">
               <FaCheckCircle className="notice-icon" /> Logged as 1 completed quiz in your learning progress
@@ -1705,6 +1803,35 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         </div>
       </div>
 
+      {/* Modern Horizontal Level Selector Bar */}
+      <div className="quiz-level-filter-bar" role="tablist" aria-label="Filter quiz by level">
+        <div className="level-filter-scroll">
+          {ALL_QUIZ_LEVELS.map(lvl => {
+            const isActive = activeLevel === lvl.id;
+            const countInfo = lvl.id === 'all'
+              ? { total: allCurriculumQuestions.length, mastered: masteredWordIds.size }
+              : levelCounts[lvl.id as 1 | 2 | 3];
+            return (
+              <button
+                key={String(lvl.id)}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                className={`level-filter-pill ${isActive ? 'active' : ''}`}
+                onClick={() => handleLevelChange(lvl.id)}
+                title={lvl.description}
+              >
+                <span className="level-badge" aria-hidden="true">{lvl.badge}</span>
+                <span className="level-label">{lvl.label}</span>
+                <span className="level-count-badge">
+                  {countInfo?.mastered ? `${countInfo.mastered}/${countInfo.total}` : (countInfo?.total || 0)}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Modern Horizontal Category Filter Bar */}
       <div className="quiz-category-filter-bar" role="tablist" aria-label="Filter quiz by category">
         <div className="category-section-label">Curriculum Modules</div>
@@ -1781,6 +1908,12 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           <div className="session-score-badge">
             <span>{ui.scoreLabel} <strong>{sessionScore}</strong> / {sessionAnswered}</span>
           </div>
+
+          {comboStreak >= 2 && (
+            <div className="session-streak-badge" aria-label={`Current streak: ${comboStreak}`}>
+              🔥 <strong>{comboStreak}</strong> in a row!
+            </div>
+          )}
 
           <div className="quiz-goal-selector" role="group" aria-label="Session question count">
             {[5, 10, 20].map(count => (

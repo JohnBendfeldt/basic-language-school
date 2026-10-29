@@ -1,7 +1,7 @@
 {
   "language": "ru",
   "voice": "ru-RU-SvetlanaNeural",
-  "generated": "2026-10-29T17:04:34.679942Z",
+  "generated": "2026-10-29T18:32:28.909809Z",
   "files": {
     "alphabet": [
       {
@@ -1343,6 +1343,346 @@
         "text": "скидка"
       },
       {
+        "filename": "ноутбук.mp3",
+        "path": "/audio/ru/words/ноутбук.mp3",
+        "text": "Ноутбук"
+      },
+      {
+        "filename": "планшет.mp3",
+        "path": "/audio/ru/words/планшет.mp3",
+        "text": "Планшет"
+      },
+      {
+        "filename": "клавиатура.mp3",
+        "path": "/audio/ru/words/клавиатура.mp3",
+        "text": "Клавиатура"
+      },
+      {
+        "filename": "мышь.mp3",
+        "path": "/audio/ru/words/мышь.mp3",
+        "text": "Мышь"
+      },
+      {
+        "filename": "зарядка.mp3",
+        "path": "/audio/ru/words/зарядка.mp3",
+        "text": "Зарядка"
+      },
+      {
+        "filename": "кабель.mp3",
+        "path": "/audio/ru/words/кабель.mp3",
+        "text": "Кабель"
+      },
+      {
+        "filename": "вайфай.mp3",
+        "path": "/audio/ru/words/вайфай.mp3",
+        "text": "Вайфай"
+      },
+      {
+        "filename": "сообщение.mp3",
+        "path": "/audio/ru/words/сообщение.mp3",
+        "text": "Сообщение"
+      },
+      {
+        "filename": "сайт.mp3",
+        "path": "/audio/ru/words/сайт.mp3",
+        "text": "Сайт"
+      },
+      {
+        "filename": "приложение.mp3",
+        "path": "/audio/ru/words/приложение.mp3",
+        "text": "Приложение"
+      },
+      {
+        "filename": "папка.mp3",
+        "path": "/audio/ru/words/папка.mp3",
+        "text": "Папка"
+      },
+      {
+        "filename": "камера.mp3",
+        "path": "/audio/ru/words/камера.mp3",
+        "text": "Камера"
+      },
+      {
+        "filename": "микрофон.mp3",
+        "path": "/audio/ru/words/микрофон.mp3",
+        "text": "Микрофон"
+      },
+      {
+        "filename": "наушники.mp3",
+        "path": "/audio/ru/words/наушники.mp3",
+        "text": "Наушники"
+      },
+      {
+        "filename": "принтер.mp3",
+        "path": "/audio/ru/words/принтер.mp3",
+        "text": "Принтер"
+      },
+      {
+        "filename": "искать.mp3",
+        "path": "/audio/ru/words/искать.mp3",
+        "text": "Искать"
+      },
+      {
+        "filename": "сохранить.mp3",
+        "path": "/audio/ru/words/сохранить.mp3",
+        "text": "Сохранить"
+      },
+      {
+        "filename": "удалить.mp3",
+        "path": "/audio/ru/words/удалить.mp3",
+        "text": "Удалить"
+      },
+      {
+        "filename": "отправить.mp3",
+        "path": "/audio/ru/words/отправить.mp3",
+        "text": "Отправить"
+      },
+      {
+        "filename": "скачать.mp3",
+        "path": "/audio/ru/words/скачать.mp3",
+        "text": "Скачать"
+      },
+      {
+        "filename": "загрузить.mp3",
+        "path": "/audio/ru/words/загрузить.mp3",
+        "text": "Загрузить"
+      },
+      {
+        "filename": "в_сети.mp3",
+        "path": "/audio/ru/words/в_сети.mp3",
+        "text": "В сети"
+      },
+      {
+        "filename": "не_в_сети.mp3",
+        "path": "/audio/ru/words/не_в_сети.mp3",
+        "text": "Не в сети"
+      },
+      {
+        "filename": "работа.mp3",
+        "path": "/audio/ru/words/работа.mp3",
+        "text": "Работа"
+      },
+      {
+        "filename": "офис.mp3",
+        "path": "/audio/ru/words/офис.mp3",
+        "text": "Офис"
+      },
+      {
+        "filename": "купить.mp3",
+        "path": "/audio/ru/words/купить.mp3",
+        "text": "Купить"
+      },
+      {
+        "filename": "продать.mp3",
+        "path": "/audio/ru/words/продать.mp3",
+        "text": "Продать"
+      },
+      {
+        "filename": "платить.mp3",
+        "path": "/audio/ru/words/платить.mp3",
+        "text": "Платить"
+      },
+      {
+        "filename": "кредитная_карта.mp3",
+        "path": "/audio/ru/words/кредитная_карта.mp3",
+        "text": "Кредитная карта"
+      },
+      {
+        "filename": "чек.mp3",
+        "path": "/audio/ru/words/чек.mp3",
+        "text": "Чек"
+      },
+      {
+        "filename": "поддержка.mp3",
+        "path": "/audio/ru/words/поддержка.mp3",
+        "text": "Поддержка"
+      },
+      {
+        "filename": "открыть.mp3",
+        "path": "/audio/ru/words/открыть.mp3",
+        "text": "Открыть"
+      },
+      {
+        "filename": "закрыть.mp3",
+        "path": "/audio/ru/words/закрыть.mp3",
+        "text": "Закрыть"
+      },
+      {
+        "filename": "обновить.mp3",
+        "path": "/audio/ru/words/обновить.mp3",
+        "text": "Обновить"
+      },
+      {
+        "filename": "начальник.mp3",
+        "path": "/audio/ru/words/начальник.mp3",
+        "text": "Начальник"
+      },
+      {
+        "filename": "коллега.mp3",
+        "path": "/audio/ru/words/коллега.mp3",
+        "text": "Коллега"
+      },
+      {
+        "filename": "сотрудник.mp3",
+        "path": "/audio/ru/words/сотрудник.mp3",
+        "text": "Сотрудник"
+      },
+      {
+        "filename": "задача.mp3",
+        "path": "/audio/ru/words/задача.mp3",
+        "text": "Задача"
+      },
+      {
+        "filename": "отчёт.mp3",
+        "path": "/audio/ru/words/отчёт.mp3",
+        "text": "Отчёт"
+      },
+      {
+        "filename": "презентация.mp3",
+        "path": "/audio/ru/words/презентация.mp3",
+        "text": "Презентация"
+      },
+      {
+        "filename": "договор.mp3",
+        "path": "/audio/ru/words/договор.mp3",
+        "text": "Договор"
+      },
+      {
+        "filename": "подпись.mp3",
+        "path": "/audio/ru/words/подпись.mp3",
+        "text": "Подпись"
+      },
+      {
+        "filename": "отпуск.mp3",
+        "path": "/audio/ru/words/отпуск.mp3",
+        "text": "Отпуск"
+      },
+      {
+        "filename": "резюме.mp3",
+        "path": "/audio/ru/words/резюме.mp3",
+        "text": "Резюме"
+      },
+      {
+        "filename": "собеседование.mp3",
+        "path": "/audio/ru/words/собеседование.mp3",
+        "text": "Собеседование"
+      },
+      {
+        "filename": "срок_сдачи.mp3",
+        "path": "/audio/ru/words/срок_сдачи.mp3",
+        "text": "Срок сдачи"
+      },
+      {
+        "filename": "цель.mp3",
+        "path": "/audio/ru/words/цель.mp3",
+        "text": "Цель"
+      },
+      {
+        "filename": "продукт.mp3",
+        "path": "/audio/ru/words/продукт.mp3",
+        "text": "Продукт"
+      },
+      {
+        "filename": "услуга.mp3",
+        "path": "/audio/ru/words/услуга.mp3",
+        "text": "Услуга"
+      },
+      {
+        "filename": "перевод.mp3",
+        "path": "/audio/ru/words/перевод.mp3",
+        "text": "Перевод"
+      },
+      {
+        "filename": "возврат.mp3",
+        "path": "/audio/ru/words/возврат.mp3",
+        "text": "Возврат"
+      },
+      {
+        "filename": "доставка.mp3",
+        "path": "/audio/ru/words/доставка.mp3",
+        "text": "Доставка"
+      },
+      {
+        "filename": "посылка.mp3",
+        "path": "/audio/ru/words/посылка.mp3",
+        "text": "Посылка"
+      },
+      {
+        "filename": "программное_обеспечение.mp3",
+        "path": "/audio/ru/words/программное_обеспечение.mp3",
+        "text": "Программное обеспечение"
+      },
+      {
+        "filename": "аппаратное_обеспечение.mp3",
+        "path": "/audio/ru/words/аппаратное_обеспечение.mp3",
+        "text": "Аппаратное обеспечение"
+      },
+      {
+        "filename": "база_данных.mp3",
+        "path": "/audio/ru/words/база_данных.mp3",
+        "text": "База данных"
+      },
+      {
+        "filename": "сервер.mp3",
+        "path": "/audio/ru/words/сервер.mp3",
+        "text": "Сервер"
+      },
+      {
+        "filename": "облачное_хранилище.mp3",
+        "path": "/audio/ru/words/облачное_хранилище.mp3",
+        "text": "Облачное хранилище"
+      },
+      {
+        "filename": "искусственный_интеллект.mp3",
+        "path": "/audio/ru/words/искусственный_интеллект.mp3",
+        "text": "Искусственный интеллект"
+      },
+      {
+        "filename": "алгоритм.mp3",
+        "path": "/audio/ru/words/алгоритм.mp3",
+        "text": "Алгоритм"
+      },
+      {
+        "filename": "разработчик.mp3",
+        "path": "/audio/ru/words/разработчик.mp3",
+        "text": "Разработчик"
+      },
+      {
+        "filename": "кибербезопасность.mp3",
+        "path": "/audio/ru/words/кибербезопасность.mp3",
+        "text": "Кибербезопасность"
+      },
+      {
+        "filename": "операционная_система.mp3",
+        "path": "/audio/ru/words/операционная_система.mp3",
+        "text": "Операционная система"
+      },
+      {
+        "filename": "бюджет.mp3",
+        "path": "/audio/ru/words/бюджет.mp3",
+        "text": "Бюджет"
+      },
+      {
+        "filename": "инвестиции.mp3",
+        "path": "/audio/ru/words/инвестиции.mp3",
+        "text": "Инвестиции"
+      },
+      {
+        "filename": "выручка.mp3",
+        "path": "/audio/ru/words/выручка.mp3",
+        "text": "Выручка"
+      },
+      {
+        "filename": "стартап.mp3",
+        "path": "/audio/ru/words/стартап.mp3",
+        "text": "Стартап"
+      },
+      {
+        "filename": "удалённая_работа.mp3",
+        "path": "/audio/ru/words/удалённая_работа.mp3",
+        "text": "Удалённая работа"
+      },
+      {
         "filename": "ребёнок.mp3",
         "path": "/audio/ru/words/ребёнок.mp3",
         "text": "Ребёнок"
@@ -1456,16 +1796,6 @@
         "filename": "время.mp3",
         "path": "/audio/ru/words/время.mp3",
         "text": "Время"
-      },
-      {
-        "filename": "работа.mp3",
-        "path": "/audio/ru/words/работа.mp3",
-        "text": "Работа"
-      },
-      {
-        "filename": "офис.mp3",
-        "path": "/audio/ru/words/офис.mp3",
-        "text": "Офис"
       },
       {
         "filename": "стол.mp3",

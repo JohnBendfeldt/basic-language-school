@@ -1,7 +1,7 @@
 {
   "language": "es",
   "voice": "es-MX-JorgeNeural",
-  "generated": "2026-10-29T17:03:45.969890Z",
+  "generated": "2026-10-29T18:30:02.486653Z",
   "files": {
     "alphabet": [
       {
@@ -1063,6 +1063,331 @@
         "text": "Descuento"
       },
       {
+        "filename": "portátil.mp3",
+        "path": "/audio/es/words/portátil.mp3",
+        "text": "Portátil"
+      },
+      {
+        "filename": "tableta.mp3",
+        "path": "/audio/es/words/tableta.mp3",
+        "text": "Tableta"
+      },
+      {
+        "filename": "teclado.mp3",
+        "path": "/audio/es/words/teclado.mp3",
+        "text": "Teclado"
+      },
+      {
+        "filename": "ratón.mp3",
+        "path": "/audio/es/words/ratón.mp3",
+        "text": "Ratón"
+      },
+      {
+        "filename": "cargador.mp3",
+        "path": "/audio/es/words/cargador.mp3",
+        "text": "Cargador"
+      },
+      {
+        "filename": "cable.mp3",
+        "path": "/audio/es/words/cable.mp3",
+        "text": "Cable"
+      },
+      {
+        "filename": "wifi.mp3",
+        "path": "/audio/es/words/wifi.mp3",
+        "text": "Wifi"
+      },
+      {
+        "filename": "mensaje.mp3",
+        "path": "/audio/es/words/mensaje.mp3",
+        "text": "Mensaje"
+      },
+      {
+        "filename": "sitio_web.mp3",
+        "path": "/audio/es/words/sitio_web.mp3",
+        "text": "Sitio web"
+      },
+      {
+        "filename": "aplicación.mp3",
+        "path": "/audio/es/words/aplicación.mp3",
+        "text": "Aplicación"
+      },
+      {
+        "filename": "carpeta.mp3",
+        "path": "/audio/es/words/carpeta.mp3",
+        "text": "Carpeta"
+      },
+      {
+        "filename": "cámara.mp3",
+        "path": "/audio/es/words/cámara.mp3",
+        "text": "Cámara"
+      },
+      {
+        "filename": "micrófono.mp3",
+        "path": "/audio/es/words/micrófono.mp3",
+        "text": "Micrófono"
+      },
+      {
+        "filename": "auriculares.mp3",
+        "path": "/audio/es/words/auriculares.mp3",
+        "text": "Auriculares"
+      },
+      {
+        "filename": "impresora.mp3",
+        "path": "/audio/es/words/impresora.mp3",
+        "text": "Impresora"
+      },
+      {
+        "filename": "buscar.mp3",
+        "path": "/audio/es/words/buscar.mp3",
+        "text": "Buscar"
+      },
+      {
+        "filename": "guardar.mp3",
+        "path": "/audio/es/words/guardar.mp3",
+        "text": "Guardar"
+      },
+      {
+        "filename": "eliminar.mp3",
+        "path": "/audio/es/words/eliminar.mp3",
+        "text": "Eliminar"
+      },
+      {
+        "filename": "enviar.mp3",
+        "path": "/audio/es/words/enviar.mp3",
+        "text": "Enviar"
+      },
+      {
+        "filename": "descargar.mp3",
+        "path": "/audio/es/words/descargar.mp3",
+        "text": "Descargar"
+      },
+      {
+        "filename": "subir.mp3",
+        "path": "/audio/es/words/subir.mp3",
+        "text": "Subir"
+      },
+      {
+        "filename": "en_línea.mp3",
+        "path": "/audio/es/words/en_línea.mp3",
+        "text": "En línea"
+      },
+      {
+        "filename": "desconectado.mp3",
+        "path": "/audio/es/words/desconectado.mp3",
+        "text": "Desconectado"
+      },
+      {
+        "filename": "tienda.mp3",
+        "path": "/audio/es/words/tienda.mp3",
+        "text": "Tienda"
+      },
+      {
+        "filename": "comprar.mp3",
+        "path": "/audio/es/words/comprar.mp3",
+        "text": "Comprar"
+      },
+      {
+        "filename": "vender.mp3",
+        "path": "/audio/es/words/vender.mp3",
+        "text": "Vender"
+      },
+      {
+        "filename": "pagar.mp3",
+        "path": "/audio/es/words/pagar.mp3",
+        "text": "Pagar"
+      },
+      {
+        "filename": "recibo.mp3",
+        "path": "/audio/es/words/recibo.mp3",
+        "text": "Recibo"
+      },
+      {
+        "filename": "soporte.mp3",
+        "path": "/audio/es/words/soporte.mp3",
+        "text": "Soporte"
+      },
+      {
+        "filename": "abrir.mp3",
+        "path": "/audio/es/words/abrir.mp3",
+        "text": "Abrir"
+      },
+      {
+        "filename": "cerrar.mp3",
+        "path": "/audio/es/words/cerrar.mp3",
+        "text": "Cerrar"
+      },
+      {
+        "filename": "actualizar.mp3",
+        "path": "/audio/es/words/actualizar.mp3",
+        "text": "Actualizar"
+      },
+      {
+        "filename": "jefe.mp3",
+        "path": "/audio/es/words/jefe.mp3",
+        "text": "Jefe"
+      },
+      {
+        "filename": "colega.mp3",
+        "path": "/audio/es/words/colega.mp3",
+        "text": "Colega"
+      },
+      {
+        "filename": "empleado.mp3",
+        "path": "/audio/es/words/empleado.mp3",
+        "text": "Empleado"
+      },
+      {
+        "filename": "tarea.mp3",
+        "path": "/audio/es/words/tarea.mp3",
+        "text": "Tarea"
+      },
+      {
+        "filename": "informe.mp3",
+        "path": "/audio/es/words/informe.mp3",
+        "text": "Informe"
+      },
+      {
+        "filename": "presentación.mp3",
+        "path": "/audio/es/words/presentación.mp3",
+        "text": "Presentación"
+      },
+      {
+        "filename": "firma.mp3",
+        "path": "/audio/es/words/firma.mp3",
+        "text": "Firma"
+      },
+      {
+        "filename": "vacaciones.mp3",
+        "path": "/audio/es/words/vacaciones.mp3",
+        "text": "Vacaciones"
+      },
+      {
+        "filename": "currículum.mp3",
+        "path": "/audio/es/words/currículum.mp3",
+        "text": "Currículum"
+      },
+      {
+        "filename": "entrevista.mp3",
+        "path": "/audio/es/words/entrevista.mp3",
+        "text": "Entrevista"
+      },
+      {
+        "filename": "meta.mp3",
+        "path": "/audio/es/words/meta.mp3",
+        "text": "Meta"
+      },
+      {
+        "filename": "producto.mp3",
+        "path": "/audio/es/words/producto.mp3",
+        "text": "Producto"
+      },
+      {
+        "filename": "servicio.mp3",
+        "path": "/audio/es/words/servicio.mp3",
+        "text": "Servicio"
+      },
+      {
+        "filename": "banco.mp3",
+        "path": "/audio/es/words/banco.mp3",
+        "text": "Banco"
+      },
+      {
+        "filename": "transferencia.mp3",
+        "path": "/audio/es/words/transferencia.mp3",
+        "text": "Transferencia"
+      },
+      {
+        "filename": "reembolso.mp3",
+        "path": "/audio/es/words/reembolso.mp3",
+        "text": "Reembolso"
+      },
+      {
+        "filename": "envío.mp3",
+        "path": "/audio/es/words/envío.mp3",
+        "text": "Envío"
+      },
+      {
+        "filename": "paquete.mp3",
+        "path": "/audio/es/words/paquete.mp3",
+        "text": "Paquete"
+      },
+      {
+        "filename": "software.mp3",
+        "path": "/audio/es/words/software.mp3",
+        "text": "Software"
+      },
+      {
+        "filename": "hardware.mp3",
+        "path": "/audio/es/words/hardware.mp3",
+        "text": "Hardware"
+      },
+      {
+        "filename": "base_de_datos.mp3",
+        "path": "/audio/es/words/base_de_datos.mp3",
+        "text": "Base de datos"
+      },
+      {
+        "filename": "servidor.mp3",
+        "path": "/audio/es/words/servidor.mp3",
+        "text": "Servidor"
+      },
+      {
+        "filename": "almacenamiento_en_la_nube.mp3",
+        "path": "/audio/es/words/almacenamiento_en_la_nube.mp3",
+        "text": "Almacenamiento en la nube"
+      },
+      {
+        "filename": "inteligencia_artificial.mp3",
+        "path": "/audio/es/words/inteligencia_artificial.mp3",
+        "text": "Inteligencia artificial"
+      },
+      {
+        "filename": "algoritmo.mp3",
+        "path": "/audio/es/words/algoritmo.mp3",
+        "text": "Algoritmo"
+      },
+      {
+        "filename": "desarrollador.mp3",
+        "path": "/audio/es/words/desarrollador.mp3",
+        "text": "Desarrollador"
+      },
+      {
+        "filename": "ciberseguridad.mp3",
+        "path": "/audio/es/words/ciberseguridad.mp3",
+        "text": "Ciberseguridad"
+      },
+      {
+        "filename": "sistema_operativo.mp3",
+        "path": "/audio/es/words/sistema_operativo.mp3",
+        "text": "Sistema operativo"
+      },
+      {
+        "filename": "presupuesto.mp3",
+        "path": "/audio/es/words/presupuesto.mp3",
+        "text": "Presupuesto"
+      },
+      {
+        "filename": "inversión.mp3",
+        "path": "/audio/es/words/inversión.mp3",
+        "text": "Inversión"
+      },
+      {
+        "filename": "ingresos.mp3",
+        "path": "/audio/es/words/ingresos.mp3",
+        "text": "Ingresos"
+      },
+      {
+        "filename": "empresa_emergente.mp3",
+        "path": "/audio/es/words/empresa_emergente.mp3",
+        "text": "Empresa emergente"
+      },
+      {
+        "filename": "teletrabajo.mp3",
+        "path": "/audio/es/words/teletrabajo.mp3",
+        "text": "Teletrabajo"
+      },
+      {
         "filename": "hombre.mp3",
         "path": "/audio/es/words/hombre.mp3",
         "text": "Hombre"
@@ -1198,11 +1523,6 @@
         "text": "Sal"
       },
       {
-        "filename": "tienda.mp3",
-        "path": "/audio/es/words/tienda.mp3",
-        "text": "Tienda"
-      },
-      {
         "filename": "restaurante.mp3",
         "path": "/audio/es/words/restaurante.mp3",
         "text": "Restaurante"
@@ -1246,11 +1566,6 @@
         "filename": "farmacia.mp3",
         "path": "/audio/es/words/farmacia.mp3",
         "text": "Farmacia"
-      },
-      {
-        "filename": "banco.mp3",
-        "path": "/audio/es/words/banco.mp3",
-        "text": "Banco"
       },
       {
         "filename": "oficina_de_correos.mp3",
@@ -1896,11 +2211,6 @@
         "filename": "necesitar.mp3",
         "path": "/audio/es/words/necesitar.mp3",
         "text": "Necesitar"
-      },
-      {
-        "filename": "comprar.mp3",
-        "path": "/audio/es/words/comprar.mp3",
-        "text": "Comprar"
       },
       {
         "filename": "ayudar.mp3",

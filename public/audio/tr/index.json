@@ -1,7 +1,7 @@
 {
   "language": "tr",
   "voice": "tr-TR-AhmetNeural",
-  "generated": "2026-10-29T17:05:41.305917Z",
+  "generated": "2026-10-29T18:37:26.425763Z",
   "files": {
     "alphabet": [
       {
@@ -1193,6 +1193,346 @@
         "text": "İndirim"
       },
       {
+        "filename": "dizüstü_bilgisayar.mp3",
+        "path": "/audio/tr/words/dizüstü_bilgisayar.mp3",
+        "text": "Dizüstü bilgisayar"
+      },
+      {
+        "filename": "tablet.mp3",
+        "path": "/audio/tr/words/tablet.mp3",
+        "text": "Tablet"
+      },
+      {
+        "filename": "klavye.mp3",
+        "path": "/audio/tr/words/klavye.mp3",
+        "text": "Klavye"
+      },
+      {
+        "filename": "fare.mp3",
+        "path": "/audio/tr/words/fare.mp3",
+        "text": "Fare"
+      },
+      {
+        "filename": "şarj_aleti.mp3",
+        "path": "/audio/tr/words/şarj_aleti.mp3",
+        "text": "Şarj aleti"
+      },
+      {
+        "filename": "kablo.mp3",
+        "path": "/audio/tr/words/kablo.mp3",
+        "text": "Kablo"
+      },
+      {
+        "filename": "kablosuz_ağ.mp3",
+        "path": "/audio/tr/words/kablosuz_ağ.mp3",
+        "text": "Kablosuz ağ"
+      },
+      {
+        "filename": "mesaj.mp3",
+        "path": "/audio/tr/words/mesaj.mp3",
+        "text": "Mesaj"
+      },
+      {
+        "filename": "web_sitesi.mp3",
+        "path": "/audio/tr/words/web_sitesi.mp3",
+        "text": "Web sitesi"
+      },
+      {
+        "filename": "uygulama.mp3",
+        "path": "/audio/tr/words/uygulama.mp3",
+        "text": "Uygulama"
+      },
+      {
+        "filename": "klasör.mp3",
+        "path": "/audio/tr/words/klasör.mp3",
+        "text": "Klasör"
+      },
+      {
+        "filename": "kamera.mp3",
+        "path": "/audio/tr/words/kamera.mp3",
+        "text": "Kamera"
+      },
+      {
+        "filename": "mikrofon.mp3",
+        "path": "/audio/tr/words/mikrofon.mp3",
+        "text": "Mikrofon"
+      },
+      {
+        "filename": "kulaklık.mp3",
+        "path": "/audio/tr/words/kulaklık.mp3",
+        "text": "Kulaklık"
+      },
+      {
+        "filename": "yazıcı.mp3",
+        "path": "/audio/tr/words/yazıcı.mp3",
+        "text": "Yazıcı"
+      },
+      {
+        "filename": "aramak.mp3",
+        "path": "/audio/tr/words/aramak.mp3",
+        "text": "Aramak"
+      },
+      {
+        "filename": "kaydetmek.mp3",
+        "path": "/audio/tr/words/kaydetmek.mp3",
+        "text": "Kaydetmek"
+      },
+      {
+        "filename": "silmek.mp3",
+        "path": "/audio/tr/words/silmek.mp3",
+        "text": "Silmek"
+      },
+      {
+        "filename": "göndermek.mp3",
+        "path": "/audio/tr/words/göndermek.mp3",
+        "text": "Göndermek"
+      },
+      {
+        "filename": "indirmek.mp3",
+        "path": "/audio/tr/words/indirmek.mp3",
+        "text": "İndirmek"
+      },
+      {
+        "filename": "yüklemek.mp3",
+        "path": "/audio/tr/words/yüklemek.mp3",
+        "text": "Yüklemek"
+      },
+      {
+        "filename": "çevrim_içi.mp3",
+        "path": "/audio/tr/words/çevrim_içi.mp3",
+        "text": "Çevrim içi"
+      },
+      {
+        "filename": "çevrim_dışı.mp3",
+        "path": "/audio/tr/words/çevrim_dışı.mp3",
+        "text": "Çevrim dışı"
+      },
+      {
+        "filename": "iş.mp3",
+        "path": "/audio/tr/words/iş.mp3",
+        "text": "İş"
+      },
+      {
+        "filename": "ofis.mp3",
+        "path": "/audio/tr/words/ofis.mp3",
+        "text": "Ofis"
+      },
+      {
+        "filename": "satın_almak.mp3",
+        "path": "/audio/tr/words/satın_almak.mp3",
+        "text": "Satın almak"
+      },
+      {
+        "filename": "satmak.mp3",
+        "path": "/audio/tr/words/satmak.mp3",
+        "text": "Satmak"
+      },
+      {
+        "filename": "ödemek.mp3",
+        "path": "/audio/tr/words/ödemek.mp3",
+        "text": "Ödemek"
+      },
+      {
+        "filename": "fiş.mp3",
+        "path": "/audio/tr/words/fiş.mp3",
+        "text": "Fiş"
+      },
+      {
+        "filename": "destek.mp3",
+        "path": "/audio/tr/words/destek.mp3",
+        "text": "Destek"
+      },
+      {
+        "filename": "açmak.mp3",
+        "path": "/audio/tr/words/açmak.mp3",
+        "text": "Açmak"
+      },
+      {
+        "filename": "kapatmak.mp3",
+        "path": "/audio/tr/words/kapatmak.mp3",
+        "text": "Kapatmak"
+      },
+      {
+        "filename": "güncellemek.mp3",
+        "path": "/audio/tr/words/güncellemek.mp3",
+        "text": "Güncellemek"
+      },
+      {
+        "filename": "patron.mp3",
+        "path": "/audio/tr/words/patron.mp3",
+        "text": "Patron"
+      },
+      {
+        "filename": "iş_arkadaşı.mp3",
+        "path": "/audio/tr/words/iş_arkadaşı.mp3",
+        "text": "İş arkadaşı"
+      },
+      {
+        "filename": "çalışan.mp3",
+        "path": "/audio/tr/words/çalışan.mp3",
+        "text": "Çalışan"
+      },
+      {
+        "filename": "program.mp3",
+        "path": "/audio/tr/words/program.mp3",
+        "text": "Program"
+      },
+      {
+        "filename": "görev.mp3",
+        "path": "/audio/tr/words/görev.mp3",
+        "text": "Görev"
+      },
+      {
+        "filename": "rapor.mp3",
+        "path": "/audio/tr/words/rapor.mp3",
+        "text": "Rapor"
+      },
+      {
+        "filename": "sunum.mp3",
+        "path": "/audio/tr/words/sunum.mp3",
+        "text": "Sunum"
+      },
+      {
+        "filename": "imza.mp3",
+        "path": "/audio/tr/words/imza.mp3",
+        "text": "İmza"
+      },
+      {
+        "filename": "tatil.mp3",
+        "path": "/audio/tr/words/tatil.mp3",
+        "text": "Tatil"
+      },
+      {
+        "filename": "özgeçmiş.mp3",
+        "path": "/audio/tr/words/özgeçmiş.mp3",
+        "text": "Özgeçmiş"
+      },
+      {
+        "filename": "mülakat.mp3",
+        "path": "/audio/tr/words/mülakat.mp3",
+        "text": "Mülakat"
+      },
+      {
+        "filename": "son_teslim_tarihi.mp3",
+        "path": "/audio/tr/words/son_teslim_tarihi.mp3",
+        "text": "Son teslim tarihi"
+      },
+      {
+        "filename": "hedef.mp3",
+        "path": "/audio/tr/words/hedef.mp3",
+        "text": "Hedef"
+      },
+      {
+        "filename": "ürün.mp3",
+        "path": "/audio/tr/words/ürün.mp3",
+        "text": "Ürün"
+      },
+      {
+        "filename": "hizmet.mp3",
+        "path": "/audio/tr/words/hizmet.mp3",
+        "text": "Hizmet"
+      },
+      {
+        "filename": "banka.mp3",
+        "path": "/audio/tr/words/banka.mp3",
+        "text": "Banka"
+      },
+      {
+        "filename": "havale.mp3",
+        "path": "/audio/tr/words/havale.mp3",
+        "text": "Havale"
+      },
+      {
+        "filename": "para_iadesi.mp3",
+        "path": "/audio/tr/words/para_iadesi.mp3",
+        "text": "Para iadesi"
+      },
+      {
+        "filename": "kargo.mp3",
+        "path": "/audio/tr/words/kargo.mp3",
+        "text": "Kargo"
+      },
+      {
+        "filename": "paket.mp3",
+        "path": "/audio/tr/words/paket.mp3",
+        "text": "Paket"
+      },
+      {
+        "filename": "yazılım.mp3",
+        "path": "/audio/tr/words/yazılım.mp3",
+        "text": "Yazılım"
+      },
+      {
+        "filename": "donanım.mp3",
+        "path": "/audio/tr/words/donanım.mp3",
+        "text": "Donanım"
+      },
+      {
+        "filename": "veritabanı.mp3",
+        "path": "/audio/tr/words/veritabanı.mp3",
+        "text": "Veritabanı"
+      },
+      {
+        "filename": "sunucu.mp3",
+        "path": "/audio/tr/words/sunucu.mp3",
+        "text": "Sunucu"
+      },
+      {
+        "filename": "bulut_depolama.mp3",
+        "path": "/audio/tr/words/bulut_depolama.mp3",
+        "text": "Bulut depolama"
+      },
+      {
+        "filename": "yapay_zekâ.mp3",
+        "path": "/audio/tr/words/yapay_zekâ.mp3",
+        "text": "Yapay zekâ"
+      },
+      {
+        "filename": "algoritma.mp3",
+        "path": "/audio/tr/words/algoritma.mp3",
+        "text": "Algoritma"
+      },
+      {
+        "filename": "geliştirici.mp3",
+        "path": "/audio/tr/words/geliştirici.mp3",
+        "text": "Geliştirici"
+      },
+      {
+        "filename": "siber_güvenlik.mp3",
+        "path": "/audio/tr/words/siber_güvenlik.mp3",
+        "text": "Siber güvenlik"
+      },
+      {
+        "filename": "işletim_sistemi.mp3",
+        "path": "/audio/tr/words/işletim_sistemi.mp3",
+        "text": "İşletim sistemi"
+      },
+      {
+        "filename": "bütçe.mp3",
+        "path": "/audio/tr/words/bütçe.mp3",
+        "text": "Bütçe"
+      },
+      {
+        "filename": "yatırım.mp3",
+        "path": "/audio/tr/words/yatırım.mp3",
+        "text": "Yatırım"
+      },
+      {
+        "filename": "gelir.mp3",
+        "path": "/audio/tr/words/gelir.mp3",
+        "text": "Gelir"
+      },
+      {
+        "filename": "yeni_girişim.mp3",
+        "path": "/audio/tr/words/yeni_girişim.mp3",
+        "text": "Yeni girişim"
+      },
+      {
+        "filename": "uzaktan_çalışma.mp3",
+        "path": "/audio/tr/words/uzaktan_çalışma.mp3",
+        "text": "Uzaktan çalışma"
+      },
+      {
         "filename": "erkek_çocuk.mp3",
         "path": "/audio/tr/words/erkek_çocuk.mp3",
         "text": "Erkek çocuk"
@@ -1318,11 +1658,6 @@
         "text": "Eczane"
       },
       {
-        "filename": "banka.mp3",
-        "path": "/audio/tr/words/banka.mp3",
-        "text": "Banka"
-      },
-      {
         "filename": "postane.mp3",
         "path": "/audio/tr/words/postane.mp3",
         "text": "Postane"
@@ -1421,16 +1756,6 @@
         "filename": "zaman.mp3",
         "path": "/audio/tr/words/zaman.mp3",
         "text": "Zaman"
-      },
-      {
-        "filename": "iş.mp3",
-        "path": "/audio/tr/words/iş.mp3",
-        "text": "İş"
-      },
-      {
-        "filename": "ofis.mp3",
-        "path": "/audio/tr/words/ofis.mp3",
-        "text": "Ofis"
       },
       {
         "filename": "kart.mp3",
@@ -1931,11 +2256,6 @@
         "filename": "ihtiyacı_olmak.mp3",
         "path": "/audio/tr/words/ihtiyacı_olmak.mp3",
         "text": "İhtiyacı olmak"
-      },
-      {
-        "filename": "satın_almak.mp3",
-        "path": "/audio/tr/words/satın_almak.mp3",
-        "text": "Satın almak"
       },
       {
         "filename": "yardım_etmek.mp3",
