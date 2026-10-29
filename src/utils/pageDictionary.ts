@@ -2146,6 +2146,7 @@ export interface ComponentChromeStrings {
   installAppTitle: string;
   loadingLessons: string;
   allRightsReserved: string;
+  aboutContact: string;
   privacyPolicy: string;
   termsOfService: string;
 
@@ -2205,6 +2206,7 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         installAppTitle: 'Установить приложение на устройство',
         loadingLessons: 'Загрузка уроков...',
         allRightsReserved: 'Все права защищены.',
+        aboutContact: 'О проекте и контакты',
         privacyPolicy: 'Политика конфиденциальности',
         termsOfService: 'Условия использования',
 
@@ -2258,6 +2260,7 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         installAppTitle: 'Instalar aplicación en tu dispositivo',
         loadingLessons: 'Cargando lecciones...',
         allRightsReserved: 'Todos los derechos reservados.',
+        aboutContact: 'Acerca de y Contacto',
         privacyPolicy: 'Política de Privacidad',
         termsOfService: 'Términos de Servicio',
 
@@ -2311,6 +2314,7 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         installAppTitle: 'Installer l\'application sur votre appareil',
         loadingLessons: 'Chargement des leçons...',
         allRightsReserved: 'Tous droits réservés.',
+        aboutContact: 'À propos & Contact',
         privacyPolicy: 'Politique de Confidentialité',
         termsOfService: 'Conditions d\'Utilisation',
 
@@ -2364,6 +2368,7 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         installAppTitle: 'Instalar aplicativo no seu dispositivo',
         loadingLessons: 'Carregando lições...',
         allRightsReserved: 'Todos os direitos reservados.',
+        aboutContact: 'Sobre e Contato',
         privacyPolicy: 'Política de Privacidade',
         termsOfService: 'Termos de Serviço',
 
@@ -2417,6 +2422,7 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         installAppTitle: 'App auf deinem Gerät installieren',
         loadingLessons: 'Lektionen werden geladen...',
         allRightsReserved: 'Alle Rechte vorbehalten.',
+        aboutContact: 'Über uns & Kontakt',
         privacyPolicy: 'Datenschutz',
         termsOfService: 'Nutzungsbedingungen',
 
@@ -2470,6 +2476,7 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         installAppTitle: 'Instal aplikasi di perangkat Anda',
         loadingLessons: 'Memuat pelajaran...',
         allRightsReserved: 'Hak Cipta Dilindungi.',
+        aboutContact: 'Tentang & Kontak',
         privacyPolicy: 'Kebijakan Privasi',
         termsOfService: 'Ketentuan Layanan',
 
@@ -2523,6 +2530,7 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         installAppTitle: 'Uygulamayı cihazınıza yükleyin',
         loadingLessons: 'Dersler yükleniyor...',
         allRightsReserved: 'Tüm Hakları Saklıdır.',
+        aboutContact: 'Hakkında ve İletişim',
         privacyPolicy: 'Gizlilik Politikası',
         termsOfService: 'Hizmet Şartları',
 
@@ -2577,6 +2585,7 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         installAppTitle: 'Install Application on your device',
         loadingLessons: 'Loading lessons...',
         allRightsReserved: 'All Rights Reserved.',
+        aboutContact: 'About & Contact',
         privacyPolicy: 'Privacy Policy',
         termsOfService: 'Terms of Service',
 

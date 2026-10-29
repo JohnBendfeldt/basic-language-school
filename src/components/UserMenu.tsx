@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaUser, FaSignOutAlt, FaChartLine, FaSignInAlt, FaGoogle, FaMicrosoft, FaGithub, FaShieldAlt, FaFileContract } from 'react-icons/fa';
+import { FaUser, FaSignOutAlt, FaChartLine, FaSignInAlt, FaGoogle, FaMicrosoft, FaGithub, FaShieldAlt, FaFileContract, FaInfoCircle } from 'react-icons/fa';
 import { supabase, signOutUser } from '../services/supabaseClient';
 import { ProgressService } from '../services/progressService';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -181,11 +181,23 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
                     onClick={(e) => {
                       e.stopPropagation();
                       setMenuOpen(false);
+                      onNavigate('about');
+                    }}
+                  >
+                    <FaInfoCircle />
+                    <span>{chrome.aboutContact}</span>
+                  </button>
+                  <button
+                    type="button"
+                    className="dropdown-item legal-dropdown-item"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setMenuOpen(false);
                       onNavigate('privacy');
                     }}
                   >
                     <FaShieldAlt />
-                    <span>Privacy Policy</span>
+                    <span>{chrome.privacyPolicy}</span>
                   </button>
                   <button
                     type="button"
@@ -197,7 +209,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
                     }}
                   >
                     <FaFileContract />
-                    <span>Terms of Service</span>
+                    <span>{chrome.termsOfService}</span>
                   </button>
                 </>
               )}
