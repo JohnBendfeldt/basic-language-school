@@ -1,7 +1,7 @@
 {
   "language": "ru",
   "voice": "ru-RU-SvetlanaNeural",
-  "generated": "2026-10-29T20:42:12.549581Z",
+  "generated": "2026-10-29T21:41:04.881363Z",
   "files": {
     "alphabet": [
       {
@@ -1943,14 +1943,144 @@
         "text": "Жарко / Горячий"
       },
       {
-        "filename": "мы.mp3",
-        "path": "/audio/ru/words/мы.mp3",
-        "text": "Мы"
+        "filename": "месяц.mp3",
+        "path": "/audio/ru/words/месяц.mp3",
+        "text": "Месяц"
       },
       {
-        "filename": "фрукт.mp3",
-        "path": "/audio/ru/words/фрукт.mp3",
-        "text": "Фрукт / Фрукты"
+        "filename": "год.mp3",
+        "path": "/audio/ru/words/год.mp3",
+        "text": "Год"
+      },
+      {
+        "filename": "глаз.mp3",
+        "path": "/audio/ru/words/глаз.mp3",
+        "text": "Глаз"
+      },
+      {
+        "filename": "глаза.mp3",
+        "path": "/audio/ru/words/глаза.mp3",
+        "text": "Глаза"
+      },
+      {
+        "filename": "нос.mp3",
+        "path": "/audio/ru/words/нос.mp3",
+        "text": "Нос"
+      },
+      {
+        "filename": "щека.mp3",
+        "path": "/audio/ru/words/щека.mp3",
+        "text": "Щека"
+      },
+      {
+        "filename": "сердце.mp3",
+        "path": "/audio/ru/words/сердце.mp3",
+        "text": "Сердце"
+      },
+      {
+        "filename": "голос.mp3",
+        "path": "/audio/ru/words/голос.mp3",
+        "text": "Голос"
+      },
+      {
+        "filename": "чашка.mp3",
+        "path": "/audio/ru/words/чашка.mp3",
+        "text": "Чашка"
+      },
+      {
+        "filename": "стакан.mp3",
+        "path": "/audio/ru/words/стакан.mp3",
+        "text": "Стакан"
+      },
+      {
+        "filename": "чайник.mp3",
+        "path": "/audio/ru/words/чайник.mp3",
+        "text": "Чайник"
+      },
+      {
+        "filename": "масло.mp3",
+        "path": "/audio/ru/words/масло.mp3",
+        "text": "Масло"
+      },
+      {
+        "filename": "лимон.mp3",
+        "path": "/audio/ru/words/лимон.mp3",
+        "text": "Лимон"
+      },
+      {
+        "filename": "апельсин.mp3",
+        "path": "/audio/ru/words/апельсин.mp3",
+        "text": "Апельсин"
+      },
+      {
+        "filename": "йогурт.mp3",
+        "path": "/audio/ru/words/йогурт.mp3",
+        "text": "Йогурт"
+      },
+      {
+        "filename": "лёд.mp3",
+        "path": "/audio/ru/words/лёд.mp3",
+        "text": "Лёд"
+      },
+      {
+        "filename": "холодно.mp3",
+        "path": "/audio/ru/words/холодно.mp3",
+        "text": "Холодно / Холодный"
+      },
+      {
+        "filename": "ёж.mp3",
+        "path": "/audio/ru/words/ёж.mp3",
+        "text": "Ёж"
+      },
+      {
+        "filename": "жук.mp3",
+        "path": "/audio/ru/words/жук.mp3",
+        "text": "Жук"
+      },
+      {
+        "filename": "зебра.mp3",
+        "path": "/audio/ru/words/зебра.mp3",
+        "text": "Зебра"
+      },
+      {
+        "filename": "идея.mp3",
+        "path": "/audio/ru/words/идея.mp3",
+        "text": "Идея"
+      },
+      {
+        "filename": "вопрос.mp3",
+        "path": "/audio/ru/words/вопрос.mp3",
+        "text": "Вопрос"
+      },
+      {
+        "filename": "успех.mp3",
+        "path": "/audio/ru/words/успех.mp3",
+        "text": "Успех"
+      },
+      {
+        "filename": "любовь.mp3",
+        "path": "/audio/ru/words/любовь.mp3",
+        "text": "Любовь"
+      },
+      {
+        "filename": "имя.mp3",
+        "path": "/audio/ru/words/имя.mp3",
+        "text": "Имя"
+      },
+      {
+        "filename": "тихий.mp3",
+        "path": "/audio/ru/words/тихий.mp3",
+        "text": "Тихий"
+      },
+      {
+        "filename": "свет.mp3",
+        "path": "/audio/ru/words/свет.mp3",
+        "text": "Свет"
+      },
+      {
+        "filename": "остров.mp3",
+        "path": "/audio/ru/words/остров.mp3",
+        "text": "Остров"
       },
       {
         "filename": "город.mp3",
@@ -1968,9 +2098,164 @@
         "text": "Дом"
       },
       {
+        "filename": "вокзал.mp3",
+        "path": "/audio/ru/words/вокзал.mp3",
+        "text": "Вокзал"
+      },
+      {
+        "filename": "мы.mp3",
+        "path": "/audio/ru/words/мы.mp3",
+        "text": "Мы"
+      },
+      {
         "filename": "помощь.mp3",
         "path": "/audio/ru/words/помощь.mp3",
         "text": "Помощь"
+      },
+      {
+        "filename": "обувь.mp3",
+        "path": "/audio/ru/words/обувь.mp3",
+        "text": "Обувь"
+      },
+      {
+        "filename": "фрукт.mp3",
+        "path": "/audio/ru/words/фрукт.mp3",
+        "text": "Фрукт"
+      },
+      {
+        "filename": "часы.mp3",
+        "path": "/audio/ru/words/часы.mp3",
+        "text": "Часы"
+      },
+      {
+        "filename": "виноград.mp3",
+        "path": "/audio/ru/words/виноград.mp3",
+        "text": "Виноград"
+      },
+      {
+        "filename": "рентген.mp3",
+        "path": "/audio/ru/words/рентген.mp3",
+        "text": "Рентген"
+      },
+      {
+        "filename": "ксилофон.mp3",
+        "path": "/audio/ru/words/ксилофон.mp3",
+        "text": "Ксилофон"
+      },
+      {
+        "filename": "хороший.mp3",
+        "path": "/audio/ru/words/хороший.mp3",
+        "text": "Хороший"
+      },
+      {
+        "filename": "плохой.mp3",
+        "path": "/audio/ru/words/плохой.mp3",
+        "text": "Плохой"
+      },
+      {
+        "filename": "открыто.mp3",
+        "path": "/audio/ru/words/открыто.mp3",
+        "text": "Открыто"
+      },
+      {
+        "filename": "закрыто.mp3",
+        "path": "/audio/ru/words/закрыто.mp3",
+        "text": "Закрыто"
+      },
+      {
+        "filename": "быстрый.mp3",
+        "path": "/audio/ru/words/быстрый.mp3",
+        "text": "Быстрый"
+      },
+      {
+        "filename": "медленный.mp3",
+        "path": "/audio/ru/words/медленный.mp3",
+        "text": "Медленный"
+      },
+      {
+        "filename": "счастливый.mp3",
+        "path": "/audio/ru/words/счастливый.mp3",
+        "text": "Счастливый"
+      },
+      {
+        "filename": "готов.mp3",
+        "path": "/audio/ru/words/готов.mp3",
+        "text": "Готов"
+      },
+      {
+        "filename": "фиолетовый.mp3",
+        "path": "/audio/ru/words/фиолетовый.mp3",
+        "text": "Фиолетовый"
+      },
+      {
+        "filename": "розовый.mp3",
+        "path": "/audio/ru/words/розовый.mp3",
+        "text": "Розовый"
+      },
+      {
+        "filename": "серый.mp3",
+        "path": "/audio/ru/words/серый.mp3",
+        "text": "Серый"
+      },
+      {
+        "filename": "учиться.mp3",
+        "path": "/audio/ru/words/учиться.mp3",
+        "text": "Учиться"
+      },
+      {
+        "filename": "говорить.mp3",
+        "path": "/audio/ru/words/говорить.mp3",
+        "text": "Говорить"
+      },
+      {
+        "filename": "есть.mp3",
+        "path": "/audio/ru/words/есть.mp3",
+        "text": "Есть"
+      },
+      {
+        "filename": "пить.mp3",
+        "path": "/audio/ru/words/пить.mp3",
+        "text": "Пить"
+      },
+      {
+        "filename": "идти.mp3",
+        "path": "/audio/ru/words/идти.mp3",
+        "text": "Идти"
+      },
+      {
+        "filename": "приходить.mp3",
+        "path": "/audio/ru/words/приходить.mp3",
+        "text": "Приходить"
+      },
+      {
+        "filename": "понимать.mp3",
+        "path": "/audio/ru/words/понимать.mp3",
+        "text": "Понимать"
+      },
+      {
+        "filename": "знать.mp3",
+        "path": "/audio/ru/words/знать.mp3",
+        "text": "Знать"
+      },
+      {
+        "filename": "покупать.mp3",
+        "path": "/audio/ru/words/покупать.mp3",
+        "text": "Покупать"
+      },
+      {
+        "filename": "помогать.mp3",
+        "path": "/audio/ru/words/помогать.mp3",
+        "text": "Помогать"
+      },
+      {
+        "filename": "работать.mp3",
+        "path": "/audio/ru/words/работать.mp3",
+        "text": "Работать"
+      },
+      {
+        "filename": "хотеть.mp3",
+        "path": "/audio/ru/words/хотеть.mp3",
+        "text": "Хотеть"
       },
       {
         "filename": "время.mp3",
@@ -2023,74 +2308,9 @@
         "text": "Неделя"
       },
       {
-        "filename": "месяц.mp3",
-        "path": "/audio/ru/words/месяц.mp3",
-        "text": "Месяц"
-      },
-      {
-        "filename": "год.mp3",
-        "path": "/audio/ru/words/год.mp3",
-        "text": "Год"
-      },
-      {
-        "filename": "ёж.mp3",
-        "path": "/audio/ru/words/ёж.mp3",
-        "text": "Ёж"
-      },
-      {
-        "filename": "жук.mp3",
-        "path": "/audio/ru/words/жук.mp3",
-        "text": "Жук"
-      },
-      {
         "filename": "ёлка.mp3",
         "path": "/audio/ru/words/ёлка.mp3",
         "text": "Ёлка"
-      },
-      {
-        "filename": "зебра.mp3",
-        "path": "/audio/ru/words/зебра.mp3",
-        "text": "Зебра"
-      },
-      {
-        "filename": "лёд.mp3",
-        "path": "/audio/ru/words/лёд.mp3",
-        "text": "Лёд"
-      },
-      {
-        "filename": "свет.mp3",
-        "path": "/audio/ru/words/свет.mp3",
-        "text": "Свет"
-      },
-      {
-        "filename": "имя.mp3",
-        "path": "/audio/ru/words/имя.mp3",
-        "text": "Имя"
-      },
-      {
-        "filename": "апельсин.mp3",
-        "path": "/audio/ru/words/апельсин.mp3",
-        "text": "Апельсин"
-      },
-      {
-        "filename": "тихий.mp3",
-        "path": "/audio/ru/words/тихий.mp3",
-        "text": "Тихий"
-      },
-      {
-        "filename": "голос.mp3",
-        "path": "/audio/ru/words/голос.mp3",
-        "text": "Голос"
-      },
-      {
-        "filename": "рентген.mp3",
-        "path": "/audio/ru/words/рентген.mp3",
-        "text": "Рентген"
-      },
-      {
-        "filename": "ксилофон.mp3",
-        "path": "/audio/ru/words/ксилофон.mp3",
-        "text": "Ксилофон"
       },
       {
         "filename": "ноль.mp3",
@@ -2098,19 +2318,9 @@
         "text": "Ноль"
       },
       {
-        "filename": "любовь.mp3",
-        "path": "/audio/ru/words/любовь.mp3",
-        "text": "Любовь"
-      },
-      {
         "filename": "день.mp3",
         "path": "/audio/ru/words/день.mp3",
         "text": "День"
-      },
-      {
-        "filename": "остров.mp3",
-        "path": "/audio/ru/words/остров.mp3",
-        "text": "Остров"
       },
       {
         "filename": "килограмм.mp3",
@@ -2123,59 +2333,14 @@
         "text": "Ночь"
       },
       {
-        "filename": "глаз.mp3",
-        "path": "/audio/ru/words/глаз.mp3",
-        "text": "Глаз"
-      },
-      {
-        "filename": "глаза.mp3",
-        "path": "/audio/ru/words/глаза.mp3",
-        "text": "Глаза"
-      },
-      {
-        "filename": "щека.mp3",
-        "path": "/audio/ru/words/щека.mp3",
-        "text": "Щека"
-      },
-      {
-        "filename": "часы.mp3",
-        "path": "/audio/ru/words/часы.mp3",
-        "text": "Часы"
-      },
-      {
-        "filename": "виноград.mp3",
-        "path": "/audio/ru/words/виноград.mp3",
-        "text": "Виноград"
-      },
-      {
-        "filename": "стакан.mp3",
-        "path": "/audio/ru/words/стакан.mp3",
-        "text": "Стакан"
-      },
-      {
         "filename": "веб.mp3",
         "path": "/audio/ru/words/веб.mp3",
         "text": "Веб"
       },
       {
-        "filename": "успех.mp3",
-        "path": "/audio/ru/words/успех.mp3",
-        "text": "Успех"
-      },
-      {
         "filename": "желток.mp3",
         "path": "/audio/ru/words/желток.mp3",
         "text": "Желток"
-      },
-      {
-        "filename": "идея.mp3",
-        "path": "/audio/ru/words/идея.mp3",
-        "text": "Идея"
-      },
-      {
-        "filename": "вопрос.mp3",
-        "path": "/audio/ru/words/вопрос.mp3",
-        "text": "Вопрос"
       },
       {
         "filename": "вагон.mp3",
@@ -2186,21 +2351,6 @@
         "filename": "пример.mp3",
         "path": "/audio/ru/words/пример.mp3",
         "text": "Пример"
-      },
-      {
-        "filename": "лимон.mp3",
-        "path": "/audio/ru/words/лимон.mp3",
-        "text": "Лимон"
-      },
-      {
-        "filename": "нос.mp3",
-        "path": "/audio/ru/words/нос.mp3",
-        "text": "Нос"
-      },
-      {
-        "filename": "чайник.mp3",
-        "path": "/audio/ru/words/чайник.mp3",
-        "text": "Чайник"
       },
       {
         "filename": "утро.mp3",
@@ -2233,29 +2383,9 @@
         "text": "Юг"
       },
       {
-        "filename": "йогурт.mp3",
-        "path": "/audio/ru/words/йогурт.mp3",
-        "text": "Йогурт"
-      },
-      {
-        "filename": "сердце.mp3",
-        "path": "/audio/ru/words/сердце.mp3",
-        "text": "Сердце"
-      },
-      {
-        "filename": "чашка.mp3",
-        "path": "/audio/ru/words/чашка.mp3",
-        "text": "Чашка"
-      },
-      {
         "filename": "источник.mp3",
         "path": "/audio/ru/words/источник.mp3",
         "text": "Источник"
-      },
-      {
-        "filename": "масло.mp3",
-        "path": "/audio/ru/words/масло.mp3",
-        "text": "Масло"
       },
       {
         "filename": "или.mp3",
@@ -2303,69 +2433,9 @@
         "text": "Вчера"
       },
       {
-        "filename": "учиться.mp3",
-        "path": "/audio/ru/words/учиться.mp3",
-        "text": "Учиться"
-      },
-      {
-        "filename": "говорить.mp3",
-        "path": "/audio/ru/words/говорить.mp3",
-        "text": "Говорить"
-      },
-      {
-        "filename": "есть.mp3",
-        "path": "/audio/ru/words/есть.mp3",
-        "text": "Есть"
-      },
-      {
-        "filename": "пить.mp3",
-        "path": "/audio/ru/words/пить.mp3",
-        "text": "Пить"
-      },
-      {
-        "filename": "идти.mp3",
-        "path": "/audio/ru/words/идти.mp3",
-        "text": "Идти / Ехать"
-      },
-      {
-        "filename": "приходить.mp3",
-        "path": "/audio/ru/words/приходить.mp3",
-        "text": "Приходить / Приезжать"
-      },
-      {
-        "filename": "понимать.mp3",
-        "path": "/audio/ru/words/понимать.mp3",
-        "text": "Понимать"
-      },
-      {
-        "filename": "знать.mp3",
-        "path": "/audio/ru/words/знать.mp3",
-        "text": "Знать"
-      },
-      {
-        "filename": "хотеть.mp3",
-        "path": "/audio/ru/words/хотеть.mp3",
-        "text": "Хотеть"
-      },
-      {
         "filename": "нуждаться.mp3",
         "path": "/audio/ru/words/нуждаться.mp3",
         "text": "Нуждаться (нужно)"
-      },
-      {
-        "filename": "покупать.mp3",
-        "path": "/audio/ru/words/покупать.mp3",
-        "text": "Покупать"
-      },
-      {
-        "filename": "помогать.mp3",
-        "path": "/audio/ru/words/помогать.mp3",
-        "text": "Помогать"
-      },
-      {
-        "filename": "работать.mp3",
-        "path": "/audio/ru/words/работать.mp3",
-        "text": "Работать"
       },
       {
         "filename": "привет.mp3",
@@ -2963,11 +3033,6 @@
         "text": "До скорого"
       },
       {
-        "filename": "вокзал.mp3",
-        "path": "/audio/ru/words/вокзал.mp3",
-        "text": "Вокзал / Станция"
-      },
-      {
         "filename": "сто.mp3",
         "path": "/audio/ru/words/сто.mp3",
         "text": "Сто"
@@ -2981,21 +3046,6 @@
         "filename": "это_далеко_отсюда.mp3",
         "path": "/audio/ru/words/это_далеко_отсюда.mp3",
         "text": "Это далеко отсюда?"
-      },
-      {
-        "filename": "фиолетовый.mp3",
-        "path": "/audio/ru/words/фиолетовый.mp3",
-        "text": "Фиолетовый"
-      },
-      {
-        "filename": "розовый.mp3",
-        "path": "/audio/ru/words/розовый.mp3",
-        "text": "Розовый"
-      },
-      {
-        "filename": "серый.mp3",
-        "path": "/audio/ru/words/серый.mp3",
-        "text": "Серый"
       },
       {
         "filename": "вы_меня_слышите.mp3",
