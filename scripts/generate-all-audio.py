@@ -58,6 +58,18 @@ CONFIGS = {
         "data_file": PROJECT_ROOT / "src" / "data" / "languages" / "fr" / "frenchData.ts",
         "output_dir": PUBLIC_AUDIO / "fr",
         "manifest": PUBLIC_AUDIO / "fr" / "index.json"
+    },
+    "pt": {
+        "voice": "pt-BR-AntonioNeural",
+        "data_file": PROJECT_ROOT / "src" / "data" / "languages" / "pt" / "portugueseData.ts",
+        "output_dir": PUBLIC_AUDIO / "pt",
+        "manifest": PUBLIC_AUDIO / "pt" / "index.json"
+    },
+    "de": {
+        "voice": "de-DE-ConradNeural",
+        "data_file": PROJECT_ROOT / "src" / "data" / "languages" / "de" / "germanData.ts",
+        "output_dir": PUBLIC_AUDIO / "de",
+        "manifest": PUBLIC_AUDIO / "de" / "index.json"
     }
 }
 
@@ -169,7 +181,13 @@ def parse_standard_lang(data_file: Path, lang_id: str):
         letters = extract_ts_strings("letter", alpha_match.group(1))
         words = extract_ts_strings("word", alpha_match.group(1))
         for l in letters:
-            categories["alphabet"].append({"text": l, "spoken": l, "filename": f"{l.lower()}.mp3"})
+            lower_l = l.lower()
+            spoken = l
+            if lang_id == "pt" and lower_l == "ç":
+                spoken = "cê-cedilha"
+            elif lang_id == "de" and lower_l == "ß":
+                spoken = "Eszett"
+            categories["alphabet"].append({"text": l, "spoken": spoken, "filename": f"{lower_l}.mp3"})
         for w in words:
             categories["examples"].append({"text": w, "spoken": w, "filename": get_audio_filename(w)})
 
@@ -306,7 +324,7 @@ async def main():
         if idx + 1 < len(sys.argv):
             langs = [sys.argv[idx + 1]]
     elif "--all" in sys.argv:
-        langs = ["es", "fr", "en", "ru"]
+        langs = ["es", "fr", "en", "ru", "pt", "de"]
     else:
         langs = ["es", "fr"]
 

@@ -1,7 +1,7 @@
 {
   "language": "ru",
   "voice": "ru-RU-SvetlanaNeural",
-  "generated": "2026-10-29T15:24:50.378761Z",
+  "generated": "2026-10-29T15:55:22.957834Z",
   "files": {
     "alphabet": [
       {
@@ -1866,6 +1866,26 @@
         "filename": "йогурт.mp3",
         "path": "/audio/ru/words/йогурт.mp3",
         "text": "Йогурт"
+      },
+      {
+        "filename": "сердце.mp3",
+        "path": "/audio/ru/words/сердце.mp3",
+        "text": "Сердце"
+      },
+      {
+        "filename": "чашка.mp3",
+        "path": "/audio/ru/words/чашка.mp3",
+        "text": "Чашка"
+      },
+      {
+        "filename": "источник.mp3",
+        "path": "/audio/ru/words/источник.mp3",
+        "text": "Источник"
+      },
+      {
+        "filename": "масло.mp3",
+        "path": "/audio/ru/words/масло.mp3",
+        "text": "Масло"
       },
       {
         "filename": "или.mp3",

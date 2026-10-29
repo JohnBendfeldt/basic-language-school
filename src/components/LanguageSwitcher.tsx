@@ -278,6 +278,20 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                 </button>
                 <button
                   type="button"
+                  className={`quick-pair-chip ${baseLanguage === 'en' && targetLanguage === 'pt' ? 'active' : ''}`}
+                  onClick={() => handleQuickPair('en', 'pt')}
+                >
+                  🇬🇧 EN → 🇧🇷 PT
+                </button>
+                <button
+                  type="button"
+                  className={`quick-pair-chip ${baseLanguage === 'en' && targetLanguage === 'de' ? 'active' : ''}`}
+                  onClick={() => handleQuickPair('en', 'de')}
+                >
+                  🇬🇧 EN → 🇩🇪 DE
+                </button>
+                <button
+                  type="button"
                   className={`quick-pair-chip ${baseLanguage === 'es' && targetLanguage === 'ru' ? 'active' : ''}`}
                   onClick={() => handleQuickPair('es', 'ru')}
                 >

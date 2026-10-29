@@ -1,7 +1,7 @@
 {
   "language": "es",
   "voice": "es-MX-JorgeNeural",
-  "generated": "2026-10-29T15:22:47.645496Z",
+  "generated": "2026-10-29T15:55:14.196930Z",
   "files": {
     "alphabet": [
       {
@@ -1791,6 +1791,26 @@
         "filename": "yogur.mp3",
         "path": "/audio/es/words/yogur.mp3",
         "text": "Yogur"
+      },
+      {
+        "filename": "corazón.mp3",
+        "path": "/audio/es/words/corazón.mp3",
+        "text": "Corazón"
+      },
+      {
+        "filename": "taza.mp3",
+        "path": "/audio/es/words/taza.mp3",
+        "text": "Taza"
+      },
+      {
+        "filename": "fuente.mp3",
+        "path": "/audio/es/words/fuente.mp3",
+        "text": "Fuente"
+      },
+      {
+        "filename": "aceite.mp3",
+        "path": "/audio/es/words/aceite.mp3",
+        "text": "Aceite"
       },
       {
         "filename": "o.mp3",

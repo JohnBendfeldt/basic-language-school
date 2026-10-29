@@ -6,6 +6,8 @@ import { englishData } from '../data/languages/en/englishData';
 import spanishData from '../data/languages/es/spanishData';
 import frenchData from '../data/languages/fr/frenchData';
 import russianData from '../data/languages/ru/russianData';
+import portugueseData from '../data/languages/pt/portugueseData';
+import germanData from '../data/languages/de/germanData';
 import { resolveTranslation, extractDigit } from '../utils/translationResolver';
 import { getCandidateAudioPathsForText } from '../components/PronunciationButton';
 import {
@@ -15,13 +17,15 @@ import {
   getLocalizedAppName,
 } from '../utils/pageDictionary';
 
-const LANGUAGES: SupportedLanguageId[] = ['en', 'es', 'fr', 'ru'];
+const LANGUAGES: SupportedLanguageId[] = ['en', 'es', 'fr', 'ru', 'pt', 'de'];
 
-const DATA_BY_LANG = {
+const DATA_BY_LANG: Record<SupportedLanguageId, typeof englishData> = {
   en: englishData,
   es: spanishData,
   fr: frenchData,
   ru: russianData,
+  pt: portugueseData,
+  de: germanData,
 };
 
 const PUBLIC_DIR = path.resolve(__dirname, '../../public');

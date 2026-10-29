@@ -1,7 +1,7 @@
 {
   "language": "fr",
   "voice": "fr-FR-HenriNeural",
-  "generated": "2026-10-29T15:23:29.358003Z",
+  "generated": "2026-10-29T15:55:17.192128Z",
   "files": {
     "alphabet": [
       {
@@ -1786,6 +1786,26 @@
         "filename": "yaourt.mp3",
         "path": "/audio/fr/words/yaourt.mp3",
         "text": "Yaourt"
+      },
+      {
+        "filename": "cœur.mp3",
+        "path": "/audio/fr/words/cœur.mp3",
+        "text": "Cœur"
+      },
+      {
+        "filename": "tasse.mp3",
+        "path": "/audio/fr/words/tasse.mp3",
+        "text": "Tasse"
+      },
+      {
+        "filename": "source.mp3",
+        "path": "/audio/fr/words/source.mp3",
+        "text": "Source"
+      },
+      {
+        "filename": "huile.mp3",
+        "path": "/audio/fr/words/huile.mp3",
+        "text": "Huile"
       },
       {
         "filename": "ou.mp3",

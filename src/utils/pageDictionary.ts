@@ -124,11 +124,93 @@ export const getPageContent = (
             title: 'Alphabet français',
             subtitle: '26 lettres avec guides de prononciation, vocabulaire d\'exemple et audio natif'
           };
+        case 'pt':
+          return {
+            title: 'Alfabeto francês',
+            subtitle: '26 letras com guias de pronúncia, vocabulário de exemplo e áudio nativo'
+          };
+        case 'de':
+          return {
+            title: 'Französisches Alphabet',
+            subtitle: '26 Buchstaben mit Aussprachehilfen, Beispielwörtern und Studio-Audio'
+          };
         case 'en':
         default:
           return {
             title: 'French Alphabet',
             subtitle: '26 letters with pronunciation guides, example vocabulary, and native studio audio'
+          };
+      }
+    }
+
+    if (targetLang === 'pt') {
+      switch (baseLang) {
+        case 'ru':
+          return {
+            title: 'Португальский алфавит',
+            subtitle: '27 букв с правилами произношения, примерами слов и студийным аудио'
+          };
+        case 'es':
+          return {
+            title: 'Alfabeto portugués',
+            subtitle: '27 letras con guías de pronunciación, vocabulario y audio nativo'
+          };
+        case 'fr':
+          return {
+            title: 'Alphabet portugais',
+            subtitle: '27 lettres avec guides de prononciation, vocabulaire et audio natif'
+          };
+        case 'pt':
+          return {
+            title: 'Alfabeto português',
+            subtitle: '27 letras com guias de pronúncia, vocabulário de exemplo e áudio nativo'
+          };
+        case 'de':
+          return {
+            title: 'Portugiesisches Alphabet',
+            subtitle: '27 Buchstaben mit Aussprachehilfen, Beispielwörtern und Studio-Audio'
+          };
+        case 'en':
+        default:
+          return {
+            title: 'Portuguese Alphabet',
+            subtitle: '27 letters with pronunciation guides, example vocabulary, and native studio audio'
+          };
+      }
+    }
+
+    if (targetLang === 'de') {
+      switch (baseLang) {
+        case 'ru':
+          return {
+            title: 'Немецкий алфавит',
+            subtitle: '30 букв (включая Ä, Ö, Ü, ß) с произношением, примерами слов и студийным аудио'
+          };
+        case 'es':
+          return {
+            title: 'Alfabeto alemán',
+            subtitle: '30 letras (incluyendo Ä, Ö, Ü, ß) con guías de pronunciación y audio nativo'
+          };
+        case 'fr':
+          return {
+            title: 'Alphabet allemand',
+            subtitle: '30 lettres (dont Ä, Ö, Ü, ß) avec guides de prononciation et audio natif'
+          };
+        case 'pt':
+          return {
+            title: 'Alfabeto alemão',
+            subtitle: '30 letras (incluindo Ä, Ö, Ü, ß) com guias de pronúncia e áudio nativo'
+          };
+        case 'de':
+          return {
+            title: 'Deutsches Alphabet',
+            subtitle: '30 Buchstaben (inkl. Ä, Ö, Ü, ß) mit Aussprachehilfen, Beispielwörtern und Studio-Audio'
+          };
+        case 'en':
+        default:
+          return {
+            title: 'German Alphabet',
+            subtitle: '30 letters (including Ä, Ö, Ü, ß) with pronunciation guides, example vocabulary, and native studio audio'
           };
       }
     }
@@ -140,7 +222,9 @@ export const getPageContent = (
       en: 'Tap any card to reveal its translation and pronunciation',
       es: 'Toca cualquier tarjeta para ver su traducción y pronunciación',
       fr: 'Appuyez sur une carte pour voir sa traduction et sa prononciation',
-      ru: 'Нажмите на любую карточку, чтобы увидеть перевод и произношение'
+      ru: 'Нажмите на любую карточку, чтобы увидеть перевод и произношение',
+      pt: 'Toque em qualquer cartão para ver sua tradução e pronúncia',
+      de: 'Tippe auf eine Karte, um Übersetzung und Aussprache anzuzeigen'
     };
 
     if (targetLang === 'en') {
@@ -193,9 +277,49 @@ export const getPageContent = (
           return { title: 'Frases esenciales en francés', subtitle: subtitleByBase.es };
         case 'fr':
           return { title: 'Phrases de base en français', subtitle: subtitleByBase.fr };
+        case 'pt':
+          return { title: 'Frases essenciais em francês', subtitle: subtitleByBase.pt };
+        case 'de':
+          return { title: 'Wichtige französische Sätze', subtitle: subtitleByBase.de };
         case 'en':
         default:
           return { title: 'French Essential Phrases', subtitle: subtitleByBase.en };
+      }
+    }
+
+    if (targetLang === 'pt') {
+      switch (baseLang) {
+        case 'ru':
+          return { title: 'Основные португальские фразы', subtitle: subtitleByBase.ru };
+        case 'es':
+          return { title: 'Frases esenciales en portugués', subtitle: subtitleByBase.es };
+        case 'fr':
+          return { title: 'Phrases de base en portugais', subtitle: subtitleByBase.fr };
+        case 'pt':
+          return { title: 'Frases básicas em português', subtitle: subtitleByBase.pt };
+        case 'de':
+          return { title: 'Wichtige portugiesische Sätze', subtitle: subtitleByBase.de };
+        case 'en':
+        default:
+          return { title: 'Essential Portuguese Phrases & Greetings', subtitle: subtitleByBase.en };
+      }
+    }
+
+    if (targetLang === 'de') {
+      switch (baseLang) {
+        case 'ru':
+          return { title: 'Основные немецкие фразы', subtitle: subtitleByBase.ru };
+        case 'es':
+          return { title: 'Frases esenciales en alemán', subtitle: subtitleByBase.es };
+        case 'fr':
+          return { title: 'Phrases de base en allemand', subtitle: subtitleByBase.fr };
+        case 'pt':
+          return { title: 'Frases essenciais em alemão', subtitle: subtitleByBase.pt };
+        case 'de':
+          return { title: 'Wichtige deutsche Sätze', subtitle: subtitleByBase.de };
+        case 'en':
+        default:
+          return { title: 'Essential German Phrases & Greetings', subtitle: subtitleByBase.en };
       }
     }
   }
@@ -206,7 +330,9 @@ export const getPageContent = (
       en: 'Tap any card to reveal its translation and pronunciation',
       es: 'Toca cualquier tarjeta para ver su traducción y pronunciación',
       fr: 'Appuyez sur une carte pour voir sa traduction et sa prononciation',
-      ru: 'Нажмите на любую карточку, чтобы увидеть перевод и произношение'
+      ru: 'Нажмите на любую карточку, чтобы увидеть перевод и произношение',
+      pt: 'Toque em qualquer cartão para ver sua tradução e pronúncia',
+      de: 'Tippe auf eine Karte, um Übersetzung und Aussprache anzuzeigen'
     };
 
     if (targetLang === 'en') {
@@ -259,15 +385,90 @@ export const getPageContent = (
           return { title: 'Palabras comunes en francés', subtitle: subtitleByBase.es };
         case 'fr':
           return { title: 'Mots courants en français', subtitle: subtitleByBase.fr };
+        case 'pt':
+          return { title: 'Palavras comuns em francês', subtitle: subtitleByBase.pt };
+        case 'de':
+          return { title: 'Häufige französische Wörter', subtitle: subtitleByBase.de };
         case 'en':
         default:
           return { title: 'Common French Words & Vocabulary', subtitle: subtitleByBase.en };
+      }
+    }
+
+    if (targetLang === 'pt') {
+      switch (baseLang) {
+        case 'ru':
+          return { title: 'Популярные португальские слова', subtitle: subtitleByBase.ru };
+        case 'es':
+          return { title: 'Palabras comunes en portugués', subtitle: subtitleByBase.es };
+        case 'fr':
+          return { title: 'Mots courants en portugais', subtitle: subtitleByBase.fr };
+        case 'pt':
+          return { title: 'Palavras comuns em português', subtitle: subtitleByBase.pt };
+        case 'de':
+          return { title: 'Häufige portugiesische Wörter', subtitle: subtitleByBase.de };
+        case 'en':
+        default:
+          return { title: 'Common Portuguese Words & Vocabulary', subtitle: subtitleByBase.en };
+      }
+    }
+
+    if (targetLang === 'de') {
+      switch (baseLang) {
+        case 'ru':
+          return { title: 'Популярные немецкие слова', subtitle: subtitleByBase.ru };
+        case 'es':
+          return { title: 'Palabras comunes en alemán', subtitle: subtitleByBase.es };
+        case 'fr':
+          return { title: 'Mots courants en allemand', subtitle: subtitleByBase.fr };
+        case 'pt':
+          return { title: 'Palavras comuns em alemão', subtitle: subtitleByBase.pt };
+        case 'de':
+          return { title: 'Häufige deutsche Wörter', subtitle: subtitleByBase.de };
+        case 'en':
+        default:
+          return { title: 'Common German Words & Vocabulary', subtitle: subtitleByBase.en };
       }
     }
   }
 
   // 4. NUMBERS
   if (section === 'numbers') {
+    if (targetLang === 'pt') {
+      switch (baseLang) {
+        case 'ru':
+          return { title: 'Португальские числа (0–1000)', subtitle: 'Количественные числительные с правильным произношением' };
+        case 'es':
+          return { title: 'Números en portugués (0–1.000)', subtitle: 'Números cardinales con pronunciación nativa' };
+        case 'fr':
+          return { title: 'Nombres en portugais (0–1 000)', subtitle: 'Nombres cardinaux avec prononciation native' };
+        case 'pt':
+          return { title: 'Números em português (0–1.000)', subtitle: 'Números cardinais com pronúncia nativa' };
+        case 'de':
+          return { title: 'Portugiesische Zahlen (0–1.000)', subtitle: 'Grundzahlen mit muttersprachlicher Aussprache' };
+        case 'en':
+        default:
+          return { title: 'Portuguese Numbers (0–1,000)', subtitle: 'Cardinal numbers from zero to one thousand with native pronunciation' };
+      }
+    }
+
+    if (targetLang === 'de') {
+      switch (baseLang) {
+        case 'ru':
+          return { title: 'Немецкие числа (0–1000)', subtitle: 'Количественные числительные с правильным произношением' };
+        case 'es':
+          return { title: 'Números en alemán (0–1.000)', subtitle: 'Números cardinales con pronunciación nativa' };
+        case 'fr':
+          return { title: 'Nombres en allemand (0–1 000)', subtitle: 'Nombres cardinaux avec prononciation native' };
+        case 'pt':
+          return { title: 'Números em alemão (0–1.000)', subtitle: 'Números cardinais com pronúncia nativa' };
+        case 'de':
+          return { title: 'Deutsche Zahlen (0–1.000)', subtitle: 'Grundzahlen von null bis tausend mit Studio-Audio' };
+        case 'en':
+        default:
+          return { title: 'German Numbers (0–1,000)', subtitle: 'Cardinal numbers from zero to one thousand with native pronunciation' };
+      }
+    }
     if (targetLang === 'en') {
       switch (baseLang) {
         case 'ru':
@@ -377,9 +578,49 @@ export const getPageContent = (
           return { title: 'La hora en francés y expresiones', subtitle: 'Aprende horas, minutos y expresiones de tiempo cotidianas' };
         case 'fr':
           return { title: 'Dire l\'heure en français et expressions', subtitle: 'Heures, minutes et expressions de temps quotidiennes' };
+        case 'pt':
+          return { title: 'As horas em francês e expressões', subtitle: 'Aprenda horas, minutos e expressões de tempo cotidianas' };
+        case 'de':
+          return { title: 'Uhrzeit auf Französisch & Ausdrücke', subtitle: 'Stunden, Minuten und alltägliche Zeitausdrücke' };
         case 'en':
         default:
           return { title: 'French Telling Time & Expressions', subtitle: 'Learn hours, minutes, and essential daily time expressions' };
+      }
+    }
+
+    if (targetLang === 'pt') {
+      switch (baseLang) {
+        case 'ru':
+          return { title: 'Определение времени на португальском', subtitle: 'Часы, минуты и повседневные фразы о времени' };
+        case 'es':
+          return { title: 'La hora en portugués y expresiones', subtitle: 'Aprende horas, minutos y expresiones de tiempo cotidianas' };
+        case 'fr':
+          return { title: 'Dire l\'heure en portugais et expressions', subtitle: 'Heures, minutes et expressions de temps quotidiennes' };
+        case 'pt':
+          return { title: 'Como dizer as horas em português', subtitle: 'Aprenda horas, minutos e expressões de tempo cotidianas' };
+        case 'de':
+          return { title: 'Uhrzeit auf Portugiesisch & Ausdrücke', subtitle: 'Stunden, Minuten und alltägliche Zeitausdrücke' };
+        case 'en':
+        default:
+          return { title: 'Portuguese Telling Time & Expressions', subtitle: 'Learn hours, minutes, and essential daily time expressions' };
+      }
+    }
+
+    if (targetLang === 'de') {
+      switch (baseLang) {
+        case 'ru':
+          return { title: 'Определение времени на немецком', subtitle: 'Часы, минуты и повседневные фразы о времени' };
+        case 'es':
+          return { title: 'La hora en alemán y expresiones', subtitle: 'Aprende horas, minutos y expresiones de tiempo cotidianas' };
+        case 'fr':
+          return { title: 'Dire l\'heure en allemand et expressions', subtitle: 'Heures, minutes et expressions de temps quotidiennes' };
+        case 'pt':
+          return { title: 'As horas em alemão e expressões', subtitle: 'Aprenda horas, minutos e expressões de tempo cotidianas' };
+        case 'de':
+          return { title: 'Uhrzeit auf Deutsch & Ausdrücke', subtitle: 'Stunden, Minuten und alltägliche Zeitausdrücke' };
+        case 'en':
+        default:
+          return { title: 'German Telling Time & Expressions', subtitle: 'Learn hours, minutes, and essential daily time expressions' };
       }
     }
   }
@@ -402,6 +643,10 @@ export const getAlphabetLabels = (baseLang: SupportedLanguageId) => {
       return { sound: 'Sonido:', example: 'Ejemplo:', asIn: 'como en' };
     case 'fr':
       return { sound: 'Son:', example: 'Exemple:', asIn: 'comme dans' };
+    case 'pt':
+      return { sound: 'Som:', example: 'Exemplo:', asIn: 'como em' };
+    case 'de':
+      return { sound: 'Klang:', example: 'Beispiel:', asIn: 'wie in' };
     case 'en':
     default:
       return { sound: 'Sound:', example: 'Example:', asIn: 'as in' };
@@ -419,6 +664,10 @@ export const getTimeTabs = (baseLang: SupportedLanguageId) => {
       return { numbers: 'Números', time: 'La hora' };
     case 'fr':
       return { numbers: 'Nombres', time: 'L\'heure' };
+    case 'pt':
+      return { numbers: 'Números', time: 'As horas' };
+    case 'de':
+      return { numbers: 'Zahlen', time: 'Uhrzeit' };
     case 'en':
     default:
       return { numbers: 'Numbers', time: 'Telling Time' };
@@ -759,25 +1008,49 @@ export const getLocalizedAppName = (
       en: 'Базовый Английский',
       es: 'Базовый Испанский',
       fr: 'Базовый Французский',
-      ru: 'Базовый Русский'
+      ru: 'Базовый Русский',
+      pt: 'Базовый Португальский',
+      de: 'Базовый Немецкий'
     },
     es: {
       en: 'Inglés Básico',
       es: 'Español Básico',
       fr: 'Francés Básico',
-      ru: 'Ruso Básico'
+      ru: 'Ruso Básico',
+      pt: 'Portugués Básico',
+      de: 'Alemán Básico'
     },
     fr: {
       en: 'Anglais de Base',
       es: 'Espagnol de Base',
       fr: 'Français de Base',
-      ru: 'Russe de Base'
+      ru: 'Russe de Base',
+      pt: 'Portugais de Base',
+      de: 'Allemand de Base'
+    },
+    pt: {
+      en: 'Inglês Básico',
+      es: 'Espanhol Básico',
+      fr: 'Francês Básico',
+      ru: 'Russo Básico',
+      pt: 'Português Básico',
+      de: 'Alemão Básico'
+    },
+    de: {
+      en: 'Basis-Englisch',
+      es: 'Basis-Spanisch',
+      fr: 'Basis-Französisch',
+      ru: 'Basis-Russisch',
+      pt: 'Basis-Portugiesisch',
+      de: 'Basis-Deutsch'
     },
     en: {
       en: 'Basic English',
       es: 'Basic Spanish',
       fr: 'Basic French',
-      ru: 'Basic Russian'
+      ru: 'Basic Russian',
+      pt: 'Basic Portuguese',
+      de: 'Basic German'
     }
   };
 
@@ -827,9 +1100,39 @@ export const getLocalizedLanguageName = (
       de: 'Allemand',
       it: 'Italien',
       pt: 'Portugais',
+      id: 'Indonésien',
+      tr: 'Turc',
       ja: 'Japonais',
       zh: 'Chinois',
       ko: 'Coréen'
+    },
+    pt: {
+      en: 'Inglês',
+      es: 'Espanhol',
+      fr: 'Francês',
+      ru: 'Russo',
+      de: 'Alemão',
+      it: 'Italiano',
+      pt: 'Português',
+      id: 'Indonésio',
+      tr: 'Turco',
+      ja: 'Japonês',
+      zh: 'Chinês',
+      ko: 'Coreano'
+    },
+    de: {
+      en: 'Englisch',
+      es: 'Spanisch',
+      fr: 'Französisch',
+      ru: 'Russisch',
+      de: 'Deutsch',
+      it: 'Italienisch',
+      pt: 'Portugiesisch',
+      id: 'Indonesisch',
+      tr: 'Türkisch',
+      ja: 'Japanisch',
+      zh: 'Chinesisch',
+      ko: 'Koreanisch'
     },
     en: {}
   };
@@ -848,49 +1151,49 @@ export const localizeCategoryBadge = (
 
   const key = category.trim().toLowerCase();
   const map: Record<string, Record<SupportedLanguageId, string>> = {
-    'greetings': { en: 'Greetings', es: 'Saludos', fr: 'Salutations', ru: 'Приветствия' },
-    'conversation': { en: 'Conversation', es: 'Conversación', fr: 'Conversation', ru: 'Разговор' },
-    'introductions': { en: 'Introductions', es: 'Presentaciones', fr: 'Présentations', ru: 'Знакомство' },
-    'farewells': { en: 'Farewells', es: 'Despedidas', fr: 'Au revoir', ru: 'Прощание' },
-    'politeness': { en: 'Politeness', es: 'Cortesía', fr: 'Politesse', ru: 'Вежливость' },
-    'responses': { en: 'Responses', es: 'Respuestas', fr: 'Réponses', ru: 'Ответы' },
-    'communication': { en: 'Communication', es: 'Comunicación', fr: 'Communication', ru: 'Общение' },
-    'travel': { en: 'Travel', es: 'Viajes', fr: 'Voyage', ru: 'Путешествия' },
-    'food & drink': { en: 'Food & Drink', es: 'Comida y Bebida', fr: 'Nourriture et Boissons', ru: 'Еда и напитки' },
-    'dining': { en: 'Dining', es: 'Restaurante', fr: 'Au Restaurant', ru: 'В ресторане' },
-    'shopping': { en: 'Shopping', es: 'Compras', fr: 'Achats', ru: 'Покупки' },
-    'emergency': { en: 'Emergency', es: 'Emergencia', fr: 'Urgence', ru: 'Экстренные случаи' },
-    'people & family': { en: 'People & Family', es: 'Gente y Familia', fr: 'Personnes et Famille', ru: 'Люди и семья' },
-    'people': { en: 'People', es: 'Gente', fr: 'Personnes', ru: 'Люди' },
-    'places': { en: 'Places', es: 'Lugares', fr: 'Lieux', ru: 'Места' },
-    'transport': { en: 'Transport', es: 'Transporte', fr: 'Transports', ru: 'Транспорт' },
-    'everyday objects': { en: 'Everyday Objects', es: 'Objetos Cotidianos', fr: 'Objets du Quotidien', ru: 'Повседневные предметы' },
-    'everyday essentials': { en: 'Everyday Essentials', es: 'Esenciales Diarios', fr: 'Essentiels du Quotidien', ru: 'Повседневные вещи' },
-    'essentials': { en: 'Essentials', es: 'Esenciales', fr: 'Essentiels', ru: 'Основное' },
-    'work': { en: 'Work', es: 'Trabajo', fr: 'Travail', ru: 'Работа' },
-    'finance': { en: 'Finance', es: 'Finanzas', fr: 'Finances', ru: 'Финансы' },
-    'time & weather': { en: 'Time & Weather', es: 'Tiempo y Clima', fr: 'Temps et Météo', ru: 'Время и погода' },
-    'descriptions': { en: 'Descriptions', es: 'Descripciones', fr: 'Descriptions', ru: 'Описания' },
-    'common verbs': { en: 'Common Verbs', es: 'Verbos Comunes', fr: 'Verbes Courants', ru: 'Основные глаголы' },
-    'core actions': { en: 'Core Actions', es: 'Acciones Básicas', fr: 'Actions de Base', ru: 'Основные действия' },
-    'numbers': { en: 'Numbers', es: 'Números', fr: 'Nombres', ru: 'Числа' },
-    'numbers 0-10': { en: 'Numbers 0-10', es: 'Números 0-10', fr: 'Nombres 0-10', ru: 'Числа 0–10' },
-    'numbers 11-20': { en: 'Numbers 11-20', es: 'Números 11-20', fr: 'Nombres 11-20', ru: 'Числа 11–20' },
-    'tens': { en: 'Tens', es: 'Decenas', fr: 'Dizaines', ru: 'Десятки' },
-    'hundreds': { en: 'Hundreds', es: 'Centenas', fr: 'Centaines', ru: 'Сотни' },
-    'thousands': { en: 'Thousands', es: 'Miles', fr: 'Milliers', ru: 'Тысячи' },
-    'time': { en: 'Time', es: 'Hora y Tiempo', fr: 'Heure et Temps', ru: 'Время' },
-    'questions': { en: 'Questions', es: 'Preguntas', fr: 'Questions', ru: 'Вопросы' },
-    'hour': { en: 'Hour', es: 'Horas', fr: 'Heures', ru: 'Часы' },
-    'minutes': { en: 'Minutes', es: 'Minutos', fr: 'Minutes', ru: 'Минуты' },
-    'special': { en: 'Special', es: 'Especial', fr: 'Spécial', ru: 'Особое' },
-    'mixed': { en: 'Mixed', es: 'Mixto', fr: 'Mixte', ru: 'Смешанный' },
-    'colors': { en: 'Colors', es: 'Colores', fr: 'Couleurs', ru: 'Цвета' },
-    'weather': { en: 'Weather', es: 'Clima', fr: 'Météo', ru: 'Погода' },
-    'tech': { en: 'Tech & IT', es: 'Tecnología', fr: 'Tech et IT', ru: 'Технологии' },
-    'business': { en: 'Business', es: 'Negocios', fr: 'Affaires', ru: 'Бизнес' },
-    'health': { en: 'Healthcare', es: 'Salud', fr: 'Santé', ru: 'Здоровье' },
-    'all': { en: 'All', es: 'Todos', fr: 'Tous', ru: 'Все' }
+    'greetings': { en: 'Greetings', es: 'Saludos', fr: 'Salutations', ru: 'Приветствия', pt: 'Saudações', de: 'Begrüßungen' },
+    'conversation': { en: 'Conversation', es: 'Conversación', fr: 'Conversation', ru: 'Разговор', pt: 'Conversação', de: 'Gespräch' },
+    'introductions': { en: 'Introductions', es: 'Presentaciones', fr: 'Présentations', ru: 'Знакомство', pt: 'Apresentações', de: 'Vorstellung' },
+    'farewells': { en: 'Farewells', es: 'Despedidas', fr: 'Au revoir', ru: 'Прощание', pt: 'Despedidas', de: 'Abschied' },
+    'politeness': { en: 'Politeness', es: 'Cortesía', fr: 'Politesse', ru: 'Вежливость', pt: 'Cortesia', de: 'Höflichkeit' },
+    'responses': { en: 'Responses', es: 'Respuestas', fr: 'Réponses', ru: 'Ответы', pt: 'Respostas', de: 'Antworten' },
+    'communication': { en: 'Communication', es: 'Comunicación', fr: 'Communication', ru: 'Общение', pt: 'Comunicação', de: 'Kommunikation' },
+    'travel': { en: 'Travel', es: 'Viajes', fr: 'Voyage', ru: 'Путешествия', pt: 'Viagem', de: 'Reisen' },
+    'food & drink': { en: 'Food & Drink', es: 'Comida y Bebida', fr: 'Nourriture et Boissons', ru: 'Еда и напитки', pt: 'Comida e Bebida', de: 'Essen & Trinken' },
+    'dining': { en: 'Dining', es: 'Restaurante', fr: 'Au Restaurant', ru: 'В ресторане', pt: 'Restaurante', de: 'Im Restaurant' },
+    'shopping': { en: 'Shopping', es: 'Compras', fr: 'Achats', ru: 'Покупки', pt: 'Compras', de: 'Einkaufen' },
+    'emergency': { en: 'Emergency', es: 'Emergencia', fr: 'Urgence', ru: 'Экстренные случаи', pt: 'Emergência', de: 'Notfall' },
+    'people & family': { en: 'People & Family', es: 'Gente y Familia', fr: 'Personnes et Famille', ru: 'Люди и семья', pt: 'Pessoas e Família', de: 'Menschen & Familie' },
+    'people': { en: 'People', es: 'Gente', fr: 'Personnes', ru: 'Люди', pt: 'Pessoas', de: 'Menschen' },
+    'places': { en: 'Places', es: 'Lugares', fr: 'Lieux', ru: 'Места', pt: 'Lugares', de: 'Orte' },
+    'transport': { en: 'Transport', es: 'Transporte', fr: 'Transports', ru: 'Транспорт', pt: 'Transporte', de: 'Verkehr' },
+    'everyday objects': { en: 'Everyday Objects', es: 'Objetos Cotidianos', fr: 'Objets du Quotidien', ru: 'Повседневные предметы', pt: 'Objetos do Dia a Dia', de: 'Alltagsgegenstände' },
+    'everyday essentials': { en: 'Everyday Essentials', es: 'Esenciales Diarios', fr: 'Essentiels du Quotidien', ru: 'Повседневные вещи', pt: 'Essenciais Diários', de: 'Alltägliches' },
+    'essentials': { en: 'Essentials', es: 'Esenciales', fr: 'Essentiels', ru: 'Основное', pt: 'Essenciais', de: 'Grundlagen' },
+    'work': { en: 'Work', es: 'Trabajo', fr: 'Travail', ru: 'Работа', pt: 'Trabalho', de: 'Arbeit' },
+    'finance': { en: 'Finance', es: 'Finanzas', fr: 'Finances', ru: 'Финансы', pt: 'Finanças', de: 'Finanzen' },
+    'time & weather': { en: 'Time & Weather', es: 'Tiempo y Clima', fr: 'Temps et Météo', ru: 'Время и погода', pt: 'Tempo e Clima', de: 'Zeit & Wetter' },
+    'descriptions': { en: 'Descriptions', es: 'Descripciones', fr: 'Descriptions', ru: 'Описания', pt: 'Descrições', de: 'Beschreibungen' },
+    'common verbs': { en: 'Common Verbs', es: 'Verbos Comunes', fr: 'Verbes Courants', ru: 'Основные глаголы', pt: 'Verbos Comuns', de: 'Häufige Verben' },
+    'core actions': { en: 'Core Actions', es: 'Acciones Básicas', fr: 'Actions de Base', ru: 'Основные действия', pt: 'Ações Básicas', de: 'Grundverben' },
+    'numbers': { en: 'Numbers', es: 'Números', fr: 'Nombres', ru: 'Числа', pt: 'Números', de: 'Zahlen' },
+    'numbers 0-10': { en: 'Numbers 0-10', es: 'Números 0-10', fr: 'Nombres 0-10', ru: 'Числа 0–10', pt: 'Números 0–10', de: 'Zahlen 0–10' },
+    'numbers 11-20': { en: 'Numbers 11-20', es: 'Números 11-20', fr: 'Nombres 11-20', ru: 'Числа 11–20', pt: 'Números 11–20', de: 'Zahlen 11–20' },
+    'tens': { en: 'Tens', es: 'Decenas', fr: 'Dizaines', ru: 'Десятки', pt: 'Dezenas', de: 'Zehner' },
+    'hundreds': { en: 'Hundreds', es: 'Centenas', fr: 'Centaines', ru: 'Сотни', pt: 'Centenas', de: 'Hunderter' },
+    'thousands': { en: 'Thousands', es: 'Miles', fr: 'Milliers', ru: 'Тысячи', pt: 'Milhares', de: 'Tausender' },
+    'time': { en: 'Time', es: 'Hora y Tiempo', fr: 'Heure et Temps', ru: 'Время', pt: 'Hora e Tempo', de: 'Zeit' },
+    'questions': { en: 'Questions', es: 'Preguntas', fr: 'Questions', ru: 'Вопросы', pt: 'Perguntas', de: 'Fragen' },
+    'hour': { en: 'Hour', es: 'Horas', fr: 'Heures', ru: 'Часы', pt: 'Horas', de: 'Stunden' },
+    'minutes': { en: 'Minutes', es: 'Minutos', fr: 'Minutes', ru: 'Минуты', pt: 'Minutos', de: 'Minuten' },
+    'special': { en: 'Special', es: 'Especial', fr: 'Spécial', ru: 'Особое', pt: 'Especial', de: 'Spezial' },
+    'mixed': { en: 'Mixed', es: 'Mixto', fr: 'Mixte', ru: 'Смешанный', pt: 'Misto', de: 'Gemischt' },
+    'colors': { en: 'Colors', es: 'Colores', fr: 'Couleurs', ru: 'Цвета', pt: 'Cores', de: 'Farben' },
+    'weather': { en: 'Weather', es: 'Clima', fr: 'Météo', ru: 'Погода', pt: 'Clima', de: 'Wetter' },
+    'tech': { en: 'Tech & IT', es: 'Tecnología', fr: 'Tech et IT', ru: 'Технологии', pt: 'Tecnologia', de: 'Tech & IT' },
+    'business': { en: 'Business', es: 'Negocios', fr: 'Affaires', ru: 'Бизнес', pt: 'Negócios', de: 'Wirtschaft & Büro' },
+    'health': { en: 'Healthcare', es: 'Salud', fr: 'Santé', ru: 'Здоровье', pt: 'Saúde', de: 'Gesundheit' },
+    'all': { en: 'All', es: 'Todos', fr: 'Tous', ru: 'Все', pt: 'Todos', de: 'Alle' }
   };
 
   return map[key]?.[baseLang] || category;
@@ -1113,6 +1416,112 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         resetAllStats: 'Réinitialiser les Statistiques',
         confirmResetStats: 'Êtes-vous sûr de vouloir réinitialiser toutes vos statistiques ?',
         doneBtn: 'Terminé'
+      };
+    case 'pt':
+      return {
+        installApp: 'Instalar App',
+        installAppTitle: 'Instalar aplicativo no seu dispositivo',
+        loadingLessons: 'Carregando lições...',
+        allRightsReserved: 'Todos os direitos reservados.',
+        privacyPolicy: 'Política de Privacidade',
+        termsOfService: 'Termos de Serviço',
+
+        customizingBadge: 'Personalizando',
+        popularPairs: 'Pares Populares',
+        chooseLanguageToLearn: 'Escolha o idioma para aprender',
+        upcomingCourses: 'Próximos Cursos',
+        soonBadge: 'Em breve',
+        bidirectionalNotice: 'Currículo bidirecional · Voz neural de estúdio',
+        switchDirectionTitle: (baseName, targetName) =>
+          `Inverter direção: aprender ${baseName} a partir de ${targetName}`,
+
+        audioSpeedLabel: 'Velocidade do Áudio',
+        studioVoicePace: 'Ritmo da voz de estúdio',
+        speedDesc05: 'Câmera lenta para sílabas claras',
+        speedDesc075: 'Ritmo de estudante',
+        speedDesc1: 'Velocidade nativa natural',
+        speedDesc125: 'Escuta rápida fluente',
+
+        personalStudyDashboard: 'Painel de Estudo Pessoal',
+        learningPair: 'Par de Idiomas',
+        audioPlaybackSpeed: 'Velocidade de Reprodução do Áudio',
+        myLearningProgress: 'Meu Progresso de Aprendizado',
+        accountCloudSync: 'Conta e Sincronização na Nuvem',
+        signOut: 'Sair',
+        syncSignIn: 'Sincronizar e Entrar',
+
+        myStats: 'Minhas Estatísticas',
+        signIn: 'Entrar',
+        signOutTitle: 'Sair da conta',
+        progressModalTitle: 'Meu Progresso',
+        overallAccuracy: 'Precisão Geral',
+        questionsAttempted: 'Questões Respondidas',
+        streak: 'Sequência',
+        mastered: 'Dominadas',
+        accuracyByCategory: 'Precisão por Categoria',
+        alphabetCat: 'Alfabeto',
+        phrasesCat: 'Frases Básicas',
+        commonWordsCat: 'Palavras Comuns',
+        numbersCat: 'Números',
+        correctOfTotal: (correct, total) => `${correct} de ${total} corretas`,
+        syncPromoText: 'Quer salvar seu progresso em todos os seus dispositivos?',
+        signInRegister: 'Entrar / Cadastrar',
+        resetAllStats: 'Redefinir Estatísticas',
+        confirmResetStats: 'Tem certeza de que deseja redefinir todas as suas estatísticas?',
+        doneBtn: 'Concluído'
+      };
+    case 'de':
+      return {
+        installApp: 'App installieren',
+        installAppTitle: 'App auf deinem Gerät installieren',
+        loadingLessons: 'Lektionen werden geladen...',
+        allRightsReserved: 'Alle Rechte vorbehalten.',
+        privacyPolicy: 'Datenschutz',
+        termsOfService: 'Nutzungsbedingungen',
+
+        customizingBadge: 'Anpassen',
+        popularPairs: 'Beliebte Sprachpaare',
+        chooseLanguageToLearn: 'Lernsprache auswählen',
+        upcomingCourses: 'Kommende Kurse',
+        soonBadge: 'Bald',
+        bidirectionalNotice: 'Bidirektionaler Lehrplan · Studio-Neuralstimme',
+        switchDirectionTitle: (baseName, targetName) =>
+          `Richtung wechseln: ${baseName} von ${targetName} lernen`,
+
+        audioSpeedLabel: 'Audio-Tempo',
+        studioVoicePace: 'Sprechtempo der Studiostimme',
+        speedDesc05: 'Zeitlupe für deutliche Silben',
+        speedDesc075: 'Lerntempo',
+        speedDesc1: 'Natürliches Muttersprachler-Tempo',
+        speedDesc125: 'Schnelles Hörverständnis',
+
+        personalStudyDashboard: 'Persönliches Lern-Dashboard',
+        learningPair: 'Sprachpaar',
+        audioPlaybackSpeed: 'Audio-Wiedergabegeschwindigkeit',
+        myLearningProgress: 'Mein Lernfortschritt',
+        accountCloudSync: 'Konto & Cloud-Sync',
+        signOut: 'Abmelden',
+        syncSignIn: 'Synchronisieren & Anmelden',
+
+        myStats: 'Meine Statistik',
+        signIn: 'Anmelden',
+        signOutTitle: 'Abmelden',
+        progressModalTitle: 'Mein Fortschritt',
+        overallAccuracy: 'Gesamtgenauigkeit',
+        questionsAttempted: 'Beantwortete Fragen',
+        streak: 'Serie',
+        mastered: 'Gemeistert',
+        accuracyByCategory: 'Genauigkeit nach Kategorie',
+        alphabetCat: 'Alphabet',
+        phrasesCat: 'Wichtige Sätze',
+        commonWordsCat: 'Häufige Wörter',
+        numbersCat: 'Zahlen',
+        correctOfTotal: (correct, total) => `${correct} von ${total} richtig`,
+        syncPromoText: 'Möchtest du deinen Fortschritt auf allen Geräten speichern?',
+        signInRegister: 'Anmelden / Registrieren',
+        resetAllStats: 'Statistik zurücksetzen',
+        confirmResetStats: 'Möchtest du wirklich deinen gesamten Lernfortschritt zurücksetzen?',
+        doneBtn: 'Fertig'
       };
     case 'en':
     default:

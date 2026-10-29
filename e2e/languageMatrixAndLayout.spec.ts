@@ -222,5 +222,48 @@ test.describe('Playwright E2E: Layout, Modals, Alignment & Neural Audio Matrix',
     await weatherPill.click();
     await expect(page.locator('h3.phrase-text', { hasText: /^Tormenta$/ })).toBeVisible();
   });
+
+  test('Portuguese (PT-BR) & German (DE) Courses: renders special alphabet letters (Ç, Ä, Ö, Ü, ß), topic packs, and plays 200 OK neural audio', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.addInitScript(() => {
+      localStorage.setItem('basic_language_base_lang', 'pt');
+      localStorage.setItem('basic_language_target_lang', 'de');
+    });
+
+    const audioResponses: Array<{ url: string; status: number }> = [];
+    page.on('response', (res) => {
+      if (res.url().includes('/audio/') && res.url().endsWith('.mp3')) {
+        audioResponses.push({ url: res.url(), status: res.status() });
+      }
+    });
+
+    await page.goto('/learn/de/alphabet');
+
+    // Verify Portuguese UI localization for German Alphabet
+    await expect(page.locator('h2', { hasText: 'Alfabeto alemão' })).toBeVisible();
+    await expect(page.locator('.letter-uppercase', { hasText: /^Ä$/ })).toBeVisible();
+    await expect(page.locator('.letter-uppercase', { hasText: /^ß$/ })).toBeVisible();
+
+    // Navigate to German Common Words and filter by Tech pack
+    await page.goto('/learn/de/words');
+    const filterBar = page.getByRole('group', { name: /Filter by topic or industry pack/i });
+    await filterBar.locator('button[data-category="Tech"]').click();
+
+    const passwortCard = page.locator('.phrase-card').filter({
+      has: page.locator('h3.phrase-text', { hasText: /^Passwort$/ }),
+    });
+    await expect(passwortCard).toBeVisible();
+    await passwortCard.getByRole('button', { name: /Pronounce word Passwort/i }).click();
+
+    await expect
+      .poll(() =>
+        audioResponses.some(
+          (r) => r.url.endsWith('/audio/de/words/passwort.mp3') && (r.status === 200 || r.status === 206)
+        )
+      )
+      .toBe(true);
+  });
 });
 

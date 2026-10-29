@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type FlagLanguage = 'ru' | 'en' | 'es' | 'fr' | 'us';
+export type FlagLanguage = 'ru' | 'en' | 'es' | 'fr' | 'pt' | 'de' | 'id' | 'tr' | 'us';
 
 interface FlagIconProps {
   lang: FlagLanguage | string;
@@ -111,6 +111,78 @@ export const FlagIcon: React.FC<FlagIconProps> = ({
           <path d="M30,0 v30 M0,15 h60" stroke="#fff" strokeWidth="10"/>
           <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" strokeWidth="6"/>
         </g>
+      </svg>
+    );
+  }
+
+  if (norm === 'pt' || norm === 'br') {
+    // Brazil flag: green field, yellow diamond, blue globe
+    return (
+      <svg
+        viewBox="0 0 640 480"
+        style={commonStyle}
+        className={`flag-icon flag-pt ${className}`}
+        aria-label={ariaLabel || 'Portuguese (Brazil) flag'}
+        role="img"
+      >
+        <rect width="640" height="480" fill="#009b3a" />
+        <polygon points="320,60 580,240 320,420 60,240" fill="#fedf00" />
+        <circle cx="320" cy="240" r="105" fill="#002776" />
+        <path d="M220,225 Q320,185 420,255" stroke="#ffffff" strokeWidth="18" fill="none" />
+      </svg>
+    );
+  }
+
+  if (norm === 'de') {
+    // German tricolor: black, red, gold
+    return (
+      <svg
+        viewBox="0 0 640 480"
+        style={commonStyle}
+        className={`flag-icon flag-de ${className}`}
+        aria-label={ariaLabel || 'German flag'}
+        role="img"
+      >
+        <rect width="640" height="160" fill="#000000" />
+        <rect y="160" width="640" height="160" fill="#dd0000" />
+        <rect y="320" width="640" height="160" fill="#ffce00" />
+      </svg>
+    );
+  }
+
+  if (norm === 'id') {
+    // Indonesian bicolor: red over white
+    return (
+      <svg
+        viewBox="0 0 640 480"
+        style={commonStyle}
+        className={`flag-icon flag-id ${className}`}
+        aria-label={ariaLabel || 'Indonesian flag'}
+        role="img"
+      >
+        <rect width="640" height="240" fill="#ce1126" />
+        <rect y="240" width="640" height="240" fill="#ffffff" />
+      </svg>
+    );
+  }
+
+  if (norm === 'tr') {
+    // Turkish flag: red field with white crescent and star
+    return (
+      <svg
+        viewBox="0 0 640 480"
+        style={commonStyle}
+        className={`flag-icon flag-tr ${className}`}
+        aria-label={ariaLabel || 'Turkish flag'}
+        role="img"
+      >
+        <rect width="640" height="480" fill="#e30a17" />
+        <circle cx="240" cy="240" r="120" fill="#ffffff" />
+        <circle cx="270" cy="240" r="96" fill="#e30a17" />
+        <polygon
+          points="385,240 442,258 406,209 406,271 442,222"
+          fill="#ffffff"
+        />
       </svg>
     );
   }

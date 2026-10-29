@@ -4,11 +4,17 @@ export interface ConceptItem {
   id: string;
   category: 'phrases' | 'words' | 'numbers' | 'time';
   icon?: string;
-  translations: Record<SupportedLanguageId, {
+  translations: Partial<Record<SupportedLanguageId, {
     text: string;
     pronunciation?: string;
     audioCategory: 'phrases' | 'words' | 'numbers' | 'time';
-  }>;
+  }>> & {
+    en: {
+      text: string;
+      pronunciation?: string;
+      audioCategory: 'phrases' | 'words' | 'numbers' | 'time';
+    };
+  };
 }
 
 /**

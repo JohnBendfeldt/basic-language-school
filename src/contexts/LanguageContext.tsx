@@ -41,8 +41,10 @@ export const ALL_PLATFORM_LANGUAGES = [
   { id: 'en', name: 'English', nativeName: 'English', flag: '🇬🇧', available: true },
   { id: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸', available: true },
   { id: 'fr', name: 'French', nativeName: 'Français', flag: '🇫🇷', available: true },
-  { id: 'de', name: 'German', nativeName: 'Deutsch', flag: '🇩🇪', available: false },
-  { id: 'it', name: 'Italian', nativeName: 'Italiano', flag: '🇮🇹', available: false },
+  { id: 'pt', name: 'Portuguese', nativeName: 'Português', flag: '🇧🇷', available: true },
+  { id: 'de', name: 'German', nativeName: 'Deutsch', flag: '🇩🇪', available: true },
+  { id: 'id', name: 'Indonesian', nativeName: 'Bahasa Indonesia', flag: '🇮🇩', available: false },
+  { id: 'tr', name: 'Turkish', nativeName: 'Türkçe', flag: '🇹🇷', available: false },
 ];
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
