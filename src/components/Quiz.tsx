@@ -911,7 +911,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             rawMeaning.includes('Universal friendly');
 
           if (isListening) {
-            const combinedAnswer = `${targetWord}/${baseWord}/${rawMeaning}`.toLowerCase();
+            // Listening mode: Prompt is target audio.
+            // Learner may type either what they heard in targetLanguage, or their native baseLanguage translation.
+            const combinedAnswer = `${targetWord}/${baseWord}`.toLowerCase();
             setCurrentQuestion({
               type: selected.category,
               prompt: targetWord,
@@ -942,13 +944,13 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               id: selected.id
             });
           } else if (selected.isRussianToEnglish) {
-            // Standard Target -> Base: prompt is target word, answer is baseWord (or target word for flexibility)
+            // Target -> Base: prompt is target word in foreign language, answer must be in learner's base/native language
             const promptText = targetWord;
-            const cleanAnswer = `${baseWord}/${targetWord}`;
+            const cleanAnswer = baseWord.toLowerCase();
             setCurrentQuestion({
               type: selected.category,
               prompt: promptText,
-              answer: cleanAnswer.toLowerCase(),
+              answer: cleanAnswer,
               hint: buildQuizQuestionHint(promptText, true, currentLanguage, baseLanguage),
               targetAudioWord: promptText,
               promptAudioWord: promptText,
@@ -958,13 +960,13 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               id: selected.id
             });
           } else {
-            // Standard Base -> Target: prompt is base word in learner's tongue, answer is target word
+            // Base -> Target: prompt is base word in learner's native tongue, answer must be in target language
             const promptText = baseWord;
-            const cleanAnswer = `${targetWord}/${baseWord}`;
+            const cleanAnswer = targetWord.toLowerCase();
             setCurrentQuestion({
               type: selected.category,
               prompt: promptText,
-              answer: cleanAnswer.toLowerCase(),
+              answer: cleanAnswer,
               hint: buildQuizQuestionHint(promptText, false, currentLanguage, baseLanguage),
               targetAudioWord: targetWord,
               promptAudioWord: promptText,
@@ -2394,7 +2396,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                   autoFocus
                   aria-label={`${ui.nextQuestion} (${sessionIndex + 1}/${sessionGoal})`}
                 >
-                  <span className="btn-main-label">{ui.nextQuestion} ({sessionIndex + 1}/${sessionGoal})</span>
+                  <span className="btn-main-label">{ui.nextQuestion} ({sessionIndex + 1}/{sessionGoal})</span>
                   <span className="btn-hint-badge">
                     {ui.pressEnter}
                   </span>
