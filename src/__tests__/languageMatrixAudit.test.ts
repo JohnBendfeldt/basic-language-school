@@ -17,6 +17,7 @@ import {
   getAlphabetLabels,
   getComponentChrome,
   getLocalizedAppName,
+  getEnglishTimeGuide,
 } from '../utils/pageDictionary';
 
 const LANGUAGES: SupportedLanguageId[] = ['en', 'es', 'fr', 'ru', 'pt', 'de', 'id', 'tr'];
@@ -193,5 +194,22 @@ describe('56-Language-Pair Matrix Audit (Translations, Numbers, UI Chrome & Neur
         }
       }
     }
+  });
+
+  it('guarantees complete Indonesian localization when studying English (target: en, base: id)', () => {
+    // Page Content Titles
+    expect(getPageContent('alphabet', 'en', 'id').title).toBe('Alfabet Bahasa Inggris');
+    expect(getPageContent('phrases', 'en', 'id').title).toBe('Frasa Dasar Bahasa Inggris');
+    expect(getPageContent('words', 'en', 'id').title).toBe('Kosakata & Kata Umum Bahasa Inggris');
+    expect(getPageContent('numbers', 'en', 'id').title).toBe('Angka Bahasa Inggris (0–1.000)');
+    expect(getPageContent('time', 'en', 'id').title).toBe('Waktu & Jam dalam Bahasa Inggris');
+
+    // Time Grammar Guide for Indonesian learner studying English
+    const idGuide = getEnglishTimeGuide('id');
+    expect(idGuide.headerTitle).toBe('Aturan Menyatakan Waktu dalam Bahasa Inggris');
+    expect(idGuide.rules.length).toBe(3);
+    expect(idGuide.rules[0].title).toBe("O'clock & Jam Tepat");
+    expect(idGuide.rules[1].title).toBe('Past & To (Bagian dari Jam)');
+    expect(idGuide.rules[2].title).toBe('AM vs PM (Format 12 Jam)');
   });
 });
