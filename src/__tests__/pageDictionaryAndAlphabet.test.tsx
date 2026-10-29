@@ -131,7 +131,8 @@ describe('Page Dictionary & Multilingual Alphabet Localization', () => {
   it('localizes quiz hints and accepts simple digits or words without requiring verbose definitions', () => {
     // Test getAlphabetQuizHint
     expect(getAlphabetQuizHint('А', 'ru', 'es', 'Russian')).toBe('¿Qué sonido hace la letra cirílica «А»?');
-    expect(getAlphabetQuizHint('A', 'en', 'ru', 'English')).toBe('Введите букву «A» или послушайте её звучание:');
+    expect(getAlphabetQuizHint('A', 'en', 'ru', 'English')).toBe('Какое произношение или название у буквы «A» в English?');
+    expect(getAlphabetQuizHint('A', 'en', 'ru', 'English', true)).toBe('Послушайте аудио и введите букву на English:');
 
     // Test resolveTranslation direct word lookups
     expect(resolveTranslation({ word: 'Apple', meaning: 'Noun: A fruit' }, 'en', 'ru')).toBe('Яблоко');

@@ -876,8 +876,31 @@ export const getAlphabetQuizHint = (
   character: string,
   targetLang: SupportedLanguageId,
   baseLang: SupportedLanguageId,
-  metaName: string
+  metaName: string,
+  isListening?: boolean
 ): string => {
+  if (isListening) {
+    switch (baseLang) {
+      case 'ru':
+        return `Послушайте аудио и введите букву на ${metaName}:`;
+      case 'es':
+        return `Escucha el audio y escribe la letra en ${metaName}:`;
+      case 'fr':
+        return `Écoutez l'audio et tapez la lettre en ${metaName} :`;
+      case 'pt':
+        return `Ouça o áudio e digite a letra em ${metaName}:`;
+      case 'de':
+        return `Höre dir das Audio an und tippe den Buchstaben auf ${metaName}:`;
+      case 'id':
+        return `Dengarkan audio dan ketik hurufnya dalam ${metaName}:`;
+      case 'tr':
+        return `Sesi dinleyin ve ${metaName} dilindeki harfi yazın:`;
+      case 'en':
+      default:
+        return `Listen to the audio and type the letter in ${metaName}:`;
+    }
+  }
+
   if (targetLang === 'ru') {
     switch (baseLang) {
       case 'ru':
@@ -902,22 +925,22 @@ export const getAlphabetQuizHint = (
 
   switch (baseLang) {
     case 'ru':
-      return `Введите букву «${character}» или послушайте её звучание:`;
+      return `Какое произношение или название у буквы «${character}» в ${metaName}?`;
     case 'es':
-      return `Escribe la letra «${character}» o escucha su sonido en ${metaName}:`;
+      return `¿Cuál es el nombre o pronunciación de la letra «${character}» en ${metaName}?`;
     case 'fr':
-      return `Tapez la lettre « ${character} » ou écoutez son son en ${metaName} :`;
+      return `Quel est le nom ou la prononciation de la lettre « ${character} » en ${metaName} ?`;
     case 'pt':
-      return `Digite a letra «${character}» ou ouça o som em ${metaName}:`;
+      return `Qual é o nome ou pronúncia da letra «${character}» em ${metaName}?`;
     case 'de':
-      return `Tippe den Buchstaben „${character}“ oder höre dir den Klang auf ${metaName} an:`;
+      return `Wie lautet der Name oder Laut des Buchstabens „${character}“ auf ${metaName}?`;
     case 'id':
-      return `Ketik huruf "${character}" atau dengarkan bunyinya dalam ${metaName}:`;
+      return `Apa nama atau lafal huruf "${character}" dalam ${metaName}?`;
     case 'tr':
-      return `"${character}" harfini yazın veya ${metaName} dilindeki sesini dinleyin:`;
+      return `${metaName} dilinde "${character}" harfinin okunuşu veya adı nedir?`;
     case 'en':
     default:
-      return `Type the letter "${character}" or listen to its sound in ${metaName}:`;
+      return `What is the pronunciation or name of the letter "${character}" in ${metaName}?`;
   }
 };
 

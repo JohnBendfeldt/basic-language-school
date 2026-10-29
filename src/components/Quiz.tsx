@@ -318,7 +318,12 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   }, [isSessionComplete]);
 
   // Extract a clean, user-friendly display answer (avoids leading slashes or empty strings)
-  const getCleanDisplayAnswer = (answer: string, prompt?: string, type?: string): string => {
+  const getCleanDisplayAnswer = (
+    answer: string,
+    prompt?: string,
+    type?: string,
+    isTargetPrompt?: boolean
+  ): string => {
     if (!answer) return prompt || '';
     const parts = answer
       .split('/')
@@ -336,11 +341,22 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       return prompt;
     }
 
-    // For numbers, if there's both a word and a digit representation, show "Word (Digit)" e.g. "quince (15)"
+    // For numbers, resolve the appropriate language name (base lang if Target -> Base, target lang if Base -> Target)
     const digitPart = parts.find(p => /^\d+$/.test(p));
-    const wordPart = parts.find(p => !/^\d+$/.test(p) && !p.startsWith('/') && !p.startsWith('('));
-    if (digitPart && wordPart) {
-      return `${wordPart} (${digitPart})`;
+    if (digitPart) {
+      const digitNum = parseInt(digitPart, 10);
+      if (NUMBER_TABLE[digitNum]) {
+        const numEntry = NUMBER_TABLE[digitNum];
+        const numWord = isTargetPrompt
+          ? (numEntry[baseLanguage] || numEntry.en)
+          : (numEntry[currentLanguage] || numEntry.en);
+        return `${numWord} (or ${digitPart})`;
+      }
+      const wordPart = parts.find(p => !/^\d+$/.test(p) && !p.startsWith('/') && !p.startsWith('('));
+      if (wordPart) {
+        return `${wordPart} (or ${digitPart})`;
+      }
+      return digitPart;
     }
 
     // Filter out parts that start with / or are purely phonetic metadata
@@ -350,6 +366,28 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     }
 
     return parts[0].replace(/[/()]/g, '').trim();
+  };
+
+  const getListeningHeader = (targetLang: SupportedLanguageId, baseLang: SupportedLanguageId, targetName: string) => {
+    switch (baseLang) {
+      case 'es':
+        return `🎧 Práctica de escucha: Escucha y escribe lo que oyes en ${targetName}`;
+      case 'fr':
+        return `🎧 Pratique d'écoute : Écoutez et écrivez ce que vous entendez en ${targetName}`;
+      case 'de':
+        return `🎧 Hörverstehen: Höre zu und schreibe, was du auf ${targetName} hörst`;
+      case 'ru':
+        return `🎧 Аудирование: Послушайте и напишите то, что слышите на ${targetName}`;
+      case 'pt':
+        return `🎧 Prática de escuta: Ouça e digite o que ouve em ${targetName}`;
+      case 'id':
+        return `🎧 Latihan Mendengar: Dengarkan dan ketik apa yang Anda dengar dalam ${targetName}`;
+      case 'tr':
+        return `🎧 Dinleme Alıştırması: Dinleyin ve ${targetName} dilinde duyduğunuzu yazın`;
+      case 'en':
+      default:
+        return `🎧 Listening Practice: Listen and type what you hear in ${targetName}`;
+    }
   };
 
   const normalizeText = (text: string): string => {
@@ -757,7 +795,10 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             type: 'alphabet',
             prompt: character,
             answer: acceptedAnswers.join('/'),
-            hint: getAlphabetQuizHint(character, currentLanguage, baseLanguage, currentMeta.name),
+            hint: getAlphabetQuizHint(character, currentLanguage, baseLanguage, currentMeta.name, isListening),
+            pronunciation: pronunciation,
+            meaningHint: pronunciation ? `/${pronunciation}/` : character,
+            baseMeaning: pronunciation,
             targetAudioWord: character,
             russian: character,
             isTargetPrompt: true,
@@ -787,6 +828,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               prompt: targetWord,
               answer: combinedAnswer,
               hint: buildQuizQuestionHint(targetWord, true, currentLanguage, baseLanguage),
+              meaningHint: baseNumWord,
+              baseMeaning: baseNumWord,
               targetAudioWord: targetWord,
               promptAudioWord: targetWord,
               russian: targetWord,
@@ -840,6 +883,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               prompt: targetWord,
               answer: combinedAnswer,
               hint: buildQuizQuestionHint(targetWord, true, currentLanguage, baseLanguage),
+              meaningHint: baseWord,
+              baseMeaning: baseWord,
               targetAudioWord: targetWord,
               promptAudioWord: targetWord,
               russian: targetWord,
@@ -1938,7 +1983,11 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       </div>
 
       <div className="quiz-card">
-        <h3 className="quiz-question-hint">{currentQuestion.hint}</h3>
+        <h3 className="quiz-question-hint">
+          {currentQuestion.isListeningMode && !showNext
+            ? getListeningHeader(currentLanguage, baseLanguage, currentMeta.name)
+            : currentQuestion.hint}
+        </h3>
         <div className="quiz-prompt">
           {currentQuestion.isListeningMode && !showNext ? (
             <div className="quiz-listening-card">
@@ -1957,7 +2006,11 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               </div>
               {showListeningHint ? (
                 <div className="listening-hint-box">
-                  💡 {currentQuestion.hint}
+                  {currentQuestion.type === 'alphabet' ? (
+                    <span>💡 {currentQuestion.pronunciation ? `Letter pronunciation: /${currentQuestion.pronunciation}/` : `Sound of the letter`}</span>
+                  ) : (
+                    <span>💡 Meaning: {currentQuestion.meaningHint || currentQuestion.baseMeaning || currentQuestion.hint}</span>
+                  )}
                 </div>
               ) : (
                 <button 
@@ -2115,8 +2168,27 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                     <div className="feedback-answer-line">
                       <span>{ui.correctAnswerIs} </span>
                       <strong className="feedback-correct-word">
-                        {getCleanDisplayAnswer(currentQuestion.answer, currentQuestion.prompt, currentQuestion.type)}
+                        {getCleanDisplayAnswer(
+                          currentQuestion.answer,
+                          currentQuestion.prompt,
+                          currentQuestion.type,
+                          currentQuestion.isTargetPrompt
+                        )}
                       </strong>
+                      {(currentQuestion.type === 'numbers' ||
+                        extractDigit(currentQuestion.prompt) !== null ||
+                        extractDigit(currentQuestion.answer) !== null) && (
+                        <div className="feedback-number-tip">
+                          💡 {baseLanguage === 'es' ? 'Consejo: Puedes escribir la palabra o el número.'
+                            : baseLanguage === 'fr' ? 'Astuce : Vous pouvez taper le mot ou le chiffre.'
+                            : baseLanguage === 'de' ? 'Tipp: Du kannst entweder das Wort oder die Zahl tippen.'
+                            : baseLanguage === 'ru' ? 'Подсказка: Вы можете ввести слово или цифру.'
+                            : baseLanguage === 'pt' ? 'Dica: Você pode digitar a palavra ou o número.'
+                            : baseLanguage === 'id' ? 'Tips: Anda dapat mengetik kata atau angkanya.'
+                            : baseLanguage === 'tr' ? 'İpucu: Kelimeyi veya rakamı yazabilirsiniz.'
+                            : 'Tip: You can type either the word or the digit.'}
+                        </div>
+                      )}
                     </div>
                   )}
                   {isCorrect && spellingDiff && spellingDiff.length > 0 && (

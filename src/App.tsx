@@ -12,6 +12,7 @@ import VoiceSpeedControl from './components/VoiceSpeedControl';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
 import MobileDrawer from './components/MobileDrawer';
+import AppEmblem from './components/AppEmblem';
 import { FaBars } from 'react-icons/fa';
 import { initVoices, cancelAllSpeech } from './utils/speech';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
@@ -269,119 +270,7 @@ const AppContent: React.FC = () => {
             style={{ cursor: 'pointer' }} 
             title={`Return to ${localizedAppName} lessons`}
           >
-            {/* Dynamic Emblem: Language-specific flag accent (ES, FR, EN, RU) on Academic Crest */}
-            {currentLanguage === 'ru' ? (
-              <svg className="app-emblem russia-flag" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Basic Russian emblem" role="img">
-                <defs>
-                  <linearGradient id="rusEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#2563eb"/>
-                    <stop offset="50%" stopColor="#1e40af"/>
-                    <stop offset="100%" stopColor="#0f172a"/>
-                  </linearGradient>
-                  <linearGradient id="rusGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#fde047"/>
-                    <stop offset="60%" stopColor="#f59e0b"/>
-                    <stop offset="100%" stopColor="#d97706"/>
-                  </linearGradient>
-                </defs>
-                <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#rusEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5"/>
-                <g transform="translate(6, 6)">
-                  <rect x="0" y="0" width="10" height="2" rx="1" fill="#ffffff" opacity="0.95"/>
-                  <rect x="0" y="2.5" width="10" height="2" rx="1" fill="#3b82f6"/>
-                  <rect x="0" y="5" width="10" height="2" rx="1" fill="#ef4444"/>
-                </g>
-                <g transform="translate(0, 3)">
-                  <path d="M24 13L8 20.5L24 28L40 20.5L24 13Z" fill="url(#rusGoldGrad)"/>
-                  <path d="M14 24.5V32C14 35.5 18 38 24 38C30 38 34 35.5 34 32V24.5" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
-                  <path d="M40 21V30.5" stroke="url(#rusGoldGrad)" strokeWidth="2" strokeLinecap="round"/>
-                  <circle cx="40" cy="31.5" r="1.5" fill="url(#rusGoldGrad)"/>
-                </g>
-              </svg>
-            ) : currentLanguage === 'es' ? (
-              <svg className="app-emblem spanish-flag" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Basic Spanish emblem" role="img">
-                <defs>
-                  <linearGradient id="esEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#7f1d1d"/>
-                    <stop offset="50%" stopColor="#1e1b4b"/>
-                    <stop offset="100%" stopColor="#0f172a"/>
-                  </linearGradient>
-                  <linearGradient id="esGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#fde047"/>
-                    <stop offset="60%" stopColor="#f59e0b"/>
-                    <stop offset="100%" stopColor="#d97706"/>
-                  </linearGradient>
-                </defs>
-                <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#esEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5"/>
-                {/* Spanish flag accent strip */}
-                <g transform="translate(6, 6)">
-                  <rect x="0" y="0" width="10" height="2" rx="1" fill="#aa151b"/>
-                  <rect x="0" y="2.2" width="10" height="2.6" rx="0.5" fill="#f1bf00"/>
-                  <rect x="0" y="5" width="10" height="2" rx="1" fill="#aa151b"/>
-                </g>
-                <g transform="translate(0, 3)">
-                  <path d="M24 13L8 20.5L24 28L40 20.5L24 13Z" fill="url(#esGoldGrad)"/>
-                  <path d="M14 24.5V32C14 35.5 18 38 24 38C30 38 34 35.5 34 32V24.5" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
-                  <path d="M40 21V30.5" stroke="url(#esGoldGrad)" strokeWidth="2" strokeLinecap="round"/>
-                  <circle cx="40" cy="31.5" r="1.5" fill="url(#esGoldGrad)"/>
-                </g>
-              </svg>
-            ) : currentLanguage === 'fr' ? (
-              <svg className="app-emblem french-flag" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Basic French emblem" role="img">
-                <defs>
-                  <linearGradient id="frEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#1e3a8a"/>
-                    <stop offset="50%" stopColor="#1e1b4b"/>
-                    <stop offset="100%" stopColor="#0f172a"/>
-                  </linearGradient>
-                  <linearGradient id="frGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#fde047"/>
-                    <stop offset="60%" stopColor="#f59e0b"/>
-                    <stop offset="100%" stopColor="#d97706"/>
-                  </linearGradient>
-                </defs>
-                <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#frEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5"/>
-                {/* French tricolor accent strip */}
-                <g transform="translate(6, 6)">
-                  <rect x="0" y="0" width="3.3" height="7" rx="1" fill="#002654"/>
-                  <rect x="3.3" y="0" width="3.4" height="7" fill="#ffffff"/>
-                  <rect x="6.7" y="0" width="3.3" height="7" rx="1" fill="#ce1126"/>
-                </g>
-                <g transform="translate(0, 3)">
-                  <path d="M24 13L8 20.5L24 28L40 20.5L24 13Z" fill="url(#frGoldGrad)"/>
-                  <path d="M14 24.5V32C14 35.5 18 38 24 38C30 38 34 35.5 34 32V24.5" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
-                  <path d="M40 21V30.5" stroke="url(#frGoldGrad)" strokeWidth="2" strokeLinecap="round"/>
-                  <circle cx="40" cy="31.5" r="1.5" fill="url(#frGoldGrad)"/>
-                </g>
-              </svg>
-            ) : (
-              <svg className="app-emblem english-flag" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Basic English emblem" role="img">
-                <defs>
-                  <linearGradient id="enEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#1e3a8a"/>
-                    <stop offset="50%" stopColor="#0f172a"/>
-                    <stop offset="100%" stopColor="#312e81"/>
-                  </linearGradient>
-                  <linearGradient id="enGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#fef08a"/>
-                    <stop offset="60%" stopColor="#f59e0b"/>
-                    <stop offset="100%" stopColor="#b45309"/>
-                  </linearGradient>
-                </defs>
-                <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#enEmblemBg)" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5"/>
-                {/* UK/US Accent */}
-                <g transform="translate(6, 6)">
-                  <rect x="0" y="0" width="10" height="2" rx="1" fill="#ef4444"/>
-                  <rect x="0" y="2.5" width="10" height="2" rx="1" fill="#ffffff"/>
-                  <rect x="0" y="5" width="10" height="2" rx="1" fill="#2563eb"/>
-                </g>
-                <g transform="translate(0, 3)">
-                  <path d="M24 13L8 20.5L24 28L40 20.5L24 13Z" fill="url(#enGoldGrad)"/>
-                  <path d="M14 24.5V32C14 35.5 18 38 24 38C30 38 34 35.5 34 32V24.5" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
-                  <path d="M40 21V30.5" stroke="url(#enGoldGrad)" strokeWidth="2" strokeLinecap="round"/>
-                  <circle cx="40" cy="31.5" r="1.5" fill="url(#enGoldGrad)"/>
-                </g>
-              </svg>
-            )}
+            <AppEmblem language={currentLanguage} />
             {localizedAppName}
           </h1>
 
