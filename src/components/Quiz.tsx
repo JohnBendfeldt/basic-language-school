@@ -193,8 +193,6 @@ const isSoftSignAnswer = (answer: string): boolean =>
 const isHardSignAnswer = (answer: string): boolean => 
   ['hard sign', 'hard'].includes(answer.toLowerCase().trim());
 
-const CYRILLIC_QUICK_CHARS = ['я', 'ю', 'ё', 'ж', 'ш', 'щ', 'ч', 'ь', 'ъ', 'ы', 'э'];
-
 export const SPECIAL_CHAR_MAP: Record<SupportedLanguageId, string[]> = {
   es: ['á', 'é', 'í', 'ó', 'ú', 'ñ', 'ü', '¿', '¡'],
   fr: ['é', 'è', 'ê', 'ë', 'à', 'â', 'ç', 'î', 'ï', 'ô', 'ù', 'û', 'œ'],
@@ -1631,7 +1629,6 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
   const activeSpecialChars = useMemo(() => {
     if (!currentQuestion || showNext) return [];
-    if (expectedAnswerLanguage === 'ru') return CYRILLIC_QUICK_CHARS;
     return SPECIAL_CHAR_MAP[expectedAnswerLanguage] || [];
   }, [currentQuestion, showNext, expectedAnswerLanguage]);
 
@@ -2342,7 +2339,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             {/* Unified quick-tap Russian letters + guide icon toolbar */}
             <div className="special-char-bar cyrillic-quick-bar" role="toolbar" aria-label="Special Russian characters">
               <div className="quick-keys-scroll">
-                {CYRILLIC_QUICK_CHARS.map(char => (
+                {SPECIAL_CHAR_MAP.ru.map(char => (
                   <button
                     key={char}
                     type="button"
