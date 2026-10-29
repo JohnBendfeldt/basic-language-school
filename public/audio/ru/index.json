@@ -1,7 +1,7 @@
 {
   "language": "ru",
   "voice": "ru-RU-SvetlanaNeural",
-  "generated": "2026-10-29T18:32:28.909809Z",
+  "generated": "2026-10-29T20:42:12.549581Z",
   "files": {
     "alphabet": [
       {
@@ -1708,19 +1708,39 @@
         "text": "Студент"
       },
       {
-        "filename": "мы.mp3",
-        "path": "/audio/ru/words/мы.mp3",
-        "text": "Мы"
-      },
-      {
-        "filename": "фрукт.mp3",
-        "path": "/audio/ru/words/фрукт.mp3",
-        "text": "Фрукт / Фрукты"
+        "filename": "врач.mp3",
+        "path": "/audio/ru/words/врач.mp3",
+        "text": "Врач / Доктор"
       },
       {
         "filename": "рис.mp3",
         "path": "/audio/ru/words/рис.mp3",
         "text": "Рис"
+      },
+      {
+        "filename": "соль.mp3",
+        "path": "/audio/ru/words/соль.mp3",
+        "text": "Соль"
+      },
+      {
+        "filename": "яйцо.mp3",
+        "path": "/audio/ru/words/яйцо.mp3",
+        "text": "Яйцо"
+      },
+      {
+        "filename": "сок.mp3",
+        "path": "/audio/ru/words/сок.mp3",
+        "text": "Сок"
+      },
+      {
+        "filename": "сыр.mp3",
+        "path": "/audio/ru/words/сыр.mp3",
+        "text": "Сыр"
+      },
+      {
+        "filename": "яблоко.mp3",
+        "path": "/audio/ru/words/яблоко.mp3",
+        "text": "Яблоко"
       },
       {
         "filename": "завтрак.mp3",
@@ -1738,9 +1758,14 @@
         "text": "Ужин"
       },
       {
-        "filename": "соль.mp3",
-        "path": "/audio/ru/words/соль.mp3",
-        "text": "Соль"
+        "filename": "гостиница.mp3",
+        "path": "/audio/ru/words/гостиница.mp3",
+        "text": "Гостиница / Отель"
+      },
+      {
+        "filename": "станция.mp3",
+        "path": "/audio/ru/words/станция.mp3",
+        "text": "Станция / Вокзал"
       },
       {
         "filename": "супермаркет.mp3",
@@ -1748,24 +1773,19 @@
         "text": "Супермаркет"
       },
       {
-        "filename": "город.mp3",
-        "path": "/audio/ru/words/город.mp3",
-        "text": "Город"
-      },
-      {
-        "filename": "страна.mp3",
-        "path": "/audio/ru/words/страна.mp3",
-        "text": "Страна"
-      },
-      {
-        "filename": "дом.mp3",
-        "path": "/audio/ru/words/дом.mp3",
-        "text": "Дом"
+        "filename": "кино.mp3",
+        "path": "/audio/ru/words/кино.mp3",
+        "text": "Кино / Кинотеатр"
       },
       {
         "filename": "центр.mp3",
         "path": "/audio/ru/words/центр.mp3",
         "text": "Центр"
+      },
+      {
+        "filename": "школа.mp3",
+        "path": "/audio/ru/words/школа.mp3",
+        "text": "Школа"
       },
       {
         "filename": "завод.mp3",
@@ -1778,24 +1798,14 @@
         "text": "Море"
       },
       {
-        "filename": "книга.mp3",
-        "path": "/audio/ru/words/книга.mp3",
-        "text": "Книга"
+        "filename": "дорога.mp3",
+        "path": "/audio/ru/words/дорога.mp3",
+        "text": "Дорога"
       },
       {
-        "filename": "журнал.mp3",
-        "path": "/audio/ru/words/журнал.mp3",
-        "text": "Журнал"
-      },
-      {
-        "filename": "помощь.mp3",
-        "path": "/audio/ru/words/помощь.mp3",
-        "text": "Помощь"
-      },
-      {
-        "filename": "время.mp3",
-        "path": "/audio/ru/words/время.mp3",
-        "text": "Время"
+        "filename": "лодка.mp3",
+        "path": "/audio/ru/words/лодка.mp3",
+        "text": "Лодка"
       },
       {
         "filename": "стол.mp3",
@@ -1813,6 +1823,11 @@
         "text": "Дверь"
       },
       {
+        "filename": "окно.mp3",
+        "path": "/audio/ru/words/окно.mp3",
+        "text": "Окно"
+      },
+      {
         "filename": "сумка.mp3",
         "path": "/audio/ru/words/сумка.mp3",
         "text": "Сумка"
@@ -1826,6 +1841,141 @@
         "filename": "обувь.mp3",
         "path": "/audio/ru/words/обувь.mp3",
         "text": "Обувь / Туфли"
+      },
+      {
+        "filename": "книга.mp3",
+        "path": "/audio/ru/words/книга.mp3",
+        "text": "Книга"
+      },
+      {
+        "filename": "журнал.mp3",
+        "path": "/audio/ru/words/журнал.mp3",
+        "text": "Журнал"
+      },
+      {
+        "filename": "зонт.mp3",
+        "path": "/audio/ru/words/зонт.mp3",
+        "text": "Зонт"
+      },
+      {
+        "filename": "фото.mp3",
+        "path": "/audio/ru/words/фото.mp3",
+        "text": "Фото"
+      },
+      {
+        "filename": "собака.mp3",
+        "path": "/audio/ru/words/собака.mp3",
+        "text": "Собака"
+      },
+      {
+        "filename": "кот.mp3",
+        "path": "/audio/ru/words/кот.mp3",
+        "text": "Кот / Кошка"
+      },
+      {
+        "filename": "птица.mp3",
+        "path": "/audio/ru/words/птица.mp3",
+        "text": "Птица"
+      },
+      {
+        "filename": "луна.mp3",
+        "path": "/audio/ru/words/луна.mp3",
+        "text": "Луна"
+      },
+      {
+        "filename": "звезда.mp3",
+        "path": "/audio/ru/words/звезда.mp3",
+        "text": "Звезда"
+      },
+      {
+        "filename": "цветок.mp3",
+        "path": "/audio/ru/words/цветок.mp3",
+        "text": "Цветок"
+      },
+      {
+        "filename": "дерево.mp3",
+        "path": "/audio/ru/words/дерево.mp3",
+        "text": "Дерево"
+      },
+      {
+        "filename": "хороший.mp3",
+        "path": "/audio/ru/words/хороший.mp3",
+        "text": "Хороший / Хорошо"
+      },
+      {
+        "filename": "плохой.mp3",
+        "path": "/audio/ru/words/плохой.mp3",
+        "text": "Плохой / Плохо"
+      },
+      {
+        "filename": "быстрый.mp3",
+        "path": "/audio/ru/words/быстрый.mp3",
+        "text": "Быстрый / Быстро"
+      },
+      {
+        "filename": "медленный.mp3",
+        "path": "/audio/ru/words/медленный.mp3",
+        "text": "Медленный / Медленно"
+      },
+      {
+        "filename": "счастливый.mp3",
+        "path": "/audio/ru/words/счастливый.mp3",
+        "text": "Счастливый / Рад"
+      },
+      {
+        "filename": "готов.mp3",
+        "path": "/audio/ru/words/готов.mp3",
+        "text": "Готов / Готовый"
+      },
+      {
+        "filename": "открыто.mp3",
+        "path": "/audio/ru/words/открыто.mp3",
+        "text": "Открыто / Открытый"
+      },
+      {
+        "filename": "закрыто.mp3",
+        "path": "/audio/ru/words/закрыто.mp3",
+        "text": "Закрыто / Закрытый"
+      },
+      {
+        "filename": "жарко.mp3",
+        "path": "/audio/ru/words/жарко.mp3",
+        "text": "Жарко / Горячий"
+      },
+      {
+        "filename": "мы.mp3",
+        "path": "/audio/ru/words/мы.mp3",
+        "text": "Мы"
+      },
+      {
+        "filename": "фрукт.mp3",
+        "path": "/audio/ru/words/фрукт.mp3",
+        "text": "Фрукт / Фрукты"
+      },
+      {
+        "filename": "город.mp3",
+        "path": "/audio/ru/words/город.mp3",
+        "text": "Город"
+      },
+      {
+        "filename": "страна.mp3",
+        "path": "/audio/ru/words/страна.mp3",
+        "text": "Страна"
+      },
+      {
+        "filename": "дом.mp3",
+        "path": "/audio/ru/words/дом.mp3",
+        "text": "Дом"
+      },
+      {
+        "filename": "помощь.mp3",
+        "path": "/audio/ru/words/помощь.mp3",
+        "text": "Помощь"
+      },
+      {
+        "filename": "время.mp3",
+        "path": "/audio/ru/words/время.mp3",
+        "text": "Время"
       },
       {
         "filename": "объект.mp3",
@@ -1883,31 +2033,6 @@
         "text": "Год"
       },
       {
-        "filename": "собака.mp3",
-        "path": "/audio/ru/words/собака.mp3",
-        "text": "Собака"
-      },
-      {
-        "filename": "кот.mp3",
-        "path": "/audio/ru/words/кот.mp3",
-        "text": "Кот / Кошка"
-      },
-      {
-        "filename": "птица.mp3",
-        "path": "/audio/ru/words/птица.mp3",
-        "text": "Птица"
-      },
-      {
-        "filename": "луна.mp3",
-        "path": "/audio/ru/words/луна.mp3",
-        "text": "Луна"
-      },
-      {
-        "filename": "звезда.mp3",
-        "path": "/audio/ru/words/звезда.mp3",
-        "text": "Звезда"
-      },
-      {
         "filename": "ёж.mp3",
         "path": "/audio/ru/words/ёж.mp3",
         "text": "Ёж"
@@ -1916,16 +2041,6 @@
         "filename": "жук.mp3",
         "path": "/audio/ru/words/жук.mp3",
         "text": "Жук"
-      },
-      {
-        "filename": "цветок.mp3",
-        "path": "/audio/ru/words/цветок.mp3",
-        "text": "Цветок"
-      },
-      {
-        "filename": "дерево.mp3",
-        "path": "/audio/ru/words/дерево.mp3",
-        "text": "Дерево"
       },
       {
         "filename": "ёлка.mp3",
@@ -1938,64 +2053,9 @@
         "text": "Зебра"
       },
       {
-        "filename": "хороший.mp3",
-        "path": "/audio/ru/words/хороший.mp3",
-        "text": "Хороший / Хорошо"
-      },
-      {
-        "filename": "плохой.mp3",
-        "path": "/audio/ru/words/плохой.mp3",
-        "text": "Плохой / Плохо"
-      },
-      {
-        "filename": "открыто.mp3",
-        "path": "/audio/ru/words/открыто.mp3",
-        "text": "Открыто / Открытый"
-      },
-      {
-        "filename": "закрыто.mp3",
-        "path": "/audio/ru/words/закрыто.mp3",
-        "text": "Закрыто / Закрытый"
-      },
-      {
-        "filename": "быстрый.mp3",
-        "path": "/audio/ru/words/быстрый.mp3",
-        "text": "Быстрый / Быстро"
-      },
-      {
-        "filename": "медленный.mp3",
-        "path": "/audio/ru/words/медленный.mp3",
-        "text": "Медленный / Медленно"
-      },
-      {
-        "filename": "счастливый.mp3",
-        "path": "/audio/ru/words/счастливый.mp3",
-        "text": "Счастливый / Рад"
-      },
-      {
-        "filename": "готов.mp3",
-        "path": "/audio/ru/words/готов.mp3",
-        "text": "Готов / Готовый"
-      },
-      {
-        "filename": "яблоко.mp3",
-        "path": "/audio/ru/words/яблоко.mp3",
-        "text": "Яблоко"
-      },
-      {
-        "filename": "яйцо.mp3",
-        "path": "/audio/ru/words/яйцо.mp3",
-        "text": "Яйцо"
-      },
-      {
         "filename": "лёд.mp3",
         "path": "/audio/ru/words/лёд.mp3",
         "text": "Лёд"
-      },
-      {
-        "filename": "сок.mp3",
-        "path": "/audio/ru/words/сок.mp3",
-        "text": "Сок"
       },
       {
         "filename": "свет.mp3",
@@ -2016,21 +2076,6 @@
         "filename": "тихий.mp3",
         "path": "/audio/ru/words/тихий.mp3",
         "text": "Тихий"
-      },
-      {
-        "filename": "дорога.mp3",
-        "path": "/audio/ru/words/дорога.mp3",
-        "text": "Дорога"
-      },
-      {
-        "filename": "школа.mp3",
-        "path": "/audio/ru/words/школа.mp3",
-        "text": "Школа"
-      },
-      {
-        "filename": "зонт.mp3",
-        "path": "/audio/ru/words/зонт.mp3",
-        "text": "Зонт"
       },
       {
         "filename": "голос.mp3",
@@ -2056,11 +2101,6 @@
         "filename": "любовь.mp3",
         "path": "/audio/ru/words/любовь.mp3",
         "text": "Любовь"
-      },
-      {
-        "filename": "лодка.mp3",
-        "path": "/audio/ru/words/лодка.mp3",
-        "text": "Лодка"
       },
       {
         "filename": "день.mp3",
@@ -2096,11 +2136,6 @@
         "filename": "щека.mp3",
         "path": "/audio/ru/words/щека.mp3",
         "text": "Щека"
-      },
-      {
-        "filename": "сыр.mp3",
-        "path": "/audio/ru/words/сыр.mp3",
-        "text": "Сыр"
       },
       {
         "filename": "часы.mp3",
@@ -2163,11 +2198,6 @@
         "text": "Нос"
       },
       {
-        "filename": "окно.mp3",
-        "path": "/audio/ru/words/окно.mp3",
-        "text": "Окно"
-      },
-      {
         "filename": "чайник.mp3",
         "path": "/audio/ru/words/чайник.mp3",
         "text": "Чайник"
@@ -2181,11 +2211,6 @@
         "filename": "вечер.mp3",
         "path": "/audio/ru/words/вечер.mp3",
         "text": "Вечер"
-      },
-      {
-        "filename": "фото.mp3",
-        "path": "/audio/ru/words/фото.mp3",
-        "text": "Фото"
       },
       {
         "filename": "царь.mp3",

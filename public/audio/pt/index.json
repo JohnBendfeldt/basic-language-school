@@ -1,7 +1,7 @@
 {
   "language": "pt",
   "voice": "pt-BR-AntonioNeural",
-  "generated": "2026-10-29T18:34:11.691526Z",
+  "generated": "2026-10-29T20:42:12.579285Z",
   "files": {
     "alphabet": [
       {
@@ -1453,16 +1453,6 @@
         "text": "Estudante"
       },
       {
-        "filename": "nós.mp3",
-        "path": "/audio/pt/words/nós.mp3",
-        "text": "Nós"
-      },
-      {
-        "filename": "pão.mp3",
-        "path": "/audio/pt/words/pão.mp3",
-        "text": "Pão"
-      },
-      {
         "filename": "leite.mp3",
         "path": "/audio/pt/words/leite.mp3",
         "text": "Leite"
@@ -1488,11 +1478,6 @@
         "text": "Frutas"
       },
       {
-        "filename": "fruta.mp3",
-        "path": "/audio/pt/words/fruta.mp3",
-        "text": "Fruta"
-      },
-      {
         "filename": "arroz.mp3",
         "path": "/audio/pt/words/arroz.mp3",
         "text": "Arroz"
@@ -1513,6 +1498,21 @@
         "text": "Vinho"
       },
       {
+        "filename": "sal.mp3",
+        "path": "/audio/pt/words/sal.mp3",
+        "text": "Sal"
+      },
+      {
+        "filename": "ovo.mp3",
+        "path": "/audio/pt/words/ovo.mp3",
+        "text": "Ovo"
+      },
+      {
+        "filename": "suco.mp3",
+        "path": "/audio/pt/words/suco.mp3",
+        "text": "Suco"
+      },
+      {
         "filename": "café_da_manhã.mp3",
         "path": "/audio/pt/words/café_da_manhã.mp3",
         "text": "Café da manhã"
@@ -1528,19 +1528,9 @@
         "text": "Jantar"
       },
       {
-        "filename": "sal.mp3",
-        "path": "/audio/pt/words/sal.mp3",
-        "text": "Sal"
-      },
-      {
         "filename": "restaurante.mp3",
         "path": "/audio/pt/words/restaurante.mp3",
         "text": "Restaurante"
-      },
-      {
-        "filename": "hotel.mp3",
-        "path": "/audio/pt/words/hotel.mp3",
-        "text": "Hotel"
       },
       {
         "filename": "estação.mp3",
@@ -1558,11 +1548,6 @@
         "text": "Rua"
       },
       {
-        "filename": "praça.mp3",
-        "path": "/audio/pt/words/praça.mp3",
-        "text": "Praça"
-      },
-      {
         "filename": "parque.mp3",
         "path": "/audio/pt/words/parque.mp3",
         "text": "Parque"
@@ -1578,19 +1563,9 @@
         "text": "Farmácia"
       },
       {
-        "filename": "correios.mp3",
-        "path": "/audio/pt/words/correios.mp3",
-        "text": "Correios"
-      },
-      {
         "filename": "supermercado.mp3",
         "path": "/audio/pt/words/supermercado.mp3",
         "text": "Supermercado"
-      },
-      {
-        "filename": "polícia.mp3",
-        "path": "/audio/pt/words/polícia.mp3",
-        "text": "Polícia"
       },
       {
         "filename": "museu.mp3",
@@ -1608,34 +1583,14 @@
         "text": "Cinema"
       },
       {
-        "filename": "ônibus.mp3",
-        "path": "/audio/pt/words/ônibus.mp3",
-        "text": "Ônibus"
-      },
-      {
-        "filename": "avião.mp3",
-        "path": "/audio/pt/words/avião.mp3",
-        "text": "Avião"
-      },
-      {
-        "filename": "táxi.mp3",
-        "path": "/audio/pt/words/táxi.mp3",
-        "text": "Táxi"
-      },
-      {
-        "filename": "metrô.mp3",
-        "path": "/audio/pt/words/metrô.mp3",
-        "text": "Metrô"
-      },
-      {
-        "filename": "visto.mp3",
-        "path": "/audio/pt/words/visto.mp3",
-        "text": "Visto"
-      },
-      {
         "filename": "centro.mp3",
         "path": "/audio/pt/words/centro.mp3",
         "text": "Centro"
+      },
+      {
+        "filename": "escola.mp3",
+        "path": "/audio/pt/words/escola.mp3",
+        "text": "Escola"
       },
       {
         "filename": "fábrica.mp3",
@@ -1648,6 +1603,26 @@
         "text": "Mar"
       },
       {
+        "filename": "estrada.mp3",
+        "path": "/audio/pt/words/estrada.mp3",
+        "text": "Estrada"
+      },
+      {
+        "filename": "ônibus.mp3",
+        "path": "/audio/pt/words/ônibus.mp3",
+        "text": "Ônibus"
+      },
+      {
+        "filename": "táxi.mp3",
+        "path": "/audio/pt/words/táxi.mp3",
+        "text": "Táxi"
+      },
+      {
+        "filename": "avião.mp3",
+        "path": "/audio/pt/words/avião.mp3",
+        "text": "Avião"
+      },
+      {
         "filename": "passagem.mp3",
         "path": "/audio/pt/words/passagem.mp3",
         "text": "Passagem"
@@ -1656,21 +1631,6 @@
         "filename": "passaporte.mp3",
         "path": "/audio/pt/words/passaporte.mp3",
         "text": "Passaporte"
-      },
-      {
-        "filename": "livro.mp3",
-        "path": "/audio/pt/words/livro.mp3",
-        "text": "Livro"
-      },
-      {
-        "filename": "revista.mp3",
-        "path": "/audio/pt/words/revista.mp3",
-        "text": "Revista"
-      },
-      {
-        "filename": "cartão.mp3",
-        "path": "/audio/pt/words/cartão.mp3",
-        "text": "Cartão"
       },
       {
         "filename": "mesa.mp3",
@@ -1701,6 +1661,141 @@
         "filename": "sapatos.mp3",
         "path": "/audio/pt/words/sapatos.mp3",
         "text": "Sapatos"
+      },
+      {
+        "filename": "revista.mp3",
+        "path": "/audio/pt/words/revista.mp3",
+        "text": "Revista"
+      },
+      {
+        "filename": "guarda-chuva.mp3",
+        "path": "/audio/pt/words/guarda-chuva.mp3",
+        "text": "Guarda-chuva"
+      },
+      {
+        "filename": "foto.mp3",
+        "path": "/audio/pt/words/foto.mp3",
+        "text": "Foto"
+      },
+      {
+        "filename": "cartão.mp3",
+        "path": "/audio/pt/words/cartão.mp3",
+        "text": "Cartão"
+      },
+      {
+        "filename": "cachorro.mp3",
+        "path": "/audio/pt/words/cachorro.mp3",
+        "text": "Cachorro"
+      },
+      {
+        "filename": "pássaro.mp3",
+        "path": "/audio/pt/words/pássaro.mp3",
+        "text": "Pássaro / Ave"
+      },
+      {
+        "filename": "lua.mp3",
+        "path": "/audio/pt/words/lua.mp3",
+        "text": "Lua"
+      },
+      {
+        "filename": "flor.mp3",
+        "path": "/audio/pt/words/flor.mp3",
+        "text": "Flor"
+      },
+      {
+        "filename": "árvore.mp3",
+        "path": "/audio/pt/words/árvore.mp3",
+        "text": "Árvore"
+      },
+      {
+        "filename": "bom.mp3",
+        "path": "/audio/pt/words/bom.mp3",
+        "text": "Bom"
+      },
+      {
+        "filename": "ruim.mp3",
+        "path": "/audio/pt/words/ruim.mp3",
+        "text": "Ruim"
+      },
+      {
+        "filename": "rápido.mp3",
+        "path": "/audio/pt/words/rápido.mp3",
+        "text": "Rápido"
+      },
+      {
+        "filename": "lento.mp3",
+        "path": "/audio/pt/words/lento.mp3",
+        "text": "Lento"
+      },
+      {
+        "filename": "feliz.mp3",
+        "path": "/audio/pt/words/feliz.mp3",
+        "text": "Feliz"
+      },
+      {
+        "filename": "pronto.mp3",
+        "path": "/audio/pt/words/pronto.mp3",
+        "text": "Pronto"
+      },
+      {
+        "filename": "aberto.mp3",
+        "path": "/audio/pt/words/aberto.mp3",
+        "text": "Aberto"
+      },
+      {
+        "filename": "fechado.mp3",
+        "path": "/audio/pt/words/fechado.mp3",
+        "text": "Fechado"
+      },
+      {
+        "filename": "nós.mp3",
+        "path": "/audio/pt/words/nós.mp3",
+        "text": "Nós"
+      },
+      {
+        "filename": "pão.mp3",
+        "path": "/audio/pt/words/pão.mp3",
+        "text": "Pão"
+      },
+      {
+        "filename": "fruta.mp3",
+        "path": "/audio/pt/words/fruta.mp3",
+        "text": "Fruta"
+      },
+      {
+        "filename": "hotel.mp3",
+        "path": "/audio/pt/words/hotel.mp3",
+        "text": "Hotel"
+      },
+      {
+        "filename": "praça.mp3",
+        "path": "/audio/pt/words/praça.mp3",
+        "text": "Praça"
+      },
+      {
+        "filename": "correios.mp3",
+        "path": "/audio/pt/words/correios.mp3",
+        "text": "Correios"
+      },
+      {
+        "filename": "polícia.mp3",
+        "path": "/audio/pt/words/polícia.mp3",
+        "text": "Polícia"
+      },
+      {
+        "filename": "metrô.mp3",
+        "path": "/audio/pt/words/metrô.mp3",
+        "text": "Metrô"
+      },
+      {
+        "filename": "visto.mp3",
+        "path": "/audio/pt/words/visto.mp3",
+        "text": "Visto"
+      },
+      {
+        "filename": "livro.mp3",
+        "path": "/audio/pt/words/livro.mp3",
+        "text": "Livro"
       },
       {
         "filename": "objeto.mp3",
@@ -1803,24 +1898,9 @@
         "text": "Ano"
       },
       {
-        "filename": "cachorro.mp3",
-        "path": "/audio/pt/words/cachorro.mp3",
-        "text": "Cachorro"
-      },
-      {
         "filename": "gato.mp3",
         "path": "/audio/pt/words/gato.mp3",
         "text": "Gato"
-      },
-      {
-        "filename": "pássaro.mp3",
-        "path": "/audio/pt/words/pássaro.mp3",
-        "text": "Pássaro"
-      },
-      {
-        "filename": "lua.mp3",
-        "path": "/audio/pt/words/lua.mp3",
-        "text": "Lua"
       },
       {
         "filename": "estrela.mp3",
@@ -1838,16 +1918,6 @@
         "text": "Besouro"
       },
       {
-        "filename": "flor.mp3",
-        "path": "/audio/pt/words/flor.mp3",
-        "text": "Flor"
-      },
-      {
-        "filename": "árvore.mp3",
-        "path": "/audio/pt/words/árvore.mp3",
-        "text": "Árvore"
-      },
-      {
         "filename": "árvore_de_natal.mp3",
         "path": "/audio/pt/words/árvore_de_natal.mp3",
         "text": "Árvore de Natal"
@@ -1858,64 +1928,14 @@
         "text": "Zebra"
       },
       {
-        "filename": "bom.mp3",
-        "path": "/audio/pt/words/bom.mp3",
-        "text": "Bom"
-      },
-      {
-        "filename": "ruim.mp3",
-        "path": "/audio/pt/words/ruim.mp3",
-        "text": "Ruim"
-      },
-      {
-        "filename": "aberto.mp3",
-        "path": "/audio/pt/words/aberto.mp3",
-        "text": "Aberto"
-      },
-      {
-        "filename": "fechado.mp3",
-        "path": "/audio/pt/words/fechado.mp3",
-        "text": "Fechado"
-      },
-      {
-        "filename": "rápido.mp3",
-        "path": "/audio/pt/words/rápido.mp3",
-        "text": "Rápido"
-      },
-      {
-        "filename": "lento.mp3",
-        "path": "/audio/pt/words/lento.mp3",
-        "text": "Lento"
-      },
-      {
-        "filename": "feliz.mp3",
-        "path": "/audio/pt/words/feliz.mp3",
-        "text": "Feliz"
-      },
-      {
-        "filename": "pronto.mp3",
-        "path": "/audio/pt/words/pronto.mp3",
-        "text": "Pronto"
-      },
-      {
         "filename": "maçã.mp3",
         "path": "/audio/pt/words/maçã.mp3",
         "text": "Maçã"
       },
       {
-        "filename": "ovo.mp3",
-        "path": "/audio/pt/words/ovo.mp3",
-        "text": "Ovo"
-      },
-      {
         "filename": "gelo.mp3",
         "path": "/audio/pt/words/gelo.mp3",
         "text": "Gelo"
-      },
-      {
-        "filename": "suco.mp3",
-        "path": "/audio/pt/words/suco.mp3",
-        "text": "Suco"
       },
       {
         "filename": "luz.mp3",
@@ -1936,21 +1956,6 @@
         "filename": "calmo.mp3",
         "path": "/audio/pt/words/calmo.mp3",
         "text": "Calmo"
-      },
-      {
-        "filename": "estrada.mp3",
-        "path": "/audio/pt/words/estrada.mp3",
-        "text": "Estrada"
-      },
-      {
-        "filename": "escola.mp3",
-        "path": "/audio/pt/words/escola.mp3",
-        "text": "Escola"
-      },
-      {
-        "filename": "guarda-chuva.mp3",
-        "path": "/audio/pt/words/guarda-chuva.mp3",
-        "text": "Guarda-chuva"
       },
       {
         "filename": "voz.mp3",
@@ -2116,11 +2121,6 @@
         "filename": "tarde.mp3",
         "path": "/audio/pt/words/tarde.mp3",
         "text": "Tarde"
-      },
-      {
-        "filename": "foto.mp3",
-        "path": "/audio/pt/words/foto.mp3",
-        "text": "Foto"
       },
       {
         "filename": "czar.mp3",
