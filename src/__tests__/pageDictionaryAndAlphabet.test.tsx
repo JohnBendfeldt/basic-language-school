@@ -2,13 +2,14 @@ import React from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Alphabet from '../components/Alphabet';
+import Phrases from '../components/Phrases';
 import NumbersAndTime from '../components/NumbersAndTime';
 import Quiz from '../components/Quiz';
 import VoiceSpeedControl from '../components/VoiceSpeedControl';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import { LanguageProvider, useLanguage } from '../contexts/LanguageContext';
 import { getPageContent, getAlphabetLabels, getTimeTabs, getEnglishTimeGuide, getLocalizedAppName, getLocalizedLanguageName, localizeCategoryBadge } from '../utils/pageDictionary';
-import { resolveTranslation, getAlphabetQuizHint } from '../utils/translationResolver';
+import { resolveTranslation, extractDigit, getAlphabetQuizHint } from '../utils/translationResolver';
 import { englishData } from '../data/languages/en/englishData';
 import spanishData from '../data/languages/es/spanishData';
 import russianData from '../data/languages/ru/russianData';
@@ -243,6 +244,66 @@ describe('Page Dictionary & Multilingual Alphabet Localization', () => {
       const houseBtn = screen.getByRole('button', { name: /Listen to House \/ Home/i });
       fireEvent.click(houseBtn);
       expect(audioPaths[audioPaths.length - 1]).toBe('/audio/en/words/house.mp3');
+    } finally {
+      window.Audio = OriginalAudio;
+    }
+  });
+
+  it('correctly resolves 100 and 1,000 translations, NumberBadge digits, and neural audio without truncating to 1/One/Uno', () => {
+    expect(extractDigit('1,000 (One Thousand)')).toBe(1000);
+    expect(extractDigit('One hundred')).toBe(100);
+    expect(extractDigit('One thousand')).toBe(1000);
+
+    // Russian 100 & 1000 for Spanish speakers should resolve to 100 (Cien) & 1000 (Mil), NOT Uno!
+    expect(resolveTranslation({ russian: 'сто', english: 'One hundred' }, 'ru', 'es')).toBe('100 (Cien)');
+    expect(resolveTranslation({ russian: 'тысяча', english: 'One thousand' }, 'ru', 'es')).toBe('1000 (Mil)');
+
+    // Spanish 1,000 for English speakers should resolve to 1000 (One thousand), NOT 1 (One)!
+    expect(resolveTranslation({ phrase: 'Mil', translation: '1,000 (One Thousand)' }, 'es', 'en')).toBe('1000 (One thousand)');
+
+    const audioPaths: string[] = [];
+    const OriginalAudio = window.Audio;
+    class MockAudio {
+      src: string;
+      preload = 'auto';
+      playbackRate = 1;
+      onended: any = null;
+      onerror: any = null;
+      constructor(src: string) {
+        this.src = src;
+        audioPaths.push(src);
+      }
+      play() {
+        return Promise.resolve();
+      }
+      pause() {}
+      load() {}
+    }
+    // @ts-ignore
+    window.Audio = MockAudio;
+
+    try {
+      const { container } = render(
+        <TestLanguagePairWrapper targetLang="ru" baseLang="en">
+          <Phrases data={russianData.numbers} title="Russian Numbers" contentType="numbers" />
+        </TestLanguagePairWrapper>
+      );
+
+      // NumberBadge SVG pills should render on Russian numbers including 100 and 1000
+      const svgTexts = Array.from(container.querySelectorAll('svg.number-svg-badge text')).map(el => el.textContent);
+      expect(svgTexts).toContain('100');
+      expect(svgTexts).toContain('1000');
+
+      // Reveal all and click 100 & 1000 translation speaker buttons
+      fireEvent.click(screen.getByRole('button', { name: /reveal all/i }));
+
+      const hundredBtn = screen.getByRole('button', { name: /Listen to translation 100 \(One hundred\)/i });
+      fireEvent.click(hundredBtn);
+      expect(audioPaths[audioPaths.length - 1]).toBe('/audio/en/numbers/one_hundred.mp3');
+
+      const thousandBtn = screen.getByRole('button', { name: /Listen to translation 1000 \(One thousand\)/i });
+      fireEvent.click(thousandBtn);
+      expect(audioPaths[audioPaths.length - 1]).toBe('/audio/en/numbers/one_thousand.mp3');
     } finally {
       window.Audio = OriginalAudio;
     }

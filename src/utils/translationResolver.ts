@@ -424,11 +424,14 @@ export const EXTENDED_DICTIONARY: Record<string, Record<SupportedLanguageId, str
   'office / desk': { en: 'Office / Desk', es: 'Oficina / Escritorio', fr: 'Bureau', ru: 'Офис / Стол' },
   'money / silver': { en: 'Money', es: 'Dinero', fr: 'Argent', ru: 'Деньги' },
   'train station': { en: 'Train station', es: 'Estación de tren', fr: 'Gare', ru: 'Вокзал / Станция' },
-  'boy / child': { en: 'Boy / Child', es: 'Niño', fr: 'Garçon / Enfant', ru: 'Мальчик / Ребёнок' }
+  'boy / child': { en: 'Boy / Child', es: 'Niño', fr: 'Garçon / Enfant', ru: 'Мальчик / Ребёнок' },
+  'one hundred': { en: 'One hundred', es: 'Cien', fr: 'Cent', ru: 'Сто' },
+  'one thousand': { en: 'One thousand', es: 'Mil', fr: 'Mille', ru: 'Тысяча' }
 };
 
 /**
- * Extracts numeric digits from strings like "15", "15 (Fifteen)", "1 - single unit".
+ * Extracts numeric digits from strings like "15", "15 (Fifteen)", "1,000 (One Thousand)",
+ * or exact cardinal number words ("Zero", "One hundred", "One thousand", "Сто", "Тысяча").
  * Ignores clock times and time expressions (e.g. "2:00 sharp", "12:30", "Two o'clock").
  */
 export const extractDigit = (text: string): number | null => {
@@ -439,11 +442,26 @@ export const extractDigit = (text: string): number | null => {
   ) {
     return null;
   }
-  const match = text.match(/\b\d+\b/);
+  const match = text.match(/\b\d{1,3}(?:[,.]\d{3})+\b|\b\d+\b/);
   if (match) {
-    const n = parseInt(match[0], 10);
+    const rawNumber = match[0].replace(/[,.]/g, '');
+    const n = parseInt(rawNumber, 10);
     if (!isNaN(n)) return n;
   }
+
+  // Also check exact cardinal number words in NUMBER_TABLE (e.g. "One hundred", "One thousand", "Сто", "Тысяча")
+  const cleanedWord = text
+    .replace(/\s*\([^)]*\)\s*/g, ' ')
+    .trim()
+    .toLowerCase();
+  if (cleanedWord) {
+    for (const entry of Object.values(NUMBER_TABLE)) {
+      if (entry.allWords.includes(cleanedWord)) {
+        return entry.digit;
+      }
+    }
+  }
+
   return null;
 };
 
@@ -577,7 +595,7 @@ export const resolveTranslation = (
   const matrixMatch = CONCEPT_MATRIX.find(c => {
     return Object.values(c.translations).some(t => {
       const tText = t.text.toLowerCase();
-      return tText === cleanKey || cleanKey.includes(tText);
+      return tText === cleanKey;
     });
   });
 

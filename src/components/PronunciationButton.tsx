@@ -106,8 +106,8 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
     
     const normalizedText = text.toLowerCase().trim();
     
-    // Check if text is a formatted number like "1 (Un)" or "15 (Quince)"
-    const numParenMatch = normalizedText.match(/^\d+\s*\(([^)]+)\)$/);
+    // Check if text is a formatted number like "1 (Un)", "15 (Quince)", or "1,000 (One Thousand)"
+    const numParenMatch = normalizedText.match(/^[\d,.\s]+\(([^)]+)\)$/);
     const effectiveRawText = numParenMatch ? numParenMatch[1].trim() : normalizedText;
 
     const cleanText = effectiveRawText
@@ -122,13 +122,13 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
     // Use provided audioCategory if available, otherwise infer from cleaned primary variant
     let primaryCategory = audioCategory;
     if (!primaryCategory) {
-      if (numParenMatch) {
+      if (numParenMatch || ['one hundred', 'one thousand'].includes(cleanText)) {
         primaryCategory = 'numbers';
       } else if (cleanText.length === 1) {
         primaryCategory = 'alphabet';
       } else if (/\s/.test(cleanText)) {
         primaryCategory = 'phrases';
-      } else if (/^\d+$/.test(cleanText) || ['one', 'two', 'three', 'один', 'два', 'три', 'un', 'deux', 'trois', 'uno', 'dos', 'tres'].includes(cleanText)) {
+      } else if (/^\d+$/.test(cleanText) || ['one', 'two', 'three', 'один', 'два', 'три', 'un', 'deux', 'trois', 'uno', 'dos', 'tres', 'cien', 'mil', 'cent', 'mille', 'сто', 'тысяча'].includes(cleanText)) {
         primaryCategory = 'numbers';
       } else {
         primaryCategory = 'words';
