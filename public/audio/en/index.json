@@ -1,7 +1,7 @@
 {
   "language": "en",
   "voice": "en-US-JennyNeural",
-  "generated": "2026-10-29T18:32:28.720944Z",
+  "generated": "2026-10-29T20:42:12.521553Z",
   "files": {
     "alphabet": [
       {
@@ -1523,11 +1523,6 @@
         "text": "Girl"
       },
       {
-        "filename": "mom.mp3",
-        "path": "/audio/en/words/mom.mp3",
-        "text": "Mom"
-      },
-      {
         "filename": "husband.mp3",
         "path": "/audio/en/words/husband.mp3",
         "text": "Husband"
@@ -1538,24 +1533,9 @@
         "text": "Wife"
       },
       {
-        "filename": "we.mp3",
-        "path": "/audio/en/words/we.mp3",
-        "text": "We"
-      },
-      {
-        "filename": "milk.mp3",
-        "path": "/audio/en/words/milk.mp3",
-        "text": "Milk"
-      },
-      {
         "filename": "meat.mp3",
         "path": "/audio/en/words/meat.mp3",
         "text": "Meat"
-      },
-      {
-        "filename": "fish.mp3",
-        "path": "/audio/en/words/fish.mp3",
-        "text": "Fish"
       },
       {
         "filename": "vegetables.mp3",
@@ -1566,11 +1546,6 @@
         "filename": "fruits.mp3",
         "path": "/audio/en/words/fruits.mp3",
         "text": "Fruits"
-      },
-      {
-        "filename": "fruit.mp3",
-        "path": "/audio/en/words/fruit.mp3",
-        "text": "Fruit"
       },
       {
         "filename": "rice.mp3",
@@ -1593,29 +1568,19 @@
         "text": "Salt"
       },
       {
+        "filename": "cheese.mp3",
+        "path": "/audio/en/words/cheese.mp3",
+        "text": "Cheese"
+      },
+      {
         "filename": "street.mp3",
         "path": "/audio/en/words/street.mp3",
         "text": "Street"
       },
       {
-        "filename": "square.mp3",
-        "path": "/audio/en/words/square.mp3",
-        "text": "Square (plaza)"
-      },
-      {
         "filename": "park.mp3",
         "path": "/audio/en/words/park.mp3",
         "text": "Park"
-      },
-      {
-        "filename": "post_office.mp3",
-        "path": "/audio/en/words/post_office.mp3",
-        "text": "Post office"
-      },
-      {
-        "filename": "police.mp3",
-        "path": "/audio/en/words/police.mp3",
-        "text": "Police"
       },
       {
         "filename": "museum.mp3",
@@ -1631,6 +1596,186 @@
         "filename": "cinema.mp3",
         "path": "/audio/en/words/cinema.mp3",
         "text": "Cinema"
+      },
+      {
+        "filename": "center.mp3",
+        "path": "/audio/en/words/center.mp3",
+        "text": "Center"
+      },
+      {
+        "filename": "factory.mp3",
+        "path": "/audio/en/words/factory.mp3",
+        "text": "Factory"
+      },
+      {
+        "filename": "sea.mp3",
+        "path": "/audio/en/words/sea.mp3",
+        "text": "Sea"
+      },
+      {
+        "filename": "bus.mp3",
+        "path": "/audio/en/words/bus.mp3",
+        "text": "Bus"
+      },
+      {
+        "filename": "taxi.mp3",
+        "path": "/audio/en/words/taxi.mp3",
+        "text": "Taxi"
+      },
+      {
+        "filename": "airplane.mp3",
+        "path": "/audio/en/words/airplane.mp3",
+        "text": "Airplane"
+      },
+      {
+        "filename": "boat.mp3",
+        "path": "/audio/en/words/boat.mp3",
+        "text": "Boat"
+      },
+      {
+        "filename": "table.mp3",
+        "path": "/audio/en/words/table.mp3",
+        "text": "Table"
+      },
+      {
+        "filename": "chair.mp3",
+        "path": "/audio/en/words/chair.mp3",
+        "text": "Chair"
+      },
+      {
+        "filename": "door.mp3",
+        "path": "/audio/en/words/door.mp3",
+        "text": "Door"
+      },
+      {
+        "filename": "window.mp3",
+        "path": "/audio/en/words/window.mp3",
+        "text": "Window"
+      },
+      {
+        "filename": "bag.mp3",
+        "path": "/audio/en/words/bag.mp3",
+        "text": "Bag"
+      },
+      {
+        "filename": "clothes.mp3",
+        "path": "/audio/en/words/clothes.mp3",
+        "text": "Clothes"
+      },
+      {
+        "filename": "shoes.mp3",
+        "path": "/audio/en/words/shoes.mp3",
+        "text": "Shoes"
+      },
+      {
+        "filename": "magazine.mp3",
+        "path": "/audio/en/words/magazine.mp3",
+        "text": "Magazine"
+      },
+      {
+        "filename": "photo.mp3",
+        "path": "/audio/en/words/photo.mp3",
+        "text": "Photo"
+      },
+      {
+        "filename": "card.mp3",
+        "path": "/audio/en/words/card.mp3",
+        "text": "Card"
+      },
+      {
+        "filename": "bird.mp3",
+        "path": "/audio/en/words/bird.mp3",
+        "text": "Bird"
+      },
+      {
+        "filename": "moon.mp3",
+        "path": "/audio/en/words/moon.mp3",
+        "text": "Moon"
+      },
+      {
+        "filename": "star.mp3",
+        "path": "/audio/en/words/star.mp3",
+        "text": "Star"
+      },
+      {
+        "filename": "flower.mp3",
+        "path": "/audio/en/words/flower.mp3",
+        "text": "Flower"
+      },
+      {
+        "filename": "tree.mp3",
+        "path": "/audio/en/words/tree.mp3",
+        "text": "Tree"
+      },
+      {
+        "filename": "bad.mp3",
+        "path": "/audio/en/words/bad.mp3",
+        "text": "Bad"
+      },
+      {
+        "filename": "fast.mp3",
+        "path": "/audio/en/words/fast.mp3",
+        "text": "Fast / Quick"
+      },
+      {
+        "filename": "slow.mp3",
+        "path": "/audio/en/words/slow.mp3",
+        "text": "Slow"
+      },
+      {
+        "filename": "happy.mp3",
+        "path": "/audio/en/words/happy.mp3",
+        "text": "Happy"
+      },
+      {
+        "filename": "ready.mp3",
+        "path": "/audio/en/words/ready.mp3",
+        "text": "Ready"
+      },
+      {
+        "filename": "closed.mp3",
+        "path": "/audio/en/words/closed.mp3",
+        "text": "Closed"
+      },
+      {
+        "filename": "mom.mp3",
+        "path": "/audio/en/words/mom.mp3",
+        "text": "Mom"
+      },
+      {
+        "filename": "we.mp3",
+        "path": "/audio/en/words/we.mp3",
+        "text": "We"
+      },
+      {
+        "filename": "milk.mp3",
+        "path": "/audio/en/words/milk.mp3",
+        "text": "Milk"
+      },
+      {
+        "filename": "fish.mp3",
+        "path": "/audio/en/words/fish.mp3",
+        "text": "Fish"
+      },
+      {
+        "filename": "fruit.mp3",
+        "path": "/audio/en/words/fruit.mp3",
+        "text": "Fruit"
+      },
+      {
+        "filename": "square.mp3",
+        "path": "/audio/en/words/square.mp3",
+        "text": "Square (plaza)"
+      },
+      {
+        "filename": "post_office.mp3",
+        "path": "/audio/en/words/post_office.mp3",
+        "text": "Post office"
+      },
+      {
+        "filename": "police.mp3",
+        "path": "/audio/en/words/police.mp3",
+        "text": "Police"
       },
       {
         "filename": "country.mp3",
@@ -1658,21 +1803,6 @@
         "text": "Train"
       },
       {
-        "filename": "bus.mp3",
-        "path": "/audio/en/words/bus.mp3",
-        "text": "Bus"
-      },
-      {
-        "filename": "airplane.mp3",
-        "path": "/audio/en/words/airplane.mp3",
-        "text": "Airplane"
-      },
-      {
-        "filename": "taxi.mp3",
-        "path": "/audio/en/words/taxi.mp3",
-        "text": "Taxi"
-      },
-      {
         "filename": "subway.mp3",
         "path": "/audio/en/words/subway.mp3",
         "text": "Subway / Metro"
@@ -1683,29 +1813,9 @@
         "text": "Visa"
       },
       {
-        "filename": "center.mp3",
-        "path": "/audio/en/words/center.mp3",
-        "text": "Center"
-      },
-      {
-        "filename": "factory.mp3",
-        "path": "/audio/en/words/factory.mp3",
-        "text": "Factory"
-      },
-      {
-        "filename": "sea.mp3",
-        "path": "/audio/en/words/sea.mp3",
-        "text": "Sea"
-      },
-      {
         "filename": "telephone.mp3",
         "path": "/audio/en/words/telephone.mp3",
         "text": "Telephone"
-      },
-      {
-        "filename": "magazine.mp3",
-        "path": "/audio/en/words/magazine.mp3",
-        "text": "Magazine"
       },
       {
         "filename": "help.mp3",
@@ -1721,41 +1831,6 @@
         "filename": "work.mp3",
         "path": "/audio/en/words/work.mp3",
         "text": "Work / Job"
-      },
-      {
-        "filename": "card.mp3",
-        "path": "/audio/en/words/card.mp3",
-        "text": "Card"
-      },
-      {
-        "filename": "table.mp3",
-        "path": "/audio/en/words/table.mp3",
-        "text": "Table"
-      },
-      {
-        "filename": "chair.mp3",
-        "path": "/audio/en/words/chair.mp3",
-        "text": "Chair"
-      },
-      {
-        "filename": "door.mp3",
-        "path": "/audio/en/words/door.mp3",
-        "text": "Door"
-      },
-      {
-        "filename": "bag.mp3",
-        "path": "/audio/en/words/bag.mp3",
-        "text": "Bag"
-      },
-      {
-        "filename": "clothes.mp3",
-        "path": "/audio/en/words/clothes.mp3",
-        "text": "Clothes"
-      },
-      {
-        "filename": "shoes.mp3",
-        "path": "/audio/en/words/shoes.mp3",
-        "text": "Shoes"
       },
       {
         "filename": "object.mp3",
@@ -1858,21 +1933,6 @@
         "text": "Cat"
       },
       {
-        "filename": "bird.mp3",
-        "path": "/audio/en/words/bird.mp3",
-        "text": "Bird"
-      },
-      {
-        "filename": "moon.mp3",
-        "path": "/audio/en/words/moon.mp3",
-        "text": "Moon"
-      },
-      {
-        "filename": "star.mp3",
-        "path": "/audio/en/words/star.mp3",
-        "text": "Star"
-      },
-      {
         "filename": "hedgehog.mp3",
         "path": "/audio/en/words/hedgehog.mp3",
         "text": "Hedgehog"
@@ -1881,16 +1941,6 @@
         "filename": "beetle.mp3",
         "path": "/audio/en/words/beetle.mp3",
         "text": "Beetle / Bug"
-      },
-      {
-        "filename": "flower.mp3",
-        "path": "/audio/en/words/flower.mp3",
-        "text": "Flower"
-      },
-      {
-        "filename": "tree.mp3",
-        "path": "/audio/en/words/tree.mp3",
-        "text": "Tree"
       },
       {
         "filename": "christmas_tree.mp3",
@@ -1906,36 +1956,6 @@
         "filename": "good.mp3",
         "path": "/audio/en/words/good.mp3",
         "text": "Good"
-      },
-      {
-        "filename": "bad.mp3",
-        "path": "/audio/en/words/bad.mp3",
-        "text": "Bad"
-      },
-      {
-        "filename": "closed.mp3",
-        "path": "/audio/en/words/closed.mp3",
-        "text": "Closed"
-      },
-      {
-        "filename": "fast.mp3",
-        "path": "/audio/en/words/fast.mp3",
-        "text": "Fast / Quick"
-      },
-      {
-        "filename": "slow.mp3",
-        "path": "/audio/en/words/slow.mp3",
-        "text": "Slow"
-      },
-      {
-        "filename": "happy.mp3",
-        "path": "/audio/en/words/happy.mp3",
-        "text": "Happy"
-      },
-      {
-        "filename": "ready.mp3",
-        "path": "/audio/en/words/ready.mp3",
-        "text": "Ready"
       },
       {
         "filename": "apple.mp3",
@@ -2018,11 +2038,6 @@
         "text": "Love"
       },
       {
-        "filename": "boat.mp3",
-        "path": "/audio/en/words/boat.mp3",
-        "text": "Boat"
-      },
-      {
         "filename": "day.mp3",
         "path": "/audio/en/words/day.mp3",
         "text": "Day"
@@ -2056,11 +2071,6 @@
         "filename": "cheek.mp3",
         "path": "/audio/en/words/cheek.mp3",
         "text": "Cheek"
-      },
-      {
-        "filename": "cheese.mp3",
-        "path": "/audio/en/words/cheese.mp3",
-        "text": "Cheese"
       },
       {
         "filename": "clock.mp3",
@@ -2143,11 +2153,6 @@
         "text": "Nose"
       },
       {
-        "filename": "window.mp3",
-        "path": "/audio/en/words/window.mp3",
-        "text": "Window"
-      },
-      {
         "filename": "dad.mp3",
         "path": "/audio/en/words/dad.mp3",
         "text": "Dad"
@@ -2171,11 +2176,6 @@
         "filename": "evening.mp3",
         "path": "/audio/en/words/evening.mp3",
         "text": "Evening"
-      },
-      {
-        "filename": "photo.mp3",
-        "path": "/audio/en/words/photo.mp3",
-        "text": "Photo"
       },
       {
         "filename": "czar.mp3",
