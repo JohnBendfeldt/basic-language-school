@@ -5904,10 +5904,36 @@ html {
 .language-modal-footer {
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.45);
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
   padding: 0.75rem 0.4rem 0.15rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   margin-top: 1rem;
+}
+
+.language-modal-done-btn {
+  background: var(--primary-color, #4f46e5);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 0.4rem 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.language-modal-done-btn:hover {
+  background: #4338ca;
+  transform: translateY(-1px);
+}
+
+.language-modal-done-btn:active {
+  transform: scale(0.96);
 }
 
 @media (max-width: 768px) {
