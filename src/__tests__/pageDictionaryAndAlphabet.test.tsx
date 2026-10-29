@@ -10,6 +10,7 @@ import { LanguageProvider, useLanguage } from '../contexts/LanguageContext';
 import { getPageContent, getAlphabetLabels, getTimeTabs, getEnglishTimeGuide, getLocalizedAppName, getLocalizedLanguageName, localizeCategoryBadge } from '../utils/pageDictionary';
 import { resolveTranslation, getAlphabetQuizHint } from '../utils/translationResolver';
 import { englishData } from '../data/languages/en/englishData';
+import spanishData from '../data/languages/es/spanishData';
 import russianData from '../data/languages/ru/russianData';
 
 // Mock speech audio APIs
@@ -200,5 +201,50 @@ describe('Page Dictionary & Multilingual Alphabet Localization', () => {
     // Modal should remain open and pair should now be French -> English (Anglais), NOT Spanish!
     expect(screen.getByRole('dialog', { name: /Language selection modal/i })).toBeInTheDocument();
     expect(screen.getAllByText('Anglais').length).toBeGreaterThan(0);
+  });
+
+  it('resolves slash-group translations like "Clock / Watch" and "Boy / Child" directly to words/*.mp3 neural audio', () => {
+    const audioPaths: string[] = [];
+    const OriginalAudio = window.Audio;
+    class MockAudio {
+      src: string;
+      preload = 'auto';
+      playbackRate = 1;
+      onended: any = null;
+      onerror: any = null;
+      constructor(src: string) {
+        this.src = src;
+        audioPaths.push(src);
+      }
+      play() {
+        return Promise.resolve();
+      }
+      pause() {}
+      load() {}
+    }
+    // @ts-ignore
+    window.Audio = MockAudio;
+
+    try {
+      render(
+        <TestLanguagePairWrapper targetLang="es" baseLang="en">
+          <Alphabet data={spanishData.alphabet} />
+        </TestLanguagePairWrapper>
+      );
+
+      const clockBtn = screen.getByRole('button', { name: /Listen to Clock \/ Watch/i });
+      fireEvent.click(clockBtn);
+      expect(audioPaths[audioPaths.length - 1]).toBe('/audio/en/words/clock.mp3');
+
+      const boyBtn = screen.getByRole('button', { name: /Listen to Boy \/ Child/i });
+      fireEvent.click(boyBtn);
+      expect(audioPaths[audioPaths.length - 1]).toBe('/audio/en/words/boy.mp3');
+
+      const houseBtn = screen.getByRole('button', { name: /Listen to House \/ Home/i });
+      fireEvent.click(houseBtn);
+      expect(audioPaths[audioPaths.length - 1]).toBe('/audio/en/words/house.mp3');
+    } finally {
+      window.Audio = OriginalAudio;
+    }
   });
 });
