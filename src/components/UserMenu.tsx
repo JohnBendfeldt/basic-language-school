@@ -64,7 +64,40 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
     setCurrentUser(null);
   };
 
-  const provider = currentUser?.app_metadata?.provider;
+  const resolveActiveProvider = (user: any): 'azure' | 'github' | 'google' | 'email' | 'account' => {
+    if (!user) return 'account';
+
+    // 1. If identities array is present (multi-provider account linking), find the identity with the latest sign-in
+    if (Array.isArray(user.identities) && user.identities.length > 0) {
+      const sorted = [...user.identities].sort((a, b) => {
+        const timeA = new Date(a.last_sign_in_at || a.updated_at || a.created_at || 0).getTime();
+        const timeB = new Date(b.last_sign_in_at || b.updated_at || b.created_at || 0).getTime();
+        return timeB - timeA;
+      });
+      const latest = (sorted[0]?.provider || '').toLowerCase();
+      if (latest === 'azure' || latest === 'microsoft') return 'azure';
+      if (latest === 'github') return 'github';
+      if (latest === 'google') return 'google';
+      if (latest === 'email') return 'email';
+    }
+
+    // 2. Check app_metadata.provider
+    const metaProvider = (user.app_metadata?.provider || '').toLowerCase();
+    if (metaProvider === 'azure' || metaProvider === 'microsoft') return 'azure';
+    if (metaProvider === 'github') return 'github';
+    if (metaProvider === 'google') return 'google';
+    if (metaProvider === 'email') return 'email';
+
+    // 3. Check app_metadata.providers list
+    const providersList = user.app_metadata?.providers || [];
+    if (providersList.includes('azure') || providersList.includes('microsoft')) return 'azure';
+    if (providersList.includes('github')) return 'github';
+    if (providersList.includes('google')) return 'google';
+
+    return 'account';
+  };
+
+  const provider = resolveActiveProvider(currentUser);
   const displayName = currentUser?.user_metadata?.full_name || currentUser?.email?.split('@')[0] || 'User';
 
   return (
@@ -112,9 +145,13 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
                     <>
                       <FaGithub /> GitHub
                     </>
-                  ) : (
+                  ) : provider === 'google' ? (
                     <>
                       <FaGoogle /> Google
+                    </>
+                  ) : (
+                    <>
+                      <FaUser /> Account
                     </>
                   )}
                 </span>
