@@ -888,6 +888,8 @@ export const localizeCategoryBadge = (
     'colors': { en: 'Colors', es: 'Colores', fr: 'Couleurs', ru: 'Цвета' },
     'weather': { en: 'Weather', es: 'Clima', fr: 'Météo', ru: 'Погода' },
     'tech': { en: 'Tech & IT', es: 'Tecnología', fr: 'Tech et IT', ru: 'Технологии' },
+    'business': { en: 'Business', es: 'Negocios', fr: 'Affaires', ru: 'Бизнес' },
+    'health': { en: 'Healthcare', es: 'Salud', fr: 'Santé', ru: 'Здоровье' },
     'all': { en: 'All', es: 'Todos', fr: 'Tous', ru: 'Все' }
   };
 

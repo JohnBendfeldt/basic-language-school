@@ -9,12 +9,15 @@ import { localizeCategoryBadge } from '../utils/pageDictionary';
 
 const CATEGORY_ICONS: Record<string, string> = {
   'all': '✨',
+  'tech': '💻',
+  'business': '💼',
+  'health': '🏥',
   'colors': '🎨',
   'weather': '☀️',
-  'tech': '💻',
+  'travel': '✈️',
+  'shopping': '🛍️',
   'food & drink': '🍲',
   'dining': '🍽️',
-  'travel': '✈️',
   'places': '🏙️',
   'transport': '🚆',
   'people': '👥',
@@ -24,7 +27,6 @@ const CATEGORY_ICONS: Record<string, string> = {
   'politeness': '🙏',
   'responses': '✅',
   'farewells': '🚪',
-  'shopping': '🛍️',
   'emergency': '🆘',
   'essentials': '⭐',
   'work': '💼',
@@ -193,8 +195,8 @@ const Phrases: React.FC<PhrasesProps> = ({
     }
     if (counts.size < 2) return [];
 
-    // Highlight industry & everyday topic packs first (Tech, Colors, Weather), then remaining categories
-    const priorityOrder = ['Tech', 'Colors', 'Weather', 'Food & Drink', 'Dining', 'Travel', 'Places', 'Transport', 'People', 'Greetings', 'Conversation', 'Politeness', 'Shopping', 'Emergency', 'Essentials', 'Work', 'Finance', 'Time', 'Questions', 'Common Verbs'];
+    // Highlight industry & everyday topic packs first (Tech, Business, Health, Colors, Weather, Travel, Shopping), then remaining categories
+    const priorityOrder = ['Tech', 'Business', 'Health', 'Colors', 'Weather', 'Travel', 'Shopping', 'Food & Drink', 'Dining', 'Places', 'Transport', 'People', 'Greetings', 'Conversation', 'Politeness', 'Emergency', 'Essentials', 'Work', 'Finance', 'Time', 'Questions', 'Common Verbs'];
     const entries = Array.from(counts.entries()).sort((a, b) => {
       const idxA = priorityOrder.indexOf(a[0]);
       const idxB = priorityOrder.indexOf(b[0]);
@@ -277,7 +279,12 @@ const Phrases: React.FC<PhrasesProps> = ({
           </button>
           {categoryPills.map((pill) => {
             const isSelected = activeCategory === pill.id;
-            const isFeaturedPack = pill.id === 'Tech' || pill.id === 'Colors' || pill.id === 'Weather';
+            const isFeaturedPack =
+              pill.id === 'Tech' ||
+              pill.id === 'Business' ||
+              pill.id === 'Health' ||
+              pill.id === 'Colors' ||
+              pill.id === 'Weather';
             return (
               <button
                 key={pill.id}

@@ -471,6 +471,101 @@ const basicPhrases: PhraseItem[] = [
     pronunciation: 'kah-koy pah-rohl aht vay-fa-ya',
     category: 'Tech',
     icon: '📶'
+  },
+  // Business & Office
+  {
+    russian: 'Давайте назначим встречу',
+    english: 'Let\'s schedule a meeting',
+    pronunciation: 'dah-vay-tye nahz-nah-cheem fstrye-choo',
+    category: 'Business',
+    icon: '📅'
+  },
+  {
+    russian: 'Я отправлю вам письмо',
+    english: 'I will send you an email',
+    pronunciation: 'ya aht-prahv-lyoo vahm pees-moh',
+    category: 'Business',
+    icon: '📧'
+  },
+  {
+    russian: 'Какой крайний срок?',
+    english: 'When is the deadline?',
+    pronunciation: 'kah-koy kray-neey srohk',
+    category: 'Business',
+    icon: '⏳'
+  },
+  // Healthcare & Pharmacy
+  {
+    russian: 'Мне нужен врач',
+    english: 'I need a doctor',
+    pronunciation: 'mnye noo-zhen vrahch',
+    category: 'Health',
+    icon: '🩺'
+  },
+  {
+    russian: 'Где ближайшая аптека?',
+    english: 'Where is the nearest pharmacy?',
+    pronunciation: 'gdye blee-zhay-sha-ya ap-tye-ka',
+    category: 'Health',
+    icon: '💊'
+  },
+  {
+    russian: 'У меня аллергия на орехи',
+    english: 'I am allergic to nuts',
+    pronunciation: 'oo mee-nya ah-leer-gee-ya na ah-rye-khee',
+    category: 'Health',
+    icon: '⚠️'
+  },
+  // Hotel, Airport & Travel
+  {
+    russian: 'У меня есть бронь',
+    english: 'I have a reservation',
+    pronunciation: 'oo mee-nya yest brohn',
+    category: 'Travel',
+    icon: '🛎️'
+  },
+  {
+    russian: 'Где находится вокзал?',
+    english: 'Where is the train station?',
+    pronunciation: 'gdye nah-khoh-deet-sya vahk-zahl',
+    category: 'Travel',
+    icon: '🚉'
+  },
+  {
+    russian: 'Мне нужно такси',
+    english: 'I need a taxi',
+    pronunciation: 'mnye noozh-na tahk-see',
+    category: 'Travel',
+    icon: '🚕'
+  },
+  // Dining & Shopping
+  {
+    russian: 'Столик на двоих, пожалуйста',
+    english: 'A table for two, please',
+    pronunciation: 'stoh-leek na dvah-eekh pah-zhal-stah',
+    category: 'Dining',
+    icon: '🍽️'
+  },
+  {
+    russian: 'Меню, пожалуйста',
+    english: 'The menu, please',
+    pronunciation: 'mee-nyoo pah-zhal-stah',
+    category: 'Dining',
+    icon: '📖'
+  },
+  {
+    russian: 'Вы принимаете банковские карты?',
+    english: 'Do you accept credit cards?',
+    pronunciation: 'vy pree-nee-mah-ye-tye bahn-kahf-skee-ye kar-ti',
+    category: 'Shopping',
+    icon: '💳'
+  },
+  {
+    russian: 'Это слишком дорого',
+    english: 'It is too expensive',
+    pronunciation: 'eh-ta sleesh-kam doh-ra-ga',
+    category: 'Shopping',
+    icon: '💸'
   }
 ];
 
@@ -1281,6 +1376,262 @@ const commonWords: PhraseItem[] = [
     pronunciation: 'bah-tah-rye-ya',
     category: 'Tech',
     icon: '🔋'
+  },
+  // Business & Office
+  {
+    russian: 'проект',
+    english: 'project',
+    pronunciation: 'prah-yekt',
+    category: 'Business',
+    icon: '📊'
+  },
+  {
+    russian: 'клиент',
+    english: 'client',
+    pronunciation: 'klee-yent',
+    category: 'Business',
+    icon: '🤝'
+  },
+  {
+    russian: 'команда',
+    english: 'team',
+    pronunciation: 'kah-mahn-da',
+    category: 'Business',
+    icon: '👥'
+  },
+  {
+    russian: 'руководитель',
+    english: 'manager',
+    pronunciation: 'roo-kah-vah-dee-teel',
+    category: 'Business',
+    icon: '👔'
+  },
+  {
+    russian: 'компания',
+    english: 'company',
+    pronunciation: 'kam-pah-nee-ya',
+    category: 'Business',
+    icon: '🏢'
+  },
+  {
+    russian: 'контракт',
+    english: 'contract',
+    pronunciation: 'kan-trahkt',
+    category: 'Business',
+    icon: '📝'
+  },
+  {
+    russian: 'расписание',
+    english: 'schedule',
+    pronunciation: 'rahs-pee-sah-nee-ye',
+    category: 'Business',
+    icon: '🗓️'
+  },
+  {
+    russian: 'срок',
+    english: 'deadline',
+    pronunciation: 'srohk',
+    category: 'Business',
+    icon: '⏳'
+  },
+  {
+    russian: 'счёт',
+    english: 'invoice',
+    pronunciation: 'schyot',
+    category: 'Business',
+    icon: '🧾'
+  },
+  {
+    russian: 'зарплата',
+    english: 'salary',
+    pronunciation: 'zahr-plah-ta',
+    category: 'Business',
+    icon: '💵'
+  },
+  // Healthcare & Pharmacy
+  {
+    russian: 'врач',
+    english: 'doctor',
+    pronunciation: 'vrahch',
+    category: 'Health',
+    icon: '🩺'
+  },
+  {
+    russian: 'лекарство',
+    english: 'medicine',
+    pronunciation: 'lee-kar-stva',
+    category: 'Health',
+    icon: '💊'
+  },
+  {
+    russian: 'боль',
+    english: 'pain',
+    pronunciation: 'bohl',
+    category: 'Health',
+    icon: '🤕'
+  },
+  {
+    russian: 'температура',
+    english: 'fever',
+    pronunciation: 'teem-pee-rah-too-ra',
+    category: 'Health',
+    icon: '🤒'
+  },
+  {
+    russian: 'аллергия',
+    english: 'allergy',
+    pronunciation: 'ah-leer-gee-ya',
+    category: 'Health',
+    icon: '⚠️'
+  },
+  {
+    russian: 'головная боль',
+    english: 'headache',
+    pronunciation: 'gah-lahv-na-ya bohl',
+    category: 'Health',
+    icon: '🧠'
+  },
+  {
+    russian: 'скорая помощь',
+    english: 'emergency',
+    pronunciation: 'skoh-ra-ya poh-masch',
+    category: 'Health',
+    icon: '🚑'
+  },
+  {
+    russian: 'рецепт',
+    english: 'prescription',
+    pronunciation: 'ree-tsept',
+    category: 'Health',
+    icon: '📋'
+  },
+  {
+    russian: 'бинт',
+    english: 'bandage',
+    pronunciation: 'beent',
+    category: 'Health',
+    icon: '🩹'
+  },
+  {
+    russian: 'здоровье',
+    english: 'health',
+    pronunciation: 'zdah-rohv-ye',
+    category: 'Health',
+    icon: '❤️'
+  },
+  // Hotel, Airport & Travel
+  {
+    russian: 'рейс',
+    english: 'flight',
+    pronunciation: 'reys',
+    category: 'Travel',
+    icon: '🛫'
+  },
+  {
+    russian: 'багаж',
+    english: 'luggage',
+    pronunciation: 'bah-gahsh',
+    category: 'Travel',
+    icon: '🧳'
+  },
+  {
+    russian: 'бронь',
+    english: 'reservation',
+    pronunciation: 'brohn',
+    category: 'Travel',
+    icon: '🛎️'
+  },
+  {
+    russian: 'ключ',
+    english: 'key',
+    pronunciation: 'klyooch',
+    category: 'Travel',
+    icon: '🔑'
+  },
+  {
+    russian: 'номер',
+    english: 'room',
+    pronunciation: 'noh-meer',
+    category: 'Travel',
+    icon: '🛏️'
+  },
+  {
+    russian: 'выход на посадку',
+    english: 'gate',
+    pronunciation: 'vi-khat na pah-sahd-koo',
+    category: 'Travel',
+    icon: '🚪'
+  },
+  {
+    russian: 'карта',
+    english: 'map',
+    pronunciation: 'kar-ta',
+    category: 'Travel',
+    icon: '🗺️'
+  },
+  {
+    russian: 'вход',
+    english: 'entrance',
+    pronunciation: 'fkhoht',
+    category: 'Travel',
+    icon: '➡️'
+  },
+  {
+    russian: 'выход',
+    english: 'exit',
+    pronunciation: 'vi-khat',
+    category: 'Travel',
+    icon: '⬅️'
+  },
+  {
+    russian: 'таможня',
+    english: 'customs',
+    pronunciation: 'tah-mohzh-nya',
+    category: 'Travel',
+    icon: '🛂'
+  },
+  // Shopping & Money
+  {
+    russian: 'банковская карта',
+    english: 'credit card',
+    pronunciation: 'bahn-kahf-ska-ya kar-ta',
+    category: 'Shopping',
+    icon: '💳'
+  },
+  {
+    russian: 'наличные',
+    english: 'cash',
+    pronunciation: 'nah-leech-ni-ye',
+    category: 'Shopping',
+    icon: '💵'
+  },
+  {
+    russian: 'цена',
+    english: 'price',
+    pronunciation: 'tsee-nah',
+    category: 'Shopping',
+    icon: '🏷️'
+  },
+  {
+    russian: 'дешёвый',
+    english: 'cheap',
+    pronunciation: 'dee-sho-viy',
+    category: 'Shopping',
+    icon: '👇'
+  },
+  {
+    russian: 'дорогой',
+    english: 'expensive',
+    pronunciation: 'dah-rah-goy',
+    category: 'Shopping',
+    icon: '💎'
+  },
+  {
+    russian: 'скидка',
+    english: 'discount',
+    pronunciation: 'skeed-ka',
+    category: 'Shopping',
+    icon: '🏷️'
   }
 ];
 
