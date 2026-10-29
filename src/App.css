@@ -2879,12 +2879,14 @@ footer {
   font-size: 0.9rem;
 }
 
-/* Cyrillic Typing Helper Panel */
+/* Special Character & Cyrillic Typing Helper Panel */
+.special-char-panel,
 .cyrillic-helper-panel {
   margin: 0.5rem 0 0.85rem;
   text-align: center;
 }
 
+.special-char-bar,
 .cyrillic-quick-bar {
   display: flex;
   align-items: center;
@@ -3568,34 +3570,38 @@ html {
     font-size: 1.02rem;
   }
 
+  .special-char-panel,
   .cyrillic-helper-panel {
     margin: 0.35rem 0 0.5rem;
   }
 
+  .special-char-bar,
   .cyrillic-quick-bar {
     width: 100%;
     display: flex;
     justify-content: center;
   }
 
-  /* 2 balanced rows of 6 on mobile - zero swiping/scrolling required */
+  /* Centered flexible quick-tap character bar on mobile - zero swiping required */
   .quick-keys-scroll {
-    display: grid !important;
-    grid-template-columns: repeat(6, 1fr) !important;
-    gap: 5px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 6px !important;
     width: 100% !important;
-    max-width: 320px !important;
+    max-width: 360px !important;
     margin: 0 auto !important;
     overflow-x: visible !important;
     padding: 0 !important;
   }
 
   .quick-char-btn {
-    min-width: 0 !important;
-    width: 100% !important;
+    min-width: 32px !important;
     height: 36px !important;
     font-size: 1rem !important;
-    padding: 0 !important;
+    padding: 0 6px !important;
+    flex-grow: 0 !important;
   }
 
   .quiz-buttons {

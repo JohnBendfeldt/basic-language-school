@@ -195,6 +195,17 @@ const isHardSignAnswer = (answer: string): boolean =>
 
 const CYRILLIC_QUICK_CHARS = ['я', 'ю', 'ё', 'ж', 'ш', 'щ', 'ч', 'ь', 'ъ', 'ы', 'э'];
 
+export const SPECIAL_CHAR_MAP: Record<SupportedLanguageId, string[]> = {
+  es: ['á', 'é', 'í', 'ó', 'ú', 'ñ', 'ü', '¿', '¡'],
+  fr: ['é', 'è', 'ê', 'ë', 'à', 'â', 'ç', 'î', 'ï', 'ô', 'ù', 'û', 'œ'],
+  de: ['ä', 'ö', 'ü', 'ß'],
+  pt: ['ã', 'õ', 'á', 'é', 'í', 'ó', 'ú', 'â', 'ê', 'ô', 'ç'],
+  tr: ['ç', 'ğ', 'ı', 'ö', 'ş', 'ü', 'İ'],
+  ru: ['я', 'ю', 'ё', 'ж', 'ш', 'щ', 'ч', 'ь', 'ъ', 'ы', 'э'],
+  en: [],
+  id: []
+};
+
 const getAudioCategory = (questionType: string): 'alphabet' | 'phrases' | 'numbers' | 'words' | 'time' | 'examples' => {
   switch (questionType) {
     case 'alphabet':
@@ -573,10 +584,12 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   };
 
   const getSpellingDifferences = (userInput: string, correctAnswer: string): Array<{ char: string; isDiff: boolean }> => {
-    if (!containsCyrillic(correctAnswer)) return [];
+    const userNorm = userInput.toLowerCase();
+    const correctNorm = correctAnswer.toLowerCase();
+    if (userNorm === correctNorm) return [];
     return correctAnswer.split('').map((char, i) => ({
       char,
-      isDiff: i >= userInput.length || userInput[i] !== char
+      isDiff: i >= userNorm.length || userNorm[i] !== char.toLowerCase()
     }));
   };
 
@@ -919,7 +932,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               type: selected.category,
               prompt: targetWord,
               answer: combinedAnswer,
-              hint: buildQuizQuestionHint(targetWord, true, currentLanguage, baseLanguage),
+              hint: getListeningHeader(currentLanguage, baseLanguage, currentMeta.name),
               meaningHint: baseNumWord,
               baseMeaning: baseNumWord,
               targetAudioWord: targetWord,
@@ -979,7 +992,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               type: selected.category,
               prompt: targetWord,
               answer: combinedAnswer,
-              hint: buildQuizQuestionHint(targetWord, true, currentLanguage, baseLanguage),
+              hint: getListeningHeader(currentLanguage, baseLanguage, currentMeta.name),
               meaningHint: baseWord,
               baseMeaning: baseWord,
               targetAudioWord: targetWord,
@@ -1239,6 +1252,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
   const checkAnswer = () => {
     if (!userAnswer.trim()) return;
+    setSpellingDiff(null);
 
     let processedAnswer = userAnswer;
     if (needsRussianKeyboard && !containsCyrillic(processedAnswer)) {
@@ -1361,6 +1375,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             const engDistance = levenshteinDistance(userEnglishNorm, targetEnglishNorm);
             if (engDistance <= engMaxErrors) {
               isAnswerCorrect = true;
+              if (engDistance > 0) {
+                setSpellingDiff(getSpellingDifferences(userAnswer.trim(), target));
+              }
               break;
             }
           }
@@ -1602,6 +1619,21 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       currentQuestion.hint.includes('русском')
     )
   );
+
+  const expectedAnswerLanguage: SupportedLanguageId = useMemo(() => {
+    if (!currentQuestion) return currentLanguage;
+    if (needsRussianKeyboard) return 'ru';
+    if (currentQuestion.type.includes('alphabet')) return baseLanguage;
+    if (currentQuestion.isListeningMode) return currentLanguage;
+    if (currentQuestion.isTargetPrompt) return baseLanguage;
+    return currentLanguage;
+  }, [currentQuestion, needsRussianKeyboard, baseLanguage, currentLanguage]);
+
+  const activeSpecialChars = useMemo(() => {
+    if (!currentQuestion || showNext) return [];
+    if (expectedAnswerLanguage === 'ru') return CYRILLIC_QUICK_CHARS;
+    return SPECIAL_CHAR_MAP[expectedAnswerLanguage] || [];
+  }, [currentQuestion, showNext, expectedAnswerLanguage]);
 
   const combinationStarters = ['y', 'Y', 'z', 'Z', 's', 'S', 'c', 'C', 't', 'T', 'k', 'K'];
   const combinationFollowers = {
@@ -2287,6 +2319,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             ref={inputRef}
             type="text"
             className="quiz-input"
+            lang={expectedAnswerLanguage}
             value={userAnswer}
             onChange={handleInputChange} 
             onKeyDown={handleKeyDown}
@@ -2305,9 +2338,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         </div>
 
         {needsRussianKeyboard && !showNext && (
-          <div className="cyrillic-helper-panel">
+          <div className="special-char-panel cyrillic-helper-panel">
             {/* Unified quick-tap Russian letters + guide icon toolbar */}
-            <div className="cyrillic-quick-bar" role="toolbar" aria-label="Special Russian characters">
+            <div className="special-char-bar cyrillic-quick-bar" role="toolbar" aria-label="Special Russian characters">
               <div className="quick-keys-scroll">
                 {CYRILLIC_QUICK_CHARS.map(char => (
                   <button
@@ -2359,6 +2392,26 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                 <small className="phonetic-note">Type phonetically in English, then press SPACE to auto-convert!</small>
               </div>
             )}
+          </div>
+        )}
+
+        {!needsRussianKeyboard && activeSpecialChars.length > 0 && !showNext && (
+          <div className="special-char-panel">
+            <div className="special-char-bar" role="toolbar" aria-label={`Special characters for ${expectedAnswerLanguage}`}>
+              <div className="quick-keys-scroll">
+                {activeSpecialChars.map(char => (
+                  <button
+                    key={char}
+                    type="button"
+                    className="quick-char-btn"
+                    onClick={() => handleKeyboardLetterClick(char)}
+                    aria-label={`Insert ${char}`}
+                  >
+                    {char}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         )}
 
