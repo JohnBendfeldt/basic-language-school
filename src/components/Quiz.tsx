@@ -1632,6 +1632,49 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     return SPECIAL_CHAR_MAP[expectedAnswerLanguage] || [];
   }, [currentQuestion, showNext, expectedAnswerLanguage]);
 
+  const getDynamicPlaceholder = (): string => {
+    if (!currentQuestion) return ui.yourAnswerHere;
+    if (needsRussianKeyboard) {
+      return baseLanguage === 'ru' 
+        ? 'Введите на русском...' 
+        : 'Type in Russian (or phonetically in English)...';
+    }
+    if (currentQuestion.isListeningMode) {
+      switch (baseLanguage) {
+        case 'es': return 'Escribe lo que escuchas o la traducción...';
+        case 'fr': return 'Écrivez ce que vous entendez ou la traduction...';
+        case 'ru': return 'Введите то, что услышали, или перевод...';
+        case 'de': return 'Tippe, was du hörst, oder die Übersetzung...';
+        case 'pt': return 'Digite o que você ouve ou a tradução...';
+        case 'id': return 'Ketik apa yang Anda dengar atau artinya...';
+        case 'tr': return 'Duyduğunuzu veya anlamını yazın...';
+        default: return 'Type what you hear or translation...';
+      }
+    }
+    if (expectedAnswerLanguage === currentLanguage) {
+      switch (baseLanguage) {
+        case 'es': return `Escribe en ${currentMeta.name}...`;
+        case 'fr': return `Écrivez en ${currentMeta.name}...`;
+        case 'ru': return `Введите на ${currentMeta.name}...`;
+        case 'de': return `Tippe auf ${currentMeta.name}...`;
+        case 'pt': return `Digite em ${currentMeta.name}...`;
+        case 'id': return `Ketik dalam bahasa ${currentMeta.name}...`;
+        case 'tr': return `${currentMeta.name} dilinde yazın...`;
+        default: return `Type in ${currentMeta.name}...`;
+      }
+    }
+    switch (baseLanguage) {
+      case 'es': return 'Escribe en español...';
+      case 'fr': return 'Écrivez en français...';
+      case 'ru': return 'Введите на русском...';
+      case 'de': return 'Tippe auf Deutsch...';
+      case 'pt': return 'Digite em português...';
+      case 'id': return 'Ketik dalam bahasa Indonesia...';
+      case 'tr': return 'Türkçe yazın...';
+      default: return 'Type in English...';
+    }
+  };
+
   const combinationStarters = ['y', 'Y', 'z', 'Z', 's', 'S', 'c', 'C', 't', 'T', 'k', 'K'];
   const combinationFollowers = {
     'y': ['a', 'A', 'u', 'U', 'o', 'O', 'e', 'E'],
@@ -2320,7 +2363,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             value={userAnswer}
             onChange={handleInputChange} 
             onKeyDown={handleKeyDown}
-            placeholder={needsRussianKeyboard ? "Type in English (press SPACE)..." : ui.yourAnswerHere}
+            placeholder={getDynamicPlaceholder()}
             disabled={showNext}
           />
           {needsRussianKeyboard && !showNext && (
