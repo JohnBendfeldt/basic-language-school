@@ -81,7 +81,11 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
         ? 'fr'
         : (lang && lang.toLowerCase().startsWith('ru'))
           ? 'ru'
-          : currentLanguage;
+          : (lang && lang.toLowerCase().startsWith('pt'))
+            ? 'pt'
+            : (lang && lang.toLowerCase().startsWith('de'))
+              ? 'de'
+              : currentLanguage;
 
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -235,6 +239,8 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
       es: 'es-ES',
       fr: 'fr-FR',
       ru: 'ru-RU',
+      pt: 'pt-BR',
+      de: 'de-DE',
     };
     const speechLang = lang || langCodeMap[effectiveLangId] || 'en-US';
     speak(

@@ -1,7 +1,7 @@
 {
   "language": "en",
   "voice": "en-US-JennyNeural",
-  "generated": "2026-10-29T15:24:08.513921Z",
+  "generated": "2026-10-29T15:55:20.128597Z",
   "files": {
     "alphabet": [
       {
@@ -1866,6 +1866,26 @@
         "filename": "yogurt.mp3",
         "path": "/audio/en/words/yogurt.mp3",
         "text": "Yogurt"
+      },
+      {
+        "filename": "heart.mp3",
+        "path": "/audio/en/words/heart.mp3",
+        "text": "Heart"
+      },
+      {
+        "filename": "cup.mp3",
+        "path": "/audio/en/words/cup.mp3",
+        "text": "Cup"
+      },
+      {
+        "filename": "source.mp3",
+        "path": "/audio/en/words/source.mp3",
+        "text": "Source"
+      },
+      {
+        "filename": "oil.mp3",
+        "path": "/audio/en/words/oil.mp3",
+        "text": "Oil"
       },
       {
         "filename": "or.mp3",

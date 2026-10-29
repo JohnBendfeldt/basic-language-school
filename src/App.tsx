@@ -16,6 +16,7 @@ import { FaBars } from 'react-icons/fa';
 import { initVoices, cancelAllSpeech } from './utils/speech';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import { SupportedLanguageId } from './data/languages/types';
+import { SUPPORTED_LANGUAGES } from './data/languages';
 import { getPageContent, getLocalizedAppName, getComponentChrome } from './utils/pageDictionary';
 
 // Map path segments to section IDs
@@ -48,13 +49,13 @@ const parsePath = (): { langId?: SupportedLanguageId; section: string } => {
 
   // Handle /learn/:lang/:section or /learn/:lang
   if (segments[0] === 'learn') {
-    if (segments[1] && ['ru', 'en', 'es', 'fr'].includes(segments[1])) {
+    if (segments[1] && segments[1] in SUPPORTED_LANGUAGES) {
       langId = segments[1] as SupportedLanguageId;
       section = segments[2] && PATH_TO_SECTION[segments[2]] ? PATH_TO_SECTION[segments[2]] : 'alphabet';
     } else if (segments[1] && PATH_TO_SECTION[segments[1]]) {
       section = PATH_TO_SECTION[segments[1]];
     }
-  } else if (['ru', 'en', 'es', 'fr'].includes(segments[0])) {
+  } else if (segments[0] in SUPPORTED_LANGUAGES) {
     // Handle /:lang/:section or /:lang
     langId = segments[0] as SupportedLanguageId;
     section = segments[1] && PATH_TO_SECTION[segments[1]] ? PATH_TO_SECTION[segments[1]] : 'alphabet';

@@ -29,6 +29,8 @@ export const detectDeviceLanguage = (): SupportedLanguageId => {
     if (code === 'es') return 'es';
     if (code === 'fr') return 'fr';
     if (code === 'ru') return 'ru';
+    if (code === 'pt') return 'pt';
+    if (code === 'de') return 'de';
     if (code === 'en') return 'en';
   }
 

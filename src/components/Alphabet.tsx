@@ -46,9 +46,9 @@ const Alphabet: React.FC<AlphabetProps> = ({ data }) => {
             exampleMeaning = resolveTranslation(item, currentLanguage, baseLanguage);
           }
 
-          // Format phonetic example phrase with localized "as in" (e.g. "as in", "comme dans", "como en", "как в")
+          // Format phonetic example phrase with localized "as in" (e.g. "as in", "comme dans", "como en", "как в", "como em", "wie in")
           const localizedExamplePhrase = item.example
-            ? item.example.replace(/^(as in|comme dans|como en|как в)\s*/i, `${labels.asIn} `)
+            ? item.example.replace(/^(as in|comme dans|como en|как в|como em|wie in)\s*/i, `${labels.asIn} `)
             : '';
 
           return (

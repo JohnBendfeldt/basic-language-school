@@ -3,6 +3,8 @@ import russianData from './ru/russianData';
 import englishData from './en/englishData';
 import spanishData from './es/spanishData';
 import frenchData from './fr/frenchData';
+import portugueseData from './pt/portugueseData';
+import germanData from './de/germanData';
 
 export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
   ru: {
@@ -164,6 +166,86 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
       },
     },
     data: frenchData,
+  },
+  pt: {
+    id: 'pt',
+    name: 'Portuguese',
+    nativeName: 'Português',
+    flag: '🇧🇷',
+    code: 'pt-BR',
+    ttsVoice: 'pt-BR-AntonioNeural',
+    hasKeyboard: false,
+    hasAlphabet: true,
+    hasTimeGuide: true,
+    appName: 'Basic Portuguese',
+    domain: 'basicportuguese.school',
+    seo: {
+      alphabet: {
+        title: 'Portuguese Alphabet & Pronunciation | Basic Portuguese',
+        description: 'Master the Portuguese alphabet including Ç with native Brazilian Portuguese studio audio.',
+      },
+      phrases: {
+        title: 'Essential Portuguese Phrases | Basic Portuguese',
+        description: 'Learn practical Brazilian Portuguese phrases for conversation, business, and travel.',
+      },
+      numbers: {
+        title: 'Portuguese Numbers | Basic Portuguese',
+        description: 'Master numbers in Portuguese from 0 to 1,000 with native audio.',
+      },
+      time: {
+        title: 'Telling Time in Portuguese | Basic Portuguese',
+        description: 'Learn how to ask and tell time in Portuguese.',
+      },
+      words: {
+        title: 'Core Portuguese Vocabulary | Basic Portuguese',
+        description: 'Essential high-frequency Brazilian Portuguese words across everyday topics and industries.',
+      },
+      quiz: {
+        title: 'Portuguese Practice Quiz | Basic Portuguese',
+        description: 'Test your Portuguese knowledge with interactive quizzes.',
+      },
+    },
+    data: portugueseData,
+  },
+  de: {
+    id: 'de',
+    name: 'German',
+    nativeName: 'Deutsch',
+    flag: '🇩🇪',
+    code: 'de-DE',
+    ttsVoice: 'de-DE-ConradNeural',
+    hasKeyboard: false,
+    hasAlphabet: true,
+    hasTimeGuide: true,
+    appName: 'Basic German',
+    domain: 'basicgerman.school',
+    seo: {
+      alphabet: {
+        title: 'German Alphabet (inkl. Ä, Ö, Ü, ß) | Basic German',
+        description: 'Master the 30 letters of the German alphabet including Umlaute and Eszett with native studio audio.',
+      },
+      phrases: {
+        title: 'Essential German Phrases | Basic German',
+        description: 'Learn practical German phrases for conversation, business, and travel.',
+      },
+      numbers: {
+        title: 'German Numbers | Basic German',
+        description: 'Master numbers in German from 0 to 1,000 with native audio.',
+      },
+      time: {
+        title: 'Telling Time in German | Basic German',
+        description: 'Learn how to ask and tell time in German.',
+      },
+      words: {
+        title: 'Core German Vocabulary | Basic German',
+        description: 'Essential high-frequency German words across everyday topics and industries.',
+      },
+      quiz: {
+        title: 'German Practice Quiz | Basic German',
+        description: 'Test your German knowledge with interactive quizzes.',
+      },
+    },
+    data: germanData,
   },
 };
 

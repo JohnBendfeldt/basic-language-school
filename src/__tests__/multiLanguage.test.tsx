@@ -65,15 +65,17 @@ describe('Multi-Language Core Architecture', () => {
     expect(trigger).toBeInTheDocument();
     fireEvent.click(trigger);
 
-    // Should display active options (Russian, English, Spanish, French)
+    // Should display active options (Russian, English, Spanish, French, Portuguese, German)
     expect(screen.getByRole('menuitem', { name: /english/i })).toBeInTheDocument();
     expect(screen.getByRole('menuitem', { name: /russian/i })).toBeInTheDocument();
     expect(screen.getByRole('menuitem', { name: /spanish/i })).toBeInTheDocument();
     expect(screen.getByRole('menuitem', { name: /french/i })).toBeInTheDocument();
+    expect(screen.getByRole('menuitem', { name: /portuguese/i })).toBeInTheDocument();
+    expect(screen.getByRole('menuitem', { name: /german/i })).toBeInTheDocument();
 
-    // Should display upcoming badges for roadmap languages (German, Italian)
-    expect(screen.getByText('German')).toBeInTheDocument();
-    expect(screen.getByText('Italian')).toBeInTheDocument();
+    // Should display upcoming badges for roadmap languages (Indonesian, Turkish)
+    expect(screen.getByText('Indonesian')).toBeInTheDocument();
+    expect(screen.getByText('Turkish')).toBeInTheDocument();
     expect(screen.getAllByText('Soon').length).toBeGreaterThanOrEqual(2);
   });
 
