@@ -401,7 +401,7 @@ export const getAlphabetLabels = (baseLang: SupportedLanguageId) => {
     case 'es':
       return { sound: 'Sonido:', example: 'Ejemplo:', asIn: 'como en' };
     case 'fr':
-      return { sound: 'Son :', example: 'Exemple :', asIn: 'comme dans' };
+      return { sound: 'Son:', example: 'Exemple:', asIn: 'comme dans' };
     case 'en':
     default:
       return { sound: 'Sound:', example: 'Example:', asIn: 'as in' };
