@@ -159,6 +159,27 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
   });
 
+  it('strictly segregates quiz directions: rejects prompt language in Base -> Target questions', async () => {
+    // Force Base -> Target question (e.g. prompt is "Remote work", expects Spanish "Teletrabajo")
+    vi.spyOn(Math, 'random').mockReturnValue(0.8);
+    render(
+      <Quiz data={{
+        commonWords: [
+          { phrase: 'Teletrabajo', translation: 'Remote work', pronunciation: 'teh-leh-trah-BAH-hoh', category: 'Business' }
+        ]
+      }} />
+    );
+
+    const input = await screen.findByRole('textbox');
+    // User types English prompt "remote work" when asked for the target Spanish word
+    fireEvent.change(input, { target: { value: 'remote work' } });
+    fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+
+    // Must be rejected as incorrect!
+    expect(screen.getByText(/Not quite/i)).toBeInTheDocument();
+    expect(screen.getByText(/Teletrabajo/i)).toBeInTheDocument();
+  });
+
   it('renders the fluid bottom feedback drawer on answer check', async () => {
     render(<Quiz data={{
       alphabet: [{ character: 'А', pronunciation: 'ah' }]
