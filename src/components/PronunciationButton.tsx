@@ -15,6 +15,56 @@ interface PronunciationButtonProps {
   audioCategory?: 'alphabet' | 'words' | 'phrases' | 'numbers' | 'examples' | 'basicPhrases' | 'commonWords' | 'time';
 }
 
+export const getCandidateAudioPathsForText = (
+  text: string,
+  effectiveLangId: string,
+  audioCategory?: PronunciationButtonProps['audioCategory']
+): string[] => {
+  if (!text) return [];
+  
+  const normalizedText = text.toLowerCase().trim();
+  
+  // Check if text is a formatted number like "1 (Un)", "15 (Quince)", or "1,000 (One Thousand)"
+  const numParenMatch = normalizedText.match(/^[\d,.\s]+\(([^)]+)\)$/);
+  const effectiveRawText = numParenMatch ? numParenMatch[1].trim() : normalizedText;
+
+  const cleanText = effectiveRawText
+    .normalize('NFC')
+    .split('/')[0]
+    .replace(/\s*\([^)]*\)\s*/g, '')
+    .replace(/[?.,!¡¿'’"«»:]/g, '')
+    .trim();
+  const fileName = cleanText.replace(/\s+/g, '_');
+  if (!fileName) return [];
+
+  // Use provided audioCategory if available, otherwise infer from cleaned primary variant
+  let primaryCategory = audioCategory;
+  if (!primaryCategory) {
+    if (numParenMatch || ['one hundred', 'one thousand'].includes(cleanText)) {
+      primaryCategory = 'numbers';
+    } else if (cleanText.length === 1) {
+      primaryCategory = 'alphabet';
+    } else if (/\s/.test(cleanText)) {
+      primaryCategory = 'phrases';
+    } else if (/^\d+$/.test(cleanText) || ['one', 'two', 'three', 'один', 'два', 'три', 'un', 'deux', 'trois', 'uno', 'dos', 'tres', 'cien', 'mil', 'cent', 'mille', 'сто', 'тысяча'].includes(cleanText)) {
+      primaryCategory = 'numbers';
+    } else {
+      primaryCategory = 'words';
+    }
+  }
+  
+  if (primaryCategory === 'basicPhrases') primaryCategory = 'phrases';
+  if (primaryCategory === 'commonWords') primaryCategory = 'words';
+
+  const folders = Array.from(
+    new Set([primaryCategory, 'words', 'phrases', 'examples', 'numbers', 'time'])
+  );
+
+  return folders.map(
+    folder => `/audio/${effectiveLangId}/${folder}/${encodeURIComponent(fileName)}.mp3`
+  );
+};
+
 const PronunciationButton: React.FC<PronunciationButtonProps> = ({ 
   text, 
   lang,
@@ -101,51 +151,8 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
     };
   }, [text, audioCategory]);
 
-  const getCandidateAudioPaths = (): string[] => {
-    if (!text) return [];
-    
-    const normalizedText = text.toLowerCase().trim();
-    
-    // Check if text is a formatted number like "1 (Un)", "15 (Quince)", or "1,000 (One Thousand)"
-    const numParenMatch = normalizedText.match(/^[\d,.\s]+\(([^)]+)\)$/);
-    const effectiveRawText = numParenMatch ? numParenMatch[1].trim() : normalizedText;
-
-    const cleanText = effectiveRawText
-      .normalize('NFC')
-      .split('/')[0]
-      .replace(/\s*\([^)]*\)\s*/g, '')
-      .replace(/[?.,!¡¿'’"«»:]/g, '')
-      .trim();
-    const fileName = cleanText.replace(/\s+/g, '_');
-    if (!fileName) return [];
-
-    // Use provided audioCategory if available, otherwise infer from cleaned primary variant
-    let primaryCategory = audioCategory;
-    if (!primaryCategory) {
-      if (numParenMatch || ['one hundred', 'one thousand'].includes(cleanText)) {
-        primaryCategory = 'numbers';
-      } else if (cleanText.length === 1) {
-        primaryCategory = 'alphabet';
-      } else if (/\s/.test(cleanText)) {
-        primaryCategory = 'phrases';
-      } else if (/^\d+$/.test(cleanText) || ['one', 'two', 'three', 'один', 'два', 'три', 'un', 'deux', 'trois', 'uno', 'dos', 'tres', 'cien', 'mil', 'cent', 'mille', 'сто', 'тысяча'].includes(cleanText)) {
-        primaryCategory = 'numbers';
-      } else {
-        primaryCategory = 'words';
-      }
-    }
-    
-    if (primaryCategory === 'basicPhrases') primaryCategory = 'phrases';
-    if (primaryCategory === 'commonWords') primaryCategory = 'words';
-
-    const folders = Array.from(
-      new Set([primaryCategory, 'words', 'phrases', 'examples', 'numbers', 'time'])
-    );
-
-    return folders.map(
-      folder => `/audio/${effectiveLangId}/${folder}/${encodeURIComponent(fileName)}.mp3`
-    );
-  };
+  const getCandidateAudioPaths = (): string[] =>
+    getCandidateAudioPathsForText(text, effectiveLangId, audioCategory);
 
   const handleSpeak = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();

@@ -85,6 +85,10 @@ const numbers: PhraseItem[] = [
   { phrase: 'Treinta', translation: '30 (Thirty)', pronunciation: 'TRAYN-tah', category: 'Tens', icon: '🔢' },
   { phrase: 'Cuarenta', translation: '40 (Forty)', pronunciation: 'kwah-REHN-tah', category: 'Tens', icon: '🔢' },
   { phrase: 'Cincuenta', translation: '50 (Fifty)', pronunciation: 'seen-KWEHN-tah', category: 'Tens', icon: '🔢' },
+  { phrase: 'Sesenta', translation: '60 (Sixty)', pronunciation: 'seh-SEHN-tah', category: 'Tens', icon: '🔢' },
+  { phrase: 'Setenta', translation: '70 (Seventy)', pronunciation: 'seh-TEHN-tah', category: 'Tens', icon: '🔢' },
+  { phrase: 'Ochenta', translation: '80 (Eighty)', pronunciation: 'oh-CHEHN-tah', category: 'Tens', icon: '🔢' },
+  { phrase: 'Noventa', translation: '90 (Ninety)', pronunciation: 'noh-BVEHN-tah', category: 'Tens', icon: '🔢' },
   { phrase: 'Cien', translation: '100 (One Hundred)', pronunciation: 'syehn', category: 'Hundreds', icon: '💯' },
   { phrase: 'Mil', translation: '1,000 (One Thousand)', pronunciation: 'meel', category: 'Thousands', icon: '🏆' },
 ];

@@ -1,7 +1,7 @@
 {
   "language": "en",
   "voice": "en-US-JennyNeural",
-  "generated": "2026-10-28T23:57:55.529041Z",
+  "generated": "2026-10-29T14:35:44.110965Z",
   "files": {
     "alphabet": [
       {
@@ -2201,6 +2201,26 @@
         "filename": "train_station.mp3",
         "path": "/audio/en/words/train_station.mp3",
         "text": "Train station"
+      },
+      {
+        "filename": "one_hundred.mp3",
+        "path": "/audio/en/words/one_hundred.mp3",
+        "text": "One hundred"
+      },
+      {
+        "filename": "one_thousand.mp3",
+        "path": "/audio/en/words/one_thousand.mp3",
+        "text": "One thousand"
+      },
+      {
+        "filename": "is_it_far_from_here.mp3",
+        "path": "/audio/en/words/is_it_far_from_here.mp3",
+        "text": "Is it far from here?"
+      },
+      {
+        "filename": "could_you_speak_slower_please.mp3",
+        "path": "/audio/en/words/could_you_speak_slower_please.mp3",
+        "text": "Could you speak slower, please?"
       }
     ]
   }

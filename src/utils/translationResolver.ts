@@ -426,7 +426,9 @@ export const EXTENDED_DICTIONARY: Record<string, Record<SupportedLanguageId, str
   'train station': { en: 'Train station', es: 'Estación de tren', fr: 'Gare', ru: 'Вокзал / Станция' },
   'boy / child': { en: 'Boy / Child', es: 'Niño', fr: 'Garçon / Enfant', ru: 'Мальчик / Ребёнок' },
   'one hundred': { en: 'One hundred', es: 'Cien', fr: 'Cent', ru: 'Сто' },
-  'one thousand': { en: 'One thousand', es: 'Mil', fr: 'Mille', ru: 'Тысяча' }
+  'one thousand': { en: 'One thousand', es: 'Mil', fr: 'Mille', ru: 'Тысяча' },
+  'is it far from here?': { en: 'Is it far from here?', es: '¿Está lejos de aquí?', fr: 'Est-ce loin d\'ici ?', ru: 'Это далеко отсюда?' },
+  'could you speak slower, please?': { en: 'Could you speak slower, please?', es: 'Hable más despacio, por favor', fr: 'Parlez plus lentement, s\'il vous plaît', ru: 'Говорите медленнее, пожалуйста' }
 };
 
 /**

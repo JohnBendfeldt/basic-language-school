@@ -1,7 +1,7 @@
 {
   "language": "ru",
   "voice": "ru-RU-SvetlanaNeural",
-  "generated": "2026-10-29T00:01:03.739393Z",
+  "generated": "2026-10-29T14:35:46.858652Z",
   "files": {
     "alphabet": [
       {
@@ -2201,6 +2201,21 @@
         "filename": "вокзал.mp3",
         "path": "/audio/ru/words/вокзал.mp3",
         "text": "Вокзал / Станция"
+      },
+      {
+        "filename": "сто.mp3",
+        "path": "/audio/ru/words/сто.mp3",
+        "text": "Сто"
+      },
+      {
+        "filename": "тысяча.mp3",
+        "path": "/audio/ru/words/тысяча.mp3",
+        "text": "Тысяча"
+      },
+      {
+        "filename": "это_далеко_отсюда.mp3",
+        "path": "/audio/ru/words/это_далеко_отсюда.mp3",
+        "text": "Это далеко отсюда?"
       }
     ],
     "time": [
