@@ -1908,7 +1908,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                 <span className="checkpoint-icon">🎓</span>
                 <div className="checkpoint-text">
                   <strong>Level {activeLevel} Checkpoint Passed!</strong>
-                  <span>You proved mastery on Level {activeLevel} vocabulary ({percentage}% accuracy). Keep pushing your streak!</span>
+                  <span>You showed solid command of Level {activeLevel} vocabulary ({percentage}% accuracy). Nicely done.</span>
                 </div>
               </div>
             )}
@@ -2323,7 +2323,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
           {comboStreak >= 2 && (
             <div className="session-streak-badge" aria-label={`Current streak: ${comboStreak}`}>
-              🔥 <strong>{comboStreak}</strong> in a row!
+              🔥 <strong>{comboStreak}</strong> in a row
             </div>
           )}
 
@@ -2516,7 +2516,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                   <div><code>'</code> → <strong>ь</strong></div>
                   <div><code>"</code> → <strong>ъ</strong></div>
                 </div>
-                <small className="phonetic-note">Type phonetically in English, then press SPACE to auto-convert!</small>
+                <small className="phonetic-note">Type phonetically in English, then press Space to convert.</small>
               </div>
             )}
           </div>

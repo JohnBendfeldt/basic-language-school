@@ -95,7 +95,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     clearFilters: 'Clear',
     showCountItems: 'Show {n}',
     closeLabel: 'Close',
-    keyboardTip: 'Tip: add a {lang} keyboard in your phone settings. You\'ll type faster.',
+    keyboardTip: 'Tip: you can add a {lang} keyboard in your phone settings. It makes typing faster.',
     quizSettings: 'Settings',
     pronunciationLabel: 'Pronunciation:',
     tapCardToRevealSubtitle: 'Tap any card to reveal its translation and pronunciation',
@@ -119,7 +119,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     allModes: 'All Modes',
     writingMode: 'Writing',
     listeningMode: 'Listening',
-    repeatHint: 'Tip: Repeat words and phrases aloud as you hear them! Slow down speed anytime.',
+    repeatHint: 'Tip: Try repeating words and phrases aloud as you hear them. Slow the audio down whenever you like.',
     listeningPromptHint: 'Listen to the audio and type what you hear:'
   },
 
@@ -154,7 +154,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     clearFilters: 'Borrar',
     showCountItems: 'Mostrar {n}',
     closeLabel: 'Cerrar',
-    keyboardTip: 'Consejo: agrega un teclado de {lang} en los ajustes de tu teléfono. Escribirás más rápido.',
+    keyboardTip: 'Consejo: puedes agregar un teclado de {lang} en los ajustes de tu teléfono. Escribirás más rápido.',
     quizSettings: 'Ajustes',
     pronunciationLabel: 'Pronunciación:',
     tapCardToRevealSubtitle: 'Toca cualquier tarjeta para ver su traducción y pronunciación',
@@ -178,7 +178,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     allModes: 'Todos los modos',
     writingMode: 'Escritura',
     listeningMode: 'Escucha',
-    repeatHint: 'Consejo: ¡Repite las palabras y frases en voz alta! Ajusta la velocidad si lo necesitas.',
+    repeatHint: 'Consejo: puedes repetir las palabras y frases en voz alta. Ajusta la velocidad cuando quieras.',
     listeningPromptHint: 'Escucha el audio y escribe lo que oyes:'
   },
 
@@ -213,7 +213,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     clearFilters: 'Effacer',
     showCountItems: 'Afficher {n}',
     closeLabel: 'Fermer',
-    keyboardTip: 'Astuce : ajoutez un clavier {lang} dans les réglages de votre téléphone. Vous écrirez plus vite.',
+    keyboardTip: 'Astuce : vous pouvez ajouter un clavier {lang} dans les réglages de votre téléphone. Vous écrirez plus vite.',
     quizSettings: 'Réglages',
     pronunciationLabel: 'Prononciation :',
     tapCardToRevealSubtitle: 'Appuyez sur une carte pour voir sa traduction et sa prononciation',
@@ -237,7 +237,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     allModes: 'Tous les modes',
     writingMode: 'Écriture',
     listeningMode: 'Écoute',
-    repeatHint: 'Conseil : Répétez les mots à voix haute ! Ralentissez la vitesse si besoin.',
+    repeatHint: 'Astuce : vous pouvez répéter les mots à voix haute. Ralentissez l\'audio quand vous le souhaitez.',
     listeningPromptHint: 'Écoutez l’audio et écrivez ce que vous entendez :'
   },
 
@@ -272,7 +272,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     clearFilters: 'Сбросить',
     showCountItems: 'Показать {n}',
     closeLabel: 'Закрыть',
-    keyboardTip: 'Совет: добавьте клавиатуру ({lang}) в настройках телефона. Печатать станет быстрее.',
+    keyboardTip: 'Совет: в настройках телефона можно добавить клавиатуру ({lang}). Печатать станет быстрее.',
     quizSettings: 'Настройки',
     pronunciationLabel: 'Произношение:',
     tapCardToRevealSubtitle: 'Нажмите на любую карточку, чтобы увидеть перевод и произношение',
@@ -296,7 +296,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     allModes: 'Все режимы',
     writingMode: 'Письмо',
     listeningMode: 'Аудирование',
-    repeatHint: 'Совет: повторяйте слова вслух! При необходимости замедлите скорость аудио.',
+    repeatHint: 'Совет: можно повторять слова вслух. Скорость аудио можно замедлить в любой момент.',
     listeningPromptHint: 'Послушайте аудио и напишите то, что слышите:'
   },
 
@@ -331,7 +331,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     clearFilters: 'Limpar',
     showCountItems: 'Mostrar {n}',
     closeLabel: 'Fechar',
-    keyboardTip: 'Dica: adicione um teclado de {lang} nas configurações do celular. Você vai digitar mais rápido.',
+    keyboardTip: 'Dica: você pode adicionar um teclado de {lang} nas configurações do celular. Digitar fica mais rápido.',
     quizSettings: 'Ajustes',
     pronunciationLabel: 'Pronúncia:',
     tapCardToRevealSubtitle: 'Toque em qualquer cartão para ver sua tradução e pronúncia',
@@ -355,7 +355,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     allModes: 'Todos os modos',
     writingMode: 'Escrita',
     listeningMode: 'Audição',
-    repeatHint: 'Dica: Repita as palavras em voz alta! Reduza a velocidade do áudio se necessário.',
+    repeatHint: 'Dica: você pode repetir as palavras em voz alta. Ajuste a velocidade do áudio quando quiser.',
     listeningPromptHint: 'Ouça o áudio e digite o que você ouvir:'
   },
 
@@ -390,7 +390,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     clearFilters: 'Zurücksetzen',
     showCountItems: '{n} anzeigen',
     closeLabel: 'Schließen',
-    keyboardTip: 'Tipp: Füge in den Handy-Einstellungen eine Tastatur für {lang} hinzu. So tippst du schneller.',
+    keyboardTip: 'Tipp: Sie können in den Handy-Einstellungen eine Tastatur für {lang} hinzufügen. Dann tippen Sie schneller.',
     quizSettings: 'Einstellungen',
     pronunciationLabel: 'Aussprache:',
     tapCardToRevealSubtitle: 'Tippe auf eine Karte, um Übersetzung und Aussprache anzuzeigen',
@@ -414,7 +414,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     allModes: 'Alle Modi',
     writingMode: 'Schreiben',
     listeningMode: 'Hören',
-    repeatHint: 'Tipp: Wiederholen Sie Wörter laut! Sie können das Sprechtempo jederzeit anpassen.',
+    repeatHint: 'Tipp: Sie können die Wörter laut nachsprechen. Das Sprechtempo lässt sich jederzeit anpassen.',
     listeningPromptHint: 'Hören Sie zu und schreiben Sie, was Sie hören:'
   },
 
@@ -449,7 +449,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     clearFilters: 'Hapus',
     showCountItems: 'Tampilkan {n}',
     closeLabel: 'Tutup',
-    keyboardTip: 'Tips: tambahkan keyboard {lang} di pengaturan ponsel. Mengetik jadi lebih cepat.',
+    keyboardTip: 'Tips: Anda bisa menambahkan keyboard {lang} di pengaturan ponsel. Mengetik jadi lebih cepat.',
     quizSettings: 'Pengaturan',
     pronunciationLabel: 'Pelafalan:',
     tapCardToRevealSubtitle: 'Ketuk kartu mana saja untuk melihat terjemahan dan pelafalannya',
@@ -473,7 +473,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     allModes: 'Semua Mode',
     writingMode: 'Menulis',
     listeningMode: 'Mendengarkan',
-    repeatHint: 'Tips: Ucapkan kata-kata dengan lantang! Kurangi kecepatan suara jika diperlukan.',
+    repeatHint: 'Tips: Anda bisa mengucapkan kata-kata dengan lantang. Kurangi kecepatan suara kapan saja.',
     listeningPromptHint: 'Dengarkan audio dan ketik apa yang Anda dengar:'
   },
 
@@ -508,7 +508,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     clearFilters: 'Temizle',
     showCountItems: '{n} göster',
     closeLabel: 'Kapat',
-    keyboardTip: 'İpucu: Telefon ayarlarından {lang} klavyesi ekleyin. Daha hızlı yazarsınız.',
+    keyboardTip: 'İpucu: Telefon ayarlarından {lang} klavyesi ekleyebilirsiniz. Daha hızlı yazarsınız.',
     quizSettings: 'Ayarlar',
     pronunciationLabel: 'Telaffuz:',
     tapCardToRevealSubtitle: 'Çevirisini ve telaffuzunu görmek için herhangi bir karta dokunun',
@@ -532,7 +532,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     allModes: 'Tüm Modlar',
     writingMode: 'Yazma',
     listeningMode: 'Dinleme',
-    repeatHint: 'İpucu: Duyduğunuz kelimeleri sesli tekrarlayın! Gerekirse hızı yavaşlatabilirsiniz.',
+    repeatHint: 'İpucu: Duyduğunuz kelimeleri sesli tekrarlayabilirsiniz. Hızı istediğiniz zaman yavaşlatabilirsiniz.',
     listeningPromptHint: 'Sesi dinleyin ve duyduğunuzu yazın:'
   }
 };
