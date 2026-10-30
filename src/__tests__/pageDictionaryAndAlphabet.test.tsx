@@ -13,6 +13,8 @@ import { resolveTranslation, extractDigit, getAlphabetQuizHint } from '../utils/
 import { englishData } from '../data/languages/en/englishData';
 import spanishData from '../data/languages/es/spanishData';
 import russianData from '../data/languages/ru/russianData';
+import chineseData from '../data/languages/zh/chineseData';
+import { SupportedLanguageId } from '../data/languages/types';
 
 // Mock speech audio APIs
 window.HTMLMediaElement.prototype.play = vi.fn().mockImplementation(() => Promise.resolve());
@@ -20,8 +22,8 @@ window.HTMLMediaElement.prototype.pause = vi.fn();
 
 // Helper component to force a specific language pair inside tests
 const TestLanguagePairWrapper: React.FC<{
-  targetLang: 'en' | 'es' | 'fr' | 'ru';
-  baseLang: 'en' | 'es' | 'fr' | 'ru';
+  targetLang: SupportedLanguageId;
+  baseLang: SupportedLanguageId;
   children: React.ReactNode;
 }> = ({ targetLang, baseLang, children }) => {
   return (
@@ -34,8 +36,8 @@ const TestLanguagePairWrapper: React.FC<{
 };
 
 const LanguagePairSetter: React.FC<{
-  targetLang: 'en' | 'es' | 'fr' | 'ru';
-  baseLang: 'en' | 'es' | 'fr' | 'ru';
+  targetLang: SupportedLanguageId;
+  baseLang: SupportedLanguageId;
   children: React.ReactNode;
 }> = ({ targetLang, baseLang, children }) => {
   const { setTargetLanguage, setBaseLanguage, currentLanguage, baseLanguage } = useLanguage();
@@ -314,5 +316,20 @@ describe('Page Dictionary & Multilingual Alphabet Localization', () => {
     expect(resolveTranslation({ word: '떡', meaning: 'Rice cake' }, 'ko', 'en')).toBe('Rice cake');
     expect(resolveTranslation({ word: '다리', meaning: 'Bridge' }, 'ko', 'en')).toBe('Bridge');
     expect(resolveTranslation({ word: '바나나', meaning: 'Banana' }, 'ko', 'en')).toBe('Banana');
+  });
+
+  it('renders Russian sound anchors when Russian speaker learns Mandarin Chinese', () => {
+    render(
+      <TestLanguagePairWrapper targetLang="zh" baseLang="ru">
+        <Alphabet data={chineseData.alphabet} />
+      </TestLanguagePairWrapper>
+    );
+
+    // Letter b should display Russian phonetic anchor "как в банан", not English "boy"
+    expect(screen.getByText(/как в банан/i)).toBeInTheDocument();
+    // Letter p should display Russian phonetic anchor "как в папа (с выдохом)"
+    expect(screen.getByText(/как в папа \(с выдохом\)/i)).toBeInTheDocument();
+    // Letter d should display "как в дом"
+    expect(screen.getByText(/как в дом/i)).toBeInTheDocument();
   });
 });

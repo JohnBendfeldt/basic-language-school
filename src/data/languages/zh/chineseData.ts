@@ -3,35 +3,209 @@ import { CHINESE_GRAMMAR } from '../grammarData';
 
 // Mandarin Chinese Pinyin Alphabet (Initials, Finals & Core Sounds)
 const alphabet: AlphabetItem[] = [
-  { letter: 'b', pronunciation: '/b/ (bō)', example: 'as in boy', word: '爸爸', meaning: 'Dad', icon: '👨' },
-  { letter: 'p', pronunciation: '/p/ (pō)', example: 'as in pen', word: '苹果', meaning: 'Apple', icon: '🍎' },
-  { letter: 'm', pronunciation: '/m/ (mō)', example: 'as in moon', word: '猫', meaning: 'Cat', icon: '🐱' },
-  { letter: 'f', pronunciation: '/f/ (fō)', example: 'as in fish', word: '飞机', meaning: 'Airplane', icon: '✈️' },
-  { letter: 'd', pronunciation: '/d/ (dē)', example: 'as in dog', word: '大象', meaning: 'Elephant', icon: '🐘' },
-  { letter: 't', pronunciation: '/t/ (tē)', example: 'as in tea', word: '太阳', meaning: 'Sun', icon: '☀️' },
-  { letter: 'n', pronunciation: '/n/ (nē)', example: 'as in nest', word: '鸟', meaning: 'Bird', icon: '🐦' },
-  { letter: 'l', pronunciation: '/l/ (lē)', example: 'as in lion', word: '龙', meaning: 'Dragon', icon: '🐉' },
-  { letter: 'g', pronunciation: '/g/ (gē)', example: 'as in go', word: '狗', meaning: 'Dog', icon: '🐕' },
-  { letter: 'k', pronunciation: '/k/ (kē)', example: 'as in kite', word: '咖啡', meaning: 'Coffee', icon: '☕' },
-  { letter: 'h', pronunciation: '/h/ (hē)', example: 'as in hat', word: '花', meaning: 'Flower', icon: '🌸' },
-  { letter: 'j', pronunciation: '/dʑ/ (jī)', example: 'as in jeep', word: '家', meaning: 'Home / Family', icon: '🏠' },
-  { letter: 'q', pronunciation: '/tɕʰ/ (qī)', example: 'as in cheer', word: '汽车', meaning: 'Car', icon: '🚗' },
-  { letter: 'x', pronunciation: '/ɕ/ (xī)', example: 'as in sheep', word: '西瓜', meaning: 'Watermelon', icon: '🍉' },
-  { letter: 'zh', pronunciation: '/ʈʂ/ (zhī)', example: 'as in judge', word: '中国', meaning: 'China', icon: '🇨🇳' },
-  { letter: 'ch', pronunciation: '/ʈʂʰ/ (chī)', example: 'as in church', word: '茶', meaning: 'Tea', icon: '🍵' },
-  { letter: 'sh', pronunciation: '/ʂ/ (shī)', example: 'as in shirt', word: '书', meaning: 'Book', icon: '📖' },
-  { letter: 'r', pronunciation: '/ʐ/ (rī)', example: 'as in ray', word: '热', meaning: 'Hot', icon: '🔥' },
-  { letter: 'z', pronunciation: '/ts/ (zī)', example: 'as in cats', word: '早', meaning: 'Early / Morning', icon: '🌅' },
-  { letter: 'c', pronunciation: '/tsʰ/ (cī)', example: 'as in tsunami', word: '菜', meaning: 'Food / Dish', icon: '🥗' },
-  { letter: 's', pronunciation: '/s/ (sī)', example: 'as in sun', word: '水', meaning: 'Water', icon: '💧' },
-  { letter: 'y', pronunciation: '/j/ (yī)', example: 'as in yes', word: '月亮', meaning: 'Moon', icon: '🌙' },
-  { letter: 'w', pronunciation: '/w/ (wū)', example: 'as in water', word: '我', meaning: 'I / Me', icon: '🙋' },
-  { letter: 'a', pronunciation: '/a/ (ā)', example: 'as in father', word: '阿姨', meaning: 'Aunt', icon: '👩' },
-  { letter: 'o', pronunciation: '/o/ (ō)', example: 'as in more', word: '音乐', meaning: 'Music', icon: '🎵' },
-  { letter: 'e', pronunciation: '/ɤ/ (ē)', example: 'as in duh', word: '鹅', meaning: 'Goose', icon: '🪿' },
-  { letter: 'i', pronunciation: '/i/ (yī)', example: 'as in see', word: '一', meaning: 'One', icon: '1️⃣' },
-  { letter: 'u', pronunciation: '/u/ (wū)', example: 'as in boot', word: '五', meaning: 'Five', icon: '5️⃣' },
-  { letter: 'ü', pronunciation: '/y/ (yǘ)', example: 'as in French "tu"', word: '鱼', meaning: 'Fish', icon: '🐟' },
+  { 
+    letter: 'b', 
+    pronunciation: '/b/ (bō)', 
+    example: 'as in boy', 
+    examplesByLang: { ru: 'как в банан', es: 'como en barco', de: 'wie in Buch', fr: 'comme dans bateau' },
+    word: '爸爸', meaning: 'Dad', icon: '👨' 
+  },
+  { 
+    letter: 'p', 
+    pronunciation: '/p/ (pō)', 
+    example: 'as in pen', 
+    examplesByLang: { ru: 'как в папа (с выдохом)', es: 'como en papá (aspirada)', de: 'wie in Post (mit Hauch)', fr: 'comme dans papa (aspiré)' },
+    word: '苹果', meaning: 'Apple', icon: '🍎' 
+  },
+  { 
+    letter: 'm', 
+    pronunciation: '/m/ (mō)', 
+    example: 'as in moon', 
+    examplesByLang: { ru: 'как в мама', es: 'como en mamá', de: 'wie in Mutter', fr: 'comme dans maman' },
+    word: '猫', meaning: 'Cat', icon: '🐱' 
+  },
+  { 
+    letter: 'f', 
+    pronunciation: '/f/ (fō)', 
+    example: 'as in fish', 
+    examplesByLang: { ru: 'как в флаг', es: 'como en flor', de: 'wie in Fisch', fr: 'comme dans fleur' },
+    word: '飞机', meaning: 'Airplane', icon: '✈️' 
+  },
+  { 
+    letter: 'd', 
+    pronunciation: '/d/ (dē)', 
+    example: 'as in dog', 
+    examplesByLang: { ru: 'как в дом', es: 'como en dedo', de: 'wie in Danke', fr: 'comme dans demain' },
+    word: '大象', meaning: 'Elephant', icon: '🐘' 
+  },
+  { 
+    letter: 't', 
+    pronunciation: '/t/ (tē)', 
+    example: 'as in tea', 
+    examplesByLang: { ru: 'как в торт (с выдохом)', es: 'como en té (aspirada)', de: 'wie in Tee (mit Hauch)', fr: 'comme dans thé (aspiré)' },
+    word: '太阳', meaning: 'Sun', icon: '☀️' 
+  },
+  { 
+    letter: 'n', 
+    pronunciation: '/n/ (nē)', 
+    example: 'as in nest', 
+    examplesByLang: { ru: 'как в нос', es: 'como en noche', de: 'wie in Nacht', fr: 'comme dans nuit' },
+    word: '鸟', meaning: 'Bird', icon: '🐦' 
+  },
+  { 
+    letter: 'l', 
+    pronunciation: '/l/ (lē)', 
+    example: 'as in lion', 
+    examplesByLang: { ru: 'как в луна', es: 'como en luna', de: 'wie in Liebe', fr: 'comme dans livre' },
+    word: '龙', meaning: 'Dragon', icon: '🐉' 
+  },
+  { 
+    letter: 'g', 
+    pronunciation: '/g/ (gē)', 
+    example: 'as in go', 
+    examplesByLang: { ru: 'как в город (мягче, глухое к/г)', es: 'como en gato', de: 'wie in gut', fr: 'comme dans gare' },
+    word: '狗', meaning: 'Dog', icon: '🐕' 
+  },
+  { 
+    letter: 'k', 
+    pronunciation: '/k/ (kē)', 
+    example: 'as in kite', 
+    examplesByLang: { ru: 'как в кот (с выдохом)', es: 'como en kilo (aspirada)', de: 'wie in Kaffee (mit Hauch)', fr: 'comme dans kilo (aspiré)' },
+    word: '咖啡', meaning: 'Coffee', icon: '☕' 
+  },
+  { 
+    letter: 'h', 
+    pronunciation: '/h/ (hē)', 
+    example: 'as in hat', 
+    examplesByLang: { ru: 'как в хлеб', es: 'como en jamás', de: 'wie in Haus', fr: 'comme dans hôtel' },
+    word: '花', meaning: 'Flower', icon: '🌸' 
+  },
+  { 
+    letter: 'j', 
+    pronunciation: '/dʑ/ (jī)', 
+    example: 'as in jeep', 
+    examplesByLang: { ru: 'мягкое цзь (как дзь в «дело»)', es: 'como dyi suave', de: 'wie weiches dsch', fr: 'comme dj doux' },
+    word: '家', meaning: 'Home / Family', icon: '🏠' 
+  },
+  { 
+    letter: 'q', 
+    pronunciation: '/tɕʰ/ (qī)', 
+    example: 'as in cheer', 
+    examplesByLang: { ru: 'мягкое чь (с выдохом, как в чай)', es: 'como ch suave (aspirada)', de: 'wie weiches tsch (mit Hauch)', fr: 'comme tch doux (aspiré)' },
+    word: '汽车', meaning: 'Car', icon: '🚗' 
+  },
+  { 
+    letter: 'x', 
+    pronunciation: '/ɕ/ (xī)', 
+    example: 'as in sheep', 
+    examplesByLang: { ru: 'мягкое сь / щ (как в щи)', es: 'como sh suave', de: 'wie weiches sch', fr: 'comme ch doux' },
+    word: '西瓜', meaning: 'Watermelon', icon: '🍉' 
+  },
+  { 
+    letter: 'zh', 
+    pronunciation: '/ʈʂ/ (zhī)', 
+    example: 'as in judge', 
+    examplesByLang: { ru: 'твёрдое чж / дж (как в джем)', es: 'como dj fuerte', de: 'wie hartes dsch', fr: 'comme dj rétroflexe' },
+    word: '中国', meaning: 'China', icon: '🇨🇳' 
+  },
+  { 
+    letter: 'ch', 
+    pronunciation: '/ʈʂʰ/ (chī)', 
+    example: 'as in church', 
+    examplesByLang: { ru: 'твёрдое ч (с выдохом, как в чудо)', es: 'como ch dura (aspirada)', de: 'wie hartes tsch (mit Hauch)', fr: 'comme tch rétroflexe' },
+    word: '茶', meaning: 'Tea', icon: '🍵' 
+  },
+  { 
+    letter: 'sh', 
+    pronunciation: '/ʂ/ (shī)', 
+    example: 'as in shirt', 
+    examplesByLang: { ru: 'твёрдое ш (как в шар)', es: 'como sh dura', de: 'wie hartes sch', fr: 'comme ch dur' },
+    word: '书', meaning: 'Book', icon: '📖' 
+  },
+  { 
+    letter: 'r', 
+    pronunciation: '/ʐ/ (rī)', 
+    example: 'as in ray', 
+    examplesByLang: { ru: 'как в жар (между ж и р)', es: 'como r suave / j sonora', de: 'wie weiches sch / r', fr: 'comme j rétroflexe' },
+    word: '热', meaning: 'Hot', icon: '🔥' 
+  },
+  { 
+    letter: 'z', 
+    pronunciation: '/ts/ (zī)', 
+    example: 'as in cats', 
+    examplesByLang: { ru: 'как в цапля (цз)', es: 'como ts en tsunami', de: 'wie z in Zug (ts)', fr: 'comme ts' },
+    word: '早', meaning: 'Early / Morning', icon: '🌅' 
+  },
+  { 
+    letter: 'c', 
+    pronunciation: '/tsʰ/ (cī)', 
+    example: 'as in tsunami', 
+    examplesByLang: { ru: 'как в царь (с сильным выдохом)', es: 'como ts (aspirada)', de: 'wie ts (mit Hauch)', fr: 'comme ts (aspiré)' },
+    word: '菜', meaning: 'Food / Dish', icon: '🥗' 
+  },
+  { 
+    letter: 's', 
+    pronunciation: '/s/ (sī)', 
+    example: 'as in sun', 
+    examplesByLang: { ru: 'как в солнце', es: 'como en sol', de: 'wie in Sonne', fr: 'comme dans soleil' },
+    word: '水', meaning: 'Water', icon: '💧' 
+  },
+  { 
+    letter: 'y', 
+    pronunciation: '/j/ (yī)', 
+    example: 'as in yes', 
+    examplesByLang: { ru: 'как в йогурт', es: 'como en yate', de: 'wie in Ja', fr: 'comme dans yeux' },
+    word: '月亮', meaning: 'Moon', icon: '🌙' 
+  },
+  { 
+    letter: 'w', 
+    pronunciation: '/w/ (wū)', 
+    example: 'as in water', 
+    examplesByLang: { ru: 'как в вода / вокзал', es: 'como en huevo', de: 'wie englisch water', fr: 'comme dans oui' },
+    word: '我', meaning: 'I / Me', icon: '🙋' 
+  },
+  { 
+    letter: 'a', 
+    pronunciation: '/a/ (ā)', 
+    example: 'as in father', 
+    examplesByLang: { ru: 'как в мама (а)', es: 'como en papá (a)', de: 'wie in Vater (a)', fr: 'comme dans papa (a)' },
+    word: '阿姨', meaning: 'Aunt', icon: '👩' 
+  },
+  { 
+    letter: 'o', 
+    pronunciation: '/o/ (ō)', 
+    example: 'as in more', 
+    examplesByLang: { ru: 'как в окно / кот (о)', es: 'como en ojo (o)', de: 'wie in Boot (o)', fr: 'comme dans eau (o)' },
+    word: '音乐', meaning: 'Music', icon: '🎵' 
+  },
+  { 
+    letter: 'e', 
+    pronunciation: '/ɤ/ (ē)', 
+    example: 'as in duh', 
+    examplesByLang: { ru: 'звук э/ы (как в эхо / был)', es: 'como e gutural', de: 'wie ungerundetes ö', fr: 'comme e dans le' },
+    word: '鹅', meaning: 'Goose', icon: '🪿' 
+  },
+  { 
+    letter: 'i', 
+    pronunciation: '/i/ (yī)', 
+    example: 'as in see', 
+    examplesByLang: { ru: 'как в игла (и)', es: 'como en isla (i)', de: 'wie in Igel (i)', fr: 'comme dans idée (i)' },
+    word: '一', meaning: 'One', icon: '1️⃣' 
+  },
+  { 
+    letter: 'u', 
+    pronunciation: '/u/ (wū)', 
+    example: 'as in boot', 
+    examplesByLang: { ru: 'как в утка (у)', es: 'como en uva (u)', de: 'wie in Uhr (u)', fr: 'comme dans où (u)' },
+    word: '五', meaning: 'Five', icon: '5️⃣' 
+  },
+  { 
+    letter: 'ü', 
+    pronunciation: '/y/ (yǘ)', 
+    example: 'as in French "tu"', 
+    examplesByLang: { ru: 'как звук ю (как в юбка)', es: 'como u francesa (yu)', de: 'wie in Tür (ü)', fr: 'comme dans tu (u)' },
+    word: '鱼', meaning: 'Fish', icon: '🐟' 
+  },
 ];
 
 // Essential Chinese Phrases

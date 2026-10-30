@@ -10,6 +10,7 @@ export interface AlphabetItem {
   letter: string;
   pronunciation: string;
   example: string;
+  examplesByLang?: Partial<Record<string, string>>;
   // Russian specific properties
   russianWord?: string;
   englishWord?: string;
