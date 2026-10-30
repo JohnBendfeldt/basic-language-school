@@ -3,6 +3,7 @@
  * Contains all content for the Russian Learning App
  */
 import { AlphabetItem, PhraseItem } from '../../../types/index';
+import { RUSSIAN_GRAMMAR } from '../grammarData';
 
 // Russian alphabet with pronunciation guides and examples
 const alphabet: AlphabetItem[] = [
@@ -2214,7 +2215,8 @@ const russianData = {
   basicPhrases,
   numbers,
   commonWords,
-  time
+  time,
+  grammar: RUSSIAN_GRAMMAR
 };
 
 export default russianData;

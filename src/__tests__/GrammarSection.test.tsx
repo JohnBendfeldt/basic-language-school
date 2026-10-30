@@ -3,7 +3,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Alphabet from '../components/Alphabet';
 import Grammar from '../components/Grammar';
-import { GERMAN_GRAMMAR } from '../data/languages/grammarData';
+import { GERMAN_GRAMMAR, getGrammarForLanguage } from '../data/languages/grammarData';
 
 // Mock Audio
 window.HTMLMediaElement.prototype.play = vi.fn().mockImplementation(() => Promise.resolve());
@@ -100,5 +100,51 @@ describe('Alphabet & Grammar Section Integration', () => {
     expect(screen.getAllByText('planen').length).toBeGreaterThan(0);
     expect(screen.getByText('wir')).toBeInTheDocument();
     expect(screen.getByText(/Planen wir ein Meeting/i)).toBeInTheDocument();
+  });
+
+  it('supports grammar curriculum across all 8 supported languages', () => {
+    const supportedLangs = ['de', 'ru', 'es', 'fr', 'pt', 'en', 'tr', 'id'] as const;
+    supportedLangs.forEach(lang => {
+      const grammar = getGrammarForLanguage(lang);
+      expect(grammar).toBeDefined();
+      expect(grammar.flashcards).toBeDefined();
+      expect(grammar.flashcards!.length).toBeGreaterThan(0);
+      expect(grammar.verbs).toBeDefined();
+      expect(grammar.verbs!.length).toBeGreaterThan(0);
+    });
+  });
+
+  it('correctly adapts tabs for languages without grammatical gender (Turkish & Indonesian)', () => {
+    const turkishGrammar = getGrammarForLanguage('tr');
+    const { rerender } = render(<Grammar grammarData={turkishGrammar} />);
+
+    // Turkish has no gender tab
+    expect(screen.queryByRole('tab', { name: /Noun Genders|Artikel/i })).not.toBeInTheDocument();
+    // But has verbs and descriptions
+    expect(screen.getByRole('tab', { name: /Verb Tenses|Verben/i })).toBeInTheDocument();
+
+    const indonesianGrammar = getGrammarForLanguage('id');
+    rerender(<Grammar grammarData={indonesianGrammar} />);
+    expect(screen.queryByRole('tab', { name: /Noun Genders|Artikel/i })).not.toBeInTheDocument();
+    expect(screen.getByRole('tab', { name: /Verb Tenses|Verben/i })).toBeInTheDocument();
+  });
+
+  it('renders Spanish and Russian gender systems correctly', () => {
+    const spanishGrammar = getGrammarForLanguage('es');
+    const { rerender } = render(<Grammar grammarData={spanishGrammar} />);
+
+    const genderTab = screen.getByRole('tab', { name: /Noun Genders|Artikel/i });
+    fireEvent.click(genderTab);
+
+    expect(screen.getByText(/Masculino \(el\)/i)).toBeInTheDocument();
+    expect(screen.getByText(/Femenino \(la\)/i)).toBeInTheDocument();
+
+    const russianGrammar = getGrammarForLanguage('ru');
+    rerender(<Grammar grammarData={russianGrammar} />);
+    const ruGenderTab = screen.getByRole('tab', { name: /Noun Genders|Artikel/i });
+    fireEvent.click(ruGenderTab);
+
+    expect(screen.getByText(/Мужской род/i)).toBeInTheDocument();
+    expect(screen.getByText(/Женский род/i)).toBeInTheDocument();
   });
 });

@@ -1,4 +1,5 @@
 import { AlphabetItem, PhraseItem, AppData } from '../../../types/index';
+import { FRENCH_GRAMMAR } from '../grammarData';
 
 // French alphabet (26 standard letters with French pronunciation & phonetic examples)
 const alphabet: AlphabetItem[] = [
@@ -574,6 +575,7 @@ const frenchData: AppData = {
   numbers,
   commonWords,
   time,
+  grammar: FRENCH_GRAMMAR,
 };
 
 export default frenchData;
