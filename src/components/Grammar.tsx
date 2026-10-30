@@ -229,8 +229,23 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
   const localizedLabels = {
     flashcards: baseLanguage === 'de' ? 'Karteikarten' : baseLanguage === 'es' ? 'Tarjetas' : baseLanguage === 'fr' ? 'Flashcards' : baseLanguage === 'ru' ? 'Карточки' : 'Flashcards',
     gender: baseLanguage === 'de' ? 'Artikel & Geschlecht' : baseLanguage === 'es' ? 'Artículos y Género' : baseLanguage === 'fr' ? 'Articles & Genres' : baseLanguage === 'ru' ? 'Артикли и род' : 'Noun Genders',
-    verbs: baseLanguage === 'de' ? 'Verben & Konjugation' : baseLanguage === 'es' ? 'Verbos y Tiempos' : baseLanguage === 'fr' ? 'Verbes & Temps' : baseLanguage === 'ru' ? 'Глаголы и времена' : 'Verb Tenses',
-    descriptions: baseLanguage === 'de' ? 'Beschreibungen & Adjektive' : baseLanguage === 'es' ? 'Descripciones' : baseLanguage === 'fr' ? 'Descriptions' : baseLanguage === 'ru' ? 'Описания' : 'Descriptions',
+    verbs: (() => {
+      if (currentLanguage === 'zh') return baseLanguage === 'ru' ? 'Глаголы и частицы' : baseLanguage === 'de' ? 'Verben & Partikeln' : baseLanguage === 'es' ? 'Verbos y partículas' : baseLanguage === 'fr' ? 'Verbes et particules' : 'Verbs & Particles';
+      if (currentLanguage === 'id') return baseLanguage === 'ru' ? 'Глаголы и маркеры' : baseLanguage === 'de' ? 'Verben & Zeitmarker' : baseLanguage === 'es' ? 'Verbos y marcadores' : baseLanguage === 'fr' ? 'Verbes et marqueurs' : 'Verb Markers';
+      if (currentLanguage === 'ja' || currentLanguage === 'ko') return baseLanguage === 'ru' ? 'Формы вежливости' : baseLanguage === 'de' ? 'Höflichkeitsformen' : baseLanguage === 'es' ? 'Formas y Cortesía' : baseLanguage === 'fr' ? 'Formes de politesse' : 'Verb Forms & Politeness';
+      return baseLanguage === 'de' ? 'Verben & Konjugation' : baseLanguage === 'es' ? 'Verbos y Tiempos' : baseLanguage === 'fr' ? 'Verbes & Temps' : baseLanguage === 'ru' ? 'Глаголы и времена' : 'Verb Tenses';
+    })(),
+    descriptions: (() => {
+      const isPatternLang = ['tr', 'zh', 'ja', 'ko', 'hi', 'ar', 'id'].includes(currentLanguage);
+      if (isPatternLang) {
+        if (baseLanguage === 'de') return 'Regeln & Muster';
+        if (baseLanguage === 'es') return 'Reglas y Patrones';
+        if (baseLanguage === 'fr') return 'Règles et Modèles';
+        if (baseLanguage === 'ru') return 'Правила и модели';
+        return 'Rules & Patterns';
+      }
+      return baseLanguage === 'de' ? 'Beschreibungen & Adjektive' : baseLanguage === 'es' ? 'Descripciones' : baseLanguage === 'fr' ? 'Descriptions' : baseLanguage === 'ru' ? 'Описания' : 'Descriptions';
+    })(),
     next: baseLanguage === 'de' ? 'Nächste Karte' : baseLanguage === 'es' ? 'Siguiente' : baseLanguage === 'fr' ? 'Suivant' : baseLanguage === 'ru' ? 'Далее' : 'Next Card',
     restart: baseLanguage === 'de' ? 'Neustart' : baseLanguage === 'es' ? 'Reiniciar' : baseLanguage === 'fr' ? 'Recommencer' : baseLanguage === 'ru' ? 'Заново' : 'Practice Again',
     badgeArticles: baseLanguage === 'ru' ? '🏷️ Артикли (a / an)' : baseLanguage === 'es' ? '🏷️ Artículos (a / an)' : baseLanguage === 'fr' ? '🏷️ Articles (a / an)' : baseLanguage === 'de' ? '🏷️ Artikel (a / an)' : '🏷️ Articles (a / an)',
@@ -331,11 +346,18 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                 const hasComplexOptions = cardOptions.some(
                   (opt) => opt.includes('(') || opt.length > 7
                 );
-                const audioTextToPlay = currentCard.audioWord
-                  ? currentCard.audioWord
-                  : currentCard.article
-                    ? `${currentCard.article} ${heroWord.replace(/^___\s*/, '').trim()}`
-                    : heroWord.replace(/^___\s*/, '').trim() || currentCard.correctAnswer;
+                let audioTextToPlay = currentCard.audioWord;
+                if (!audioTextToPlay) {
+                  if (currentCard.article) {
+                    audioTextToPlay = `${currentCard.article} ${heroWord.replace(/^___\s*/, '').trim()}`;
+                  } else if (taskPrompt && taskPrompt.includes('___')) {
+                    audioTextToPlay = taskPrompt.replace('___', currentCard.correctAnswer).replace(/\s+/g, ' ').trim();
+                  } else if (heroWord.includes('___')) {
+                    audioTextToPlay = heroWord.replace('___', currentCard.correctAnswer).replace(/\s+/g, ' ').trim();
+                  } else {
+                    audioTextToPlay = currentCard.correctAnswer;
+                  }
+                }
 
                 const renderPromptWithBlank = (text: string) => {
                   if (!text || !text.includes('___')) return text;
@@ -606,6 +628,7 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                 <PronunciationButton
                   text={verbsList[activeVerbIndex].verb}
                   lang={currentLanguage}
+                  audioCategory="grammar"
                   className="verb-main-audio"
                 />
               </div>
@@ -632,6 +655,7 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                       <PronunciationButton
                         text={audioTarget}
                         lang={currentLanguage}
+                        audioCategory="grammar"
                         className="conj-audio-btn"
                       />
                     </div>
@@ -672,10 +696,10 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
 
               <div className="comparison-table">
                 <div className="comparison-header-row">
-                  <span>{baseLanguage === 'ru' ? 'Исходная форма' : baseLanguage === 'es' ? 'Positivo' : baseLanguage === 'fr' ? 'Positif' : baseLanguage === 'de' ? 'Grundform' : 'Base (Positive)'}</span>
-                  <span>{baseLanguage === 'ru' ? 'Сравнительная' : baseLanguage === 'es' ? 'Comparativo' : baseLanguage === 'fr' ? 'Comparatif' : baseLanguage === 'de' ? 'Komparativ' : 'Comparative'}</span>
-                  <span>{baseLanguage === 'ru' ? 'Превосходная' : baseLanguage === 'es' ? 'Superlativo' : baseLanguage === 'fr' ? 'Superlatif' : baseLanguage === 'de' ? 'Superlativ' : 'Superlative'}</span>
-                  <span>{baseLanguage === 'ru' ? 'Значение' : baseLanguage === 'es' ? 'Significado' : baseLanguage === 'fr' ? 'Sens' : baseLanguage === 'de' ? 'Bedeutung' : 'Meaning'}</span>
+                  <span>{desc.headers?.[0] || (baseLanguage === 'ru' ? 'Исходная форма' : baseLanguage === 'es' ? 'Positivo' : baseLanguage === 'fr' ? 'Positif' : baseLanguage === 'de' ? 'Grundform' : 'Base (Positive)')}</span>
+                  <span>{desc.headers?.[1] || (baseLanguage === 'ru' ? 'Сравнительная' : baseLanguage === 'es' ? 'Comparativo' : baseLanguage === 'fr' ? 'Comparatif' : baseLanguage === 'de' ? 'Komparativ' : 'Comparative')}</span>
+                  <span>{desc.headers?.[2] || (baseLanguage === 'ru' ? 'Превосходная' : baseLanguage === 'es' ? 'Superlativo' : baseLanguage === 'fr' ? 'Superlatif' : baseLanguage === 'de' ? 'Superlativ' : 'Superlative')}</span>
+                  <span>{desc.headers?.[3] || (baseLanguage === 'ru' ? 'Значение' : baseLanguage === 'es' ? 'Significado' : baseLanguage === 'fr' ? 'Sens' : baseLanguage === 'de' ? 'Bedeutung' : 'Meaning')}</span>
                 </div>
                 {desc.examples.map((item, rowIdx) => (
                   <div key={rowIdx} className="comparison-data-row">

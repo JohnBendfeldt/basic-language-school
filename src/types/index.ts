@@ -66,6 +66,7 @@ export interface VerbConjugation {
 export interface GrammarDescription {
   title: string;
   explanation: string;
+  headers?: [string, string, string, string];
   examples: { positive: string; comparative: string; superlative: string; meaning: string }[];
 }
 
