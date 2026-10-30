@@ -575,7 +575,6 @@ const commonWords: PhraseItem[] = [
   { phrase: '의사가 필요해요', translation: 'I need a doctor', pronunciation: 'ui-sa-ga pil-yo-hae-yo', category: 'Health', icon: '👨‍⚕️' },
   { phrase: '지금 몇 시인가요?', translation: 'What time is it?', pronunciation: 'ji-geum myeot si-in-ga-yo?', category: 'Time', icon: '⌚' },
   { phrase: '정각 한 시입니다', translation: 'It is 1:00 sharp', pronunciation: 'jeong-gak han si-im-ni-da', category: 'Time', icon: '🕐' },
-  { phrase: '시계', translation: 'It is 2:00', pronunciation: '', category: 'General', icon: '📌' },
   { phrase: '세 시 반 (3:30)', translation: '3:30 (half past three)', pronunciation: 'se si ban', category: 'Time', icon: '🕞' },
   { phrase: '네 시 15분 (4:15)', translation: '4:15 (quarter past four)', pronunciation: 'ne si sip-o-bun', category: 'Time', icon: '🕓' },
   { phrase: '다섯 시 15분 전 (4:45)', translation: '4:45 (quarter to five)', pronunciation: 'da-seot si sip-o-bun jeon', category: 'Time', icon: '🕔' },
