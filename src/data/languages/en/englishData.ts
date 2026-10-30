@@ -647,10 +647,10 @@ const commonWords: PhraseItem[] = [
   { phrase: 'Yellow', meaning: 'Color: Yellow', pronunciation: '/ˈjɛloʊ/ (YEL-oh)', category: 'Colors', icon: '🟡' },
   { phrase: 'Black', meaning: 'Color: Black', pronunciation: '/blæk/ (blak)', category: 'Colors', icon: '⚫' },
   { phrase: 'White', meaning: 'Color: White', pronunciation: '/waɪt/ (wyt)', category: 'Colors', icon: '⚪' },
-  { phrase: 'Big', meaning: 'Adjective: Large in size', pronunciation: '/bɪɡ/ (big)', category: 'Colors', icon: '🐘' },
-  { phrase: 'Small', meaning: 'Adjective: Little in size', pronunciation: '/smɔːl/ (smawl)', category: 'Colors', icon: '🐁' },
-  { phrase: 'New', meaning: 'Adjective: Recently made or modern', pronunciation: '/njuː/ (noo)', category: 'Colors', icon: '✨' },
-  { phrase: 'Old', meaning: 'Adjective: Aged or historic', pronunciation: '/oʊld/ (ohld)', category: 'Colors', icon: '🕰️' },
+  { phrase: 'Big', meaning: 'Adjective: Large in size', pronunciation: '/bɪɡ/ (big)', category: 'Descriptions', icon: '🐘' },
+  { phrase: 'Small', meaning: 'Adjective: Little in size', pronunciation: '/smɔːl/ (smawl)', category: 'Descriptions', icon: '🐁' },
+  { phrase: 'New', meaning: 'Adjective: Recently made or modern', pronunciation: '/njuː/ (noo)', category: 'Descriptions', icon: '✨' },
+  { phrase: 'Old', meaning: 'Adjective: Aged or historic', pronunciation: '/oʊld/ (ohld)', category: 'Descriptions', icon: '🕰️' },
 
   // Weather & Seasons
   { phrase: 'Sun', meaning: 'Noun: Daylight star / sunshine', pronunciation: '/sʌn/ (sun)', category: 'Weather', icon: '☀️' },

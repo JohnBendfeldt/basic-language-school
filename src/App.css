@@ -3275,8 +3275,9 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  flex: 1;
+  justify-content: flex-start;
+  flex: 1 1 0;
+  min-width: 0;
   padding: 8px 4px;
   background: none;
   border: none;
@@ -3297,7 +3298,10 @@ footer {
 .bottom-nav-label {
   font-size: 0.7rem;
   font-weight: 500;
-  white-space: nowrap;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
 }
 
 /* Add animation for bottom nav click effect */
