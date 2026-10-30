@@ -4188,3 +4188,25 @@ export const getMultiMeaningNote = (
     default: return `“${t}” has more than one meaning: ${m}`;
   }
 };
+
+/** Descriptions for the 0.9× and 1.1× playback speeds in the learner's language. */
+export const getRelaxedAndBriskSpeedLabels = (baseLang: SupportedLanguageId): { relaxed: string; brisk: string } => {
+  const table: Record<SupportedLanguageId, { relaxed: string; brisk: string }> = {
+    en: { relaxed: 'Relaxed', brisk: 'Brisk natural cadence' },
+    es: { relaxed: 'Relajado', brisk: 'Ritmo ágil' },
+    fr: { relaxed: 'Détendu', brisk: 'Rythme vif' },
+    ru: { relaxed: 'Спокойный темп', brisk: 'Живой темп' },
+    pt: { relaxed: 'Descontraído', brisk: 'Ritmo ágil' },
+    de: { relaxed: 'Entspannt', brisk: 'Flotter Rhythmus' },
+    id: { relaxed: 'Santai', brisk: 'Irama cepat alami' },
+    tr: { relaxed: 'Rahat', brisk: 'Canlı doğal tempo' },
+    ja: { relaxed: 'ゆったり', brisk: 'テンポよく自然に' },
+    ko: { relaxed: '여유로운 속도', brisk: '활기찬 자연스러운 속도' },
+    zh: { relaxed: '轻松语速', brisk: '轻快自然语速' },
+    hi: { relaxed: 'आरामदायक गति', brisk: 'तेज़ प्राकृतिक लय' },
+    ar: { relaxed: 'وتيرة مريحة', brisk: 'إيقاع طبيعي سريع' },
+    bn: { relaxed: 'স্বাচ্ছন্দ্যময় গতি', brisk: 'দ্রুত স্বাভাবিক ছন্দ' },
+    ur: { relaxed: 'آرام دہ رفتار', brisk: 'تیز قدرتی رفتار' },
+  };
+  return table[baseLang] ?? table.en;
+};

@@ -1,18 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FaTachometerAlt, FaCheck, FaTimes } from 'react-icons/fa';
 import { useLanguage, SpeechSpeed } from '../contexts/LanguageContext';
-import { getComponentChrome } from '../utils/pageDictionary';
+import { getComponentChrome, getRelaxedAndBriskSpeedLabels } from '../utils/pageDictionary';
 
 export const VoiceSpeedControl: React.FC<{ className?: string }> = ({ className = '' }) => {
   const { speechSpeed, setSpeechSpeed, baseLanguage } = useLanguage();
   const chrome = getComponentChrome(baseLanguage);
+  const extraSpeeds = getRelaxedAndBriskSpeedLabels(baseLanguage);
 
   const SPEEDS: { value: SpeechSpeed; label: string; desc: string }[] = [
     { value: 0.5, label: '0.50×', desc: chrome.speedDesc05 },
     { value: 0.75, label: '0.75×', desc: chrome.speedDesc075 },
-    { value: 0.9, label: '0.90×', desc: baseLanguage === 'ru' ? 'Спокойный темп' : baseLanguage === 'es' ? 'Relajado' : baseLanguage === 'fr' ? 'Détendu' : 'Relaxed' },
+    { value: 0.9, label: '0.90×', desc: extraSpeeds.relaxed },
     { value: 1.0, label: '1.0×', desc: baseLanguage === 'en' ? 'Standard native speed' : chrome.speedDesc1 },
-    { value: 1.1, label: '1.10×', desc: baseLanguage === 'ru' ? 'Живой темп' : baseLanguage === 'es' ? 'Ritmo ágil' : baseLanguage === 'fr' ? 'Rythme vif' : 'Brisk natural cadence' },
+    { value: 1.1, label: '1.10×', desc: extraSpeeds.brisk },
     { value: 1.25, label: '1.25×', desc: baseLanguage === 'en' ? 'Challenge pace' : chrome.speedDesc125 },
   ];
   const [isOpen, setIsOpen] = useState(false);
