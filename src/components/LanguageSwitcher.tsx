@@ -3,7 +3,7 @@ import { FaChevronDown, FaCheck, FaGlobe, FaExchangeAlt, FaTimes } from 'react-i
 import { useLanguage } from '../contexts/LanguageContext';
 import { SupportedLanguageId } from '../data/languages/types';
 import { FlagIcon } from './FlagIcon';
-import { getLocalizedLanguageName, getComponentChrome, getLocalizedRegionName, getLanguageRequestCopy } from '../utils/pageDictionary';
+import { getLocalizedLanguageName, getComponentChrome, getLocalizedRegionName, getLanguageRequestCopy, getLanguagePickerCopy } from '../utils/pageDictionary';
 
 interface LanguageSwitcherProps {
   onLanguageChange?: (langId: SupportedLanguageId) => void;
@@ -226,6 +226,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
 
   const chrome = getComponentChrome(baseLanguage);
   const requestCopy = getLanguageRequestCopy(baseLanguage);
+  const pickerCopy = getLanguagePickerCopy(baseLanguage);
   const localizedTargetName = getLocalizedLanguageName(targetMeta.id, baseLanguage, targetMeta.name);
   const localizedBaseName = getLocalizedLanguageName(baseMeta.id, baseLanguage, baseMeta.name);
 
@@ -296,21 +297,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
               <div className="language-modal-header-text">
                 <h2>{ui.switchPair || 'Language Learning Pair'}</h2>
                 <p>
-                  {baseLanguage === 'es'
-                    ? 'Elige tu idioma nativo y el curso que deseas estudiar'
-                    : baseLanguage === 'fr'
-                    ? 'Choisissez votre langue maternelle et le cours à étudier'
-                    : baseLanguage === 'de'
-                    ? 'Wähle deine Muttersprache und die Zielsprache'
-                    : baseLanguage === 'ru'
-                    ? 'Выберите родной язык и язык для изучения'
-                    : baseLanguage === 'pt'
-                    ? 'Escolha seu idioma nativo e o curso que deseja estudar'
-                    : baseLanguage === 'tr'
-                    ? 'Ana dilinizi ve öğrenmek istediğiniz dili seçin'
-                    : baseLanguage === 'id'
-                    ? 'Pilih bahasa ibu dan bahasa yang ingin Anda pelajari'
-                    : 'Choose your native language and the language you want to study'}
+                  {pickerCopy.subtitle}
                 </p>
               </div>
             </div>
@@ -529,7 +516,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                 onClick={() => setIsOpen(false)}
                 aria-label="Confirm selection and close modal"
               >
-                {baseLanguage === 'es' ? 'Listo' : baseLanguage === 'fr' ? 'Terminé' : baseLanguage === 'ru' ? 'Готово' : baseLanguage === 'de' ? 'Fertig' : baseLanguage === 'pt' ? 'Concluir' : baseLanguage === 'id' ? 'Selesai' : baseLanguage === 'tr' ? 'Tamam' : 'Done'}
+                {pickerCopy.done}
               </button>
             </div>
           </div>
