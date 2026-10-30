@@ -1964,7 +1964,806 @@ const commonWords: PhraseItem[] = [
   { russian: 'Где автобусная остановка?', english: 'Where is the bus stop?', category: 'Places', level: 1, icon: '📍' },
   { russian: 'Как добраться до аэропорта?', english: 'How do I get to the airport?', category: 'Places', level: 1, icon: '📍' },
   { russian: 'Я бы хотел кофе, пожалуйста', english: 'I would like a coffee, please', category: 'Food', level: 1, icon: '🍽️' },
-  { russian: 'Бутылку воды, пожалуйста', english: 'A bottle of water, please', category: 'Food', level: 1, icon: '🍽️' },
+  { russian: 'Бутылку воды, пожалуйста', english: 'A bottle of water, please', category: 'Food', level: 1, icon: '🍽️' }
+,
+  {
+    russian: 'Да',
+    english: 'Yes',
+    pronunciation: '',
+    category: 'Essentials',
+    icon: '✅'
+  },
+  {
+    russian: 'Нет',
+    english: 'No',
+    pronunciation: '',
+    category: 'Essentials',
+    icon: '❌'
+  },
+  {
+    russian: 'Время',
+    english: 'Time / Weather',
+    pronunciation: '',
+    category: 'Time',
+    icon: '⏱️'
+  },
+  {
+    russian: 'Сегодня',
+    english: 'Today',
+    pronunciation: '',
+    category: 'Time',
+    icon: '📅'
+  },
+  {
+    russian: 'Завтра',
+    english: 'Tomorrow / Morning',
+    pronunciation: '',
+    category: 'Time',
+    icon: '🌅'
+  },
+  {
+    russian: 'Вчера',
+    english: 'Yesterday',
+    pronunciation: '',
+    category: 'Time',
+    icon: '⏮️'
+  },
+  {
+    russian: 'Понедельник',
+    english: 'Monday',
+    pronunciation: '',
+    category: 'Calendar',
+    icon: '📅'
+  },
+  {
+    russian: 'Вторник',
+    english: 'Tuesday',
+    pronunciation: '',
+    category: 'Calendar',
+    icon: '📅'
+  },
+  {
+    russian: 'Среда',
+    english: 'Wednesday',
+    pronunciation: '',
+    category: 'Calendar',
+    icon: '📅'
+  },
+  {
+    russian: 'Четверг',
+    english: 'Thursday',
+    pronunciation: '',
+    category: 'Calendar',
+    icon: '📅'
+  },
+  {
+    russian: 'Пятница',
+    english: 'Friday',
+    pronunciation: '',
+    category: 'Calendar',
+    icon: '📅'
+  },
+  {
+    russian: 'Суббота',
+    english: 'Saturday',
+    pronunciation: '',
+    category: 'Calendar',
+    icon: '📅'
+  },
+  {
+    russian: 'Воскресенье',
+    english: 'Sunday',
+    pronunciation: '',
+    category: 'Calendar',
+    icon: '📅'
+  },
+  {
+    russian: 'Неделя',
+    english: 'Week',
+    pronunciation: '',
+    category: 'Calendar',
+    icon: '🗓️'
+  },
+  {
+    russian: 'Час',
+    english: 'Hour',
+    pronunciation: '',
+    category: 'Time',
+    icon: '⏳'
+  },
+  {
+    russian: 'Минута',
+    english: 'Minute',
+    pronunciation: '',
+    category: 'Time',
+    icon: '⏱️'
+  },
+  {
+    russian: 'Секунда',
+    english: 'Second',
+    pronunciation: '',
+    category: 'Time',
+    icon: '⚡'
+  },
+  {
+    russian: 'Рано',
+    english: 'Early',
+    pronunciation: '',
+    category: 'Time',
+    icon: '🌅'
+  },
+  {
+    russian: 'Поздно',
+    english: 'Late',
+    pronunciation: '',
+    category: 'Time',
+    icon: '🌙'
+  },
+  {
+    russian: 'Сейчас',
+    english: 'Now',
+    pronunciation: '',
+    category: 'Time',
+    icon: '⏰'
+  },
+  {
+    russian: 'Привет',
+    english: 'Hello (informal)',
+    pronunciation: '',
+    category: 'General',
+    icon: '✨'
+  },
+  {
+    russian: 'Спасибо',
+    english: 'Thank you',
+    pronunciation: '',
+    category: 'General',
+    icon: '✨'
+  },
+  {
+    russian: 'Пока',
+    english: 'Bye (informal)',
+    pronunciation: '',
+    category: 'General',
+    icon: '✨'
+  },
+  {
+    russian: 'Повторите, пожалуйста',
+    english: 'Please repeat',
+    pronunciation: '',
+    category: 'Verbs',
+    icon: '⚡'
+  },
+  {
+    russian: 'Говорите медленнее',
+    english: 'Speak more slowly',
+    pronunciation: '',
+    category: 'Verbs',
+    icon: '⚡'
+  },
+  {
+    russian: 'Я немного говорю по-русски',
+    english: 'I speak a little Russian',
+    pronunciation: '',
+    category: 'Verbs',
+    icon: '⚡'
+  },
+  {
+    russian: 'Как это по-русски?',
+    english: 'How do you say this in Russian?',
+    pronunciation: '',
+    category: 'General',
+    icon: '✨'
+  },
+  {
+    russian: 'Я хочу есть',
+    english: 'I want to eat',
+    pronunciation: '',
+    category: 'Verbs',
+    icon: '⚡'
+  },
+  {
+    russian: 'Я хочу пить',
+    english: 'I want to drink',
+    pronunciation: '',
+    category: 'Verbs',
+    icon: '⚡'
+  },
+  {
+    russian: 'Сколько сейчас времени?',
+    english: 'What time is it now?',
+    pronunciation: '',
+    category: 'General',
+    icon: '✨'
+  },
+  {
+    russian: 'Во сколько?',
+    english: 'At what time?',
+    pronunciation: '',
+    category: 'General',
+    icon: '✨'
+  },
+  {
+    russian: 'Полчаса',
+    english: 'Half an hour',
+    pronunciation: '',
+    category: 'General',
+    icon: '✨'
+  },
+  {
+    russian: 'Четверть часа',
+    english: 'Quarter of an hour',
+    pronunciation: '',
+    category: 'General',
+    icon: '✨'
+  },
+  {
+    russian: 'Вовремя',
+    english: 'On time',
+    pronunciation: '',
+    category: 'General',
+    icon: '✨'
+  },
+  {
+    russian: 'Как дела?',
+    english: 'How are you?',
+    pronunciation: '',
+    category: 'General',
+    icon: '✨'
+  },
+  {
+    russian: 'Без проблем / Ничего страшного',
+    english: 'No problem',
+    pronunciation: '',
+    category: 'Phrases',
+    icon: '✅'
+  },
+  {
+    russian: 'До скорого',
+    english: 'See you soon',
+    pronunciation: '',
+    category: 'Phrases',
+    icon: '👋'
+  },
+  {
+    russian: 'Банан',
+    english: 'Banana',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Рисовый пирожок',
+    english: 'Rice cake',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Мост',
+    english: 'Bridge',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Рагу',
+    english: 'Stew',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Радио',
+    english: 'Radio',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Письменный стол',
+    english: 'Desk',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Музыка',
+    english: 'Music',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Что?',
+    english: 'What?',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Где?',
+    english: 'Where?',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Когда?',
+    english: 'When?',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Кто?',
+    english: 'Who?',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Почему?',
+    english: 'Why?',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Как?',
+    english: 'How?',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Ноль',
+    english: 'Zero',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'День',
+    english: 'Day',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Здравствуйте',
+    english: 'Hello (formal)',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Доброе утро',
+    english: 'Good morning',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Добрый день',
+    english: 'Good afternoon',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Добрый вечер',
+    english: 'Good evening',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Спокойной ночи',
+    english: 'Good night',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Пожалуйста',
+    english: 'Please',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Извините',
+    english: 'Excuse me',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Простите / Мне жаль',
+    english: 'I am sorry',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Меня зовут...',
+    english: 'My name is...',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Очень приятно познакомиться',
+    english: 'Nice to meet you',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'До свидания',
+    english: 'Goodbye',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Увидимся позже / Пока',
+    english: 'See you later',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Я не понимаю',
+    english: 'I do not understand',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Вы говорите по-английски?',
+    english: 'Do you speak English?',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Помогите!',
+    english: 'Help!',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Где туалет?',
+    english: 'Where is the bathroom?',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Где находится вокзал?',
+    english: 'Where is the train station?',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Мне нужно такси',
+    english: 'I need a taxi',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Столик на двоих, пожалуйста',
+    english: 'A table for two, please',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Меню, пожалуйста',
+    english: 'The menu, please',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Сколько стоит?',
+    english: 'How much does it cost?',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Вы принимаете банковские карты?',
+    english: 'Do you accept credit cards?',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Это слишком дорого',
+    english: 'It is too expensive',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Мне нужен врач',
+    english: 'I need a doctor',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Который час?',
+    english: 'What time is it?',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Ровно один час',
+    english: 'It is 1:00 sharp',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Два часа',
+    english: 'It is 2:00',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Вечера (вечером)',
+    english: 'In the evening (p.m.)',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Полдень',
+    english: 'Noon / Midday',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Полночь',
+    english: 'Midnight',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Привет! / Здравствуйте!',
+    english: 'Hello! / Hi!',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Очень приятно',
+    english: 'Pleased to meet you',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Сто',
+    english: 'One hundred',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Тысяча',
+    english: 'One thousand',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Вы меня слышите?',
+    english: 'Can you hear me?',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Видно мой экран?',
+    english: 'Can you see my screen?',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Какой пароль от вайфая?',
+    english: 'What is the Wi-Fi password?',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Давайте назначим встречу',
+    english: "Let's schedule a meeting",
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Я отправлю вам письмо',
+    english: 'I will send you an email',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Какой крайний срок?',
+    english: 'When is the deadline?',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Где ближайшая аптека?',
+    english: 'Where is the nearest pharmacy?',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'У меня аллергия на орехи',
+    english: 'I am allergic to nuts',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'У меня есть бронь',
+    english: 'I have a reservation',
+    pronunciation: '',
+    category: 'General',
+    icon: '📌'
+  },
+  {
+    russian: 'Клубника',
+    english: 'Strawberry',
+    pronunciation: '',
+    category: 'Food & Drink',
+    icon: '🍓'
+  },
+  {
+    russian: 'Чеснок',
+    english: 'Garlic',
+    pronunciation: '',
+    category: 'Food & Drink',
+    icon: '🧄'
+  },
+  {
+    russian: 'Картофель',
+    english: 'Potato',
+    pronunciation: '',
+    category: 'Food & Drink',
+    icon: '🥔'
+  },
+  {
+    russian: 'Лук',
+    english: 'Onion',
+    pronunciation: '',
+    category: 'Food & Drink',
+    icon: '🧅'
+  },
+  {
+    russian: 'Морковь',
+    english: 'Carrot',
+    pronunciation: '',
+    category: 'Food & Drink',
+    icon: '🥕'
+  },
+  {
+    russian: 'Ложка',
+    english: 'Spoon',
+    pronunciation: '',
+    category: 'Food & Drink',
+    icon: '🥄'
+  },
+  {
+    russian: 'Вилка',
+    english: 'Fork',
+    pronunciation: '',
+    category: 'Food & Drink',
+    icon: '🍴'
+  },
+  {
+    russian: 'Нож',
+    english: 'Knife',
+    pronunciation: '',
+    category: 'Food & Drink',
+    icon: '🔪'
+  },
+  {
+    russian: 'Тарелка',
+    english: 'Plate',
+    pronunciation: '',
+    category: 'Food & Drink',
+    icon: '🍽️'
+  },
+  {
+    russian: 'Велосипед',
+    english: 'Bicycle',
+    pronunciation: '',
+    category: 'Places',
+    icon: '🚲'
+  },
+  {
+    russian: 'Чемодан',
+    english: 'Suitcase',
+    pronunciation: '',
+    category: 'Home',
+    icon: '🧳'
+  },
+  {
+    russian: 'Рюкзак',
+    english: 'Backpack',
+    pronunciation: '',
+    category: 'Home',
+    icon: '🎒'
+  },
+  {
+    russian: 'Кошелек',
+    english: 'Wallet',
+    pronunciation: '',
+    category: 'Home',
+    icon: '👛'
+  },
+  {
+    russian: 'Пожарный',
+    english: 'Firefighter',
+    pronunciation: '',
+    category: 'People',
+    icon: '🧑‍🚒'
+  },
+  {
+    russian: 'Отель',
+    english: 'Hotel',
+    pronunciation: '',
+    category: 'Places',
+    icon: '🏨'
+  },
+  {
+    russian: 'Пляж',
+    english: 'Beach',
+    pronunciation: '',
+    category: 'Nature',
+    icon: '🏖️'
+  },
+  {
+    russian: 'Гора',
+    english: 'Mountain',
+    pronunciation: '',
+    category: 'Nature',
+    icon: '⛰️'
+  },
+  {
+    russian: 'Река',
+    english: 'River',
+    pronunciation: '',
+    category: 'Nature',
+    icon: '🌊'
+  },
+  {
+    russian: 'Озеро',
+    english: 'Lake',
+    pronunciation: '',
+    category: 'Nature',
+    icon: '🏞️'
+  }
 ];
 
 // Time expressions and telling time
