@@ -9,11 +9,22 @@ import { resolveTranslation } from '../utils/translationResolver';
 interface AlphabetProps {
   data: AlphabetItem[];
   initialSubTab?: 'alphabet' | 'grammar';
+  grammarInitialTab?: 'flashcards' | 'gender' | 'verbs' | 'descriptions';
 }
 
-const Alphabet: React.FC<AlphabetProps> = ({ data, initialSubTab = 'alphabet' }) => {
+const Alphabet: React.FC<AlphabetProps> = ({
+  data,
+  initialSubTab = 'alphabet',
+  grammarInitialTab = 'flashcards'
+}) => {
   const { currentLanguage, baseLanguage, currentMeta, ui } = useLanguage();
   const [activeView, setActiveView] = useState<'alphabet' | 'grammar'>(initialSubTab);
+
+  React.useEffect(() => {
+    if (initialSubTab) {
+      setActiveView(initialSubTab);
+    }
+  }, [initialSubTab]);
   const pageContent = getPageContent('alphabet', currentLanguage, baseLanguage);
   const labels = getAlphabetLabels(baseLanguage);
 
@@ -64,7 +75,7 @@ const Alphabet: React.FC<AlphabetProps> = ({ data, initialSubTab = 'alphabet' })
       </div>
 
       {activeView === 'grammar' ? (
-        <Grammar grammarData={currentMeta.data.grammar} />
+        <Grammar grammarData={currentMeta.data.grammar} initialTab={grammarInitialTab} />
       ) : (
         <>
           <div className="alphabet-header">
