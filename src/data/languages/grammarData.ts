@@ -181,7 +181,19 @@ export const GERMAN_GRAMMAR: GrammarData = {
       options: ['der', 'die', 'das'],
       correctAnswer: 'der',
       explanation: 'Tisch (table) is masculine in German: "der Tisch".',
+      explanations: {
+        ru: '«Tisch» (стол) в немецком языке мужского рода: «der Tisch».',
+        es: '«Tisch» (mesa) es masculino en alemán: «der Tisch».',
+        fr: '« Tisch » (table) est masculin en allemand : « der Tisch ».',
+        en: 'Tisch (table) is masculine in German: "der Tisch".',
+      },
       translation: 'the table',
+      translations: {
+        ru: 'стол',
+        es: 'la mesa',
+        fr: 'la table',
+        en: 'the table',
+      },
       gender: 'masculine',
       article: 'der',
       icon: 'svg:table',
@@ -194,7 +206,19 @@ export const GERMAN_GRAMMAR: GrammarData = {
       options: ['der', 'die', 'das'],
       correctAnswer: 'die',
       explanation: 'Katze (cat) is feminine in German: "die Katze" (ends in -e).',
+      explanations: {
+        ru: '«Katze» (кошка) в немецком языке женского рода: «die Katze» (оканчивается на -e).',
+        es: '«Katze» (gato) es femenino en alemán: «die Katze» (termina en -e).',
+        fr: '« Katze » (chat) est féminin en allemand : « die Katze » (finit par -e).',
+        en: 'Katze (cat) is feminine in German: "die Katze" (ends in -e).',
+      },
       translation: 'the cat',
+      translations: {
+        ru: 'кошка',
+        es: 'el gato',
+        fr: 'le chat',
+        en: 'the cat',
+      },
       gender: 'feminine',
       article: 'die',
       icon: '🐱',
@@ -207,7 +231,19 @@ export const GERMAN_GRAMMAR: GrammarData = {
       options: ['der', 'die', 'das'],
       correctAnswer: 'das',
       explanation: 'Auto (car) is neuter in German: "das Auto" (foreign word ending in -o).',
+      explanations: {
+        ru: '«Auto» (машина) в немецком языке среднего рода: «das Auto».',
+        es: '«Auto» (coche) es neutro en alemán: «das Auto».',
+        fr: '« Auto » (voiture) est neutre en allemand : « das Auto ».',
+        en: 'Auto (car) is neuter in German: "das Auto" (foreign word ending in -o).',
+      },
       translation: 'the car',
+      translations: {
+        ru: 'машина / автомобиль',
+        es: 'el coche',
+        fr: 'la voiture',
+        en: 'the car',
+      },
       gender: 'neuter',
       article: 'das',
       icon: '🚗',
@@ -220,7 +256,19 @@ export const GERMAN_GRAMMAR: GrammarData = {
       options: ['der', 'die', 'das'],
       correctAnswer: 'das',
       explanation: 'Buch (book) is neuter in German: "das Buch".',
+      explanations: {
+        ru: '«Buch» (книга) в немецком языке среднего рода: «das Buch».',
+        es: '«Buch» (libro) es neutro en alemán: «das Buch».',
+        fr: '« Buch » (livre) est neutre en allemand : « das Buch ».',
+        en: 'Buch (book) is neuter in German: "das Buch".',
+      },
       translation: 'the book',
+      translations: {
+        ru: 'книга',
+        es: 'el libro',
+        fr: 'le livre',
+        en: 'the book',
+      },
       gender: 'neuter',
       article: 'das',
       icon: '📖',
@@ -233,7 +281,19 @@ export const GERMAN_GRAMMAR: GrammarData = {
       options: ['der', 'die', 'das'],
       correctAnswer: 'die',
       explanation: 'Sonne (sun) is feminine in German: "die Sonne".',
+      explanations: {
+        ru: '«Sonne» (солнце) в немецком языке женского рода: «die Sonne».',
+        es: '«Sonne» (sol) es femenino en alemán: «die Sonne».',
+        fr: '« Sonne » (soleil) est féminin en allemand : « die Sonne ».',
+        en: 'Sonne (sun) is feminine in German: "die Sonne".',
+      },
       translation: 'the sun',
+      translations: {
+        ru: 'солнце',
+        es: 'el sol',
+        fr: 'le soleil',
+        en: 'the sun',
+      },
       gender: 'feminine',
       article: 'die',
       icon: '☀️',
@@ -246,7 +306,19 @@ export const GERMAN_GRAMMAR: GrammarData = {
       options: ['der', 'die', 'das'],
       correctAnswer: 'der',
       explanation: 'Kaffee (coffee) is masculine in German: "der Kaffee".',
+      explanations: {
+        ru: '«Kaffee» (кофе) в немецком языке мужского рода: «der Kaffee».',
+        es: '«Kaffee» (café) es masculino en alemán: «der Kaffee».',
+        fr: '« Kaffee » (café) est masculin en allemand : « der Kaffee ».',
+        en: 'Kaffee (coffee) is masculine in German: "der Kaffee".',
+      },
       translation: 'the coffee',
+      translations: {
+        ru: 'кофе',
+        es: 'el café',
+        fr: 'le café',
+        en: 'the coffee',
+      },
       gender: 'masculine',
       article: 'der',
       icon: '☕',
@@ -256,30 +328,84 @@ export const GERMAN_GRAMMAR: GrammarData = {
       id: 'de-card-7',
       type: 'verb',
       prompt: 'wir (planen) ➔ present form',
+      prompts: {
+        ru: 'wir (planen) ➔ настоящее время',
+        es: 'wir (planen) ➔ presente',
+        fr: 'wir (planen) ➔ présent',
+        en: 'wir (planen) ➔ present form',
+      },
       options: ['plane', 'planst', 'planen', 'plant'],
       correctAnswer: 'planen',
       explanation: 'For "wir" (we), regular verbs use the infinitive form: "wir planen" (we plan / let\'s plan).',
+      explanations: {
+        ru: 'Для «wir» (мы) правильные глаголы совпадают с инфинитивом: «wir planen» (мы планируем).',
+        es: 'Para «wir» (nosotros), los verbos regulares usan el infinitivo: «wir planen» (nosotros planeamos).',
+        fr: 'Pour « wir » (nous), les verbes réguliers prennent l\'infinitif : « wir planen » (nous planifions).',
+        en: 'For "wir" (we), regular verbs use the infinitive form: "wir planen" (we plan / let\'s plan).',
+      },
       translation: 'we plan / let us plan',
+      translations: {
+        ru: 'мы планируем',
+        es: 'nosotros planeamos',
+        fr: 'nous planifions',
+        en: 'we plan / let us plan',
+      },
       icon: '📅',
     },
     {
       id: 'de-card-8',
       type: 'verb',
       prompt: 'du (sein) ➔ present form',
+      prompts: {
+        ru: 'du (sein) ➔ настоящее время',
+        es: 'du (sein) ➔ presente',
+        fr: 'du (sein) ➔ présent',
+        en: 'du (sein) ➔ present form',
+      },
       options: ['bin', 'bist', 'ist', 'seid'],
       correctAnswer: 'bist',
       explanation: 'The irregular verb "sein" conjugates as: ich bin, du bist, er ist.',
+      explanations: {
+        ru: 'Неправильный глагол «sein» (быть): ich bin (я есть), du bist (ты есть), er ist (он есть).',
+        es: 'El verbo irregular «sein» (ser/estar): ich bin, du bist, er ist.',
+        fr: 'Le verbe irrégulier « sein » (être) : ich bin, du bist, er ist.',
+        en: 'The irregular verb "sein" conjugates as: ich bin, du bist, er ist.',
+      },
       translation: 'you are',
+      translations: {
+        ru: 'ты есть',
+        es: 'tú eres / estás',
+        fr: 'tu es',
+        en: 'you are',
+      },
       icon: '✨',
     },
     {
       id: 'de-card-9',
       type: 'description',
       prompt: 'Comparative degree of "gut"',
+      prompts: {
+        ru: 'Сравнительная степень от «gut»',
+        es: 'Grado comparativo de "gut"',
+        fr: 'Comparatif de « gut »',
+        en: 'Comparative degree of "gut"',
+      },
       options: ['guter', 'besser', 'am besten', 'best'],
       correctAnswer: 'besser',
       explanation: '"gut" has an irregular comparison: gut ➔ besser ➔ am besten.',
+      explanations: {
+        ru: 'Прилагательное «gut» (хороший) имеет неправильные степени сравнения: gut ➔ besser ➔ am besten.',
+        es: '«Gut» (bueno) tiene una comparación irregular: gut ➔ besser ➔ am besten.',
+        fr: '« Gut » (bon) a une comparaison irrégulière : gut ➔ besser ➔ am besten.',
+        en: '"gut" has an irregular comparison: gut ➔ besser ➔ am besten.',
+      },
       translation: 'good ➔ better',
+      translations: {
+        ru: 'хороший ➔ лучше',
+        es: 'bueno ➔ mejor',
+        fr: 'bon ➔ meilleur',
+        en: 'good ➔ better',
+      },
       icon: '👍',
     },
   ],
@@ -1464,21 +1590,26 @@ const LOCALIZED_ENGLISH_GRAMMAR: Partial<Record<SupportedLanguageId, Partial<Gra
 
 export const getGrammarForLanguage = (
   lang: SupportedLanguageId,
-  baseLang: SupportedLanguageId = 'en'
+  baseLang: SupportedLanguageId = 'en',
+  customGrammar?: GrammarData
 ): GrammarData => {
   let baseData: GrammarData;
-  switch (lang) {
-    case 'de': baseData = GERMAN_GRAMMAR; break;
-    case 'ru': baseData = RUSSIAN_GRAMMAR; break;
-    case 'es': baseData = SPANISH_GRAMMAR; break;
-    case 'fr': baseData = FRENCH_GRAMMAR; break;
-    case 'pt': baseData = PORTUGUESE_GRAMMAR; break;
-    case 'en': baseData = ENGLISH_GRAMMAR; break;
-    case 'tr': baseData = TURKISH_GRAMMAR; break;
-    case 'id': baseData = INDONESIAN_GRAMMAR; break;
-    case 'ko': baseData = KOREAN_GRAMMAR; break;
-    case 'ja': baseData = JAPANESE_GRAMMAR; break;
-    default: baseData = GERMAN_GRAMMAR; break;
+  if (customGrammar) {
+    baseData = customGrammar;
+  } else {
+    switch (lang) {
+      case 'de': baseData = GERMAN_GRAMMAR; break;
+      case 'ru': baseData = RUSSIAN_GRAMMAR; break;
+      case 'es': baseData = SPANISH_GRAMMAR; break;
+      case 'fr': baseData = FRENCH_GRAMMAR; break;
+      case 'pt': baseData = PORTUGUESE_GRAMMAR; break;
+      case 'en': baseData = ENGLISH_GRAMMAR; break;
+      case 'tr': baseData = TURKISH_GRAMMAR; break;
+      case 'id': baseData = INDONESIAN_GRAMMAR; break;
+      case 'ko': baseData = KOREAN_GRAMMAR; break;
+      case 'ja': baseData = JAPANESE_GRAMMAR; break;
+      default: baseData = GERMAN_GRAMMAR; break;
+    }
   }
 
   // Localize flashcards for learner's baseLanguage

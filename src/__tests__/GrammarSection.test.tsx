@@ -4,6 +4,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Alphabet from '../components/Alphabet';
 import Grammar from '../components/Grammar';
 import { GERMAN_GRAMMAR, getGrammarForLanguage } from '../data/languages/grammarData';
+import { LanguageProvider } from '../contexts/LanguageContext';
 
 // Mock Audio
 window.HTMLMediaElement.prototype.play = vi.fn().mockImplementation(() => Promise.resolve());
@@ -159,5 +160,32 @@ describe('Alphabet & Grammar Section Integration', () => {
     expect(screen.getByText(/стол/i)).toBeInTheDocument();
     expect(screen.getByLabelText('Table')).toBeInTheDocument();
     expect(screen.queryByText('🪑')).not.toBeInTheDocument();
+  });
+
+  it('localizes English grammar explanations, prompts, badges, and translations for Russian native learners', () => {
+    localStorage.setItem('basic_language_base_lang', 'ru');
+    localStorage.setItem('basic_language_target_lang', 'en');
+    window.history.pushState({}, '', '/learn/en/alphabet');
+
+    render(
+      <LanguageProvider>
+        <Alphabet data={sampleAlphabet} initialSubTab="grammar" />
+      </LanguageProvider>
+    );
+
+    // Verify badge is in Russian: 🏷️ Артикли (a / an)
+    expect(screen.getByText(/🏷️ Артикли \(a \/ an\)/i)).toBeInTheDocument();
+
+    // Verify subtitle translation is in Russian: яблоко
+    expect(screen.getByText('яблоко')).toBeInTheDocument();
+
+    // Answer the card with 'an'
+    const anButton = screen.getByRole('button', { name: 'an' });
+    fireEvent.click(anButton);
+
+    // Explanation MUST be in Russian for Russian native learners!
+    expect(screen.getByText(/Слово «apple» начинается с гласного звука \/æ\/, поэтому используется неопределённый артикль «an»/i)).toBeInTheDocument();
+    // Next button in Russian
+    expect(screen.getByRole('button', { name: /Далее/i })).toBeInTheDocument();
   });
 });
