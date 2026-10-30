@@ -16,7 +16,7 @@ export const GERMAN_GRAMMAR: GrammarData = {
         'Nouns ending in -or, -ist, -ismus, -ling, -ich, -ig (der Motor, der Tourist, der Schmetterling, der Teppich)',
       ],
       examples: [
-        { word: 'Tisch', article: 'der', meaning: 'table', icon: '🪑' },
+        { word: 'Tisch', article: 'der', meaning: 'table', icon: 'svg:table' },
         { word: 'Apfel', article: 'der', meaning: 'apple', icon: '🍎' },
         { word: 'Kaffee', article: 'der', meaning: 'coffee', icon: '☕' },
         { word: 'Zug', article: 'der', meaning: 'train', icon: '🚆' },
@@ -184,7 +184,7 @@ export const GERMAN_GRAMMAR: GrammarData = {
       translation: 'the table',
       gender: 'masculine',
       article: 'der',
-      icon: '🪑',
+      icon: 'svg:table',
     },
     {
       id: 'de-card-2',
@@ -292,7 +292,7 @@ export const RUSSIAN_GRAMMAR: GrammarData = {
         'Male natural gender: папа (dad), дедушка (grandfather), мужчина (man)',
       ],
       examples: [
-        { word: 'стол', article: 'он', meaning: 'table', icon: '🪑' },
+        { word: 'стол', article: 'он', meaning: 'table', icon: 'svg:table' },
         { word: 'дом', article: 'он', meaning: 'house', icon: '🏠' },
         { word: 'чай', article: 'он', meaning: 'tea', icon: '☕' },
         { word: 'город', article: 'он', meaning: 'city', icon: '🏙️' },
@@ -401,7 +401,7 @@ export const RUSSIAN_GRAMMAR: GrammarData = {
       explanation: '«Стол» заканчивается на согласный «л», поэтому это мужской род (он).',
       translation: 'table (masculine)',
       gender: 'masculine',
-      icon: '🪑',
+      icon: 'svg:table',
     },
     {
       id: 'ru-card-2',
@@ -618,7 +618,7 @@ export const FRENCH_GRAMMAR: GrammarData = {
         { word: 'maison', article: 'la', meaning: 'house', icon: '🏠' },
         { word: 'ville', article: 'la', meaning: 'city', icon: '🏙️' },
         { word: 'nuit', article: 'la', meaning: 'night', icon: '🌙' },
-        { word: 'table', article: 'la', meaning: 'table', icon: '🪑' },
+        { word: 'table', article: 'la', meaning: 'table', icon: 'svg:table' },
       ],
     },
   ],

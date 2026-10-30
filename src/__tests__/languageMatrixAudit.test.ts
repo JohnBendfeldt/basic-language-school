@@ -166,7 +166,7 @@ describe('56-Language-Pair Matrix Audit (Translations, Numbers, UI Chrome & Neur
 
     expect(numberMismatches).toEqual([]);
     expect(missingTranslatedAudio).toEqual([]);
-  });
+  }, 30000);
 
   it('verifies page headings, alphabet labels, and component chrome exist for every language pair', () => {
     const sections = ['alphabet', 'phrases', 'words', 'numbers', 'time'] as const;

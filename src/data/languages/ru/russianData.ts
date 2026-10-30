@@ -1762,7 +1762,7 @@ const commonWords: PhraseItem[] = [
   { russian: 'Море', english: 'Sea', pronunciation: 'MOH-rye', category: 'Places', level: 1, icon: '🌊' },
   { russian: 'Дорога', english: 'Road', pronunciation: 'dah-ROH-gah', category: 'Places', level: 1, icon: '🛤️' },
   { russian: 'Лодка', english: 'Boat', pronunciation: 'LOHT-kah', category: 'Travel', level: 1, icon: '⛵' },
-  { russian: 'Стол', english: 'Table', pronunciation: 'STOHL', category: 'Home', level: 1, icon: '🪑' },
+  { russian: 'Стол', english: 'Table', pronunciation: 'STOHL', category: 'Home', level: 1, icon: 'svg:table' },
   { russian: 'Стул', english: 'Chair', pronunciation: 'STOOL', category: 'Home', level: 1, icon: '🪑' },
   { russian: 'Дверь', english: 'Door', pronunciation: 'DVYAYR', category: 'Home', level: 1, icon: '🚪' },
   { russian: 'Окно', english: 'Window', pronunciation: 'ahk-NOH', category: 'Home', level: 1, icon: '🪟' },

@@ -17,7 +17,7 @@ const Navigation: React.FC<NavigationProps> = ({
   const { ui } = useLanguage();
 
   const navItems = [
-    { id: 'alphabet', label: ui?.alphabet || 'Alphabet' },
+    { id: 'alphabet', label: ui?.alphabetAndGrammar || ui?.alphabet || 'Alphabet & Grammar' },
     { id: 'phrases', label: ui?.basicPhrases || 'Basic Phrases' },
     { id: 'words', label: ui?.commonWords || 'Common Words' },
     { id: 'numbers', label: ui?.numbersAndTime || 'Numbers & Time' },

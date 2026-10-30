@@ -4,6 +4,7 @@ export interface UIStrings {
   // Navigation tabs
   alphabet: string;
   grammar?: string;
+  alphabetAndGrammar?: string;
   basicPhrases: string;
   commonWords: string;
   numbersAndTime: string;
@@ -67,6 +68,7 @@ export interface UIStrings {
 export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
   en: {
     alphabet: 'Alphabet',
+    alphabetAndGrammar: 'Alphabet & Grammar',
     basicPhrases: 'Phrases & Greetings',
     commonWords: 'Common Words',
     numbersAndTime: 'Numbers & Time',
@@ -126,6 +128,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
 
   es: {
     alphabet: 'Alfabeto',
+    alphabetAndGrammar: 'Alfabeto y Gramática',
     basicPhrases: 'Frases Básicas',
     commonWords: 'Palabras Comunes',
     numbersAndTime: 'Números y Tiempo',
@@ -185,6 +188,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
 
   fr: {
     alphabet: 'Alphabet',
+    alphabetAndGrammar: 'Alphabet et Grammaire',
     basicPhrases: 'Phrases de Base',
     commonWords: 'Mots Courants',
     numbersAndTime: 'Nombres et Heure',
@@ -244,6 +248,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
 
   ru: {
     alphabet: 'Алфавит',
+    alphabetAndGrammar: 'Алфавит и грамматика',
     basicPhrases: 'Основные фразы',
     commonWords: 'Популярные слова',
     numbersAndTime: 'Числа и время',
@@ -303,6 +308,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
 
   pt: {
     alphabet: 'Alfabeto',
+    alphabetAndGrammar: 'Alfabeto e Gramática',
     basicPhrases: 'Frases Básicas',
     commonWords: 'Palavras Comuns',
     numbersAndTime: 'Números e Horas',
@@ -362,6 +368,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
 
   de: {
     alphabet: 'Alphabet',
+    alphabetAndGrammar: 'Alphabet & Grammatik',
     basicPhrases: 'Wichtige Sätze',
     commonWords: 'Häufige Wörter',
     numbersAndTime: 'Zahlen & Uhrzeit',
@@ -421,6 +428,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
 
   id: {
     alphabet: 'Alfabet',
+    alphabetAndGrammar: 'Alfabet & Tata Bahasa',
     basicPhrases: 'Frasa Dasar',
     commonWords: 'Kata Umum',
     numbersAndTime: 'Angka & Waktu',
@@ -480,6 +488,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
 
   tr: {
     alphabet: 'Alfabe',
+    alphabetAndGrammar: 'Alfabe ve Dilbilgisi',
     basicPhrases: 'Temel İfadeler',
     commonWords: 'Yaygın Kelimeler',
     numbersAndTime: 'Sayılar ve Saat',
@@ -538,6 +547,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
   },
   ko: {
     alphabet: '한글',
+    alphabetAndGrammar: '한글 & 문법',
     grammar: '문법',
     basicPhrases: '기본 회화 & 표현',
     commonWords: '필수 어휘',
@@ -597,6 +607,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
   },
   ja: {
     alphabet: 'かな',
+    alphabetAndGrammar: 'かな & 文法',
     grammar: '文法',
     basicPhrases: '基本フレーズ & 挨拶',
     commonWords: '必須単語',

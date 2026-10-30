@@ -18,7 +18,7 @@ const alphabet: AlphabetItem[] = [
   { letter: 'J', pronunciation: '/ʒe/ (like s in measure)', example: 'as in Bagaj', word: 'Bagaj', meaning: 'Luggage', icon: '🧳' },
   { letter: 'K', pronunciation: '/ke/', example: 'as in Kahve', word: 'Kahve', meaning: 'Coffee', icon: '☕' },
   { letter: 'L', pronunciation: '/le/', example: 'as in Limon', word: 'Limon', meaning: 'Yellow', icon: '🍋' },
-  { letter: 'M', pronunciation: '/me/', example: 'as in Masa', word: 'Masa', meaning: 'Book', icon: '🪑' },
+  { letter: 'M', pronunciation: '/me/', example: 'as in Masa', word: 'Masa', meaning: 'Table', icon: 'svg:table' },
   { letter: 'N', pronunciation: '/ne/', example: 'as in Nakit', word: 'Nakit', meaning: 'Cash', icon: '💵' },
   { letter: 'O', pronunciation: '/o/', example: 'as in Otel', word: 'Otel', meaning: 'Hotel', icon: '🏨' },
   { letter: 'Ö', pronunciation: '/ø/ (rounded e)', example: 'as in Öğretmen', word: 'Öğretmen', meaning: 'School', icon: '🏫' },
