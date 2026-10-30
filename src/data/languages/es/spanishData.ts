@@ -1,4 +1,5 @@
 import { AlphabetItem, PhraseItem, AppData } from '../../../types/index';
+import { SPANISH_GRAMMAR } from '../grammarData';
 
 // Spanish alphabet (27 letters including Ñ) with pronunciation and examples
 const alphabet: AlphabetItem[] = [
@@ -569,6 +570,7 @@ const spanishData: AppData = {
   numbers,
   commonWords,
   time,
+  grammar: SPANISH_GRAMMAR,
 };
 
 export default spanishData;

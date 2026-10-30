@@ -1,4 +1,5 @@
 import { GrammarData } from '../../types';
+import { SupportedLanguageId } from './types';
 
 export const GERMAN_GRAMMAR: GrammarData = {
   genderRules: [
@@ -287,13 +288,15 @@ export const RUSSIAN_GRAMMAR: GrammarData = {
       name: 'Мужской род (он)',
       description: 'Masculine nouns in Russian typically end in a hard consonant, -й, or soft sign -ь.',
       rules: [
-        'Nouns ending in a consonant: стол (table), дом (house), билет (ticket), чай (tea)',
-        'Male natural gender: папа (dad), дедушка (grandfather)',
+        'Nouns ending in a consonant: стол (table), дом (house), билет (ticket), чай (tea), город (city)',
+        'Male natural gender: папа (dad), дедушка (grandfather), мужчина (man)',
       ],
       examples: [
         { word: 'стол', article: 'он', meaning: 'table', icon: '🪑' },
         { word: 'дом', article: 'он', meaning: 'house', icon: '🏠' },
         { word: 'чай', article: 'он', meaning: 'tea', icon: '☕' },
+        { word: 'город', article: 'он', meaning: 'city', icon: '🏙️' },
+        { word: 'друг', article: 'он', meaning: 'friend', icon: '🧑‍🤝‍🧑' },
       ],
     },
     {
@@ -303,13 +306,15 @@ export const RUSSIAN_GRAMMAR: GrammarData = {
       name: 'Женский род (она)',
       description: 'Feminine nouns in Russian typically end in the vowel letters -а or -я, or soft sign -ь.',
       rules: [
-        'Nouns ending in -а or -я: вода (water), книга (book), семья (family)',
-        'Certain abstract nouns ending in -ь: ночь (night), площадь (square)',
+        'Nouns ending in -а or -я: вода (water), книга (book), семья (family), машина (car)',
+        'Abstract nouns ending in -ость / -есть and certain words ending in -ь: ночь (night), площадь (square)',
       ],
       examples: [
         { word: 'вода', article: 'она', meaning: 'water', icon: '💧' },
         { word: 'книга', article: 'она', meaning: 'book', icon: '📖' },
         { word: 'семья', article: 'она', meaning: 'family', icon: '👨‍👩‍👧' },
+        { word: 'машина', article: 'она', meaning: 'car', icon: '🚗' },
+        { word: 'ночь', article: 'она', meaning: 'night', icon: '🌙' },
       ],
     },
     {
@@ -319,13 +324,14 @@ export const RUSSIAN_GRAMMAR: GrammarData = {
       name: 'Средний род (оно)',
       description: 'Neuter nouns in Russian typically end in the vowel letters -о or -е (or -мя).',
       rules: [
-        'Nouns ending in -о or -е: метро (subway), утро (morning), море (sea)',
+        'Nouns ending in -о or -е: метро (subway), утро (morning), море (sea), окно (window)',
         'Nouns ending in -мя: время (time), имя (name)',
       ],
       examples: [
         { word: 'метро', article: 'оно', meaning: 'subway / metro', icon: '🚇' },
         { word: 'утро', article: 'оно', meaning: 'morning', icon: '🌅' },
         { word: 'время', article: 'оно', meaning: 'time', icon: '⏱️' },
+        { word: 'окно', article: 'оно', meaning: 'window', icon: '🪟' },
       ],
     },
   ],
@@ -333,15 +339,15 @@ export const RUSSIAN_GRAMMAR: GrammarData = {
     {
       verb: 'быть',
       meaning: 'to be',
-      tense: 'Настоящее / Прошедшее (Past)',
+      tense: 'Прошедшее время (Past Tense)',
       type: 'irregular',
       forms: [
-        { pronoun: 'он', form: 'был (was - masc)' },
-        { pronoun: 'она', form: 'была (was - fem)' },
-        { pronoun: 'оно', form: 'было (was - neut)' },
-        { pronoun: 'они', form: 'были (were - pl)' },
+        { pronoun: 'он (masc)', form: 'был' },
+        { pronoun: 'она (fem)', form: 'была' },
+        { pronoun: 'оно (neut)', form: 'было' },
+        { pronoun: 'они (plural)', form: 'были' },
       ],
-      exampleSentence: { target: 'Мы были там.', translation: 'We were there.' },
+      exampleSentence: { target: 'Мы были в Москве.', translation: 'We were in Moscow.' },
     },
     {
       verb: 'знать',
@@ -358,14 +364,30 @@ export const RUSSIAN_GRAMMAR: GrammarData = {
       ],
       exampleSentence: { target: 'Я знаю это слово.', translation: 'I know this word.' },
     },
+    {
+      verb: 'говорить',
+      meaning: 'to speak / talk',
+      tense: 'Настоящее время (Present)',
+      type: 'regular',
+      forms: [
+        { pronoun: 'я', form: 'говорю' },
+        { pronoun: 'ты', form: 'говоришь' },
+        { pronoun: 'он / она', form: 'говорит' },
+        { pronoun: 'мы', form: 'говорим' },
+        { pronoun: 'вы', form: 'говорите' },
+        { pronoun: 'они', form: 'говорят' },
+      ],
+      exampleSentence: { target: 'Вы говорите по-русски?', translation: 'Do you speak Russian?' },
+    },
   ],
   descriptions: [
     {
-      title: 'Russian Adjective Endings by Gender',
-      explanation: 'Adjectives agree with the noun they describe in gender, number, and case.',
+      title: 'Russian Adjective Agreement',
+      explanation: 'Russian adjectives change endings according to the gender of the noun: -ый/-ий (masculine), -ая/-яя (feminine), -ое/-ее (neuter), -ые/-ие (plural).',
       examples: [
-        { positive: 'красивый (masc)', comparative: 'красивая (fem)', superlative: 'красивое (neut)', meaning: 'beautiful' },
-        { positive: 'хороший (masc)', comparative: 'лучше (better)', superlative: 'самый лучший (best)', meaning: 'good / better / best' },
+        { positive: 'новый (masc)', comparative: 'новая (fem)', superlative: 'новое (neut)', meaning: 'new' },
+        { positive: 'хороший (good)', comparative: 'лучше (better)', superlative: 'лучший (best)', meaning: 'good / better / best' },
+        { positive: 'большой (big)', comparative: 'больше (bigger)', superlative: 'наибольший (biggest)', meaning: 'big / bigger / biggest' },
       ],
     },
   ],
@@ -403,6 +425,16 @@ export const RUSSIAN_GRAMMAR: GrammarData = {
       gender: 'neuter',
       icon: '🌅',
     },
+    {
+      id: 'ru-card-4',
+      type: 'verb',
+      prompt: 'она + быть (past tense)',
+      options: ['был', 'была', 'было', 'были'],
+      correctAnswer: 'была',
+      explanation: 'Feminine singular past tense verbs take the ending -ла: «она была».',
+      translation: 'she was',
+      icon: '👩',
+    },
   ],
 };
 
@@ -415,13 +447,16 @@ export const SPANISH_GRAMMAR: GrammarData = {
       name: 'Masculino (el)',
       description: 'Masculine nouns in Spanish typically end in -o, consonants like -r, -l, -n, or male beings.',
       rules: [
-        'Nouns ending in -o: el libro, el carro, el perro, el trabajo',
-        'Nouns of Greek origin ending in -ma: el problema, el sistema, el tema',
+        'Nouns ending in -o: el libro, el carro, el perro, el trabajo, el dinero',
+        'Nouns of Greek origin ending in -ma, -pa: el problema, el sistema, el idioma, el mapa',
+        'Days of the week: el lunes, el martes, el viernes',
       ],
       examples: [
         { word: 'libro', article: 'el', meaning: 'book', icon: '📖' },
         { word: 'carro', article: 'el', meaning: 'car', icon: '🚗' },
         { word: 'tiempo', article: 'el', meaning: 'time', icon: '⏱️' },
+        { word: 'café', article: 'el', meaning: 'coffee', icon: '☕' },
+        { word: 'problema', article: 'el', meaning: 'problem', icon: '🧩' },
       ],
     },
     {
@@ -431,20 +466,21 @@ export const SPANISH_GRAMMAR: GrammarData = {
       name: 'Femenino (la)',
       description: 'Feminine nouns in Spanish typically end in -a, -ción, -sión, -dad, -tad.',
       rules: [
-        'Nouns ending in -a: la casa, la mesa, la comida',
-        'Nouns ending in -ción / -sión / -dad: la estación, la ciudad, la verdad',
+        'Nouns ending in -a: la casa, la mesa, la comida, la playa, la familia',
+        'Nouns ending in -ción / -sión / -dad: la estación, la ciudad, la verdad, la conversación',
       ],
       examples: [
         { word: 'casa', article: 'la', meaning: 'house', icon: '🏠' },
         { word: 'ciudad', article: 'la', meaning: 'city', icon: '🏙️' },
         { word: 'comida', article: 'la', meaning: 'food', icon: '🍲' },
+        { word: 'noche', article: 'la', meaning: 'night', icon: '🌙' },
       ],
     },
   ],
   verbs: [
     {
       verb: 'ser',
-      meaning: 'to be (permanent / identity)',
+      meaning: 'to be (permanent essence / origin / identity)',
       tense: 'Presente',
       type: 'irregular',
       forms: [
@@ -457,14 +493,45 @@ export const SPANISH_GRAMMAR: GrammarData = {
       ],
       exampleSentence: { target: 'Nosotros somos estudiantes.', translation: 'We are students.' },
     },
+    {
+      verb: 'estar',
+      meaning: 'to be (temporary state / location / feelings)',
+      tense: 'Presente',
+      type: 'irregular',
+      forms: [
+        { pronoun: 'yo', form: 'estoy' },
+        { pronoun: 'tú', form: 'estás' },
+        { pronoun: 'él / ella / usted', form: 'está' },
+        { pronoun: 'nosotros', form: 'estamos' },
+        { pronoun: 'vosotros', form: 'estáis' },
+        { pronoun: 'ellos / ustedes', form: 'están' },
+      ],
+      exampleSentence: { target: '¿Cómo estás tú hoy?', translation: 'How are you today?' },
+    },
+    {
+      verb: 'tener',
+      meaning: 'to have',
+      tense: 'Presente',
+      type: 'irregular',
+      forms: [
+        { pronoun: 'yo', form: 'tengo' },
+        { pronoun: 'tú', form: 'tienes' },
+        { pronoun: 'él / ella / usted', form: 'tiene' },
+        { pronoun: 'nosotros', form: 'tenemos' },
+        { pronoun: 'vosotros', form: 'tenéis' },
+        { pronoun: 'ellos / ustedes', form: 'tienen' },
+      ],
+      exampleSentence: { target: 'Tengo una pregunta.', translation: 'I have a question.' },
+    },
   ],
   descriptions: [
     {
-      title: 'Spanish Adjective Agreement',
-      explanation: 'Adjectives agree with nouns in both gender (-o / -a) and number (-s / -es).',
+      title: 'Spanish Adjective Agreement & Comparisons',
+      explanation: 'Adjectives match nouns in gender and number. Regular comparisons use "más + adjective" (more) or "menos + adjective" (less).',
       examples: [
-        { positive: 'bueno (masc)', comparative: 'mejor (better)', superlative: 'el mejor (best)', meaning: 'good / better / best' },
+        { positive: 'bueno (good)', comparative: 'mejor (better)', superlative: 'el mejor (best)', meaning: 'good / better / best' },
         { positive: 'grande (big)', comparative: 'más grande (bigger)', superlative: 'el más grande (biggest)', meaning: 'big / bigger / biggest' },
+        { positive: 'rápido (fast)', comparative: 'más rápido (faster)', superlative: 'el más rápido (fastest)', meaning: 'fast / faster / fastest' },
       ],
     },
   ],
@@ -493,6 +560,499 @@ export const SPANISH_GRAMMAR: GrammarData = {
       article: 'la',
       icon: '🏠',
     },
+    {
+      id: 'es-card-3',
+      type: 'gender',
+      prompt: '___ problema (problem)',
+      options: ['el', 'la'],
+      correctAnswer: 'el',
+      explanation: 'Nouns of Greek origin ending in -ma like problema, sistema, idioma are masculine: "el problema".',
+      translation: 'the problem',
+      gender: 'masculine',
+      article: 'el',
+      icon: '🧩',
+    },
+    {
+      id: 'es-card-4',
+      type: 'verb',
+      prompt: 'yo (tener) ➔ present form',
+      options: ['tengo', 'tienes', 'tiene', 'tenemos'],
+      correctAnswer: 'tengo',
+      explanation: 'The irregular first-person singular of tener is "yo tengo".',
+      translation: 'I have',
+      icon: '✨',
+    },
   ],
 };
 
+export const FRENCH_GRAMMAR: GrammarData = {
+  genderRules: [
+    {
+      article: 'le',
+      gender: 'masculine',
+      color: '#2563eb',
+      name: 'Masculin (le / l\')',
+      description: 'Masculine nouns take "le" (or "l\'" before a vowel/silent h).',
+      rules: [
+        'Nouns ending in -age, -ment, -eau, -oir: le voyage, le moment, le bateau, le miroir',
+        'Days, seasons, and languages: le lundi, le français, le printemps',
+      ],
+      examples: [
+        { word: 'livre', article: 'le', meaning: 'book', icon: '📖' },
+        { word: 'café', article: 'le', meaning: 'coffee', icon: '☕' },
+        { word: 'travail', article: 'le', meaning: 'work', icon: '💼' },
+        { word: 'soleil', article: 'le', meaning: 'sun', icon: '☀️' },
+      ],
+    },
+    {
+      article: 'la',
+      gender: 'feminine',
+      color: '#dc2626',
+      name: 'Féminin (la / l\')',
+      description: 'Feminine nouns take "la" (or "l\'" before a vowel/silent h).',
+      rules: [
+        'Nouns ending in -tion, -sion, -té, -ette, -ure: la station, la liberté, la voiture',
+        'Most nouns ending in -e that denote feminine entities or abstract concepts: la maison, la vie',
+      ],
+      examples: [
+        { word: 'maison', article: 'la', meaning: 'house', icon: '🏠' },
+        { word: 'ville', article: 'la', meaning: 'city', icon: '🏙️' },
+        { word: 'nuit', article: 'la', meaning: 'night', icon: '🌙' },
+        { word: 'table', article: 'la', meaning: 'table', icon: '🪑' },
+      ],
+    },
+  ],
+  verbs: [
+    {
+      verb: 'être',
+      meaning: 'to be',
+      tense: 'Présent',
+      type: 'irregular',
+      forms: [
+        { pronoun: 'je', form: 'suis' },
+        { pronoun: 'tu', form: 'es' },
+        { pronoun: 'il / elle / on', form: 'est' },
+        { pronoun: 'nous', form: 'sommes' },
+        { pronoun: 'vous', form: 'êtes' },
+        { pronoun: 'ils / elles', form: 'sont' },
+      ],
+      exampleSentence: { target: 'Nous sommes prêts.', translation: 'We are ready.' },
+    },
+    {
+      verb: 'avoir',
+      meaning: 'to have',
+      tense: 'Présent',
+      type: 'irregular',
+      forms: [
+        { pronoun: 'j\'', form: 'ai' },
+        { pronoun: 'tu', form: 'as' },
+        { pronoun: 'il / elle / on', form: 'a' },
+        { pronoun: 'nous', form: 'avons' },
+        { pronoun: 'vous', form: 'avez' },
+        { pronoun: 'ils / elles', form: 'ont' },
+      ],
+      exampleSentence: { target: 'J\'ai une question.', translation: 'I have a question.' },
+    },
+    {
+      verb: 'aller',
+      meaning: 'to go',
+      tense: 'Présent',
+      type: 'irregular',
+      forms: [
+        { pronoun: 'je', form: 'vais' },
+        { pronoun: 'tu', form: 'vas' },
+        { pronoun: 'il / elle / on', form: 'va' },
+        { pronoun: 'nous', form: 'allons' },
+        { pronoun: 'vous', form: 'allez' },
+        { pronoun: 'ils / elles', form: 'vont' },
+      ],
+      exampleSentence: { target: 'Comment allez-vous ?', translation: 'How are you?' },
+    },
+  ],
+  descriptions: [
+    {
+      title: 'French Adjective Agreement & Comparison',
+      explanation: 'Adjectives usually add -e for feminine and -s for plural. Comparison uses "plus + adjective + que" (more than).',
+      examples: [
+        { positive: 'bon (good)', comparative: 'meilleur (better)', superlative: 'le meilleur (best)', meaning: 'good / better / best' },
+        { positive: 'grand (big)', comparative: 'plus grand (bigger)', superlative: 'le plus grand (biggest)', meaning: 'big / bigger / biggest' },
+      ],
+    },
+  ],
+  flashcards: [
+    {
+      id: 'fr-card-1',
+      type: 'gender',
+      prompt: '___ livre (book)',
+      options: ['le', 'la'],
+      correctAnswer: 'le',
+      explanation: '"Livre" is masculine in French: "le livre".',
+      translation: 'the book',
+      gender: 'masculine',
+      article: 'le',
+      icon: '📖',
+    },
+    {
+      id: 'fr-card-2',
+      type: 'gender',
+      prompt: '___ maison (house)',
+      options: ['le', 'la'],
+      correctAnswer: 'la',
+      explanation: '"Maison" is feminine in French: "la maison".',
+      translation: 'the house',
+      gender: 'feminine',
+      article: 'la',
+      icon: '🏠',
+    },
+    {
+      id: 'fr-card-3',
+      type: 'verb',
+      prompt: 'nous + être ➔ présent',
+      options: ['suis', 'es', 'sommes', 'sont'],
+      correctAnswer: 'sommes',
+      explanation: 'For "nous" (we), the verb être is "nous sommes".',
+      translation: 'we are',
+      icon: '✨',
+    },
+  ],
+};
+
+export const PORTUGUESE_GRAMMAR: GrammarData = {
+  genderRules: [
+    {
+      article: 'o',
+      gender: 'masculine',
+      color: '#2563eb',
+      name: 'Masculino (o / os)',
+      description: 'Masculine nouns in Portuguese typically end in -o, consonants, or denote male beings.',
+      rules: [
+        'Nouns ending in -o: o livro, o carro, o trabalho, o tempo',
+        'Preposition contractions: em + o = no, de + o = do, a + o = ao',
+      ],
+      examples: [
+        { word: 'livro', article: 'o', meaning: 'book', icon: '📖' },
+        { word: 'café', article: 'o', meaning: 'coffee', icon: '☕' },
+        { word: 'amigo', article: 'o', meaning: 'friend', icon: '🧑‍🤝‍🧑' },
+      ],
+    },
+    {
+      article: 'a',
+      gender: 'feminine',
+      color: '#dc2626',
+      name: 'Feminino (a / as)',
+      description: 'Feminine nouns in Portuguese typically end in -a, -ção, -dade.',
+      rules: [
+        'Nouns ending in -a: a casa, a praia, a comida, a água',
+        'Preposition contractions: em + a = na, de + a = da, a + a = à',
+      ],
+      examples: [
+        { word: 'casa', article: 'a', meaning: 'house', icon: '🏠' },
+        { word: 'praia', article: 'a', meaning: 'beach', icon: '🏖️' },
+        { word: 'cidade', article: 'a', meaning: 'city', icon: '🏙️' },
+      ],
+    },
+  ],
+  verbs: [
+    {
+      verb: 'ser',
+      meaning: 'to be (permanent / identity)',
+      tense: 'Presente',
+      type: 'irregular',
+      forms: [
+        { pronoun: 'eu', form: 'sou' },
+        { pronoun: 'você / ele / ela', form: 'é' },
+        { pronoun: 'nós', form: 'somos' },
+        { pronoun: 'vocês / eles / elas', form: 'são' },
+      ],
+      exampleSentence: { target: 'Nós somos amigos.', translation: 'We are friends.' },
+    },
+    {
+      verb: 'ter',
+      meaning: 'to have',
+      tense: 'Presente',
+      type: 'irregular',
+      forms: [
+        { pronoun: 'eu', form: 'tenho' },
+        { pronoun: 'você / ele / ela', form: 'tem' },
+        { pronoun: 'nós', form: 'temos' },
+        { pronoun: 'vocês / eles / elas', form: 'têm' },
+      ],
+      exampleSentence: { target: 'Eu tenho uma pergunta.', translation: 'I have a question.' },
+    },
+  ],
+  descriptions: [
+    {
+      title: 'Portuguese Adjective Comparison',
+      explanation: 'Comparatives use "mais ... do que" (more than) or irregular forms like "melhor" (better).',
+      examples: [
+        { positive: 'bom (good)', comparative: 'melhor (better)', superlative: 'o melhor (best)', meaning: 'good / better / best' },
+        { positive: 'grande (big)', comparative: 'maior (bigger)', superlative: 'o maior (biggest)', meaning: 'big / bigger / biggest' },
+      ],
+    },
+  ],
+  flashcards: [
+    {
+      id: 'pt-card-1',
+      type: 'gender',
+      prompt: '___ livro (book)',
+      options: ['o', 'a'],
+      correctAnswer: 'o',
+      explanation: 'Livro is masculine in Portuguese: "o livro".',
+      translation: 'the book',
+      gender: 'masculine',
+      article: 'o',
+      icon: '📖',
+    },
+    {
+      id: 'pt-card-2',
+      type: 'gender',
+      prompt: '___ praia (beach)',
+      options: ['o', 'a'],
+      correctAnswer: 'a',
+      explanation: 'Praia ends in -a and is feminine: "a praia".',
+      translation: 'the beach',
+      gender: 'feminine',
+      article: 'a',
+      icon: '🏖️',
+    },
+  ],
+};
+
+export const ENGLISH_GRAMMAR: GrammarData = {
+  genderRules: [
+    {
+      article: 'a / an / the',
+      gender: 'neuter',
+      color: '#2563eb',
+      name: 'Articles (A, An, The)',
+      description: 'English has no grammatical gender for nouns, but uses definite ("the") and indefinite ("a / an") articles based on phonetic sounds.',
+      rules: [
+        'Use "a" before consonant sounds: a book, a car, a university (starts with /j/ sound)',
+        'Use "an" before vowel sounds: an apple, an hour (silent h), an elephant',
+        'Use "the" for specific or previously mentioned nouns: the book on the table',
+      ],
+      examples: [
+        { word: 'apple', article: 'an', meaning: 'an apple', icon: '🍎' },
+        { word: 'book', article: 'a', meaning: 'a book', icon: '📖' },
+        { word: 'car', article: 'a', meaning: 'a car', icon: '🚗' },
+        { word: 'hour', article: 'an', meaning: 'an hour', icon: '⏱️' },
+      ],
+    },
+  ],
+  verbs: [
+    {
+      verb: 'to be',
+      meaning: 'to be (copula)',
+      tense: 'Present & Past',
+      type: 'irregular',
+      forms: [
+        { pronoun: 'I', form: 'am / was' },
+        { pronoun: 'you', form: 'are / were' },
+        { pronoun: 'he / she / it', form: 'is / was' },
+        { pronoun: 'we', form: 'are / were' },
+        { pronoun: 'they', form: 'are / were' },
+      ],
+      exampleSentence: { target: 'We are learning languages together.', translation: 'We are learning languages together.' },
+    },
+    {
+      verb: 'to have',
+      meaning: 'to have / possess',
+      tense: 'Present & Past',
+      type: 'irregular',
+      forms: [
+        { pronoun: 'I / you / we / they', form: 'have (had)' },
+        { pronoun: 'he / she / it', form: 'has (had)' },
+      ],
+      exampleSentence: { target: 'She has a meeting today.', translation: 'She has a meeting today.' },
+    },
+  ],
+  descriptions: [
+    {
+      title: 'English Adjective Comparison',
+      explanation: 'Short adjectives take -er / -est (fast -> faster -> fastest). Longer adjectives use more / most (important -> more important -> most important).',
+      examples: [
+        { positive: 'good', comparative: 'better', superlative: 'best', meaning: 'good / better / best' },
+        { positive: 'bad', comparative: 'worse', superlative: 'worst', meaning: 'bad / worse / worst' },
+        { positive: 'big', comparative: 'bigger', superlative: 'biggest', meaning: 'big / bigger / biggest' },
+      ],
+    },
+  ],
+  flashcards: [
+    {
+      id: 'en-card-1',
+      type: 'gender',
+      prompt: '___ apple',
+      options: ['a', 'an'],
+      correctAnswer: 'an',
+      explanation: 'Apple begins with a vowel sound /æ/, so it takes "an apple".',
+      translation: 'an apple',
+      icon: '🍎',
+    },
+    {
+      id: 'en-card-2',
+      type: 'gender',
+      prompt: '___ hour',
+      options: ['a', 'an'],
+      correctAnswer: 'an',
+      explanation: 'Hour has a silent "h" and starts with a vowel sound /aʊər/, so it takes "an hour".',
+      translation: 'an hour',
+      icon: '⏱️',
+    },
+    {
+      id: 'en-card-3',
+      type: 'verb',
+      prompt: 'Past tense of "to go"',
+      options: ['goed', 'went', 'gone', 'going'],
+      correctAnswer: 'went',
+      explanation: 'Go is an irregular verb: go ➔ went ➔ gone.',
+      translation: 'went',
+      icon: '🚆',
+    },
+  ],
+};
+
+export const TURKISH_GRAMMAR: GrammarData = {
+  descriptions: [
+    {
+      title: 'Turkish Vowel Harmony (Ünlü Uyumu)',
+      explanation: 'Turkish suffixes change vowels to match the word stem. Back vowels (a, ı, o, u) take back suffixes (-lar, -da). Front vowels (e, i, ö, ü) take front suffixes (-ler, -de). Turkish has NO grammatical gender!',
+      examples: [
+        { positive: 'ev (house)', comparative: 'evler (houses)', superlative: 'evde (in the house)', meaning: 'Front vowel e -> -ler, -de' },
+        { positive: 'araba (car)', comparative: 'arabalar (cars)', superlative: 'arabada (in the car)', meaning: 'Back vowel a -> -lar, -da' },
+      ],
+    },
+  ],
+  verbs: [
+    {
+      verb: 'olmak',
+      meaning: 'to be / to become',
+      tense: 'Geniş Zaman (Present)',
+      type: 'regular',
+      forms: [
+        { pronoun: 'ben', form: 'olurum' },
+        { pronoun: 'sen', form: 'olursun' },
+        { pronoun: 'o', form: 'olur' },
+        { pronoun: 'biz', form: 'oluruz' },
+        { pronoun: 'siz', form: 'olursunuz' },
+        { pronoun: 'onlar', form: 'olurlar' },
+      ],
+      exampleSentence: { target: 'Sorun yok, olur böyle şeyler.', translation: 'No problem, such things happen.' },
+    },
+    {
+      verb: 'gitmek',
+      meaning: 'to go',
+      tense: 'Şimdiki Zaman (Present Continuous)',
+      type: 'regular',
+      forms: [
+        { pronoun: 'ben', form: 'gidiyorum' },
+        { pronoun: 'sen', form: 'gidiyorsun' },
+        { pronoun: 'o', form: 'gidiyor' },
+        { pronoun: 'biz', form: 'gidiyoruz' },
+        { pronoun: 'siz', form: 'gidiyorsunuz' },
+        { pronoun: 'onlar', form: 'gidiyorlar' },
+      ],
+      exampleSentence: { target: 'Nereye gidiyorsun?', translation: 'Where are you going?' },
+    },
+  ],
+  flashcards: [
+    {
+      id: 'tr-card-1',
+      type: 'description',
+      prompt: 'Plural of "ev" (house) [front vowel "e"]',
+      options: ['evler', 'evlar'],
+      correctAnswer: 'evler',
+      explanation: 'Front vowels (e, i, ö, ü) harmonically take -ler: "evler".',
+      translation: 'houses',
+      icon: '🏠',
+    },
+    {
+      id: 'tr-card-2',
+      type: 'description',
+      prompt: 'Plural of "araba" (car) [back vowel "a"]',
+      options: ['arabalar', 'arabaler'],
+      correctAnswer: 'arabalar',
+      explanation: 'Back vowels (a, ı, o, u) harmonically take -lar: "arabalar".',
+      translation: 'cars',
+      icon: '🚗',
+    },
+  ],
+};
+
+export const INDONESIAN_GRAMMAR: GrammarData = {
+  descriptions: [
+    {
+      title: 'Indonesian Word Order & Time Markers',
+      explanation: 'Indonesian has NO verb conjugation, NO grammatical gender, and NO tenses! Adjectives follow nouns (rumah besar = house big = big house). Time is indicated simply with marker words: "sudah" (already/past), "sedang" (currently), and "akan" (will/future).',
+      examples: [
+        { positive: 'makan (eat)', comparative: 'sedang makan (eating now)', superlative: 'sudah makan (already ate)', meaning: 'No conjugation needed!' },
+        { positive: 'rumah (house)', comparative: 'rumah besar (big house)', superlative: 'rumah-rumah (houses)', meaning: 'Plural is reduplicated' },
+      ],
+    },
+  ],
+  verbs: [
+    {
+      verb: 'bisa',
+      meaning: 'can / to be able to',
+      tense: 'Universal Modal',
+      type: 'regular',
+      forms: [
+        { pronoun: 'saya (I)', form: 'bisa' },
+        { pronoun: 'kamu (you)', form: 'bisa' },
+        { pronoun: 'dia (he/she)', form: 'bisa' },
+        { pronoun: 'kita (we)', form: 'bisa' },
+        { pronoun: 'mereka (they)', form: 'bisa' },
+      ],
+      exampleSentence: { target: 'Saya bisa bicara sedikit bahasa Indonesia.', translation: 'I can speak a little Indonesian.' },
+    },
+    {
+      verb: 'mau',
+      meaning: 'want / to want to',
+      tense: 'Universal Modal',
+      type: 'regular',
+      forms: [
+        { pronoun: 'saya (I)', form: 'mau' },
+        { pronoun: 'kamu (you)', form: 'mau' },
+        { pronoun: 'dia (he/she)', form: 'mau' },
+        { pronoun: 'kami (we)', form: 'mau' },
+        { pronoun: 'mereka (they)', form: 'mau' },
+      ],
+      exampleSentence: { target: 'Saya mau pesan makanan.', translation: 'I want to order food.' },
+    },
+  ],
+  flashcards: [
+    {
+      id: 'id-card-1',
+      type: 'description',
+      prompt: '"I am currently eating" ➔ Saya ___ makan',
+      options: ['sedang', 'sudah', 'akan'],
+      correctAnswer: 'sedang',
+      explanation: '"sedang" indicates an ongoing action in the present continuous.',
+      translation: 'I am eating right now',
+      icon: '🍲',
+    },
+    {
+      id: 'id-card-2',
+      type: 'description',
+      prompt: 'Plural of "buku" (book) in Indonesian',
+      options: ['buku-buku', 'bukus', 'parabuku'],
+      correctAnswer: 'buku-buku',
+      explanation: 'Indonesian expresses plural by repeating the noun (reduplication): "buku-buku".',
+      translation: 'books',
+      icon: '📖',
+    },
+  ],
+};
+
+export const getGrammarForLanguage = (lang: SupportedLanguageId): GrammarData => {
+  switch (lang) {
+    case 'de': return GERMAN_GRAMMAR;
+    case 'ru': return RUSSIAN_GRAMMAR;
+    case 'es': return SPANISH_GRAMMAR;
+    case 'fr': return FRENCH_GRAMMAR;
+    case 'pt': return PORTUGUESE_GRAMMAR;
+    case 'en': return ENGLISH_GRAMMAR;
+    case 'tr': return TURKISH_GRAMMAR;
+    case 'id': return INDONESIAN_GRAMMAR;
+    default: return GERMAN_GRAMMAR;
+  }
+};

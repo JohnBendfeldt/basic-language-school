@@ -1,4 +1,5 @@
 import { AlphabetItem, PhraseItem, AppData } from '../../../types/index';
+import { PORTUGUESE_GRAMMAR } from '../grammarData';
 
 // Portuguese alphabet (26 letters + Ç) with Brazilian Portuguese pronunciation and examples
 const alphabet: AlphabetItem[] = [
@@ -554,6 +555,7 @@ const portugueseData: AppData = {
   numbers,
   commonWords,
   time,
+  grammar: PORTUGUESE_GRAMMAR,
 };
 
 export default portugueseData;

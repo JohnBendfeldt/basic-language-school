@@ -1,4 +1,5 @@
 import { AlphabetItem, PhraseItem, AppData } from '../../../types';
+import { TURKISH_GRAMMAR } from '../grammarData';
 
 // Turkish Alphabet (29 letters including Ç, Ğ, I/ı, İ/i, Ö, Ş, Ü)
 const alphabet: AlphabetItem[] = [
@@ -560,6 +561,7 @@ const turkishData: AppData = {
   numbers,
   commonWords,
   time,
+  grammar: TURKISH_GRAMMAR,
 };
 
 export default turkishData;

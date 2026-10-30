@@ -1,4 +1,5 @@
 import { AlphabetItem, PhraseItem, AppData } from '../../../types';
+import { INDONESIAN_GRAMMAR } from '../grammarData';
 
 // Indonesian Alphabet (26 standard Latin letters with Indonesian phonetic names)
 const alphabet: AlphabetItem[] = [
@@ -551,6 +552,7 @@ const indonesianData: AppData = {
   numbers,
   commonWords,
   time,
+  grammar: INDONESIAN_GRAMMAR,
 };
 
 export default indonesianData;

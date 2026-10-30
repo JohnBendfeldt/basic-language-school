@@ -3,29 +3,24 @@ import { FaCheckCircle, FaTimesCircle, FaRedo, FaBookOpen, FaBolt, FaListUl, FaV
 import PronunciationButton from './PronunciationButton';
 import { useLanguage } from '../contexts/LanguageContext';
 import { GrammarData, GrammarFlashcard, GenderNounRule, VerbConjugation } from '../types';
-import { GERMAN_GRAMMAR, RUSSIAN_GRAMMAR, SPANISH_GRAMMAR } from '../data/languages/grammarData';
+import { getGrammarForLanguage } from '../data/languages/grammarData';
 
 interface GrammarProps {
   grammarData?: GrammarData;
 }
 
 export const Grammar: React.FC<GrammarProps> = ({ grammarData }) => {
-  const { currentLanguage, baseLanguage, currentMeta } = useLanguage();
+  const { currentLanguage, baseLanguage } = useLanguage();
 
-  // Fallback to bundled language grammar if not directly passed in data
-  const activeGrammar: GrammarData = grammarData || (
-    currentLanguage === 'de' ? GERMAN_GRAMMAR :
-    currentLanguage === 'ru' ? RUSSIAN_GRAMMAR :
-    currentLanguage === 'es' ? SPANISH_GRAMMAR :
-    GERMAN_GRAMMAR
-  );
+  // Dynamic language grammar
+  const activeGrammar: GrammarData = grammarData || getGrammarForLanguage(currentLanguage);
 
   const [activeTab, setActiveTab] = useState<'flashcards' | 'gender' | 'verbs' | 'descriptions'>('flashcards');
 
   // Flashcard Deck State
   const flashcardDeck: GrammarFlashcard[] = activeGrammar.flashcards && activeGrammar.flashcards.length > 0
     ? activeGrammar.flashcards
-    : GERMAN_GRAMMAR.flashcards!;
+    : [];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -35,8 +30,17 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData }) => {
   // Verb Matrix State
   const verbsList: VerbConjugation[] = activeGrammar.verbs && activeGrammar.verbs.length > 0
     ? activeGrammar.verbs
-    : GERMAN_GRAMMAR.verbs!;
+    : [];
   const [activeVerbIndex, setActiveVerbIndex] = useState(0);
+
+  // Reset progress when language or grammar data changes
+  React.useEffect(() => {
+    setCurrentIndex(0);
+    setSelectedOption(null);
+    setCardScore(0);
+    setDeckFinished(false);
+    setActiveVerbIndex(0);
+  }, [currentLanguage, grammarData]);
 
   const currentCard = flashcardDeck[currentIndex] || flashcardDeck[0];
 
@@ -130,7 +134,11 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData }) => {
       {/* View 1: Interactive Flashcards */}
       {activeTab === 'flashcards' && (
         <div className="grammar-flashcard-container">
-          {!deckFinished ? (
+          {!currentCard ? (
+            <div className="grammar-card">
+              <p>No flashcards currently available for this section.</p>
+            </div>
+          ) : !deckFinished ? (
             <div className="grammar-card">
               <div className="grammar-card-header">
                 <span className="grammar-category-badge">
@@ -358,9 +366,9 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData }) => {
 
               <div className="comparison-table">
                 <div className="comparison-header-row">
-                  <span>Positiv (Base)</span>
-                  <span>Komparativ (+er)</span>
-                  <span>Superlativ (am ...sten)</span>
+                  <span>Base (Positive)</span>
+                  <span>Comparative</span>
+                  <span>Superlative</span>
                   <span>Meaning</span>
                 </div>
                 {desc.examples.map((item, rowIdx) => (

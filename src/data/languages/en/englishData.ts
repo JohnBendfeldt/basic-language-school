@@ -3,6 +3,7 @@
  * Comprehensive beginner foundation: Alphabet & Phonics, Essential Phrases, Numbers, and Core Vocabulary.
  */
 import { AlphabetItem, PhraseItem, AppData } from '../../../types/index';
+import { ENGLISH_GRAMMAR } from '../grammarData';
 
 // English alphabet (A-Z) with phonics sounds and beginner vocabulary
 const alphabet: AlphabetItem[] = [
@@ -1049,7 +1050,8 @@ export const englishData: AppData = {
   alphabet,
   basicPhrases,
   numbers,
-  commonWords
+  commonWords,
+  grammar: ENGLISH_GRAMMAR
 };
 
 export default englishData;
