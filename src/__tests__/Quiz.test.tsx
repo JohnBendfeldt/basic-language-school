@@ -356,7 +356,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
     render(<Quiz data={sampleData} />);
 
     // Check repeat hint banner
-    expect(screen.getByText(/Tip: Repeat words and phrases aloud as you hear them!/i)).toBeInTheDocument();
+    expect(screen.getByText(/Tip: Try repeating words and phrases aloud as you hear them\./i)).toBeInTheDocument();
 
     // Check modality pills
     const writingPill = screen.getByRole('radio', { name: /Writing/i });
@@ -496,7 +496,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
     fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
 
     // Check that combo streak badge appears
-    expect(screen.getByText(/in a row!/i)).toBeInTheDocument();
+    expect(screen.getByText(/in a row/i)).toBeInTheDocument();
   });
 });
 
