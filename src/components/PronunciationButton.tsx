@@ -66,7 +66,7 @@ export const getCandidateAudioPathsForText = (
   const fileNames = [fileName];
   // If text has an article or pronoun prefix (e.g. "der tisch" -> "tisch", "он знает" -> "знает", "el libro" -> "libro", "siz gidiyorsunuz" -> "gidiyorsunuz")
   const strippedPrefix = cleanText.replace(
-    /^(der|die|das|el|la|los|las|un|una|le|l'|les|une|o|a|os|as|um|uma|the|a|an|он|она|оно|они|я|ты|мы|вы|ich|du|er|sie|es|wir|ihr|je|tu|il|elle|nous|vous|ils|elles|yo|tú|él|ella|nosotros|vosotros|ellos|eu|você|ele|ela|nós|eles|ben|sen|o|biz|siz|onlar|أنا|أنت|هو|هي|نحن|هم|मैं|तू|तुम|आप|वह|हम|वे)\s+/i,
+    /^(der|die|das|el|la|los|las|un|una|le|l'|les|une|o|a|os|as|um|uma|the|a|an|он|она|оно|они|я|ты|мы|вы|ich|du|er|sie|es|wir|ihr|je|tu|il|elle|nous|vous|ils|elles|yo|tú|él|ella|nosotros|vosotros|ellos|eu|você|ele|ela|nós|eles|ben|sen|o|biz|siz|onlar|أنا|أنت|هو|هي|نحن|هم|मैं|तू|तुम|आप|वह|हम|वे|আমি|তুমি|আপনি|সে|তিনি|আমরা|তোমরা|তারা|میں|تو|تم|آپ|وہ|ہم)\s+/i,
     ''
   );
   if (strippedPrefix && strippedPrefix !== cleanText) {
@@ -120,7 +120,11 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
                           ? 'hi'
                           : (lang && lang.toLowerCase().startsWith('ar'))
                             ? 'ar'
-                          : currentLanguage;
+                            : (lang && lang.toLowerCase().startsWith('bn'))
+                              ? 'bn'
+                              : (lang && lang.toLowerCase().startsWith('ur'))
+                                ? 'ur'
+                              : currentLanguage;
 
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);

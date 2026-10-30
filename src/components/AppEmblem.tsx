@@ -507,6 +507,79 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
         </svg>
       );
 
+    case 'bn':
+      return (
+        <svg
+          className="app-emblem bengali-flag"
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-label="Basic Bengali emblem"
+          role="img"
+        >
+          <defs>
+            <linearGradient id="bnEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#006a4e" />
+              <stop offset="50%" stopColor="#004d38" />
+              <stop offset="100%" stopColor="#0f2b20" />
+            </linearGradient>
+            <linearGradient id="bnGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#fde047" />
+              <stop offset="60%" stopColor="#f59e0b" />
+              <stop offset="100%" stopColor="#d97706" />
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#bnEmblemBg)" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
+          {/* Bangladesh flag: bottle green with red circle slightly toward hoist */}
+          {renderFlagBadge(
+            'bnFlagClip',
+            <>
+              <rect x="0" y="0" width="13" height="9" fill="#006a4e" />
+              <circle cx="5.8" cy="4.5" r="2.8" fill="#f42a41" />
+            </>
+          )}
+          {capGeometry('bnGoldGrad')}
+        </svg>
+      );
+
+    case 'ur':
+      return (
+        <svg
+          className="app-emblem urdu-flag"
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-label="Basic Urdu emblem"
+          role="img"
+        >
+          <defs>
+            <linearGradient id="urEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#115740" />
+              <stop offset="50%" stopColor="#0c3e2e" />
+              <stop offset="100%" stopColor="#06241a" />
+            </linearGradient>
+            <linearGradient id="urGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#fde047" />
+              <stop offset="60%" stopColor="#f59e0b" />
+              <stop offset="100%" stopColor="#d97706" />
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#urEmblemBg)" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
+          {/* Pakistan flag: white vertical stripe on hoist, dark green field with white crescent & star */}
+          {renderFlagBadge(
+            'urFlagClip',
+            <>
+              <rect x="0" y="0" width="13" height="9" fill="#115740" />
+              <rect x="0" y="0" width="3.25" height="9" fill="#ffffff" />
+              <circle cx="8.2" cy="4.5" r="2.2" fill="#ffffff" />
+              <circle cx="8.8" cy="4.0" r="1.9" fill="#115740" />
+              <polygon points="8.6,3.0 8.9,3.8 9.7,3.8 9.1,4.3 9.3,5.1 8.6,4.6 7.9,5.1 8.1,4.3 7.5,3.8 8.3,3.8" fill="#ffffff" />
+            </>
+          )}
+          {capGeometry('urGoldGrad')}
+        </svg>
+      );
+
     case 'en':
     default:
       return (

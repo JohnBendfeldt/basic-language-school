@@ -11,6 +11,7 @@ export default defineConfig({
       // Use existing public/manifest.json instead of generating one
       manifest: false,
       workbox: {
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5 MiB to accommodate offline bundle
         cleanupOutdatedCaches: true,
         clientsClaim: true,
         skipWaiting: true,

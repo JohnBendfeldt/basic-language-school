@@ -16,6 +16,8 @@ import turkishData from '../data/languages/tr/turkishData';
 import { chineseData } from '../data/languages/zh/chineseData';
 import { hindiData } from '../data/languages/hi/hindiData';
 import { arabicData } from '../data/languages/ar/arabicData';
+import { bengaliData } from '../data/languages/bn/bengaliData';
+import { urduData } from '../data/languages/ur/urduData';
 import { SupportedLanguageId } from '../data/languages/types';
 
 const PUBLIC_AUDIO = path.resolve(__dirname, '../../public/audio');
@@ -75,7 +77,7 @@ describe('Comprehensive Audio Coverage & Translation Audit', () => {
     expect(diskFileExists(bananaEnPaths)).toBe(true);
   });
 
-  it('verifies all 13 languages have 100% physical audio on disk for alphabet letters and example words', () => {
+  it('verifies all 15 languages have 100% physical audio on disk for alphabet letters and example words', () => {
     const courses: { id: SupportedLanguageId; data: any }[] = [
       { id: 'ru', data: russianData },
       { id: 'en', data: englishData },
@@ -90,6 +92,8 @@ describe('Comprehensive Audio Coverage & Translation Audit', () => {
       { id: 'zh', data: chineseData },
       { id: 'hi', data: hindiData },
       { id: 'ar', data: arabicData },
+      { id: 'bn', data: bengaliData },
+      { id: 'ur', data: urduData },
     ];
 
     const missingLetters: string[] = [];
@@ -123,7 +127,7 @@ describe('Comprehensive Audio Coverage & Translation Audit', () => {
     expect(missingExamples).toEqual([]);
   });
 
-  it('verifies all basic phrases across all 13 languages have studio audio files on disk', () => {
+  it('verifies all basic phrases across all 15 languages have studio audio files on disk', () => {
     const courses: { id: SupportedLanguageId; data: any }[] = [
       { id: 'ru', data: russianData },
       { id: 'en', data: englishData },
@@ -138,6 +142,8 @@ describe('Comprehensive Audio Coverage & Translation Audit', () => {
       { id: 'zh', data: chineseData },
       { id: 'hi', data: hindiData },
       { id: 'ar', data: arabicData },
+      { id: 'bn', data: bengaliData },
+      { id: 'ur', data: urduData },
     ];
 
     const missingPhrases: string[] = [];

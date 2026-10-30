@@ -344,11 +344,11 @@ const AppContent: React.FC = () => {
               type="button"
               className="header-search-btn"
               onClick={() => setIsSearchOpen(true)}
-              aria-label="Search vocabulary and phrases"
-              title={searchShortcut.title}
+              aria-label={chrome.searchTitle || searchShortcut.title}
+              title={chrome.searchTitle || searchShortcut.title}
             >
               <FaSearch className="search-btn-icon" />
-              <span className="search-btn-label">Search</span>
+              <span className="search-btn-label">{chrome.search || 'Search'}</span>
               <kbd className="search-btn-kbd">{searchShortcut.kbd}</kbd>
             </button>
 
@@ -372,8 +372,8 @@ const AppContent: React.FC = () => {
               type="button"
               className="mobile-search-btn"
               onClick={() => setIsSearchOpen(true)}
-              aria-label="Search vocabulary and phrases"
-              title="Search"
+              aria-label={chrome.searchTitle || searchShortcut.title}
+              title={chrome.search || 'Search'}
             >
               <FaSearch />
             </button>

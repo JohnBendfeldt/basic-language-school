@@ -16,7 +16,7 @@ function diskFileExistsForCandidates(candidateUrls: string[]): boolean {
 }
 
 const ALL_LANGUAGES: SupportedLanguageId[] = [
-  'en', 'es', 'fr', 'ru', 'pt', 'de', 'id', 'tr', 'zh', 'ja', 'ko', 'hi', 'ar'
+  'en', 'es', 'fr', 'ru', 'pt', 'de', 'id', 'tr', 'zh', 'ja', 'ko', 'hi', 'ar', 'bn', 'ur'
 ];
 
 interface AudioTarget {
@@ -66,7 +66,7 @@ describe('Grammar Audio Audit Across All Languages', () => {
         for (const rule of grammar.genderRules) {
           for (const ex of rule.examples) {
             // In non-Latin languages, don't speak the rule name
-            const isNonLatin = ['hi', 'ar', 'zh', 'ja', 'ko'].includes(lang);
+            const isNonLatin = ['hi', 'ar', 'zh', 'ja', 'ko', 'bn', 'ur'].includes(lang);
             const targetText = (lang === 'ru' || isNonLatin) ? ex.word : `${rule.article} ${ex.word}`;
             const spokenText = ex.word.replace(/\s*\([^)]*\)\s*/g, '').trim();
             const candidates = getCandidateAudioPathsForText(targetText, lang);

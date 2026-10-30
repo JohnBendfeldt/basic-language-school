@@ -3,6 +3,8 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import Quiz from '../components/Quiz';
 import { ProgressService } from '../services/progressService';
+import { LanguageProvider } from '../contexts/LanguageContext';
+import { getLocalizedRegionName, getComponentChrome } from '../utils/pageDictionary';
 
 // Mock Audio
 window.HTMLMediaElement.prototype.play = vi.fn().mockImplementation(() => Promise.resolve());
@@ -496,6 +498,57 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
 
     // Check that combo streak badge appears
     expect(screen.getByText(/in a row/i)).toBeInTheDocument();
+  });
+
+  it('correctly localizes topic dropdown and category badges when a Russian speaker learns French (ru -> fr)', async () => {
+    localStorage.setItem('basic_language_base_lang', 'ru');
+    localStorage.setItem('basic_language_target_lang', 'fr');
+    window.history.pushState({}, '', '/learn/fr/quiz');
+
+    const frenchSampleData = {
+      alphabet: [
+        { character: 'A', pronunciation: 'ah', example: 'avion', russianWord: 'avion' }
+      ],
+      basicPhrases: [
+        { english: 'Bonjour', russian: 'Bonjour', phrase: 'Bonjour', meaning: 'Hello', translation: 'Hello' }
+      ],
+      numbers: [],
+      commonWords: [
+        { english: 'Chat', russian: 'Chat', phrase: 'Chat', meaning: 'Cat', translation: 'Cat' }
+      ],
+      time: []
+    };
+
+    render(
+      <LanguageProvider>
+        <Quiz data={frenchSampleData} />
+      </LanguageProvider>
+    );
+
+    // Open topic dropdown
+    const topicButton = screen.getByRole('button', { name: /Все темы|Тема курса|All Topics/i });
+    fireEvent.click(topicButton);
+
+    // Verify localized core curriculum section titles
+    expect(screen.getByText('Основной курс')).toBeInTheDocument();
+    expect(screen.getByText('Специализированные темы')).toBeInTheDocument();
+
+    // Verify localized category items in dropdown
+    expect(screen.getByText('Алфавит')).toBeInTheDocument();
+    expect(screen.getByText('Основные фразы')).toBeInTheDocument();
+    expect(screen.getByText('Популярные слова')).toBeInTheDocument();
+  });
+
+  it('correctly localizes language switcher region names and header search in Russian', () => {
+    expect(getLocalizedRegionName('all', 'ru')).toBe('Все');
+    expect(getLocalizedRegionName('romance', 'ru')).toBe('Романские');
+    expect(getLocalizedRegionName('germanic', 'ru')).toBe('Германские');
+    expect(getLocalizedRegionName('slavic-eurasian', 'ru')).toBe('Славянские и евразийские');
+    expect(getLocalizedRegionName('east-asian', 'ru')).toBe('Восточноазиатские');
+    expect(getLocalizedRegionName('south-asian', 'ru')).toBe('Южноазиатские');
+    expect(getLocalizedRegionName('middle-eastern', 'ru')).toBe('Ближневосточные');
+
+    expect(getComponentChrome('ru').search).toBe('Поиск');
   });
 });
 

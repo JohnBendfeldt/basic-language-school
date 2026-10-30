@@ -474,7 +474,9 @@ export const getPageContent = (
       ko: '카드를 탭하여 번역과 발음을 확인하세요',
       zh: '点击卡片查看释义与标准发音',
       hi: 'अनुवाद और उच्चारण देखने के लिए किसी भी कार्ड पर टैप करें',
-      ar: 'انقر على أي بطاقة لعرض الترجمة والنطق'
+      ar: 'انقر على أي بطاقة لعرض الترجمة والنطق',
+      bn: 'অনুবাদ এবং উচ্চারণ দেখতে যেকোনো কার্ডে ট্যাপ করুন',
+      ur: 'ترجمہ اور تلفظ دیکھنے کے لیے کسی بھی کارڈ پر ٹیپ کریں'
     };
 
     if (targetLang === 'en') {
@@ -669,7 +671,9 @@ export const getPageContent = (
       ko: '카드를 탭하여 번역과 발음을 확인하세요',
       zh: '点击卡片查看释义与标准发音',
       hi: 'अनुवाद और उच्चारण देखने के लिए किसी भी कार्ड पर टैप करें',
-      ar: 'انقر على أي بطاقة لعرض الترجمة والنطق'
+      ar: 'انقر على أي بطاقة لعرض الترجمة والنطق',
+      bn: 'অনুবাদ এবং উচ্চারণ দেখতে যেকোনো কার্ডে ট্যাপ করুন',
+      ur: 'ترجمہ اور تلفظ دیکھنے کے لیے کسی بھی کارڈ پر ٹیپ کریں'
     };
 
     if (targetLang === 'en') {
@@ -1241,6 +1245,10 @@ export const getAlphabetLabels = (baseLang: SupportedLanguageId): { sound: strin
       return { sound: 'ध्वनि:', example: 'उदाहरण:', asIn: 'जैसे' };
     case 'ar':
       return { sound: 'الصوت:', example: 'مثال:', asIn: 'كما في' };
+    case 'bn':
+      return { sound: 'ধ্বনি:', example: 'উদাহরণ:', asIn: 'যেমন' };
+    case 'ur':
+      return { sound: 'آواز:', example: 'مثال:', asIn: 'جیسے' };
     case 'en':
     default:
       return { sound: 'Sound:', example: 'Example:', asIn: 'as in' };
@@ -1276,6 +1284,10 @@ export const getTimeTabs = (baseLang: SupportedLanguageId) => {
       return { numbers: 'संख्याएँ', time: 'समय' };
     case 'ar':
       return { numbers: 'الأرقام', time: 'الوقت' };
+    case 'bn':
+      return { numbers: 'সংখ্যা', time: 'সময়' };
+    case 'ur':
+      return { numbers: 'اعداد', time: 'وقت' };
     case 'en':
     default:
       return { numbers: 'Numbers', time: 'Telling Time' };
@@ -1926,6 +1938,8 @@ export const getLocalizedAppName = (
       zh: 'Базовый Китайский',
       hi: 'Базовый Хинди',
       ar: 'Базовый Арабский',
+      bn: 'Базовый Бенгальский',
+      ur: 'Базовый Урду',
     },
     es: {
       en: 'Inglés Básico',
@@ -1941,6 +1955,8 @@ export const getLocalizedAppName = (
       zh: 'Chino Básico',
       hi: 'Hindi Básico',
       ar: 'Árabe Básico',
+      bn: 'Bengalí Básico',
+      ur: 'Urdu Básico',
     },
     fr: {
       en: 'Anglais de Base',
@@ -1956,6 +1972,8 @@ export const getLocalizedAppName = (
       zh: 'Chinois de Base',
       hi: 'Hindi de Base',
       ar: 'Arabe de Base',
+      bn: 'Bengali de Base',
+      ur: 'Ourdou de Base',
     },
     pt: {
       en: 'Inglês Básico',
@@ -1971,6 +1989,8 @@ export const getLocalizedAppName = (
       zh: 'Chinês Básico',
       hi: 'Híndi Básico',
       ar: 'Árabe Básico',
+      bn: 'Bengali Básico',
+      ur: 'Urdu Básico',
     },
     de: {
       en: 'Basis-Englisch',
@@ -1986,6 +2006,8 @@ export const getLocalizedAppName = (
       zh: 'Basis-Chinesisch',
       hi: 'Basis-Hindi',
       ar: 'Basis-Arabisch',
+      bn: 'Basis-Bengalisch',
+      ur: 'Basis-Urdu',
     },
     id: {
       en: 'Bahasa Inggris Dasar',
@@ -2001,6 +2023,8 @@ export const getLocalizedAppName = (
       zh: 'Bahasa Mandarin Dasar',
       hi: 'Bahasa Hindi Dasar',
       ar: 'Bahasa Arab Dasar',
+      bn: 'Bahasa Bengali Dasar',
+      ur: 'Bahasa Urdu Dasar',
     },
     tr: {
       en: 'Temel İngilizce',
@@ -2016,6 +2040,8 @@ export const getLocalizedAppName = (
       zh: 'Temel Çince',
       hi: 'Temel Hintçe',
       ar: 'Temel Arapça',
+      bn: 'Temel Bengalce',
+      ur: 'Temel Urduca',
     },
     en: {
       en: 'Basic English',
@@ -2030,7 +2056,9 @@ export const getLocalizedAppName = (
       ko: 'Basic Korean',
       zh: 'Basic Chinese',
       hi: 'Basic Hindi',
-      ar: 'Basic Arabic'
+      ar: 'Basic Arabic',
+      bn: 'Basic Bengali',
+      ur: 'Basic Urdu',
     },
     ja: {
       en: 'ベーシック英語',
@@ -2046,6 +2074,8 @@ export const getLocalizedAppName = (
       zh: 'ベーシック中国語',
       hi: 'ベーシックヒンディー語',
       ar: 'ベーシック アラビア語',
+      bn: '基本ベンガル語',
+      ur: '基本ウルドゥー語',
     },
     ko: {
       en: '베이직 영어',
@@ -2061,6 +2091,8 @@ export const getLocalizedAppName = (
       zh: '베이직 중국어',
       hi: '베이직 힌디어',
       ar: '베이직 아랍어',
+      bn: '기초 벵골어',
+      ur: '기초 우르두어',
     },
     zh: {
       en: '基础英语',
@@ -2076,6 +2108,8 @@ export const getLocalizedAppName = (
       zh: '基础中文',
       hi: '基础印地语',
       ar: '基础阿拉伯语',
+      bn: '基础孟加拉语',
+      ur: '基础乌尔都语',
     },
     hi: {
       en: 'बेसिक अंग्रेज़ी',
@@ -2091,6 +2125,8 @@ export const getLocalizedAppName = (
       zh: 'बेसिक चीनी',
       hi: 'बेसिक हिन्दी',
       ar: 'बेसिक अरबी',
+      bn: 'बेसिक बंगाली',
+      ur: 'बेसिक उर्दू',
     },
     ar: {
       en: 'الإنجليزية الأساسية',
@@ -2105,8 +2141,44 @@ export const getLocalizedAppName = (
       ko: 'الكورية الأساسية',
       zh: 'الصينية الأساسية',
       hi: 'الهندية الأساسية',
-      ar: 'العربية الأساسية'
-    }
+      ar: 'العربية الأساسية',
+      bn: 'البنغالية الأساسية',
+      ur: 'الأردية الأساسية',
+    },
+    bn: {
+      en: 'বেসিক ইংলিশ',
+      es: 'বেসিক স্প্যানিশ',
+      fr: 'বেসিক ফরাসি',
+      ru: 'বেসিক রুশ',
+      pt: 'বেসিক পর্তুগিজ',
+      de: 'বেসিক জার্মান',
+      id: 'বেসিক ইন্দোনেশীয়',
+      tr: 'বেসিক তুর্কি',
+      ja: 'বেসিক জাপানি',
+      ko: 'বেসিক কোরীয়',
+      zh: 'বেসিক চীনা',
+      hi: 'বেসিক হিন্দি',
+      ar: 'বেসিক আরবি',
+      bn: 'বেসিক বাংলা',
+      ur: 'বেসিক উর্দু',
+    },
+    ur: {
+      en: 'بیسک انگلش',
+      es: 'بیسک ہسپانوی',
+      fr: 'بیسک فرانسیسی',
+      ru: 'بیسک روسی',
+      pt: 'بیسک پرتگالی',
+      de: 'بیسک جرمن',
+      id: 'بیسک انڈونیشیائی',
+      tr: 'بیسک ترکی',
+      ja: 'بیسک جاپانی',
+      ko: 'بیسک کوریائی',
+      zh: 'بیسک چینی',
+      hi: 'بیسک ہندی',
+      ar: 'بیسک عربی',
+      bn: 'بیسک بنگالی',
+      ur: 'بیسک اردو',
+    },
   };
 
   return map[baseLang]?.[targetLang] || fallbackAppName;
@@ -2138,6 +2210,8 @@ export const getLocalizedLanguageName = (
       ko: 'Корейский',
       hi: 'Хинди',
       ar: 'Арабский',
+      bn: 'Бенгальский',
+      ur: 'Урду',
     },
     es: {
       en: 'Inglés',
@@ -2154,6 +2228,8 @@ export const getLocalizedLanguageName = (
       ko: 'Coreano',
       hi: 'Hindi',
       ar: 'Árabe',
+      bn: 'Bengalí',
+      ur: 'Urdu',
     },
     fr: {
       en: 'Anglais',
@@ -2170,6 +2246,8 @@ export const getLocalizedLanguageName = (
       ko: 'Coréen',
       hi: 'Hindi',
       ar: 'Arabe',
+      bn: 'Bengali',
+      ur: 'Ourdou',
     },
     pt: {
       en: 'Inglês',
@@ -2186,6 +2264,8 @@ export const getLocalizedLanguageName = (
       ko: 'Coreano',
       hi: 'Híndi',
       ar: 'Árabe',
+      bn: 'Bengali',
+      ur: 'Urdu',
     },
     de: {
       en: 'Englisch',
@@ -2202,6 +2282,8 @@ export const getLocalizedLanguageName = (
       ko: 'Koreanisch',
       hi: 'Hindi',
       ar: 'Arabisch',
+      bn: 'Bengalisch',
+      ur: 'Urdu',
     },
     id: {
       en: 'Inggris',
@@ -2234,6 +2316,8 @@ export const getLocalizedLanguageName = (
       ko: 'Korece',
       hi: 'Hintçe',
       ar: 'Arapça',
+      bn: 'Bengalce',
+      ur: 'Urduca',
     },
     ja: {
       en: '英語',
@@ -2249,6 +2333,8 @@ export const getLocalizedLanguageName = (
       zh: '中国語',
       hi: 'ヒンディー語',
       ar: 'アラビア語',
+      bn: 'ベンガル語',
+      ur: 'ウルドゥー語',
     },
     ko: {
       en: '영어',
@@ -2264,6 +2350,8 @@ export const getLocalizedLanguageName = (
       zh: '중국어',
       hi: '힌디어',
       ar: '아랍어',
+      bn: '벵골어',
+      ur: '우르두어',
     },
     zh: {
       en: '英语',
@@ -2280,6 +2368,8 @@ export const getLocalizedLanguageName = (
       zh: '中文',
       hi: '印地语',
       ar: '阿拉伯语',
+      bn: '孟加拉语',
+      ur: '乌尔都语',
     },
     hi: {
       en: 'अंग्रेज़ी',
@@ -2296,6 +2386,8 @@ export const getLocalizedLanguageName = (
       zh: 'चीनी',
       hi: 'हिन्दी',
       ar: 'अरबी',
+      bn: 'बंगाली',
+      ur: 'उर्दू',
     },
     ar: {
       en: 'الإنجليزية',
@@ -2312,6 +2404,44 @@ export const getLocalizedLanguageName = (
       ko: 'الكورية',
       hi: 'الهندية',
       ar: 'العربية',
+      bn: 'البنغالية',
+      ur: 'الأردية',
+    },
+    bn: {
+      en: 'ইংরেজি',
+      es: 'স্প্যানিশ',
+      fr: 'ফরাসি',
+      ru: 'রুশ',
+      de: 'জার্মান',
+      it: 'ইতালীয়',
+      pt: 'পর্তুগিজ',
+      id: 'ইন্দোনেশীয়',
+      tr: 'তুর্কি',
+      ja: 'জাপানি',
+      zh: 'চীনা',
+      ko: 'কোরীয়',
+      hi: 'হিন্দি',
+      ar: 'আরবি',
+      bn: 'বাংলা',
+      ur: 'উর্দু',
+    },
+    ur: {
+      en: 'انگریزی',
+      es: 'ہسپانوی',
+      fr: 'فرانسیسی',
+      ru: 'روسی',
+      de: 'جرمن',
+      it: 'اطالوی',
+      pt: 'پرتگالی',
+      id: 'انڈونیشیائی',
+      tr: 'ترکی',
+      ja: 'جاپانی',
+      zh: 'چینی',
+      ko: 'کوریائی',
+      hi: 'ہندی',
+      ar: 'عربی',
+      bn: 'بنگالی',
+      ur: 'اردو',
     },
     en: {}
   };
@@ -2330,48 +2460,118 @@ export const localizeCategoryBadge = (
 
   const key = category.trim().toLowerCase();
   const map: Record<string, Partial<Record<SupportedLanguageId, string>>> = {
-    'greetings': { en: 'Greetings', es: 'Saludos', fr: 'Salutations', ru: 'Приветствия', pt: 'Saudações', de: 'Begrüßungen', id: 'Sapaan', tr: 'Selamlaşma' },
-    'conversation': { en: 'Conversation', es: 'Conversación', fr: 'Conversation', ru: 'Разговор', pt: 'Conversação', de: 'Gespräch', id: 'Percakapan', tr: 'Sohbet' },
-    'introductions': { en: 'Introductions', es: 'Presentaciones', fr: 'Présentations', ru: 'Знакомство', pt: 'Apresentações', de: 'Vorstellung', id: 'Perkenalan', tr: 'Tanışma' },
-    'farewells': { en: 'Farewells', es: 'Despedidas', fr: 'Au revoir', ru: 'Прощание', pt: 'Despedidas', de: 'Abschied', id: 'Perpisahan', tr: 'Vedalaşma' },
-    'politeness': { en: 'Politeness', es: 'Cortesía', fr: 'Politesse', ru: 'Вежливость', pt: 'Cortesia', de: 'Höflichkeit', id: 'Kesopanan', tr: 'Nezaket' },
-    'responses': { en: 'Responses', es: 'Respuestas', fr: 'Réponses', ru: 'Ответы', pt: 'Respostas', de: 'Antworten', id: 'Tanggapan', tr: 'Yanıtlar' },
-    'communication': { en: 'Communication', es: 'Comunicación', fr: 'Communication', ru: 'Общение', pt: 'Comunicação', de: 'Kommunikation', id: 'Komunikasi', tr: 'İletişim' },
-    'travel': { en: 'Travel', es: 'Viajes', fr: 'Voyage', ru: 'Путешествия', pt: 'Viagem', de: 'Reisen', id: 'Perjalanan', tr: 'Seyahat' },
-    'food & drink': { en: 'Food & Drink', es: 'Comida y Bebida', fr: 'Nourriture et Boissons', ru: 'Еда и напитки', pt: 'Comida e Bebida', de: 'Essen & Trinken', id: 'Makanan & Minuman', tr: 'Yiyecek ve İçecek' },
-    'dining': { en: 'Dining', es: 'Restaurante', fr: 'Au Restaurant', ru: 'В ресторане', pt: 'Restaurante', de: 'Im Restaurant', id: 'Restoran', tr: 'Restoran' },
-    'shopping': { en: 'Shopping', es: 'Compras', fr: 'Achats', ru: 'Покупки', pt: 'Compras', de: 'Einkaufen', id: 'Belanja', tr: 'Alışveriş' },
-    'emergency': { en: 'Emergency', es: 'Emergencia', fr: 'Urgence', ru: 'Экстренные случаи', pt: 'Emergência', de: 'Notfall', id: 'Darurat', tr: 'Acil Durum' },
-    'people & family': { en: 'People & Family', es: 'Gente y Familia', fr: 'Personnes et Famille', ru: 'Люди и семья', pt: 'Pessoas e Família', de: 'Menschen & Familie', id: 'Orang & Keluarga', tr: 'İnsanlar ve Aile' },
-    'people': { en: 'People', es: 'Gente', fr: 'Personnes', ru: 'Люди', pt: 'Pessoas', de: 'Menschen', id: 'Orang', tr: 'İnsanlar' },
-    'places': { en: 'Places', es: 'Lugares', fr: 'Lieux', ru: 'Места', pt: 'Lugares', de: 'Orte', id: 'Tempat', tr: 'Yerler' },
-    'transport': { en: 'Transport', es: 'Transporte', fr: 'Transports', ru: 'Транспорт', pt: 'Transporte', de: 'Verkehr', id: 'Transportasi', tr: 'Ulaşım' },
-    'everyday objects': { en: 'Everyday Objects', es: 'Objetos Cotidianos', fr: 'Objets du Quotidien', ru: 'Повседневные предметы', pt: 'Objetos do Dia a Dia', de: 'Alltagsgegenstände', id: 'Benda Sehari-hari', tr: 'Günlük Eşyalar' },
-    'everyday essentials': { en: 'Everyday Essentials', es: 'Esenciales Diarios', fr: 'Essentiels du Quotidien', ru: 'Повседневные вещи', pt: 'Essenciais Diários', de: 'Alltägliches', id: 'Kebutuhan Harian', tr: 'Günlük İhtiyaçlar' },
-    'essentials': { en: 'Essentials', es: 'Esenciales', fr: 'Essentiels', ru: 'Основное', pt: 'Essenciais', de: 'Grundlagen', id: 'Penting', tr: 'Temel' },
-    'work': { en: 'Work', es: 'Trabajo', fr: 'Travail', ru: 'Работа', pt: 'Trabalho', de: 'Arbeit', id: 'Pekerjaan', tr: 'İş' },
-    'finance': { en: 'Finance', es: 'Finanzas', fr: 'Finances', ru: 'Финансы', pt: 'Finanças', de: 'Finanzen', id: 'Keuangan', tr: 'Finans' },
-    'time & weather': { en: 'Time & Weather', es: 'Tiempo y Clima', fr: 'Temps et Météo', ru: 'Время и погода', pt: 'Tempo e Clima', de: 'Zeit & Wetter', id: 'Waktu & Cuaca', tr: 'Zaman ve Hava' },
-    'descriptions': { en: 'Descriptions', es: 'Descripciones', fr: 'Descriptions', ru: 'Описания', pt: 'Descrições', de: 'Beschreibungen', id: 'Deskripsi', tr: 'Tanımlar' },
-    'common verbs': { en: 'Common Verbs', es: 'Verbos Comunes', fr: 'Verbes Courants', ru: 'Основные глаголы', pt: 'Verbos Comuns', de: 'Häufige Verben', id: 'Kata Kerja Umum', tr: 'Yaygın Fiiller' },
-    'core actions': { en: 'Core Actions', es: 'Acciones Básicas', fr: 'Actions de Base', ru: 'Основные действия', pt: 'Ações Básicas', de: 'Grundverben', id: 'Tindakan Dasar', tr: 'Temel Eylemler' },
-    'numbers': { en: 'Numbers', es: 'Números', fr: 'Nombres', ru: 'Числа', pt: 'Números', de: 'Zahlen', id: 'Angka', tr: 'Sayılar' },
+    'all': {
+      en: 'All', es: 'Todos', fr: 'Tous', ru: 'Все', pt: 'Todos', de: 'Alle', id: 'Semua', tr: 'Tümü',
+      ja: 'すべて', ko: '전체', zh: '全部', hi: 'सभी', ar: 'الكل', bn: 'সব', ur: 'تمام'
+    },
+    'all topics': {
+      en: 'All Topics', es: 'Todos los temas', fr: 'Tous les thèmes', ru: 'Все темы', pt: 'Todos os tópicos', de: 'Alle Themen', id: 'Semua Topik', tr: 'Tüm Konular',
+      ja: 'すべてのトピック', ko: '모든 주제', zh: '全部主题', hi: 'सभी विषय', ar: 'جميع المواضيع', bn: 'সব বিষয়', ur: 'تمام عنوانات'
+    },
+    'alphabet': {
+      en: 'Alphabet', es: 'Alfabeto', fr: 'Alphabet', ru: 'Алфавит', pt: 'Alfabeto', de: 'Alphabet', id: 'Huruf', tr: 'Alfabe',
+      ja: 'アルファベット', ko: '알파벳', zh: '字母表', hi: 'वर्णमाला', ar: 'الأبجدية', bn: 'বর্ণমালা', ur: 'حروف تہجی'
+    },
+    'basicphrases': {
+      en: 'Phrases & Greetings', es: 'Frases y Saludos', fr: 'Phrases et Salutations', ru: 'Основные фразы', pt: 'Frases e Saudações', de: 'Phrasen & Grüße', id: 'Frasa & Sapaan', tr: 'İfadeler ve Selamlar',
+      ja: 'フレーズと挨拶', ko: '문구 및 인사말', zh: '常用短语与问候', hi: 'वाक्यांश और अभिवादन', ar: 'عبارات وتحيات', bn: 'বাক্যাংশ ও অভিবাদন', ur: 'جملے اور سلام'
+    },
+    'phrases & greetings': {
+      en: 'Phrases & Greetings', es: 'Frases y Saludos', fr: 'Phrases et Salutations', ru: 'Основные фразы', pt: 'Frases e Saudações', de: 'Phrasen & Grüße', id: 'Frasa & Sapaan', tr: 'İfadeler ve Selamlar',
+      ja: 'フレーズと挨拶', ko: '문구 및 인사말', zh: '常用短语与问候', hi: 'वाक्यांश और अभिवादन', ar: 'عبارات وتحيات', bn: 'বাক্যাংশ ও অভিবাদন', ur: 'جملے اور سلام'
+    },
+    'phrases': {
+      en: 'Phrases', es: 'Frases', fr: 'Phrases', ru: 'Фразы', pt: 'Frases', de: 'Phrasen', id: 'Frasa', tr: 'İfadeler',
+      ja: 'フレーズ', ko: '문구', zh: '短语', hi: 'वाक्यांश', ar: 'عبارات', bn: 'বাক্যাংশ', ur: 'جملے'
+    },
+    'commonwords': {
+      en: 'Common Words', es: 'Palabras Comunes', fr: 'Mots Fréquents', ru: 'Популярные слова', pt: 'Palabras Comuns', de: 'Häufige Wörter', id: 'Kata Umum', tr: 'Yaygın Kelimeler',
+      ja: 'よく使う単語', ko: '자주 쓰는 단어', zh: '常用单词', hi: 'सामान्य शब्द', ar: 'كلمات شائعة', bn: 'সাধারণ শব্দ', ur: 'عام الفاظ'
+    },
+    'common words': {
+      en: 'Common Words', es: 'Palabras Comunes', fr: 'Mots Fréquents', ru: 'Популярные слова', pt: 'Palabras Comuns', de: 'Häufige Wörter', id: 'Kata Umum', tr: 'Yaygın Kelimeler',
+      ja: 'よく使う単語', ko: '자주 쓰는 단어', zh: '常用单词', hi: 'सामान्य शब्द', ar: 'كلمات شائعة', bn: 'সাধারণ शब्द', ur: 'عام الفاظ'
+    },
+    'words': {
+      en: 'Words', es: 'Palabras', fr: 'Mots', ru: 'Слова', pt: 'Palavras', de: 'Wörter', id: 'Kata-kata', tr: 'Kelimeler',
+      ja: '単語', ko: '단어', zh: '词汇', hi: 'शब्द', ar: 'كلمات', bn: 'শব্দ', ur: 'الفاظ'
+    },
+    'numbers': {
+      en: 'Numbers', es: 'Números', fr: 'Nombres', ru: 'Числа', pt: 'Números', de: 'Zahlen', id: 'Angka', tr: 'Sayılar',
+      ja: '数字', ko: '숫자', zh: '数字', hi: 'संख्याएँ', ar: 'الأرقام', bn: 'সংখ্যা', ur: 'اعداد'
+    },
+    'time': {
+      en: 'Time & Days', es: 'Hora y Días', fr: 'Heure et Jours', ru: 'Время', pt: 'Horas e Dias', de: 'Zeit & Tage', id: 'Waktu & Hari', tr: 'Zaman ve Günler',
+      ja: '時間と曜日', ko: '시간 및 요일', zh: '时间与日期', hi: 'समय और दिन', ar: 'الوقت والأيام', bn: 'সময় ও দিন', ur: 'وقت اور دن'
+    },
+    'time & days': {
+      en: 'Time & Days', es: 'Hora y Días', fr: 'Heure et Jours', ru: 'Время и дни', pt: 'Horas e Dias', de: 'Zeit & Tage', id: 'Waktu & Hari', tr: 'Zaman ve Günler',
+      ja: '時間と曜日', ko: '시간 및 요일', zh: '时间与日期', hi: 'समय और दिन', ar: 'الوقت والأيام', bn: 'সময় ও দিন', ur: 'وقت اور دن'
+    },
+    'tech': {
+      en: 'Tech & IT', es: 'Tecnología', fr: 'Tech et IT', ru: 'Технологии', pt: 'Tecnologia', de: 'Tech & IT', id: 'Teknologi & IT', tr: 'Teknoloji ve Bilişim',
+      ja: 'テクノロジー・IT', ko: '기술 및 IT', zh: '科技与IT', hi: 'प्रौद्योगिकी व आईटी', ar: 'التكنولوجيا وتقنية المعلومات', bn: 'প্রযুক্তি ও আইটি', ur: 'ٹیکنالوجی اور آئی ٹی'
+    },
+    'business': {
+      en: 'Business & Work', es: 'Negocios y Trabajo', fr: 'Affaires et Travail', ru: 'Бизнес', pt: 'Negócios e Trabalho', de: 'Wirtschaft & Büro', id: 'Bisnis & Kantor', tr: 'İş ve Ofis',
+      ja: 'ビジネス・仕事', ko: '비즈니스 및 업무', zh: '商务与工作', hi: 'व्यवसाय और कार्य', ar: 'الأعمال والوظائف', bn: 'ব্যবসা ও কর্মক্ষেত্র', ur: 'کاروبار اور ملازمت'
+    },
+    'health': {
+      en: 'Healthcare', es: 'Salud', fr: 'Santé', ru: 'Здоровье', pt: 'Saúde', de: 'Gesundheit', id: 'Kesehatan', tr: 'Sağlık',
+      ja: '医療・健康', ko: '건강 및 의료', zh: '医疗健康', hi: 'स्वास्थ्य सेवा', ar: 'الرعاية الصحية', bn: 'স্বাস্থ্যসেবা', ur: 'صحت کی دیکھ بھال'
+    },
+    'travel': {
+      en: 'Travel & Transit', es: 'Viajes y Tránsito', fr: 'Voyage et Transit', ru: 'Путешествия', pt: 'Viagem e Tránsito', de: 'Reisen & Verkehr', id: 'Perjalanan & Transportasi', tr: 'Seyahat ve Ulaşım',
+      ja: '旅行と交通', ko: '여행 및 교통', zh: '旅游与交通', hi: 'यात्रा और पारगमन', ar: 'السفر والتنقل', bn: 'ভ্রমণ ও যাতায়াত', ur: 'سفر اور نقل و حمل'
+    },
+    'dining': {
+      en: 'Food & Dining', es: 'Comida y Restaurante', fr: 'Au Restaurant', ru: 'В ресторане', pt: 'Restaurante', de: 'Im Restaurant', id: 'Restoran', tr: 'Restoran',
+      ja: '食事とレストラン', ko: '음식 및 식사', zh: '餐饮美食', hi: 'खान-पान', ar: 'الطعام والمطاعم', bn: 'খাবার ও রেস্তোরাঁ', ur: 'کھانا اور ریستوراں'
+    },
+    'shopping': {
+      en: 'Shopping & Money', es: 'Compras y Dinero', fr: 'Achats et Argent', ru: 'Покупки', pt: 'Compras e Dinheiro', de: 'Einkaufen & Geld', id: 'Belanja & Uang', tr: 'Alışveriş ve Para',
+      ja: 'ショッピング・お金', ko: '쇼핑 및 돈', zh: '购物与金钱', hi: 'खरीदारी और पैसा', ar: 'التسوق والمال', bn: 'কেনাকাটা ও অর্থ', ur: 'خریداری اور رقم'
+    },
+    'colors': {
+      en: 'Colors', es: 'Colores', fr: 'Couleurs', ru: 'Цвета', pt: 'Cores', de: 'Farben', id: 'Warna', tr: 'Renkler',
+      ja: '色', ko: '색상', zh: '颜色', hi: 'रंग', ar: 'الألوان', bn: 'রং', ur: 'رنگ'
+    },
+    'weather': {
+      en: 'Weather & Nature', es: 'Clima y Naturaleza', fr: 'Météo et Nature', ru: 'Погода', pt: 'Clima e Natureza', de: 'Wetter & Natur', id: 'Cuaca & Alam', tr: 'Hava Durumu ve Doğa',
+      ja: '天気と自然', ko: '날씨 및 자연', zh: '天气与自然', hi: 'मौसम और प्रकृति', ar: 'الطقس والطبيعة', bn: 'আবহাওয়া ও প্রকৃতি', ur: 'موسم اور فطرت'
+    },
+    'greetings': { en: 'Greetings', es: 'Saludos', fr: 'Salutations', ru: 'Приветствия', pt: 'Saudações', de: 'Begrüßungen', id: 'Sapaan', tr: 'Selamlaşma', ja: '挨拶', ko: '인사', zh: '问候', hi: 'अभिवादन', ar: 'التحيات', bn: 'অভিবাদন', ur: 'سلام' },
+    'conversation': { en: 'Conversation', es: 'Conversación', fr: 'Conversation', ru: 'Разговор', pt: 'Conversação', de: 'Gespräch', id: 'Percakapan', tr: 'Sohbet', ja: '会話', ko: '대화', zh: '对话', hi: 'बातचीत', ar: 'محادثة', bn: 'কথোপকথন', ur: 'گفتگو' },
+    'introductions': { en: 'Introductions', es: 'Presentaciones', fr: 'Présentations', ru: 'Знакомство', pt: 'Apresentações', de: 'Vorstellung', id: 'Perkenalan', tr: 'Tanışma', ja: '自己紹介', ko: '소개', zh: '介绍', hi: 'परिचय', ar: 'التعارف', bn: 'পরিচিতি', ur: 'تعارف' },
+    'farewells': { en: 'Farewells', es: 'Despedidas', fr: 'Au revoir', ru: 'Прощание', pt: 'Despedidas', de: 'Abschied', id: 'Perpisahan', tr: 'Vedalaşma', ja: '別れの言葉', ko: '작별', zh: '告别', hi: 'विदाई', ar: 'الوداع', bn: 'বিদায়', ur: 'الوداع' },
+    'politeness': { en: 'Politeness', es: 'Cortesía', fr: 'Politesse', ru: 'Вежливость', pt: 'Cortesia', de: 'Höflichkeit', id: 'Kesopanan', tr: 'Nezaket', ja: '丁寧な表現', ko: '예절', zh: '礼貌', hi: 'विनम्रता', ar: 'اللباقة', bn: 'ভদ্রতা', ur: 'شائستگی' },
+    'responses': { en: 'Responses', es: 'Respuestas', fr: 'Réponses', ru: 'Ответы', pt: 'Respostas', de: 'Antworten', id: 'Tanggapan', tr: 'Yanıtlar', ja: '返答', ko: '응답', zh: '回应', hi: 'उत्तर', ar: 'الردود', bn: 'উত্তর', ur: 'جوابات' },
+    'communication': { en: 'Communication', es: 'Comunicación', fr: 'Communication', ru: 'Общение', pt: 'Comunicação', de: 'Kommunikation', id: 'Komunikasi', tr: 'İletişim', ja: 'コミュニケーション', ko: '의사소通', zh: '交流', hi: 'संचार', ar: 'التواصل', bn: 'যোগাযোগ', ur: 'رابطہ' },
+    'food & drink': { en: 'Food & Drink', es: 'Comida y Bebida', fr: 'Nourriture et Boissons', ru: 'Еда и напитки', pt: 'Comida e Bebida', de: 'Essen & Trinken', id: 'Makanan & Minuman', tr: 'Yiyecek ve İçecek', ja: '飲食', ko: '음식과 음료', zh: '饮食', hi: 'भोजन और पेय', ar: 'الطعام والشراب', bn: 'খাবার ও পানীয়', ur: 'کھانا اور پینا' },
+    'emergency': { en: 'Emergency', es: 'Emergencia', fr: 'Urgence', ru: 'Экстренные случаи', pt: 'Emergência', de: 'Notfall', id: 'Darurat', tr: 'Acil Durum', ja: '緊急時', ko: '비상 상황', zh: '紧急情况', hi: 'आपातकाल', ar: 'الطوارئ', bn: 'জরুরি অবস্থা', ur: 'ہنگامی صورتحال' },
+    'people & family': { en: 'People & Family', es: 'Gente y Familia', fr: 'Personnes et Famille', ru: 'Люди и семья', pt: 'Pessoas e Família', de: 'Menschen & Familie', id: 'Orang & Keluarga', tr: 'İnsanlar ve Aile', ja: '人と家族', ko: '사람과 가족', zh: '人与家庭', hi: 'लोग और परिवार', ar: 'الناس والأسرة', bn: 'মানুষ ও পরিবার', ur: 'لوگ اور خاندان' },
+    'people': { en: 'People', es: 'Gente', fr: 'Personnes', ru: 'Люди', pt: 'Pessoas', de: 'Menschen', id: 'Orang', tr: 'İnsanlar', ja: '人々', ko: '사람들', zh: '人物', hi: 'लोग', ar: 'الناس', bn: 'মানুষ', ur: 'لوگ' },
+    'places': { en: 'Places', es: 'Lugares', fr: 'Lieux', ru: 'Места', pt: 'Lugares', de: 'Orte', id: 'Tempat', tr: 'Yerler', ja: '場所', ko: '장소', zh: '地点', hi: 'स्थान', ar: 'الأماكن', bn: 'স্থান', ur: 'مقامات' },
+    'transport': { en: 'Transport', es: 'Transporte', fr: 'Transports', ru: 'Транспорт', pt: 'Transporte', de: 'Verkehr', id: 'Transportasi', tr: 'Ulaşım', ja: '交通', ko: '교통', zh: '交通', hi: 'परिवहन', ar: 'المواصلات', bn: 'পরিবহন', ur: 'نقل و حمل' },
+    'everyday objects': { en: 'Everyday Objects', es: 'Objetos Cotidianos', fr: 'Objets du Quotidien', ru: 'Повседневные предметы', pt: 'Objetos do Dia a Dia', de: 'Alltagsgegenstände', id: 'Benda Sehari-hari', tr: 'Günlük Eşyalar', ja: '日常の物', ko: '일상 사물', zh: '日常物品', hi: 'दैनिक वस्तुएँ', ar: 'أشياء يومية', bn: 'দৈনন্দিন বস্তু', ur: 'روزمرہ کی اشیاء' },
+    'everyday essentials': { en: 'Everyday Essentials', es: 'Esenciales Diarios', fr: 'Essentiels du Quotidien', ru: 'Повседневные вещи', pt: 'Essenciais Diários', de: 'Alltägliches', id: 'Kebutuhan Harian', tr: 'Günlük İhtiyaçlar', ja: '必需品', ko: '일상 필수품', zh: '生活必需品', hi: 'दैनिक आवश्यकताएँ', ar: 'الأساسيات اليومية', bn: 'দৈনন্দিন প্রয়োজনীয় জিনিস', ur: 'روزمرہ کی ضروریات' },
+    'essentials': { en: 'Essentials', es: 'Esenciales', fr: 'Essentiels', ru: 'Основное', pt: 'Essenciais', de: 'Grundlagen', id: 'Penting', tr: 'Temel', ja: '基本事項', ko: '기본 사항', zh: '基础必备', hi: 'बुनियादी', ar: 'الأساسيات', bn: 'মৌলিক', ur: 'بنیادی باتیں' },
+    'work': { en: 'Work', es: 'Trabajo', fr: 'Travail', ru: 'Работа', pt: 'Trabalho', de: 'Arbeit', id: 'Pekerjaan', tr: 'İş', ja: '仕事', ko: '일', zh: '工作', hi: 'काम', ar: 'العمل', bn: 'কাজ', ur: 'کام' },
+    'finance': { en: 'Finance', es: 'Finanzas', fr: 'Finances', ru: 'Финансы', pt: 'Finanças', de: 'Finanzen', id: 'Keuangan', tr: 'Finans', ja: '金融', ko: '금융', zh: '金融', hi: 'वित्त', ar: 'المالية', bn: 'অর্থায়ন', ur: 'مالیات' },
+    'time & weather': { en: 'Time & Weather', es: 'Tiempo y Clima', fr: 'Temps et Météo', ru: 'Время и погода', pt: 'Tempo e Clima', de: 'Zeit & Wetter', id: 'Waktu & Cuaca', tr: 'Zaman ve Hava', ja: '時間と天気', ko: '시간과 날씨', zh: '时间与天气', hi: 'समय और मौसम', ar: 'الوقت والطقس', bn: 'সময় ও আবহাওয়া', ur: 'وقت اور موسم' },
+    'descriptions': { en: 'Descriptions', es: 'Descripciones', fr: 'Descriptions', ru: 'Описания', pt: 'Descrições', de: 'Beschreibungen', id: 'Deskripsi', tr: 'Tanımlar', ja: '描写', ko: '설명', zh: '描述', hi: 'विवरण', ar: 'الأوصاف', bn: 'বিবরণ', ur: 'اوصاف' },
+    'common verbs': { en: 'Common Verbs', es: 'Verbos Comunes', fr: 'Verbes Courants', ru: 'Основные глаголы', pt: 'Verbos Comuns', de: 'Häufige Verben', id: 'Kata Kerja Umum', tr: 'Yaygın Fiiller', ja: '基本動詞', ko: '자주 쓰이는 동사', zh: '常用动词', hi: 'सामान्य क्रियाएँ', ar: 'أفعال شائعة', bn: 'সাধারণ ক্রিয়া', ur: 'عام افعال' },
+    'core actions': { en: 'Core Actions', es: 'Acciones Básicas', fr: 'Actions de Base', ru: 'Основные действия', pt: 'Ações Básicas', de: 'Grundverben', id: 'Tindakan Dasar', tr: 'Temel Eylemler', ja: '基本動作', ko: '기본 동작', zh: '核心行动', hi: 'मुख्य क्रियाएँ', ar: 'الإجراءات الأساسية', bn: 'প্রধান পদক্ষেপ', ur: 'بنیادی اعمال' },
     'numbers 0-10': { en: 'Numbers 0-10', es: 'Números 0-10', fr: 'Nombres 0-10', ru: 'Числа 0–10', pt: 'Números 0–10', de: 'Zahlen 0–10', id: 'Angka 0–10', tr: 'Sayılar 0–10' },
     'numbers 11-20': { en: 'Numbers 11-20', es: 'Números 11-20', fr: 'Nombres 11-20', ru: 'Числа 11–20', pt: 'Números 11–20', de: 'Zahlen 11–20', id: 'Angka 11–20', tr: 'Sayılar 11–20' },
     'tens': { en: 'Tens', es: 'Decenas', fr: 'Dizaines', ru: 'Десятки', pt: 'Dezenas', de: 'Zehner', id: 'Puluhan', tr: 'Onluklar' },
     'hundreds': { en: 'Hundreds', es: 'Centenas', fr: 'Centaines', ru: 'Сотни', pt: 'Centenas', de: 'Hunderter', id: 'Ratusan', tr: 'Yüzlükler' },
     'thousands': { en: 'Thousands', es: 'Miles', fr: 'Milliers', ru: 'Тысячи', pt: 'Milhares', de: 'Tausender', id: 'Ribuan', tr: 'Binlikler' },
-    'time': { en: 'Time', es: 'Hora y Tiempo', fr: 'Heure et Temps', ru: 'Время', pt: 'Hora e Tempo', de: 'Zeit', id: 'Waktu', tr: 'Zaman' },
     'questions': { en: 'Questions', es: 'Preguntas', fr: 'Questions', ru: 'Вопросы', pt: 'Perguntas', de: 'Fragen', id: 'Pertanyaan', tr: 'Sorular' },
     'hour': { en: 'Hour', es: 'Horas', fr: 'Heures', ru: 'Часы', pt: 'Horas', de: 'Stunden', id: 'Jam', tr: 'Saat' },
     'minutes': { en: 'Minutes', es: 'Minutos', fr: 'Minutes', ru: 'Минуты', pt: 'Minutos', de: 'Minuten', id: 'Menit', tr: 'Dakika' },
     'special': { en: 'Special', es: 'Especial', fr: 'Spécial', ru: 'Особое', pt: 'Especial', de: 'Spezial', id: 'Khusus', tr: 'Özel' },
     'mixed': { en: 'Mixed', es: 'Mixto', fr: 'Mixte', ru: 'Смешанный', pt: 'Misto', de: 'Gemischt', id: 'Campuran', tr: 'Karışık' },
-    'colors': { en: 'Colors', es: 'Colores', fr: 'Couleurs', ru: 'Цвета', pt: 'Cores', de: 'Farben', id: 'Warna', tr: 'Renkler' },
-    'weather': { en: 'Weather', es: 'Clima', fr: 'Météo', ru: 'Погода', pt: 'Clima', de: 'Wetter', id: 'Cuaca', tr: 'Hava Durumu' },
-    'tech': { en: 'Tech & IT', es: 'Tecnología', fr: 'Tech et IT', ru: 'Технологии', pt: 'Tecnologia', de: 'Tech & IT', id: 'Teknologi & IT', tr: 'Teknoloji ve Bilişim' },
-    'business': { en: 'Business', es: 'Negocios', fr: 'Affaires', ru: 'Бизнес', pt: 'Negócios', de: 'Wirtschaft & Büro', id: 'Bisnis & Kantor', tr: 'İş ve Ofis' },
-    'health': { en: 'Healthcare', es: 'Salud', fr: 'Santé', ru: 'Здоровье', pt: 'Saúde', de: 'Gesundheit', id: 'Kesehatan', tr: 'Sağlık' },
     'verbs': { en: 'Verbs', es: 'Verbos', fr: 'Verbes', ru: 'Глаголы', pt: 'Verbos', de: 'Verben', id: 'Kata Kerja', tr: 'Fiiller' },
     'calendar': { en: 'Calendar', es: 'Calendario', fr: 'Calendrier', ru: 'Календарь', pt: 'Calendário', de: 'Kalender', id: 'Kalender', tr: 'Takvim' },
     'family': { en: 'Family', es: 'Familia', fr: 'Famille', ru: 'Семья', pt: 'Família', de: 'Familie', id: 'Keluarga', tr: 'Aile' },
@@ -2379,8 +2579,7 @@ export const localizeCategoryBadge = (
     'general': { en: 'General', es: 'General', fr: 'Général', ru: 'Общее', pt: 'Geral', de: 'Allgemein', id: 'Umum', tr: 'Genel' },
     'home': { en: 'Home', es: 'Hogar', fr: 'Maison', ru: 'Дом', pt: 'Casa', de: 'Zuhause', id: 'Rumah', tr: 'Ev' },
     'nature': { en: 'Nature', es: 'Naturaleza', fr: 'Nature', ru: 'Природа', pt: 'Natureza', de: 'Natur', id: 'Alam', tr: 'Doğa' },
-    'question': { en: 'Questions', es: 'Preguntas', fr: 'Questions', ru: 'Вопросы', pt: 'Perguntas', de: 'Fragen', id: 'Pertanyaan', tr: 'Sorular' },
-    'all': { en: 'All', es: 'Todos', fr: 'Tous', ru: 'Все', pt: 'Todos', de: 'Alle', id: 'Semua', tr: 'Tümü' }
+    'question': { en: 'Questions', es: 'Preguntas', fr: 'Questions', ru: 'Вопросы', pt: 'Perguntas', de: 'Fragen', id: 'Pertanyaan', tr: 'Sorular' }
   };
 
   return map[key]?.[baseLang] || category;
@@ -2447,8 +2646,606 @@ export const getQuizToolbarLabels = (baseLang: SupportedLanguageId = 'en') => {
     zh: { topic: '课程主题', level: '熟练度等级', modality: '练习模式', questionOf: (c, t) => `第 ${c} 题 / 共 ${t} 题` },
     hi: { topic: 'पाठ विषय', level: 'कठिनाई स्तर', modality: 'अभ्यास मोड', questionOf: (c, t) => `प्रश्न ${c} / ${t}` },
     ar: { topic: 'موضوع الدرس', level: 'مستوى الصعوبة', modality: 'نمط التدريب', questionOf: (c, t) => `السؤال ${c} من ${t}` },
+    bn: { topic: 'পাঠ বিষয়', level: 'দক্ষতার স্তর', modality: 'অনুশীলন মোড', questionOf: (c, t) => `প্রশ্ন ${c} / ${t}` },
+    ur: { topic: 'سبق کا عنوان', level: 'مہارت کی سطح', modality: 'مشقی طریقہ', questionOf: (c, t) => `سوال ${c} از ${t}` },
   };
   return map[baseLang] || map.en;
+};
+
+export type LanguageRegionKey = 'all' | 'romance' | 'germanic' | 'slavic-eurasian' | 'east-asian' | 'south-asian' | 'middle-eastern';
+
+export const getLocalizedRegionName = (
+  region: LanguageRegionKey,
+  baseLang: SupportedLanguageId = 'en'
+): string => {
+  const map: Record<LanguageRegionKey, Record<SupportedLanguageId, string>> = {
+    all: {
+      en: 'All', es: 'Todos', fr: 'Tous', ru: 'Все', pt: 'Todos', de: 'Alle', id: 'Semua', tr: 'Tümü',
+      ja: 'すべて', ko: '전체', zh: '全部', hi: 'सभी', ar: 'الكل', bn: 'সব', ur: 'تمام'
+    },
+    romance: {
+      en: 'Romance', es: 'Románicas', fr: 'Romanes', ru: 'Романские', pt: 'Românicas', de: 'Romanisch', id: 'Romanika', tr: 'Romen',
+      ja: 'ロマンス諸語', ko: '로망스어군', zh: '罗曼语族', hi: 'रोमांस भाषाएँ', ar: 'الرومانسية', bn: 'রোমান্স ভাষা', ur: 'رومانس زبانیں'
+    },
+    germanic: {
+      en: 'Germanic', es: 'Germánicas', fr: 'Germaniques', ru: 'Германские', pt: 'Germânicas', de: 'Germanisch', id: 'Jermanik', tr: 'Cermen',
+      ja: 'ゲルマン諸語', ko: '게르만어군', zh: '日耳曼语族', hi: 'जर्मनिक भाषाएँ', ar: 'الجرمانية', bn: 'জার্মানীয় ভাষা', ur: 'جرمانوی زبانیں'
+    },
+    'slavic-eurasian': {
+      en: 'Slavic & Eurasian', es: 'Eslavas y Euroasiáticas', fr: 'Slaves et Eurasiennes', ru: 'Славянские и евразийские', pt: 'Eslavas e Eurasiáticas', de: 'Slawisch & Eurasisch', id: 'Slavia & Eurasia', tr: 'Slav ve Avrasya',
+      ja: 'スラブ・ユーラシア諸語', ko: '슬라브 및 유라시아어군', zh: '斯拉夫与欧亚语系', hi: 'स्लाव और यूरेशियाई', ar: 'السلافية والأوراسية', bn: 'স্লাভিক ও ইউরেশীয়', ur: 'سلاوی اور یوریشیائی'
+    },
+    'east-asian': {
+      en: 'East Asian', es: 'Asia Oriental', fr: 'Asie de l’Est', ru: 'Восточноазиатские', pt: 'Leste Asiático', de: 'Ostasiatisch', id: 'Asia Timur', tr: 'Doğu Asya',
+      ja: '東アジア諸語', ko: '동아시아어군', zh: '东亚语系', hi: 'पूर्वी एशियाई', ar: 'شرق آسيا', bn: 'পূর্ব এশীয়', ur: 'مشرقی ایشیائی'
+    },
+    'south-asian': {
+      en: 'South Asian', es: 'Asia Meridional', fr: 'Asie du Sud', ru: 'Южноазиатские', pt: 'Sul Asiático', de: 'Südasiatisch', id: 'Asia Selatan', tr: 'Güney Asya',
+      ja: '南アジア諸語', ko: '남아시아어군', zh: '南亚语系', hi: 'दक्षिण एशियाई', ar: 'جنوب آسيا', bn: 'দক্ষিণ এশীয়', ur: 'جنوبی ایشیائی'
+    },
+    'middle-eastern': {
+      en: 'Middle Eastern', es: 'Medio Oriente', fr: 'Moyen-Orient', ru: 'Ближневосточные', pt: 'Oriente Médio', de: 'Nahöstlich', id: 'Timur Tengah', tr: 'Orta Doğu',
+      ja: '中東諸語', ko: '중동어군', zh: '中东语系', hi: 'मध्य पूर्वी', ar: 'الشرق الأوسط', bn: 'মধ্যপ্রাচ্য', ur: 'مشرق وسطیٰ'
+    }
+  };
+
+  return map[region]?.[baseLang] || map[region]?.en || region;
+};
+
+export interface QuizRecapStrings {
+  sessionComplete: string;
+  correctRatio: (score: number, goal: number) => string;
+  goal: string;
+  correct: string;
+  bestStreak: string;
+  mastered: string;
+  remaining: string;
+  loggedNotice: string;
+  chooseTopic: string;
+  chooseNextLength: string;
+  startNextQuiz: (goal: number) => string;
+  pressEnter: string;
+  wordsToReview: (count: number) => string;
+  reviewHint: string;
+  answerLabel: string;
+  youTypedLabel: string;
+  coreCurriculum: string;
+  specializedPacks: string;
+  replayAudio: string;
+  needHint: string;
+  meaningLabel: string;
+  levelCheckpoint: (level: number | string, percentage: number) => { title: string; desc: string };
+  feedbackSubtitle: (percentage: number, targetName: string) => string;
+}
+
+export const getQuizRecapLabels = (baseLang: SupportedLanguageId = 'en'): QuizRecapStrings => {
+  switch (baseLang) {
+    case 'ru':
+      return {
+        sessionComplete: 'Тест завершён!',
+        correctRatio: (s, g) => `${s} из ${g} верно`,
+        goal: 'Цель',
+        correct: 'Верно',
+        bestStreak: 'Лучшая серия',
+        mastered: 'Изучено',
+        remaining: 'Осталось',
+        loggedNotice: 'Записано как 1 пройденный тест в вашем прогрессе',
+        chooseTopic: 'Выберите тему:',
+        chooseNextLength: 'Выберите длину следующего теста:',
+        startNextQuiz: (g) => `Начать следующий тест (${g} вопр.)`,
+        pressEnter: 'нажмите ↵ Enter',
+        wordsToReview: (c) => `Слова для повторения из этого теста (${c})`,
+        reviewHint: 'Послушайте правильное произношение, чтобы закрепить материал:',
+        answerLabel: 'Ответ:',
+        youTypedLabel: 'Ваш ответ:',
+        coreCurriculum: 'Основной курс',
+        specializedPacks: 'Специализированные темы',
+        replayAudio: 'Нажмите для повтора аудио',
+        needHint: 'Нужна подсказка?',
+        meaningLabel: 'Значение',
+        levelCheckpoint: (lvl, pct) => ({
+          title: `Рубеж уровня ${lvl} пройден!`,
+          desc: `Вы показали уверенное владение материалом уровня ${lvl} (${pct}% верных ответов). Отличная работа!`
+        }),
+        feedbackSubtitle: (pct) => {
+          if (pct === 100) return 'Идеальный результат! Вы ответили правильно на все вопросы.';
+          if (pct >= 80) return 'Отличная работа! Ваши языковые навыки уверенно растут.';
+          if (pct >= 60) return 'Хороший прогресс! Ещё немного практики — и всё получится.';
+          return 'Повторение — мать учения. Каждый подход приближает вас к свободной речи!';
+        }
+      };
+
+    case 'es':
+      return {
+        sessionComplete: '¡Sesión de test completada!',
+        correctRatio: (s, g) => `${s} de ${g} correctas`,
+        goal: 'Meta',
+        correct: 'Correcto',
+        bestStreak: 'Mejor racha',
+        mastered: 'Dominadas',
+        remaining: 'Restantes',
+        loggedNotice: 'Registrado como 1 prueba completada en tu progreso',
+        chooseTopic: 'Elegir tema:',
+        chooseNextLength: 'Elegir duración del siguiente test:',
+        startNextQuiz: (g) => `Iniciar siguiente test (${g} preg.)`,
+        pressEnter: 'pulsa ↵ Enter',
+        wordsToReview: (c) => `Palabras para repasar de esta sesión (${c})`,
+        reviewHint: 'Escucha la pronunciación correcta para reforzar tu memoria:',
+        answerLabel: 'Respuesta:',
+        youTypedLabel: 'Escribiste:',
+        coreCurriculum: 'Programa principal',
+        specializedPacks: 'Packs especializados',
+        replayAudio: 'Toca para reproducir el audio de nuevo',
+        needHint: '¿Necesitas una pista?',
+        meaningLabel: 'Significado',
+        levelCheckpoint: (lvl, pct) => ({
+          title: `¡Punto de control de nivel ${lvl} superado!`,
+          desc: `Has demostrado un dominio sólido del vocabulario del nivel ${lvl} (${pct}% de aciertos). ¡Bien hecho!`
+        }),
+        feedbackSubtitle: (pct) => {
+          if (pct === 100) return '¡Puntaje perfecto! Has dominado todas las preguntas de esta sesión.';
+          if (pct >= 80) return '¡Excelente trabajo! Tus habilidades lingüísticas están mejorando mucho.';
+          if (pct >= 60) return '¡Buen progreso! Un poco más de práctica y lo dominarás por completo.';
+          return 'La repetición es la clave del aprendizaje. ¡Cada intento te acerca a la fluidez!';
+        }
+      };
+
+    case 'fr':
+      return {
+        sessionComplete: 'Session de quiz terminée !',
+        correctRatio: (s, g) => `${s} sur ${g} corrects`,
+        goal: 'Objectif',
+        correct: 'Correct',
+        bestStreak: 'Meilleure série',
+        mastered: 'Maîtrisés',
+        remaining: 'Restants',
+        loggedNotice: 'Enregistré comme 1 quiz terminé dans vos progrès d’apprentissage',
+        chooseTopic: 'Choisir un thème :',
+        chooseNextLength: 'Choisir la longueur du prochain quiz :',
+        startNextQuiz: (g) => `Démarrer le quiz suivant (${g} quest.)`,
+        pressEnter: 'appuyez sur ↵ Entrée',
+        wordsToReview: (c) => `Mots à réviser de cette session (${c})`,
+        reviewHint: 'Écoutez la prononciation correcte pour renforcer votre mémoire :',
+        answerLabel: 'Réponse :',
+        youTypedLabel: 'Vous avez tapé :',
+        coreCurriculum: 'Programme fondamental',
+        specializedPacks: 'Modules spécialisés',
+        replayAudio: 'Touchez pour réécouter l’audio',
+        needHint: 'Besoin d’un indice ?',
+        meaningLabel: 'Signification',
+        levelCheckpoint: (lvl, pct) => ({
+          title: `Étape du niveau ${lvl} validée !`,
+          desc: `Vous avez fait preuve d’une solide maîtrise du vocabulaire de niveau ${lvl} (${pct} % de précision). Bien joué !`
+        }),
+        feedbackSubtitle: (pct) => {
+          if (pct === 100) return 'Score parfait ! Vous avez maîtrisé toutes les questions de cette session.';
+          if (pct >= 80) return 'Excellent travail ! Vos compétences linguistiques progressent à grands pas.';
+          if (pct >= 60) return 'Des progrès solides ! Encore un peu d’entraînement et vous maîtriserez tout.';
+          return 'La répétition est la clé de la réussite. Chaque essai renforce votre mémoire !';
+        }
+      };
+
+    case 'de':
+      return {
+        sessionComplete: 'Quiz-Sitzung abgeschlossen!',
+        correctRatio: (s, g) => `${s} von ${g} richtig`,
+        goal: 'Ziel',
+        correct: 'Richtig',
+        bestStreak: 'Beste Serie',
+        mastered: 'Gemeistert',
+        remaining: 'Übrig',
+        loggedNotice: 'Als 1 abgeschlossenes Quiz in deinem Lernfortschritt gespeichert',
+        chooseTopic: 'Thema wählen:',
+        chooseNextLength: 'Länge des nächsten Quiz wählen:',
+        startNextQuiz: (g) => `Nächstes Quiz starten (${g} Fragen)`,
+        pressEnter: 'drücke ↵ Enter',
+        wordsToReview: (c) => `Wörter zum Wiederholen aus dieser Sitzung (${c})`,
+        reviewHint: 'Höre die richtige Aussprache an, um dein Gedächtnis zu stärken:',
+        answerLabel: 'Antwort:',
+        youTypedLabel: 'Du hast getippt:',
+        coreCurriculum: 'Grundlehrplan',
+        specializedPacks: 'Branchen- & Spezialthemen',
+        replayAudio: 'Tippen zum erneuten Abspielen',
+        needHint: 'Brauchst du einen Hinweis?',
+        meaningLabel: 'Bedeutung',
+        levelCheckpoint: (lvl, pct) => ({
+          title: `Stufe ${lvl} Kontrollpunkt bestanden!`,
+          desc: `Du hast solide Kenntnisse des Wortschatzes der Stufe ${lvl} gezeigt (${pct} % Genauigkeit). Sehr gut!`
+        }),
+        feedbackSubtitle: (pct) => {
+          if (pct === 100) return 'Perfekte Punktzahl! Du hast alle Fragen dieser Sitzung gemeistert.';
+          if (pct >= 80) return 'Großartige Arbeit! Deine Sprachkenntnisse wachsen stetig.';
+          if (pct >= 60) return 'Guter Fortschritt! Noch ein wenig Übung und du meisterst alles.';
+          return 'Übung macht den Meister. Jeder Versuch bringt dich weiter voran!';
+        }
+      };
+
+    case 'pt':
+      return {
+        sessionComplete: 'Sessão do quiz concluída!',
+        correctRatio: (s, g) => `${s} de ${g} corretas`,
+        goal: 'Meta',
+        correct: 'Correto',
+        bestStreak: 'Melhor sequência',
+        mastered: 'Dominadas',
+        remaining: 'Restantes',
+        loggedNotice: 'Registrado como 1 quiz concluído em seu progresso',
+        chooseTopic: 'Escolher tema:',
+        chooseNextLength: 'Escolher duração do próximo quiz:',
+        startNextQuiz: (g) => `Iniciar próximo quiz (${g} perg.)`,
+        pressEnter: 'pressione ↵ Enter',
+        wordsToReview: (c) => `Palavras para revisar desta sessão (${c})`,
+        reviewHint: 'Ouça a pronúncia correta para reforçar a memória:',
+        answerLabel: 'Resposta:',
+        youTypedLabel: 'Você digitou:',
+        coreCurriculum: 'Currículo principal',
+        specializedPacks: 'Módulos especializados',
+        replayAudio: 'Toque para ouvir o áudio novamente',
+        needHint: 'Precisa de uma dica?',
+        meaningLabel: 'Significado',
+        levelCheckpoint: (lvl, pct) => ({
+          title: `Etapa do nível ${lvl} superada!`,
+          desc: `Você demonstrou domínio sólido do vocabulário do nível ${lvl} (${pct}% de acertos). Muito bem!`
+        }),
+        feedbackSubtitle: (pct) => {
+          if (pct === 100) return 'Pontuação perfeita! Você dominou todas as perguntas desta sessão.';
+          if (pct >= 80) return 'Excelente trabalho! Suas habilidades linguísticas estão evoluindo bastante.';
+          if (pct >= 60) return 'Bom progresso! Mais um pouco de treino e você dominará tudo.';
+          return 'A repetição é a base do aprendizado. Cada tentativa deixa você mais fluente!';
+        }
+      };
+
+    case 'tr':
+      return {
+        sessionComplete: 'Test Oturumu Tamamlandı!',
+        correctRatio: (s, g) => `${s} / ${g} doğru`,
+        goal: 'Hedef',
+        correct: 'Doğru',
+        bestStreak: 'En İyi Seri',
+        mastered: 'Öğrenilen',
+        remaining: 'Kalan',
+        loggedNotice: 'Öğrenme ilerlemenize 1 tamamlanan test olarak kaydedildi',
+        chooseTopic: 'Konu seçin:',
+        chooseNextLength: 'Sonraki test uzunluğunu seçin:',
+        startNextQuiz: (g) => `Sonraki Testi Başlat (${g} Soru)`,
+        pressEnter: '↵ Enter tuşuna basın',
+        wordsToReview: (c) => `Bu Oturumdan Tekrar Edilecek Kelimeler (${c})`,
+        reviewHint: 'Hafızanızı pekiştirmek için doğru telaffuzu dinleyin:',
+        answerLabel: 'Cevap:',
+        youTypedLabel: 'Yazdığınız:',
+        coreCurriculum: 'Temel Müfredat',
+        specializedPacks: 'Sektörel ve Özel Paketler',
+        replayAudio: 'Sesi tekrar dinlemek için dokunun',
+        needHint: 'İpucu ister misiniz?',
+        meaningLabel: 'Anlamı',
+        levelCheckpoint: (lvl, pct) => ({
+          title: `Seviye ${lvl} Tamamlandı!`,
+          desc: `Seviye ${lvl} kelimelerinde sağlam bir hakimiyet gösterdiniz (%${pct} doğruluk). Tebrikler!`
+        }),
+        feedbackSubtitle: (pct) => {
+          if (pct === 100) return 'Kusursuz puan! Bu oturumdaki tüm soruları doğru cevapladınız.';
+          if (pct >= 80) return 'Harika iş! Dil becerileriniz hızla güçleniyor.';
+          if (pct >= 60) return 'Güzel ilerleme! Biraz daha pratikle hepsini öğreneceksiniz.';
+          return 'Tekrar bilginin anasıdır. Her deneme sizi akıcılığa bir adım daha yaklaştırır!';
+        }
+      };
+
+    case 'id':
+      return {
+        sessionComplete: 'Sesi Kuis Selesai!',
+        correctRatio: (s, g) => `${s} dari ${g} benar`,
+        goal: 'Target',
+        correct: 'Benar',
+        bestStreak: 'Rangkaian Terbaik',
+        mastered: 'Dikuasai',
+        remaining: 'Tersisa',
+        loggedNotice: 'Tercatat sebagai 1 kuis selesai dalam kemajuan belajar Anda',
+        chooseTopic: 'Pilih topik:',
+        chooseNextLength: 'Pilih panjang kuis berikutnya:',
+        startNextQuiz: (g) => `Mulai Kuis Berikutnya (${g} Pertanyaan)`,
+        pressEnter: 'tekan ↵ Enter',
+        wordsToReview: (c) => `Kata untuk Diulas dari Sesi Ini (${c})`,
+        reviewHint: 'Dengarkan pengucapan yang benar untuk memperkuat ingatan:',
+        answerLabel: 'Jawaban:',
+        youTypedLabel: 'Ketik Anda:',
+        coreCurriculum: 'Kurikulum Utama',
+        specializedPacks: 'Paket Spesialis & Industri',
+        replayAudio: 'Ketuk untuk memutar audio lagi',
+        needHint: 'Butuh petunjuk?',
+        meaningLabel: 'Arti',
+        levelCheckpoint: (lvl, pct) => ({
+          title: `Pos Pemeriksaan Tingkat ${lvl} Berhasil Dilewati!`,
+          desc: `Anda menunjukkan penguasaan kosakata Tingkat ${lvl} yang kuat (akurasi ${pct}%). Luar biasa!`
+        }),
+        feedbackSubtitle: (pct) => {
+          if (pct === 100) return 'Skor sempurna! Anda menguasai setiap pertanyaan dalam sesi ini.';
+          if (pct >= 80) return 'Kerja bagus! Keterampilan bahasa Anda semakin meningkat.';
+          if (pct >= 60) return 'Kemajuan bagus! Sedikit latihan lagi dan Anda akan menguasainya.';
+          return 'Latihan berulang membangun keyakinan abadi. Teruslah berlatih!';
+        }
+      };
+
+    case 'ja':
+      return {
+        sessionComplete: 'クイズセッション完了！',
+        correctRatio: (s, g) => `${s} / ${g} 正解`,
+        goal: '目標',
+        correct: '正解',
+        bestStreak: '最長連続正解',
+        mastered: '習得済み',
+        remaining: '残り',
+        loggedNotice: '学習進捗に完了クイズ1回として記録されました',
+        chooseTopic: 'トピックを選択:',
+        chooseNextLength: '次のクイズの長さを選択:',
+        startNextQuiz: (g) => `次のクイズを開始 (${g}問)`,
+        pressEnter: '↵ Enter を押す',
+        wordsToReview: (c) => `このセッションの復習単語 (${c})`,
+        reviewHint: '正しい発音を聞いて記憶を定着させましょう:',
+        answerLabel: '正解:',
+        youTypedLabel: 'あなたの回答:',
+        coreCurriculum: 'コアカリキュラム',
+        specializedPacks: '業界・専門パック',
+        replayAudio: 'タップして音声を再生',
+        needHint: 'ヒントが必要ですか？',
+        meaningLabel: '意味',
+        levelCheckpoint: (lvl, pct) => ({
+          title: `レベル${lvl} チェックポイント達成！`,
+          desc: `レベル${lvl}の単語をしっかり習得できています（正解率${pct}%）。素晴らしい成果です！`
+        }),
+        feedbackSubtitle: (pct) => {
+          if (pct === 100) return '満点です！すべての問題に完璧に答えられました。';
+          if (pct >= 80) return '素晴らしい！語学力が着実に伸びています。';
+          if (pct >= 60) return '順調です！あと少し練習すれば完璧に身につきます。';
+          return '反復練習が上達への近道です。一歩ずつ前進しましょう！';
+        }
+      };
+
+    case 'ko':
+      return {
+        sessionComplete: '퀴즈 세션 완료!',
+        correctRatio: (s, g) => `${s} / ${g} 정답`,
+        goal: '목표',
+        correct: '정답',
+        bestStreak: '최대 연속 정답',
+        mastered: '마스터함',
+        remaining: '남음',
+        loggedNotice: '학습 진행 기록에 완료된 퀴즈 1회로 저장되었습니다',
+        chooseTopic: '주제 선택:',
+        chooseNextLength: '다음 퀴즈 길이 선택:',
+        startNextQuiz: (g) => `다음 퀴즈 시작 (${g}문제)`,
+        pressEnter: '↵ Enter 누르기',
+        wordsToReview: (c) => `이번 세션 복습 단어 (${c})`,
+        reviewHint: '정확한 발음을 듣고 기억을 강화하세요:',
+        answerLabel: '정답:',
+        youTypedLabel: '입력한 답:',
+        coreCurriculum: '핵심 커리큘럼',
+        specializedPacks: '분야별 전문 팩',
+        replayAudio: '오디오 다시 듣기',
+        needHint: '힌트가 필요하신가요?',
+        meaningLabel: '의미',
+        levelCheckpoint: (lvl, pct) => ({
+          title: `레벨 ${lvl} 체크포인트 통과!`,
+          desc: `레벨 ${lvl} 단어를 탄탄하게 습득하셨습니다 (정답률 ${pct}%). 잘하셨습니다!`
+        }),
+        feedbackSubtitle: (pct) => {
+          if (pct === 100) return '만점입니다! 이번 세션의 모든 문제를 맞히셨습니다.';
+          if (pct >= 80) return '훌륭합니다! 언어 실력이 탄탄해지고 있습니다.';
+          if (pct >= 60) return '순조로운 발전입니다! 조금만 더 연습하면 완벽해집니다.';
+          return '반복 연습이 마스터의 지름길입니다. 한 걸음씩 꾸준히 나아가세요!';
+        }
+      };
+
+    case 'zh':
+      return {
+        sessionComplete: '测试环节完成！',
+        correctRatio: (s, g) => `${s} / ${g} 正确`,
+        goal: '目标',
+        correct: '正确',
+        bestStreak: '最佳连胜',
+        mastered: '已掌握',
+        remaining: '剩余',
+        loggedNotice: '已计入您的学习进度（完成1次测试）',
+        chooseTopic: '选择主题：',
+        chooseNextLength: '选择下次测试题数：',
+        startNextQuiz: (g) => `开始下次测试 (${g}题)`,
+        pressEnter: '按 ↵ Enter 键',
+        wordsToReview: (c) => `本次测试需要复习的词汇 (${c})`,
+        reviewHint: '收听标准发音以加深记忆：',
+        answerLabel: '正确答案：',
+        youTypedLabel: '你的输入：',
+        coreCurriculum: '核心课程',
+        specializedPacks: '行业与专业主题包',
+        replayAudio: '点击重新播放音频',
+        needHint: '需要提示吗？',
+        meaningLabel: '释义',
+        levelCheckpoint: (lvl, pct) => ({
+          title: `已通过第 ${lvl} 级测试关卡！`,
+          desc: `你已熟练掌握第 ${lvl} 级的核心词汇（正确率 ${pct}%）。表现优异！`
+        }),
+        feedbackSubtitle: (pct) => {
+          if (pct === 100) return '满分通关！你已掌握本环节中的所有词句。';
+          if (pct >= 80) return '表现出色！你的外语能力正在稳步提升。';
+          if (pct >= 60) return '稳步进阶！再加把劲就能完全攻克。';
+          return '熟能生巧，日积月累。每一次练习都在拉近你与流利的距离！';
+        }
+      };
+
+    case 'hi':
+      return {
+        sessionComplete: 'प्रश्नोत्तरी सत्र पूरा हुआ!',
+        correctRatio: (s, g) => `${s} / ${g} सही`,
+        goal: 'लक्ष्य',
+        correct: 'सही',
+        bestStreak: 'सर्वोत्तम लड़ी',
+        mastered: 'कंठस्थ',
+        remaining: 'शेष',
+        loggedNotice: 'आपकी सीखने की प्रगति में 1 पूर्ण प्रश्नोत्तरी के रूप में दर्ज किया गया',
+        chooseTopic: 'विषय चुनें:',
+        chooseNextLength: 'अगली प्रश्नोत्तरी लंबाई चुनें:',
+        startNextQuiz: (g) => `अगली प्रश्नोत्तरी शुरू करें (${g} प्रश्न)`,
+        pressEnter: '↵ Enter दबाएँ',
+        wordsToReview: (c) => `इस सत्र से दोहराने योग्य शब्द (${c})`,
+        reviewHint: 'याददाश्त को पक्का करने के लिए सही उच्चारण सुनें:',
+        answerLabel: 'उत्तर:',
+        youTypedLabel: 'आपने लिखा:',
+        coreCurriculum: 'मुख्य पाठ्यक्रम',
+        specializedPacks: 'उद्योग और विशेष पैक',
+        replayAudio: 'ऑडियो दोबारा सुनने के लिए टैप करें',
+        needHint: 'संकेत चाहिए?',
+        meaningLabel: 'अर्थ',
+        levelCheckpoint: (lvl, pct) => ({
+          title: `स्तर ${lvl} चेकपॉइंट उत्तीर्ण!`,
+          desc: `आपने स्तर ${lvl} की शब्दावली पर मजबूत पकड़ दिखाई है (${pct}% सटीकता)। बहुत बढ़िया!`
+        }),
+        feedbackSubtitle: (pct) => {
+          if (pct === 100) return 'उत्कृष्ट स्कोर! आपने इस सत्र के सभी प्रश्नों में महारत हासिल की।';
+          if (pct >= 80) return 'शानदार प्रयास! आपकी भाषा कुशलता लगातार मजबूत हो रही है।';
+          if (pct >= 60) return 'अच्छा सुधार! थोड़े और अभ्यास से सब कुछ याद हो जाएगा।';
+          return 'अभ्यास से ही सिद्धि मिलती है। हर प्रयास आपको लक्ष्य के करीब ले जाता है!';
+        }
+      };
+
+    case 'ar':
+      return {
+        sessionComplete: 'اكتملت جلسة الاختبار!',
+        correctRatio: (s, g) => `${s} من ${g} صحيح`,
+        goal: 'الهدف',
+        correct: 'صحيح',
+        bestStreak: 'أطول سلسلة',
+        mastered: 'متقن',
+        remaining: 'المتبقي',
+        loggedNotice: 'تم تسجيل اختبار مكتمل واحد في تقدمك التعليمي',
+        chooseTopic: 'اختر موضوعاً:',
+        chooseNextLength: 'اختر طول الاختبار القادم:',
+        startNextQuiz: (g) => `بدء الاختبار التالي (${g} أسئلة)`,
+        pressEnter: 'اضغط ↵ Enter',
+        wordsToReview: (c) => `الكلمات المطلوب مراجعتها من هذه الجلسة (${c})`,
+        reviewHint: 'استمع إلى النطق الصحيح لتعزيز حفظك:',
+        answerLabel: 'الإجابة:',
+        youTypedLabel: 'ما كتبته:',
+        coreCurriculum: 'المنهج الأساسي',
+        specializedPacks: 'حزم مهنية ومتخصصة',
+        replayAudio: 'انقر لإعادة تشغيل الصوت',
+        needHint: 'هل تحتاج إلى تلميح؟',
+        meaningLabel: 'المعنى',
+        levelCheckpoint: (lvl, pct) => ({
+          title: `تم اجتياز نقطة تفتيش المستوى ${lvl}!`,
+          desc: `أظهرت تمكناً متيناً من مفردات المستوى ${lvl} بدقة ${pct}%. أحسنت!`
+        }),
+        feedbackSubtitle: (pct) => {
+          if (pct === 100) return 'درجة كاملة! لقد أتقنت جميع أسئلة هذه الجلسة.';
+          if (pct >= 80) return 'عمل ممتاز! مهاراتك اللغوية تنمو وتتطور بقوة.';
+          if (pct >= 60) return 'تقدم جيد! القليل من الممارسة الإضافية وستتقن كل شيء.';
+          return 'التكرار أساس التعلم. كل محاولة تقربك أكثر من الطلاقة!';
+        }
+      };
+
+    case 'bn':
+      return {
+        sessionComplete: 'কুইজ সেশন সম্পন্ন!',
+        correctRatio: (s, g) => `${s} / ${g} সঠিক`,
+        goal: 'লক্ষ্য',
+        correct: 'সঠিক',
+        bestStreak: 'সেরা ধারাবাহিকতা',
+        mastered: 'আয়ত্ত',
+        remaining: 'অবশিষ্ট',
+        loggedNotice: 'আপনার শেখার অগ্রগতিতে ১টি সম্পন্ন কুইজ হিসেবে সংরক্ষিত হয়েছে',
+        chooseTopic: 'বিষয় নির্বাচন করুন:',
+        chooseNextLength: 'পরবর্তী কুইজের দৈর্ঘ্য নির্বাচন করুন:',
+        startNextQuiz: (g) => `পরবর্তী কুইজ শুরু করুন (${g}টি প্রশ্ন)`,
+        pressEnter: '↵ Enter চাপুন',
+        wordsToReview: (c) => `এই সেশন থেকে পুনর্বিবেচনার শব্দ (${c})`,
+        reviewHint: 'স্মৃতি শক্তিশালী করতে সঠিক উচ্চারণ শুনুন:',
+        answerLabel: 'উত্তর:',
+        youTypedLabel: 'আপনি লিখেছেন:',
+        coreCurriculum: 'মূল পাঠ্যক্রম',
+        specializedPacks: 'বিশেষায়িত প্যাক',
+        replayAudio: 'অডিও পুনরায় শুনতে ট্যাপ করুন',
+        needHint: 'ইঙ্গিত প্রয়োজন?',
+        meaningLabel: 'অর্থ',
+        levelCheckpoint: (lvl, pct) => ({
+          title: `স্তর ${lvl} চেকপয়েন্ট উত্তীর্ণ!`,
+          desc: `আপনি স্তর ${lvl}-এর শব্দকোষে দৃঢ় দক্ষতা দেখিয়েছেন (${pct}% নির্ভুলতা)। চমৎকার!`
+        }),
+        feedbackSubtitle: (pct) => {
+          if (pct === 100) return 'নিখুঁত স্কোর! আপনি এই সেশনের প্রতিটি প্রশ্নে দক্ষতা অর্জন করেছেন।';
+          if (pct >= 80) return 'অসাধারণ প্রচেষ্টা! আপনার ভাষার দক্ষতা ক্রমান্বয়ে শক্তিশালী হচ্ছে।';
+          if (pct >= 60) return 'ভালো অগ্রগতি! আরেকটু অনুশীলনে সবকিছু আয়ত্তে আসবে।';
+          return 'অনুশীলনই সাফল্যের চাবিকাঠি। প্রতিটি প্রচেষ্টা আপনাকে লক্ষ্যের কাছে নিয়ে যায়!';
+        }
+      };
+
+    case 'ur':
+      return {
+        sessionComplete: 'کوئز سیشن مکمل!',
+        correctRatio: (s, g) => `${s} از ${g} درست`,
+        goal: 'ہدف',
+        correct: 'درست',
+        bestStreak: 'بہترین سلسلہ',
+        mastered: 'مہارت حاصل کی',
+        remaining: 'باقی',
+        loggedNotice: 'آپ کی تعلیمی پیش رفت میں 1 مکمل کوئز کے طور پر درج ہو گیا',
+        chooseTopic: 'عنوان منتخب کریں:',
+        chooseNextLength: 'اگلے کوئز کی لمبائی منتخب کریں:',
+        startNextQuiz: (g) => `اگلا کوئز شروع کریں (${g} سوالات)`,
+        pressEnter: '↵ Enter دبائیں',
+        wordsToReview: (c) => `اس سیشن سے دہرانے کے لیے الفاظ (${c})`,
+        reviewHint: 'یادداشت پختہ کرنے کے لیے درست تلفظ سنیں:',
+        answerLabel: 'جواب:',
+        youTypedLabel: 'آپ نے لکھا:',
+        coreCurriculum: 'بنیادی نصاب',
+        specializedPacks: 'پیشہ ورانہ اور خصوصی پیک',
+        replayAudio: 'آڈیو دوبارہ سننے کے لیے ٹیپ کریں',
+        needHint: 'کیا اشارہ درکار ہے؟',
+        meaningLabel: 'معنی',
+        levelCheckpoint: (lvl, pct) => ({
+          title: `لیول ${lvl} چیک پوائنٹ پاس ہو گیا!`,
+          desc: `آپ نے لیول ${lvl} کے ذخیرہ الفاظ پر ٹھوس گرفت کا مظاہرہ کیا ہے (${pct}% درستگی)۔ شاباش!`
+        }),
+        feedbackSubtitle: (pct) => {
+          if (pct === 100) return 'شاندار اسکور! آپ نے اس سیشن کے تمام سوالات پر مکمل مہارت حاصل کر لی۔';
+          if (pct >= 80) return 'بہترین کارکردگی! آپ کی زبان دانی میں واضح بہتری آ رہی ہے۔';
+          if (pct >= 60) return 'اچھی پیش رفت! کچھ اور مشق سے سب کچھ یاد ہو جائے گا۔';
+          return 'مشق ہی کامیابی کا زینہ ہے۔ ہر کوشش آپ کو روانی کے قریب لاتی ہے!';
+        }
+      };
+
+    case 'en':
+    default:
+      return {
+        sessionComplete: 'Quiz Session Complete!',
+        correctRatio: (s, g) => `${s} / ${g} correct`,
+        goal: 'Goal',
+        correct: 'Correct',
+        bestStreak: 'Best Streak',
+        mastered: 'Mastered',
+        remaining: 'Remaining',
+        loggedNotice: 'Logged as 1 completed quiz in your learning progress',
+        chooseTopic: 'Choose topic:',
+        chooseNextLength: 'Choose next quiz length:',
+        startNextQuiz: (g) => `Start Next Quiz (${g} Qs)`,
+        pressEnter: 'press ↵ Enter',
+        wordsToReview: (c) => `Words to Review from This Session (${c})`,
+        reviewHint: 'Listen to the correct pronunciation to reinforce your memory:',
+        answerLabel: 'Answer:',
+        youTypedLabel: 'You typed:',
+        coreCurriculum: 'Core Curriculum',
+        specializedPacks: 'Industry & Specialized Packs',
+        replayAudio: 'Tap to play audio again',
+        needHint: 'Need a hint?',
+        meaningLabel: 'Meaning',
+        levelCheckpoint: (lvl, pct) => ({
+          title: `Level ${lvl} Checkpoint Passed!`,
+          desc: `You showed solid command of Level ${lvl} vocabulary (${pct}% accuracy). Nicely done.`
+        }),
+        feedbackSubtitle: (pct) => {
+          if (pct === 100) return 'Perfect score! You mastered every question in this session.';
+          if (pct >= 80) return 'Outstanding job! Your communication skills are getting stronger.';
+          if (pct >= 60) return 'Solid progress! A little more practice and you will ace it.';
+          return 'Practice makes perfect. Repetition builds lasting confidence!';
+        }
+      };
+  }
 };
 
 export interface ComponentChromeStrings {
@@ -2460,6 +3257,8 @@ export interface ComponentChromeStrings {
   aboutContact: string;
   privacyPolicy: string;
   termsOfService: string;
+  search: string;
+  searchTitle: string;
 
   // LanguageSwitcher
   customizingBadge: string;
@@ -2520,6 +3319,8 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         aboutContact: 'حول المشروع والتواصل',
         privacyPolicy: 'سياسة الخصوصية',
         termsOfService: 'شروط الخدمة',
+        search: 'بحث',
+        searchTitle: 'البحث عن المفردات والعبارات (⌘K)',
 
         customizingBadge: 'تخصيص',
         popularPairs: 'اللغات الشائعة',
@@ -2566,6 +3367,120 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         doneBtn: 'تم'
       };
 
+    case 'bn':
+      return {
+        installApp: 'অ্যাপ ইনস্টল করুন',
+        installAppTitle: 'আপনার ডিভাইসে অ্যাপ্লিকেশন ইনস্টল করুন',
+        loadingLessons: 'পাঠ লোড হচ্ছে...',
+        allRightsReserved: 'সর্বস্বত্ব সংরক্ষিত।',
+        aboutContact: 'পরিচিতি ও যোগাযোগ',
+        privacyPolicy: 'গোপনীয়তা নীতি',
+        termsOfService: 'ব্যবহারের শর্তাবলী',
+        search: 'অনুসন্ধান',
+        searchTitle: 'শব্দকোষ ও বাক্যাংশ অনুসন্ধান করুন (⌘K)',
+
+        customizingBadge: 'কাস্টমাইজ',
+        popularPairs: 'জনপ্রিয় ভাষা জোড়া',
+        chooseLanguageToLearn: 'শেখার জন্য ভাষা বেছে নিন',
+        upcomingCourses: 'আসন্ন কোর্স',
+        soonBadge: 'শীঘ্রই',
+        bidirectionalNotice: 'দ্বিমুখী পাঠ্যক্রম · স্টুডিও নিউরাল ভয়েস',
+        switchDirectionTitle: (baseName: string, targetName: string) =>
+          `দিক পরিবর্তন: ${targetName} থেকে ${baseName} শিখুন`,
+
+        audioSpeedLabel: 'অডিও গতি',
+        studioVoicePace: 'স্টুডিও ভয়েস গতি',
+        speedDesc05: 'স্পষ্ট অক্ষরের জন্য ধীর গতি',
+        speedDesc075: 'শিক্ষার্থীর গতি',
+        speedDesc1: 'প্রাকৃতিক মাতৃভাষীর গতি',
+        speedDesc125: 'দ্রুত সাবলীল শ্রবণ',
+
+        personalStudyDashboard: 'ব্যক্তিগত স্টাডি ড্যাশবোর্ড',
+        learningPair: 'শেখার জোড়া',
+        audioPlaybackSpeed: 'অডিও প্লেব্যাক গতি',
+        myLearningProgress: 'আমার শেখার অগ্রগতি',
+        accountCloudSync: 'অ্যাকাউন্ট ও ক্লাউড সিঙ্ক',
+        signOut: 'সাইন আউট',
+        syncSignIn: 'সিঙ্ক ও সাইন ইন',
+
+        myStats: 'আমার পরিসংখ্যান',
+        signIn: 'সাইন ইন',
+        signOutTitle: 'সাইন আউট',
+        progressModalTitle: 'আমার অগ্রগতি',
+        overallAccuracy: 'সামগ্রিক নির্ভুলতা',
+        questionsAttempted: 'উত্তরিত প্রশ্নাবলী',
+        streak: 'ধারাবাহিকতা',
+        mastered: 'আয়ত্ত',
+        accuracyByCategory: 'বিভাগ অনুযায়ী নির্ভুলতা',
+        alphabetCat: 'বর্ণমালা',
+        phrasesCat: 'প্রয়োজনীয় বাক্য',
+        commonWordsCat: 'প্রয়োজনীয় শব্দ',
+        numbersCat: 'সংখ্যা',
+        correctOfTotal: (correct: number, total: number) => `${total}-এর মধ্যে ${correct} সঠিক`,
+        syncPromoText: 'আপনার সমস্ত ডিভাইসে অগ্রগতি সংরক্ষণ করতে চান?',
+        signInRegister: 'সাইন ইন / নিবন্ধন',
+        resetAllStats: 'সকল পরিসংখ্যান পুনরায় সেট করুন',
+        confirmResetStats: 'আপনি কি নিশ্চিত যে আপনার সমস্ত অগ্রগতির পরিসংখ্যান পুনরায় সেট করতে চান?',
+        doneBtn: 'সম্পন্ন'
+      };
+
+    case 'ur':
+      return {
+        installApp: 'ایپ انسٹال کریں',
+        installAppTitle: 'اپنے آلے پر ایپلیکیشن انسٹال کریں',
+        loadingLessons: 'اسباق لوڈ ہو رہے ہیں...',
+        allRightsReserved: 'جملہ حقوق محفوظ ہیں۔',
+        aboutContact: 'ہمارے متعلق اور رابطہ',
+        privacyPolicy: 'رازداری کی پالیسی',
+        termsOfService: 'شرائط و ضوابط',
+        search: 'تلاش',
+        searchTitle: 'الفاظ اور جملے تلاش کریں (⌘K)',
+
+        customizingBadge: 'ترمیم',
+        popularPairs: 'مشہور زبانیں',
+        chooseLanguageToLearn: 'سیکھنے کے لیے زبان منتخب کریں',
+        upcomingCourses: 'آنے والے کورسز',
+        soonBadge: 'جلد آرہا ہے',
+        bidirectionalNotice: 'دو طرفہ نصاب · اسٹوڈیو نیورل وائس',
+        switchDirectionTitle: (baseName: string, targetName: string) =>
+          `سمت تبدیل کریں: ${targetName} سے ${baseName} سیکھیں`,
+
+        audioSpeedLabel: 'آواز کی رفتار',
+        studioVoicePace: 'اسٹوڈیو آواز کی رفتار',
+        speedDesc05: 'حروف کی وضاحت کے لیے دھیمی رفتار',
+        speedDesc075: 'سیکھنے والے کی رفتار',
+        speedDesc1: 'قدرتی مادری زبان کی رفتار',
+        speedDesc125: 'تیز روانی سے سننا',
+
+        personalStudyDashboard: 'ذاتی مطالعہ کا ڈیش بورڈ',
+        learningPair: 'تعلیمی جوڑا',
+        audioPlaybackSpeed: 'آڈیو پلے بیک کی رفتار',
+        myLearningProgress: 'میری تعلیمی پیش رفت',
+        accountCloudSync: 'اکاؤنٹ اور کلاؤڈ سنک',
+        signOut: 'سائن آؤٹ',
+        syncSignIn: 'ہم آہنگ اور سائن ان کریں',
+
+        myStats: 'میرے اعداد و شمار',
+        signIn: 'سائن ان',
+        signOutTitle: 'سائن آؤٹ',
+        progressModalTitle: 'میری تعلیمی پیش رفت',
+        overallAccuracy: 'مجموعی درستگی',
+        questionsAttempted: 'حل شدہ سوالات',
+        streak: 'مسلسل دن',
+        mastered: 'مہارت حاصل کی',
+        accuracyByCategory: 'درجہ بندی کے لحاظ سے درستگی',
+        alphabetCat: 'حروفِ تہجی',
+        phrasesCat: 'بنیادی جملے',
+        commonWordsCat: 'عام الفاظ',
+        numbersCat: 'اعداد',
+        correctOfTotal: (correct: number, total: number) => `${total} میں سے ${correct} درست`,
+        syncPromoText: 'کیا آپ تمام آلات پر اپنی پیش رفت محفوظ کرنا چاہتے ہیں؟',
+        signInRegister: 'سائن ان / رجسٹر',
+        resetAllStats: 'تمام اعداد و شمار دوبارہ ترتیب دیں',
+        confirmResetStats: 'کیا آپ واقعی اپنی تمام تعلیمی پیش رفت کو دوبارہ ترتیب دینا چاہتے ہیں؟',
+        doneBtn: 'مکمل'
+      };
+
     case 'ru':
       return {
         installApp: 'Установить',
@@ -2575,6 +3490,8 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         aboutContact: 'О проекте и контакты',
         privacyPolicy: 'Политика конфиденциальности',
         termsOfService: 'Условия использования',
+        search: 'Поиск',
+        searchTitle: 'Поиск слов и понятий (⌘K)',
 
         customizingBadge: 'Настройка курса',
         popularPairs: 'Популярные языковые пары',
@@ -2629,6 +3546,8 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         aboutContact: 'Acerca de y Contacto',
         privacyPolicy: 'Política de Privacidad',
         termsOfService: 'Términos de Servicio',
+        search: 'Buscar',
+        searchTitle: 'Buscar conceptos (⌘K)',
 
         customizingBadge: 'Personalizando',
         popularPairs: 'Pares Populares',
@@ -2683,6 +3602,8 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         aboutContact: 'À propos & Contact',
         privacyPolicy: 'Politique de Confidentialité',
         termsOfService: 'Conditions d\'Utilisation',
+        search: 'Rechercher',
+        searchTitle: 'Rechercher des notions (⌘K)',
 
         customizingBadge: 'Personnalisation',
         popularPairs: 'Paires Populaires',
@@ -2737,6 +3658,8 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         aboutContact: 'Sobre e Contato',
         privacyPolicy: 'Política de Privacidade',
         termsOfService: 'Termos de Serviço',
+        search: 'Buscar',
+        searchTitle: 'Buscar conceitos (⌘K)',
 
         customizingBadge: 'Personalizando',
         popularPairs: 'Pares Populares',
@@ -2791,6 +3714,8 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         aboutContact: 'Über uns & Kontakt',
         privacyPolicy: 'Datenschutz',
         termsOfService: 'Nutzungsbedingungen',
+        search: 'Suchen',
+        searchTitle: 'Konzepte durchsuchen (⌘K)',
 
         customizingBadge: 'Anpassen',
         popularPairs: 'Beliebte Sprachpaare',
@@ -2845,6 +3770,8 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         aboutContact: 'Tentang & Kontak',
         privacyPolicy: 'Kebijakan Privasi',
         termsOfService: 'Ketentuan Layanan',
+        search: 'Cari',
+        searchTitle: 'Cari kosakata (⌘K)',
 
         customizingBadge: 'Menyesuaikan',
         popularPairs: 'Pasangan Populer',
@@ -2899,6 +3826,8 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         aboutContact: 'Hakkında ve İletişim',
         privacyPolicy: 'Gizlilik Politikası',
         termsOfService: 'Hizmet Şartları',
+        search: 'Ara',
+        searchTitle: 'Kavramları ara (⌘K)',
 
         customizingBadge: 'Özelleştirme',
         popularPairs: 'Popüler Çiftler',
@@ -2953,6 +3882,8 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         aboutContact: '关于与联系',
         privacyPolicy: '隐私政策',
         termsOfService: '服务条款',
+        search: '搜索',
+        searchTitle: '搜索词汇与语法 (⌘K)',
 
         customizingBadge: '课程配置中',
         popularPairs: '热门语言对',
@@ -3007,6 +3938,8 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         aboutContact: 'परिचय और संपर्क',
         privacyPolicy: 'गोपनीयता नीति',
         termsOfService: 'सेवा की शर्तें',
+        search: 'खोजें',
+        searchTitle: 'शब्दावली और वाक्यांश खोजें (⌘K)',
 
         customizingBadge: 'अनुकूलन जारी',
         popularPairs: 'लोकप्रिय भाषा जोड़े',
@@ -3062,6 +3995,8 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         aboutContact: 'About & Contact',
         privacyPolicy: 'Privacy Policy',
         termsOfService: 'Terms of Service',
+        search: 'Search',
+        searchTitle: 'Search concepts (⌘K)',
 
         customizingBadge: 'Customizing',
         popularPairs: 'Popular Pairs',

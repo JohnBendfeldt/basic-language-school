@@ -12,6 +12,8 @@ import japaneseData from './ja/japaneseData';
 import chineseData from './zh/chineseData';
 import hindiData from './hi/hindiData';
 import arabicData from './ar/arabicData';
+import bengaliData from './bn/bengaliData';
+import urduData from './ur/urduData';
 
 export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
   ru: {
@@ -533,6 +535,86 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
       },
     },
     data: arabicData,
+  },
+  bn: {
+    id: 'bn',
+    name: 'Bengali',
+    nativeName: 'বাংলা',
+    flag: '🇧🇩',
+    code: 'bn-BD',
+    ttsVoice: 'bn-BD-NabanitaNeural',
+    hasKeyboard: true,
+    hasAlphabet: true,
+    hasTimeGuide: true,
+    appName: 'Basic Bengali',
+    domain: 'basicbengali.school',
+    seo: {
+      alphabet: {
+        title: 'Bengali Alphabet & Script | Basic Bengali',
+        description: 'Master the Bengali alphabet (স্বরবর্ণ ও ব্যঞ্জনবর্ণ) with pronunciation guides, example vocabulary, and native studio audio.',
+      },
+      phrases: {
+        title: 'Essential Bengali Phrases | Basic Bengali',
+        description: 'Learn everyday Bengali greetings, courtesy expressions, and conversational phrases with native studio audio.',
+      },
+      numbers: {
+        title: 'Bengali Numbers & Time | Basic Bengali',
+        description: 'Master numbers in Bengali from 0 to 1,000 with native neural audio.',
+      },
+      time: {
+        title: 'Telling Time in Bengali | Basic Bengali',
+        description: 'Learn how to ask and tell time in Bengali with studio pronunciations.',
+      },
+      words: {
+        title: 'Core Bengali Vocabulary | Basic Bengali',
+        description: 'Essential high-frequency Bengali words across daily life, dining, family, and travel.',
+      },
+      quiz: {
+        title: 'Bengali Practice Quiz | Basic Bengali',
+        description: 'Test your Bengali alphabet, vocabulary, noun classifiers, and grammar with interactive quizzes.',
+      },
+    },
+    data: bengaliData,
+  },
+  ur: {
+    id: 'ur',
+    name: 'Urdu',
+    nativeName: 'اردو',
+    flag: '🇵🇰',
+    code: 'ur-PK',
+    ttsVoice: 'ur-PK-UzmaNeural',
+    hasKeyboard: true,
+    hasAlphabet: true,
+    hasTimeGuide: true,
+    appName: 'Basic Urdu',
+    domain: 'basicurdu.school',
+    seo: {
+      alphabet: {
+        title: 'Urdu Alphabet & Nastaliq Script | Basic Urdu',
+        description: 'Master the 39 letters of the Urdu alphabet with pronunciation guides, example vocabulary, and native studio audio.',
+      },
+      phrases: {
+        title: 'Essential Urdu Phrases | Basic Urdu',
+        description: 'Learn everyday Urdu greetings, courtesy expressions, and conversational phrases with native studio audio.',
+      },
+      numbers: {
+        title: 'Urdu Numbers & Time | Basic Urdu',
+        description: 'Master numbers in Urdu from 0 to 1,000 with native neural audio.',
+      },
+      time: {
+        title: 'Telling Time in Urdu | Basic Urdu',
+        description: 'Learn how to ask and tell time in Urdu with studio pronunciations.',
+      },
+      words: {
+        title: 'Core Urdu Vocabulary | Basic Urdu',
+        description: 'Essential high-frequency Urdu words across daily life, dining, home, and travel.',
+      },
+      quiz: {
+        title: 'Urdu Practice Quiz | Basic Urdu',
+        description: 'Test your Urdu alphabet, vocabulary, gender agreement, and grammar with interactive quizzes.',
+      },
+    },
+    data: urduData,
   },
 };
 
