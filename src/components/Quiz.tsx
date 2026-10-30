@@ -2007,7 +2007,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   // --- RENDER LOADING STATE ---
   if (!data || !currentQuestion) {
     return (
-      <div className={`section quiz-section ${isMobile && !settingsOpen ? 'settings-collapsed' : ''}`}>
+      <div className="section quiz-section">
         <h2>Test Your Knowledge</h2>
         <div className="quiz-card">
           <h3>Loading quiz questions...</h3>
@@ -2040,7 +2040,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   const localizedActiveLevel = localizeLevelBadge(activeLevel, baseLanguage);
 
   return (
-    <div className="section quiz-section">
+    <div className={`section quiz-section ${isMobile && !settingsOpen ? 'settings-collapsed' : ''}`}>
       <h2 className="quiz-page-title">{ui.testYourKnowledge}</h2>
 
       {/* Unified Quiz Controls Toolbar with Dropdowns (Eliminates horizontal scrollers) */}
@@ -2285,7 +2285,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         {/* Row 3: Audio repeat & speed hint banner */}
         <div className="quiz-repeat-tip-banner">
           <span className="tip-icon">🗣️</span>
-          <span>{ui.repeatHint}</span>
+          <span className="tip-text">{ui.repeatHint}</span>
         </div>
         </div>
       </div>
@@ -2365,9 +2365,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               {showListeningHint ? (
                 <div className="listening-hint-box">
                   {currentQuestion.type === 'alphabet' ? (
-                    <span>💡 {currentQuestion.pronunciation ? `Letter pronunciation: /${currentQuestion.pronunciation}/` : `Sound of the letter`}</span>
+                    <><span className="tip-icon-col" aria-hidden="true">💡</span><span className="tip-text">{currentQuestion.pronunciation ? `Letter pronunciation: /${currentQuestion.pronunciation}/` : `Sound of the letter`}</span></>
                   ) : (
-                    <span>💡 Meaning: {currentQuestion.meaningHint || currentQuestion.baseMeaning || currentQuestion.hint}</span>
+                    <><span className="tip-icon-col" aria-hidden="true">💡</span><span className="tip-text">Meaning: {currentQuestion.meaningHint || currentQuestion.baseMeaning || currentQuestion.hint}</span></>
                   )}
                 </div>
               ) : (
@@ -2432,8 +2432,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
         {isMobile && !showNext && expectedAnswerLanguage !== 'en' && !dismissedKbTips.includes(expectedAnswerLanguage) && (
           <div className="keyboard-tip-banner" role="note">
-            <span>
-              ⌨️ {ui.keyboardTip.replace('{lang}', (() => {
+            <span className="tip-icon-col" aria-hidden="true">⌨️</span>
+            <span className="tip-text">
+              {ui.keyboardTip.replace('{lang}', (() => {
                 try {
                   return new Intl.DisplayNames([baseLanguage], { type: 'language' }).of(expectedAnswerLanguage) || expectedAnswerLanguage;
                 } catch {

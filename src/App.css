@@ -7058,3 +7058,50 @@ html {
   .pool-remaining-tag { display: none; }
   .quiz-header-panel { padding-top: 0.5rem; padding-bottom: 0.5rem; margin-bottom: 0.6rem; }
 }
+
+/* ---- Tip/hint banners: icon in its own vertically-centered column, text wraps beside it ---- */
+.keyboard-tip-banner,
+.quiz-repeat-tip-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.keyboard-tip-banner .tip-icon-col,
+.quiz-repeat-tip-banner .tip-icon {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.8rem;
+  align-self: stretch;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+.keyboard-tip-banner .tip-text,
+.quiz-repeat-tip-banner .tip-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.keyboard-tip-banner .keyboard-tip-dismiss { flex: 0 0 auto; align-self: center; }
+
+/* Long placeholders (e.g. Russian answer prompt) shouldn't run under the keyboard button */
+.quiz-input::placeholder { text-overflow: ellipsis; }
+@media (max-width: 768px) {
+  .quiz-input { font-size: 1rem; padding-right: 48px; }
+}
+
+.listening-hint-box {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-align: left;
+}
+.listening-hint-box .tip-icon-col {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.listening-hint-box .tip-text { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
