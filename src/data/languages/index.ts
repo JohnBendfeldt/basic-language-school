@@ -9,6 +9,7 @@ import indonesianData from './id/indonesianData';
 import turkishData from './tr/turkishData';
 import koreanData from './ko/koreanData';
 import japaneseData from './ja/japaneseData';
+import chineseData from './zh/chineseData';
 
 export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
   ru: {
@@ -410,6 +411,46 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
       },
     },
     data: japaneseData,
+  },
+  zh: {
+    id: 'zh',
+    name: 'Mandarin Chinese',
+    nativeName: '中文',
+    flag: '🇨🇳',
+    code: 'zh-CN',
+    ttsVoice: 'zh-CN-XiaoxiaoNeural',
+    hasKeyboard: false,
+    hasAlphabet: true,
+    hasTimeGuide: true,
+    appName: 'Basic Chinese',
+    domain: 'basicchinese.school',
+    seo: {
+      alphabet: {
+        title: 'Mandarin Chinese Pinyin & Sounds | Basic Chinese',
+        description: 'Learn Chinese Pinyin initials, finals, and standard tones with audio examples and pronunciation guides.',
+      },
+      phrases: {
+        title: 'Basic Chinese Phrases | Basic Chinese',
+        description: 'Essential everyday Chinese greetings, courtesy expressions, and conversational phrases with native studio audio.',
+      },
+      numbers: {
+        title: 'Chinese Numbers & Time | Basic Chinese',
+        description: 'Master Chinese numbers from 0 to 1,000, clock time, and calendar expressions.',
+      },
+      time: {
+        title: 'Telling Time in Chinese | Basic Chinese',
+        description: 'Learn how to ask and tell time in Mandarin Chinese with authentic neural audio.',
+      },
+      words: {
+        title: 'Core Chinese Vocabulary | Basic Chinese',
+        description: 'Essential high-frequency Chinese vocabulary across daily life, business, dining, and travel.',
+      },
+      quiz: {
+        title: 'Chinese Practice Quiz | Basic Chinese',
+        description: 'Test your Chinese Pinyin, vocabulary, measure words, and grammar with interactive quizzes.',
+      },
+    },
+    data: chineseData,
   },
 };
 

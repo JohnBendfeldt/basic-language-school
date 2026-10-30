@@ -66,6 +66,11 @@ export const getPageContent = (
             title: 'İngilizce Alfabesi',
             subtitle: 'Telaffuz rehberi, örnek kelimeler ve stüdyo sesiyle 26 harf'
           };
+        case 'zh':
+          return {
+            title: '英语字母表',
+            subtitle: '26个英文字母，包含发音规则、例词和录音棚母语发音'
+          };
         case 'en':
         default:
           return {
@@ -410,7 +415,8 @@ export const getPageContent = (
       id: 'Ketuk kartu mana saja untuk melihat terjemahan dan pelafalannya',
       tr: 'Çevirisini ve telaffuzunu görmek için herhangi bir karta dokunun',
       ja: 'カードをタップして翻訳と発音を確認できます',
-      ko: '카드를 탭하여 번역과 발음을 확인하세요'
+      ko: '카드를 탭하여 번역과 발음을 확인하세요',
+      zh: '点击卡片查看释义与标准发音'
     };
 
     if (targetLang === 'en') {
@@ -602,7 +608,8 @@ export const getPageContent = (
       id: 'Ketuk kartu mana saja untuk melihat terjemahan dan pelafalannya',
       tr: 'Çevirisini ve telaffuzunu görmek için herhangi bir karta dokunun',
       ja: 'カードをタップして翻訳と発音を確認できます',
-      ko: '카드를 탭하여 번역과 발음을 확인하세요'
+      ko: '카드를 탭하여 번역과 발음을 확인하세요',
+      zh: '点击卡片查看释义与标准发音'
     };
 
     if (targetLang === 'en') {
@@ -1835,7 +1842,8 @@ export const getLocalizedAppName = (
       id: 'Базовый Индонезийский',
       tr: 'Базовый Турецкий',
       ja: 'Базовый Японский',
-      ko: 'Базовый Корейский'
+      ko: 'Базовый Корейский',
+      zh: 'Базовый Китайский'
     },
     es: {
       en: 'Inglés Básico',
@@ -1847,7 +1855,8 @@ export const getLocalizedAppName = (
       id: 'Indonesio Básico',
       tr: 'Turco Básico',
       ja: 'Japonés Básico',
-      ko: 'Coreano Básico'
+      ko: 'Coreano Básico',
+      zh: 'Chino Básico'
     },
     fr: {
       en: 'Anglais de Base',
@@ -1859,7 +1868,8 @@ export const getLocalizedAppName = (
       id: 'Indonésien de Base',
       tr: 'Turc de Base',
       ja: 'Japonais de Base',
-      ko: 'Coréen de Base'
+      ko: 'Coréen de Base',
+      zh: 'Chinois de Base'
     },
     pt: {
       en: 'Inglês Básico',
@@ -1871,7 +1881,8 @@ export const getLocalizedAppName = (
       id: 'Indonésio Básico',
       tr: 'Turco Básico',
       ja: 'Japonês Básico',
-      ko: 'Coreano Básico'
+      ko: 'Coreano Básico',
+      zh: 'Chinês Básico'
     },
     de: {
       en: 'Basis-Englisch',
@@ -1883,7 +1894,8 @@ export const getLocalizedAppName = (
       id: 'Basis-Indonesisch',
       tr: 'Basis-Türkisch',
       ja: 'Basis-Japanisch',
-      ko: 'Basis-Koreanisch'
+      ko: 'Basis-Koreanisch',
+      zh: 'Basis-Chinesisch'
     },
     id: {
       en: 'Bahasa Inggris Dasar',
@@ -1895,7 +1907,8 @@ export const getLocalizedAppName = (
       id: 'Bahasa Indonesia Dasar',
       tr: 'Bahasa Turki Dasar',
       ja: 'Bahasa Jepang Dasar',
-      ko: 'Bahasa Korea Dasar'
+      ko: 'Bahasa Korea Dasar',
+      zh: 'Bahasa Mandarin Dasar'
     },
     tr: {
       en: 'Temel İngilizce',
@@ -1907,7 +1920,8 @@ export const getLocalizedAppName = (
       id: 'Temel Endonezce',
       tr: 'Temel Türkçe',
       ja: 'Temel Japonca',
-      ko: 'Temel Korece'
+      ko: 'Temel Korece',
+      zh: 'Temel Çince'
     },
     en: {
       en: 'Basic English',
@@ -1919,7 +1933,8 @@ export const getLocalizedAppName = (
       id: 'Basic Indonesian',
       tr: 'Basic Turkish',
       ja: 'Basic Japanese',
-      ko: 'Basic Korean'
+      ko: 'Basic Korean',
+      zh: 'Basic Chinese'
     },
     ja: {
       en: 'ベーシック英語',
@@ -1931,7 +1946,8 @@ export const getLocalizedAppName = (
       id: 'ベーシックインドネシア語',
       tr: 'ベーシックトルコ語',
       ja: 'ベーシック日本語',
-      ko: 'ベーシック韓国語'
+      ko: 'ベーシック韓国語',
+      zh: 'ベーシック中国語'
     },
     ko: {
       en: '베이직 영어',
@@ -1943,7 +1959,21 @@ export const getLocalizedAppName = (
       id: '베이직 인도네시아어',
       tr: '베이직 튀르키예어',
       ja: '베이직 일본어',
-      ko: '베이직 한국어'
+      ko: '베이직 한국어',
+      zh: '베이직 중국어'
+    },
+    zh: {
+      en: '基础英语',
+      es: '基础西班牙语',
+      fr: '基础法语',
+      ru: '基础俄语',
+      pt: '基础葡萄牙语',
+      de: '基础德语',
+      id: '基础印尼语',
+      tr: '基础土耳其语',
+      ja: '基础日语',
+      ko: '基础韩语',
+      zh: '基础中文'
     }
   };
 
@@ -2085,6 +2115,20 @@ export const getLocalizedLanguageName = (
       ko: '한국어',
       zh: '중국어'
     },
+    zh: {
+      en: '英语',
+      es: '西班牙语',
+      fr: '法语',
+      ru: '俄语',
+      de: '德语',
+      it: '意大利语',
+      pt: '葡萄牙语',
+      id: '印尼语',
+      tr: '土耳其语',
+      ja: '日语',
+      ko: '韩语',
+      zh: '中文'
+    },
     en: {}
   };
 
@@ -2216,6 +2260,7 @@ export const getQuizToolbarLabels = (baseLang: SupportedLanguageId = 'en') => {
     tr: { topic: 'Ders Konusu', level: 'Yeterlilik Seviyesi', modality: 'Pratik Modu', questionOf: (c, t) => `Soru ${c} / ${t}` },
     ja: { topic: '学習トピック', level: '習熟度レベル', modality: '練習モード', questionOf: (c, t) => `問題 ${c} / ${t}` },
     ko: { topic: '학습 주제', level: '난이도 수준', modality: '연습 모드', questionOf: (c, t) => `문제 ${c} / ${t}` },
+    zh: { topic: '课程主题', level: '熟练度等级', modality: '练习模式', questionOf: (c, t) => `第 ${c} 题 / 共 ${t} 题` },
   };
   return map[baseLang] || map.en;
 };
@@ -2657,6 +2702,60 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         resetAllStats: 'Tüm İstatistikleri Sıfırla',
         confirmResetStats: 'Tüm ilerleme istatistiklerinizi sıfırlamak istediğinizden emin misiniz?',
         doneBtn: 'Tamam'
+      };
+    case 'zh':
+      return {
+        installApp: '安装应用',
+        installAppTitle: '安装应用到您的设备',
+        loadingLessons: '正在加载课程...',
+        allRightsReserved: '保留所有权利。',
+        aboutContact: '关于与联系',
+        privacyPolicy: '隐私政策',
+        termsOfService: '服务条款',
+
+        customizingBadge: '课程配置中',
+        popularPairs: '热门语言对',
+        chooseLanguageToLearn: '选择您想学习的语言',
+        upcomingCourses: '即将推出',
+        soonBadge: '即将上线',
+        bidirectionalNotice: '双向母语教学 · 录音棚级母语发音',
+        switchDirectionTitle: (baseName: string, targetName: string) =>
+          `对调学习方向：学习 ${baseName}（母语：${targetName}）`,
+
+        audioSpeedLabel: '语速调节',
+        studioVoicePace: '录音棚语速',
+        speedDesc05: '放慢发音，听清音节',
+        speedDesc075: '初学者慢速',
+        speedDesc1: '母语自然语速',
+        speedDesc125: '流利快速听力',
+
+        personalStudyDashboard: '个人学习面板',
+        learningPair: '学习语言对',
+        audioPlaybackSpeed: '音频播放速度',
+        myLearningProgress: '我的学习进度',
+        accountCloudSync: '账户与云同步',
+        signOut: '退出登录',
+        syncSignIn: '登录并同步',
+
+        myStats: '学习统计',
+        signIn: '登录',
+        signOutTitle: '退出当前账户',
+        progressModalTitle: '我的学习进度',
+        overallAccuracy: '总体准确率',
+        questionsAttempted: '已答题数',
+        streak: '连续打卡',
+        mastered: '已掌握',
+        accuracyByCategory: '各分类准确率',
+        alphabetCat: '字母拼音',
+        phrasesCat: '基础短语',
+        commonWordsCat: '核心词汇',
+        numbersCat: '数字时间',
+        correctOfTotal: (correct: number, total: number) => `答对 ${correct} / 共 ${total} 题`,
+        syncPromoText: '想在所有设备间同步保存学习进度吗？',
+        signInRegister: '登录 / 注册',
+        resetAllStats: '重置所有统计',
+        confirmResetStats: '确定要重置所有学习统计进度吗？',
+        doneBtn: '完成'
       };
     case 'en':
     default:

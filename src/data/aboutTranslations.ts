@@ -540,6 +540,52 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     privacyLinkText: 'プライバシーポリシー',
     termsLinkText: '利用規約'
   },
+  zh: {
+    title: '关于与联系',
+    subtitle: '面向所有人的免费、开放且易用的多语言教育平台。',
+    backToPractice: '返回练习',
+    backToPracticeAria: '返回练习课程',
+    appOverviewTitle: '什么是 Basic Language School？',
+    appOverviewParagraphs: [
+      'Basic Language School 是一个交互式、自主进度的语言学习平台，旨在帮助零基础学习者自信地掌握语言基础。',
+      '与将内容隐藏在付费墙、订阅计时器或体力红心背后的应用不同，Basic Language School 提供无广告、无付费墙的完整课程学习。'
+    ],
+    featuresTitle: '核心特性与架构',
+    features: [
+      {
+        icon: '🌐',
+        title: '覆盖全球核心语言',
+        desc: '支持英语、西班牙语、法语、德语、俄语、葡萄牙语、印尼语、土耳其语、日语、韩语以及中文的双向自主学习。'
+      },
+      {
+        icon: '🎧',
+        title: '500+ 核心词汇与录音棚级母语发音',
+        desc: '每个词汇和短语均配备标准微软神经网络原生离线音频，告别机械合成音。'
+      },
+      {
+        icon: '📊',
+        title: '间隔重复与自适应练习',
+        desc: '具备打字输入、听力听写与多项选择模式，根据您的答题情况智能复习难点词汇。'
+      }
+    ],
+    creatorTitle: '关于开发者',
+    creatorBio: [
+      'Basic Language School 的诞生源于对纯粹、无障碍多语言学习的追求，致力于让全世界的学习者免费享受到高质量的语言启蒙教育。'
+    ],
+    contactTitle: '联系与反馈',
+    contactIntro: '如果您有任何疑问、建议、发音或翻译勘误，欢迎随时向我们反馈。',
+    contactNameLabel: '姓名：',
+    contactEmailLabel: '邮箱：',
+    contactBugsLabel: '问题反馈：',
+    communityTitle: '开源社区',
+    communityParagraphs: [
+      '本项目在 GitHub 开源，欢迎广大开发者与语言爱好者共同参与完善课程与发音数据。'
+    ],
+    footerPrompt: '想了解我们如何保护您的数据？',
+    privacyLinkText: '查看隐私政策',
+    termsLinkText: '查看服务条款'
+  }
+,
   ko: {
     title: '소개 & 문의',
     subtitle: '누구나 자유롭게 배울 수 있는 오픈 어학 학습 플랫폼.',

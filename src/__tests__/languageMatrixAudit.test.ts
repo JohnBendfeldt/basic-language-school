@@ -215,7 +215,7 @@ describe('56-Language-Pair Matrix Audit (Translations, Numbers, UI Chrome & Neur
     expect(idGuide.rules[2].title).toBe('AM vs PM (Format 12 Jam)');
   });
 
-  it('audits grammar localization across all 10 supported target languages and reference base languages', () => {
+  it('audits grammar localization across all 11 supported target languages and reference base languages', () => {
     const allTargetLanguages = Object.keys(SUPPORTED_LANGUAGES) as SupportedLanguageId[];
     const referenceBaseLanguages: SupportedLanguageId[] = ['en', 'de', 'es', 'fr', 'ru'];
 

@@ -1903,6 +1903,235 @@ export const JAPANESE_GRAMMAR: GrammarData = {
   ],
 };
 
+export const CHINESE_GRAMMAR: GrammarData = {
+  descriptions: [
+    {
+      title: 'Chinese Measure Words (量词 - 个, 本, 只, 杯, 张)',
+      explanation: 'In Chinese, whenever you count nouns or use "this/that" (这/那), you must insert a measure word (classifier) before the noun. Mandarin Chinese has NO grammatical gender or plural suffixes!',
+      examples: [
+        { positive: '一个人 (yí gè rén)', comparative: '一本书 (yì běn shū)', superlative: '一只猫 (yì zhī māo)', meaning: 'One person (个) / One book (本) / One cat (只)' },
+        { positive: '一杯水 (yì bēi shuǐ)', comparative: '一张票 (yì zhāng piào)', superlative: '这辆车 (zhè liàng chē)', meaning: 'One cup of water (杯) / One ticket (张) / This car (辆)' },
+      ],
+    },
+    {
+      title: 'Essential Particles (助词 - 的, 了, 吗, 吧)',
+      explanation: 'Chinese grammar relies on functional sentence particles rather than verb conjugations. "的" marks possession/attributes, "了" marks completed actions or change of state, "吗" forms yes/no questions, and "吧" suggests an action.',
+      examples: [
+        { positive: '我的朋友 (my friend)', comparative: '吃了吗？ (Did you eat?)', superlative: '你好吗？ (How are you?)', meaning: 'Possessive (的) vs Completed (了) vs Question (吗)' },
+        { positive: '我们走吧！ (Let\'s go!)', comparative: '我懂了 (I understood)', superlative: '红色的车 (Red car)', meaning: 'Suggestion (吧) vs State change (了) vs Adjective modifier (的)' },
+      ],
+    },
+    {
+      title: 'Comparison with 比 (bǐ - Comparative & Superlative)',
+      explanation: 'To compare two nouns, use the structure: A 比 B + Adjective (A is more [adj] than B). For superlatives, place 最 (zuì) directly in front of the adjective.',
+      examples: [
+        { positive: '中国比日本大', comparative: '飞机比火车快', superlative: '这个最好', meaning: 'China is bigger than Japan / Airplanes are faster than trains / This is the best' },
+        { positive: '好 (good)', comparative: '更好 (better)', superlative: '最好 (best)', meaning: 'Basic vs comparative vs superlative' },
+      ],
+    },
+  ],
+  verbs: [
+    {
+      verb: '是 (shì - to be)',
+      meaning: 'to be',
+      tense: '一般现在时 (Present Tense)',
+      type: 'regular',
+      forms: [
+        { pronoun: '我 (I)', form: '是 (shì)' },
+        { pronoun: '你 / 您 (You)', form: '是 (shì)' },
+        { pronoun: '他 / 她 (He / She)', form: '是 (shì)' },
+        { pronoun: '我们 (We)', form: '是 (shì)' },
+        { pronoun: '你们 (You all)', form: '是 (shì)' },
+        { pronoun: '他们 (They)', form: '是 (shì)' },
+      ],
+      exampleSentence: { target: '我是学生。', translation: 'I am a student.' },
+    },
+    {
+      verb: '有 (yǒu - to have)',
+      meaning: 'to have',
+      tense: '一般现在时 (Present Tense)',
+      type: 'regular',
+      forms: [
+        { pronoun: '我 (I)', form: '有 (yǒu)' },
+        { pronoun: '你 / 您 (You)', form: '有 (yǒu)' },
+        { pronoun: '他 / 她 (He / She)', form: '有 (yǒu)' },
+        { pronoun: '我们 (We)', form: '有 (yǒu)' },
+        { pronoun: '你们 (You all)', form: '有 (yǒu)' },
+        { pronoun: '他们 (They)', form: '有 (yǒu)' },
+      ],
+      exampleSentence: { target: '我有一个问题。', translation: 'I have a question.' },
+    },
+    {
+      verb: '去 (qù - to go)',
+      meaning: 'to go',
+      tense: '一般现在时 (Present Tense)',
+      type: 'regular',
+      forms: [
+        { pronoun: '我 (I)', form: '去 (qù)' },
+        { pronoun: '你 / 您 (You)', form: '去 (qù)' },
+        { pronoun: '他 / 她 (He / She)', form: '去 (qù)' },
+        { pronoun: '我们 (We)', form: '去 (qù)' },
+        { pronoun: '你们 (You all)', form: '去 (qù)' },
+        { pronoun: '他们 (They)', form: '去 (qù)' },
+      ],
+      exampleSentence: { target: '我们去北京。', translation: 'We are going to Beijing.' },
+    },
+    {
+      verb: '吃 (chī - to eat)',
+      meaning: 'to eat',
+      tense: '一般现在时 (Present Tense)',
+      type: 'regular',
+      forms: [
+        { pronoun: '我 (I)', form: '吃 (chī)' },
+        { pronoun: '你 / 您 (You)', form: '吃 (chī)' },
+        { pronoun: '他 / 她 (He / She)', form: '吃 (chī)' },
+        { pronoun: '我们 (We)', form: '吃 (chī)' },
+        { pronoun: '你们 (You all)', form: '吃 (chī)' },
+        { pronoun: '他们 (They)', form: '吃 (chī)' },
+      ],
+      exampleSentence: { target: '我喜欢吃米饭。', translation: 'I like to eat rice.' },
+    },
+  ],
+  flashcards: [
+    {
+      id: 'zh-card-1',
+      type: 'description',
+      prompt: 'Measure word for book: "一___书" (One book) ➔ 一___书',
+      prompts: {
+        en: 'Measure word for book: "一___书" (One book) ➔ 一___书',
+        ru: 'Счётное слово для книги: «一___书» (Одна книга) ➔ 一___书',
+        de: 'Zählwort für Bücher: „一___书“ (Ein Buch) ➔ 一___书',
+        es: 'Clasificador para libros: «一___书» (Un libro) ➔ 一___书',
+        fr: 'Classificateur pour les livres : « 一___书 » (Un livre) ➔ 一___书',
+        zh: '书籍量词："一___书" ➔ 一___书',
+      },
+      options: ['本', '个', '只', '张'],
+      correctAnswer: '本',
+      explanation: '本 (běn) is the dedicated measure word for bound volumes such as books and notebooks.',
+      explanations: {
+        en: '本 (běn) is the dedicated measure word for bound volumes such as books and notebooks.',
+        ru: '本 (běn) — специальное счётное слово для переплетённых печатных изданий (книг, тетрадей).',
+        de: '本 (běn) ist das spezifische Zählwort für gebundene Druckwerke wie Bücher und Hefte.',
+        es: '本 (běn) es el clasificador específico para volúmenes encuadernados como libros y cuadernos.',
+        fr: '本 (běn) est le classificateur dédié aux volumes reliés tels que livres et cahiers.',
+        zh: '本 (běn) 是用于书籍、笔记本等装订成册印刷品的专用量词。',
+      },
+      translation: 'one book',
+      translations: {
+        en: 'one book',
+        ru: 'одна книга',
+        de: 'ein Buch',
+        es: 'un libro',
+        fr: 'un livre',
+        zh: '一本书',
+      },
+      icon: '📖',
+    },
+    {
+      id: 'zh-card-2',
+      type: 'description',
+      prompt: 'Yes/no question particle: "Are you a teacher?" ➔ 你是老师___？',
+      prompts: {
+        en: 'Yes/no question particle: "Are you a teacher?" ➔ 你是老师___？',
+        ru: 'Вопросительная частица да/нет: «Вы учитель?» ➔ 你是老师___？',
+        de: 'Ja/Nein-Fragepartikel: „Bist du Lehrer?“ ➔ 你是老师___？',
+        es: 'Partícula interrogativa sí/no: «¿Eres profesor?» ➔ 你是老师___？',
+        fr: 'Particule interrogative oui/non : « Êtes-vous enseignant ? » ➔ 你是老师___？',
+        zh: '疑问助词："你是老师___？"',
+      },
+      options: ['吗', '呢', '吧', '的'],
+      correctAnswer: '吗',
+      explanation: '吗 (ma) placed at the end of a statement turns it into a direct yes/no question without changing word order.',
+      explanations: {
+        en: '吗 (ma) placed at the end of a statement turns it into a direct yes/no question without changing word order.',
+        ru: 'Частица 吗 (ma) в конце повествовательного предложения превращает его в общий вопрос да/нет.',
+        de: 'Das Partikel 吗 (ma) am Satzende verwandelt eine Aussage in eine Ja/Nein-Frage.',
+        es: 'La partícula 吗 (ma) al final de una afirmación la convierte en una pregunta directa de sí o no.',
+        fr: 'La particule 吗 (ma) en fin de phrase transforme une affirmation en question fermée oui/non.',
+        zh: '陈述句末尾加上疑问语气助词"吗"，即可变为一般疑问句。',
+      },
+      translation: 'Are you a teacher?',
+      translations: {
+        en: 'Are you a teacher?',
+        ru: 'Вы учитель?',
+        de: 'Bist du Lehrer?',
+        es: '¿Eres profesor?',
+        fr: 'Êtes-vous enseignant ?',
+        zh: '你是老师吗？',
+      },
+      icon: '❓',
+    },
+    {
+      id: 'zh-card-3',
+      type: 'description',
+      prompt: 'Possessive particle: "My friend" ➔ 我___朋友',
+      prompts: {
+        en: 'Possessive particle: "My friend" ➔ 我___朋友',
+        ru: 'Притяжательная частица: «Мой друг» ➔ 我___朋友',
+        de: 'Besitzanzeigende Partikel: „Mein Freund“ ➔ 我___朋友',
+        es: 'Partícula posesiva: «Mi amigo» ➔ 我___朋友',
+        fr: 'Particule de possession : « Mon ami » ➔ 我___朋友',
+        zh: '结构助词："我的朋友" ➔ 我___朋友',
+      },
+      options: ['的', '了', '吗', '个'],
+      correctAnswer: '的',
+      explanation: '的 (de) links a possessor or modifier to a noun (我 + 的 + 朋友 = my friend).',
+      explanations: {
+        en: '的 (de) links a possessor or modifier to a noun (我 + 的 + 朋友 = my friend).',
+        ru: 'Частица 的 (de) связывает обладателя или определение с существительным (我 + 的 + 朋友 = мой друг).',
+        de: 'Die Partikel 的 (de) verbindet Besitzer oder Attribut mit einem Nomen (我 + 的 + 朋友 = mein Freund).',
+        es: 'La partícula 的 (de) vincula al poseedor o modificador con el sustantivo (我 + 的 + 朋友 = mi amigo).',
+        fr: 'La particule 的 (de) relie le possesseur ou modificateur au nom (我 + 的 + 朋友 = mon ami).',
+        zh: '结构助词"的"连接定语与中心语，表示所属或修饰关系。',
+      },
+      translation: 'my friend',
+      translations: {
+        en: 'my friend',
+        ru: 'мой друг',
+        de: 'mein Freund',
+        es: 'mi amigo',
+        fr: 'mon ami',
+        zh: '我的朋友',
+      },
+      icon: '🤝',
+    },
+    {
+      id: 'zh-card-4',
+      type: 'description',
+      prompt: 'Comparative sentence: "China is bigger than Japan" ➔ 中国___日本大',
+      prompts: {
+        en: 'Comparative sentence: "China is bigger than Japan" ➔ 中国___日本大',
+        ru: 'Сравнительная конструкция: «Китай больше Японии» ➔ 中国___日本大',
+        de: 'Vergleichssatz: „China ist größer als Japan“ ➔ 中国___日本大',
+        es: 'Oración comparativa: «China es más grande que Japón» ➔ 中国___日本大',
+        fr: 'Phrase comparative : « La Chine est plus grande que le Japon » ➔ 中国___日本大',
+        zh: '比较句："中国比日本大" ➔ 中国___日本大',
+      },
+      options: ['比', '很', '最', '更'],
+      correctAnswer: '比',
+      explanation: '比 (bǐ) is placed between two nouns in the pattern "A 比 B + Adjective" to mean A is more [adj] than B.',
+      explanations: {
+        en: '比 (bǐ) is placed between two nouns in the pattern "A 比 B + Adjective" to mean A is more [adj] than B.',
+        ru: '比 (bǐ) ставится между двумя существительными в конструкции «A 比 B + прилагательное» (A больше/быстрее B).',
+        de: '比 (bǐ) steht zwischen zwei Nomen im Muster „A 比 B + Adjektiv“ (A ist größer/schneller als B).',
+        es: '比 (bǐ) se coloca entre dos sustantivos en el patrón «A 比 B + Adjetivo» (A es más [adj] que B).',
+        fr: '比 (bǐ) se place entre deux noms selon la structure « A 比 B + Adjectif » (A est plus [adj] que B).',
+        zh: '介词"比"用于引出比较对象，结构为"A 比 B + 形容词"。',
+      },
+      translation: 'China is bigger than Japan',
+      translations: {
+        en: 'China is bigger than Japan',
+        ru: 'Китай больше Японии',
+        de: 'China ist größer als Japan',
+        es: 'China es más grande que Japón',
+        fr: 'La Chine est plus grande que le Japon',
+        zh: '中国比日本大',
+      },
+      icon: '🇨🇳',
+    },
+  ],
+};
+
 const LOCALIZED_ENGLISH_GRAMMAR: Partial<Record<SupportedLanguageId, Partial<GrammarData>>> = {
   ru: {
     genderRules: [
@@ -2324,6 +2553,66 @@ const LOCALIZED_ENGLISH_GRAMMAR: Partial<Record<SupportedLanguageId, Partial<Gra
       },
     ],
   },
+  zh: {
+    genderRules: [
+      {
+        article: 'a / an / the',
+        gender: 'neuter',
+        color: '#2563eb',
+        name: '冠词 (A, An, The)',
+        description: '英语名词没有语法性别，但根据单词开头的发音使用定冠词 (the) 和不定冠词 (a / an)。',
+        rules: [
+          '以辅音发音开头的单词前用 "a"：a book, a car, a university（首音为辅音 /j/）',
+          '以元音发音开头的单词前用 "an"：an apple, an hour（字母 "h" 不发音）, an elephant',
+          '表示特指或双方已知的事物时用 "the"：the book on the table',
+        ],
+        examples: [
+          { word: 'apple', article: 'an', meaning: '苹果', icon: '🍎' },
+          { word: 'book', article: 'a', meaning: '书', icon: '📖' },
+          { word: 'car', article: 'a', meaning: '汽车', icon: '🚗' },
+          { word: 'hour', article: 'an', meaning: '小时', icon: '⏱️' },
+        ],
+      },
+    ],
+    verbs: [
+      {
+        verb: 'to be',
+        meaning: '是 / 存在',
+        tense: '现在时 & 过去时',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I', form: 'am / was' },
+          { pronoun: 'you', form: 'are / were' },
+          { pronoun: 'he / she / it', form: 'is / was' },
+          { pronoun: 'we', form: 'are / were' },
+          { pronoun: 'they', form: 'are / were' },
+        ],
+        exampleSentence: { target: 'We are learning languages together.', translation: '我们在一起学习语言。' },
+      },
+      {
+        verb: 'to have',
+        meaning: '有 / 拥有',
+        tense: '现在时 & 过去时',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I / you / we / they', form: 'have (had)' },
+          { pronoun: 'he / she / it', form: 'has (had)' },
+        ],
+        exampleSentence: { target: 'She has a meeting today.', translation: '她今天有一个会议。' },
+      },
+    ],
+    descriptions: [
+      {
+        title: '英语形容词比较级与最高级',
+        explanation: '短形容词在词尾加 -er / -est（fast -> faster -> fastest）。长形容词在词前加 more / most（important -> more important -> most important）。',
+        examples: [
+          { positive: 'good (好)', comparative: 'better (更好)', superlative: 'best (最好)', meaning: '好 / 更好 / 最好' },
+          { positive: 'bad (坏)', comparative: 'worse (更坏)', superlative: 'worst (最坏)', meaning: '坏 / 更坏 / 最坏' },
+          { positive: 'big (大)', comparative: 'bigger (更大)', superlative: 'biggest (最大)', meaning: '大 / 更大 / 最大' },
+        ],
+      },
+    ],
+  },
 };
 
 const LOCALIZED_GERMAN_GRAMMAR: Partial<Record<SupportedLanguageId, Partial<GrammarData>>> = {
@@ -2384,6 +2673,7 @@ export const getGrammarForLanguage = (
       case 'id': baseData = INDONESIAN_GRAMMAR; break;
       case 'ko': baseData = KOREAN_GRAMMAR; break;
       case 'ja': baseData = JAPANESE_GRAMMAR; break;
+      case 'zh': baseData = CHINESE_GRAMMAR; break;
       default: baseData = GERMAN_GRAMMAR; break;
     }
   }
