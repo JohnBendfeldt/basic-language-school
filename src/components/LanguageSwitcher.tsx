@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { FaChevronDown, FaCheck, FaGlobe, FaStar, FaExchangeAlt, FaTimes } from 'react-icons/fa';
-import { useLanguage, ROADMAP_MOST_SPOKEN_LANGUAGES } from '../contexts/LanguageContext';
+import { FaChevronDown, FaCheck, FaGlobe, FaExchangeAlt, FaTimes } from 'react-icons/fa';
+import { useLanguage } from '../contexts/LanguageContext';
 import { SupportedLanguageId } from '../data/languages/types';
 import { FlagIcon } from './FlagIcon';
-import { getLocalizedLanguageName, getComponentChrome, getLocalizedRegionName } from '../utils/pageDictionary';
+import { getLocalizedLanguageName, getComponentChrome, getLocalizedRegionName, getLanguageRequestCopy } from '../utils/pageDictionary';
 
 interface LanguageSwitcherProps {
   onLanguageChange?: (langId: SupportedLanguageId) => void;
@@ -101,46 +101,6 @@ const getSuggestedTitle = (baseLang: SupportedLanguageId): string => {
     case 'bn': return 'আপনার জন্য প্রস্তাবিত';
     case 'ur': return 'آپ کے لیے تجویز کردہ';
     default: return 'Suggested For You';
-  }
-};
-
-const getRoadmapTitle = (baseLang: SupportedLanguageId): string => {
-  switch (baseLang) {
-    case 'ru': return 'Глобальная карта развития языков';
-    case 'es': return 'Mapa global de idiomas';
-    case 'fr': return 'Feuille de route mondiale des langues';
-    case 'de': return 'Globale Sprachen-Roadmap';
-    case 'pt': return 'Roteiro global de idiomas';
-    case 'tr': return 'Küresel Dil Yol Haritası';
-    case 'id': return 'Peta Jalan Bahasa Global';
-    case 'ja': return '言語追加ロードマップ';
-    case 'ko': return '글로벌 언어 로드맵';
-    case 'zh': return '全球语言路线图';
-    case 'hi': return 'वैश्विक भाषा रोडमैप';
-    case 'ar': return 'خارطة طريق اللغات العالمية';
-    case 'bn': return 'গ্লোবাল ল্যাঙ্গুয়েজ রোডম্যাপ';
-    case 'ur': return 'عالمی زبانوں کا لائحہ عمل';
-    default: return 'Global Language Roadmap';
-  }
-};
-
-const getRoadmapSubtitle = (baseLang: SupportedLanguageId): string => {
-  switch (baseLang) {
-    case 'ru': return 'Приоритет отдаётся самым распространённым языкам мира, чтобы открыть обучение как можно большему числу людей.';
-    case 'es': return 'Priorizando los idiomas más hablados del mundo para llegar a la mayor cantidad de estudiantes.';
-    case 'fr': return 'Priorité aux langues les plus parlées au monde pour toucher un maximum d’apprenants.';
-    case 'de': return 'Wir priorisieren die meistgesprochenen Sprachen der Welt, um weltweit die meisten Lernenden zu erreichen.';
-    case 'pt': return 'Priorizando os idiomas mais falados do mundo para alcançar o maior número de estudantes.';
-    case 'tr': return 'Dünya genelinde en çok öğrenciye ulaşmak için en çok konuşulan dillere öncelik veriyoruz.';
-    case 'id': return 'Memprioritaskan bahasa yang paling banyak digunakan di dunia untuk menjangkau lebih banyak pelajar.';
-    case 'ja': return '世界で最も多く話されている言語を優先し、より多くの学習者へお届けします。';
-    case 'ko': return '전 세계 더 많은 학습자에게 다가가기 위해 가장 널리 사용되는 언어를 우선순위로 둡니다.';
-    case 'zh': return '优先开发全球使用人数最多的语言，让更多学习者轻松开启新语言之旅。';
-    case 'hi': return 'दुनिया भर में अधिक से अधिक शिक्षार्थियों तक पहुँचने के लिए सबसे अधिक बोली जाने वाली भाषाओं को प्राथमिकता दी जा रही है।';
-    case 'ar': return 'إعطاء الأولوية للغات الأكثر تحدثاً في العالم للوصول إلى أكبر عدد من المتعلمين.';
-    case 'bn': return 'বিশ্বব্যাপী সর্বাধিক শিক্ষার্থীদের কাছে পৌঁছানোর জন্য সর্বাধিক কথ্য ভাষাগুলিকে অগ্রাধিকার দেওয়া হচ্ছে।';
-    case 'ur': return 'دنیا بھر کے زیادہ سے زیادہ سیکھنے والوں تک پہنچنے کے لیے سب سے زیادہ بولی جانے والی زبانوں کو ترجیح دی جا رہی ہے۔';
-    default: return "Prioritizing the world's most spoken languages to reach the most learners worldwide.";
   }
 };
 
@@ -265,6 +225,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
   };
 
   const chrome = getComponentChrome(baseLanguage);
+  const requestCopy = getLanguageRequestCopy(baseLanguage);
   const localizedTargetName = getLocalizedLanguageName(targetMeta.id, baseLanguage, targetMeta.name);
   const localizedBaseName = getLocalizedLanguageName(baseMeta.id, baseLanguage, baseMeta.name);
 
@@ -539,44 +500,20 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
               </div>
 
               {activeTab === 'target' && (
-                <div className="language-roadmap-container">
-                  <div className="language-roadmap-header">
-                    <span className="roadmap-title-badge">
-                      <FaStar className="upcoming-icon" /> {getRoadmapTitle(baseLanguage)}
-                    </span>
-                    <p className="roadmap-subtitle">
-                      {getRoadmapSubtitle(baseLanguage)}
-                    </p>
-                  </div>
-
-                  <div className="language-roadmap-chips">
-                    {ROADMAP_MOST_SPOKEN_LANGUAGES.map((lang) => (
-                      <div key={lang.name} className="roadmap-lang-chip" title={`${lang.name} (${lang.speakers})`}>
-                        <span className="chip-flag" aria-hidden="true">
-                          <FlagIcon lang={lang.id || lang.name} size={20} />
-                        </span>
-                        <div className="chip-info">
-                          <span className="chip-name">{lang.name}</span>
-                          <span className="chip-speakers">{lang.speakers}</span>
-                        </div>
-                        <span className="coming-soon-badge">{chrome.soonBadge}</span>
-                      </div>
-                    ))}
-                  </div>
-
+                <div className="language-request-section">
                   <div className="language-request-callout">
                     <div className="request-callout-icon" aria-hidden="true">✉️</div>
                     <div className="request-callout-body">
-                      <h4 className="request-callout-title">Request a Language</h4>
+                      <h4 className="request-callout-title">{requestCopy.title}</h4>
                       <p className="request-callout-text">
-                        Have a language you'd love to learn? Email{' '}
+                        {requestCopy.before}{' '}
                         <a
                           href="mailto:dev@basiclanguage.school?subject=Language%20Request%20for%20Basic%20Language%20School"
                           className="request-email-link"
                         >
                           dev@basiclanguage.school
                         </a>{' '}
-                        to request it. Once this project is open source, community contributions will enable support for even more languages!
+                        {requestCopy.after}
                       </p>
                     </div>
                   </div>

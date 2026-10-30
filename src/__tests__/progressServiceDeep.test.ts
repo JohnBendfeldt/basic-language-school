@@ -360,3 +360,4 @@ describe('ProgressService.syncGuestDataToCloud', () => {
     await expect(ProgressService.syncGuestDataToCloud('es')).resolves.toBeUndefined();
   });
 });
+

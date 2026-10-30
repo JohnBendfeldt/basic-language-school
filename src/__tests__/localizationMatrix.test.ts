@@ -10,6 +10,7 @@ import {
   getLocalizedAppName,
   getLocalizedLanguageName,
   getTimeTabs,
+  getLanguageRequestCopy,
   LanguageRegionKey,
 } from '../utils/pageDictionary';
 import { LANGUAGE_NAMES_IN_BASE } from '../utils/translationResolver';
@@ -99,5 +100,22 @@ describe('UI localization matrix across all 15 base languages', () => {
         expect(isNonEmptyString(getLocalizedAppName(target, base, 'Basic Fallback'))).toBe(true);
       }
     }
+  });
+});
+
+describe('Language request note', () => {
+  it.each(ALL)('%s: has a title and text around the email address', (lang) => {
+    const copy = getLanguageRequestCopy(lang);
+    expect(copy.title.trim()).not.toBe('');
+    expect(copy.before.trim()).not.toBe('');
+    expect(copy.after.trim()).not.toBe('');
+  });
+
+  it.each(NON_LATIN)('%s: is not left in English', (lang) => {
+    expect(getLanguageRequestCopy(lang).title).not.toBe(getLanguageRequestCopy('en').title);
+  });
+
+  it('falls back to English for an unknown language', () => {
+    expect(getLanguageRequestCopy('xx' as SupportedLanguageId).title).toBe('Request a Language');
   });
 });
