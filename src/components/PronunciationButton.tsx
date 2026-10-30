@@ -35,7 +35,7 @@ export const getCandidateAudioPathsForText = (
     .normalize('NFC')
     .split('/')[0]
     .replace(/\s*\([^)]*\)\s*/g, '')
-    .replace(/[?.,!¡¿'’"«»:？。、！]/g, '')
+    .replace(/[?.,!¡¿'’"«»:؟،？。、！]/g, '')
     .trim();
   const fileName = cleanText.replace(/\s+/g, '_');
   if (!fileName) return [];
@@ -118,6 +118,8 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
                         ? 'zh'
                         : (lang && lang.toLowerCase().startsWith('hi'))
                           ? 'hi'
+                          : (lang && lang.toLowerCase().startsWith('ar'))
+                            ? 'ar'
                           : currentLanguage;
 
   const [isPlaying, setIsPlaying] = useState(false);

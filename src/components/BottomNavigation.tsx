@@ -26,6 +26,7 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({
       case 'ja': return 'かな &\n文法';
       case 'zh': return '拼音 &\n语法';
       case 'hi': return 'वर्णमाला &\nव्याकरण';
+      case 'ar': return 'الحروف و\nالقواعد';
       default: return 'Alphabet &\nGrammar';
     }
   };

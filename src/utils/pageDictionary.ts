@@ -417,7 +417,8 @@ export const getPageContent = (
       ja: 'カードをタップして翻訳と発音を確認できます',
       ko: '카드를 탭하여 번역과 발음을 확인하세요',
       zh: '点击卡片查看释义与标准发音',
-      hi: 'अनुवाद और उच्चारण देखने के लिए किसी भी कार्ड पर टैप करें'
+      hi: 'अनुवाद और उच्चारण देखने के लिए किसी भी कार्ड पर टैप करें',
+      ar: 'انقر على أي بطاقة لعرض الترجمة والنطق'
     };
 
     if (targetLang === 'en') {
@@ -611,7 +612,8 @@ export const getPageContent = (
       ja: 'カードをタップして翻訳と発音を確認できます',
       ko: '카드를 탭하여 번역과 발음을 확인하세요',
       zh: '点击卡片查看释义与标准发音',
-      hi: 'अनुवाद और उच्चारण देखने के लिए किसी भी कार्ड पर टैप करें'
+      hi: 'अनुवाद और उच्चारण देखने के लिए किसी भी कार्ड पर टैप करें',
+      ar: 'انقر على أي بطاقة لعرض الترجمة والنطق'
     };
 
     if (targetLang === 'en') {
@@ -1181,6 +1183,8 @@ export const getAlphabetLabels = (baseLang: SupportedLanguageId): { sound: strin
       return { sound: '发音:', example: '例词:', asIn: '类似于' };
     case 'hi':
       return { sound: 'ध्वनि:', example: 'उदाहरण:', asIn: 'जैसे' };
+    case 'ar':
+      return { sound: 'الصوت:', example: 'مثال:', asIn: 'كما في' };
     case 'en':
     default:
       return { sound: 'Sound:', example: 'Example:', asIn: 'as in' };
@@ -1214,6 +1218,8 @@ export const getTimeTabs = (baseLang: SupportedLanguageId) => {
       return { numbers: '数字', time: '时间表达' };
     case 'hi':
       return { numbers: 'संख्याएँ', time: 'समय' };
+    case 'ar':
+      return { numbers: 'الأرقام', time: 'الوقت' };
     case 'en':
     default:
       return { numbers: 'Numbers', time: 'Telling Time' };
@@ -1862,7 +1868,8 @@ export const getLocalizedAppName = (
       ja: 'Базовый Японский',
       ko: 'Базовый Корейский',
       zh: 'Базовый Китайский',
-      hi: 'Базовый Хинди'
+      hi: 'Базовый Хинди',
+      ar: 'Базовый Арабский',
     },
     es: {
       en: 'Inglés Básico',
@@ -1876,7 +1883,8 @@ export const getLocalizedAppName = (
       ja: 'Japonés Básico',
       ko: 'Coreano Básico',
       zh: 'Chino Básico',
-      hi: 'Hindi Básico'
+      hi: 'Hindi Básico',
+      ar: 'Árabe Básico',
     },
     fr: {
       en: 'Anglais de Base',
@@ -1890,7 +1898,8 @@ export const getLocalizedAppName = (
       ja: 'Japonais de Base',
       ko: 'Coréen de Base',
       zh: 'Chinois de Base',
-      hi: 'Hindi de Base'
+      hi: 'Hindi de Base',
+      ar: 'Arabe de Base',
     },
     pt: {
       en: 'Inglês Básico',
@@ -1904,7 +1913,8 @@ export const getLocalizedAppName = (
       ja: 'Japonês Básico',
       ko: 'Coreano Básico',
       zh: 'Chinês Básico',
-      hi: 'Híndi Básico'
+      hi: 'Híndi Básico',
+      ar: 'Árabe Básico',
     },
     de: {
       en: 'Basis-Englisch',
@@ -1918,7 +1928,8 @@ export const getLocalizedAppName = (
       ja: 'Basis-Japanisch',
       ko: 'Basis-Koreanisch',
       zh: 'Basis-Chinesisch',
-      hi: 'Basis-Hindi'
+      hi: 'Basis-Hindi',
+      ar: 'Basis-Arabisch',
     },
     id: {
       en: 'Bahasa Inggris Dasar',
@@ -1932,7 +1943,8 @@ export const getLocalizedAppName = (
       ja: 'Bahasa Jepang Dasar',
       ko: 'Bahasa Korea Dasar',
       zh: 'Bahasa Mandarin Dasar',
-      hi: 'Bahasa Hindi Dasar'
+      hi: 'Bahasa Hindi Dasar',
+      ar: 'Bahasa Arab Dasar',
     },
     tr: {
       en: 'Temel İngilizce',
@@ -1946,7 +1958,8 @@ export const getLocalizedAppName = (
       ja: 'Temel Japonca',
       ko: 'Temel Korece',
       zh: 'Temel Çince',
-      hi: 'Temel Hintçe'
+      hi: 'Temel Hintçe',
+      ar: 'Temel Arapça',
     },
     en: {
       en: 'Basic English',
@@ -1960,7 +1973,8 @@ export const getLocalizedAppName = (
       ja: 'Basic Japanese',
       ko: 'Basic Korean',
       zh: 'Basic Chinese',
-      hi: 'Basic Hindi'
+      hi: 'Basic Hindi',
+      ar: 'Basic Arabic'
     },
     ja: {
       en: 'ベーシック英語',
@@ -1974,7 +1988,8 @@ export const getLocalizedAppName = (
       ja: 'ベーシック日本語',
       ko: 'ベーシック韓国語',
       zh: 'ベーシック中国語',
-      hi: 'ベーシックヒンディー語'
+      hi: 'ベーシックヒンディー語',
+      ar: 'ベーシック アラビア語',
     },
     ko: {
       en: '베이직 영어',
@@ -1988,7 +2003,8 @@ export const getLocalizedAppName = (
       ja: '베이직 일본어',
       ko: '베이직 한국어',
       zh: '베이직 중국어',
-      hi: '베이직 힌디어'
+      hi: '베이직 힌디어',
+      ar: '베이직 아랍어',
     },
     zh: {
       en: '基础英语',
@@ -2002,7 +2018,8 @@ export const getLocalizedAppName = (
       ja: '基础日语',
       ko: '基础韩语',
       zh: '基础中文',
-      hi: '基础印地语'
+      hi: '基础印地语',
+      ar: '基础阿拉伯语',
     },
     hi: {
       en: 'बेसिक अंग्रेज़ी',
@@ -2016,7 +2033,23 @@ export const getLocalizedAppName = (
       ja: 'बेसिक जापानी',
       ko: 'बेसिक कोरियाई',
       zh: 'बेसिक चीनी',
-      hi: 'बेसिक हिन्दी'
+      hi: 'बेसिक हिन्दी',
+      ar: 'बेसिक अरबी',
+    },
+    ar: {
+      en: 'الإنجليزية الأساسية',
+      es: 'الإسبانية الأساسية',
+      fr: 'الفرنسية الأساسية',
+      ru: 'الروسية الأساسية',
+      pt: 'البرتغالية الأساسية',
+      de: 'الألمانية الأساسية',
+      id: 'الإندونيسية الأساسية',
+      tr: 'التركية الأساسية',
+      ja: 'اليابانية الأساسية',
+      ko: 'الكورية الأساسية',
+      zh: 'الصينية الأساسية',
+      hi: 'الهندية الأساسية',
+      ar: 'العربية الأساسية'
     }
   };
 
@@ -2047,7 +2080,8 @@ export const getLocalizedLanguageName = (
       ja: 'Японский',
       zh: 'Китайский',
       ko: 'Корейский',
-      hi: 'Хинди'
+      hi: 'Хинди',
+      ar: 'Арабский',
     },
     es: {
       en: 'Inglés',
@@ -2062,7 +2096,8 @@ export const getLocalizedLanguageName = (
       ja: 'Japonés',
       zh: 'Chino',
       ko: 'Coreano',
-      hi: 'Hindi'
+      hi: 'Hindi',
+      ar: 'Árabe',
     },
     fr: {
       en: 'Anglais',
@@ -2077,7 +2112,8 @@ export const getLocalizedLanguageName = (
       ja: 'Japonais',
       zh: 'Chinois',
       ko: 'Coréen',
-      hi: 'Hindi'
+      hi: 'Hindi',
+      ar: 'Arabe',
     },
     pt: {
       en: 'Inglês',
@@ -2092,7 +2128,8 @@ export const getLocalizedLanguageName = (
       ja: 'Japonês',
       zh: 'Chinês',
       ko: 'Coreano',
-      hi: 'Híndi'
+      hi: 'Híndi',
+      ar: 'Árabe',
     },
     de: {
       en: 'Englisch',
@@ -2107,7 +2144,8 @@ export const getLocalizedLanguageName = (
       ja: 'Japanisch',
       zh: 'Chinesisch',
       ko: 'Koreanisch',
-      hi: 'Hindi'
+      hi: 'Hindi',
+      ar: 'Arabisch',
     },
     id: {
       en: 'Inggris',
@@ -2122,7 +2160,8 @@ export const getLocalizedLanguageName = (
       ja: 'Jepang',
       zh: 'Mandarin',
       ko: 'Korea',
-      hi: 'Hindi'
+      hi: 'Hindi',
+      ar: 'Arab',
     },
     tr: {
       en: 'İngilizce',
@@ -2137,7 +2176,8 @@ export const getLocalizedLanguageName = (
       ja: 'Japonca',
       zh: 'Çince',
       ko: 'Korece',
-      hi: 'Hintçe'
+      hi: 'Hintçe',
+      ar: 'Arapça',
     },
     ja: {
       en: '英語',
@@ -2151,7 +2191,8 @@ export const getLocalizedLanguageName = (
       ja: '日本語',
       ko: '韓国語',
       zh: '中国語',
-      hi: 'ヒンディー語'
+      hi: 'ヒンディー語',
+      ar: 'アラビア語',
     },
     ko: {
       en: '영어',
@@ -2165,7 +2206,8 @@ export const getLocalizedLanguageName = (
       ja: '일본어',
       ko: '한국어',
       zh: '중국어',
-      hi: '힌디어'
+      hi: '힌디어',
+      ar: '아랍어',
     },
     zh: {
       en: '英语',
@@ -2180,7 +2222,8 @@ export const getLocalizedLanguageName = (
       ja: '日语',
       ko: '韩语',
       zh: '中文',
-      hi: '印地语'
+      hi: '印地语',
+      ar: '阿拉伯语',
     },
     hi: {
       en: 'अंग्रेज़ी',
@@ -2195,7 +2238,24 @@ export const getLocalizedLanguageName = (
       ja: 'जापानी',
       ko: 'कोरियाई',
       zh: 'चीनी',
-      hi: 'हिन्दी'
+      hi: 'हिन्दी',
+      ar: 'अरबी',
+    },
+    ar: {
+      en: 'الإنجليزية',
+      es: 'الإسبانية',
+      fr: 'الفرنسية',
+      ru: 'الروسية',
+      de: 'الألمانية',
+      it: 'الإيطالية',
+      pt: 'البرتغالية',
+      id: 'الإندونيسية',
+      tr: 'التركية',
+      ja: 'اليابانية',
+      zh: 'الصينية',
+      ko: 'الكورية',
+      hi: 'الهندية',
+      ar: 'العربية',
     },
     en: {}
   };
@@ -2330,6 +2390,7 @@ export const getQuizToolbarLabels = (baseLang: SupportedLanguageId = 'en') => {
     ko: { topic: '학습 주제', level: '난이도 수준', modality: '연습 모드', questionOf: (c, t) => `문제 ${c} / ${t}` },
     zh: { topic: '课程主题', level: '熟练度等级', modality: '练习模式', questionOf: (c, t) => `第 ${c} 题 / 共 ${t} 题` },
     hi: { topic: 'पाठ विषय', level: 'कठिनाई स्तर', modality: 'अभ्यास मोड', questionOf: (c, t) => `प्रश्न ${c} / ${t}` },
+    ar: { topic: 'موضوع الدرس', level: 'مستوى الصعوبة', modality: 'نمط التدريب', questionOf: (c, t) => `السؤال ${c} من ${t}` },
   };
   return map[baseLang] || map.en;
 };
@@ -2394,6 +2455,61 @@ export interface ComponentChromeStrings {
 
 export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChromeStrings => {
   switch (baseLang) {
+    case 'ar':
+      return {
+        installApp: 'تثبيت التطبيق',
+        installAppTitle: 'تثبيت التطبيق على جهازك',
+        loadingLessons: 'جاري تحميل الدروس...',
+        allRightsReserved: 'جميع الحقوق محفوظة.',
+        aboutContact: 'حول المشروع والتواصل',
+        privacyPolicy: 'سياسة الخصوصية',
+        termsOfService: 'شروط الخدمة',
+
+        customizingBadge: 'تخصيص',
+        popularPairs: 'اللغات الشائعة',
+        chooseLanguageToLearn: 'اختر لغة لتتعلمها',
+        upcomingCourses: 'دورات قادمة',
+        soonBadge: 'قريباً',
+        bidirectionalNotice: 'منهج تعليمي ثنائي الاتجاه · صوت استوديو عصبي',
+        switchDirectionTitle: (baseName, targetName) =>
+          `تبديل الاتجاه: تعلم ${baseName} من ${targetName}`,
+
+        audioSpeedLabel: 'سرعة الصوت',
+        studioVoicePace: 'سرعة صوت الاستوديو',
+        speedDesc05: 'حركة بطيئة لنطق المقاطع بوضوح',
+        speedDesc075: 'سرعة المتعلم',
+        speedDesc1: 'سرعة المتحدث الأصلي الطبيعية',
+        speedDesc125: 'استماع سريع وطلاقة',
+
+        personalStudyDashboard: 'لوحة الدراسة الشخصية',
+        learningPair: 'زوج اللغات',
+        audioPlaybackSpeed: 'سرعة تشغيل الصوت',
+        myLearningProgress: 'تقدمي التعليمي',
+        accountCloudSync: 'الحساب والمزامنة السحابية',
+        signOut: 'تسجيل الخروج',
+        syncSignIn: 'مزامنة وتسجيل الدخول',
+
+        myStats: 'إحصائياتي',
+        signIn: 'تسجيل الدخول',
+        signOutTitle: 'تسجيل الخروج',
+        progressModalTitle: 'تقدمي في التعلم',
+        overallAccuracy: 'الدقة الكلية',
+        questionsAttempted: 'الأسئلة المجاب عنها',
+        streak: 'سلسلة الأيام',
+        mastered: 'تم إتقانها',
+        accuracyByCategory: 'الدقة حسب الفئة',
+        alphabetCat: 'الحروف',
+        phrasesCat: 'العبارات الأساسية',
+        commonWordsCat: 'الكلمات الشائعة',
+        numbersCat: 'الأرقام',
+        correctOfTotal: (correct, total) => `${correct} من ${total} صحيح`,
+        syncPromoText: 'هل تريد حفظ تقدمك ومزامنته عبر جميع أجهزتك؟',
+        signInRegister: 'تسجيل الدخول / إنشاء حساب',
+        resetAllStats: 'إعادة تعيين جميع الإحصائيات',
+        confirmResetStats: 'هل أنت متأكد من رغبتك في إعادة تعيين إحصائيات التعلم بالكامل؟',
+        doneBtn: 'تم'
+      };
+
     case 'ru':
       return {
         installApp: 'Установить',

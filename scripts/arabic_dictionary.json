@@ -1,0 +1,2198 @@
+{
+  "Rabbit": [
+    "أرنب",
+    "/aː/ (alif)"
+  ],
+  "House": [
+    "بيت",
+    "/b/ (baa)"
+  ],
+  "Apple": [
+    "تفاح",
+    "tuffaah"
+  ],
+  "Fox": [
+    "ثعلب",
+    "/θ/ (thaa)"
+  ],
+  "Camel": [
+    "جمل",
+    "/dʒ/ (jeem)"
+  ],
+  "Milk": [
+    "حليب",
+    "haleeb"
+  ],
+  "Bread": [
+    "خبز",
+    "khubz"
+  ],
+  "Bicycle": [
+    "دراجة",
+    "darraajah"
+  ],
+  "Wolf": [
+    "ذئب",
+    "/ð/ (dhaal)"
+  ],
+  "Man": [
+    "رجل",
+    "rajul"
+  ],
+  "Flower": [
+    "زهرة",
+    "zahrah"
+  ],
+  "Car": [
+    "سيارة",
+    "sayyaarah"
+  ],
+  "Sun": [
+    "شمس",
+    "shams"
+  ],
+  "Morning": [
+    "صباح",
+    "sabaah"
+  ],
+  "Light": [
+    "خفيف",
+    "khafeef"
+  ],
+  "Airplane": [
+    "طائرة",
+    "taa'irah"
+  ],
+  "Antelope": [
+    "ظبي",
+    "/ðˤ/ (dhaa)"
+  ],
+  "Eye": [
+    "عين",
+    "ayn"
+  ],
+  "Forest": [
+    "غابة",
+    "/ɣ/ (ghayn)"
+  ],
+  "Hotel": [
+    "فندق",
+    "funduq"
+  ],
+  "Pen": [
+    "قلم",
+    "/q/ (qaaf)"
+  ],
+  "Book": [
+    "كتاب",
+    "kitaab"
+  ],
+  "Lemon": [
+    "ليمون",
+    "laymoon"
+  ],
+  "Water": [
+    "ماء",
+    "maa'"
+  ],
+  "Star": [
+    "نجمة",
+    "najmah"
+  ],
+  "Phone": [
+    "هاتف",
+    "haatif"
+  ],
+  "Rose": [
+    "وردة",
+    "/w/ (waaw)"
+  ],
+  "Hand": [
+    "يد",
+    "/j/ (yaa)"
+  ],
+  "Hello": [
+    "مرحباً",
+    "marhaban"
+  ],
+  "Welcome": [
+    "أهلاً وسهلاً",
+    "ahlan wa sahlan"
+  ],
+  "Good morning": [
+    "صباح الخير",
+    "sabaah al-khayr"
+  ],
+  "Good evening": [
+    "مساء الخير",
+    "masaa' al-khayr"
+  ],
+  "Good night": [
+    "تصبح على خير",
+    "tusbih 'ala khayr"
+  ],
+  "Thank you": [
+    "شكراً",
+    "shukran"
+  ],
+  "Thank you very much": [
+    "شكراً جزيلاً",
+    "shukran jazeelan"
+  ],
+  "You're welcome": [
+    "عفواً",
+    "'afwan"
+  ],
+  "Please": [
+    "من فضلك",
+    "min fadlik"
+  ],
+  "Excuse me / Sorry": [
+    "معذرة",
+    "ma'dhiratan"
+  ],
+  "I am sorry": [
+    "أنا آسف",
+    "ana aasif"
+  ],
+  "Yes": [
+    "نعم",
+    "na'am"
+  ],
+  "No": [
+    "لا",
+    "laa"
+  ],
+  "Okay / All right": [
+    "حسناً",
+    "hasanan"
+  ],
+  "Goodbye": [
+    "مع السلامة",
+    "ma'a as-salaama"
+  ],
+  "See you later": [
+    "إلى اللقاء",
+    "ilaa al-liqaa'"
+  ],
+  "Nice to meet you": [
+    "تشرفنا",
+    "tasharrafnaa"
+  ],
+  "What is your name?": [
+    "ما اسمك؟",
+    "maa ismuk?"
+  ],
+  "My name is...": [
+    "اسمي...",
+    "ismee..."
+  ],
+  "How are you?": [
+    "كيف حالك؟",
+    "kayfa haaluk?"
+  ],
+  "I am fine": [
+    "أنا بخير",
+    "ana bikhayr"
+  ],
+  "Praise be to God / Doing well": [
+    "الحمد لله",
+    "al-hamdu lillaah"
+  ],
+  "Where are you from?": [
+    "من أين أنت؟",
+    "min ayna ant?"
+  ],
+  "I am from...": [
+    "أنا من...",
+    "ana min..."
+  ],
+  "Do you speak English?": [
+    "هل تتكلم الإنجليزية؟",
+    "hal tatakallam al-ingleeziyya?"
+  ],
+  "I don't understand": [
+    "لا أفهم",
+    "laa afham"
+  ],
+  "Where is the restroom?": [
+    "أين الحمام؟",
+    "ayna al-hammaam?"
+  ],
+  "Help!": [
+    "النجدة!",
+    "an-najda!"
+  ],
+  "How much is this?": [
+    "بكم هذا؟",
+    "bikam haadhaa?"
+  ],
+  "0 (Zero)": [
+    "صفر",
+    "sifr"
+  ],
+  "1 (One)": [
+    "واحد",
+    "waahid"
+  ],
+  "2 (Two)": [
+    "اثنان",
+    "ithnaan"
+  ],
+  "3 (Three)": [
+    "ثلاثة",
+    "thalaatha"
+  ],
+  "4 (Four)": [
+    "أربعة",
+    "arba'a"
+  ],
+  "5 (Five)": [
+    "خمسة",
+    "khamsa"
+  ],
+  "6 (Six)": [
+    "ستة",
+    "sitta"
+  ],
+  "7 (Seven)": [
+    "سبعة",
+    "sab'a"
+  ],
+  "8 (Eight)": [
+    "ثمانية",
+    "thamaaniya"
+  ],
+  "9 (Nine)": [
+    "تسعة",
+    "tis'a"
+  ],
+  "10 (Ten)": [
+    "عشرة",
+    "'ashara"
+  ],
+  "11 (Eleven)": [
+    "أحد عشر",
+    "ahada 'ashar"
+  ],
+  "12 (Twelve)": [
+    "اثنا عشر",
+    "ithna 'ashar"
+  ],
+  "13 (Thirteen)": [
+    "ثلاثة عشر",
+    "thalaathata 'ashar"
+  ],
+  "14 (Fourteen)": [
+    "أربعة عشر",
+    "arba'ata 'ashar"
+  ],
+  "15 (Fifteen)": [
+    "خمسة عشر",
+    "khamsata 'ashar"
+  ],
+  "16 (Sixteen)": [
+    "ستة عشر",
+    "sittata 'ashar"
+  ],
+  "17 (Seventeen)": [
+    "سبعة عشر",
+    "sab'ata 'ashar"
+  ],
+  "18 (Eighteen)": [
+    "ثمانية عشر",
+    "thamaaniyata 'ashar"
+  ],
+  "19 (Nineteen)": [
+    "تسعة عشر",
+    "tis'ata 'ashar"
+  ],
+  "20 (Twenty)": [
+    "عشرون",
+    "'ishroon"
+  ],
+  "30 (Thirty)": [
+    "ثلاثون",
+    "thalaathoon"
+  ],
+  "40 (Forty)": [
+    "أربعون",
+    "arba'oon"
+  ],
+  "50 (Fifty)": [
+    "خمسون",
+    "khamsoon"
+  ],
+  "60 (Sixty)": [
+    "ستون",
+    "sittoon"
+  ],
+  "70 (Seventy)": [
+    "سبعون",
+    "sab'oon"
+  ],
+  "80 (Eighty)": [
+    "ثمانون",
+    "thamaanoon"
+  ],
+  "90 (Ninety)": [
+    "تسعون",
+    "tis'oon"
+  ],
+  "100 (One hundred)": [
+    "مائة",
+    "mi'ah"
+  ],
+  "1,000 (One thousand)": [
+    "ألف",
+    "alf"
+  ],
+  "What time is it?": [
+    "كم الساعة؟",
+    "kam as-saa'ah?"
+  ],
+  "One o'clock (1:00)": [
+    "الساعة الواحدة",
+    "as-saa'atu al-waahidah"
+  ],
+  "Two o'clock (2:00)": [
+    "الساعة الثانية",
+    "as-saa'atu ath-thaaniyah"
+  ],
+  "Three o'clock (3:00)": [
+    "الساعة الثالثة",
+    "as-saa'atu ath-thaalithah"
+  ],
+  "Half past (:30)": [
+    "والنصف",
+    "wan-nisf"
+  ],
+  "Quarter past (:15)": [
+    "والربع",
+    "war-rub'"
+  ],
+  "Quarter to (:45)": [
+    "إلا ربعاً",
+    "illaa rub'an"
+  ],
+  "In the morning (AM)": [
+    "صباحاً",
+    "sabaahan"
+  ],
+  "In the evening (PM)": [
+    "مساءً",
+    "masaa'an"
+  ],
+  "At noon (12:00 PM)": [
+    "ظهراً",
+    "zuhran"
+  ],
+  "Midnight (12:00 AM)": [
+    "منتصف الليل",
+    "muntasaf al-layl"
+  ],
+  "Now": [
+    "الآن",
+    "al-aan"
+  ],
+  "Food / Meal": [
+    "طعام / وجبة",
+    "ta'aam / wajbah"
+  ],
+  "Coffee": [
+    "قهوة",
+    "qahwah"
+  ],
+  "Time / Weather": [
+    "وقت / طقس",
+    "waqt / taqs"
+  ],
+  "Today": [
+    "اليوم",
+    "al-yawm"
+  ],
+  "Tomorrow / Morning": [
+    "غداً / صباح",
+    "ghadan / sabaah"
+  ],
+  "Yesterday": [
+    "أمس",
+    "ams"
+  ],
+  "Work / Job": [
+    "عمل / وظيفة",
+    "'amal / wadheefah"
+  ],
+  "Office": [
+    "مكتب",
+    "maktab"
+  ],
+  "Money": [
+    "نقود / مال",
+    "nuqood / maal"
+  ],
+  "Help": [
+    "مساعدة",
+    "musaa'adah"
+  ],
+  "Friend": [
+    "صديق",
+    "sadeeq"
+  ],
+  "Family": [
+    "عائلة / أسرة",
+    "'aa'ilah / usrah"
+  ],
+  "Home / House": [
+    "بيت / منزل",
+    "bayt / manzil"
+  ],
+  "City": [
+    "مدينة",
+    "madeenah"
+  ],
+  "Country": [
+    "بلد / دولة",
+    "balad / dawlah"
+  ],
+  "Train": [
+    "قطار",
+    "qitaar"
+  ],
+  "Red": [
+    "أحمر",
+    "ahmar"
+  ],
+  "Blue": [
+    "أزرق",
+    "azraq"
+  ],
+  "Green": [
+    "أخضر",
+    "akhdar"
+  ],
+  "Yellow": [
+    "أصفر",
+    "asfar"
+  ],
+  "Black": [
+    "أسود",
+    "aswad"
+  ],
+  "White": [
+    "أبيض",
+    "abyad"
+  ],
+  "Big": [
+    "كبير",
+    "kabeer"
+  ],
+  "Small": [
+    "صغير",
+    "sagheer"
+  ],
+  "New": [
+    "جديد",
+    "jadeed"
+  ],
+  "Old": [
+    "قديم",
+    "qadeem"
+  ],
+  "Rain": [
+    "مطر",
+    "matar"
+  ],
+  "Snow": [
+    "ثلج",
+    "thalj"
+  ],
+  "Wind": [
+    "رياح",
+    "riyaah"
+  ],
+  "Cloud": [
+    "سحابة / غيمة",
+    "sahaabah"
+  ],
+  "Storm": [
+    "عاصفة",
+    "'aasifah"
+  ],
+  "Hot": [
+    "حار / ساخن",
+    "haar / saakhin"
+  ],
+  "Cold": [
+    "بارد",
+    "baarid"
+  ],
+  "Computer": [
+    "حاسوب / كمبيوتر",
+    "haasoob / kumbyootar"
+  ],
+  "Internet": [
+    "إنترنت",
+    "intarnit"
+  ],
+  "Password": [
+    "كلمة المرور",
+    "kalimat al-muroor"
+  ],
+  "Email": [
+    "بريد إلكتروني",
+    "bareed ilikturoonee"
+  ],
+  "Screen": [
+    "شاشة",
+    "shaashah"
+  ],
+  "Meeting": [
+    "اجتماع",
+    "ijtimaa'"
+  ],
+  "File": [
+    "ملف",
+    "milaff"
+  ],
+  "Link": [
+    "رابط",
+    "raabit"
+  ],
+  "Code": [
+    "رمز / كود",
+    "ramz"
+  ],
+  "Error": [
+    "خطأ",
+    "khata'"
+  ],
+  "Battery": [
+    "بطارية",
+    "battaariyyah"
+  ],
+  "Project": [
+    "مشروع",
+    "mashroo'"
+  ],
+  "Client": [
+    "عميل",
+    "'ameel"
+  ],
+  "Team": [
+    "فريق",
+    "fareeq"
+  ],
+  "Manager": [
+    "مدير",
+    "mudeer"
+  ],
+  "Company": [
+    "شركة",
+    "sharikah"
+  ],
+  "Contract": [
+    "عقد",
+    "'aqd"
+  ],
+  "Schedule": [
+    "جدول مواعيد",
+    "jadwal mawaa'eed"
+  ],
+  "Deadline": [
+    "الموعد النهائي",
+    "al-maw'id an-nihaa'ee"
+  ],
+  "Invoice": [
+    "فاتورة",
+    "faatoorah"
+  ],
+  "Salary": [
+    "راتب",
+    "raatib"
+  ],
+  "Doctor": [
+    "طبيب / دكتور",
+    "tabeeb / duktoor"
+  ],
+  "Medicine": [
+    "دواء",
+    "dawaa'"
+  ],
+  "Pain": [
+    "ألم",
+    "alam"
+  ],
+  "Fever": [
+    "حمى",
+    "hummaa"
+  ],
+  "Allergy": [
+    "حساسية",
+    "hasaasiyyah"
+  ],
+  "Headache": [
+    "صداع",
+    "sudaa'"
+  ],
+  "Emergency": [
+    "طوارئ",
+    "tawaari'"
+  ],
+  "Prescription": [
+    "وصفة طبية",
+    "wasfah tibbiyyah"
+  ],
+  "Bandage": [
+    "ضمادة",
+    "dimaadah"
+  ],
+  "Health": [
+    "صحة",
+    "sihhah"
+  ],
+  "Flight": [
+    "رحلة طيران",
+    "rihlat tayaraan"
+  ],
+  "Luggage": [
+    "أمتعة",
+    "amti'ah"
+  ],
+  "Reservation": [
+    "حجز",
+    "hajz"
+  ],
+  "Key": [
+    "مفتاح",
+    "miftaah"
+  ],
+  "Room": [
+    "غرفة",
+    "ghurfah"
+  ],
+  "Gate": [
+    "بوابة",
+    "bawwaabah"
+  ],
+  "Map": [
+    "خريطة",
+    "khareetah"
+  ],
+  "Entrance": [
+    "مدخل",
+    "madkhal"
+  ],
+  "Exit": [
+    "مخرج",
+    "makhraj"
+  ],
+  "Customs": [
+    "جمارك",
+    "jamaarik"
+  ],
+  "Credit card": [
+    "بطاقة ائتمان",
+    "bitaaqat i'timaan"
+  ],
+  "Cash": [
+    "نقداً / كاش",
+    "naqdan"
+  ],
+  "Price": [
+    "سعر / ثمن",
+    "si'r / thaman"
+  ],
+  "Cheap": [
+    "رخيص",
+    "rakhees"
+  ],
+  "Expensive": [
+    "غالي",
+    "ghaalee"
+  ],
+  "Discount": [
+    "خصم",
+    "khasm"
+  ],
+  "Laptop": [
+    "حاسوب محمول",
+    "haasoob mahmool"
+  ],
+  "Tablet": [
+    "جهاز لوحي",
+    "jihaaz lawhiyy"
+  ],
+  "Keyboard": [
+    "لوحة مفاتيح",
+    "lawhat mafaateeh"
+  ],
+  "Mouse": [
+    "فأرة",
+    "fa'rah"
+  ],
+  "Charger": [
+    "شاحن",
+    "shaahin"
+  ],
+  "Cable": [
+    "كابل / سلك",
+    "kaabil / silk"
+  ],
+  "Wi-Fi": [
+    "واي فاي",
+    "waay faay"
+  ],
+  "Message": [
+    "رسالة",
+    "risaalah"
+  ],
+  "Web / Internet": [
+    "شبكة",
+    "shabakah"
+  ],
+  "Application / App": [
+    "تطبيق",
+    "tatbeeq"
+  ],
+  "Folder": [
+    "مجلد",
+    "mujallad"
+  ],
+  "Camera": [
+    "كاميرا",
+    "kaameeraa"
+  ],
+  "Microphone": [
+    "ميكروفون",
+    "meekroofoon"
+  ],
+  "Headphones": [
+    "سماعات",
+    "sammaa'aat"
+  ],
+  "Printer": [
+    "طابعة",
+    "taabi'ah"
+  ],
+  "Search / Find": [
+    "بحث / إيجاد",
+    "bahth"
+  ],
+  "Save": [
+    "حفظ",
+    "hifdh"
+  ],
+  "Delete": [
+    "حذف",
+    "hadhf"
+  ],
+  "Send": [
+    "إرسال",
+    "irsaal"
+  ],
+  "Download": [
+    "تنزيل / تحميل",
+    "tanzeel"
+  ],
+  "Upload": [
+    "رفع",
+    "raf'"
+  ],
+  "Online": [
+    "متصل بالإنترنت",
+    "muttasil"
+  ],
+  "Offline": [
+    "غير متصل",
+    "ghayr muttasil"
+  ],
+  "Store / Shop": [
+    "متجر / دكان",
+    "matjar / dukkaan"
+  ],
+  "Buy": [
+    "شراء",
+    "shiraa'"
+  ],
+  "Sell": [
+    "بيع",
+    "bay'"
+  ],
+  "Pay": [
+    "دفع",
+    "daf'"
+  ],
+  "Receipt": [
+    "إيصال",
+    "eesaal"
+  ],
+  "Support / Help Desk": [
+    "دعم فني",
+    "da'm fannee"
+  ],
+  "Open": [
+    "مفتوح",
+    "maftooh"
+  ],
+  "Close": [
+    "إغلاق",
+    "ighlaaq"
+  ],
+  "Update": [
+    "تحديث",
+    "tahdeeth"
+  ],
+  "Boss": [
+    "رئيس العمل",
+    "ra'ees al-'amal"
+  ],
+  "Colleague": [
+    "زميل",
+    "zameel"
+  ],
+  "Employee": [
+    "موظف",
+    "muwadhdhaf"
+  ],
+  "Task": [
+    "مهمة",
+    "muhimmah"
+  ],
+  "Report": [
+    "تقرير",
+    "taqreer"
+  ],
+  "Presentation": [
+    "عرض تقديمي",
+    "'ard taqdeemee"
+  ],
+  "Signature": [
+    "توقيع",
+    "tawqee'"
+  ],
+  "Vacation": [
+    "عطلة / إجازة",
+    "'utlah / ijaazah"
+  ],
+  "Resume / CV": [
+    "سيرة ذاتية",
+    "seerah dhaatiyyah"
+  ],
+  "Interview": [
+    "مقابلة",
+    "muqaabalah"
+  ],
+  "Goal / Target": [
+    "هدف",
+    "hadaf"
+  ],
+  "Product": [
+    "منتج",
+    "muntaj"
+  ],
+  "Service": [
+    "خدمة",
+    "khidmah"
+  ],
+  "Bank": [
+    "بنك / مصرف",
+    "bank / masrif"
+  ],
+  "Transfer": [
+    "تحويل",
+    "tahweel"
+  ],
+  "Refund": [
+    "استرداد",
+    "istirdaad"
+  ],
+  "Shipping": [
+    "شحن",
+    "shahn"
+  ],
+  "Package": [
+    "طرد / حزمة",
+    "tard"
+  ],
+  "Software": [
+    "برمجيات",
+    "barmajiyyaat"
+  ],
+  "Hardware": [
+    "عتاد / أجهزة",
+    "'ataad"
+  ],
+  "Database": [
+    "قاعدة بيانات",
+    "qaa'idat bayaanaat"
+  ],
+  "Server": [
+    "خادم / سيرفر",
+    "khaadim"
+  ],
+  "Cloud storage": [
+    "تخزين سحابي",
+    "takhzeen sahaabee"
+  ],
+  "Artificial Intelligence (AI)": [
+    "ذكاء اصطناعي",
+    "dhakaa' istinaa'ee"
+  ],
+  "Algorithm": [
+    "خوارزمية",
+    "khawaarizmiyyah"
+  ],
+  "Developer": [
+    "مطور",
+    "mutawwir"
+  ],
+  "Cybersecurity": [
+    "أمن سيبراني",
+    "amn seebaraanee"
+  ],
+  "Operating system": [
+    "نظام تشغيل",
+    "nidhaam tashgheel"
+  ],
+  "Budget": [
+    "ميزانية",
+    "meezaniyyah"
+  ],
+  "Investment": [
+    "استثمار",
+    "istithmaar"
+  ],
+  "Revenue / Income": [
+    "دخل / إيرادات",
+    "dakhl / eeraadaat"
+  ],
+  "Startup": [
+    "شركة ناشئة",
+    "sharikah naashi'ah"
+  ],
+  "Remote work": [
+    "عمل عن بعد",
+    "'amal 'an bu'd"
+  ],
+  "Woman": [
+    "امرأة",
+    "imra'ah"
+  ],
+  "Child": [
+    "طفل",
+    "tifl"
+  ],
+  "Boy": [
+    "ولد",
+    "walad"
+  ],
+  "Girl": [
+    "بنت / فتاة",
+    "bint / fataah"
+  ],
+  "Father": [
+    "أب",
+    "ab"
+  ],
+  "Mother": [
+    "أم",
+    "umm"
+  ],
+  "Husband": [
+    "زوج",
+    "zawj"
+  ],
+  "Wife": [
+    "زوجة",
+    "zawjah"
+  ],
+  "Teacher": [
+    "معلم / أستاذ",
+    "mu'allim / ustaadh"
+  ],
+  "Student": [
+    "طالب",
+    "taalib"
+  ],
+  "Meat": [
+    "لحم",
+    "lahm"
+  ],
+  "Fish": [
+    "سمك",
+    "samak"
+  ],
+  "Vegetables": [
+    "خضروات",
+    "khudrawaat"
+  ],
+  "Fruits": [
+    "فواكه",
+    "fawaakih"
+  ],
+  "Rice": [
+    "أرز",
+    "aruzz"
+  ],
+  "Tea": [
+    "شاي",
+    "shaay"
+  ],
+  "Beer": [
+    "بيرة",
+    "beerah"
+  ],
+  "Wine": [
+    "نبيذ",
+    "nabeedh"
+  ],
+  "Salt": [
+    "ملح",
+    "milh"
+  ],
+  "Egg": [
+    "بيض",
+    "bayd"
+  ],
+  "Breakfast": [
+    "فطور",
+    "futoor"
+  ],
+  "Lunch": [
+    "غداء",
+    "ghadaa'"
+  ],
+  "Dinner": [
+    "عشاء",
+    "'ashaa'"
+  ],
+  "Restaurant": [
+    "مطعم",
+    "mat'am"
+  ],
+  "Station": [
+    "محطة",
+    "mahattah"
+  ],
+  "Airport": [
+    "مطار",
+    "mataar"
+  ],
+  "Street": [
+    "شارع",
+    "shaari'"
+  ],
+  "Park": [
+    "حديقة / متنزه",
+    "hadeeqah / mutanazzah"
+  ],
+  "Hospital": [
+    "مستشفى",
+    "mustashfaa"
+  ],
+  "Pharmacy": [
+    "صيدلية",
+    "saydaliyyah"
+  ],
+  "Supermarket": [
+    "سوبرماركت",
+    "soobarmaarkit"
+  ],
+  "Museum": [
+    "متحف",
+    "mathaf"
+  ],
+  "Theater": [
+    "مسرح",
+    "masrah"
+  ],
+  "Cinema": [
+    "سينما",
+    "seenamaa"
+  ],
+  "Center": [
+    "مركز",
+    "markaz"
+  ],
+  "School": [
+    "مدرسة",
+    "madrasah"
+  ],
+  "Factory": [
+    "مصنع",
+    "masna'"
+  ],
+  "Sea": [
+    "بحر",
+    "bahr"
+  ],
+  "Road": [
+    "طريق",
+    "tareeq"
+  ],
+  "Bus": [
+    "حافلة / باص",
+    "haafilah / baas"
+  ],
+  "Taxi": [
+    "تاكسي / سيارة أجرة",
+    "taaksee"
+  ],
+  "Ticket": [
+    "تذكرة",
+    "tadhkirah"
+  ],
+  "Passport": [
+    "جواز سفر",
+    "jawaaz safar"
+  ],
+  "Table": [
+    "طاولة",
+    "taawilah"
+  ],
+  "Chair": [
+    "كرسي",
+    "kursee"
+  ],
+  "Door": [
+    "باب",
+    "baab"
+  ],
+  "Window": [
+    "نافذة / شباك",
+    "naafidhah / shubbaak"
+  ],
+  "Bag": [
+    "حقيبة",
+    "haqeebah"
+  ],
+  "Clothes": [
+    "ملابس",
+    "malaabis"
+  ],
+  "Shoe": [
+    "حذاء",
+    "hidhaa'"
+  ],
+  "Magazine": [
+    "مجلة",
+    "majallah"
+  ],
+  "Umbrella": [
+    "مظلة",
+    "midhallah"
+  ],
+  "Photo": [
+    "صورة",
+    "soorah"
+  ],
+  "Card": [
+    "بطاقة",
+    "bitaaqah"
+  ],
+  "Bird": [
+    "طائر",
+    "taair"
+  ],
+  "Moon": [
+    "قمر",
+    "qamar"
+  ],
+  "Tree": [
+    "شجرة",
+    "shajarah"
+  ],
+  "Good": [
+    "جيد",
+    "jayyid"
+  ],
+  "Bad": [
+    "سيئ",
+    "sayyi'"
+  ],
+  "Fast / Quick": [
+    "سريع",
+    "saree'"
+  ],
+  "Slow": [
+    "بطيء",
+    "batee'"
+  ],
+  "Happy": [
+    "سعيد",
+    "sa'eed"
+  ],
+  "Ready": [
+    "جاهز",
+    "jaahiz"
+  ],
+  "Closed": [
+    "مغلق",
+    "mughlaq"
+  ],
+  "Monday": [
+    "الإثنين",
+    "al-ithnayn"
+  ],
+  "Tuesday": [
+    "الثلاثاء",
+    "ath-thulaathaa'"
+  ],
+  "Wednesday": [
+    "الأربعاء",
+    "al-arbi'aa'"
+  ],
+  "Thursday": [
+    "الخميس",
+    "al-khamees"
+  ],
+  "Friday": [
+    "الجمعة",
+    "al-jum'ah"
+  ],
+  "Saturday": [
+    "السبت",
+    "as-sabt"
+  ],
+  "Sunday": [
+    "الأحد",
+    "al-ahad"
+  ],
+  "Week": [
+    "أسبوع",
+    "usboo'"
+  ],
+  "Month": [
+    "شهر",
+    "shahr"
+  ],
+  "Year": [
+    "سنة / عام",
+    "sanah / 'aam"
+  ],
+  "Brother": [
+    "أخ",
+    "akh"
+  ],
+  "Sister": [
+    "أخت",
+    "ukht"
+  ],
+  "Eyes": [
+    "عيون",
+    "'uyoon"
+  ],
+  "Nose": [
+    "أنف",
+    "anf"
+  ],
+  "Cheek": [
+    "خد",
+    "khadd"
+  ],
+  "Heart": [
+    "قلب",
+    "qalb"
+  ],
+  "Voice": [
+    "صوت",
+    "sawt"
+  ],
+  "Cup": [
+    "كوب / فنجان",
+    "koob / finjaan"
+  ],
+  "Kettle": [
+    "غلاية",
+    "ghallaayah"
+  ],
+  "Oil": [
+    "زيت",
+    "zayt"
+  ],
+  "Orange": [
+    "برتقال",
+    "burtuqaal"
+  ],
+  "Yogurt": [
+    "زبادي / لبن",
+    "zabaadee"
+  ],
+  "Ice": [
+    "جليد / ثلج",
+    "jaleed"
+  ],
+  "Hedgehog": [
+    "قنفذ",
+    "qunfudh"
+  ],
+  "Beetle / Bug": [
+    "خنفساء / حشرة",
+    "khunfusaa'"
+  ],
+  "Zebra": [
+    "حمار وحشي",
+    "himaar wahshee"
+  ],
+  "Idea": [
+    "فكرة",
+    "fikrah"
+  ],
+  "Question": [
+    "سؤال",
+    "su'aal"
+  ],
+  "Name": [
+    "اسم",
+    "ism"
+  ],
+  "Quiet": [
+    "هادئ",
+    "haadi'"
+  ],
+  "Who": [
+    "من",
+    "man"
+  ],
+  "What": [
+    "ماذا",
+    "maadhaa"
+  ],
+  "Where": [
+    "أين",
+    "ayna"
+  ],
+  "When": [
+    "متى",
+    "mataa"
+  ],
+  "Why": [
+    "لماذا",
+    "limaadhaa"
+  ],
+  "How": [
+    "كيف",
+    "kayfa"
+  ],
+  "How much / How many": [
+    "كم",
+    "kam"
+  ],
+  "Subway / Metro": [
+    "مترو",
+    "mitroo"
+  ],
+  "Square / Plaza": [
+    "ميدان / ساحة",
+    "maydaan / saahah"
+  ],
+  "Post office": [
+    "مكتب بريد",
+    "maktab bareed"
+  ],
+  "Police": [
+    "شرطة",
+    "shurtah"
+  ],
+  "Train station": [
+    "محطة قطار",
+    "mahattat qitaar"
+  ],
+  "We": [
+    "نحن",
+    "nahnu"
+  ],
+  "Visa": [
+    "تأشيرة",
+    "ta'sheerah"
+  ],
+  "Fruit": [
+    "فاكهة",
+    "faakihah"
+  ],
+  "X-ray": [
+    "أشعة سينية",
+    "ashi''ah seiniyyah"
+  ],
+  "Xylophone": [
+    "إكسيليفون",
+    "ikseeloofoon"
+  ],
+  "Hour": [
+    "ساعة",
+    "saa'ah"
+  ],
+  "Minute": [
+    "دقيقة",
+    "daqeeqah"
+  ],
+  "Second": [
+    "ثانية",
+    "thaaniyah"
+  ],
+  "Early": [
+    "مبكراً",
+    "mubakkiran"
+  ],
+  "Late": [
+    "متأخراً",
+    "muta'akhkhiran"
+  ],
+  "Purple": [
+    "بنفسجي",
+    "banafsajee"
+  ],
+  "Pink": [
+    "وردي",
+    "wardee"
+  ],
+  "Gray": [
+    "رمادي",
+    "ramaadee"
+  ],
+  "To learn": [
+    "تعلم",
+    "ta'allama"
+  ],
+  "To speak": [
+    "تكلم",
+    "takallama"
+  ],
+  "To eat": [
+    "أكل",
+    "akala"
+  ],
+  "To drink": [
+    "شرب",
+    "shariba"
+  ],
+  "To go": [
+    "ذهب",
+    "dhahaba"
+  ],
+  "To come": [
+    "جاء",
+    "jaa'a"
+  ],
+  "To understand": [
+    "فهم",
+    "fahima"
+  ],
+  "To know": [
+    "عرف",
+    "'arafa"
+  ],
+  "To help": [
+    "ساعد",
+    "saa'ada"
+  ],
+  "To work": [
+    "عمل",
+    "'amila"
+  ],
+  "To want": [
+    "أراد",
+    "araada"
+  ],
+  "Mom": [
+    "ماما / أمي",
+    "maamaa"
+  ],
+  "Object": [
+    "شيء / غرض",
+    "shay' / gharad"
+  ],
+  "Christmas tree": [
+    "شجرة عيد الميلاد",
+    "shajarat 'eed al-meelaad"
+  ],
+  "Wagon / Car": [
+    "عربة",
+    "'arabah"
+  ],
+  "Example": [
+    "مثال",
+    "mithaal"
+  ],
+  "Dad": [
+    "بابا / والدي",
+    "baabaa"
+  ],
+  "Evening": [
+    "مساء",
+    "masaa'"
+  ],
+  "Czar / King": [
+    "ملك / قيصر",
+    "malik"
+  ],
+  "Borscht": [
+    "شوربة البورش",
+    "shoorbat al-boorsht"
+  ],
+  "South": [
+    "جنوب",
+    "janoob"
+  ],
+  "Source": [
+    "مصدر",
+    "masdar"
+  ],
+  "Or": [
+    "أو",
+    "aw"
+  ],
+  "This": [
+    "هذا",
+    "haadhaa"
+  ],
+  "I eat": [
+    "آكل",
+    "aakul"
+  ],
+  "Maybe": [
+    "ربما",
+    "rubbamaa"
+  ],
+  "To need": [
+    "احتاج",
+    "ihtaaja"
+  ],
+  "Hello (informal)": [
+    "أهلاً",
+    "ahlan"
+  ],
+  "I am fine, thank you": [
+    "أنا بخير، شكراً",
+    "ana bikhayr, shukran"
+  ],
+  "Bye (informal)": [
+    "وداعاً",
+    "wadaa'an"
+  ],
+  "Have a nice day": [
+    "أتمنى لك يوماً جميلاً",
+    "atamannaa laka yawman jameelan"
+  ],
+  "I understand": [
+    "أنا أفهم",
+    "ana afham"
+  ],
+  "Please repeat": [
+    "أعد من فضلك",
+    "a'id min fadlik"
+  ],
+  "Please speak more slowly": [
+    "تحدث ببطء أكثر من فضلك",
+    "tahaddath bibut' akthar min fadlik"
+  ],
+  "Can you speak more slowly?": [
+    "هل يمكنك التحدث ببطء؟",
+    "hal yumkinuka at-tahadduth bibut'?"
+  ],
+  "Speak more slowly": [
+    "تحدث ببطء",
+    "tahaddath bibut'"
+  ],
+  "I speak a little Russian": [
+    "أتكلم القليل من الروسية",
+    "atakallam al-qaleel min ar-roosiyyah"
+  ],
+  "What does this mean?": [
+    "ماذا يعني هذا؟",
+    "maadhaa ya'nee haadhaa?"
+  ],
+  "How do you say...?": [
+    "كيف تقول...؟",
+    "kayfa taqool...?"
+  ],
+  "How do you say this in Russian?": [
+    "كيف تقول هذا بالروسية؟",
+    "kayfa taqool haadhaa bir-roosiyyah?"
+  ],
+  "Can you help me?": [
+    "هل يمكنك مساعدتي؟",
+    "hal yumkinuka musaa'adatee?"
+  ],
+  "I need help": [
+    "أحتاج إلى مساعدة",
+    "ahtaaju ilaa musaa'adah"
+  ],
+  "Help me": [
+    "ساعدني",
+    "saa'idnee"
+  ],
+  "Where is the airport?": [
+    "أين المطار؟",
+    "ayna al-mataar?"
+  ],
+  "I would like to go to the airport": [
+    "أود الذهاب إلى المطار",
+    "awaddu adh-dhahaab ilaa al-mataar"
+  ],
+  "What time is the departure?": [
+    "في أي وقت المغادرة؟",
+    "fee ayyi waqt al-mughaadarah?"
+  ],
+  "Where is the hotel?": [
+    "أين الفندق؟",
+    "ayna al-funduq?"
+  ],
+  "How much is a ticket?": [
+    "كم سعر التذكرة؟",
+    "kam si'r at-tadhkirah?"
+  ],
+  "Turn left": [
+    "انعطف يساراً",
+    "in'atif yasaaran"
+  ],
+  "Turn right": [
+    "انعطف يميناً",
+    "in'atif yameenan"
+  ],
+  "Go straight ahead": [
+    "اذهب إلى الأمام مباشرة",
+    "idhhab ilaa al-amaam mubaasharatan"
+  ],
+  "Can I see the menu, please?": [
+    "هل يمكنني رؤية قائمة الطعام من فضلك؟",
+    "hal yumkinunee ru'yat qaa'imat at-ta'aam min fadlik?"
+  ],
+  "I would like water": [
+    "أود ماءً",
+    "awaddu maa'an"
+  ],
+  "I want to eat": [
+    "أريد أن آكل",
+    "ureedu an aakul"
+  ],
+  "I want to drink": [
+    "أريد أن أشرب",
+    "ureedu an ashrab"
+  ],
+  "What do you recommend?": [
+    "ماذا تقترح؟",
+    "maadhaa taqtarih?"
+  ],
+  "This is delicious!": [
+    "هذا لذيذ جداً!",
+    "haadhaa ladheedh jiddan!"
+  ],
+  "How much does this cost?": [
+    "كم يكلف هذا؟",
+    "kam yukallifu haadhaa?"
+  ],
+  "Can I pay by card?": [
+    "هل يمكنني الدفع بالبطاقة؟",
+    "hal yumkinunee ad-daf' bil-bitaaqah?"
+  ],
+  "I am just looking": [
+    "أنا فقط أتفرج",
+    "ana faqat atafarraj"
+  ],
+  "I am just looking, thank you": [
+    "أنا فقط أتفرج، شكراً",
+    "ana faqat atafarraj, shukran"
+  ],
+  "Do you have this in another size?": [
+    "هل لديك هذا بمقاس آخر؟",
+    "hal ladayka haadhaa bimaqaas aakhar?"
+  ],
+  "Call the police": [
+    "اتصل بالشرطة",
+    "ittasil bish-shurtah"
+  ],
+  "I lost my passport": [
+    "فقدت جواز سفري",
+    "faqadtu jawaaz safaree"
+  ],
+  "What time is it now?": [
+    "كم الساعة الآن؟",
+    "kam as-saa'atu al-aan?"
+  ],
+  "At what time?": [
+    "في أي وقت؟",
+    "fee ayyi waqt?"
+  ],
+  "Half past two (2:30)": [
+    "الثانية والنصف",
+    "ath-thaaniyah wan-nisf"
+  ],
+  "Quarter to three (2:45)": [
+    "الثالثة إلا ربعاً",
+    "ath-thaalithah illaa rub'an"
+  ],
+  "Half past twelve (12:30)": [
+    "الثانية عشرة والنصف",
+    "ath-thaaniyata 'ashrata wan-nisf"
+  ],
+  "Ten to two (1:50)": [
+    "الثانية إلا عشر دقائق",
+    "ath-thaaniyah illaa 'ashra daqaa'iq"
+  ],
+  "Half an hour": [
+    "نصف ساعة",
+    "nisf saa'ah"
+  ],
+  "Quarter of an hour": [
+    "ربع ساعة",
+    "rub' saa'ah"
+  ],
+  "In the morning (a.m.)": [
+    "في الصباح",
+    "fee as-sabaah"
+  ],
+  "In the afternoon (p.m.)": [
+    "بعد الظهر",
+    "ba'd adh-dhuhr"
+  ],
+  "At night": [
+    "في الليل",
+    "fee al-layl"
+  ],
+  "On time": [
+    "في الوقت المحدد",
+    "fee al-waqt al-muhaddad"
+  ],
+  "Hello / Good morning": [
+    "مرحباً",
+    "marhaban"
+  ],
+  "Hi / Bye": [
+    "مرحباً / وداعاً",
+    "marhaban / wadaa'an"
+  ],
+  "And you?": [
+    "وأنت؟",
+    "wa anta?"
+  ],
+  "Can you repeat?": [
+    "هل يمكنك الإعادة؟",
+    "hal yumkinuka al-i'aadah?"
+  ],
+  "Is it far from here?": [
+    "هل هو بعيد من هنا؟",
+    "hal huwa ba'eed min hunaa?"
+  ],
+  "Let me share my screen": [
+    "دعني أشارك شاشتي",
+    "da'nee ushaarik shaashatee"
+  ],
+  "The internet connection is slow": [
+    "اتصال الإنترنت بطيء",
+    "ittisaal al-intarnit batee'"
+  ],
+  "Can you send it by email?": [
+    "هل يمكنك إرساله بالبريد الإلكتروني؟",
+    "hal yumkinuka irsaaluhu bil-bareed?"
+  ],
+  "My battery is almost dead": [
+    "بطاريتي شارفت على النفاد",
+    "battaareeyatee sharafat 'ala an-nafaad"
+  ],
+  "Where is the bus stop?": [
+    "أين موقف الحافلات؟",
+    "ayna mawqif al-haafilaat?"
+  ],
+  "How do I get to the airport?": [
+    "كيف أصل إلى المطار؟",
+    "kayfa asil ilaa al-mataar?"
+  ],
+  "I would like a coffee, please": [
+    "أود قهوة من فضلك",
+    "awaddu qahwah min fadlik"
+  ],
+  "A bottle of water, please": [
+    "زجاجة ماء من فضلك",
+    "zujaajat maa' min fadlik"
+  ],
+  "No problem": [
+    "لا مشكلة",
+    "laa mushkilah"
+  ],
+  "See you soon": [
+    "أراك قريباً",
+    "araaka qareeban"
+  ],
+  "Banana": [
+    "موز",
+    "mawz"
+  ],
+  "Rice cake": [
+    "كعكة أرز",
+    "ka'kat aruzz"
+  ],
+  "Bridge": [
+    "جسر",
+    "jisr"
+  ],
+  "Stew": [
+    "يخنة",
+    "yakhnah"
+  ],
+  "Radio": [
+    "راديو / مذياع",
+    "raadyoo / midhyaa'"
+  ],
+  "Desk": [
+    "مكتب / طاولة عمل",
+    "maktab / taawilat 'amal"
+  ],
+  "Music": [
+    "موسيقى",
+    "mooseeqaa"
+  ],
+  "Square (plaza)": [
+    "ميدان",
+    "maydaan"
+  ],
+  "House / Home": [
+    "منزل",
+    "manzil"
+  ],
+  "Telephone": [
+    "هاتف",
+    "haatif"
+  ],
+  "What?": [
+    "ماذا؟",
+    "maadhaa?"
+  ],
+  "Where?": [
+    "أين؟",
+    "ayna?"
+  ],
+  "When?": [
+    "متى؟",
+    "mataa?"
+  ],
+  "Who?": [
+    "من؟",
+    "man?"
+  ],
+  "Why?": [
+    "لماذا؟",
+    "limaadhaa?"
+  ],
+  "How?": [
+    "كيف؟",
+    "kayfa?"
+  ],
+  "Dog": [
+    "كلب",
+    "kalb"
+  ],
+  "Cat": [
+    "قطة",
+    "qittah"
+  ],
+  "Juice": [
+    "عصير",
+    "aseer"
+  ],
+  "Zero (0)": [
+    "صفر",
+    "sifr"
+  ],
+  "Love": [
+    "حب",
+    "hubb"
+  ],
+  "Boat": [
+    "قارب",
+    "qaarib"
+  ],
+  "Day": [
+    "يوم",
+    "yawm"
+  ],
+  "Island": [
+    "جزيرة",
+    "jazeerah"
+  ],
+  "Kilogram": [
+    "كيلوغرام",
+    "keelooghraam"
+  ],
+  "Night": [
+    "ليل / ليلة",
+    "layl / laylah"
+  ],
+  "Cheese": [
+    "جبن",
+    "jubn"
+  ],
+  "Clock / Watch": [
+    "ساعة",
+    "saa'ah"
+  ],
+  "Watch / Clock": [
+    "ساعة يد",
+    "saa'at yad"
+  ],
+  "Grape": [
+    "عنب",
+    "'inab"
+  ],
+  "Glass (cup)": [
+    "كأس",
+    "ka's"
+  ],
+  "Success": [
+    "نجاح",
+    "najaah"
+  ],
+  "Yolk": [
+    "صفار البيض",
+    "safaar al-bayd"
+  ],
+  "Afternoon": [
+    "بعد الظهر",
+    "ba'd adh-dhuhr"
+  ],
+  "To buy": [
+    "اشترى",
+    "ishtaraa"
+  ],
+  "Hello (formal)": [
+    "مرحباً بك",
+    "marhaban bik"
+  ],
+  "Good afternoon": [
+    "طاب مساؤك",
+    "taaba masaa'uk"
+  ],
+  "Very well, thank you": [
+    "بخير جداً، شكراً",
+    "bikhayr jiddan, shukran"
+  ],
+  "You are welcome": [
+    "عفواً",
+    "'afwan"
+  ],
+  "Excuse me": [
+    "معذرة",
+    "ma'dhiratan"
+  ],
+  "Have a great day": [
+    "أتمنى لك يوماً رائعاً",
+    "atamannaa laka yawman raa'i'an"
+  ],
+  "Could you repeat that, please?": [
+    "هل يمكنك تكرار ذلك من فضلك؟",
+    "hal yumkinuka tikraar dhaalika min fadlik?"
+  ],
+  "Where is the train station?": [
+    "أين محطة القطار؟",
+    "ayna mahattat al-qitaar?"
+  ],
+  "I need a taxi": [
+    "أحتاج إلى سيارة أجرة",
+    "ahtaaju ilaa sayyaarat ujrah"
+  ],
+  "A table for two, please": [
+    "طاولة لشخصين من فضلك",
+    "taawilah li-shakhsayn min fadlik"
+  ],
+  "The menu, please": [
+    "قائمة الطعام من فضلك",
+    "qaa'imat at-ta'aam min fadlik"
+  ],
+  "The check, please": [
+    "الحساب من فضلك",
+    "al-hisaab min fadlik"
+  ],
+  "How much does it cost?": [
+    "كم يكلف هذا؟",
+    "kam yukallifu haadhaa?"
+  ],
+  "Do you accept credit cards?": [
+    "هل تقبلون بطاقات الائتمان؟",
+    "hal taqbaloon bitaaqaat al-i'timaan?"
+  ],
+  "It is too expensive": [
+    "هذا مكلف جداً",
+    "haadhaa mukallif jiddan"
+  ],
+  "I need a doctor": [
+    "أحتاج إلى طبيب",
+    "ahtaaju ilaa tabeeb"
+  ],
+  "It is 1:00 sharp": [
+    "الساعة الواحدة تماماً",
+    "as-saa'atu al-waahidatu tamaaman"
+  ],
+  "It is 2:00": [
+    "الساعة الثانية",
+    "as-saa'atu ath-thaaniyah"
+  ],
+  "3:30 (half past three)": [
+    "الثالثة والنصف",
+    "ath-thaalithatu wan-nisf"
+  ],
+  "4:15 (quarter past four)": [
+    "الرابعة والربع",
+    "ar-raabi'atu war-rub'"
+  ],
+  "4:45 (quarter to five)": [
+    "الخامسة إلا ربعاً",
+    "al-khaamisatu illaa rub'an"
+  ],
+  "In the evening (p.m.)": [
+    "في المساء",
+    "fee al-masaa'"
+  ],
+  "Noon / Midday": [
+    "الظهر",
+    "adh-dhuhr"
+  ],
+  "Midnight": [
+    "منتصف الليل",
+    "muntasaf al-layl"
+  ],
+  "Hello! / Hi!": [
+    "أهلاً وسهلاً!",
+    "ahlan wa sahlan!"
+  ],
+  "How are you? (formal)": [
+    "كيف حالكم؟",
+    "kayfa haalukum?"
+  ],
+  "I am doing well, thank you": [
+    "أنا على ما يرام، شكراً",
+    "ana 'ala maa yuraam, shukran"
+  ],
+  "Pleased to meet you": [
+    "سررت بلقائك",
+    "surirtu biliqaa'ik"
+  ],
+  "One hundred (100)": [
+    "مائة",
+    "mi'ah"
+  ],
+  "One thousand (1000)": [
+    "ألف",
+    "alf"
+  ],
+  "Could you speak slower, please?": [
+    "هل يمكنك التحدث ببطء أكثر من فضلك؟",
+    "hal yumkinuka at-tahadduth bibut' akthar min fadlik?"
+  ],
+  "Can you hear me?": [
+    "هل تسمعني؟",
+    "hal tasma'unee?"
+  ],
+  "Can you see my screen?": [
+    "هل ترى شاشتي؟",
+    "hal taraa shaashatee?"
+  ],
+  "What is the Wi-Fi password?": [
+    "ما هي كلمة مرور الواي فاي؟",
+    "maa hiya kalimat muroor al-waay faay?"
+  ],
+  "I will send you an email": [
+    "سأرسل لك بريداً إلكترونياً",
+    "sa-ursilu laka bareedan ilikturooniyyan"
+  ],
+  "When is the deadline?": [
+    "متى الموعد النهائي؟",
+    "mataa al-maw'id an-nihaa'ee?"
+  ],
+  "Where is the nearest pharmacy?": [
+    "أين أقرب صيدلية؟",
+    "ayna aqrab saydaliyyah?"
+  ],
+  "I am allergic to nuts": [
+    "لدي حساسية من المكسرات",
+    "ladayya hasaasiyyah min al-mukassaraat"
+  ],
+  "I have a reservation": [
+    "لدي حجز",
+    "ladayya hajz"
+  ],
+  "Job": [
+    "وظيفة",
+    "wadheefah"
+  ],
+  "Artificial intelligence": [
+    "ذكاء اصطناعي",
+    "dhakaa' istinaa'ee"
+  ],
+  "Strawberry": [
+    "فراولة",
+    "farawlah"
+  ],
+  "Garlic": [
+    "ثوم",
+    "thawm"
+  ],
+  "Potato": [
+    "بطاطس",
+    "bataatis"
+  ],
+  "Onion": [
+    "بصل",
+    "basal"
+  ],
+  "Carrot": [
+    "جزر",
+    "jazar"
+  ],
+  "Spoon": [
+    "ملعقة",
+    "mil'aqah"
+  ],
+  "Fork": [
+    "شوكة",
+    "shawkah"
+  ],
+  "Knife": [
+    "سكين",
+    "sikkeen"
+  ],
+  "Plate": [
+    "طبق / صحن",
+    "tabaq / sahn"
+  ],
+  "Glass": [
+    "كأس",
+    "ka's"
+  ],
+  "Suitcase": [
+    "حقيبة سفر",
+    "haqeebat safar"
+  ],
+  "Backpack": [
+    "حقيبة ظهر",
+    "haqeebat dhahr"
+  ],
+  "Wallet": [
+    "محفظة",
+    "mihfadhah"
+  ],
+  "Ambulance": [
+    "سيارة إسعاف",
+    "sayyaarat is'aaf"
+  ],
+  "Firefighter": [
+    "رجل إطفاء",
+    "rajul itfaa'"
+  ],
+  "Beach": [
+    "شاطئ",
+    "shaati'"
+  ],
+  "Mountain": [
+    "جبل",
+    "jabal"
+  ],
+  "River": [
+    "نهر",
+    "nahr"
+  ],
+  "Lake": [
+    "بحيرة",
+    "buhayrah"
+  ]
+}
