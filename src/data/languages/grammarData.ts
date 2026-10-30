@@ -1586,6 +1586,344 @@ const LOCALIZED_ENGLISH_GRAMMAR: Partial<Record<SupportedLanguageId, Partial<Gra
       },
     ],
   },
+  de: {
+    genderRules: [
+      {
+        article: 'a / an / the',
+        gender: 'neuter',
+        color: '#2563eb',
+        name: 'Artikel (A, An, The)',
+        description: 'Im Englischen gibt es kein grammatikalisches Geschlecht für Substantive (kein der/die/das). Stattdessen werden die unbestimmten Artikel „a / an“ und der bestimmte Artikel „the“ verwendet.',
+        rules: [
+          'Verwende „a“ vor Konsonantenlauten: a book, a car, a university (beginnt mit /j/)',
+          'Verwende „an“ vor Vokallauten: an apple, an hour (stummes „h“), an elephant',
+          'Verwende „the“ für bestimmte oder bereits erwähnte Gegenstände: the book on the table',
+        ],
+        examples: [
+          { word: 'apple', article: 'an', meaning: 'ein Apfel', icon: '🍎' },
+          { word: 'book', article: 'a', meaning: 'ein Buch', icon: '📖' },
+          { word: 'car', article: 'a', meaning: 'ein Auto', icon: '🚗' },
+          { word: 'hour', article: 'an', meaning: 'eine Stunde', icon: '⏱️' },
+        ],
+      },
+    ],
+    verbs: [
+      {
+        verb: 'to be',
+        meaning: 'sein',
+        tense: 'Präsens & Präteritum',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I', form: 'am / was' },
+          { pronoun: 'you', form: 'are / were' },
+          { pronoun: 'he / she / it', form: 'is / was' },
+          { pronoun: 'we', form: 'are / were' },
+          { pronoun: 'they', form: 'are / were' },
+        ],
+        exampleSentence: { target: 'We are learning languages together.', translation: 'Wir lernen gemeinsam Sprachen.' },
+      },
+      {
+        verb: 'to have',
+        meaning: 'haben / besitzen',
+        tense: 'Präsens & Präteritum',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I / you / we / they', form: 'have (had)' },
+          { pronoun: 'he / she / it', form: 'has (had)' },
+        ],
+        exampleSentence: { target: 'She has a meeting today.', translation: 'Sie hat heute eine Besprechung.' },
+      },
+    ],
+    descriptions: [
+      {
+        title: 'Englische Steigerung von Adjektiven',
+        explanation: 'Kurze Adjektive bilden den Komparativ mit -er und den Superlativ mit -est (fast ➔ faster ➔ fastest). Längere Adjektive werden mit more / most gesteigert (important ➔ more important ➔ most important).',
+        examples: [
+          { positive: 'good (gut)', comparative: 'better (besser)', superlative: 'best (am besten)', meaning: 'gut / besser / am besten' },
+          { positive: 'bad (schlecht)', comparative: 'worse (schlechter)', superlative: 'worst (am schlechtesten)', meaning: 'schlecht / schlechter / am schlechtesten' },
+          { positive: 'big (groß)', comparative: 'bigger (größer)', superlative: 'biggest (am größten)', meaning: 'groß / größer / am größten' },
+        ],
+      },
+    ],
+  },
+  fr: {
+    genderRules: [
+      {
+        article: 'a / an / the',
+        gender: 'neuter',
+        color: '#2563eb',
+        name: 'Articles (A, An, The)',
+        description: 'L\'anglais n\'a pas de genre grammatical pour les noms, mais utilise des articles indéfinis (« a / an ») et définis (« the ») selon le son phonétique initial.',
+        rules: [
+          'Utilisez « a » devant un son consonne : a book, a car, a university',
+          'Utilisez « an » devant un son voyelle : an apple, an hour (h muet), an elephant',
+          'Utilisez « the » pour désigner un objet précis ou déjà mentionné : the book on the table',
+        ],
+        examples: [
+          { word: 'apple', article: 'an', meaning: 'une pomme', icon: '🍎' },
+          { word: 'book', article: 'a', meaning: 'un livre', icon: '📖' },
+          { word: 'car', article: 'a', meaning: 'une voiture', icon: '🚗' },
+          { word: 'hour', article: 'an', meaning: 'une heure', icon: '⏱️' },
+        ],
+      },
+    ],
+    verbs: [
+      {
+        verb: 'to be',
+        meaning: 'être',
+        tense: 'Présent & Passé',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I', form: 'am / was' },
+          { pronoun: 'you', form: 'are / were' },
+          { pronoun: 'he / she / it', form: 'is / was' },
+          { pronoun: 'we', form: 'are / were' },
+          { pronoun: 'they', form: 'are / were' },
+        ],
+        exampleSentence: { target: 'We are learning languages together.', translation: 'Nous apprenons des langues ensemble.' },
+      },
+      {
+        verb: 'to have',
+        meaning: 'avoir',
+        tense: 'Présent & Passé',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I / you / we / they', form: 'have (had)' },
+          { pronoun: 'he / she / it', form: 'has (had)' },
+        ],
+        exampleSentence: { target: 'She has a meeting today.', translation: 'Elle a une réunion aujourd\'hui.' },
+      },
+    ],
+    descriptions: [
+      {
+        title: 'Comparaison des adjectifs en anglais',
+        explanation: 'Les adjectifs courts prennent -er / -est (fast ➔ faster ➔ fastest). Les adjectifs plus longs utilisent more / most (important ➔ more important ➔ most important).',
+        examples: [
+          { positive: 'good (bon)', comparative: 'better (meilleur)', superlative: 'best (le meilleur)', meaning: 'bon / meilleur / le meilleur' },
+          { positive: 'bad (mauvais)', comparative: 'worse (pire)', superlative: 'worst (le pire)', meaning: 'mauvais / pire / le pire' },
+          { positive: 'big (grand)', comparative: 'bigger (plus grand)', superlative: 'biggest (le plus grand)', meaning: 'grand / plus grand / le plus grand' },
+        ],
+      },
+    ],
+  },
+  pt: {
+    genderRules: [
+      {
+        article: 'a / an / the',
+        gender: 'neuter',
+        color: '#2563eb',
+        name: 'Artigos (A, An, The)',
+        description: 'O inglês não possui gênero gramatical para substantivos, mas usa artigos indefinidos («a / an») e definidos («the») conforme o som inicial.',
+        rules: [
+          'Use «a» antes de sons consonantais: a book, a car, a university',
+          'Use «an» antes de sons vocálicos: an apple, an hour (h mudo), an elephant',
+          'Use «the» para substantivos específicos ou já mencionados: the book on the table',
+        ],
+        examples: [
+          { word: 'apple', article: 'an', meaning: 'uma maçã', icon: '🍎' },
+          { word: 'book', article: 'a', meaning: 'um livro', icon: '📖' },
+          { word: 'car', article: 'a', meaning: 'um carro', icon: '🚗' },
+          { word: 'hour', article: 'an', meaning: 'uma hora', icon: '⏱️' },
+        ],
+      },
+    ],
+    verbs: [
+      {
+        verb: 'to be',
+        meaning: 'ser / estar',
+        tense: 'Presente & Passado',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I', form: 'am / was' },
+          { pronoun: 'you', form: 'are / were' },
+          { pronoun: 'he / she / it', form: 'is / was' },
+          { pronoun: 'we', form: 'are / were' },
+          { pronoun: 'they', form: 'are / were' },
+        ],
+        exampleSentence: { target: 'We are learning languages together.', translation: 'Estamos aprendendo idiomas juntos.' },
+      },
+      {
+        verb: 'to have',
+        meaning: 'ter / possuir',
+        tense: 'Presente & Passado',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I / you / we / they', form: 'have (had)' },
+          { pronoun: 'he / she / it', form: 'has (had)' },
+        ],
+        exampleSentence: { target: 'She has a meeting today.', translation: 'Ela tem uma reunião hoje.' },
+      },
+    ],
+    descriptions: [
+      {
+        title: 'Comparação de adjetivos em inglês',
+        explanation: 'Adjetivos curtos recebem -er / -est (fast ➔ faster ➔ fastest). Adjetivos longos usam more / most (important ➔ more important ➔ most important).',
+        examples: [
+          { positive: 'good (bom)', comparative: 'better (melhor)', superlative: 'best (o melhor)', meaning: 'bom / melhor / o melhor' },
+          { positive: 'bad (ruim)', comparative: 'worse (pior)', superlative: 'worst (o pior)', meaning: 'ruim / pior / o pior' },
+          { positive: 'big (grande)', comparative: 'bigger (maior)', superlative: 'biggest (o maior)', meaning: 'grande / maior / o maior' },
+        ],
+      },
+    ],
+  },
+  ja: {
+    genderRules: [
+      {
+        article: 'a / an / the',
+        gender: 'neuter',
+        color: '#2563eb',
+        name: '冠詞 (A, An, The)',
+        description: '英語には名詞の文法的な性（男性・女性）はありませんが、語頭の発音によって不定冠詞（a / an）や定冠詞（the）を使い分けます。',
+        rules: [
+          '子音の音で始まる語の前には「a」を使います: a book, a car, a university',
+          '母音の音で始まる語の前には「an」を使います: an apple, an hour (hは無音), an elephant',
+          '特定のものやすでに言及されたものには「the」を使います: the book on the table',
+        ],
+        examples: [
+          { word: 'apple', article: 'an', meaning: 'りんご', icon: '🍎' },
+          { word: 'book', article: 'a', meaning: '本', icon: '📖' },
+          { word: 'car', article: 'a', meaning: '車', icon: '🚗' },
+          { word: 'hour', article: 'an', meaning: '1時間', icon: '⏱️' },
+        ],
+      },
+    ],
+    verbs: [
+      {
+        verb: 'to be',
+        meaning: '〜である / 存在する',
+        tense: '現在形・過去形',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I', form: 'am / was' },
+          { pronoun: 'you', form: 'are / were' },
+          { pronoun: 'he / she / it', form: 'is / was' },
+          { pronoun: 'we', form: 'are / were' },
+          { pronoun: 'they', form: 'are / were' },
+        ],
+        exampleSentence: { target: 'We are learning languages together.', translation: '私たちは一緒に言語を学んでいます。' },
+      },
+      {
+        verb: 'to have',
+        meaning: '持っている / 所有する',
+        tense: '現在形・過去形',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I / you / we / they', form: 'have (had)' },
+          { pronoun: 'he / she / it', form: 'has (had)' },
+        ],
+        exampleSentence: { target: 'She has a meeting today.', translation: '彼女は今日会議があります。' },
+      },
+    ],
+    descriptions: [
+      {
+        title: '英語の形容詞の比較変化',
+        explanation: '短い形容詞は語尾に -er / -est を付けます (fast ➔ faster ➔ fastest)。長い形容詞は more / most を前に置きます (important ➔ more important ➔ most important)。',
+        examples: [
+          { positive: 'good (良い)', comparative: 'better (より良い)', superlative: 'best (最も良い)', meaning: 'good / better / best' },
+          { positive: 'bad (悪い)', comparative: 'worse (より悪い)', superlative: 'worst (最も悪い)', meaning: 'bad / worse / worst' },
+          { positive: 'big (大きい)', comparative: 'bigger (より大きい)', superlative: 'biggest (最も大きい)', meaning: 'big / bigger / biggest' },
+        ],
+      },
+    ],
+  },
+  ko: {
+    genderRules: [
+      {
+        article: 'a / an / the',
+        gender: 'neuter',
+        color: '#2563eb',
+        name: '관사 (A, An, The)',
+        description: '영어에는 명사의 문법적 성별이 없지만, 단어의 첫 발음에 따라 부정관사(a / an)와 정관사(the)를 사용합니다.',
+        rules: [
+          '자음 소리 앞에는 «a»를 사용합니다: a book, a car, a university',
+          '모음 소리 앞에는 «an»을 사용합니다: an apple, an hour (h 묵음), an elephant',
+          '특정 대상이나 앞에서 언급된 명사 앞에는 «the»를 사용합니다: the book on the table',
+        ],
+        examples: [
+          { word: 'apple', article: 'an', meaning: '사과', icon: '🍎' },
+          { word: 'book', article: 'a', meaning: '책', icon: '📖' },
+          { word: 'car', article: 'a', meaning: '자동차', icon: '🚗' },
+          { word: 'hour', article: 'an', meaning: '한 시간', icon: '⏱️' },
+        ],
+      },
+    ],
+    verbs: [
+      {
+        verb: 'to be',
+        meaning: '~이다 / 있다',
+        tense: '현재형 & 과거형',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I', form: 'am / was' },
+          { pronoun: 'you', form: 'are / were' },
+          { pronoun: 'he / she / it', form: 'is / was' },
+          { pronoun: 'we', form: 'are / were' },
+          { pronoun: 'they', form: 'are / were' },
+        ],
+        exampleSentence: { target: 'We are learning languages together.', translation: '우리는 함께 언어를 배우고 있습니다.' },
+      },
+      {
+        verb: 'to have',
+        meaning: '가지고 있다 / 소유하다',
+        tense: '현재형 & 과거형',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I / you / we / they', form: 'have (had)' },
+          { pronoun: 'he / she / it', form: 'has (had)' },
+        ],
+        exampleSentence: { target: 'She has a meeting today.', translation: '그녀는 오늘 회의가 있습니다.' },
+      },
+    ],
+    descriptions: [
+      {
+        title: '영어 형용사 비교급과 최상급',
+        explanation: '짧은 형용사는 -er / -est를 붙입니다 (fast ➔ faster ➔ fastest). 긴 형용사는 앞에 more / most를 붙입니다 (important ➔ more important ➔ most important).',
+        examples: [
+          { positive: 'good (좋은)', comparative: 'better (더 좋은)', superlative: 'best (가장 좋은)', meaning: 'good / better / best' },
+          { positive: 'bad (나쁜)', comparative: 'worse (더 나쁜)', superlative: 'worst (가장 나쁜)', meaning: 'bad / worse / worst' },
+          { positive: 'big (큰)', comparative: 'bigger (더 큰)', superlative: 'biggest (가장 큰)', meaning: 'big / bigger / biggest' },
+        ],
+      },
+    ],
+  },
+};
+
+const LOCALIZED_GERMAN_GRAMMAR: Partial<Record<SupportedLanguageId, Partial<GrammarData>>> = {
+  ru: {
+    descriptions: [
+      {
+        title: 'Степени сравнения прилагательных в немецком',
+        explanation: 'В немецком языке сравнительная степень образуется с помощью суффикса -er, а превосходная — с помощью конструкции am ...-sten. Односложные прилагательные с гласными a, o, u часто принимают умлаут (ä, ö, ü).',
+        examples: [
+          { positive: 'gut (хороший)', comparative: 'besser (лучше)', superlative: 'am besten (лучший)', meaning: 'хороший / лучше / лучший' },
+          { positive: 'groß (большой)', comparative: 'größer (больше)', superlative: 'am größten (наибольший)', meaning: 'большой / больше / наибольший' },
+          { positive: 'schnell (быстрый)', comparative: 'schneller (быстрее)', superlative: 'am schnellsten (самый быстрый)', meaning: 'быстрый / быстрее / самый быстрый' },
+          { positive: 'klein (маленький)', comparative: 'kleiner (меньше)', superlative: 'am kleinsten (наименьший)', meaning: 'маленький / меньше / наименьший' },
+          { positive: 'schön (красивый)', comparative: 'schöner (красивее)', superlative: 'am schönsten (красивейший)', meaning: 'красивый / красивее / красивейший' },
+          { positive: 'viel (много)', comparative: 'mehr (больше)', superlative: 'am meisten (больше всего)', meaning: 'много / больше / больше всего' },
+        ],
+      },
+    ],
+  },
+  es: {
+    descriptions: [
+      {
+        title: 'Comparación de adjetivos en alemán',
+        explanation: 'En alemán, los adjetivos añaden -er para el comparativo y am ...-sten para el superlativo. Los adjetivos monosilábicos con a, o, u suelen tomar diéresis/umlaut (ä, ö, ü).',
+        examples: [
+          { positive: 'gut (bueno)', comparative: 'besser (mejor)', superlative: 'am besten (el mejor)', meaning: 'bueno / mejor / el mejor' },
+          { positive: 'groß (grande)', comparative: 'größer (más grande)', superlative: 'am größten (el más grande)', meaning: 'grande / más grande / el más grande' },
+          { positive: 'schnell (rápido)', comparative: 'schneller (más rápido)', superlative: 'am schnellsten (el más rápido)', meaning: 'rápido / más rápido / el más rápido' },
+          { positive: 'klein (pequeño)', comparative: 'kleiner (más pequeño)', superlative: 'am kleinsten (el más pequeño)', meaning: 'pequeño / más pequeño / el más pequeño' },
+        ],
+      },
+    ],
+  },
+};
+
+const LOCALIZED_GRAMMAR_OVERLAYS: Partial<Record<SupportedLanguageId, Partial<Record<SupportedLanguageId, Partial<GrammarData>>>>> = {
+  en: LOCALIZED_ENGLISH_GRAMMAR,
+  de: LOCALIZED_GERMAN_GRAMMAR,
 };
 
 export const getGrammarForLanguage = (
@@ -1625,7 +1963,7 @@ export const getGrammarForLanguage = (
     };
   });
 
-  const overlay = lang === 'en' ? LOCALIZED_ENGLISH_GRAMMAR[baseLang] : undefined;
+  const overlay = LOCALIZED_GRAMMAR_OVERLAYS[lang]?.[baseLang];
 
   return {
     ...baseData,

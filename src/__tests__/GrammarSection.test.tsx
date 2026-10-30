@@ -188,4 +188,42 @@ describe('Alphabet & Grammar Section Integration', () => {
     // Next button in Russian
     expect(screen.getByRole('button', { name: /Далее/i })).toBeInTheDocument();
   });
+
+  it('localizes English grammar rules, verbs, adjectives, and flashcards for German native learners', () => {
+    localStorage.setItem('basic_language_base_lang', 'de');
+    localStorage.setItem('basic_language_target_lang', 'en');
+    window.history.pushState({}, '', '/learn/en/alphabet');
+
+    render(
+      <LanguageProvider>
+        <Alphabet data={sampleAlphabet} initialSubTab="grammar" />
+      </LanguageProvider>
+    );
+
+    // 1. Descriptions & Adjectives tab: check German explanation and titles
+    const descTab = screen.getByRole('tab', { name: /Beschreibungen & Adjektive/i });
+    fireEvent.click(descTab);
+
+    expect(screen.getByText('Englische Steigerung von Adjektiven')).toBeInTheDocument();
+    expect(screen.getByText(/Kurze Adjektive bilden den Komparativ mit -er/i)).toBeInTheDocument();
+    expect(screen.getByText('gut / besser / am besten')).toBeInTheDocument();
+
+    // 2. Gender / Articles tab: check German rules and descriptions
+    const genderTab = screen.getByRole('tab', { name: /Artikel & Geschlecht/i });
+    fireEvent.click(genderTab);
+
+    expect(screen.getByText('Artikel (A, An, The)')).toBeInTheDocument();
+    expect(screen.getByText(/Im Englischen gibt es kein grammatikalisches Geschlecht/i)).toBeInTheDocument();
+    expect(screen.getByText('ein Apfel')).toBeInTheDocument();
+
+    // 3. Flashcards tab: check German feedback explanation on card answer
+    const flashTab = screen.getByRole('tab', { name: /^Karteikarten$/i });
+    fireEvent.click(flashTab);
+
+    const anButton = screen.getByRole('button', { name: 'an' });
+    fireEvent.click(anButton);
+
+    expect(screen.getByText(/„Apple“ beginnt mit einem Vokallaut \/æ\/, daher wird der unbestimmte Artikel „an“ verwendet/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Nächste Karte/i })).toBeInTheDocument();
+  });
 });
