@@ -18,6 +18,17 @@ import { localizeCategoryBadge, localizeLevelBadge, getQuizToolbarLabels } from 
 import { UIStrings } from '../data/translations';
 import { SupportedLanguageId } from '../data/languages/types';
 import { useIsMobile } from '../hooks/useIsMobile';
+import { splitFirstSentence } from '../utils/splitFirstSentence';
+
+const TipText: React.FC<{ text: string }> = ({ text }) => {
+  const { first, rest } = splitFirstSentence(text);
+  return (
+    <span className="tip-text">
+      <span className="tip-line">{first}</span>
+      {rest && <span className="tip-line tip-line-rest">{rest}</span>}
+    </span>
+  );
+};
 
 // Define interfaces for the data structure
 interface AlphabetItem {
@@ -2285,7 +2296,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         {/* Row 3: Audio repeat & speed hint banner */}
         <div className="quiz-repeat-tip-banner">
           <span className="tip-icon">🗣️</span>
-          <span className="tip-text">{ui.repeatHint}</span>
+          <TipText text={ui.repeatHint} />
         </div>
         </div>
       </div>
@@ -2433,15 +2444,15 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         {isMobile && !showNext && expectedAnswerLanguage !== 'en' && !dismissedKbTips.includes(expectedAnswerLanguage) && (
           <div className="keyboard-tip-banner" role="note">
             <span className="tip-icon-col" aria-hidden="true">⌨️</span>
-            <span className="tip-text">
-              {ui.keyboardTip.replace('{lang}', (() => {
+            <TipText
+              text={ui.keyboardTip.replace('{lang}', (() => {
                 try {
                   return new Intl.DisplayNames([baseLanguage], { type: 'language' }).of(expectedAnswerLanguage) || expectedAnswerLanguage;
                 } catch {
                   return expectedAnswerLanguage;
                 }
               })())}
-            </span>
+            />
             <button
               type="button"
               className="keyboard-tip-dismiss"
