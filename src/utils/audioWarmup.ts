@@ -41,20 +41,41 @@ export const warmUpAudioContext = (): void => {
       }
     }
 
+    // 3. Primes the HTML5 Audio (HTMLMediaElement) pipeline
+    // Chromium and WebKit browsers maintain separate audio graphs for WebAudio and HTMLMediaElement.
+    // Playing a tiny silent 1-sample WAV primes the hardware media sink and decoder thread
+    // so the very first user click on an <audio> element plays with zero startup lag.
+    if (typeof navigator === 'undefined' || !navigator.userAgent.includes('jsdom')) {
+      try {
+        const silentAudio = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA');
+        silentAudio.volume = 0.01;
+        const playPromise = silentAudio.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {});
+        }
+      } catch {
+        // Ignore autoplay restrictions
+      }
+    }
+
     isAudioWarmedUp = true;
   } catch {
     // Ignore environments without Web Audio support
   }
 };
 
-// Global single-shot listener so the very first tap anywhere unfreezes the audio hardware
+// Global single-shot listeners so the first movement, tap, or touch instantly unfreezes the audio hardware
 if (typeof window !== 'undefined') {
   const handleFirstInteraction = () => {
     warmUpAudioContext();
     window.removeEventListener('pointerdown', handleFirstInteraction, true);
+    window.removeEventListener('pointermove', handleFirstInteraction, true);
+    window.removeEventListener('touchstart', handleFirstInteraction, true);
     window.removeEventListener('keydown', handleFirstInteraction, true);
   };
 
   window.addEventListener('pointerdown', handleFirstInteraction, { capture: true, once: true });
+  window.addEventListener('pointermove', handleFirstInteraction, { capture: true, once: true });
+  window.addEventListener('touchstart', handleFirstInteraction, { capture: true, once: true });
   window.addEventListener('keydown', handleFirstInteraction, { capture: true, once: true });
 }

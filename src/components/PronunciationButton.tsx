@@ -193,6 +193,25 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
   const getCandidateAudioPaths = (): string[] =>
     getCandidateAudioPathsForText(text, effectiveLangId, audioCategory);
 
+  const handlePointerEnter = () => {
+    warmUpAudioContext();
+
+    // Pre-buffer audio file into memory on hover/touch so first click triggers with zero delay
+    if (!audioRef.current && text && text.trim()) {
+      const candidatePaths = getCandidateAudioPaths();
+      if (candidatePaths.length > 0) {
+        try {
+          const pre = new Audio(candidatePaths[0]);
+          pre.preload = 'auto';
+          audioRef.current = pre;
+          audioPathRef.current = candidatePaths[0];
+        } catch {
+          // Ignore pre-buffering errors
+        }
+      }
+    }
+  };
+
   const handleSpeak = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     if (isPlaying) return;
@@ -227,17 +246,19 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
         }
 
         const audioPath = candidatePaths[index];
-        if (audioRef.current) {
-          audioRef.current.onended = null;
-          audioRef.current.onerror = null;
-          audioRef.current.pause();
-          audioRef.current.src = '';
+        let audio = audioRef.current;
+        if (!audio || audioPathRef.current !== audioPath) {
+          if (audio) {
+            audio.onended = null;
+            audio.onerror = null;
+            audio.pause();
+            audio.src = '';
+          }
+          audio = new Audio(audioPath);
+          audio.preload = 'auto';
+          audioRef.current = audio;
+          audioPathRef.current = audioPath;
         }
-
-        const audio = new Audio(audioPath);
-        audio.preload = 'auto';
-        audioRef.current = audio;
-        audioPathRef.current = audioPath;
 
         let advanced = false;
         const advanceToNext = () => {
@@ -310,9 +331,12 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
 
   return (
     <button
+      id={buttonId.current}
       type="button"
       className={`pronunciation-button ${isPlaying ? 'playing' : ''} ${className || ''}`}
       onClick={handleSpeak}
+      onPointerEnter={handlePointerEnter}
+      onFocus={handlePointerEnter}
       disabled={isPlaying}
       title={isPlaying ? "Speaking..." : (label || "Pronounce")}
       aria-label={isPlaying ? "Speaking..." : (label || "Pronounce")}

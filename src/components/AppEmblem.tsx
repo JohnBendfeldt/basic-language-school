@@ -22,6 +22,59 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
     </g>
   );
 
+  // High-contrast enamel flag badge with crisp white rim and drop shadow
+  // Ensures flags with dark stripes (e.g. German black, French navy, British dark blue)
+  // pop vibrantly against dark emblem gradients.
+  const renderFlagBadge = (
+    clipId: string,
+    content: React.ReactNode,
+    width = 13,
+    height = 9,
+    x = 5,
+    y = 5
+  ) => (
+    <g transform={`translate(${x}, ${y})`}>
+      <defs>
+        <clipPath id={clipId}>
+          <rect x="0" y="0" width={width} height={height} rx="2" />
+        </clipPath>
+      </defs>
+      {/* Subtle outer shadow */}
+      <rect
+        x="-0.5"
+        y="-0.5"
+        width={width + 1}
+        height={height + 1}
+        rx="2.5"
+        fill="rgba(0, 0, 0, 0.45)"
+      />
+      {/* Opaque white backing */}
+      <rect
+        x="0"
+        y="0"
+        width={width}
+        height={height}
+        rx="2"
+        fill="#ffffff"
+      />
+      {/* Clipped flag content */}
+      <g clipPath={`url(#${clipId})`}>
+        {content}
+      </g>
+      {/* Crisp high-contrast white enamel border */}
+      <rect
+        x="0"
+        y="0"
+        width={width}
+        height={height}
+        rx="2"
+        fill="none"
+        stroke="#ffffff"
+        strokeWidth="0.8"
+      />
+    </g>
+  );
+
   switch (language) {
     case 'ru':
       return (
@@ -46,12 +99,14 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
             </linearGradient>
           </defs>
           <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#rusEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" />
-          {/* Russian tricolor: White, Blue, Red */}
-          <g transform="translate(6, 6)">
-            <rect x="0" y="0" width="10" height="2.2" rx="1" fill="#ffffff" opacity="0.95" />
-            <rect x="0" y="2.4" width="10" height="2.2" rx="0.5" fill="#0039a6" />
-            <rect x="0" y="4.8" width="10" height="2.2" rx="1" fill="#d52b1e" />
-          </g>
+          {renderFlagBadge(
+            'ruFlagClip',
+            <>
+              <rect x="0" y="0" width="13" height="3" fill="#ffffff" />
+              <rect x="0" y="3" width="13" height="3" fill="#0039a6" />
+              <rect x="0" y="6" width="13" height="3" fill="#d52b1e" />
+            </>
+          )}
           {capGeometry('rusGoldGrad')}
         </svg>
       );
@@ -79,12 +134,15 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
             </linearGradient>
           </defs>
           <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#deEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" />
-          {/* German tricolor: Black, Red, Gold */}
-          <g transform="translate(6, 6)">
-            <rect x="0" y="0" width="10" height="2.2" rx="1" fill="#000000" />
-            <rect x="0" y="2.4" width="10" height="2.2" rx="0.5" fill="#dd0000" />
-            <rect x="0" y="4.8" width="10" height="2.2" rx="1" fill="#ffce00" />
-          </g>
+          {/* German tricolor framed in white enamel so black top stripe pops crisply */}
+          {renderFlagBadge(
+            'deFlagClip',
+            <>
+              <rect x="0" y="0" width="13" height="3" fill="#18181b" />
+              <rect x="0" y="3" width="13" height="3" fill="#ef4444" />
+              <rect x="0" y="6" width="13" height="3" fill="#ffce00" />
+            </>
+          )}
           {capGeometry('deGoldGrad')}
         </svg>
       );
@@ -112,12 +170,14 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
             </linearGradient>
           </defs>
           <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#esEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" />
-          {/* Spanish flag: Red, Gold, Red */}
-          <g transform="translate(6, 6)">
-            <rect x="0" y="0" width="10" height="2" rx="1" fill="#aa151b" />
-            <rect x="0" y="2.2" width="10" height="2.6" rx="0.5" fill="#f1bf00" />
-            <rect x="0" y="5" width="10" height="2" rx="1" fill="#aa151b" />
-          </g>
+          {renderFlagBadge(
+            'esFlagClip',
+            <>
+              <rect x="0" y="0" width="13" height="2.5" fill="#c60b1e" />
+              <rect x="0" y="2.5" width="13" height="4" fill="#f1bf00" />
+              <rect x="0" y="6.5" width="13" height="2.5" fill="#c60b1e" />
+            </>
+          )}
           {capGeometry('esGoldGrad')}
         </svg>
       );
@@ -145,12 +205,15 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
             </linearGradient>
           </defs>
           <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#frEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" />
-          {/* French vertical tricolor: Blue, White, Red */}
-          <g transform="translate(6, 6)">
-            <rect x="0" y="0" width="3.3" height="7" rx="1" fill="#002654" />
-            <rect x="3.3" y="0" width="3.4" height="7" fill="#ffffff" />
-            <rect x="6.7" y="0" width="3.3" height="7" rx="1" fill="#ce1126" />
-          </g>
+          {/* French vertical tricolor with vibrant royal blue and crisp white frame */}
+          {renderFlagBadge(
+            'frFlagClip',
+            <>
+              <rect x="0" y="0" width="4.33" height="9" fill="#0055a5" />
+              <rect x="4.33" y="0" width="4.34" height="9" fill="#ffffff" />
+              <rect x="8.67" y="0" width="4.33" height="9" fill="#ef4135" />
+            </>
+          )}
           {capGeometry('frGoldGrad')}
         </svg>
       );
@@ -178,12 +241,14 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
             </linearGradient>
           </defs>
           <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#ptEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" />
-          {/* Brazil/Portuguese green, yellow diamond, blue globe */}
-          <g transform="translate(6, 6)">
-            <rect x="0" y="0" width="10" height="7" rx="1.5" fill="#009b3a" />
-            <polygon points="5,1 8.8,3.5 5,6 1.2,3.5" fill="#fedf00" />
-            <circle cx="5" cy="3.5" r="1.3" fill="#002776" />
-          </g>
+          {renderFlagBadge(
+            'ptFlagClip',
+            <>
+              <rect x="0" y="0" width="13" height="9" fill="#009b3a" />
+              <polygon points="6.5,1.2 11.8,4.5 6.5,7.8 1.2,4.5" fill="#fedf00" />
+              <circle cx="6.5" cy="4.5" r="1.8" fill="#002776" />
+            </>
+          )}
           {capGeometry('ptGoldGrad')}
         </svg>
       );
@@ -211,11 +276,13 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
             </linearGradient>
           </defs>
           <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#idEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" />
-          {/* Indonesian bicolor: Red over White */}
-          <g transform="translate(6, 6)">
-            <rect x="0" y="0" width="10" height="3.5" rx="1" fill="#ce1126" />
-            <rect x="0" y="3.5" width="10" height="3.5" rx="1" fill="#ffffff" />
-          </g>
+          {renderFlagBadge(
+            'idFlagClip',
+            <>
+              <rect x="0" y="0" width="13" height="4.5" fill="#ce1126" />
+              <rect x="0" y="4.5" width="13" height="4.5" fill="#ffffff" />
+            </>
+          )}
           {capGeometry('idGoldGrad')}
         </svg>
       );
@@ -243,13 +310,15 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
             </linearGradient>
           </defs>
           <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#trEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" />
-          {/* Turkish red with white crescent and star */}
-          <g transform="translate(6, 6)">
-            <rect x="0" y="0" width="10" height="7" rx="1.5" fill="#e30a17" />
-            <circle cx="4.2" cy="3.5" r="2.1" fill="#ffffff" />
-            <circle cx="4.9" cy="3.5" r="1.6" fill="#e30a17" />
-            <polygon points="7.2,3.5 6.8,3.8 7.0,3.3 6.6,3.0 7.1,3.0 7.2,2.5 7.4,3.0 7.9,3.0 7.5,3.3 7.7,3.8" fill="#ffffff" />
-          </g>
+          {renderFlagBadge(
+            'trFlagClip',
+            <>
+              <rect x="0" y="0" width="13" height="9" fill="#e30a17" />
+              <circle cx="5.2" cy="4.5" r="2.8" fill="#ffffff" />
+              <circle cx="6.1" cy="4.5" r="2.2" fill="#e30a17" />
+              <polygon points="9.3,4.5 8.8,4.9 9.0,4.3 8.5,3.9 9.1,3.9 9.3,3.3 9.5,3.9 10.1,3.9 9.6,4.3 9.8,4.9" fill="#ffffff" />
+            </>
+          )}
           {capGeometry('trGoldGrad')}
         </svg>
       );
@@ -277,11 +346,13 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
             </linearGradient>
           </defs>
           <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#jaEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" />
-          {/* Japanese flag: white field with red sun disc */}
-          <g transform="translate(6, 6)">
-            <rect x="0" y="0" width="10" height="7" rx="1.5" fill="#ffffff" />
-            <circle cx="5" cy="3.5" r="2.2" fill="#bc002d" />
-          </g>
+          {renderFlagBadge(
+            'jaFlagClip',
+            <>
+              <rect x="0" y="0" width="13" height="9" fill="#ffffff" />
+              <circle cx="6.5" cy="4.5" r="2.8" fill="#bc002d" />
+            </>
+          )}
           {capGeometry('jaGoldGrad')}
         </svg>
       );
@@ -309,14 +380,16 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
             </linearGradient>
           </defs>
           <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#koEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" />
-          {/* Korean flag: white field with red/blue Taegeuk circle */}
-          <g transform="translate(6, 6)">
-            <rect x="0" y="0" width="10" height="7" rx="1.5" fill="#ffffff" />
-            <path d="M5 1.5 C6.2 1.5 7.2 2.5 7.2 3.5 C7.2 4.5 6.2 5.5 5 5.5 C3.8 5.5 2.8 4.5 2.8 3.5 C2.8 2.5 3.8 1.5 5 1.5 Z" fill="#0047a0" />
-            <path d="M2.8 3.5 C2.8 2.3 3.8 1.5 5 1.5 C6.2 1.5 7.2 2.3 7.2 3.5 C6.1 3.5 6.1 4.5 5 4.5 C3.9 4.5 3.9 3.5 2.8 3.5 Z" fill="#cd2e3a" />
-            <circle cx="6.1" cy="3" r="1.1" fill="#cd2e3a" />
-            <circle cx="3.9" cy="4" r="1.1" fill="#0047a0" />
-          </g>
+          {renderFlagBadge(
+            'koFlagClip',
+            <>
+              <rect x="0" y="0" width="13" height="9" fill="#ffffff" />
+              <path d="M6.5 2 C8 2 9.2 3.2 9.2 4.5 C9.2 5.8 8 7 6.5 7 C5 7 3.8 5.8 3.8 4.5 C3.8 3.2 5 2 6.5 2 Z" fill="#0047a0" />
+              <path d="M3.8 4.5 C3.8 3 5 2 6.5 2 C8 2 9.2 3 9.2 4.5 C7.8 4.5 7.8 5.8 6.5 5.8 C5.2 5.8 5.2 4.5 3.8 4.5 Z" fill="#cd2e3a" />
+              <circle cx="7.9" cy="3.9" r="1.3" fill="#cd2e3a" />
+              <circle cx="5.1" cy="5.1" r="1.3" fill="#0047a0" />
+            </>
+          )}
           {capGeometry('koGoldGrad')}
         </svg>
       );
@@ -344,17 +417,17 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
             </linearGradient>
           </defs>
           <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#zhEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" />
-          {/* Chinese flag: red canton with golden stars */}
-          <g transform="translate(6, 6)">
-            <rect x="0" y="0" width="10" height="7" rx="1.5" fill="#de2910" />
-            {/* Main large star */}
-            <polygon points="2.5,0.8 2.8,1.8 3.8,1.8 3.0,2.4 3.3,3.3 2.5,2.7 1.7,3.3 2.0,2.4 1.2,1.8 2.2,1.8" fill="#ffde00" />
-            {/* 4 small stars */}
-            <polygon points="5.0,0.8 5.2,1.3 5.7,1.3 5.3,1.6 5.5,2.1 5.0,1.8 4.6,2.1 4.8,1.6 4.4,1.3 4.9,1.3" transform="scale(0.6) translate(3, 0.2)" fill="#ffde00" />
-            <polygon points="6.0,1.6 6.2,2.1 6.7,2.1 6.3,2.4 6.5,2.9 6.0,2.6 5.6,2.9 5.8,2.4 5.4,2.1 5.9,2.1" transform="scale(0.6) translate(3.8, 0.8)" fill="#ffde00" />
-            <polygon points="6.0,2.8 6.2,3.3 6.7,3.3 6.3,3.6 6.5,4.1 6.0,3.8 5.6,4.1 5.8,3.6 5.4,3.3 5.9,3.3" transform="scale(0.6) translate(3.8, 1.8)" fill="#ffde00" />
-            <polygon points="5.0,3.8 5.2,4.3 5.7,4.3 5.3,4.6 5.5,5.1 5.0,4.8 4.6,5.1 4.8,4.6 4.4,4.3 4.9,4.3" transform="scale(0.6) translate(3, 2.5)" fill="#ffde00" />
-          </g>
+          {renderFlagBadge(
+            'zhFlagClip',
+            <>
+              <rect x="0" y="0" width="13" height="9" fill="#de2910" />
+              <polygon points="3.2,1.2 3.6,2.3 4.8,2.3 3.8,3.0 4.2,4.1 3.2,3.4 2.2,4.1 2.6,3.0 1.6,2.3 2.8,2.3" fill="#ffde00" />
+              <polygon points="4.9,0.7 5.1,1.1 5.5,1.1 5.2,1.3 5.3,1.7 4.9,1.5 4.6,1.7 4.7,1.3 4.4,1.1 4.8,1.1" fill="#ffde00" />
+              <polygon points="5.7,1.5 5.9,1.9 6.3,1.9 6.0,2.1 6.1,2.5 5.7,2.3 5.4,2.5 5.5,2.1 5.2,1.9 5.6,1.9" fill="#ffde00" />
+              <polygon points="5.7,2.8 5.9,3.2 6.3,3.2 6.0,3.4 6.1,3.8 5.7,3.6 5.4,3.8 5.5,3.4 5.2,3.2 5.6,3.2" fill="#ffde00" />
+              <polygon points="4.9,3.6 5.1,4.0 5.5,4.0 5.2,4.2 5.3,4.6 4.9,4.4 4.6,4.6 4.7,4.2 4.4,4.0 4.8,4.0" fill="#ffde00" />
+            </>
+          )}
           {capGeometry('zhGoldGrad')}
         </svg>
       );
@@ -382,14 +455,16 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
             </linearGradient>
           </defs>
           <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#hiEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" />
-          {/* Indian Tiranga: Saffron, White with Ashoka Chakra, Green */}
-          <g transform="translate(6, 6)">
-            <rect x="0" y="0" width="10" height="2.3" rx="0.5" fill="#ff9933" />
-            <rect x="0" y="2.3" width="10" height="2.4" fill="#ffffff" />
-            <circle cx="5" cy="3.5" r="0.9" fill="none" stroke="#000080" strokeWidth="0.4" />
-            <circle cx="5" cy="3.5" r="0.3" fill="#000080" />
-            <rect x="0" y="4.7" width="10" height="2.3" rx="0.5" fill="#138808" />
-          </g>
+          {renderFlagBadge(
+            'hiFlagClip',
+            <>
+              <rect x="0" y="0" width="13" height="3" fill="#ff9933" />
+              <rect x="0" y="3" width="13" height="3" fill="#ffffff" />
+              <circle cx="6.5" cy="4.5" r="1.1" fill="none" stroke="#000080" strokeWidth="0.5" />
+              <circle cx="6.5" cy="4.5" r="0.35" fill="#000080" />
+              <rect x="0" y="6" width="13" height="3" fill="#138808" />
+            </>
+          )}
           {capGeometry('hiGoldGrad')}
         </svg>
       );
@@ -417,17 +492,17 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
             </linearGradient>
           </defs>
           <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#arEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" />
-          {/* Authentic Arabic Green Field with white inscription & sword motif */}
-          <g transform="translate(6, 6)">
-            <rect x="0" y="0" width="10" height="7" rx="1.5" fill="#006c35" />
-            {/* Arabic calligraphy flourish simulation */}
-            <path d="M1.5 2.2 Q3 1.6 5 2.2 T8.5 2.2" stroke="#ffffff" strokeWidth="0.6" strokeLinecap="round" fill="none" />
-            <path d="M2.5 3.2 Q5 2.8 7.5 3.2" stroke="#ffffff" strokeWidth="0.5" strokeLinecap="round" fill="none" />
-            {/* Traditional horizontal sword */}
-            <line x1="2" y1="4.8" x2="8" y2="4.8" stroke="#ffffff" strokeWidth="0.5" strokeLinecap="round" />
-            <line x1="7.5" y1="4.2" x2="7.5" y2="5.4" stroke="#ffffff" strokeWidth="0.4" strokeLinecap="round" />
-            <circle cx="8.3" cy="4.8" r="0.4" fill="#ffffff" />
-          </g>
+          {renderFlagBadge(
+            'arFlagClip',
+            <>
+              <rect x="0" y="0" width="13" height="9" fill="#006c35" />
+              <path d="M2 2.8 Q4 2.1 6.5 2.8 T11 2.8" stroke="#ffffff" strokeWidth="0.8" strokeLinecap="round" fill="none" />
+              <path d="M3.2 4.1 Q6.5 3.6 9.8 4.1" stroke="#ffffff" strokeWidth="0.7" strokeLinecap="round" fill="none" />
+              <line x1="2.5" y1="6.2" x2="10.5" y2="6.2" stroke="#ffffff" strokeWidth="0.7" strokeLinecap="round" />
+              <line x1="9.8" y1="5.4" x2="9.8" y2="7.0" stroke="#ffffff" strokeWidth="0.5" strokeLinecap="round" />
+              <circle cx="10.8" cy="6.2" r="0.5" fill="#ffffff" />
+            </>
+          )}
           {capGeometry('arGoldGrad')}
         </svg>
       );
@@ -456,18 +531,21 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
             </linearGradient>
           </defs>
           <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#enEmblemBg)" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
-          {/* Authentic UK Union Jack motif */}
-          <g transform="translate(6, 6)">
-            <rect x="0" y="0" width="10" height="7" rx="1.5" fill="#012169" />
-            <line x1="0" y1="0" x2="10" y2="7" stroke="#ffffff" strokeWidth="1.5" />
-            <line x1="10" y1="0" x2="0" y2="7" stroke="#ffffff" strokeWidth="1.5" />
-            <line x1="0" y1="0" x2="10" y2="7" stroke="#c8102e" strokeWidth="0.8" />
-            <line x1="10" y1="0" x2="0" y2="7" stroke="#c8102e" strokeWidth="0.8" />
-            <rect x="4" y="0" width="2" height="7" fill="#ffffff" />
-            <rect x="0" y="2.5" width="10" height="2" fill="#ffffff" />
-            <rect x="4.4" y="0" width="1.2" height="7" fill="#c8102e" />
-            <rect x="0" y="2.9" width="10" height="1.2" fill="#c8102e" />
-          </g>
+          {/* Framed UK Union Jack with crisp white enamel border */}
+          {renderFlagBadge(
+            'enFlagClip',
+            <>
+              <rect x="0" y="0" width="13" height="9" fill="#012169" />
+              <line x1="0" y1="0" x2="13" y2="9" stroke="#ffffff" strokeWidth="2.2" />
+              <line x1="13" y1="0" x2="0" y2="9" stroke="#ffffff" strokeWidth="2.2" />
+              <line x1="0" y1="0" x2="13" y2="9" stroke="#c8102e" strokeWidth="1.1" />
+              <line x1="13" y1="0" x2="0" y2="9" stroke="#c8102e" strokeWidth="1.1" />
+              <rect x="4.8" y="0" width="3.4" height="9" fill="#ffffff" />
+              <rect x="0" y="2.8" width="13" height="3.4" fill="#ffffff" />
+              <rect x="5.5" y="0" width="2" height="9" fill="#c8102e" />
+              <rect x="0" y="3.5" width="13" height="2" fill="#c8102e" />
+            </>
+          )}
           {capGeometry('enGoldGrad')}
         </svg>
       );
