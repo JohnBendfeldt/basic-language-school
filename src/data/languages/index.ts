@@ -377,7 +377,7 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
     nativeName: '日本語',
     flag: '🇯🇵',
     code: 'ja-JP',
-    ttsVoice: 'ja-JP-KeitaNeural',
+    ttsVoice: 'ja-JP-NanamiNeural',
     hasKeyboard: false,
     hasAlphabet: true,
     hasTimeGuide: true,

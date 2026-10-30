@@ -331,12 +331,12 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                       />
                       <div className="example-text-wrap">
                         <strong className="example-target" style={{ color: rule.color }}>
-                          {rule.article} {ex.word}
+                          {currentLanguage === 'ru' ? ex.word : `${rule.article} ${ex.word}`}
                         </strong>
                         <span className="example-meaning">{ex.meaning}</span>
                       </div>
                       <PronunciationButton
-                        text={`${rule.article} ${ex.word}`}
+                        text={currentLanguage === 'ru' ? ex.word : `${rule.article} ${ex.word}`}
                         lang={currentLanguage}
                         className="example-mini-audio"
                       />
@@ -384,22 +384,33 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
               </div>
 
               <div className="conjugation-table">
-                {verbsList[activeVerbIndex].forms.map((item) => (
-                  <div key={item.pronoun} className="conjugation-row">
-                    <span className="conj-pronoun">{item.pronoun}</span>
-                    <strong className="conj-form">{item.form}</strong>
-                    <PronunciationButton
-                      text={`${item.pronoun} ${item.form}`}
-                      lang={currentLanguage}
-                      className="conj-audio-btn"
-                    />
-                  </div>
-                ))}
+                {verbsList[activeVerbIndex].forms.map((item) => {
+                  const cleanPronoun = item.pronoun.replace(/\s*\(.*?\)/g, '').split('/')[0].trim();
+                  const audioTarget = cleanPronoun ? `${cleanPronoun} ${item.form}` : item.form;
+                  return (
+                    <div key={item.pronoun} className="conjugation-row">
+                      <span className="conj-pronoun">{item.pronoun}</span>
+                      <strong className="conj-form">{item.form}</strong>
+                      <PronunciationButton
+                        text={audioTarget}
+                        lang={currentLanguage}
+                        className="conj-audio-btn"
+                      />
+                    </div>
+                  );
+                })}
               </div>
 
               {verbsList[activeVerbIndex].exampleSentence && (
                 <div className="verb-example-box">
-                  <span className="example-label">Example in context:</span>
+                  <div className="verb-example-header-row">
+                    <span className="example-label">Example in context:</span>
+                    <PronunciationButton
+                      text={verbsList[activeVerbIndex].exampleSentence?.target || ''}
+                      lang={currentLanguage}
+                      className="verb-example-audio"
+                    />
+                  </div>
                   <p className="example-target-line">
                     «{verbsList[activeVerbIndex].exampleSentence?.target}»
                   </p>
