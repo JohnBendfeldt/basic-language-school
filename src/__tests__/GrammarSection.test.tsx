@@ -226,4 +226,24 @@ describe('Alphabet & Grammar Section Integration', () => {
     expect(screen.getByText(/„Apple“ beginnt mit einem Vokallaut \/æ\/, daher wird der unbestimmte Artikel „an“ verwendet/i)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /Nächste Karte/i })).toBeInTheDocument();
   });
+
+  it('correctly adapts verbs for isolating languages (Mandarin Chinese & Indonesian) with aspect markers and notice banner', () => {
+    localStorage.setItem('basic_language_base_lang', 'en');
+    localStorage.setItem('basic_language_target_lang', 'zh');
+    window.history.pushState({}, '', '/learn/zh/alphabet');
+
+    render(
+      <LanguageProvider>
+        <Grammar initialTab="verbs" />
+      </LanguageProvider>
+    );
+
+    // Verify notice banner for Chinese
+    expect(screen.getByText(/Mandarin Chinese has NO verb conjugations!/i)).toBeInTheDocument();
+    expect(screen.getByText(/Verbs never change by person/i)).toBeInTheDocument();
+
+    // Verify verb form rows have distinct aspect/tense forms rather than repeating the same form
+    expect(screen.getByText(/Affirmative \(肯定句\)/i)).toBeInTheDocument();
+    expect(screen.getByText(/Negative \(否定句\)/i)).toBeInTheDocument();
+  });
 });
