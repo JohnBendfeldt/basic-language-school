@@ -8,12 +8,12 @@ import { ProgressService } from '../services/progressService';
 import { MASTERY_THRESHOLD } from '../types/progress';
 import { useLanguage } from '../contexts/LanguageContext';
 import { getAlphabetAcceptedAnswers } from '../utils/alphabetAnswers';
-import { 
-  NUMBER_TABLE, 
-  extractDigit, 
-  resolveTranslation, 
+import {
+  NUMBER_TABLE,
+  extractDigit,
+  resolveTranslation,
   buildQuizQuestionHint,
-  getAlphabetQuizHint 
+  getAlphabetQuizHint
 } from '../utils/translationResolver';
 import { localizeCategoryBadge, localizeLevelBadge, getQuizToolbarLabels } from '../utils/pageDictionary';
 import { UIStrings } from '../data/translations';
@@ -54,12 +54,12 @@ interface PhraseItem {
   level?: 1 | 2 | 3;
 }
 
-export type QuizCategoryFilter = 
-  | 'all' 
-  | 'alphabet' 
-  | 'basicPhrases' 
-  | 'commonWords' 
-  | 'numbers' 
+export type QuizCategoryFilter =
+  | 'all'
+  | 'alphabet'
+  | 'basicPhrases'
+  | 'commonWords'
+  | 'numbers'
   | 'time'
   | 'tech'
   | 'business'
@@ -201,9 +201,9 @@ const HARD_SIGN_CHARS = ['Ъ', 'ъ'];
 
 const isSoftSign = (char: string): boolean => SOFT_SIGN_CHARS.includes(char);
 const isHardSign = (char: string): boolean => HARD_SIGN_CHARS.includes(char);
-const isSoftSignAnswer = (answer: string): boolean => 
+const isSoftSignAnswer = (answer: string): boolean =>
   ['soft sign', 'soft'].includes(answer.toLowerCase().trim());
-const isHardSignAnswer = (answer: string): boolean => 
+const isHardSignAnswer = (answer: string): boolean =>
   ['hard sign', 'hard'].includes(answer.toLowerCase().trim());
 
 export const SPECIAL_CHAR_MAP: Record<SupportedLanguageId, string[]> = {
@@ -871,7 +871,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       const activeMastered = overrideMastered || masteredWordIdsRef.current || masteredWordIds;
 
       // Priority 1: Unmastered (masteryLevel < 5) AND not yet asked in current rotation
-      let candidatePool = targetPool.filter(q => 
+      let candidatePool = targetPool.filter(q =>
         !isQuestionMastered(q, activeMastered) && !askedQuestionsRef.current.has(q.id)
       );
 
@@ -906,8 +906,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             type: 'alphabet',
             prompt: character,
             answer: 'soft sign/soft/мягкий знак/мягкий',
-            hint: baseLanguage === 'ru' 
-              ? `Какой это знак: «${character}»?` 
+            hint: baseLanguage === 'ru'
+              ? `Какой это знак: «${character}»?`
               : baseLanguage === 'es'
                 ? `¿Qué tipo de signo es «${character}»?`
                 : baseLanguage === 'fr'
@@ -925,8 +925,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             type: 'alphabet',
             prompt: character,
             answer: 'hard sign/hard/твёрдый знак/твердый знак/твёрдый/твердый',
-            hint: baseLanguage === 'ru' 
-              ? `Какой это знак: «${character}»?` 
+            hint: baseLanguage === 'ru'
+              ? `Какой это знак: «${character}»?`
               : baseLanguage === 'es'
                 ? `¿Qué tipo de signo es «${character}»?`
                 : baseLanguage === 'fr'
@@ -1231,11 +1231,11 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         totalQuestions: sessionAnswered,
         ...(currentLanguage && currentLanguage !== 'ru' ? { languageId: currentLanguage } : {})
       }).catch(err => console.warn('Could not save quiz session on goal adjustment:', err))
-      .finally(() => {
-        setTimeout(() => {
-          isCompletingRef.current = false;
-        }, 1000);
-      });
+        .finally(() => {
+          setTimeout(() => {
+            isCompletingRef.current = false;
+          }, 1000);
+        });
     }
   };
 
@@ -1594,8 +1594,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       const prevChar = newValue.charAt(lastCharIndex - 1);
       const currChar = newValue.charAt(lastCharIndex);
 
-      if (combinationStarters.includes(prevChar) && 
-          combinationFollowers[prevChar as keyof typeof combinationFollowers]?.includes(currChar)) {
+      if (combinationStarters.includes(prevChar) &&
+        combinationFollowers[prevChar as keyof typeof combinationFollowers]?.includes(currChar)) {
         const transliteratedValue = transliterate(newValue);
         setUserAnswer(transliteratedValue);
         setCursorPosition(selectionStart);
@@ -1607,10 +1607,10 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     const hasInputType = 'inputType' in e.nativeEvent;
     const inputType = hasInputType ? (e.nativeEvent as any).inputType : undefined;
 
-    if (newValue.endsWith(' ') || 
-        /[.,!?;:]/.test(newValue.charAt(selectionStart - 1)) ||
-        inputType === 'insertLineBreak' ||
-        newValue.includes('\n')) {
+    if (newValue.endsWith(' ') ||
+      /[.,!?;:]/.test(newValue.charAt(selectionStart - 1)) ||
+      inputType === 'insertLineBreak' ||
+      newValue.includes('\n')) {
       const transliteratedValue = transliterate(newValue);
       setUserAnswer(transliteratedValue);
       setCursorPosition(selectionStart);
@@ -1636,11 +1636,11 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     }
 
     const input = inputRef.current;
-    const start = input && typeof input.selectionStart === 'number' 
-      ? input.selectionStart 
+    const start = input && typeof input.selectionStart === 'number'
+      ? input.selectionStart
       : userAnswer.length;
-    const end = input && typeof input.selectionEnd === 'number' 
-      ? input.selectionEnd 
+    const end = input && typeof input.selectionEnd === 'number'
+      ? input.selectionEnd
       : userAnswer.length;
 
     let newValue = '';
@@ -1687,8 +1687,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   };
 
   const needsRussianKeyboard = Boolean(
-    currentQuestion && 
-    !currentQuestion.type.includes('alphabet') && 
+    currentQuestion &&
+    !currentQuestion.type.includes('alphabet') &&
     (
       (currentLanguage === 'ru' && (!currentQuestion.isTargetPrompt || currentQuestion.isListeningMode)) ||
       (baseLanguage === 'ru' && currentQuestion.isTargetPrompt) ||
@@ -1714,8 +1714,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   const getDynamicPlaceholder = (): string => {
     if (!currentQuestion) return ui.yourAnswerHere;
     if (needsRussianKeyboard) {
-      return baseLanguage === 'ru' 
-        ? 'Введите на русском...' 
+      return baseLanguage === 'ru'
+        ? 'Введите на русском...'
         : 'Type in Russian (or phonetically in English)...';
     }
     if (currentQuestion.isListeningMode) {
@@ -2008,8 +2008,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             </div>
 
             <div className="quiz-buttons recap-quiz-buttons">
-              <button 
-                className="next-button start-new-quiz-button" 
+              <button
+                className="next-button start-new-quiz-button"
                 onClick={() => startNewQuizSession(sessionGoal)}
                 autoFocus
                 title="Start next quiz session"
@@ -2019,7 +2019,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                   <FaRedo className="btn-icon" /> Start Next Quiz ({sessionGoal} Qs)
                 </span>
                 <span className="btn-hint-badge">
-                  press <span className="btn-kbd">↵ Enter</span>
+                  press ↵ Enter
                 </span>
               </button>
             </div>
@@ -2122,233 +2122,233 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           </button>
         )}
         <div className="quiz-toolbar-body">
-        {/* Row 1: The two Dropdowns side-by-side */}
-        <div className="quiz-toolbar-dropdowns-row">
-          {/* Topic & Curriculum Module Dropdown */}
-          <div className="quiz-dropdown-group" ref={topicDropdownRef}>
-            <label id="topic-dropdown-label" className="quiz-toolbar-label">
-              <span className="label-icon">📚</span>
-              <span>{toolbarLabels.topic}</span>
-            </label>
-            <div className="quiz-dropdown-wrapper">
-              <button
-                type="button"
-                id="topic-dropdown-trigger"
-                data-testid="topic-dropdown-trigger"
-                className={`quiz-dropdown-trigger ${isTopicDropdownOpen ? 'open' : ''}`}
-                onClick={() => {
-                  setIsTopicDropdownOpen(prev => !prev);
-                  setIsLevelDropdownOpen(false);
-                }}
-                aria-haspopup="listbox"
-                aria-expanded={isTopicDropdownOpen}
-                aria-labelledby="topic-dropdown-label topic-dropdown-trigger"
-              >
-                <div className="quiz-dropdown-trigger-main">
-                  <span className="dropdown-trigger-icon" aria-hidden="true">{activeCategoryItem.icon}</span>
-                  <span className="dropdown-trigger-title">{activeCategoryLabel}</span>
-                </div>
-                <div className="quiz-dropdown-trigger-end">
-                  <span className="dropdown-count-pill">{activeCategoryCountDisplay}</span>
-                  <FaChevronDown className={`quiz-dropdown-chevron ${isTopicDropdownOpen ? 'rotated' : ''}`} />
-                </div>
-              </button>
+          {/* Row 1: The two Dropdowns side-by-side */}
+          <div className="quiz-toolbar-dropdowns-row">
+            {/* Topic & Curriculum Module Dropdown */}
+            <div className="quiz-dropdown-group" ref={topicDropdownRef}>
+              <label id="topic-dropdown-label" className="quiz-toolbar-label">
+                <span className="label-icon">📚</span>
+                <span>{toolbarLabels.topic}</span>
+              </label>
+              <div className="quiz-dropdown-wrapper">
+                <button
+                  type="button"
+                  id="topic-dropdown-trigger"
+                  data-testid="topic-dropdown-trigger"
+                  className={`quiz-dropdown-trigger ${isTopicDropdownOpen ? 'open' : ''}`}
+                  onClick={() => {
+                    setIsTopicDropdownOpen(prev => !prev);
+                    setIsLevelDropdownOpen(false);
+                  }}
+                  aria-haspopup="listbox"
+                  aria-expanded={isTopicDropdownOpen}
+                  aria-labelledby="topic-dropdown-label topic-dropdown-trigger"
+                >
+                  <div className="quiz-dropdown-trigger-main">
+                    <span className="dropdown-trigger-icon" aria-hidden="true">{activeCategoryItem.icon}</span>
+                    <span className="dropdown-trigger-title">{activeCategoryLabel}</span>
+                  </div>
+                  <div className="quiz-dropdown-trigger-end">
+                    <span className="dropdown-count-pill">{activeCategoryCountDisplay}</span>
+                    <FaChevronDown className={`quiz-dropdown-chevron ${isTopicDropdownOpen ? 'rotated' : ''}`} />
+                  </div>
+                </button>
 
-              {isTopicDropdownOpen && (
-                <div className="quiz-dropdown-menu" role="listbox" aria-labelledby="topic-dropdown-label">
-                  <div className="quiz-dropdown-section-title">Core Curriculum</div>
-                  {CORE_MODULE_CATEGORIES.map(cat => {
-                    const isSelected = activeCategory === cat.id;
-                    const countInfo = categoryCounts[cat.id];
-                    const label = getCategoryLabel(cat.id, ui, baseLanguage);
-                    const isFullyMastered = countInfo && countInfo.total > 0 && countInfo.mastered >= countInfo.total;
-                    return (
-                      <button
-                        key={cat.id}
-                        type="button"
-                        role="option"
-                        aria-selected={isSelected}
-                        className={`quiz-dropdown-item ${isSelected ? 'selected' : ''}`}
-                        onClick={() => {
-                          handleCategoryChange(cat.id);
-                          setIsTopicDropdownOpen(false);
-                        }}
-                      >
-                        <div className="quiz-dropdown-item-left">
-                          <span className="quiz-dropdown-item-icon">{cat.icon}</span>
-                          <span className="quiz-dropdown-item-name">{label}</span>
-                        </div>
-                        <div className="quiz-dropdown-item-right">
-                          <span className={`quiz-dropdown-item-badge ${isFullyMastered ? 'mastered' : ''}`}>
-                            {countInfo?.mastered ? `${countInfo.mastered}/${countInfo.total}` : (countInfo?.total || 0)}
-                          </span>
-                          {isSelected ? <FaCheck className="quiz-dropdown-item-check" /> : <span className="quiz-dropdown-item-check-placeholder" />}
-                        </div>
-                      </button>
-                    );
-                  })}
+                {isTopicDropdownOpen && (
+                  <div className="quiz-dropdown-menu" role="listbox" aria-labelledby="topic-dropdown-label">
+                    <div className="quiz-dropdown-section-title">Core Curriculum</div>
+                    {CORE_MODULE_CATEGORIES.map(cat => {
+                      const isSelected = activeCategory === cat.id;
+                      const countInfo = categoryCounts[cat.id];
+                      const label = getCategoryLabel(cat.id, ui, baseLanguage);
+                      const isFullyMastered = countInfo && countInfo.total > 0 && countInfo.mastered >= countInfo.total;
+                      return (
+                        <button
+                          key={cat.id}
+                          type="button"
+                          role="option"
+                          aria-selected={isSelected}
+                          className={`quiz-dropdown-item ${isSelected ? 'selected' : ''}`}
+                          onClick={() => {
+                            handleCategoryChange(cat.id);
+                            setIsTopicDropdownOpen(false);
+                          }}
+                        >
+                          <div className="quiz-dropdown-item-left">
+                            <span className="quiz-dropdown-item-icon">{cat.icon}</span>
+                            <span className="quiz-dropdown-item-name">{label}</span>
+                          </div>
+                          <div className="quiz-dropdown-item-right">
+                            <span className={`quiz-dropdown-item-badge ${isFullyMastered ? 'mastered' : ''}`}>
+                              {countInfo?.mastered ? `${countInfo.mastered}/${countInfo.total}` : (countInfo?.total || 0)}
+                            </span>
+                            {isSelected ? <FaCheck className="quiz-dropdown-item-check" /> : <span className="quiz-dropdown-item-check-placeholder" />}
+                          </div>
+                        </button>
+                      );
+                    })}
 
-                  <div className="quiz-dropdown-section-title">Industry &amp; Specialized Packs</div>
-                  {TOPIC_PACK_CATEGORIES.map(cat => {
-                    const isSelected = activeCategory === cat.id;
-                    const countInfo = categoryCounts[cat.id];
-                    const label = getCategoryLabel(cat.id, ui, baseLanguage);
-                    const isFullyMastered = countInfo && countInfo.total > 0 && countInfo.mastered >= countInfo.total;
-                    return (
-                      <button
-                        key={cat.id}
-                        type="button"
-                        role="option"
-                        aria-selected={isSelected}
-                        className={`quiz-dropdown-item ${isSelected ? 'selected' : ''}`}
-                        onClick={() => {
-                          handleCategoryChange(cat.id);
-                          setIsTopicDropdownOpen(false);
-                        }}
-                      >
-                        <div className="quiz-dropdown-item-left">
-                          <span className="quiz-dropdown-item-icon">{cat.icon}</span>
-                          <span className="quiz-dropdown-item-name">{label}</span>
-                        </div>
-                        <div className="quiz-dropdown-item-right">
-                          <span className={`quiz-dropdown-item-badge ${isFullyMastered ? 'mastered' : ''}`}>
-                            {countInfo?.mastered ? `${countInfo.mastered}/${countInfo.total}` : (countInfo?.total || 0)}
-                          </span>
-                          {isSelected ? <FaCheck className="quiz-dropdown-item-check" /> : <span className="quiz-dropdown-item-check-placeholder" />}
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
+                    <div className="quiz-dropdown-section-title">Industry &amp; Specialized Packs</div>
+                    {TOPIC_PACK_CATEGORIES.map(cat => {
+                      const isSelected = activeCategory === cat.id;
+                      const countInfo = categoryCounts[cat.id];
+                      const label = getCategoryLabel(cat.id, ui, baseLanguage);
+                      const isFullyMastered = countInfo && countInfo.total > 0 && countInfo.mastered >= countInfo.total;
+                      return (
+                        <button
+                          key={cat.id}
+                          type="button"
+                          role="option"
+                          aria-selected={isSelected}
+                          className={`quiz-dropdown-item ${isSelected ? 'selected' : ''}`}
+                          onClick={() => {
+                            handleCategoryChange(cat.id);
+                            setIsTopicDropdownOpen(false);
+                          }}
+                        >
+                          <div className="quiz-dropdown-item-left">
+                            <span className="quiz-dropdown-item-icon">{cat.icon}</span>
+                            <span className="quiz-dropdown-item-name">{label}</span>
+                          </div>
+                          <div className="quiz-dropdown-item-right">
+                            <span className={`quiz-dropdown-item-badge ${isFullyMastered ? 'mastered' : ''}`}>
+                              {countInfo?.mastered ? `${countInfo.mastered}/${countInfo.total}` : (countInfo?.total || 0)}
+                            </span>
+                            {isSelected ? <FaCheck className="quiz-dropdown-item-check" /> : <span className="quiz-dropdown-item-check-placeholder" />}
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Proficiency Level Dropdown */}
+            <div className="quiz-dropdown-group" ref={levelDropdownRef}>
+              <label id="level-dropdown-label" className="quiz-toolbar-label">
+                <span className="label-icon">🎯</span>
+                <span>{toolbarLabels.level}</span>
+              </label>
+              <div className="quiz-dropdown-wrapper">
+                <button
+                  type="button"
+                  id="level-dropdown-trigger"
+                  data-testid="level-dropdown-trigger"
+                  className={`quiz-dropdown-trigger ${isLevelDropdownOpen ? 'open' : ''}`}
+                  onClick={() => {
+                    setIsLevelDropdownOpen(prev => !prev);
+                    setIsTopicDropdownOpen(false);
+                  }}
+                  aria-haspopup="listbox"
+                  aria-expanded={isLevelDropdownOpen}
+                  aria-labelledby="level-dropdown-label level-dropdown-trigger"
+                >
+                  <div className="quiz-dropdown-trigger-main">
+                    <span className="dropdown-trigger-icon" aria-hidden="true">{activeLevelItem.badge}</span>
+                    <span className="dropdown-trigger-title">{localizedActiveLevel}</span>
+                  </div>
+                  <div className="quiz-dropdown-trigger-end">
+                    <span className="dropdown-count-pill">{activeLevelCountDisplay}</span>
+                    <FaChevronDown className={`quiz-dropdown-chevron ${isLevelDropdownOpen ? 'rotated' : ''}`} />
+                  </div>
+                </button>
+
+                {isLevelDropdownOpen && (
+                  <div className="quiz-dropdown-menu" role="listbox" aria-labelledby="level-dropdown-label">
+                    {ALL_QUIZ_LEVELS.map(lvl => {
+                      const isSelected = activeLevel === lvl.id;
+                      const countInfo = lvl.id === 'all'
+                        ? { total: totalCurriculumWords, mastered: totalMasteredWordsCount }
+                        : levelCounts[lvl.id as 1 | 2 | 3];
+                      const localizedLevelName = localizeLevelBadge(lvl.id, baseLanguage);
+                      return (
+                        <button
+                          key={String(lvl.id)}
+                          type="button"
+                          role="option"
+                          aria-selected={isSelected}
+                          className={`quiz-dropdown-item ${isSelected ? 'selected' : ''}`}
+                          onClick={() => {
+                            handleLevelChange(lvl.id);
+                            setIsLevelDropdownOpen(false);
+                          }}
+                        >
+                          <div className="quiz-dropdown-item-left">
+                            <span className="quiz-dropdown-item-icon">{lvl.badge}</span>
+                            <span className="quiz-dropdown-item-name">{localizedLevelName}</span>
+                          </div>
+                          <div className="quiz-dropdown-item-right">
+                            <span className="quiz-dropdown-item-badge">
+                              {countInfo?.mastered ? `${countInfo.mastered}/${countInfo.total}` : (countInfo?.total || 0)}
+                            </span>
+                            {isSelected ? <FaCheck className="quiz-dropdown-item-check" /> : <span className="quiz-dropdown-item-check-placeholder" />}
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
-          {/* Proficiency Level Dropdown */}
-          <div className="quiz-dropdown-group" ref={levelDropdownRef}>
-            <label id="level-dropdown-label" className="quiz-toolbar-label">
-              <span className="label-icon">🎯</span>
-              <span>{toolbarLabels.level}</span>
+          {/* Row 2: Practice Modality Segmented Control (Full Width) */}
+          <div className="quiz-toolbar-modality-row">
+            <label className="quiz-toolbar-label">
+              <span className="label-icon">⚡</span>
+              <span>{toolbarLabels.modality}</span>
             </label>
-            <div className="quiz-dropdown-wrapper">
+            <div className="quiz-mode-segmented-pills" role="radiogroup" aria-label="Quiz mode">
               <button
                 type="button"
-                id="level-dropdown-trigger"
-                data-testid="level-dropdown-trigger"
-                className={`quiz-dropdown-trigger ${isLevelDropdownOpen ? 'open' : ''}`}
-                onClick={() => {
-                  setIsLevelDropdownOpen(prev => !prev);
-                  setIsTopicDropdownOpen(false);
-                }}
-                aria-haspopup="listbox"
-                aria-expanded={isLevelDropdownOpen}
-                aria-labelledby="level-dropdown-label level-dropdown-trigger"
+                role="radio"
+                aria-checked={quizMode === 'writing'}
+                className={`mode-segmented-pill ${quizMode === 'writing' ? 'active' : ''}`}
+                onClick={() => handleModeChange('writing')}
+                title="Writing & Reading Mode (Prompt visible, type translation)"
               >
-                <div className="quiz-dropdown-trigger-main">
-                  <span className="dropdown-trigger-icon" aria-hidden="true">{activeLevelItem.badge}</span>
-                  <span className="dropdown-trigger-title">{localizedActiveLevel}</span>
-                </div>
-                <div className="quiz-dropdown-trigger-end">
-                  <span className="dropdown-count-pill">{activeLevelCountDisplay}</span>
-                  <FaChevronDown className={`quiz-dropdown-chevron ${isLevelDropdownOpen ? 'rotated' : ''}`} />
-                </div>
+                <span className="mode-icon">✍️</span>
+                <span>{ui.writingMode}</span>
               </button>
-
-              {isLevelDropdownOpen && (
-                <div className="quiz-dropdown-menu" role="listbox" aria-labelledby="level-dropdown-label">
-                  {ALL_QUIZ_LEVELS.map(lvl => {
-                    const isSelected = activeLevel === lvl.id;
-                    const countInfo = lvl.id === 'all'
-                      ? { total: totalCurriculumWords, mastered: totalMasteredWordsCount }
-                      : levelCounts[lvl.id as 1 | 2 | 3];
-                    const localizedLevelName = localizeLevelBadge(lvl.id, baseLanguage);
-                    return (
-                      <button
-                        key={String(lvl.id)}
-                        type="button"
-                        role="option"
-                        aria-selected={isSelected}
-                        className={`quiz-dropdown-item ${isSelected ? 'selected' : ''}`}
-                        onClick={() => {
-                          handleLevelChange(lvl.id);
-                          setIsLevelDropdownOpen(false);
-                        }}
-                      >
-                        <div className="quiz-dropdown-item-left">
-                          <span className="quiz-dropdown-item-icon">{lvl.badge}</span>
-                          <span className="quiz-dropdown-item-name">{localizedLevelName}</span>
-                        </div>
-                        <div className="quiz-dropdown-item-right">
-                          <span className="quiz-dropdown-item-badge">
-                            {countInfo?.mastered ? `${countInfo.mastered}/${countInfo.total}` : (countInfo?.total || 0)}
-                          </span>
-                          {isSelected ? <FaCheck className="quiz-dropdown-item-check" /> : <span className="quiz-dropdown-item-check-placeholder" />}
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
+              <button
+                type="button"
+                role="radio"
+                aria-checked={quizMode === 'listening'}
+                className={`mode-segmented-pill ${quizMode === 'listening' ? 'active' : ''}`}
+                onClick={() => handleModeChange('listening')}
+                title="Listening Ear-Training Mode (Listen to audio, type what you hear)"
+              >
+                <span className="mode-icon">🎧</span>
+                <span>{ui.listeningMode}</span>
+              </button>
+              <button
+                type="button"
+                role="radio"
+                aria-checked={quizMode === 'all'}
+                className={`mode-segmented-pill ${quizMode === 'all' ? 'active' : ''}`}
+                onClick={() => handleModeChange('all')}
+                title="All Modes (Alternates writing and listening questions)"
+              >
+                <span className="mode-icon">🎯</span>
+                <span>{ui.allModes}</span>
+              </button>
             </div>
           </div>
-        </div>
 
-        {/* Row 2: Practice Modality Segmented Control (Full Width) */}
-        <div className="quiz-toolbar-modality-row">
-          <label className="quiz-toolbar-label">
-            <span className="label-icon">⚡</span>
-            <span>{toolbarLabels.modality}</span>
-          </label>
-          <div className="quiz-mode-segmented-pills" role="radiogroup" aria-label="Quiz mode">
-            <button
-              type="button"
-              role="radio"
-              aria-checked={quizMode === 'writing'}
-              className={`mode-segmented-pill ${quizMode === 'writing' ? 'active' : ''}`}
-              onClick={() => handleModeChange('writing')}
-              title="Writing & Reading Mode (Prompt visible, type translation)"
-            >
-              <span className="mode-icon">✍️</span>
-              <span>{ui.writingMode}</span>
-            </button>
-            <button
-              type="button"
-              role="radio"
-              aria-checked={quizMode === 'listening'}
-              className={`mode-segmented-pill ${quizMode === 'listening' ? 'active' : ''}`}
-              onClick={() => handleModeChange('listening')}
-              title="Listening Ear-Training Mode (Listen to audio, type what you hear)"
-            >
-              <span className="mode-icon">🎧</span>
-              <span>{ui.listeningMode}</span>
-            </button>
-            <button
-              type="button"
-              role="radio"
-              aria-checked={quizMode === 'all'}
-              className={`mode-segmented-pill ${quizMode === 'all' ? 'active' : ''}`}
-              onClick={() => handleModeChange('all')}
-              title="All Modes (Alternates writing and listening questions)"
-            >
-              <span className="mode-icon">🎯</span>
-              <span>{ui.allModes}</span>
-            </button>
+          {/* Row 3: Audio repeat & speed hint banner */}
+          <div className="quiz-repeat-tip-banner">
+            <span className="tip-icon">🗣️</span>
+            <TipText text={ui.repeatHint} />
           </div>
-        </div>
-
-        {/* Row 3: Audio repeat & speed hint banner */}
-        <div className="quiz-repeat-tip-banner">
-          <span className="tip-icon">🗣️</span>
-          <TipText text={ui.repeatHint} />
-        </div>
         </div>
       </div>
 
       {/* Modern Compact Quiz Header Panel / Game HUD */}
       <div className="quiz-header-panel">
         <div className="quiz-progress-bar-container" aria-label="Session progress bar">
-          <div 
-            className="quiz-progress-bar-fill" 
+          <div
+            className="quiz-progress-bar-fill"
             style={{ width: `${progressPercent}%` }}
           ></div>
         </div>
@@ -2403,7 +2403,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           {currentQuestion.isListeningMode && !showNext ? (
             <div className="quiz-listening-card">
               <div className="listening-audio-player">
-                <PronunciationButton 
+                <PronunciationButton
                   text={currentQuestion.promptAudioWord || currentQuestion.targetAudioWord || currentQuestion.russian || currentQuestion.prompt}
                   lang={currentLanguage}
                   className="quiz-listening-audio-btn"
@@ -2420,8 +2420,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                   )}
                 </div>
               ) : (
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   className="show-listening-hint-btn"
                   onClick={() => setShowListeningHint(true)}
                 >
@@ -2434,7 +2434,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               <div className="quiz-prompt-main-row">
                 <span className="quiz-prompt-text">{currentQuestion.prompt}</span>
                 {/* Audio for prompt: in target language if target prompt, else base language */}
-                <PronunciationButton 
+                <PronunciationButton
                   text={currentQuestion.promptAudioWord || currentQuestion.targetAudioWord || currentQuestion.russian || currentQuestion.prompt}
                   lang={currentQuestion.isTargetPrompt ? currentLanguage : baseLanguage}
                   className="quiz-prompt-audio margin-left"
@@ -2463,13 +2463,13 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             autoComplete="off"
             spellCheck={false}
             value={userAnswer}
-            onChange={handleInputChange} 
+            onChange={handleInputChange}
             onKeyDown={handleKeyDown}
             placeholder={getDynamicPlaceholder()}
             disabled={showNext}
           />
           {needsRussianKeyboard && !showNext && (
-            <button 
+            <button
               className={`keyboard-toggle-button ${showKeyboard ? 'active' : ''}`}
               onClick={toggleKeyboard}
               title="Toggle Russian Keyboard"
@@ -2535,9 +2535,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               <div className="phonetic-guide-popover" role="region" aria-label="Phonetic typing guide">
                 <div className="popover-header">
                   <span className="popover-title">💡 Phonetic Typing Cheatsheet</span>
-                  <button 
-                    type="button" 
-                    className="close-popover-btn" 
+                  <button
+                    type="button"
+                    className="close-popover-btn"
                     onClick={() => setShowPhoneticGuide(false)}
                     aria-label="Close guide"
                   >
@@ -2585,9 +2585,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           <div className="virtual-keyboard-container">
             <div className="virtual-keyboard-header">
               <span>Full Russian Keyboard</span>
-              <button 
-                type="button" 
-                className="close-keyboard-btn" 
+              <button
+                type="button"
+                className="close-keyboard-btn"
                 onClick={toggleKeyboard}
                 aria-label="Close keyboard"
               >
@@ -2612,7 +2612,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
       {/* Fluid Duolingo-style Bottom Feedback Sheet */}
       {showNext && isCorrect !== null && (
-        <div 
+        <div
           className={`quiz-feedback-drawer ${isCorrect ? (isTypoAccepted ? 'feedback-almost' : 'feedback-correct') : 'feedback-incorrect'}`}
           role="region"
           aria-live="polite"
@@ -2631,10 +2631,10 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                 )}
                 <div className="feedback-text-content">
                   <span className="feedback-title">
-                    {isCorrect 
-                      ? (isOverridden 
-                          ? (baseLanguage === 'de' ? 'Richtig! (Akzeptiert)' : 'Correct! (Overridden)') 
-                          : (isTypoAccepted ? (baseLanguage === 'de' ? 'Fast richtig! (Akzeptiert)' : 'Almost right! (Accepted)') : ui.correct))
+                    {isCorrect
+                      ? (isOverridden
+                        ? (baseLanguage === 'de' ? 'Richtig! (Akzeptiert)' : 'Correct! (Overridden)')
+                        : (isTypoAccepted ? (baseLanguage === 'de' ? 'Fast richtig! (Akzeptiert)' : 'Almost right! (Accepted)') : ui.correct))
                       : ui.incorrect}
                   </span>
                   {isOverridden && (
@@ -2661,17 +2661,17 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                       {(currentQuestion.type === 'numbers' ||
                         extractDigit(currentQuestion.prompt) !== null ||
                         extractDigit(currentQuestion.answer) !== null) && (
-                        <div className="feedback-number-tip">
-                          💡 {baseLanguage === 'es' ? 'Consejo: Puedes escribir la palabra o el número.'
-                            : baseLanguage === 'fr' ? 'Astuce : Vous pouvez taper le mot ou le chiffre.'
-                            : baseLanguage === 'de' ? 'Tipp: Du kannst entweder das Wort oder die Zahl tippen.'
-                            : baseLanguage === 'ru' ? 'Подсказка: Вы можете ввести слово или цифру.'
-                            : baseLanguage === 'pt' ? 'Dica: Você pode digitar a palavra ou o número.'
-                            : baseLanguage === 'id' ? 'Tips: Anda dapat mengetik kata atau angkanya.'
-                            : baseLanguage === 'tr' ? 'İpucu: Kelimeyi veya rakamı yazabilirsiniz.'
-                            : 'Tip: You can type either the word or the digit.'}
-                        </div>
-                      )}
+                          <div className="feedback-number-tip">
+                            💡 {baseLanguage === 'es' ? 'Consejo: Puedes escribir la palabra o el número.'
+                              : baseLanguage === 'fr' ? 'Astuce : Vous pouvez taper le mot ou le chiffre.'
+                                : baseLanguage === 'de' ? 'Tipp: Du kannst entweder das Wort oder die Zahl tippen.'
+                                  : baseLanguage === 'ru' ? 'Подсказка: Вы можете ввести слово или цифру.'
+                                    : baseLanguage === 'pt' ? 'Dica: Você pode digitar a palavra ou o número.'
+                                      : baseLanguage === 'id' ? 'Tips: Anda dapat mengetik kata atau angkanya.'
+                                        : baseLanguage === 'tr' ? 'İpucu: Kelimeyi veya rakamı yazabilirsiniz.'
+                                          : 'Tip: You can type either the word or the digit.'}
+                          </div>
+                        )}
                     </div>
                   )}
                   {isCorrect && spellingDiff && spellingDiff.length > 0 && (
@@ -2707,7 +2707,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               {/* Audio button in feedback sheet if available (safe here because answer is already submitted) */}
               {(currentQuestion.targetAudioWord || currentQuestion.russian) && (
                 <div className="feedback-audio-action">
-                  <PronunciationButton 
+                  <PronunciationButton
                     text={currentQuestion.targetAudioWord || currentQuestion.russian}
                     lang={currentLanguage}
                     className="feedback-pronounce-btn"
@@ -2719,9 +2719,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
             <div className="feedback-action-area">
               {!isCorrect && (
-                <button 
-                  type="button" 
-                  className="feedback-override-button" 
+                <button
+                  type="button"
+                  className="feedback-override-button"
                   onClick={handleOverrideAnswer}
                   aria-label="I was right"
                   title="Mark your answer as correct if your phrasing was valid"
@@ -2730,9 +2730,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                 </button>
               )}
               {sessionAnswered < sessionGoal ? (
-                <button 
-                  className={`feedback-continue-button ${isCorrect ? 'btn-next-correct' : 'btn-next-incorrect'}`} 
-                  onClick={handleNextQuestion} 
+                <button
+                  className={`feedback-continue-button ${isCorrect ? 'btn-next-correct' : 'btn-next-incorrect'}`}
+                  onClick={handleNextQuestion}
                   autoFocus
                   aria-label={`${ui.nextQuestion} (${sessionIndex + 1}/${sessionGoal})`}
                 >
@@ -2742,9 +2742,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                   </span>
                 </button>
               ) : (
-                <button 
-                  className="feedback-continue-button finish-quiz-button" 
-                  onClick={handleCompleteSession} 
+                <button
+                  className="feedback-continue-button finish-quiz-button"
+                  onClick={handleCompleteSession}
                   autoFocus
                   aria-label={ui.completeQuiz}
                 >
@@ -2752,7 +2752,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                     <FaCheckCircle className="btn-icon" /> {ui.completeQuiz} 🎉
                   </span>
                   <span className="btn-hint-badge">
-                    press <span className="btn-kbd">↵ Enter</span>
+                    press ↵ Enter
                   </span>
                 </button>
               )}
