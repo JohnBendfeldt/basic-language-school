@@ -2773,7 +2773,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                   )}
                   {isCorrect && isWordJustMastered && (
                     <div className="word-mastered-note">
-                      🏆 <strong>Word Mastered (5/5)!</strong> Removed from upcoming questions.
+                      🏆 <strong>Word Mastered ({MASTERY_THRESHOLD}/{MASTERY_THRESHOLD})!</strong> Removed from upcoming questions.
                     </div>
                   )}
                   {currentQuestion.alternateMeanings?.length > 1 && (
