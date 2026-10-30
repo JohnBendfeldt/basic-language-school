@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { FaSearch, FaTimes, FaArrowRight, FaBookOpen, FaComment, FaListUl, FaFont, FaBolt } from 'react-icons/fa';
 import PronunciationButton from './PronunciationButton';
+import WordIcon from './WordIcon';
 import { useLanguage } from '../contexts/LanguageContext';
 import { AppData } from '../types';
 import { searchLanguageConcepts, SearchResultItem, SearchResultsGrouped } from '../utils/searchEngine';
@@ -220,7 +221,15 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                 >
                   <div className="search-card-main">
                     <div className="search-card-header">
-                      {item.icon && <span className="search-card-icon">{item.icon}</span>}
+                      {item.icon && (
+                        <WordIcon
+                          icon={item.icon}
+                          word={item.title}
+                          meaning={item.translation}
+                          size={22}
+                          className="search-card-icon"
+                        />
+                      )}
                       {item.article && (
                         <span className={`search-article-badge badge-${item.article.toLowerCase()}`}>
                           {item.article}

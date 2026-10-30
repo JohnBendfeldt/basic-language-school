@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { PhraseItem } from '../types/index';
 import PronunciationButton from './PronunciationButton';
 import { NumberBadge } from './NumberBadge';
+import WordIcon from './WordIcon';
 import { FaSyncAlt } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
 import { resolveTranslation, extractDigit } from '../utils/translationResolver';
@@ -110,7 +111,7 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
         <div className="phrase-title-group">
           {icon && contentType !== 'numbers' && (
             <span className="phrase-icon-badge" aria-hidden="true">
-              {icon}
+              <WordIcon icon={icon} word={targetText} meaning={translatedText} size={24} />
             </span>
           )}
           <h3 className="phrase-text">{targetText}</h3>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaCheckCircle, FaTimesCircle, FaRedo, FaBookOpen, FaBolt, FaListUl, FaVolumeUp } from 'react-icons/fa';
 import PronunciationButton from './PronunciationButton';
+import WordIcon from './WordIcon';
 import { useLanguage } from '../contexts/LanguageContext';
 import { GrammarData, GrammarFlashcard, GenderNounRule, VerbConjugation } from '../types';
 import { getGrammarForLanguage } from '../data/languages/grammarData';
@@ -157,7 +158,15 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
               </div>
 
               <div className="grammar-prompt-box">
-                {currentCard.icon && <span className="grammar-prompt-icon">{currentCard.icon}</span>}
+                {currentCard.icon && (
+                  <WordIcon
+                    icon={currentCard.icon}
+                    word={currentCard.prompt}
+                    meaning={currentCard.translation}
+                    size={36}
+                    className="grammar-prompt-icon"
+                  />
+                )}
                 <h3 className="grammar-card-prompt">{currentCard.prompt}</h3>
                 {currentCard.translation && (
                   <p className="grammar-card-translation">({currentCard.translation})</p>
@@ -278,7 +287,13 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                 <div className="gender-examples-grid">
                   {rule.examples.map((ex) => (
                     <div key={ex.word} className="gender-example-item">
-                      <span className="example-icon">{ex.icon || '📌'}</span>
+                      <WordIcon
+                        icon={ex.icon || '📌'}
+                        word={ex.word}
+                        meaning={ex.meaning}
+                        size={22}
+                        className="example-icon"
+                      />
                       <div className="example-text-wrap">
                         <strong className="example-target" style={{ color: rule.color }}>
                           {rule.article} {ex.word}
