@@ -3,7 +3,7 @@ import { SupportedLanguageId, LanguageMeta } from '../data/languages/types';
 import { SUPPORTED_LANGUAGES, DEFAULT_LANGUAGE, getLanguageMeta } from '../data/languages';
 import { ProgressService } from '../services/progressService';
 import { cancelAllSpeech } from '../utils/speech';
-import { detectInitialLanguagePair, detectDeviceLanguage } from '../utils/localeDetection';
+import { detectInitialLanguagePair } from '../utils/localeDetection';
 import { UI_TRANSLATIONS, UIStrings } from '../data/translations';
 
 export type SpeechSpeed = 0.5 | 0.75 | 0.9 | 1.0 | 1.1 | 1.25;

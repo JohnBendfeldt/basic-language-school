@@ -1,9 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import {
   evaluateSmartAnswer,
-  normalizeEnglishPhrase,
-  levenshteinDistance,
-  stripArticles
+  normalizeEnglishPhrase
 } from '../utils/fuzzyMatcher';
 
 describe('Smart Fuzzy Matcher Engine', () => {

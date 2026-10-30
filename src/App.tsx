@@ -394,7 +394,6 @@ const AppContent: React.FC = () => {
           activeSection={activeSection} 
           setActiveSection={handleSectionChange} 
           isOpen={false}
-          _onClose={() => {}}
         />
 
         {/* Mobile Pull-out Drawer Menu */}

@@ -20,7 +20,6 @@ import { FlagIcon } from './FlagIcon';
 import AuthModal from './AuthModal';
 import ProgressModal from './ProgressModal';
 import { supabase, signOutUser } from '../services/supabaseClient';
-import { ProgressService } from '../services/progressService';
 import { getComponentChrome, getLocalizedAppName, getLocalizedLanguageName } from '../utils/pageDictionary';
 
 interface MobileDrawerProps {

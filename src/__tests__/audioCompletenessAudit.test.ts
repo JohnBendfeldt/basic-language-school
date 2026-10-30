@@ -20,7 +20,6 @@ import { bengaliData } from '../data/languages/bn/bengaliData';
 import { urduData } from '../data/languages/ur/urduData';
 import { SupportedLanguageId } from '../data/languages/types';
 
-const PUBLIC_AUDIO = path.resolve(__dirname, '../../public/audio');
 
 const diskFileExists = (candidatePaths: string[]): boolean => {
   return candidatePaths.some(p => {

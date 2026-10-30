@@ -1,12 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import React from 'react';
 import Quiz from '../components/Quiz';
 import Phrases from '../components/Phrases';
 import { LanguageProvider } from '../contexts/LanguageContext';
 import { 
   resolveTranslation, 
-  NUMBER_TABLE, 
   extractDigit, 
   buildQuizQuestionHint 
 } from '../utils/translationResolver';

@@ -5,14 +5,12 @@ interface NavigationProps {
   activeSection: string;
   setActiveSection: (section: string) => void;
   isOpen: boolean;
-  _onClose: () => void;
 }
 
 const Navigation: React.FC<NavigationProps> = ({ 
   activeSection, 
   setActiveSection,
-  isOpen,
-  _onClose
+  isOpen
 }) => {
   const { ui } = useLanguage();
 

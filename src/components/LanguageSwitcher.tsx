@@ -57,24 +57,6 @@ interface StoredLanguagePair {
 
 const RECENT_PAIRS_STORAGE_KEY = 'basic_language_recent_pairs';
 
-const FLAG_EMOJIS: Record<string, string> = {
-  en: '🇬🇧',
-  es: '🇪🇸',
-  fr: '🇫🇷',
-  de: '🇩🇪',
-  ru: '🇷🇺',
-  pt: '🇧🇷',
-  id: '🇮🇩',
-  tr: '🇹🇷',
-  ja: '🇯🇵',
-  ko: '🇰🇷',
-  zh: '🇨🇳',
-  hi: '🇮🇳',
-  ar: '🇸🇦',
-  bn: '🇧🇩',
-  ur: '🇵🇰',
-};
-
 const DEFAULT_INITIAL_PAIRS: StoredLanguagePair[] = [
   { base: 'en', target: 'fr' },
   { base: 'en', target: 'es' },

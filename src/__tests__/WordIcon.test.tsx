@@ -1,7 +1,6 @@
-import React from 'react';
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import WordIcon, { TableSVG, MeetingBoardSVG, TeacherSVG } from '../components/WordIcon';
+import WordIcon from '../components/WordIcon';
 
 describe('WordIcon - Smart Vector SVG & Emoji Engine', () => {
   it('automatically overrides mismatched chair emoji 🪑 with Table SVG for table words', () => {
