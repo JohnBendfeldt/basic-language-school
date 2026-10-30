@@ -592,7 +592,6 @@ const commonWords: PhraseItem[] = [
   { phrase: '医者が必要です', translation: 'I need a doctor', pronunciation: 'i-sha ga hit-su-you desu', category: 'Health', icon: '👨‍⚕️' },
   { phrase: '今何時ですか？', translation: 'What time is it?', pronunciation: 'i-ma nan-ji desu ka?', category: 'Time', icon: '⌚' },
   { phrase: 'ちょうど一時です', translation: 'It is 1:00 sharp', pronunciation: 'chou-do i-chi-ji desu', category: 'Time', icon: '🕐' },
-  { phrase: '時計', translation: 'It is 2:00', pronunciation: '', category: 'General', icon: '📌' },
   { phrase: '三時半 (3:30)', translation: '3:30 (half past three)', pronunciation: 'san-ji-han', category: 'Time', icon: '🕞' },
   { phrase: '四時十五分 (4:15)', translation: '4:15 (quarter past four)', pronunciation: 'yo-ji juu-go-fun', category: 'Time', icon: '🕓' },
   { phrase: '五時十五分前 (4:45)', translation: '4:45 (quarter to five)', pronunciation: 'go-ji juu-go-fun mae', category: 'Time', icon: '🕔' },

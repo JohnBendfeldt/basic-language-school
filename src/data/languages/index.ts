@@ -1,4 +1,5 @@
 import { LanguageMeta, SupportedLanguageId } from './types';
+import { dedupeAppData } from './dedupe';
 import russianData from './ru/russianData';
 import englishData from './en/englishData';
 import spanishData from './es/spanishData';
@@ -54,7 +55,7 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
         description: 'Test your Russian knowledge with interactive quizzes covering the alphabet, phrases, numbers, and vocabulary.',
       },
     },
-    data: russianData,
+    data: dedupeAppData(russianData),
   },
   en: {
     id: 'en',
@@ -94,7 +95,7 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
         description: 'Test your English vocabulary, phonics, and phrases with interactive spaced-repetition quizzes.',
       },
     },
-    data: englishData,
+    data: dedupeAppData(englishData),
   },
   es: {
     id: 'es',
@@ -134,7 +135,7 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
         description: 'Test your Spanish knowledge with interactive quizzes.',
       },
     },
-    data: spanishData,
+    data: dedupeAppData(spanishData),
   },
   fr: {
     id: 'fr',
@@ -174,7 +175,7 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
         description: 'Test your French knowledge with interactive quizzes.',
       },
     },
-    data: frenchData,
+    data: dedupeAppData(frenchData),
   },
   pt: {
     id: 'pt',
@@ -214,7 +215,7 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
         description: 'Test your Portuguese knowledge with interactive quizzes.',
       },
     },
-    data: portugueseData,
+    data: dedupeAppData(portugueseData),
   },
   de: {
     id: 'de',
@@ -254,7 +255,7 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
         description: 'Test your German knowledge with interactive quizzes.',
       },
     },
-    data: germanData,
+    data: dedupeAppData(germanData),
   },
   id: {
     id: 'id',
@@ -294,7 +295,7 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
         description: 'Test your Bahasa Indonesia knowledge with interactive quizzes.',
       },
     },
-    data: indonesianData,
+    data: dedupeAppData(indonesianData),
   },
   tr: {
     id: 'tr',
@@ -334,7 +335,7 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
         description: 'Test your Turkish knowledge with interactive quizzes.',
       },
     },
-    data: turkishData,
+    data: dedupeAppData(turkishData),
   },
   ko: {
     id: 'ko',
@@ -374,7 +375,7 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
         description: 'Test your Korean Hangul, vocabulary, and grammar with interactive quizzes.',
       },
     },
-    data: koreanData,
+    data: dedupeAppData(koreanData),
   },
   ja: {
     id: 'ja',
@@ -414,7 +415,7 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
         description: 'Interactive quizzes for Japanese kana, vocabulary, and sentence structures.',
       },
     },
-    data: japaneseData,
+    data: dedupeAppData(japaneseData),
   },
   zh: {
     id: 'zh',
@@ -454,7 +455,7 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
         description: 'Test your Chinese Pinyin, vocabulary, measure words, and grammar with interactive quizzes.',
       },
     },
-    data: chineseData,
+    data: dedupeAppData(chineseData),
   },
   hi: {
     id: 'hi',
@@ -494,7 +495,7 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
         description: 'Test your Hindi script, vocabulary, gender agreement, and grammar with interactive quizzes.',
       },
     },
-    data: hindiData,
+    data: dedupeAppData(hindiData),
   },
   ar: {
     id: 'ar',
@@ -534,7 +535,7 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
         description: 'Test your Arabic alphabet, vocabulary, gender agreement, and grammar with interactive quizzes.',
       },
     },
-    data: arabicData,
+    data: dedupeAppData(arabicData),
   },
   bn: {
     id: 'bn',
@@ -574,7 +575,7 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
         description: 'Test your Bengali alphabet, vocabulary, noun classifiers, and grammar with interactive quizzes.',
       },
     },
-    data: bengaliData,
+    data: dedupeAppData(bengaliData),
   },
   ur: {
     id: 'ur',
@@ -614,7 +615,7 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
         description: 'Test your Urdu alphabet, vocabulary, gender agreement, and grammar with interactive quizzes.',
       },
     },
-    data: urduData,
+    data: dedupeAppData(urduData),
   },
 };
 
