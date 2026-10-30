@@ -114,7 +114,9 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
                     ? 'ja'
                     : (lang && lang.toLowerCase().startsWith('ko'))
                       ? 'ko'
-                      : currentLanguage;
+                      : (lang && (lang.toLowerCase().startsWith('zh') || lang.toLowerCase().startsWith('cn')))
+                        ? 'zh'
+                        : currentLanguage;
 
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);

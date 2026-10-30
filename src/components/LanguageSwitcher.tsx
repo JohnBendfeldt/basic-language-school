@@ -25,19 +25,21 @@ export const LANGUAGE_REGION_MAP: Record<string, LanguageRegion> = {
   id: 'slavic-eurasian',
   ja: 'east-asian',
   ko: 'east-asian',
+  zh: 'east-asian',
 };
 
 const HIGH_AFFINITY_CORRIDORS: Record<string, SupportedLanguageId[]> = {
-  en: ['es', 'fr', 'ja', 'ko', 'de', 'ru', 'pt', 'tr'],
-  es: ['pt', 'en', 'fr', 'ja', 'de', 'ru'],
-  pt: ['es', 'en', 'fr', 'ja', 'de'],
-  fr: ['en', 'es', 'ja', 'de', 'pt', 'ru'],
-  de: ['en', 'fr', 'ja', 'es', 'ru', 'tr'],
-  ru: ['de', 'en', 'ja', 'ko', 'tr', 'es', 'fr'],
-  tr: ['en', 'de', 'ko', 'ja', 'ru', 'fr'],
-  id: ['en', 'ja', 'ko', 'tr', 'de', 'ru'],
-  ko: ['ja', 'en', 'es', 'de', 'fr', 'ru'],
-  ja: ['ko', 'en', 'es', 'de', 'fr', 'ru'],
+  en: ['es', 'zh', 'fr', 'ja', 'ko', 'de', 'ru', 'pt', 'tr'],
+  es: ['pt', 'en', 'fr', 'zh', 'ja', 'de', 'ru'],
+  pt: ['es', 'en', 'fr', 'zh', 'ja', 'de'],
+  fr: ['en', 'es', 'zh', 'ja', 'de', 'pt', 'ru'],
+  de: ['en', 'fr', 'zh', 'ja', 'es', 'ru', 'tr'],
+  ru: ['zh', 'de', 'en', 'ja', 'ko', 'tr', 'es', 'fr'],
+  tr: ['en', 'de', 'zh', 'ko', 'ja', 'ru', 'fr'],
+  id: ['zh', 'en', 'ja', 'ko', 'tr', 'de', 'ru'],
+  ko: ['zh', 'ja', 'en', 'es', 'de', 'fr', 'ru'],
+  ja: ['zh', 'ko', 'en', 'es', 'de', 'fr', 'ru'],
+  zh: ['en', 'ja', 'ko', 'ru', 'es', 'fr', 'de'],
 };
 
 interface StoredLanguagePair {

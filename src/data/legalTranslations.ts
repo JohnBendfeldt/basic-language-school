@@ -533,6 +533,49 @@ export const TERMS_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
     footerPrompt: 'プライバシーポリシーをご確認ください: ',
     footerLink: 'プライバシーポリシーを表示'
   },
+  zh: {
+    title: '服务条款',
+    lastUpdated: '最后更新日期：2026年10月',
+    backToPractice: '返回练习',
+    backToPracticeAria: '返回练习课程',
+    sections: [
+      {
+        heading: '1. 条款接受',
+        paragraphs: [
+          '访问或使用 Basic Language School 即表示您同意受本服务条款的约束。'
+        ]
+      },
+      {
+        heading: '2. 服务说明',
+        paragraphs: [
+          'Basic Language School 是一个交互式语言学习网站，为全球学习者提供免费且开放的多语言基础课程。'
+        ]
+      },
+      {
+        heading: '3. 用户行为与账户',
+        paragraphs: [
+          '您可以以访客身份直接体验，也可以通过 Google 或 Microsoft 登录同步进度。请勿使用自动化程序或恶意机器人滥用服务。'
+        ]
+      },
+      {
+        heading: '4. 知识产权',
+        paragraphs: [
+          '本平台开源代码采用 MIT 许可证发布。'
+        ]
+      },
+      {
+        heading: '5. 免责声明',
+        paragraphs: [
+          '本平台按"原样"（AS IS）提供，不对服务的绝对完整性或无故障运行作任何明示或暗示的保证。'
+        ]
+      }
+    ],
+    contactHeading: '联系我们',
+    contactIntro: '如对本条款有任何疑问，请联系我们：',
+    footerPrompt: '想了解我们如何处理数据？ ',
+    footerLink: '查看隐私政策'
+  }
+,
   ko: {
     title: '이용약관',
     lastUpdated: '최종 수정일: 2026년 10월',
@@ -1101,6 +1144,44 @@ export const PRIVACY_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
     footerPrompt: '利用規約はこちら: ',
     footerLink: '利用規約を表示'
   },
+  zh: {
+    title: '隐私政策',
+    lastUpdated: '最后更新日期：2026年10月',
+    backToPractice: '返回练习',
+    backToPracticeAria: '返回练习课程',
+    summaryTitle: '简要说明',
+    summaryText: '我们坚持默认保护隐私原则。Basic Language School 是一个教育学习平台。我们仅收集保存您的测验得分和学习进度所需的最基本信息。我们绝不出售您的数据，不投放任何第三方跟踪广告，您可以随时重置并删除本地数据。',
+    sections: [
+      {
+        heading: '1. 我们收集的信息',
+        paragraphs: [
+          '我们通过两种方式处理学习数据：'
+        ],
+        listItems: [
+          '访客用户（未登录）：若您直接使用应用，您的测验得分与打卡记录仅保存在您本地浏览器的 localStorage 中，不向任何外部服务器上传。',
+          '注册用户（Google 或 Microsoft 登录）：若您选择登录跨设备同步，我们仅接收最基本的账户标识（邮箱与昵称）。',
+          '学习记录：测验得分、掌握词汇数量与间隔复习表现。'
+        ]
+      },
+      {
+        heading: '2. 数据的存储与保护',
+        paragraphs: [
+          '所有数据传输均经过现代 TLS/HTTPS 加密保护。'
+        ]
+      },
+      {
+        heading: '3. 您的权利',
+        paragraphs: [
+          '您可以随时通过学习面板一键清除所有本地学习数据。'
+        ]
+      }
+    ],
+    contactHeading: '隐私咨询',
+    contactIntro: '如对隐私保护有任何疑问，请联系我们：',
+    footerPrompt: '想查看服务条款？ ',
+    footerLink: '查看服务条款'
+  }
+,
   ko: {
     title: '개인정보 처리방침',
     lastUpdated: '최종 수정일: 2026년 10월',

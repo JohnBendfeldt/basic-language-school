@@ -321,6 +321,44 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
         </svg>
       );
 
+    case 'zh':
+      return (
+        <svg
+          className="app-emblem chinese-flag"
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-label="Basic Chinese emblem"
+          role="img"
+        >
+          <defs>
+            <linearGradient id="zhEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#991b1b" />
+              <stop offset="50%" stopColor="#7f1d1d" />
+              <stop offset="100%" stopColor="#450a0a" />
+            </linearGradient>
+            <linearGradient id="zhGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#fef08a" />
+              <stop offset="60%" stopColor="#facc15" />
+              <stop offset="100%" stopColor="#eab308" />
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#zhEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" />
+          {/* Chinese flag: red canton with golden stars */}
+          <g transform="translate(6, 6)">
+            <rect x="0" y="0" width="10" height="7" rx="1.5" fill="#de2910" />
+            {/* Main large star */}
+            <polygon points="2.5,0.8 2.8,1.8 3.8,1.8 3.0,2.4 3.3,3.3 2.5,2.7 1.7,3.3 2.0,2.4 1.2,1.8 2.2,1.8" fill="#ffde00" />
+            {/* 4 small stars */}
+            <polygon points="5.0,0.8 5.2,1.3 5.7,1.3 5.3,1.6 5.5,2.1 5.0,1.8 4.6,2.1 4.8,1.6 4.4,1.3 4.9,1.3" transform="scale(0.6) translate(3, 0.2)" fill="#ffde00" />
+            <polygon points="6.0,1.6 6.2,2.1 6.7,2.1 6.3,2.4 6.5,2.9 6.0,2.6 5.6,2.9 5.8,2.4 5.4,2.1 5.9,2.1" transform="scale(0.6) translate(3.8, 0.8)" fill="#ffde00" />
+            <polygon points="6.0,2.8 6.2,3.3 6.7,3.3 6.3,3.6 6.5,4.1 6.0,3.8 5.6,4.1 5.8,3.6 5.4,3.3 5.9,3.3" transform="scale(0.6) translate(3.8, 1.8)" fill="#ffde00" />
+            <polygon points="5.0,3.8 5.2,4.3 5.7,4.3 5.3,4.6 5.5,5.1 5.0,4.8 4.6,5.1 4.8,4.6 4.4,4.3 4.9,4.3" transform="scale(0.6) translate(3, 2.5)" fill="#ffde00" />
+          </g>
+          {capGeometry('zhGoldGrad')}
+        </svg>
+      );
+
     case 'en':
     default:
       return (
