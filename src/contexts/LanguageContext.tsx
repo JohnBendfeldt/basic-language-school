@@ -35,7 +35,24 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-// Roadmap of languages for the platform
+export interface RoadmapLanguage {
+  name: string;
+  nativeName: string;
+  speakers: string;
+  flag: string;
+  rank: number;
+}
+
+// Top most-spoken languages targeted for the platform roadmap
+export const ROADMAP_MOST_SPOKEN_LANGUAGES: RoadmapLanguage[] = [
+  { rank: 2, name: 'Mandarin Chinese', nativeName: '中文', speakers: '~1.18B', flag: '🇨🇳' },
+  { rank: 3, name: 'Hindi', nativeName: 'हिन्दी', speakers: '~611M', flag: '🇮🇳' },
+  { rank: 5, name: 'Modern Standard Arabic', nativeName: 'العربية', speakers: '~335M', flag: '🇸🇦' },
+  { rank: 7, name: 'Bengali', nativeName: 'বাংলা', speakers: '~274M', flag: '🇧🇩' },
+  { rank: 10, name: 'Urdu', nativeName: 'اردو', speakers: '~246M', flag: '🇵🇰' },
+];
+
+// Active languages available on the platform
 export const ALL_PLATFORM_LANGUAGES = [
   { id: 'ru', name: 'Russian', nativeName: 'Русский', flag: '🇷🇺', available: true },
   { id: 'en', name: 'English', nativeName: 'English', flag: '🇬🇧', available: true },
@@ -47,8 +64,6 @@ export const ALL_PLATFORM_LANGUAGES = [
   { id: 'tr', name: 'Turkish', nativeName: 'Türkçe', flag: '🇹🇷', available: true },
   { id: 'ko', name: 'Korean', nativeName: '한국어', flag: '🇰🇷', available: true },
   { id: 'ja', name: 'Japanese', nativeName: '日本語', flag: '🇯🇵', available: true },
-  { id: 'zh', name: 'Chinese', nativeName: '中文', flag: '🇨🇳', available: false },
-  { id: 'it', name: 'Italian', nativeName: 'Italiano', flag: '🇮🇹', available: false },
 ];
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {

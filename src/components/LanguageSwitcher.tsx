@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FaChevronDown, FaCheck, FaGlobe, FaStar, FaExchangeAlt, FaTimes } from 'react-icons/fa';
-import { useLanguage } from '../contexts/LanguageContext';
+import { useLanguage, ROADMAP_MOST_SPOKEN_LANGUAGES } from '../contexts/LanguageContext';
 import { SupportedLanguageId } from '../data/languages/types';
 import { FlagIcon } from './FlagIcon';
 import { getLocalizedLanguageName, getComponentChrome } from '../utils/pageDictionary';
@@ -483,34 +483,46 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
               </div>
 
               {activeTab === 'target' && (
-                <>
-                  <div className="language-group-title language-upcoming-title">
-                    <FaStar className="upcoming-icon" />
-                    <span>{chrome.upcomingCourses}</span>
+                <div className="language-roadmap-container">
+                  <div className="language-roadmap-header">
+                    <span className="roadmap-title-badge">
+                      <FaStar className="upcoming-icon" /> Global Language Roadmap
+                    </span>
+                    <p className="roadmap-subtitle">
+                      Prioritizing the world's most spoken languages to reach the most learners worldwide.
+                    </p>
                   </div>
-                  <div className="language-options-grid upcoming-grid">
-                    {availableLanguages
-                      .filter(l => !l.available)
-                      .filter(l => selectedRegion === 'all' || LANGUAGE_REGION_MAP[l.id] === selectedRegion)
-                      .map(lang => {
-                        const localizedOptName = getLocalizedLanguageName(lang.id, baseLanguage, lang.name);
-                        return (
-                          <div
-                            key={lang.id}
-                            className="language-option upcoming disabled"
-                            title="Course under active development"
-                          >
-                            <span className="option-flag" aria-hidden="true">{lang.flag}</span>
-                            <div className="option-details">
-                              <span className="option-name">{localizedOptName}</span>
-                              <span className="option-native">{lang.nativeName}</span>
-                            </div>
-                            <span className="coming-soon-badge">{chrome.soonBadge}</span>
-                          </div>
-                        );
-                      })}
+
+                  <div className="language-roadmap-chips">
+                    {ROADMAP_MOST_SPOKEN_LANGUAGES.map((lang) => (
+                      <div key={lang.name} className="roadmap-lang-chip" title={`${lang.name} (${lang.speakers})`}>
+                        <span className="chip-flag" aria-hidden="true">{lang.flag}</span>
+                        <div className="chip-info">
+                          <span className="chip-name">{lang.name}</span>
+                          <span className="chip-speakers">{lang.speakers}</span>
+                        </div>
+                        <span className="coming-soon-badge">{chrome.soonBadge}</span>
+                      </div>
+                    ))}
                   </div>
-                </>
+
+                  <div className="language-request-callout">
+                    <div className="request-callout-icon" aria-hidden="true">✉️</div>
+                    <div className="request-callout-body">
+                      <h4 className="request-callout-title">Request a Language</h4>
+                      <p className="request-callout-text">
+                        Have a language you'd love to learn? Email{' '}
+                        <a
+                          href="mailto:dev@basiclanguage.school?subject=Language%20Request%20for%20Basic%20Language%20School"
+                          className="request-email-link"
+                        >
+                          dev@basiclanguage.school
+                        </a>{' '}
+                        to request it. Once this project is open source, community contributions will enable support for even more languages!
+                      </p>
+                    </div>
+                  </div>
+                </div>
               )}
             </div>
 

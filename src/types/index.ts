@@ -78,6 +78,7 @@ export interface GrammarFlashcard {
   gender?: 'masculine' | 'feminine' | 'neuter' | 'plural';
   article?: string;
   icon?: string;
+  audioWord?: string;
 }
 
 export interface GrammarData {
