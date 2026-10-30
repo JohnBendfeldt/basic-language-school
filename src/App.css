@@ -6986,3 +6986,75 @@ html {
   font-size: 0.95rem;
   cursor: pointer;
 }
+
+/* ---- Quiz: collapsible settings on phones + keyboard tip ---- */
+.quiz-settings-summary { display: none; }
+
+.keyboard-tip-banner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 0.6rem 0 0;
+  padding: 0.5rem 0.7rem;
+  border-radius: 10px;
+  background: var(--primary-light);
+  color: var(--text-color);
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+.keyboard-tip-dismiss {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  padding: 0 0.25rem;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .quiz-toolbar-card { padding: 0.6rem 0.8rem; margin-bottom: 0.75rem; }
+
+  .quiz-settings-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-color);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-align: left;
+    padding: 0.2rem 0;
+  }
+  .quiz-settings-summary-text {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .quiz-settings-summary-end {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--primary-color);
+  }
+
+  .quiz-section.settings-collapsed .quiz-toolbar-body,
+  .quiz-section.settings-collapsed .quiz-goal-selector {
+    display: none;
+  }
+  .quiz-section:not(.settings-collapsed) .quiz-toolbar-body { margin-top: 0.7rem; }
+
+  /* The repeat tip lives in settings on phones, not in the main flow */
+  .quiz-repeat-tip-banner { display: none; }
+  .quiz-section:not(.settings-collapsed) .quiz-repeat-tip-banner { display: flex; }
+
+  .pool-remaining-tag { display: none; }
+  .quiz-header-panel { padding-top: 0.5rem; padding-bottom: 0.5rem; margin-bottom: 0.6rem; }
+}
