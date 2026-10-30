@@ -34,6 +34,8 @@ export interface UIStrings {
   clearFilters: string;
   showCountItems: string;
   closeLabel: string;
+  keyboardTip: string;
+  quizSettings: string;
   pronunciationLabel: string;
   tapCardToRevealSubtitle: string;
 
@@ -93,6 +95,8 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     clearFilters: 'Clear',
     showCountItems: 'Show {n}',
     closeLabel: 'Close',
+    keyboardTip: 'Tip: add a {lang} keyboard in your phone settings to type faster.',
+    quizSettings: 'Settings',
     pronunciationLabel: 'Pronunciation:',
     tapCardToRevealSubtitle: 'Tap any card to reveal its translation and pronunciation',
 
@@ -150,6 +154,8 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     clearFilters: 'Borrar',
     showCountItems: 'Mostrar {n}',
     closeLabel: 'Cerrar',
+    keyboardTip: 'Consejo: agrega un teclado de {lang} en los ajustes de tu teléfono para escribir más rápido.',
+    quizSettings: 'Ajustes',
     pronunciationLabel: 'Pronunciación:',
     tapCardToRevealSubtitle: 'Toca cualquier tarjeta para ver su traducción y pronunciación',
 
@@ -207,6 +213,8 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     clearFilters: 'Effacer',
     showCountItems: 'Afficher {n}',
     closeLabel: 'Fermer',
+    keyboardTip: 'Astuce : ajoutez un clavier {lang} dans les réglages de votre téléphone pour écrire plus vite.',
+    quizSettings: 'Réglages',
     pronunciationLabel: 'Prononciation :',
     tapCardToRevealSubtitle: 'Appuyez sur une carte pour voir sa traduction et sa prononciation',
 
@@ -264,6 +272,8 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     clearFilters: 'Сбросить',
     showCountItems: 'Показать {n}',
     closeLabel: 'Закрыть',
+    keyboardTip: 'Совет: добавьте клавиатуру ({lang}) в настройках телефона, чтобы печатать быстрее.',
+    quizSettings: 'Настройки',
     pronunciationLabel: 'Произношение:',
     tapCardToRevealSubtitle: 'Нажмите на любую карточку, чтобы увидеть перевод и произношение',
 
@@ -321,6 +331,8 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     clearFilters: 'Limpar',
     showCountItems: 'Mostrar {n}',
     closeLabel: 'Fechar',
+    keyboardTip: 'Dica: adicione um teclado de {lang} nas configurações do celular para digitar mais rápido.',
+    quizSettings: 'Ajustes',
     pronunciationLabel: 'Pronúncia:',
     tapCardToRevealSubtitle: 'Toque em qualquer cartão para ver sua tradução e pronúncia',
 
@@ -378,6 +390,8 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     clearFilters: 'Zurücksetzen',
     showCountItems: '{n} anzeigen',
     closeLabel: 'Schließen',
+    keyboardTip: 'Tipp: Füge in den Handy-Einstellungen eine Tastatur für {lang} hinzu, um schneller zu tippen.',
+    quizSettings: 'Einstellungen',
     pronunciationLabel: 'Aussprache:',
     tapCardToRevealSubtitle: 'Tippe auf eine Karte, um Übersetzung und Aussprache anzuzeigen',
 
@@ -435,6 +449,8 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     clearFilters: 'Hapus',
     showCountItems: 'Tampilkan {n}',
     closeLabel: 'Tutup',
+    keyboardTip: 'Tips: tambahkan keyboard {lang} di pengaturan ponsel agar mengetik lebih cepat.',
+    quizSettings: 'Pengaturan',
     pronunciationLabel: 'Pelafalan:',
     tapCardToRevealSubtitle: 'Ketuk kartu mana saja untuk melihat terjemahan dan pelafalannya',
 
@@ -492,6 +508,8 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     clearFilters: 'Temizle',
     showCountItems: '{n} göster',
     closeLabel: 'Kapat',
+    keyboardTip: 'İpucu: Daha hızlı yazmak için telefon ayarlarından {lang} klavyesi ekleyin.',
+    quizSettings: 'Ayarlar',
     pronunciationLabel: 'Telaffuz:',
     tapCardToRevealSubtitle: 'Çevirisini ve telaffuzunu görmek için herhangi bir karta dokunun',
 

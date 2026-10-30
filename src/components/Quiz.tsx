@@ -17,6 +17,7 @@ import {
 import { localizeCategoryBadge, localizeLevelBadge, getQuizToolbarLabels } from '../utils/pageDictionary';
 import { UIStrings } from '../data/translations';
 import { SupportedLanguageId } from '../data/languages/types';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 // Define interfaces for the data structure
 interface AlphabetItem {
@@ -296,6 +297,30 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   const correctSoundRef = useRef<HTMLAudioElement | null>(null);
   const incorrectSoundRef = useRef<HTMLAudioElement | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const isMobile = useIsMobile();
+  // On phones the quiz settings collapse into a one-line summary so the question stays on screen
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [dismissedKbTips, setDismissedKbTips] = useState<string[]>(() => {
+    try {
+      return JSON.parse(localStorage.getItem('basic_kb_tips_seen') || '[]');
+    } catch {
+      return [];
+    }
+  });
+  useEffect(() => {
+    if (sessionAnswered > 0) setSettingsOpen(false);
+  }, [sessionAnswered]);
+  const dismissKbTip = (lang: string) => {
+    setDismissedKbTips(prev => {
+      const next = prev.includes(lang) ? prev : [...prev, lang];
+      try {
+        localStorage.setItem('basic_kb_tips_seen', JSON.stringify(next));
+      } catch {
+        /* ignore storage errors */
+      }
+      return next;
+    });
+  };
   const [_lastInput, setLastInput] = useState('');
   const [cursorPosition, setCursorPosition] = useState(0);
   const [spellingDiff, setSpellingDiff] = useState<Array<{ char: string; isDiff: boolean }> | null>(null);
@@ -1982,7 +2007,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   // --- RENDER LOADING STATE ---
   if (!data || !currentQuestion) {
     return (
-      <div className="section quiz-section">
+      <div className={`section quiz-section ${isMobile && !settingsOpen ? 'settings-collapsed' : ''}`}>
         <h2>Test Your Knowledge</h2>
         <div className="quiz-card">
           <h3>Loading quiz questions...</h3>
@@ -2020,6 +2045,29 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
       {/* Unified Quiz Controls Toolbar with Dropdowns (Eliminates horizontal scrollers) */}
       <div className="quiz-toolbar-card">
+        {isMobile && (
+          <button
+            type="button"
+            className="quiz-settings-summary"
+            aria-expanded={settingsOpen}
+            onClick={() => {
+              setSettingsOpen(prev => !prev);
+              setIsTopicDropdownOpen(false);
+              setIsLevelDropdownOpen(false);
+            }}
+          >
+            <span className="quiz-settings-summary-text">
+              <span aria-hidden="true">{activeCategoryItem.icon}</span> {activeCategoryLabel}
+              {' · '}{localizedActiveLevel}
+              {' · '}{quizMode === 'writing' ? ui.writingMode : quizMode === 'listening' ? ui.listeningMode : ui.allModes}
+            </span>
+            <span className="quiz-settings-summary-end">
+              <span aria-hidden="true">⚙</span> {ui.quizSettings}
+              <FaChevronDown className={`quiz-dropdown-chevron ${settingsOpen ? 'rotated' : ''}`} aria-hidden="true" />
+            </span>
+          </button>
+        )}
+        <div className="quiz-toolbar-body">
         {/* Row 1: The two Dropdowns side-by-side */}
         <div className="quiz-toolbar-dropdowns-row">
           {/* Topic & Curriculum Module Dropdown */}
@@ -2239,6 +2287,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           <span className="tip-icon">🗣️</span>
           <span>{ui.repeatHint}</span>
         </div>
+        </div>
       </div>
 
       {/* Modern Compact Quiz Header Panel / Game HUD */}
@@ -2360,6 +2409,10 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             type="text"
             className="quiz-input"
             lang={expectedAnswerLanguage}
+            autoCapitalize="off"
+            autoCorrect="off"
+            autoComplete="off"
+            spellCheck={false}
             value={userAnswer}
             onChange={handleInputChange} 
             onKeyDown={handleKeyDown}
@@ -2376,6 +2429,28 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             </button>
           )}
         </div>
+
+        {isMobile && !showNext && expectedAnswerLanguage !== 'en' && !dismissedKbTips.includes(expectedAnswerLanguage) && (
+          <div className="keyboard-tip-banner" role="note">
+            <span>
+              ⌨️ {ui.keyboardTip.replace('{lang}', (() => {
+                try {
+                  return new Intl.DisplayNames([baseLanguage], { type: 'language' }).of(expectedAnswerLanguage) || expectedAnswerLanguage;
+                } catch {
+                  return expectedAnswerLanguage;
+                }
+              })())}
+            </span>
+            <button
+              type="button"
+              className="keyboard-tip-dismiss"
+              aria-label={ui.closeLabel}
+              onClick={() => dismissKbTip(expectedAnswerLanguage)}
+            >
+              ✕
+            </button>
+          </div>
+        )}
 
         {needsRussianKeyboard && !showNext && (
           <div className="special-char-panel cyrillic-helper-panel">

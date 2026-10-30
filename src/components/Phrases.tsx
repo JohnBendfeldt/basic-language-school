@@ -6,6 +6,7 @@ import { FaSyncAlt } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
 import { resolveTranslation, extractDigit } from '../utils/translationResolver';
 import { localizeCategoryBadge } from '../utils/pageDictionary';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 const CATEGORY_ICONS: Record<string, string> = {
   'all': '✨',
@@ -176,23 +177,6 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
       </div>
     </div>
   );
-};
-
-const MOBILE_QUERY = '(max-width: 768px)';
-
-/** True on phone-sized viewports. Defaults to false where matchMedia is unavailable (e.g. jsdom). */
-const useIsMobile = (): boolean => {
-  const get = () => typeof window !== 'undefined' && typeof window.matchMedia === 'function' && window.matchMedia(MOBILE_QUERY).matches;
-  const [isMobile, setIsMobile] = useState<boolean>(get);
-  useEffect(() => {
-    if (typeof window.matchMedia !== 'function') return;
-    const mql = window.matchMedia(MOBILE_QUERY);
-    const onChange = () => setIsMobile(mql.matches);
-    onChange();
-    mql.addEventListener('change', onChange);
-    return () => mql.removeEventListener('change', onChange);
-  }, []);
-  return isMobile;
 };
 
 interface PhrasesProps {
