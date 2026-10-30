@@ -148,6 +148,7 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
             </div>
           ) : !deckFinished ? (
             <div className="grammar-card">
+              {/* Header Badge & Deck Progress */}
               <div className="grammar-card-header">
                 <span className="grammar-category-badge">
                   {currentCard.type === 'gender' ? '🏷️ Noun Gender' : currentCard.type === 'verb' ? '🔄 Verb Tense' : '📐 Description'}
@@ -157,84 +158,118 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                 </span>
               </div>
 
-              <div className="grammar-prompt-box">
-                {currentCard.icon && (
-                  <WordIcon
-                    icon={currentCard.icon}
-                    word={currentCard.prompt}
-                    meaning={currentCard.translation}
-                    size={36}
-                    className="grammar-prompt-icon"
-                  />
-                )}
-                <h3 className="grammar-card-prompt">{currentCard.prompt}</h3>
-                {currentCard.translation && (
-                  <p className="grammar-card-translation">({currentCard.translation})</p>
-                )}
-              </div>
+              {/* Prompt Hero Card */}
+              {(() => {
+                const promptParts = currentCard.prompt.split(/\s*➔\s*/);
+                const heroWord = promptParts[0];
+                const taskPrompt = promptParts.length > 1 ? promptParts[1] : null;
+                const hasComplexOptions = currentCard.options.some(
+                  (opt) => opt.includes('(') || opt.length > 7
+                );
+                const audioTextToPlay = currentCard.audioWord
+                  ? currentCard.audioWord
+                  : currentCard.article
+                    ? `${currentCard.article} ${heroWord.replace(/^___\s*/, '').trim()}`
+                    : heroWord.replace(/^___\s*/, '').trim() || currentCard.correctAnswer;
 
-              {/* Option Buttons */}
-              <div className="grammar-options-grid">
-                {currentCard.options.map((option) => {
-                  const isSelected = selectedOption === option;
-                  const isCorrect = option === currentCard.correctAnswer;
-                  let btnStateClass = '';
+                return (
+                  <>
+                    <div className="grammar-prompt-box">
+                      {currentCard.icon && (
+                        <div className="grammar-icon-badge" aria-hidden="true">
+                          <WordIcon
+                            icon={currentCard.icon}
+                            word={heroWord}
+                            meaning={currentCard.translation}
+                            size={42}
+                            className="grammar-prompt-icon"
+                          />
+                        </div>
+                      )}
+                      <h3 className="grammar-card-prompt">{heroWord}</h3>
+                      {currentCard.translation && (
+                        <p className="grammar-card-translation">{currentCard.translation}</p>
+                      )}
+                      {taskPrompt && (
+                        <div className="grammar-prompt-task-pill">
+                          <span className="task-pill-arrow">➔</span>
+                          <span>{taskPrompt}</span>
+                        </div>
+                      )}
+                    </div>
 
-                  if (selectedOption !== null) {
-                    if (isCorrect) btnStateClass = 'option-correct';
-                    else if (isSelected && !isCorrect) btnStateClass = 'option-incorrect';
-                    else btnStateClass = 'option-dimmed';
-                  }
+                    {/* Option Buttons */}
+                    <div className={`grammar-options-grid ${hasComplexOptions ? 'options-stacked' : 'options-compact'}`}>
+                      {currentCard.options.map((option) => {
+                        const isSelected = selectedOption === option;
+                        const isCorrect = option === currentCard.correctAnswer;
+                        let btnStateClass = '';
 
-                  // Gender color hints for German der/die/das
-                  let genderColorClass = '';
-                  if (option === 'der') genderColorClass = 'badge-masculine';
-                  if (option === 'die') genderColorClass = 'badge-feminine';
-                  if (option === 'das') genderColorClass = 'badge-neuter';
+                        if (selectedOption !== null) {
+                          if (isCorrect) btnStateClass = 'option-correct';
+                          else if (isSelected && !isCorrect) btnStateClass = 'option-incorrect';
+                          else btnStateClass = 'option-dimmed';
+                        }
 
-                  return (
-                    <button
-                      key={option}
-                      type="button"
-                      className={`grammar-option-btn ${btnStateClass} ${genderColorClass}`}
-                      onClick={() => handleOptionClick(option)}
-                      disabled={selectedOption !== null}
-                    >
-                      <span className="grammar-option-text">{option}</span>
-                      {selectedOption !== null && isCorrect && <FaCheckCircle className="option-state-icon" />}
-                      {selectedOption !== null && isSelected && !isCorrect && <FaTimesCircle className="option-state-icon" />}
-                    </button>
-                  );
-                })}
-              </div>
+                        // Gender color hints for German der/die/das
+                        let genderColorClass = '';
+                        if (option === 'der') genderColorClass = 'badge-masculine';
+                        if (option === 'die') genderColorClass = 'badge-feminine';
+                        if (option === 'das') genderColorClass = 'badge-neuter';
 
-              {/* Immediate Feedback Card */}
-              {selectedOption !== null && (
-                <div className={`grammar-feedback-box ${selectedOption === currentCard.correctAnswer ? 'feedback-correct' : 'feedback-incorrect'}`}>
-                  <p className="feedback-explanation">
-                    {selectedOption === currentCard.correctAnswer ? '✨ ' : '💡 '}
-                    {currentCard.explanation}
-                  </p>
+                        const parenMatch = option.match(/^(.+?)\s*\((.+?)\)$/);
+                        const mainText = parenMatch ? parenMatch[1] : option;
+                        const subText = parenMatch ? parenMatch[2] : null;
 
-                  <div className="feedback-actions">
-                    <PronunciationButton
-                      text={currentCard.article ? `${currentCard.article} ${currentCard.prompt.replace(/^___\s*/, '').replace(/\s*\(.*\)/, '')}` : currentCard.correctAnswer}
-                      lang={currentLanguage}
-                      label="Listen"
-                      className="grammar-audio-btn"
-                    />
+                        return (
+                          <button
+                            key={option}
+                            type="button"
+                            className={`grammar-option-btn ${btnStateClass} ${genderColorClass}`}
+                            onClick={() => handleOptionClick(option)}
+                            disabled={selectedOption !== null}
+                          >
+                            <div className="grammar-option-content">
+                              <span className="grammar-option-main">{mainText}</span>
+                              {subText && <span className="grammar-option-sub">({subText})</span>}
+                            </div>
+                            {selectedOption !== null && isCorrect && <FaCheckCircle className="option-state-icon" />}
+                            {selectedOption !== null && isSelected && !isCorrect && <FaTimesCircle className="option-state-icon" />}
+                          </button>
+                        );
+                      })}
+                    </div>
 
-                    <button
-                      type="button"
-                      className="grammar-next-btn"
-                      onClick={handleNextCard}
-                      autoFocus
-                    >
-                      {localizedLabels.next} ➔
-                    </button>
-                  </div>
-                </div>
-              )}
+                    {/* Immediate Feedback Card */}
+                    {selectedOption !== null && (
+                      <div className={`grammar-feedback-box ${selectedOption === currentCard.correctAnswer ? 'feedback-correct' : 'feedback-incorrect'}`}>
+                        <p className="feedback-explanation">
+                          {selectedOption === currentCard.correctAnswer ? '✨ ' : '💡 '}
+                          {currentCard.explanation}
+                        </p>
+
+                        <div className="feedback-actions">
+                          <PronunciationButton
+                            text={audioTextToPlay}
+                            lang={currentLanguage}
+                            label="Listen"
+                            className="grammar-audio-btn"
+                          />
+
+                          <button
+                            type="button"
+                            className="grammar-next-btn"
+                            onClick={handleNextCard}
+                            autoFocus
+                          >
+                            {localizedLabels.next} ➔
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </>
+                );
+              })()}
             </div>
           ) : (
             <div className="grammar-deck-complete-card">
