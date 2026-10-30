@@ -63,9 +63,27 @@ export const getCandidateAudioPathsForText = (
     new Set([primaryCategory, 'words', 'phrases', 'examples', 'numbers', 'time'])
   );
 
-  return folders.map(
-    folder => `/audio/${effectiveLangId}/${folder}/${encodeURIComponent(fileName)}.mp3`
+  const fileNames = [fileName];
+  // If text has an article or pronoun prefix (e.g. "der tisch" -> "tisch", "он знает" -> "знает", "el libro" -> "libro")
+  const strippedPrefix = cleanText.replace(
+    /^(der|die|das|el|la|los|las|un|una|le|l'|les|une|o|a|os|as|um|uma|the|a|an|он|она|оно|они|я|ты|мы|вы|ich|du|er|sie|es|wir|ihr|je|tu|il|elle|nous|vous|ils|elles|yo|tú|él|ella|nosotros|vosotros|ellos|eu|você|ele|ela|nós|eles)\s+/i,
+    ''
   );
+  if (strippedPrefix && strippedPrefix !== cleanText) {
+    fileNames.push(strippedPrefix.replace(/\s+/g, '_'));
+  }
+
+  const paths: string[] = [];
+  for (const fn of fileNames) {
+    for (const folder of folders) {
+      const p = `/audio/${effectiveLangId}/${folder}/${encodeURIComponent(fn)}.mp3`;
+      if (!paths.includes(p)) {
+        paths.push(p);
+      }
+    }
+  }
+
+  return paths;
 };
 
 const PronunciationButton: React.FC<PronunciationButtonProps> = ({ 
