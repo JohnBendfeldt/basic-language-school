@@ -4202,3 +4202,25 @@ export const getLanguageRequestCopy = (
   };
   return table[baseLang] ?? table.en;
 };
+
+/** Subtitle and confirm-button text of the language picker dialog. */
+export const getLanguagePickerCopy = (baseLang: SupportedLanguageId): { subtitle: string; done: string } => {
+  const table: Record<SupportedLanguageId, { subtitle: string; done: string }> = {
+    en: { subtitle: 'Choose your native language and the language you want to study', done: 'Done' },
+    es: { subtitle: 'Elige tu idioma nativo y el curso que deseas estudiar', done: 'Listo' },
+    fr: { subtitle: 'Choisissez votre langue maternelle et le cours à étudier', done: 'Terminé' },
+    de: { subtitle: 'Wähle deine Muttersprache und die Zielsprache', done: 'Fertig' },
+    ru: { subtitle: 'Выберите родной язык и язык для изучения', done: 'Готово' },
+    pt: { subtitle: 'Escolha seu idioma nativo e o curso que deseja estudar', done: 'Concluir' },
+    tr: { subtitle: 'Ana dilinizi ve öğrenmek istediğiniz dili seçin', done: 'Tamam' },
+    id: { subtitle: 'Pilih bahasa ibu dan bahasa yang ingin Anda pelajari', done: 'Selesai' },
+    ja: { subtitle: '母語と学びたい言語を選んでください', done: '完了' },
+    ko: { subtitle: '모국어와 배우고 싶은 언어를 선택하세요', done: '완료' },
+    zh: { subtitle: '选择您的母语和想学习的语言', done: '完成' },
+    hi: { subtitle: 'अपनी मातृभाषा और सीखने की भाषा चुनें', done: 'पूर्ण' },
+    ar: { subtitle: 'اختر لغتك الأم واللغة التي تريد تعلّمها', done: 'تم' },
+    bn: { subtitle: 'আপনার মাতৃভাষা ও শেখার ভাষা বেছে নিন', done: 'সম্পন্ন' },
+    ur: { subtitle: 'اپنی مادری زبان اور سیکھنے کی زبان منتخب کریں', done: 'مکمل' },
+  };
+  return table[baseLang] ?? table.en;
+};
