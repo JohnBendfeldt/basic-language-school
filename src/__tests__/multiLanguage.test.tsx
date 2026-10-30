@@ -101,7 +101,7 @@ describe('Multi-Language Core Architecture', () => {
     await waitFor(() => {
       expect(screen.getByText("Common Spanish Words & Vocabulary")).toBeInTheDocument();
       expect(screen.queryByText("High-Frequency English Vocabulary")).not.toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
 
     // Test French phrases at /learn/fr/phrases
     window.history.pushState({}, "", "/learn/fr/phrases");
@@ -110,7 +110,7 @@ describe('Multi-Language Core Architecture', () => {
     await waitFor(() => {
       expect(screen.getByText("French Essential Phrases")).toBeInTheDocument();
       expect(screen.queryByText("Basic Russian Phrases")).not.toBeInTheDocument();
-    });
+    }, { timeout: 5000 });
 
     unmount();
   });

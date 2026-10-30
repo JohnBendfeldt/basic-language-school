@@ -52,5 +52,7 @@ export default defineConfig({
     setupFiles: './src/setupTests.ts',
     css: false,
     exclude: ['node_modules/**', 'dist/**', 'e2e/**'],
+    // Several suites render the whole app in jsdom; give them headroom when run in parallel / with coverage
+    testTimeout: 20000,
   },
 });

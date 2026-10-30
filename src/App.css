@@ -2847,6 +2847,16 @@ footer {
   display: inline-block;
 }
 
+.multi-meaning-note {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: #1d4ed8;
+  background-color: rgba(59, 130, 246, 0.12);
+  border-radius: 8px;
+  padding: 4px 8px;
+  display: inline-block;
+}
+
 /* Quiz Recap / Done Card */
 /* Quiz Recap / Done Card - Sleek Gamified Design */
 .quiz-recap-card {
@@ -8166,7 +8176,47 @@ html {
 }
 
 /* ---- Quiz: collapsible settings on phones + keyboard tip ---- */
-.quiz-settings-summary { display: none; }
+/* Collapsible quiz settings: open by default on desktop, collapsed by default on phones */
+.quiz-settings-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-color);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-align: left;
+  padding: 0.2rem 0;
+}
+.quiz-settings-summary-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.quiz-settings-summary-end {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--primary-color);
+}
+.quiz-section.settings-collapsed .quiz-toolbar-body,
+.quiz-section.settings-collapsed .quiz-goal-selector,
+.quiz-section.settings-collapsed .quiz-repeat-tip-banner {
+  display: none;
+}
+.quiz-section:not(.settings-collapsed) .quiz-toolbar-body { margin-top: 0.7rem; }
+
+/* When the settings are open on desktop the controls below already show the current choices */
+@media (min-width: 769px) {
+  .quiz-section:not(.settings-collapsed) .quiz-settings-summary-text { visibility: hidden; }
+}
 
 .keyboard-tip-banner {
   display: flex;
@@ -8192,42 +8242,6 @@ html {
 
 @media (max-width: 768px) {
   .quiz-toolbar-card { padding: 0.6rem 0.8rem; margin-bottom: 0.75rem; }
-
-  .quiz-settings-summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    width: 100%;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--text-color);
-    font-size: 0.82rem;
-    font-weight: 600;
-    text-align: left;
-    padding: 0.2rem 0;
-  }
-  .quiz-settings-summary-text {
-    flex: 1;
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .quiz-settings-summary-end {
-    flex: 0 0 auto;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    color: var(--primary-color);
-  }
-
-  .quiz-section.settings-collapsed .quiz-toolbar-body,
-  .quiz-section.settings-collapsed .quiz-goal-selector {
-    display: none;
-  }
-  .quiz-section:not(.settings-collapsed) .quiz-toolbar-body { margin-top: 0.7rem; }
 
   /* The repeat tip lives in settings on phones, not in the main flow */
   .quiz-repeat-tip-banner { display: none; }

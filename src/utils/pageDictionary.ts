@@ -4157,3 +4157,34 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
   }
 };
 
+
+/**
+ * Note shown after a quiz answer when the target word has more than one meaning
+ * (e.g. 月 = "Moon" / "Month"), so the learner knows every sense is accepted.
+ */
+export const getMultiMeaningNote = (
+  baseLang: SupportedLanguageId,
+  target: string,
+  meanings: string[]
+): string => {
+  const m = meanings.join(' · ');
+  const t = target;
+  switch (baseLang) {
+    case 'es': return `«${t}» tiene más de un significado: ${m}`;
+    case 'fr': return `« ${t} » a plusieurs sens : ${m}`;
+    case 'ru': return `«${t}» имеет несколько значений: ${m}`;
+    case 'pt': return `“${t}” tem mais de um significado: ${m}`;
+    case 'de': return `„${t}“ hat mehrere Bedeutungen: ${m}`;
+    case 'id': return `“${t}” memiliki lebih dari satu arti: ${m}`;
+    case 'tr': return `“${t}” birden fazla anlama gelir: ${m}`;
+    case 'ja': return `「${t}」には複数の意味があります：${m}`;
+    case 'ko': return `「${t}」에는 여러 가지 뜻이 있습니다: ${m}`;
+    case 'zh': return `“${t}”有多个意思：${m}`;
+    case 'hi': return `“${t}” के एक से अधिक अर्थ हैं: ${m}`;
+    case 'ar': return `«${t}» لها أكثر من معنى: ${m}`;
+    case 'bn': return `“${t}” এর একাধিক অর্থ আছে: ${m}`;
+    case 'ur': return `“${t}” کے ایک سے زیادہ معنی ہیں: ${m}`;
+    case 'en':
+    default: return `“${t}” has more than one meaning: ${m}`;
+  }
+};
