@@ -1,3067 +1,1049 @@
 {
   "language": "en",
-  "voice": "en-US-JennyNeural",
-  "generated": "2026-10-29T21:41:04.836725Z",
+  "updated": "2026-10-30T16:27:23.518924Z",
+  "totalFiles": 1030,
   "files": {
     "alphabet": [
-      {
-        "filename": "a.mp3",
-        "path": "/audio/en/alphabet/a.mp3",
-        "text": "A"
-      },
-      {
-        "filename": "b.mp3",
-        "path": "/audio/en/alphabet/b.mp3",
-        "text": "B"
-      },
-      {
-        "filename": "c.mp3",
-        "path": "/audio/en/alphabet/c.mp3",
-        "text": "C"
-      },
-      {
-        "filename": "d.mp3",
-        "path": "/audio/en/alphabet/d.mp3",
-        "text": "D"
-      },
-      {
-        "filename": "e.mp3",
-        "path": "/audio/en/alphabet/e.mp3",
-        "text": "E"
-      },
-      {
-        "filename": "f.mp3",
-        "path": "/audio/en/alphabet/f.mp3",
-        "text": "F"
-      },
-      {
-        "filename": "g.mp3",
-        "path": "/audio/en/alphabet/g.mp3",
-        "text": "G"
-      },
-      {
-        "filename": "h.mp3",
-        "path": "/audio/en/alphabet/h.mp3",
-        "text": "H"
-      },
-      {
-        "filename": "i.mp3",
-        "path": "/audio/en/alphabet/i.mp3",
-        "text": "I"
-      },
-      {
-        "filename": "j.mp3",
-        "path": "/audio/en/alphabet/j.mp3",
-        "text": "J"
-      },
-      {
-        "filename": "k.mp3",
-        "path": "/audio/en/alphabet/k.mp3",
-        "text": "K"
-      },
-      {
-        "filename": "l.mp3",
-        "path": "/audio/en/alphabet/l.mp3",
-        "text": "L"
-      },
-      {
-        "filename": "m.mp3",
-        "path": "/audio/en/alphabet/m.mp3",
-        "text": "M"
-      },
-      {
-        "filename": "n.mp3",
-        "path": "/audio/en/alphabet/n.mp3",
-        "text": "N"
-      },
-      {
-        "filename": "o.mp3",
-        "path": "/audio/en/alphabet/o.mp3",
-        "text": "O"
-      },
-      {
-        "filename": "p.mp3",
-        "path": "/audio/en/alphabet/p.mp3",
-        "text": "P"
-      },
-      {
-        "filename": "q.mp3",
-        "path": "/audio/en/alphabet/q.mp3",
-        "text": "Q"
-      },
-      {
-        "filename": "r.mp3",
-        "path": "/audio/en/alphabet/r.mp3",
-        "text": "R"
-      },
-      {
-        "filename": "s.mp3",
-        "path": "/audio/en/alphabet/s.mp3",
-        "text": "S"
-      },
-      {
-        "filename": "t.mp3",
-        "path": "/audio/en/alphabet/t.mp3",
-        "text": "T"
-      },
-      {
-        "filename": "u.mp3",
-        "path": "/audio/en/alphabet/u.mp3",
-        "text": "U"
-      },
-      {
-        "filename": "v.mp3",
-        "path": "/audio/en/alphabet/v.mp3",
-        "text": "V"
-      },
-      {
-        "filename": "w.mp3",
-        "path": "/audio/en/alphabet/w.mp3",
-        "text": "W"
-      },
-      {
-        "filename": "x.mp3",
-        "path": "/audio/en/alphabet/x.mp3",
-        "text": "X"
-      },
-      {
-        "filename": "y.mp3",
-        "path": "/audio/en/alphabet/y.mp3",
-        "text": "Y"
-      },
-      {
-        "filename": "z.mp3",
-        "path": "/audio/en/alphabet/z.mp3",
-        "text": "Z"
-      }
+      "a.mp3",
+      "b.mp3",
+      "c.mp3",
+      "d.mp3",
+      "e.mp3",
+      "f.mp3",
+      "g.mp3",
+      "h.mp3",
+      "i.mp3",
+      "j.mp3",
+      "k.mp3",
+      "l.mp3",
+      "m.mp3",
+      "n.mp3",
+      "o.mp3",
+      "p.mp3",
+      "q.mp3",
+      "r.mp3",
+      "s.mp3",
+      "t.mp3",
+      "u.mp3",
+      "v.mp3",
+      "w.mp3",
+      "x.mp3",
+      "y.mp3",
+      "z.mp3"
     ],
     "examples": [
-      {
-        "filename": "apple.mp3",
-        "path": "/audio/en/examples/apple.mp3",
-        "text": "Apple"
-      },
-      {
-        "filename": "book.mp3",
-        "path": "/audio/en/examples/book.mp3",
-        "text": "Book"
-      },
-      {
-        "filename": "cat.mp3",
-        "path": "/audio/en/examples/cat.mp3",
-        "text": "Cat"
-      },
-      {
-        "filename": "dog.mp3",
-        "path": "/audio/en/examples/dog.mp3",
-        "text": "Dog"
-      },
-      {
-        "filename": "egg.mp3",
-        "path": "/audio/en/examples/egg.mp3",
-        "text": "Egg"
-      },
-      {
-        "filename": "fish.mp3",
-        "path": "/audio/en/examples/fish.mp3",
-        "text": "Fish"
-      },
-      {
-        "filename": "good.mp3",
-        "path": "/audio/en/examples/good.mp3",
-        "text": "Good"
-      },
-      {
-        "filename": "house.mp3",
-        "path": "/audio/en/examples/house.mp3",
-        "text": "House"
-      },
-      {
-        "filename": "ice.mp3",
-        "path": "/audio/en/examples/ice.mp3",
-        "text": "Ice"
-      },
-      {
-        "filename": "juice.mp3",
-        "path": "/audio/en/examples/juice.mp3",
-        "text": "Juice"
-      },
-      {
-        "filename": "key.mp3",
-        "path": "/audio/en/examples/key.mp3",
-        "text": "Key"
-      },
-      {
-        "filename": "light.mp3",
-        "path": "/audio/en/examples/light.mp3",
-        "text": "Light"
-      },
-      {
-        "filename": "milk.mp3",
-        "path": "/audio/en/examples/milk.mp3",
-        "text": "Milk"
-      },
-      {
-        "filename": "name.mp3",
-        "path": "/audio/en/examples/name.mp3",
-        "text": "Name"
-      },
-      {
-        "filename": "orange.mp3",
-        "path": "/audio/en/examples/orange.mp3",
-        "text": "Orange"
-      },
-      {
-        "filename": "phone.mp3",
-        "path": "/audio/en/examples/phone.mp3",
-        "text": "Phone"
-      },
-      {
-        "filename": "quiet.mp3",
-        "path": "/audio/en/examples/quiet.mp3",
-        "text": "Quiet"
-      },
-      {
-        "filename": "road.mp3",
-        "path": "/audio/en/examples/road.mp3",
-        "text": "Road"
-      },
-      {
-        "filename": "school.mp3",
-        "path": "/audio/en/examples/school.mp3",
-        "text": "School"
-      },
-      {
-        "filename": "tea.mp3",
-        "path": "/audio/en/examples/tea.mp3",
-        "text": "Tea"
-      },
-      {
-        "filename": "umbrella.mp3",
-        "path": "/audio/en/examples/umbrella.mp3",
-        "text": "Umbrella"
-      },
-      {
-        "filename": "voice.mp3",
-        "path": "/audio/en/examples/voice.mp3",
-        "text": "Voice"
-      },
-      {
-        "filename": "water.mp3",
-        "path": "/audio/en/examples/water.mp3",
-        "text": "Water"
-      },
-      {
-        "filename": "x-ray.mp3",
-        "path": "/audio/en/examples/x-ray.mp3",
-        "text": "X-ray"
-      },
-      {
-        "filename": "yellow.mp3",
-        "path": "/audio/en/examples/yellow.mp3",
-        "text": "Yellow"
-      },
-      {
-        "filename": "zero.mp3",
-        "path": "/audio/en/examples/zero.mp3",
-        "text": "Zero"
-      }
+      "apple.mp3",
+      "book.mp3",
+      "cat.mp3",
+      "dog.mp3",
+      "egg.mp3",
+      "fish.mp3",
+      "good.mp3",
+      "house.mp3",
+      "ice.mp3",
+      "juice.mp3",
+      "key.mp3",
+      "light.mp3",
+      "milk.mp3",
+      "name.mp3",
+      "orange.mp3",
+      "phone.mp3",
+      "quiet.mp3",
+      "road.mp3",
+      "school.mp3",
+      "tea.mp3",
+      "umbrella.mp3",
+      "voice.mp3",
+      "water.mp3",
+      "x-ray.mp3",
+      "yellow.mp3",
+      "zero.mp3"
     ],
     "phrases": [
-      {
-        "filename": "hello.mp3",
-        "path": "/audio/en/phrases/hello.mp3",
-        "text": "Hello"
-      },
-      {
-        "filename": "good_morning.mp3",
-        "path": "/audio/en/phrases/good_morning.mp3",
-        "text": "Good morning"
-      },
-      {
-        "filename": "good_afternoon.mp3",
-        "path": "/audio/en/phrases/good_afternoon.mp3",
-        "text": "Good afternoon"
-      },
-      {
-        "filename": "good_evening.mp3",
-        "path": "/audio/en/phrases/good_evening.mp3",
-        "text": "Good evening"
-      },
-      {
-        "filename": "how_are_you.mp3",
-        "path": "/audio/en/phrases/how_are_you.mp3",
-        "text": "How are you?"
-      },
-      {
-        "filename": "nice_to_meet_you.mp3",
-        "path": "/audio/en/phrases/nice_to_meet_you.mp3",
-        "text": "Nice to meet you"
-      },
-      {
-        "filename": "what_is_your_name.mp3",
-        "path": "/audio/en/phrases/what_is_your_name.mp3",
-        "text": "What is your name?"
-      },
-      {
-        "filename": "my_name_is.mp3",
-        "path": "/audio/en/phrases/my_name_is.mp3",
-        "text": "My name is..."
-      },
-      {
-        "filename": "goodbye.mp3",
-        "path": "/audio/en/phrases/goodbye.mp3",
-        "text": "Goodbye"
-      },
-      {
-        "filename": "have_a_great_day.mp3",
-        "path": "/audio/en/phrases/have_a_great_day.mp3",
-        "text": "Have a great day"
-      },
-      {
-        "filename": "please.mp3",
-        "path": "/audio/en/phrases/please.mp3",
-        "text": "Please"
-      },
-      {
-        "filename": "thank_you_very_much.mp3",
-        "path": "/audio/en/phrases/thank_you_very_much.mp3",
-        "text": "Thank you very much"
-      },
-      {
-        "filename": "you_are_welcome.mp3",
-        "path": "/audio/en/phrases/you_are_welcome.mp3",
-        "text": "You are welcome"
-      },
-      {
-        "filename": "excuse_me.mp3",
-        "path": "/audio/en/phrases/excuse_me.mp3",
-        "text": "Excuse me"
-      },
-      {
-        "filename": "i_am_sorry.mp3",
-        "path": "/audio/en/phrases/i_am_sorry.mp3",
-        "text": "I am sorry"
-      },
-      {
-        "filename": "yes.mp3",
-        "path": "/audio/en/phrases/yes.mp3",
-        "text": "Yes"
-      },
-      {
-        "filename": "no.mp3",
-        "path": "/audio/en/phrases/no.mp3",
-        "text": "No"
-      },
-      {
-        "filename": "where_is_the_restroom.mp3",
-        "path": "/audio/en/phrases/where_is_the_restroom.mp3",
-        "text": "Where is the restroom?"
-      },
-      {
-        "filename": "where_is_the_bus_stop.mp3",
-        "path": "/audio/en/phrases/where_is_the_bus_stop.mp3",
-        "text": "Where is the bus stop?"
-      },
-      {
-        "filename": "how_do_i_get_to_the_airport.mp3",
-        "path": "/audio/en/phrases/how_do_i_get_to_the_airport.mp3",
-        "text": "How do I get to the airport?"
-      },
-      {
-        "filename": "is_it_far_from_here.mp3",
-        "path": "/audio/en/phrases/is_it_far_from_here.mp3",
-        "text": "Is it far from here?"
-      },
-      {
-        "filename": "can_i_have_the_check_please.mp3",
-        "path": "/audio/en/phrases/can_i_have_the_check_please.mp3",
-        "text": "Can I have the check, please?"
-      },
-      {
-        "filename": "i_would_like_a_coffee_please.mp3",
-        "path": "/audio/en/phrases/i_would_like_a_coffee_please.mp3",
-        "text": "I would like a coffee, please"
-      },
-      {
-        "filename": "a_bottle_of_water_please.mp3",
-        "path": "/audio/en/phrases/a_bottle_of_water_please.mp3",
-        "text": "A bottle of water, please"
-      },
-      {
-        "filename": "how_much_does_this_cost.mp3",
-        "path": "/audio/en/phrases/how_much_does_this_cost.mp3",
-        "text": "How much does this cost?"
-      },
-      {
-        "filename": "do_you_speak_english.mp3",
-        "path": "/audio/en/phrases/do_you_speak_english.mp3",
-        "text": "Do you speak English?"
-      },
-      {
-        "filename": "could_you_speak_slower_please.mp3",
-        "path": "/audio/en/phrases/could_you_speak_slower_please.mp3",
-        "text": "Could you speak slower, please?"
-      },
-      {
-        "filename": "i_do_not_understand.mp3",
-        "path": "/audio/en/phrases/i_do_not_understand.mp3",
-        "text": "I do not understand"
-      },
-      {
-        "filename": "could_you_repeat_that_please.mp3",
-        "path": "/audio/en/phrases/could_you_repeat_that_please.mp3",
-        "text": "Could you repeat that, please?"
-      },
-      {
-        "filename": "can_you_help_me.mp3",
-        "path": "/audio/en/phrases/can_you_help_me.mp3",
-        "text": "Can you help me?"
-      },
-      {
-        "filename": "can_you_hear_me.mp3",
-        "path": "/audio/en/phrases/can_you_hear_me.mp3",
-        "text": "Can you hear me?"
-      },
-      {
-        "filename": "can_you_see_my_screen.mp3",
-        "path": "/audio/en/phrases/can_you_see_my_screen.mp3",
-        "text": "Can you see my screen?"
-      },
-      {
-        "filename": "what_is_the_wi-fi_password.mp3",
-        "path": "/audio/en/phrases/what_is_the_wi-fi_password.mp3",
-        "text": "What is the Wi-Fi password?"
-      },
-      {
-        "filename": "lets_schedule_a_meeting.mp3",
-        "path": "/audio/en/phrases/lets_schedule_a_meeting.mp3",
-        "text": "Let's schedule a meeting"
-      },
-      {
-        "filename": "i_will_send_you_an_email.mp3",
-        "path": "/audio/en/phrases/i_will_send_you_an_email.mp3",
-        "text": "I will send you an email"
-      },
-      {
-        "filename": "when_is_the_deadline.mp3",
-        "path": "/audio/en/phrases/when_is_the_deadline.mp3",
-        "text": "When is the deadline?"
-      },
-      {
-        "filename": "i_need_a_doctor.mp3",
-        "path": "/audio/en/phrases/i_need_a_doctor.mp3",
-        "text": "I need a doctor"
-      },
-      {
-        "filename": "where_is_the_nearest_pharmacy.mp3",
-        "path": "/audio/en/phrases/where_is_the_nearest_pharmacy.mp3",
-        "text": "Where is the nearest pharmacy?"
-      },
-      {
-        "filename": "i_am_allergic_to_nuts.mp3",
-        "path": "/audio/en/phrases/i_am_allergic_to_nuts.mp3",
-        "text": "I am allergic to nuts"
-      },
-      {
-        "filename": "i_have_a_reservation.mp3",
-        "path": "/audio/en/phrases/i_have_a_reservation.mp3",
-        "text": "I have a reservation"
-      },
-      {
-        "filename": "where_is_the_train_station.mp3",
-        "path": "/audio/en/phrases/where_is_the_train_station.mp3",
-        "text": "Where is the train station?"
-      },
-      {
-        "filename": "i_need_a_taxi.mp3",
-        "path": "/audio/en/phrases/i_need_a_taxi.mp3",
-        "text": "I need a taxi"
-      },
-      {
-        "filename": "a_table_for_two_please.mp3",
-        "path": "/audio/en/phrases/a_table_for_two_please.mp3",
-        "text": "A table for two, please"
-      },
-      {
-        "filename": "the_menu_please.mp3",
-        "path": "/audio/en/phrases/the_menu_please.mp3",
-        "text": "The menu, please"
-      },
-      {
-        "filename": "do_you_accept_credit_cards.mp3",
-        "path": "/audio/en/phrases/do_you_accept_credit_cards.mp3",
-        "text": "Do you accept credit cards?"
-      },
-      {
-        "filename": "it_is_too_expensive.mp3",
-        "path": "/audio/en/phrases/it_is_too_expensive.mp3",
-        "text": "It is too expensive"
-      }
-    ],
-    "numbers": [
-      {
-        "filename": "zero.mp3",
-        "path": "/audio/en/numbers/zero.mp3",
-        "text": "Zero"
-      },
-      {
-        "filename": "one.mp3",
-        "path": "/audio/en/numbers/one.mp3",
-        "text": "One"
-      },
-      {
-        "filename": "two.mp3",
-        "path": "/audio/en/numbers/two.mp3",
-        "text": "Two"
-      },
-      {
-        "filename": "three.mp3",
-        "path": "/audio/en/numbers/three.mp3",
-        "text": "Three"
-      },
-      {
-        "filename": "four.mp3",
-        "path": "/audio/en/numbers/four.mp3",
-        "text": "Four"
-      },
-      {
-        "filename": "five.mp3",
-        "path": "/audio/en/numbers/five.mp3",
-        "text": "Five"
-      },
-      {
-        "filename": "six.mp3",
-        "path": "/audio/en/numbers/six.mp3",
-        "text": "Six"
-      },
-      {
-        "filename": "seven.mp3",
-        "path": "/audio/en/numbers/seven.mp3",
-        "text": "Seven"
-      },
-      {
-        "filename": "eight.mp3",
-        "path": "/audio/en/numbers/eight.mp3",
-        "text": "Eight"
-      },
-      {
-        "filename": "nine.mp3",
-        "path": "/audio/en/numbers/nine.mp3",
-        "text": "Nine"
-      },
-      {
-        "filename": "ten.mp3",
-        "path": "/audio/en/numbers/ten.mp3",
-        "text": "Ten"
-      },
-      {
-        "filename": "eleven.mp3",
-        "path": "/audio/en/numbers/eleven.mp3",
-        "text": "Eleven"
-      },
-      {
-        "filename": "twelve.mp3",
-        "path": "/audio/en/numbers/twelve.mp3",
-        "text": "Twelve"
-      },
-      {
-        "filename": "thirteen.mp3",
-        "path": "/audio/en/numbers/thirteen.mp3",
-        "text": "Thirteen"
-      },
-      {
-        "filename": "fourteen.mp3",
-        "path": "/audio/en/numbers/fourteen.mp3",
-        "text": "Fourteen"
-      },
-      {
-        "filename": "fifteen.mp3",
-        "path": "/audio/en/numbers/fifteen.mp3",
-        "text": "Fifteen"
-      },
-      {
-        "filename": "sixteen.mp3",
-        "path": "/audio/en/numbers/sixteen.mp3",
-        "text": "Sixteen"
-      },
-      {
-        "filename": "seventeen.mp3",
-        "path": "/audio/en/numbers/seventeen.mp3",
-        "text": "Seventeen"
-      },
-      {
-        "filename": "eighteen.mp3",
-        "path": "/audio/en/numbers/eighteen.mp3",
-        "text": "Eighteen"
-      },
-      {
-        "filename": "nineteen.mp3",
-        "path": "/audio/en/numbers/nineteen.mp3",
-        "text": "Nineteen"
-      },
-      {
-        "filename": "twenty.mp3",
-        "path": "/audio/en/numbers/twenty.mp3",
-        "text": "Twenty"
-      },
-      {
-        "filename": "thirty.mp3",
-        "path": "/audio/en/numbers/thirty.mp3",
-        "text": "Thirty"
-      },
-      {
-        "filename": "forty.mp3",
-        "path": "/audio/en/numbers/forty.mp3",
-        "text": "Forty"
-      },
-      {
-        "filename": "fifty.mp3",
-        "path": "/audio/en/numbers/fifty.mp3",
-        "text": "Fifty"
-      },
-      {
-        "filename": "sixty.mp3",
-        "path": "/audio/en/numbers/sixty.mp3",
-        "text": "Sixty"
-      },
-      {
-        "filename": "seventy.mp3",
-        "path": "/audio/en/numbers/seventy.mp3",
-        "text": "Seventy"
-      },
-      {
-        "filename": "eighty.mp3",
-        "path": "/audio/en/numbers/eighty.mp3",
-        "text": "Eighty"
-      },
-      {
-        "filename": "ninety.mp3",
-        "path": "/audio/en/numbers/ninety.mp3",
-        "text": "Ninety"
-      },
-      {
-        "filename": "one_hundred.mp3",
-        "path": "/audio/en/numbers/one_hundred.mp3",
-        "text": "One hundred"
-      },
-      {
-        "filename": "one_thousand.mp3",
-        "path": "/audio/en/numbers/one_thousand.mp3",
-        "text": "One thousand"
-      },
-      {
-        "filename": "what_time_is_it.mp3",
-        "path": "/audio/en/numbers/what_time_is_it.mp3",
-        "text": "What time is it?"
-      },
-      {
-        "filename": "two_oclock.mp3",
-        "path": "/audio/en/numbers/two_oclock.mp3",
-        "text": "Two o'clock"
-      },
-      {
-        "filename": "half_past_two.mp3",
-        "path": "/audio/en/numbers/half_past_two.mp3",
-        "text": "Half past two"
-      },
-      {
-        "filename": "quarter_to_three.mp3",
-        "path": "/audio/en/numbers/quarter_to_three.mp3",
-        "text": "Quarter to three"
-      }
+      "a_bottle_of_water_please.mp3",
+      "a_table_for_two_please.mp3",
+      "and_you.mp3",
+      "artificial_intelligence.mp3",
+      "at_night.mp3",
+      "at_what_time.mp3",
+      "bank_transfer.mp3",
+      "call_the_police.mp3",
+      "can_i_have_the_check_please.mp3",
+      "can_i_pay_by_card.mp3",
+      "can_i_see_the_menu_please.mp3",
+      "can_you_hear_me.mp3",
+      "can_you_help_me.mp3",
+      "can_you_repeat.mp3",
+      "can_you_repeat_please.mp3",
+      "can_you_see_my_screen.mp3",
+      "can_you_send_it_by_email.mp3",
+      "can_you_speak_more_slowly.mp3",
+      "christmas_tree.mp3",
+      "cloud_storage.mp3",
+      "could_you_repeat_that_please.mp3",
+      "could_you_speak_slower_please.mp3",
+      "credit_card.mp3",
+      "customer_support.mp3",
+      "do_you_accept_credit_cards.mp3",
+      "do_you_have_this_in_another_size.mp3",
+      "do_you_speak_english.mp3",
+      "do_you_speak_russian.mp3",
+      "eight_o\\.mp3",
+      "eight_oclock.mp3",
+      "eleven_o\\.mp3",
+      "eleven_oclock.mp3",
+      "exactly_three_o\\.mp3",
+      "exactly_three_oclock.mp3",
+      "excuse_me.mp3",
+      "five_o\\.mp3",
+      "five_oclock.mp3",
+      "four_o\\.mp3",
+      "four_oclock.mp3",
+      "go_straight_ahead.mp3",
+      "good_afternoon.mp3",
+      "good_evening.mp3",
+      "good_morning.mp3",
+      "good_night.mp3",
+      "goodbye.mp3",
+      "half_an_hour.mp3",
+      "half_past_twelve.mp3",
+      "half_past_two.mp3",
+      "have_a_great_day.mp3",
+      "have_a_nice_day.mp3",
+      "hello.mp3",
+      "help_me.mp3",
+      "how_are_you.mp3",
+      "how_are_you_today.mp3",
+      "how_do_i_get_to_the_airport.mp3",
+      "how_do_you_say.mp3",
+      "how_do_you_say_this_in_russian.mp3",
+      "how_much.mp3",
+      "how_much_does_it_cost.mp3",
+      "how_much_does_this_cost.mp3",
+      "how_much_is_a_ticket.mp3",
+      "how_much_is_this.mp3",
+      "i_am_allergic_to_nuts.mp3",
+      "i_am_doing_well_thank_you.mp3",
+      "i_am_fine_thank_you.mp3",
+      "i_am_from.mp3",
+      "i_am_going_to_school_now.mp3",
+      "i_am_just_looking.mp3",
+      "i_am_just_looking_thank_you.mp3",
+      "i_am_sorry.mp3",
+      "i_can_speak_a_little_indonesian.mp3",
+      "i_do_not_understand.mp3",
+      "i_don\\.mp3",
+      "i_dont_feel_well.mp3",
+      "i_dont_know.mp3",
+      "i_dont_understand.mp3",
+      "i_eat.mp3",
+      "i_eat_delicious_food.mp3",
+      "i_have_a_question.mp3",
+      "i_have_a_reservation.mp3",
+      "i_know_this_word.mp3",
+      "i_lost_my_passport.mp3",
+      "i_need_a_doctor.mp3",
+      "i_need_a_taxi.mp3",
+      "i_need_help.mp3",
+      "i_speak_a_little_japanese.mp3",
+      "i_speak_a_little_korean.mp3",
+      "i_speak_a_little_russian.mp3",
+      "i_study_japanese.mp3",
+      "i_study_korean.mp3",
+      "i_understand.mp3",
+      "i_want_to_drink.mp3",
+      "i_want_to_eat.mp3",
+      "i_want_to_order_food.mp3",
+      "i_will_go_to_tokyo_tomorrow.mp3",
+      "i_will_send_you_an_email.mp3",
+      "i_would_like_a_coffee_please.mp3",
+      "i_would_like_to_go_to_the_airport.mp3",
+      "i_would_like_water.mp3",
+      "im_sorry.mp3",
+      "in_the_afternoon.mp3",
+      "in_the_evening.mp3",
+      "in_the_morning.mp3",
+      "is_it_far_from_here.mp3",
+      "it_is_100_sharp.mp3",
+      "it_is_200.mp3",
+      "it_is_330.mp3",
+      "it_is_415.mp3",
+      "it_is_445.mp3",
+      "it_is_eight_oclock.mp3",
+      "it_is_eleven_oclock.mp3",
+      "it_is_elf_uhr.mp3",
+      "it_is_five_oclock.mp3",
+      "it_is_four_oclock.mp3",
+      "it_is_nine_oclock.mp3",
+      "it_is_one_oclock.mp3",
+      "it_is_one_oclock_on_the_dot.mp3",
+      "it_is_seven_oclock.mp3",
+      "it_is_six_oclock.mp3",
+      "it_is_ten_oclock.mp3",
+      "it_is_three_oclock.mp3",
+      "it_is_too_expensive.mp3",
+      "it_is_two_oclock.mp3",
+      "job_interview.mp3",
+      "let.mp3",
+      "let_me_share_my_screen.mp3",
+      "lets_schedule_a_meeting.mp3",
+      "menu_please.mp3",
+      "my_battery_is_almost_dead.mp3",
+      "my_name_is.mp3",
+      "nice_to_meet_you.mp3",
+      "nine_o\\.mp3",
+      "nine_oclock.mp3",
+      "no.mp3",
+      "no_problem.mp3",
+      "no_problem_such_things_happen.mp3",
+      "on_time.mp3",
+      "once_more_please.mp3",
+      "one_o\\.mp3",
+      "one_oclock.mp3",
+      "operating_system.mp3",
+      "please.mp3",
+      "please_help_me.mp3",
+      "please_repeat.mp3",
+      "please_speak_more_slowly.mp3",
+      "please_speak_slowly.mp3",
+      "pleased_to_meet_you.mp3",
+      "post_office.mp3",
+      "quarter_of_an_hour.mp3",
+      "quarter_to_three.mp3",
+      "remote_work.mp3",
+      "see_you_later.mp3",
+      "see_you_soon.mp3",
+      "seven_o\\.mp3",
+      "seven_oclock.mp3",
+      "she_has_a_meeting_today.mp3",
+      "six_o\\.mp3",
+      "six_oclock.mp3",
+      "sounds_good.mp3",
+      "speak_more_slowly.mp3",
+      "startup_company.mp3",
+      "ten_o\\.mp3",
+      "ten_oclock.mp3",
+      "ten_to_two.mp3",
+      "thank_you_for_the_meal.mp3",
+      "thank_you_very_much.mp3",
+      "the_bill.mp3",
+      "the_check_please.mp3",
+      "the_internet_connection_is_slow.mp3",
+      "the_menu_please.mp3",
+      "this_is_delicious.mp3",
+      "three_o\\.mp3",
+      "three_oclock.mp3",
+      "to_buy.mp3",
+      "to_come.mp3",
+      "to_drink.mp3",
+      "to_eat.mp3",
+      "to_go.mp3",
+      "to_help.mp3",
+      "to_know.mp3",
+      "to_learn.mp3",
+      "to_need.mp3",
+      "to_speak.mp3",
+      "to_understand.mp3",
+      "to_want.mp3",
+      "to_work.mp3",
+      "turn_left.mp3",
+      "turn_right.mp3",
+      "twelve_o\\.mp3",
+      "twelve_oclock.mp3",
+      "two_o\\.mp3",
+      "two_oclock.mp3",
+      "very_well_thank_you.mp3",
+      "we_are_friends.mp3",
+      "we_are_here.mp3",
+      "we_are_learning_languages_together.mp3",
+      "we_are_ready.mp3",
+      "we_are_students.mp3",
+      "we_were_in_moscow.mp3",
+      "what_do_you_recommend.mp3",
+      "what_does_this_mean.mp3",
+      "what_is_the_wi-fi_password.mp3",
+      "what_is_your_name.mp3",
+      "what_time_is_it.mp3",
+      "what_time_is_it_now.mp3",
+      "what_time_is_the_departure.mp3",
+      "when_is_the_deadline.mp3",
+      "where_are_the_restrooms.mp3",
+      "where_are_you_from.mp3",
+      "where_are_you_going.mp3",
+      "where_is_it.mp3",
+      "where_is_the_airport.mp3",
+      "where_is_the_bathroom.mp3",
+      "where_is_the_bus_stop.mp3",
+      "where_is_the_hotel.mp3",
+      "where_is_the_nearest_pharmacy.mp3",
+      "where_is_the_restroom.mp3",
+      "where_is_the_train_station.mp3",
+      "yes.mp3",
+      "you_are_welcome.mp3",
+      "youre_welcome.mp3"
     ],
     "words": [
-      {
-        "filename": "water.mp3",
-        "path": "/audio/en/words/water.mp3",
-        "text": "Water"
-      },
-      {
-        "filename": "bread.mp3",
-        "path": "/audio/en/words/bread.mp3",
-        "text": "Bread"
-      },
-      {
-        "filename": "coffee.mp3",
-        "path": "/audio/en/words/coffee.mp3",
-        "text": "Coffee"
-      },
-      {
-        "filename": "tea.mp3",
-        "path": "/audio/en/words/tea.mp3",
-        "text": "Tea"
-      },
-      {
-        "filename": "food.mp3",
-        "path": "/audio/en/words/food.mp3",
-        "text": "Food"
-      },
-      {
-        "filename": "breakfast.mp3",
-        "path": "/audio/en/words/breakfast.mp3",
-        "text": "Breakfast"
-      },
-      {
-        "filename": "lunch.mp3",
-        "path": "/audio/en/words/lunch.mp3",
-        "text": "Lunch"
-      },
-      {
-        "filename": "dinner.mp3",
-        "path": "/audio/en/words/dinner.mp3",
-        "text": "Dinner"
-      },
-      {
-        "filename": "restaurant.mp3",
-        "path": "/audio/en/words/restaurant.mp3",
-        "text": "Restaurant"
-      },
-      {
-        "filename": "airport.mp3",
-        "path": "/audio/en/words/airport.mp3",
-        "text": "Airport"
-      },
-      {
-        "filename": "hotel.mp3",
-        "path": "/audio/en/words/hotel.mp3",
-        "text": "Hotel"
-      },
-      {
-        "filename": "station.mp3",
-        "path": "/audio/en/words/station.mp3",
-        "text": "Station"
-      },
-      {
-        "filename": "hospital.mp3",
-        "path": "/audio/en/words/hospital.mp3",
-        "text": "Hospital"
-      },
-      {
-        "filename": "pharmacy.mp3",
-        "path": "/audio/en/words/pharmacy.mp3",
-        "text": "Pharmacy"
-      },
-      {
-        "filename": "supermarket.mp3",
-        "path": "/audio/en/words/supermarket.mp3",
-        "text": "Supermarket"
-      },
-      {
-        "filename": "bank.mp3",
-        "path": "/audio/en/words/bank.mp3",
-        "text": "Bank"
-      },
-      {
-        "filename": "city.mp3",
-        "path": "/audio/en/words/city.mp3",
-        "text": "City"
-      },
-      {
-        "filename": "family.mp3",
-        "path": "/audio/en/words/family.mp3",
-        "text": "Family"
-      },
-      {
-        "filename": "friend.mp3",
-        "path": "/audio/en/words/friend.mp3",
-        "text": "Friend"
-      },
-      {
-        "filename": "mother.mp3",
-        "path": "/audio/en/words/mother.mp3",
-        "text": "Mother"
-      },
-      {
-        "filename": "father.mp3",
-        "path": "/audio/en/words/father.mp3",
-        "text": "Father"
-      },
-      {
-        "filename": "child.mp3",
-        "path": "/audio/en/words/child.mp3",
-        "text": "Child"
-      },
-      {
-        "filename": "teacher.mp3",
-        "path": "/audio/en/words/teacher.mp3",
-        "text": "Teacher"
-      },
-      {
-        "filename": "student.mp3",
-        "path": "/audio/en/words/student.mp3",
-        "text": "Student"
-      },
-      {
-        "filename": "money.mp3",
-        "path": "/audio/en/words/money.mp3",
-        "text": "Money"
-      },
-      {
-        "filename": "ticket.mp3",
-        "path": "/audio/en/words/ticket.mp3",
-        "text": "Ticket"
-      },
-      {
-        "filename": "passport.mp3",
-        "path": "/audio/en/words/passport.mp3",
-        "text": "Passport"
-      },
-      {
-        "filename": "book.mp3",
-        "path": "/audio/en/words/book.mp3",
-        "text": "Book"
-      },
-      {
-        "filename": "to_learn.mp3",
-        "path": "/audio/en/words/to_learn.mp3",
-        "text": "To learn"
-      },
-      {
-        "filename": "to_speak.mp3",
-        "path": "/audio/en/words/to_speak.mp3",
-        "text": "To speak"
-      },
-      {
-        "filename": "to_eat.mp3",
-        "path": "/audio/en/words/to_eat.mp3",
-        "text": "To eat"
-      },
-      {
-        "filename": "to_drink.mp3",
-        "path": "/audio/en/words/to_drink.mp3",
-        "text": "To drink"
-      },
-      {
-        "filename": "to_go.mp3",
-        "path": "/audio/en/words/to_go.mp3",
-        "text": "To go"
-      },
-      {
-        "filename": "to_understand.mp3",
-        "path": "/audio/en/words/to_understand.mp3",
-        "text": "To understand"
-      },
-      {
-        "filename": "red.mp3",
-        "path": "/audio/en/words/red.mp3",
-        "text": "Red"
-      },
-      {
-        "filename": "blue.mp3",
-        "path": "/audio/en/words/blue.mp3",
-        "text": "Blue"
-      },
-      {
-        "filename": "green.mp3",
-        "path": "/audio/en/words/green.mp3",
-        "text": "Green"
-      },
-      {
-        "filename": "yellow.mp3",
-        "path": "/audio/en/words/yellow.mp3",
-        "text": "Yellow"
-      },
-      {
-        "filename": "black.mp3",
-        "path": "/audio/en/words/black.mp3",
-        "text": "Black"
-      },
-      {
-        "filename": "white.mp3",
-        "path": "/audio/en/words/white.mp3",
-        "text": "White"
-      },
-      {
-        "filename": "big.mp3",
-        "path": "/audio/en/words/big.mp3",
-        "text": "Big"
-      },
-      {
-        "filename": "small.mp3",
-        "path": "/audio/en/words/small.mp3",
-        "text": "Small"
-      },
-      {
-        "filename": "new.mp3",
-        "path": "/audio/en/words/new.mp3",
-        "text": "New"
-      },
-      {
-        "filename": "old.mp3",
-        "path": "/audio/en/words/old.mp3",
-        "text": "Old"
-      },
-      {
-        "filename": "sun.mp3",
-        "path": "/audio/en/words/sun.mp3",
-        "text": "Sun"
-      },
-      {
-        "filename": "rain.mp3",
-        "path": "/audio/en/words/rain.mp3",
-        "text": "Rain"
-      },
-      {
-        "filename": "snow.mp3",
-        "path": "/audio/en/words/snow.mp3",
-        "text": "Snow"
-      },
-      {
-        "filename": "wind.mp3",
-        "path": "/audio/en/words/wind.mp3",
-        "text": "Wind"
-      },
-      {
-        "filename": "cloud.mp3",
-        "path": "/audio/en/words/cloud.mp3",
-        "text": "Cloud"
-      },
-      {
-        "filename": "storm.mp3",
-        "path": "/audio/en/words/storm.mp3",
-        "text": "Storm"
-      },
-      {
-        "filename": "hot.mp3",
-        "path": "/audio/en/words/hot.mp3",
-        "text": "Hot"
-      },
-      {
-        "filename": "cold.mp3",
-        "path": "/audio/en/words/cold.mp3",
-        "text": "Cold"
-      },
-      {
-        "filename": "computer.mp3",
-        "path": "/audio/en/words/computer.mp3",
-        "text": "Computer"
-      },
-      {
-        "filename": "phone.mp3",
-        "path": "/audio/en/words/phone.mp3",
-        "text": "Phone"
-      },
-      {
-        "filename": "internet.mp3",
-        "path": "/audio/en/words/internet.mp3",
-        "text": "Internet"
-      },
-      {
-        "filename": "password.mp3",
-        "path": "/audio/en/words/password.mp3",
-        "text": "Password"
-      },
-      {
-        "filename": "email.mp3",
-        "path": "/audio/en/words/email.mp3",
-        "text": "Email"
-      },
-      {
-        "filename": "screen.mp3",
-        "path": "/audio/en/words/screen.mp3",
-        "text": "Screen"
-      },
-      {
-        "filename": "meeting.mp3",
-        "path": "/audio/en/words/meeting.mp3",
-        "text": "Meeting"
-      },
-      {
-        "filename": "file.mp3",
-        "path": "/audio/en/words/file.mp3",
-        "text": "File"
-      },
-      {
-        "filename": "link.mp3",
-        "path": "/audio/en/words/link.mp3",
-        "text": "Link"
-      },
-      {
-        "filename": "code.mp3",
-        "path": "/audio/en/words/code.mp3",
-        "text": "Code"
-      },
-      {
-        "filename": "error.mp3",
-        "path": "/audio/en/words/error.mp3",
-        "text": "Error"
-      },
-      {
-        "filename": "battery.mp3",
-        "path": "/audio/en/words/battery.mp3",
-        "text": "Battery"
-      },
-      {
-        "filename": "project.mp3",
-        "path": "/audio/en/words/project.mp3",
-        "text": "Project"
-      },
-      {
-        "filename": "client.mp3",
-        "path": "/audio/en/words/client.mp3",
-        "text": "Client"
-      },
-      {
-        "filename": "team.mp3",
-        "path": "/audio/en/words/team.mp3",
-        "text": "Team"
-      },
-      {
-        "filename": "manager.mp3",
-        "path": "/audio/en/words/manager.mp3",
-        "text": "Manager"
-      },
-      {
-        "filename": "company.mp3",
-        "path": "/audio/en/words/company.mp3",
-        "text": "Company"
-      },
-      {
-        "filename": "contract.mp3",
-        "path": "/audio/en/words/contract.mp3",
-        "text": "Contract"
-      },
-      {
-        "filename": "schedule.mp3",
-        "path": "/audio/en/words/schedule.mp3",
-        "text": "Schedule"
-      },
-      {
-        "filename": "deadline.mp3",
-        "path": "/audio/en/words/deadline.mp3",
-        "text": "Deadline"
-      },
-      {
-        "filename": "invoice.mp3",
-        "path": "/audio/en/words/invoice.mp3",
-        "text": "Invoice"
-      },
-      {
-        "filename": "salary.mp3",
-        "path": "/audio/en/words/salary.mp3",
-        "text": "Salary"
-      },
-      {
-        "filename": "doctor.mp3",
-        "path": "/audio/en/words/doctor.mp3",
-        "text": "Doctor"
-      },
-      {
-        "filename": "medicine.mp3",
-        "path": "/audio/en/words/medicine.mp3",
-        "text": "Medicine"
-      },
-      {
-        "filename": "pain.mp3",
-        "path": "/audio/en/words/pain.mp3",
-        "text": "Pain"
-      },
-      {
-        "filename": "fever.mp3",
-        "path": "/audio/en/words/fever.mp3",
-        "text": "Fever"
-      },
-      {
-        "filename": "allergy.mp3",
-        "path": "/audio/en/words/allergy.mp3",
-        "text": "Allergy"
-      },
-      {
-        "filename": "headache.mp3",
-        "path": "/audio/en/words/headache.mp3",
-        "text": "Headache"
-      },
-      {
-        "filename": "emergency.mp3",
-        "path": "/audio/en/words/emergency.mp3",
-        "text": "Emergency"
-      },
-      {
-        "filename": "prescription.mp3",
-        "path": "/audio/en/words/prescription.mp3",
-        "text": "Prescription"
-      },
-      {
-        "filename": "bandage.mp3",
-        "path": "/audio/en/words/bandage.mp3",
-        "text": "Bandage"
-      },
-      {
-        "filename": "health.mp3",
-        "path": "/audio/en/words/health.mp3",
-        "text": "Health"
-      },
-      {
-        "filename": "flight.mp3",
-        "path": "/audio/en/words/flight.mp3",
-        "text": "Flight"
-      },
-      {
-        "filename": "luggage.mp3",
-        "path": "/audio/en/words/luggage.mp3",
-        "text": "Luggage"
-      },
-      {
-        "filename": "reservation.mp3",
-        "path": "/audio/en/words/reservation.mp3",
-        "text": "Reservation"
-      },
-      {
-        "filename": "key.mp3",
-        "path": "/audio/en/words/key.mp3",
-        "text": "Key"
-      },
-      {
-        "filename": "room.mp3",
-        "path": "/audio/en/words/room.mp3",
-        "text": "Room"
-      },
-      {
-        "filename": "gate.mp3",
-        "path": "/audio/en/words/gate.mp3",
-        "text": "Gate"
-      },
-      {
-        "filename": "map.mp3",
-        "path": "/audio/en/words/map.mp3",
-        "text": "Map"
-      },
-      {
-        "filename": "entrance.mp3",
-        "path": "/audio/en/words/entrance.mp3",
-        "text": "Entrance"
-      },
-      {
-        "filename": "exit.mp3",
-        "path": "/audio/en/words/exit.mp3",
-        "text": "Exit"
-      },
-      {
-        "filename": "customs.mp3",
-        "path": "/audio/en/words/customs.mp3",
-        "text": "Customs"
-      },
-      {
-        "filename": "credit_card.mp3",
-        "path": "/audio/en/words/credit_card.mp3",
-        "text": "Credit card"
-      },
-      {
-        "filename": "cash.mp3",
-        "path": "/audio/en/words/cash.mp3",
-        "text": "Cash"
-      },
-      {
-        "filename": "price.mp3",
-        "path": "/audio/en/words/price.mp3",
-        "text": "Price"
-      },
-      {
-        "filename": "cheap.mp3",
-        "path": "/audio/en/words/cheap.mp3",
-        "text": "Cheap"
-      },
-      {
-        "filename": "expensive.mp3",
-        "path": "/audio/en/words/expensive.mp3",
-        "text": "Expensive"
-      },
-      {
-        "filename": "discount.mp3",
-        "path": "/audio/en/words/discount.mp3",
-        "text": "Discount"
-      },
-      {
-        "filename": "laptop.mp3",
-        "path": "/audio/en/words/laptop.mp3",
-        "text": "Laptop"
-      },
-      {
-        "filename": "tablet.mp3",
-        "path": "/audio/en/words/tablet.mp3",
-        "text": "Tablet"
-      },
-      {
-        "filename": "keyboard.mp3",
-        "path": "/audio/en/words/keyboard.mp3",
-        "text": "Keyboard"
-      },
-      {
-        "filename": "mouse.mp3",
-        "path": "/audio/en/words/mouse.mp3",
-        "text": "Mouse"
-      },
-      {
-        "filename": "charger.mp3",
-        "path": "/audio/en/words/charger.mp3",
-        "text": "Charger"
-      },
-      {
-        "filename": "cable.mp3",
-        "path": "/audio/en/words/cable.mp3",
-        "text": "Cable"
-      },
-      {
-        "filename": "wi-fi.mp3",
-        "path": "/audio/en/words/wi-fi.mp3",
-        "text": "Wi-Fi"
-      },
-      {
-        "filename": "message.mp3",
-        "path": "/audio/en/words/message.mp3",
-        "text": "Message"
-      },
-      {
-        "filename": "website.mp3",
-        "path": "/audio/en/words/website.mp3",
-        "text": "Website"
-      },
-      {
-        "filename": "application.mp3",
-        "path": "/audio/en/words/application.mp3",
-        "text": "Application"
-      },
-      {
-        "filename": "folder.mp3",
-        "path": "/audio/en/words/folder.mp3",
-        "text": "Folder"
-      },
-      {
-        "filename": "camera.mp3",
-        "path": "/audio/en/words/camera.mp3",
-        "text": "Camera"
-      },
-      {
-        "filename": "microphone.mp3",
-        "path": "/audio/en/words/microphone.mp3",
-        "text": "Microphone"
-      },
-      {
-        "filename": "headphones.mp3",
-        "path": "/audio/en/words/headphones.mp3",
-        "text": "Headphones"
-      },
-      {
-        "filename": "printer.mp3",
-        "path": "/audio/en/words/printer.mp3",
-        "text": "Printer"
-      },
-      {
-        "filename": "search.mp3",
-        "path": "/audio/en/words/search.mp3",
-        "text": "Search"
-      },
-      {
-        "filename": "save.mp3",
-        "path": "/audio/en/words/save.mp3",
-        "text": "Save"
-      },
-      {
-        "filename": "delete.mp3",
-        "path": "/audio/en/words/delete.mp3",
-        "text": "Delete"
-      },
-      {
-        "filename": "send.mp3",
-        "path": "/audio/en/words/send.mp3",
-        "text": "Send"
-      },
-      {
-        "filename": "download.mp3",
-        "path": "/audio/en/words/download.mp3",
-        "text": "Download"
-      },
-      {
-        "filename": "upload.mp3",
-        "path": "/audio/en/words/upload.mp3",
-        "text": "Upload"
-      },
-      {
-        "filename": "online.mp3",
-        "path": "/audio/en/words/online.mp3",
-        "text": "Online"
-      },
-      {
-        "filename": "offline.mp3",
-        "path": "/audio/en/words/offline.mp3",
-        "text": "Offline"
-      },
-      {
-        "filename": "job.mp3",
-        "path": "/audio/en/words/job.mp3",
-        "text": "Job"
-      },
-      {
-        "filename": "office.mp3",
-        "path": "/audio/en/words/office.mp3",
-        "text": "Office"
-      },
-      {
-        "filename": "store.mp3",
-        "path": "/audio/en/words/store.mp3",
-        "text": "Store"
-      },
-      {
-        "filename": "buy.mp3",
-        "path": "/audio/en/words/buy.mp3",
-        "text": "Buy"
-      },
-      {
-        "filename": "sell.mp3",
-        "path": "/audio/en/words/sell.mp3",
-        "text": "Sell"
-      },
-      {
-        "filename": "pay.mp3",
-        "path": "/audio/en/words/pay.mp3",
-        "text": "Pay"
-      },
-      {
-        "filename": "receipt.mp3",
-        "path": "/audio/en/words/receipt.mp3",
-        "text": "Receipt"
-      },
-      {
-        "filename": "support.mp3",
-        "path": "/audio/en/words/support.mp3",
-        "text": "Support"
-      },
-      {
-        "filename": "open.mp3",
-        "path": "/audio/en/words/open.mp3",
-        "text": "Open"
-      },
-      {
-        "filename": "close.mp3",
-        "path": "/audio/en/words/close.mp3",
-        "text": "Close"
-      },
-      {
-        "filename": "update.mp3",
-        "path": "/audio/en/words/update.mp3",
-        "text": "Update"
-      },
-      {
-        "filename": "boss.mp3",
-        "path": "/audio/en/words/boss.mp3",
-        "text": "Boss"
-      },
-      {
-        "filename": "colleague.mp3",
-        "path": "/audio/en/words/colleague.mp3",
-        "text": "Colleague"
-      },
-      {
-        "filename": "employee.mp3",
-        "path": "/audio/en/words/employee.mp3",
-        "text": "Employee"
-      },
-      {
-        "filename": "task.mp3",
-        "path": "/audio/en/words/task.mp3",
-        "text": "Task"
-      },
-      {
-        "filename": "report.mp3",
-        "path": "/audio/en/words/report.mp3",
-        "text": "Report"
-      },
-      {
-        "filename": "presentation.mp3",
-        "path": "/audio/en/words/presentation.mp3",
-        "text": "Presentation"
-      },
-      {
-        "filename": "signature.mp3",
-        "path": "/audio/en/words/signature.mp3",
-        "text": "Signature"
-      },
-      {
-        "filename": "vacation.mp3",
-        "path": "/audio/en/words/vacation.mp3",
-        "text": "Vacation"
-      },
-      {
-        "filename": "resume.mp3",
-        "path": "/audio/en/words/resume.mp3",
-        "text": "Resume"
-      },
-      {
-        "filename": "interview.mp3",
-        "path": "/audio/en/words/interview.mp3",
-        "text": "Interview"
-      },
-      {
-        "filename": "goal.mp3",
-        "path": "/audio/en/words/goal.mp3",
-        "text": "Goal"
-      },
-      {
-        "filename": "product.mp3",
-        "path": "/audio/en/words/product.mp3",
-        "text": "Product"
-      },
-      {
-        "filename": "service.mp3",
-        "path": "/audio/en/words/service.mp3",
-        "text": "Service"
-      },
-      {
-        "filename": "transfer.mp3",
-        "path": "/audio/en/words/transfer.mp3",
-        "text": "Transfer"
-      },
-      {
-        "filename": "refund.mp3",
-        "path": "/audio/en/words/refund.mp3",
-        "text": "Refund"
-      },
-      {
-        "filename": "shipping.mp3",
-        "path": "/audio/en/words/shipping.mp3",
-        "text": "Shipping"
-      },
-      {
-        "filename": "package.mp3",
-        "path": "/audio/en/words/package.mp3",
-        "text": "Package"
-      },
-      {
-        "filename": "software.mp3",
-        "path": "/audio/en/words/software.mp3",
-        "text": "Software"
-      },
-      {
-        "filename": "hardware.mp3",
-        "path": "/audio/en/words/hardware.mp3",
-        "text": "Hardware"
-      },
-      {
-        "filename": "database.mp3",
-        "path": "/audio/en/words/database.mp3",
-        "text": "Database"
-      },
-      {
-        "filename": "server.mp3",
-        "path": "/audio/en/words/server.mp3",
-        "text": "Server"
-      },
-      {
-        "filename": "cloud_storage.mp3",
-        "path": "/audio/en/words/cloud_storage.mp3",
-        "text": "Cloud storage"
-      },
-      {
-        "filename": "artificial_intelligence.mp3",
-        "path": "/audio/en/words/artificial_intelligence.mp3",
-        "text": "Artificial intelligence"
-      },
-      {
-        "filename": "algorithm.mp3",
-        "path": "/audio/en/words/algorithm.mp3",
-        "text": "Algorithm"
-      },
-      {
-        "filename": "developer.mp3",
-        "path": "/audio/en/words/developer.mp3",
-        "text": "Developer"
-      },
-      {
-        "filename": "cybersecurity.mp3",
-        "path": "/audio/en/words/cybersecurity.mp3",
-        "text": "Cybersecurity"
-      },
-      {
-        "filename": "operating_system.mp3",
-        "path": "/audio/en/words/operating_system.mp3",
-        "text": "Operating system"
-      },
-      {
-        "filename": "budget.mp3",
-        "path": "/audio/en/words/budget.mp3",
-        "text": "Budget"
-      },
-      {
-        "filename": "investment.mp3",
-        "path": "/audio/en/words/investment.mp3",
-        "text": "Investment"
-      },
-      {
-        "filename": "revenue.mp3",
-        "path": "/audio/en/words/revenue.mp3",
-        "text": "Revenue"
-      },
-      {
-        "filename": "startup.mp3",
-        "path": "/audio/en/words/startup.mp3",
-        "text": "Startup"
-      },
-      {
-        "filename": "remote_work.mp3",
-        "path": "/audio/en/words/remote_work.mp3",
-        "text": "Remote work"
-      },
-      {
-        "filename": "man.mp3",
-        "path": "/audio/en/words/man.mp3",
-        "text": "Man"
-      },
-      {
-        "filename": "woman.mp3",
-        "path": "/audio/en/words/woman.mp3",
-        "text": "Woman"
-      },
-      {
-        "filename": "boy.mp3",
-        "path": "/audio/en/words/boy.mp3",
-        "text": "Boy"
-      },
-      {
-        "filename": "girl.mp3",
-        "path": "/audio/en/words/girl.mp3",
-        "text": "Girl"
-      },
-      {
-        "filename": "husband.mp3",
-        "path": "/audio/en/words/husband.mp3",
-        "text": "Husband"
-      },
-      {
-        "filename": "wife.mp3",
-        "path": "/audio/en/words/wife.mp3",
-        "text": "Wife"
-      },
-      {
-        "filename": "meat.mp3",
-        "path": "/audio/en/words/meat.mp3",
-        "text": "Meat"
-      },
-      {
-        "filename": "vegetables.mp3",
-        "path": "/audio/en/words/vegetables.mp3",
-        "text": "Vegetables"
-      },
-      {
-        "filename": "fruits.mp3",
-        "path": "/audio/en/words/fruits.mp3",
-        "text": "Fruits"
-      },
-      {
-        "filename": "rice.mp3",
-        "path": "/audio/en/words/rice.mp3",
-        "text": "Rice"
-      },
-      {
-        "filename": "beer.mp3",
-        "path": "/audio/en/words/beer.mp3",
-        "text": "Beer"
-      },
-      {
-        "filename": "wine.mp3",
-        "path": "/audio/en/words/wine.mp3",
-        "text": "Wine"
-      },
-      {
-        "filename": "salt.mp3",
-        "path": "/audio/en/words/salt.mp3",
-        "text": "Salt"
-      },
-      {
-        "filename": "cheese.mp3",
-        "path": "/audio/en/words/cheese.mp3",
-        "text": "Cheese"
-      },
-      {
-        "filename": "street.mp3",
-        "path": "/audio/en/words/street.mp3",
-        "text": "Street"
-      },
-      {
-        "filename": "park.mp3",
-        "path": "/audio/en/words/park.mp3",
-        "text": "Park"
-      },
-      {
-        "filename": "museum.mp3",
-        "path": "/audio/en/words/museum.mp3",
-        "text": "Museum"
-      },
-      {
-        "filename": "theater.mp3",
-        "path": "/audio/en/words/theater.mp3",
-        "text": "Theater"
-      },
-      {
-        "filename": "cinema.mp3",
-        "path": "/audio/en/words/cinema.mp3",
-        "text": "Cinema"
-      },
-      {
-        "filename": "center.mp3",
-        "path": "/audio/en/words/center.mp3",
-        "text": "Center"
-      },
-      {
-        "filename": "factory.mp3",
-        "path": "/audio/en/words/factory.mp3",
-        "text": "Factory"
-      },
-      {
-        "filename": "sea.mp3",
-        "path": "/audio/en/words/sea.mp3",
-        "text": "Sea"
-      },
-      {
-        "filename": "bus.mp3",
-        "path": "/audio/en/words/bus.mp3",
-        "text": "Bus"
-      },
-      {
-        "filename": "taxi.mp3",
-        "path": "/audio/en/words/taxi.mp3",
-        "text": "Taxi"
-      },
-      {
-        "filename": "airplane.mp3",
-        "path": "/audio/en/words/airplane.mp3",
-        "text": "Airplane"
-      },
-      {
-        "filename": "boat.mp3",
-        "path": "/audio/en/words/boat.mp3",
-        "text": "Boat"
-      },
-      {
-        "filename": "table.mp3",
-        "path": "/audio/en/words/table.mp3",
-        "text": "Table"
-      },
-      {
-        "filename": "chair.mp3",
-        "path": "/audio/en/words/chair.mp3",
-        "text": "Chair"
-      },
-      {
-        "filename": "door.mp3",
-        "path": "/audio/en/words/door.mp3",
-        "text": "Door"
-      },
-      {
-        "filename": "window.mp3",
-        "path": "/audio/en/words/window.mp3",
-        "text": "Window"
-      },
-      {
-        "filename": "bag.mp3",
-        "path": "/audio/en/words/bag.mp3",
-        "text": "Bag"
-      },
-      {
-        "filename": "clothes.mp3",
-        "path": "/audio/en/words/clothes.mp3",
-        "text": "Clothes"
-      },
-      {
-        "filename": "shoes.mp3",
-        "path": "/audio/en/words/shoes.mp3",
-        "text": "Shoes"
-      },
-      {
-        "filename": "magazine.mp3",
-        "path": "/audio/en/words/magazine.mp3",
-        "text": "Magazine"
-      },
-      {
-        "filename": "photo.mp3",
-        "path": "/audio/en/words/photo.mp3",
-        "text": "Photo"
-      },
-      {
-        "filename": "card.mp3",
-        "path": "/audio/en/words/card.mp3",
-        "text": "Card"
-      },
-      {
-        "filename": "bird.mp3",
-        "path": "/audio/en/words/bird.mp3",
-        "text": "Bird"
-      },
-      {
-        "filename": "moon.mp3",
-        "path": "/audio/en/words/moon.mp3",
-        "text": "Moon"
-      },
-      {
-        "filename": "star.mp3",
-        "path": "/audio/en/words/star.mp3",
-        "text": "Star"
-      },
-      {
-        "filename": "flower.mp3",
-        "path": "/audio/en/words/flower.mp3",
-        "text": "Flower"
-      },
-      {
-        "filename": "tree.mp3",
-        "path": "/audio/en/words/tree.mp3",
-        "text": "Tree"
-      },
-      {
-        "filename": "bad.mp3",
-        "path": "/audio/en/words/bad.mp3",
-        "text": "Bad"
-      },
-      {
-        "filename": "fast.mp3",
-        "path": "/audio/en/words/fast.mp3",
-        "text": "Fast / Quick"
-      },
-      {
-        "filename": "slow.mp3",
-        "path": "/audio/en/words/slow.mp3",
-        "text": "Slow"
-      },
-      {
-        "filename": "happy.mp3",
-        "path": "/audio/en/words/happy.mp3",
-        "text": "Happy"
-      },
-      {
-        "filename": "ready.mp3",
-        "path": "/audio/en/words/ready.mp3",
-        "text": "Ready"
-      },
-      {
-        "filename": "closed.mp3",
-        "path": "/audio/en/words/closed.mp3",
-        "text": "Closed"
-      },
-      {
-        "filename": "monday.mp3",
-        "path": "/audio/en/words/monday.mp3",
-        "text": "Monday"
-      },
-      {
-        "filename": "tuesday.mp3",
-        "path": "/audio/en/words/tuesday.mp3",
-        "text": "Tuesday"
-      },
-      {
-        "filename": "wednesday.mp3",
-        "path": "/audio/en/words/wednesday.mp3",
-        "text": "Wednesday"
-      },
-      {
-        "filename": "thursday.mp3",
-        "path": "/audio/en/words/thursday.mp3",
-        "text": "Thursday"
-      },
-      {
-        "filename": "friday.mp3",
-        "path": "/audio/en/words/friday.mp3",
-        "text": "Friday"
-      },
-      {
-        "filename": "saturday.mp3",
-        "path": "/audio/en/words/saturday.mp3",
-        "text": "Saturday"
-      },
-      {
-        "filename": "sunday.mp3",
-        "path": "/audio/en/words/sunday.mp3",
-        "text": "Sunday"
-      },
-      {
-        "filename": "week.mp3",
-        "path": "/audio/en/words/week.mp3",
-        "text": "Week"
-      },
-      {
-        "filename": "month.mp3",
-        "path": "/audio/en/words/month.mp3",
-        "text": "Month"
-      },
-      {
-        "filename": "year.mp3",
-        "path": "/audio/en/words/year.mp3",
-        "text": "Year"
-      },
-      {
-        "filename": "brother.mp3",
-        "path": "/audio/en/words/brother.mp3",
-        "text": "Brother"
-      },
-      {
-        "filename": "sister.mp3",
-        "path": "/audio/en/words/sister.mp3",
-        "text": "Sister"
-      },
-      {
-        "filename": "eye.mp3",
-        "path": "/audio/en/words/eye.mp3",
-        "text": "Eye"
-      },
-      {
-        "filename": "eyes.mp3",
-        "path": "/audio/en/words/eyes.mp3",
-        "text": "Eyes"
-      },
-      {
-        "filename": "nose.mp3",
-        "path": "/audio/en/words/nose.mp3",
-        "text": "Nose"
-      },
-      {
-        "filename": "cheek.mp3",
-        "path": "/audio/en/words/cheek.mp3",
-        "text": "Cheek"
-      },
-      {
-        "filename": "heart.mp3",
-        "path": "/audio/en/words/heart.mp3",
-        "text": "Heart"
-      },
-      {
-        "filename": "cup.mp3",
-        "path": "/audio/en/words/cup.mp3",
-        "text": "Cup"
-      },
-      {
-        "filename": "glass.mp3",
-        "path": "/audio/en/words/glass.mp3",
-        "text": "Glass (cup)"
-      },
-      {
-        "filename": "kettle.mp3",
-        "path": "/audio/en/words/kettle.mp3",
-        "text": "Kettle"
-      },
-      {
-        "filename": "oil.mp3",
-        "path": "/audio/en/words/oil.mp3",
-        "text": "Oil"
-      },
-      {
-        "filename": "lemon.mp3",
-        "path": "/audio/en/words/lemon.mp3",
-        "text": "Lemon"
-      },
-      {
-        "filename": "yogurt.mp3",
-        "path": "/audio/en/words/yogurt.mp3",
-        "text": "Yogurt"
-      },
-      {
-        "filename": "hedgehog.mp3",
-        "path": "/audio/en/words/hedgehog.mp3",
-        "text": "Hedgehog"
-      },
-      {
-        "filename": "beetle.mp3",
-        "path": "/audio/en/words/beetle.mp3",
-        "text": "Beetle / Bug"
-      },
-      {
-        "filename": "zebra.mp3",
-        "path": "/audio/en/words/zebra.mp3",
-        "text": "Zebra"
-      },
-      {
-        "filename": "idea.mp3",
-        "path": "/audio/en/words/idea.mp3",
-        "text": "Idea"
-      },
-      {
-        "filename": "question.mp3",
-        "path": "/audio/en/words/question.mp3",
-        "text": "Question"
-      },
-      {
-        "filename": "success.mp3",
-        "path": "/audio/en/words/success.mp3",
-        "text": "Success"
-      },
-      {
-        "filename": "love.mp3",
-        "path": "/audio/en/words/love.mp3",
-        "text": "Love"
-      },
-      {
-        "filename": "island.mp3",
-        "path": "/audio/en/words/island.mp3",
-        "text": "Island"
-      },
-      {
-        "filename": "big.mp3",
-        "path": "/audio/en/words/big.mp3",
-        "text": "Big / Large"
-      },
-      {
-        "filename": "small.mp3",
-        "path": "/audio/en/words/small.mp3",
-        "text": "Small / Little"
-      },
-      {
-        "filename": "who.mp3",
-        "path": "/audio/en/words/who.mp3",
-        "text": "Who"
-      },
-      {
-        "filename": "what.mp3",
-        "path": "/audio/en/words/what.mp3",
-        "text": "What"
-      },
-      {
-        "filename": "where.mp3",
-        "path": "/audio/en/words/where.mp3",
-        "text": "Where"
-      },
-      {
-        "filename": "when.mp3",
-        "path": "/audio/en/words/when.mp3",
-        "text": "When"
-      },
-      {
-        "filename": "why.mp3",
-        "path": "/audio/en/words/why.mp3",
-        "text": "Why"
-      },
-      {
-        "filename": "how.mp3",
-        "path": "/audio/en/words/how.mp3",
-        "text": "How"
-      },
-      {
-        "filename": "how_much.mp3",
-        "path": "/audio/en/words/how_much.mp3",
-        "text": "How much"
-      },
-      {
-        "filename": "country.mp3",
-        "path": "/audio/en/words/country.mp3",
-        "text": "Country"
-      },
-      {
-        "filename": "car.mp3",
-        "path": "/audio/en/words/car.mp3",
-        "text": "Car"
-      },
-      {
-        "filename": "train.mp3",
-        "path": "/audio/en/words/train.mp3",
-        "text": "Train"
-      },
-      {
-        "filename": "subway.mp3",
-        "path": "/audio/en/words/subway.mp3",
-        "text": "Subway"
-      },
-      {
-        "filename": "square.mp3",
-        "path": "/audio/en/words/square.mp3",
-        "text": "Square"
-      },
-      {
-        "filename": "post_office.mp3",
-        "path": "/audio/en/words/post_office.mp3",
-        "text": "Post office"
-      },
-      {
-        "filename": "police.mp3",
-        "path": "/audio/en/words/police.mp3",
-        "text": "Police"
-      },
-      {
-        "filename": "train_station.mp3",
-        "path": "/audio/en/words/train_station.mp3",
-        "text": "Train station"
-      },
-      {
-        "filename": "we.mp3",
-        "path": "/audio/en/words/we.mp3",
-        "text": "We"
-      },
-      {
-        "filename": "visa.mp3",
-        "path": "/audio/en/words/visa.mp3",
-        "text": "Visa"
-      },
-      {
-        "filename": "telephone.mp3",
-        "path": "/audio/en/words/telephone.mp3",
-        "text": "Telephone"
-      },
-      {
-        "filename": "help.mp3",
-        "path": "/audio/en/words/help.mp3",
-        "text": "Help"
-      },
-      {
-        "filename": "shoe.mp3",
-        "path": "/audio/en/words/shoe.mp3",
-        "text": "Shoe"
-      },
-      {
-        "filename": "fruit.mp3",
-        "path": "/audio/en/words/fruit.mp3",
-        "text": "Fruit"
-      },
-      {
-        "filename": "clock.mp3",
-        "path": "/audio/en/words/clock.mp3",
-        "text": "Clock"
-      },
-      {
-        "filename": "grape.mp3",
-        "path": "/audio/en/words/grape.mp3",
-        "text": "Grape"
-      },
-      {
-        "filename": "beetle.mp3",
-        "path": "/audio/en/words/beetle.mp3",
-        "text": "Beetle"
-      },
-      {
-        "filename": "xylophone.mp3",
-        "path": "/audio/en/words/xylophone.mp3",
-        "text": "Xylophone"
-      },
-      {
-        "filename": "hour.mp3",
-        "path": "/audio/en/words/hour.mp3",
-        "text": "Hour"
-      },
-      {
-        "filename": "minute.mp3",
-        "path": "/audio/en/words/minute.mp3",
-        "text": "Minute"
-      },
-      {
-        "filename": "second.mp3",
-        "path": "/audio/en/words/second.mp3",
-        "text": "Second"
-      },
-      {
-        "filename": "early.mp3",
-        "path": "/audio/en/words/early.mp3",
-        "text": "Early"
-      },
-      {
-        "filename": "late.mp3",
-        "path": "/audio/en/words/late.mp3",
-        "text": "Late"
-      },
-      {
-        "filename": "now.mp3",
-        "path": "/audio/en/words/now.mp3",
-        "text": "Now"
-      },
-      {
-        "filename": "fast.mp3",
-        "path": "/audio/en/words/fast.mp3",
-        "text": "Fast"
-      },
-      {
-        "filename": "purple.mp3",
-        "path": "/audio/en/words/purple.mp3",
-        "text": "Purple"
-      },
-      {
-        "filename": "pink.mp3",
-        "path": "/audio/en/words/pink.mp3",
-        "text": "Pink"
-      },
-      {
-        "filename": "gray.mp3",
-        "path": "/audio/en/words/gray.mp3",
-        "text": "Gray"
-      },
-      {
-        "filename": "to_come.mp3",
-        "path": "/audio/en/words/to_come.mp3",
-        "text": "To come"
-      },
-      {
-        "filename": "to_know.mp3",
-        "path": "/audio/en/words/to_know.mp3",
-        "text": "To know"
-      },
-      {
-        "filename": "to_buy.mp3",
-        "path": "/audio/en/words/to_buy.mp3",
-        "text": "To buy"
-      },
-      {
-        "filename": "to_help.mp3",
-        "path": "/audio/en/words/to_help.mp3",
-        "text": "To help"
-      },
-      {
-        "filename": "to_work.mp3",
-        "path": "/audio/en/words/to_work.mp3",
-        "text": "To work"
-      },
-      {
-        "filename": "to_want.mp3",
-        "path": "/audio/en/words/to_want.mp3",
-        "text": "To want"
-      },
-      {
-        "filename": "mom.mp3",
-        "path": "/audio/en/words/mom.mp3",
-        "text": "Mom"
-      },
-      {
-        "filename": "milk.mp3",
-        "path": "/audio/en/words/milk.mp3",
-        "text": "Milk"
-      },
-      {
-        "filename": "fish.mp3",
-        "path": "/audio/en/words/fish.mp3",
-        "text": "Fish"
-      },
-      {
-        "filename": "house.mp3",
-        "path": "/audio/en/words/house.mp3",
-        "text": "House / Home"
-      },
-      {
-        "filename": "home.mp3",
-        "path": "/audio/en/words/home.mp3",
-        "text": "Home / House"
-      },
-      {
-        "filename": "time.mp3",
-        "path": "/audio/en/words/time.mp3",
-        "text": "Time"
-      },
-      {
-        "filename": "work.mp3",
-        "path": "/audio/en/words/work.mp3",
-        "text": "Work / Job"
-      },
-      {
-        "filename": "object.mp3",
-        "path": "/audio/en/words/object.mp3",
-        "text": "Object"
-      },
-      {
-        "filename": "dog.mp3",
-        "path": "/audio/en/words/dog.mp3",
-        "text": "Dog"
-      },
-      {
-        "filename": "cat.mp3",
-        "path": "/audio/en/words/cat.mp3",
-        "text": "Cat"
-      },
-      {
-        "filename": "christmas_tree.mp3",
-        "path": "/audio/en/words/christmas_tree.mp3",
-        "text": "Christmas tree"
-      },
-      {
-        "filename": "good.mp3",
-        "path": "/audio/en/words/good.mp3",
-        "text": "Good"
-      },
-      {
-        "filename": "apple.mp3",
-        "path": "/audio/en/words/apple.mp3",
-        "text": "Apple"
-      },
-      {
-        "filename": "egg.mp3",
-        "path": "/audio/en/words/egg.mp3",
-        "text": "Egg"
-      },
-      {
-        "filename": "ice.mp3",
-        "path": "/audio/en/words/ice.mp3",
-        "text": "Ice"
-      },
-      {
-        "filename": "juice.mp3",
-        "path": "/audio/en/words/juice.mp3",
-        "text": "Juice"
-      },
-      {
-        "filename": "light.mp3",
-        "path": "/audio/en/words/light.mp3",
-        "text": "Light"
-      },
-      {
-        "filename": "name.mp3",
-        "path": "/audio/en/words/name.mp3",
-        "text": "Name"
-      },
-      {
-        "filename": "orange.mp3",
-        "path": "/audio/en/words/orange.mp3",
-        "text": "Orange"
-      },
-      {
-        "filename": "quiet.mp3",
-        "path": "/audio/en/words/quiet.mp3",
-        "text": "Quiet"
-      },
-      {
-        "filename": "road.mp3",
-        "path": "/audio/en/words/road.mp3",
-        "text": "Road"
-      },
-      {
-        "filename": "school.mp3",
-        "path": "/audio/en/words/school.mp3",
-        "text": "School"
-      },
-      {
-        "filename": "umbrella.mp3",
-        "path": "/audio/en/words/umbrella.mp3",
-        "text": "Umbrella"
-      },
-      {
-        "filename": "voice.mp3",
-        "path": "/audio/en/words/voice.mp3",
-        "text": "Voice"
-      },
-      {
-        "filename": "x-ray.mp3",
-        "path": "/audio/en/words/x-ray.mp3",
-        "text": "X-ray"
-      },
-      {
-        "filename": "zero.mp3",
-        "path": "/audio/en/words/zero.mp3",
-        "text": "Zero"
-      },
-      {
-        "filename": "day.mp3",
-        "path": "/audio/en/words/day.mp3",
-        "text": "Day"
-      },
-      {
-        "filename": "kilogram.mp3",
-        "path": "/audio/en/words/kilogram.mp3",
-        "text": "Kilogram"
-      },
-      {
-        "filename": "night.mp3",
-        "path": "/audio/en/words/night.mp3",
-        "text": "Night"
-      },
-      {
-        "filename": "watch.mp3",
-        "path": "/audio/en/words/watch.mp3",
-        "text": "Watch / Clock"
-      },
-      {
-        "filename": "web.mp3",
-        "path": "/audio/en/words/web.mp3",
-        "text": "Web"
-      },
-      {
-        "filename": "yolk.mp3",
-        "path": "/audio/en/words/yolk.mp3",
-        "text": "Yolk"
-      },
-      {
-        "filename": "wagon.mp3",
-        "path": "/audio/en/words/wagon.mp3",
-        "text": "Wagon / Car"
-      },
-      {
-        "filename": "example.mp3",
-        "path": "/audio/en/words/example.mp3",
-        "text": "Example"
-      },
-      {
-        "filename": "dad.mp3",
-        "path": "/audio/en/words/dad.mp3",
-        "text": "Dad"
-      },
-      {
-        "filename": "morning.mp3",
-        "path": "/audio/en/words/morning.mp3",
-        "text": "Morning"
-      },
-      {
-        "filename": "afternoon.mp3",
-        "path": "/audio/en/words/afternoon.mp3",
-        "text": "Afternoon"
-      },
-      {
-        "filename": "evening.mp3",
-        "path": "/audio/en/words/evening.mp3",
-        "text": "Evening"
-      },
-      {
-        "filename": "czar.mp3",
-        "path": "/audio/en/words/czar.mp3",
-        "text": "Czar / King"
-      },
-      {
-        "filename": "borscht.mp3",
-        "path": "/audio/en/words/borscht.mp3",
-        "text": "Borscht"
-      },
-      {
-        "filename": "south.mp3",
-        "path": "/audio/en/words/south.mp3",
-        "text": "South"
-      },
-      {
-        "filename": "source.mp3",
-        "path": "/audio/en/words/source.mp3",
-        "text": "Source"
-      },
-      {
-        "filename": "or.mp3",
-        "path": "/audio/en/words/or.mp3",
-        "text": "Or"
-      },
-      {
-        "filename": "this.mp3",
-        "path": "/audio/en/words/this.mp3",
-        "text": "This"
-      },
-      {
-        "filename": "i_eat.mp3",
-        "path": "/audio/en/words/i_eat.mp3",
-        "text": "I eat"
-      },
-      {
-        "filename": "yes.mp3",
-        "path": "/audio/en/words/yes.mp3",
-        "text": "Yes"
-      },
-      {
-        "filename": "no.mp3",
-        "path": "/audio/en/words/no.mp3",
-        "text": "No"
-      },
-      {
-        "filename": "maybe.mp3",
-        "path": "/audio/en/words/maybe.mp3",
-        "text": "Maybe"
-      },
-      {
-        "filename": "today.mp3",
-        "path": "/audio/en/words/today.mp3",
-        "text": "Today"
-      },
-      {
-        "filename": "tomorrow.mp3",
-        "path": "/audio/en/words/tomorrow.mp3",
-        "text": "Tomorrow"
-      },
-      {
-        "filename": "yesterday.mp3",
-        "path": "/audio/en/words/yesterday.mp3",
-        "text": "Yesterday"
-      },
-      {
-        "filename": "to_need.mp3",
-        "path": "/audio/en/words/to_need.mp3",
-        "text": "To need"
-      },
-      {
-        "filename": "hello.mp3",
-        "path": "/audio/en/words/hello.mp3",
-        "text": "Hello"
-      },
-      {
-        "filename": "good_morning.mp3",
-        "path": "/audio/en/words/good_morning.mp3",
-        "text": "Good morning"
-      },
-      {
-        "filename": "good_afternoon.mp3",
-        "path": "/audio/en/words/good_afternoon.mp3",
-        "text": "Good afternoon"
-      },
-      {
-        "filename": "good_evening.mp3",
-        "path": "/audio/en/words/good_evening.mp3",
-        "text": "Good evening"
-      },
-      {
-        "filename": "good_night.mp3",
-        "path": "/audio/en/words/good_night.mp3",
-        "text": "Good night"
-      },
-      {
-        "filename": "how_are_you.mp3",
-        "path": "/audio/en/words/how_are_you.mp3",
-        "text": "How are you?"
-      },
-      {
-        "filename": "i_am_fine_thank_you.mp3",
-        "path": "/audio/en/words/i_am_fine_thank_you.mp3",
-        "text": "I am fine, thank you"
-      },
-      {
-        "filename": "very_well_thank_you.mp3",
-        "path": "/audio/en/words/very_well_thank_you.mp3",
-        "text": "Very well, thank you"
-      },
-      {
-        "filename": "and_you.mp3",
-        "path": "/audio/en/words/and_you.mp3",
-        "text": "And you?"
-      },
-      {
-        "filename": "please.mp3",
-        "path": "/audio/en/words/please.mp3",
-        "text": "Please"
-      },
-      {
-        "filename": "thank_you.mp3",
-        "path": "/audio/en/words/thank_you.mp3",
-        "text": "Thank you"
-      },
-      {
-        "filename": "thank_you_very_much.mp3",
-        "path": "/audio/en/words/thank_you_very_much.mp3",
-        "text": "Thank you very much"
-      },
-      {
-        "filename": "you_are_welcome.mp3",
-        "path": "/audio/en/words/you_are_welcome.mp3",
-        "text": "You are welcome"
-      },
-      {
-        "filename": "youre_welcome.mp3",
-        "path": "/audio/en/words/youre_welcome.mp3",
-        "text": "You're welcome"
-      },
-      {
-        "filename": "no_problem.mp3",
-        "path": "/audio/en/words/no_problem.mp3",
-        "text": "No problem"
-      },
-      {
-        "filename": "excuse_me.mp3",
-        "path": "/audio/en/words/excuse_me.mp3",
-        "text": "Excuse me"
-      },
-      {
-        "filename": "i_am_sorry.mp3",
-        "path": "/audio/en/words/i_am_sorry.mp3",
-        "text": "I am sorry"
-      },
-      {
-        "filename": "what_is_your_name.mp3",
-        "path": "/audio/en/words/what_is_your_name.mp3",
-        "text": "What is your name?"
-      },
-      {
-        "filename": "my_name_is.mp3",
-        "path": "/audio/en/words/my_name_is.mp3",
-        "text": "My name is..."
-      },
-      {
-        "filename": "nice_to_meet_you.mp3",
-        "path": "/audio/en/words/nice_to_meet_you.mp3",
-        "text": "Nice to meet you"
-      },
-      {
-        "filename": "where_are_you_from.mp3",
-        "path": "/audio/en/words/where_are_you_from.mp3",
-        "text": "Where are you from?"
-      },
-      {
-        "filename": "i_am_from.mp3",
-        "path": "/audio/en/words/i_am_from.mp3",
-        "text": "I am from..."
-      },
-      {
-        "filename": "goodbye.mp3",
-        "path": "/audio/en/words/goodbye.mp3",
-        "text": "Goodbye"
-      },
-      {
-        "filename": "bye.mp3",
-        "path": "/audio/en/words/bye.mp3",
-        "text": "Bye (informal)"
-      },
-      {
-        "filename": "see_you_later.mp3",
-        "path": "/audio/en/words/see_you_later.mp3",
-        "text": "See you later"
-      },
-      {
-        "filename": "have_a_nice_day.mp3",
-        "path": "/audio/en/words/have_a_nice_day.mp3",
-        "text": "Have a nice day"
-      },
-      {
-        "filename": "have_a_great_day.mp3",
-        "path": "/audio/en/words/have_a_great_day.mp3",
-        "text": "Have a great day"
-      },
-      {
-        "filename": "i_understand.mp3",
-        "path": "/audio/en/words/i_understand.mp3",
-        "text": "I understand"
-      },
-      {
-        "filename": "i_do_not_understand.mp3",
-        "path": "/audio/en/words/i_do_not_understand.mp3",
-        "text": "I do not understand"
-      },
-      {
-        "filename": "i_dont_understand.mp3",
-        "path": "/audio/en/words/i_dont_understand.mp3",
-        "text": "I don't understand"
-      },
-      {
-        "filename": "could_you_repeat_that_please.mp3",
-        "path": "/audio/en/words/could_you_repeat_that_please.mp3",
-        "text": "Could you repeat that, please?"
-      },
-      {
-        "filename": "can_you_repeat_please.mp3",
-        "path": "/audio/en/words/can_you_repeat_please.mp3",
-        "text": "Can you repeat, please?"
-      },
-      {
-        "filename": "please_repeat.mp3",
-        "path": "/audio/en/words/please_repeat.mp3",
-        "text": "Please repeat"
-      },
-      {
-        "filename": "please_speak_more_slowly.mp3",
-        "path": "/audio/en/words/please_speak_more_slowly.mp3",
-        "text": "Please speak more slowly"
-      },
-      {
-        "filename": "can_you_speak_more_slowly.mp3",
-        "path": "/audio/en/words/can_you_speak_more_slowly.mp3",
-        "text": "Can you speak more slowly?"
-      },
-      {
-        "filename": "speak_more_slowly.mp3",
-        "path": "/audio/en/words/speak_more_slowly.mp3",
-        "text": "Speak more slowly"
-      },
-      {
-        "filename": "do_you_speak_english.mp3",
-        "path": "/audio/en/words/do_you_speak_english.mp3",
-        "text": "Do you speak English?"
-      },
-      {
-        "filename": "i_speak_a_little_russian.mp3",
-        "path": "/audio/en/words/i_speak_a_little_russian.mp3",
-        "text": "I speak a little Russian"
-      },
-      {
-        "filename": "what_does_this_mean.mp3",
-        "path": "/audio/en/words/what_does_this_mean.mp3",
-        "text": "What does this mean?"
-      },
-      {
-        "filename": "how_do_you_say.mp3",
-        "path": "/audio/en/words/how_do_you_say.mp3",
-        "text": "How do you say...?"
-      },
-      {
-        "filename": "how_do_you_say_this_in_russian.mp3",
-        "path": "/audio/en/words/how_do_you_say_this_in_russian.mp3",
-        "text": "How do you say this in Russian?"
-      },
-      {
-        "filename": "can_you_help_me.mp3",
-        "path": "/audio/en/words/can_you_help_me.mp3",
-        "text": "Can you help me?"
-      },
-      {
-        "filename": "i_need_help.mp3",
-        "path": "/audio/en/words/i_need_help.mp3",
-        "text": "I need help"
-      },
-      {
-        "filename": "help_me.mp3",
-        "path": "/audio/en/words/help_me.mp3",
-        "text": "Help me"
-      },
-      {
-        "filename": "where_is_the_restroom.mp3",
-        "path": "/audio/en/words/where_is_the_restroom.mp3",
-        "text": "Where is the restroom?"
-      },
-      {
-        "filename": "where_is_the_bathroom.mp3",
-        "path": "/audio/en/words/where_is_the_bathroom.mp3",
-        "text": "Where is the bathroom?"
-      },
-      {
-        "filename": "where_is_the_train_station.mp3",
-        "path": "/audio/en/words/where_is_the_train_station.mp3",
-        "text": "Where is the train station?"
-      },
-      {
-        "filename": "where_is_the_airport.mp3",
-        "path": "/audio/en/words/where_is_the_airport.mp3",
-        "text": "Where is the airport?"
-      },
-      {
-        "filename": "i_would_like_to_go_to_the_airport.mp3",
-        "path": "/audio/en/words/i_would_like_to_go_to_the_airport.mp3",
-        "text": "I would like to go to the airport"
-      },
-      {
-        "filename": "what_time_is_the_departure.mp3",
-        "path": "/audio/en/words/what_time_is_the_departure.mp3",
-        "text": "What time is the departure?"
-      },
-      {
-        "filename": "where_is_the_hotel.mp3",
-        "path": "/audio/en/words/where_is_the_hotel.mp3",
-        "text": "Where is the hotel?"
-      },
-      {
-        "filename": "how_much_is_a_ticket.mp3",
-        "path": "/audio/en/words/how_much_is_a_ticket.mp3",
-        "text": "How much is a ticket?"
-      },
-      {
-        "filename": "i_need_a_taxi.mp3",
-        "path": "/audio/en/words/i_need_a_taxi.mp3",
-        "text": "I need a taxi"
-      },
-      {
-        "filename": "turn_left.mp3",
-        "path": "/audio/en/words/turn_left.mp3",
-        "text": "Turn left"
-      },
-      {
-        "filename": "turn_right.mp3",
-        "path": "/audio/en/words/turn_right.mp3",
-        "text": "Turn right"
-      },
-      {
-        "filename": "go_straight_ahead.mp3",
-        "path": "/audio/en/words/go_straight_ahead.mp3",
-        "text": "Go straight ahead"
-      },
-      {
-        "filename": "a_table_for_two_please.mp3",
-        "path": "/audio/en/words/a_table_for_two_please.mp3",
-        "text": "A table for two, please"
-      },
-      {
-        "filename": "the_menu_please.mp3",
-        "path": "/audio/en/words/the_menu_please.mp3",
-        "text": "The menu, please"
-      },
-      {
-        "filename": "can_i_see_the_menu_please.mp3",
-        "path": "/audio/en/words/can_i_see_the_menu_please.mp3",
-        "text": "Can I see the menu, please?"
-      },
-      {
-        "filename": "i_would_like_water.mp3",
-        "path": "/audio/en/words/i_would_like_water.mp3",
-        "text": "I would like water"
-      },
-      {
-        "filename": "i_want_to_eat.mp3",
-        "path": "/audio/en/words/i_want_to_eat.mp3",
-        "text": "I want to eat"
-      },
-      {
-        "filename": "i_want_to_drink.mp3",
-        "path": "/audio/en/words/i_want_to_drink.mp3",
-        "text": "I want to drink"
-      },
-      {
-        "filename": "what_do_you_recommend.mp3",
-        "path": "/audio/en/words/what_do_you_recommend.mp3",
-        "text": "What do you recommend?"
-      },
-      {
-        "filename": "this_is_delicious.mp3",
-        "path": "/audio/en/words/this_is_delicious.mp3",
-        "text": "This is delicious!"
-      },
-      {
-        "filename": "can_i_have_the_check_please.mp3",
-        "path": "/audio/en/words/can_i_have_the_check_please.mp3",
-        "text": "Can I have the check, please?"
-      },
-      {
-        "filename": "the_check_please.mp3",
-        "path": "/audio/en/words/the_check_please.mp3",
-        "text": "The check, please"
-      },
-      {
-        "filename": "how_much_does_this_cost.mp3",
-        "path": "/audio/en/words/how_much_does_this_cost.mp3",
-        "text": "How much does this cost?"
-      },
-      {
-        "filename": "how_much_does_it_cost.mp3",
-        "path": "/audio/en/words/how_much_does_it_cost.mp3",
-        "text": "How much does it cost?"
-      },
-      {
-        "filename": "do_you_accept_credit_cards.mp3",
-        "path": "/audio/en/words/do_you_accept_credit_cards.mp3",
-        "text": "Do you accept credit cards?"
-      },
-      {
-        "filename": "can_i_pay_by_card.mp3",
-        "path": "/audio/en/words/can_i_pay_by_card.mp3",
-        "text": "Can I pay by card?"
-      },
-      {
-        "filename": "i_am_just_looking.mp3",
-        "path": "/audio/en/words/i_am_just_looking.mp3",
-        "text": "I am just looking"
-      },
-      {
-        "filename": "i_am_just_looking_thank_you.mp3",
-        "path": "/audio/en/words/i_am_just_looking_thank_you.mp3",
-        "text": "I am just looking, thank you"
-      },
-      {
-        "filename": "do_you_have_this_in_another_size.mp3",
-        "path": "/audio/en/words/do_you_have_this_in_another_size.mp3",
-        "text": "Do you have this in another size?"
-      },
-      {
-        "filename": "it_is_too_expensive.mp3",
-        "path": "/audio/en/words/it_is_too_expensive.mp3",
-        "text": "It is too expensive"
-      },
-      {
-        "filename": "i_need_a_doctor.mp3",
-        "path": "/audio/en/words/i_need_a_doctor.mp3",
-        "text": "I need a doctor"
-      },
-      {
-        "filename": "i_dont_feel_well.mp3",
-        "path": "/audio/en/words/i_dont_feel_well.mp3",
-        "text": "I don't feel well"
-      },
-      {
-        "filename": "call_the_police.mp3",
-        "path": "/audio/en/words/call_the_police.mp3",
-        "text": "Call the police"
-      },
-      {
-        "filename": "i_lost_my_passport.mp3",
-        "path": "/audio/en/words/i_lost_my_passport.mp3",
-        "text": "I lost my passport"
-      },
-      {
-        "filename": "what_time_is_it.mp3",
-        "path": "/audio/en/words/what_time_is_it.mp3",
-        "text": "What time is it?"
-      },
-      {
-        "filename": "what_time_is_it_now.mp3",
-        "path": "/audio/en/words/what_time_is_it_now.mp3",
-        "text": "What time is it now?"
-      },
-      {
-        "filename": "at_what_time.mp3",
-        "path": "/audio/en/words/at_what_time.mp3",
-        "text": "At what time?"
-      },
-      {
-        "filename": "one_oclock.mp3",
-        "path": "/audio/en/words/one_oclock.mp3",
-        "text": "One o'clock (1:00)"
-      },
-      {
-        "filename": "it_is_100_sharp.mp3",
-        "path": "/audio/en/words/it_is_100_sharp.mp3",
-        "text": "It is 1:00 sharp"
-      },
-      {
-        "filename": "two_oclock.mp3",
-        "path": "/audio/en/words/two_oclock.mp3",
-        "text": "Two o'clock (2:00)"
-      },
-      {
-        "filename": "it_is_200.mp3",
-        "path": "/audio/en/words/it_is_200.mp3",
-        "text": "It is 2:00"
-      },
-      {
-        "filename": "three_oclock.mp3",
-        "path": "/audio/en/words/three_oclock.mp3",
-        "text": "Three o'clock (3:00)"
-      },
-      {
-        "filename": "exactly_three_oclock.mp3",
-        "path": "/audio/en/words/exactly_three_oclock.mp3",
-        "text": "Exactly three o'clock (3:00)"
-      },
-      {
-        "filename": "four_oclock.mp3",
-        "path": "/audio/en/words/four_oclock.mp3",
-        "text": "Four o'clock (4:00)"
-      },
-      {
-        "filename": "five_oclock.mp3",
-        "path": "/audio/en/words/five_oclock.mp3",
-        "text": "Five o'clock (5:00)"
-      },
-      {
-        "filename": "six_oclock.mp3",
-        "path": "/audio/en/words/six_oclock.mp3",
-        "text": "Six o'clock (6:00)"
-      },
-      {
-        "filename": "seven_oclock.mp3",
-        "path": "/audio/en/words/seven_oclock.mp3",
-        "text": "Seven o'clock (7:00)"
-      },
-      {
-        "filename": "eight_oclock.mp3",
-        "path": "/audio/en/words/eight_oclock.mp3",
-        "text": "Eight o'clock (8:00)"
-      },
-      {
-        "filename": "nine_oclock.mp3",
-        "path": "/audio/en/words/nine_oclock.mp3",
-        "text": "Nine o'clock (9:00)"
-      },
-      {
-        "filename": "ten_oclock.mp3",
-        "path": "/audio/en/words/ten_oclock.mp3",
-        "text": "Ten o'clock (10:00)"
-      },
-      {
-        "filename": "eleven_oclock.mp3",
-        "path": "/audio/en/words/eleven_oclock.mp3",
-        "text": "Eleven o'clock (11:00)"
-      },
-      {
-        "filename": "twelve_oclock.mp3",
-        "path": "/audio/en/words/twelve_oclock.mp3",
-        "text": "Twelve o'clock (12:00)"
-      },
-      {
-        "filename": "half_past_two.mp3",
-        "path": "/audio/en/words/half_past_two.mp3",
-        "text": "Half past two (2:30)"
-      },
-      {
-        "filename": "quarter_to_three.mp3",
-        "path": "/audio/en/words/quarter_to_three.mp3",
-        "text": "Quarter to three (2:45)"
-      },
-      {
-        "filename": "330.mp3",
-        "path": "/audio/en/words/330.mp3",
-        "text": "3:30 (half past three)"
-      },
-      {
-        "filename": "415.mp3",
-        "path": "/audio/en/words/415.mp3",
-        "text": "4:15 (quarter past four)"
-      },
-      {
-        "filename": "445.mp3",
-        "path": "/audio/en/words/445.mp3",
-        "text": "4:45 (quarter to five)"
-      },
-      {
-        "filename": "half_past_twelve.mp3",
-        "path": "/audio/en/words/half_past_twelve.mp3",
-        "text": "Half past twelve (12:30)"
-      },
-      {
-        "filename": "ten_to_two.mp3",
-        "path": "/audio/en/words/ten_to_two.mp3",
-        "text": "Ten to two (1:50)"
-      },
-      {
-        "filename": "half_an_hour.mp3",
-        "path": "/audio/en/words/half_an_hour.mp3",
-        "text": "Half an hour"
-      },
-      {
-        "filename": "quarter_of_an_hour.mp3",
-        "path": "/audio/en/words/quarter_of_an_hour.mp3",
-        "text": "Quarter of an hour"
-      },
-      {
-        "filename": "in_the_morning.mp3",
-        "path": "/audio/en/words/in_the_morning.mp3",
-        "text": "In the morning (a.m.)"
-      },
-      {
-        "filename": "in_the_afternoon.mp3",
-        "path": "/audio/en/words/in_the_afternoon.mp3",
-        "text": "In the afternoon (p.m.)"
-      },
-      {
-        "filename": "in_the_evening.mp3",
-        "path": "/audio/en/words/in_the_evening.mp3",
-        "text": "In the evening (p.m.)"
-      },
-      {
-        "filename": "at_night.mp3",
-        "path": "/audio/en/words/at_night.mp3",
-        "text": "At night"
-      },
-      {
-        "filename": "noon.mp3",
-        "path": "/audio/en/words/noon.mp3",
-        "text": "Noon / Midday"
-      },
-      {
-        "filename": "midnight.mp3",
-        "path": "/audio/en/words/midnight.mp3",
-        "text": "Midnight"
-      },
-      {
-        "filename": "on_time.mp3",
-        "path": "/audio/en/words/on_time.mp3",
-        "text": "On time"
-      },
-      {
-        "filename": "hi.mp3",
-        "path": "/audio/en/words/hi.mp3",
-        "text": "Hi / Bye"
-      },
-      {
-        "filename": "i_am_doing_well_thank_you.mp3",
-        "path": "/audio/en/words/i_am_doing_well_thank_you.mp3",
-        "text": "I am doing well, thank you"
-      },
-      {
-        "filename": "pleased_to_meet_you.mp3",
-        "path": "/audio/en/words/pleased_to_meet_you.mp3",
-        "text": "Pleased to meet you"
-      },
-      {
-        "filename": "where_are_the_restrooms.mp3",
-        "path": "/audio/en/words/where_are_the_restrooms.mp3",
-        "text": "Where are the restrooms?"
-      },
-      {
-        "filename": "can_you_repeat.mp3",
-        "path": "/audio/en/words/can_you_repeat.mp3",
-        "text": "Can you repeat?"
-      },
-      {
-        "filename": "see_you_soon.mp3",
-        "path": "/audio/en/words/see_you_soon.mp3",
-        "text": "See you soon"
-      },
-      {
-        "filename": "one_hundred.mp3",
-        "path": "/audio/en/words/one_hundred.mp3",
-        "text": "One hundred"
-      },
-      {
-        "filename": "one_thousand.mp3",
-        "path": "/audio/en/words/one_thousand.mp3",
-        "text": "One thousand"
-      },
-      {
-        "filename": "is_it_far_from_here.mp3",
-        "path": "/audio/en/words/is_it_far_from_here.mp3",
-        "text": "Is it far from here?"
-      },
-      {
-        "filename": "could_you_speak_slower_please.mp3",
-        "path": "/audio/en/words/could_you_speak_slower_please.mp3",
-        "text": "Could you speak slower, please?"
-      },
-      {
-        "filename": "can_you_hear_me.mp3",
-        "path": "/audio/en/words/can_you_hear_me.mp3",
-        "text": "Can you hear me?"
-      },
-      {
-        "filename": "can_you_see_my_screen.mp3",
-        "path": "/audio/en/words/can_you_see_my_screen.mp3",
-        "text": "Can you see my screen?"
-      },
-      {
-        "filename": "let_me_share_my_screen.mp3",
-        "path": "/audio/en/words/let_me_share_my_screen.mp3",
-        "text": "Let me share my screen"
-      },
-      {
-        "filename": "what_is_the_wi-fi_password.mp3",
-        "path": "/audio/en/words/what_is_the_wi-fi_password.mp3",
-        "text": "What is the Wi-Fi password?"
-      },
-      {
-        "filename": "the_internet_connection_is_slow.mp3",
-        "path": "/audio/en/words/the_internet_connection_is_slow.mp3",
-        "text": "The internet connection is slow"
-      },
-      {
-        "filename": "can_you_send_it_by_email.mp3",
-        "path": "/audio/en/words/can_you_send_it_by_email.mp3",
-        "text": "Can you send it by email?"
-      },
-      {
-        "filename": "my_battery_is_almost_dead.mp3",
-        "path": "/audio/en/words/my_battery_is_almost_dead.mp3",
-        "text": "My battery is almost dead"
-      },
-      {
-        "filename": "lets_schedule_a_meeting.mp3",
-        "path": "/audio/en/words/lets_schedule_a_meeting.mp3",
-        "text": "Let's schedule a meeting"
-      },
-      {
-        "filename": "i_will_send_you_an_email.mp3",
-        "path": "/audio/en/words/i_will_send_you_an_email.mp3",
-        "text": "I will send you an email"
-      },
-      {
-        "filename": "when_is_the_deadline.mp3",
-        "path": "/audio/en/words/when_is_the_deadline.mp3",
-        "text": "When is the deadline?"
-      },
-      {
-        "filename": "where_is_the_nearest_pharmacy.mp3",
-        "path": "/audio/en/words/where_is_the_nearest_pharmacy.mp3",
-        "text": "Where is the nearest pharmacy?"
-      },
-      {
-        "filename": "i_am_allergic_to_nuts.mp3",
-        "path": "/audio/en/words/i_am_allergic_to_nuts.mp3",
-        "text": "I am allergic to nuts"
-      },
-      {
-        "filename": "i_have_a_reservation.mp3",
-        "path": "/audio/en/words/i_have_a_reservation.mp3",
-        "text": "I have a reservation"
-      },
-      {
-        "filename": "where_is_the_bus_stop.mp3",
-        "path": "/audio/en/words/where_is_the_bus_stop.mp3",
-        "text": "Where is the bus stop?"
-      },
-      {
-        "filename": "how_do_i_get_to_the_airport.mp3",
-        "path": "/audio/en/words/how_do_i_get_to_the_airport.mp3",
-        "text": "How do I get to the airport?"
-      },
-      {
-        "filename": "i_would_like_a_coffee_please.mp3",
-        "path": "/audio/en/words/i_would_like_a_coffee_please.mp3",
-        "text": "I would like a coffee, please"
-      },
-      {
-        "filename": "a_bottle_of_water_please.mp3",
-        "path": "/audio/en/words/a_bottle_of_water_please.mp3",
-        "text": "A bottle of water, please"
-      }
+      "200_sharp.mp3",
+      "230.mp3",
+      "245.mp3",
+      "330.mp3",
+      "415.mp3",
+      "445.mp3",
+      "a_bottle_of_water_please.mp3",
+      "a_table_for_two_please.mp3",
+      "adjective_aged_or_historic.mp3",
+      "adjective_color_of_the_sun.mp3",
+      "adjective_high_in_price.mp3",
+      "adjective_high_temperature.mp3",
+      "adjective_large_in_size.mp3",
+      "adjective_little_in_size.mp3",
+      "adjective_low_in_price.mp3",
+      "adjective_low_temperature.mp3",
+      "adjective_making_very_little_sound.mp3",
+      "adjective_positive_fine_nice.mp3",
+      "adjective_recently_made_or_modern.mp3",
+      "affirmative_response.mp3",
+      "afternoon.mp3",
+      "airplane.mp3",
+      "airport.mp3",
+      "algorithm.mp3",
+      "allergy.mp3",
+      "alligator.mp3",
+      "am.mp3",
+      "and_you.mp3",
+      "apologizing_for_an_error_or_bump.mp3",
+      "app.mp3",
+      "apple.mp3",
+      "application.mp3",
+      "artificial_intelligence.mp3",
+      "asking_for_assistance_or_support.mp3",
+      "asking_for_directions_to_airport.mp3",
+      "asking_for_directions_to_rail_transit.mp3",
+      "asking_for_public_transit_location.mp3",
+      "asking_for_the_current_time.mp3",
+      "asking_for_wireless_internet_access.mp3",
+      "asking_if_the_other_person_knows_english.mp3",
+      "asking_someone_to_say_something_again.mp3",
+      "asking_the_price_of_an_item_in_a_store.mp3",
+      "asking_the_server_for_the_food_list.mp3",
+      "asking_the_server_for_the_restaurant_bill.mp3",
+      "asking_when_a_project_or_task_is_due.mp3",
+      "asking_where_the_toilet_or_bathroom_is_located.mp3",
+      "asking_where_to_buy_medicine_nearby.mp3",
+      "at_night.mp3",
+      "at_what_time.mp3",
+      "away.mp3",
+      "bad.mp3",
+      "bag.mp3",
+      "banana.mp3",
+      "bandage.mp3",
+      "bank.mp3",
+      "baseball.mp3",
+      "battery.mp3",
+      "beer.mp3",
+      "beetle.mp3",
+      "big.mp3",
+      "bird.mp3",
+      "black.mp3",
+      "blue.mp3",
+      "boat.mp3",
+      "book.mp3",
+      "borscht.mp3",
+      "boss.mp3",
+      "boy.mp3",
+      "bread.mp3",
+      "breakfast.mp3",
+      "bridge.mp3",
+      "brother.mp3",
+      "budget.mp3",
+      "bullet_train.mp3",
+      "bus.mp3",
+      "buy.mp3",
+      "bye.mp3",
+      "cable.mp3",
+      "call_the_police.mp3",
+      "camera.mp3",
+      "can_i_have_the_check_please.mp3",
+      "can_i_pay_by_card.mp3",
+      "can_i_see_the_menu_please.mp3",
+      "can_you_hear_me.mp3",
+      "can_you_help_me.mp3",
+      "can_you_repeat.mp3",
+      "can_you_repeat_please.mp3",
+      "can_you_see_my_screen.mp3",
+      "can_you_send_it_by_email.mp3",
+      "can_you_speak_more_slowly.mp3",
+      "candle.mp3",
+      "car.mp3",
+      "card.mp3",
+      "cash.mp3",
+      "cat.mp3",
+      "center.mp3",
+      "chair.mp3",
+      "charger.mp3",
+      "cheap.mp3",
+      "checking_audio_on_a_video_or_phone_call.mp3",
+      "checking_in_at_a_hotel_or_restaurant.mp3",
+      "checking_payment_options_before_buying.mp3",
+      "checking_screen_share_during_a_remote_meeting.mp3",
+      "cheek.mp3",
+      "cheese.mp3",
+      "child.mp3",
+      "christmas_tree.mp3",
+      "cinema.mp3",
+      "city.mp3",
+      "client.mp3",
+      "clock.mp3",
+      "close.mp3",
+      "closed.mp3",
+      "clothes.mp3",
+      "cloud.mp3",
+      "cloud_storage.mp3",
+      "code.mp3",
+      "coffee.mp3",
+      "cold.mp3",
+      "colleague.mp3",
+      "color_black.mp3",
+      "color_blue.mp3",
+      "color_green.mp3",
+      "color_red.mp3",
+      "color_white.mp3",
+      "color_yellow.mp3",
+      "common_inquiry_about_someone\\.mp3",
+      "communicating_a_food_allergy_clearly.mp3",
+      "company.mp3",
+      "computer.mp3",
+      "contract.mp3",
+      "cooking.mp3",
+      "could_you_repeat_that_please.mp3",
+      "could_you_speak_slower_please.mp3",
+      "country.mp3",
+      "credit_card.mp3",
+      "cucumber.mp3",
+      "cup.mp3",
+      "customs.mp3",
+      "cv.mp3",
+      "cybersecurity.mp3",
+      "czar.mp3",
+      "dad.mp3",
+      "database.mp3",
+      "day.mp3",
+      "deadline.mp3",
+      "delete.mp3",
+      "delivery.mp3",
+      "desk.mp3",
+      "developer.mp3",
+      "dinner.mp3",
+      "discount.mp3",
+      "do_you_accept_credit_cards.mp3",
+      "do_you_have_this_in_another_size.mp3",
+      "do_you_speak_english.mp3",
+      "doctor.mp3",
+      "dog.mp3",
+      "door.mp3",
+      "download.mp3",
+      "drink.mp3",
+      "early.mp3",
+      "egg.mp3",
+      "eight.mp3",
+      "eight_oclock.mp3",
+      "eighteen.mp3",
+      "eighty.mp3",
+      "eleven.mp3",
+      "eleven_oclock.mp3",
+      "email.mp3",
+      "emergency.mp3",
+      "employee.mp3",
+      "entrance.mp3",
+      "error.mp3",
+      "essential_courtesy_word_when_asking_for_anything.mp3",
+      "evening.mp3",
+      "exactly_three_oclock.mp3",
+      "example.mp3",
+      "excuse_me.mp3",
+      "exit.mp3",
+      "expensive.mp3",
+      "expressing_sincere_gratitude.mp3",
+      "expressing_that_you_need_clarification.mp3",
+      "eye.mp3",
+      "eyes.mp3",
+      "factory.mp3",
+      "family.mp3",
+      "fast.mp3",
+      "father.mp3",
+      "fever.mp3",
+      "fifteen.mp3",
+      "fifty.mp3",
+      "file.mp3",
+      "fish.mp3",
+      "five.mp3",
+      "five_oclock.mp3",
+      "flight.mp3",
+      "flower.mp3",
+      "folder.mp3",
+      "food.mp3",
+      "forest.mp3",
+      "forty.mp3",
+      "four.mp3",
+      "four_oclock.mp3",
+      "fourteen.mp3",
+      "fox.mp3",
+      "friday.mp3",
+      "fridge.mp3",
+      "friend.mp3",
+      "fruit.mp3",
+      "fruits.mp3",
+      "gate.mp3",
+      "getting_attention_politely_or_stepping_past_someone.mp3",
+      "girl.mp3",
+      "glass.mp3",
+      "glasses.mp3",
+      "go_straight_ahead.mp3",
+      "goal.mp3",
+      "good.mp3",
+      "good_afternoon.mp3",
+      "good_evening.mp3",
+      "good_morning.mp3",
+      "good_night.mp3",
+      "goodbye.mp3",
+      "grape.mp3",
+      "gray.mp3",
+      "green.mp3",
+      "greeting_used_between_1200_pm_and_evening.mp3",
+      "half_an_hour.mp3",
+      "half_past_twelve.mp3",
+      "half_past_two.mp3",
+      "happy.mp3",
+      "hardware.mp3",
+      "hat.mp3",
+      "have_a_great_day.mp3",
+      "have_a_nice_day.mp3",
+      "headache.mp3",
+      "headphones.mp3",
+      "health.mp3",
+      "heart.mp3",
+      "hedgehog.mp3",
+      "hello.mp3",
+      "help.mp3",
+      "help_me.mp3",
+      "hi.mp3",
+      "home.mp3",
+      "hospital.mp3",
+      "hot.mp3",
+      "hotel.mp3",
+      "hour.mp3",
+      "house.mp3",
+      "how.mp3",
+      "how_are_you.mp3",
+      "how_do_i_get_to_the_airport.mp3",
+      "how_do_you_say.mp3",
+      "how_do_you_say_this_in_russian.mp3",
+      "how_much.mp3",
+      "how_much_does_it_cost.mp3",
+      "how_much_does_this_cost.mp3",
+      "how_much_is_a_ticket.mp3",
+      "husband.mp3",
+      "i_am_allergic_to_nuts.mp3",
+      "i_am_doing_well_thank_you.mp3",
+      "i_am_fine_thank_you.mp3",
+      "i_am_from.mp3",
+      "i_am_just_looking.mp3",
+      "i_am_just_looking_thank_you.mp3",
+      "i_am_sorry.mp3",
+      "i_do_not_understand.mp3",
+      "i_dont_feel_well.mp3",
+      "i_dont_understand.mp3",
+      "i_eat.mp3",
+      "i_have_a_reservation.mp3",
+      "i_lost_my_passport.mp3",
+      "i_need_a_doctor.mp3",
+      "i_need_a_taxi.mp3",
+      "i_need_help.mp3",
+      "i_speak_a_little_russian.mp3",
+      "i_understand.mp3",
+      "i_want_to_drink.mp3",
+      "i_want_to_eat.mp3",
+      "i_will_send_you_an_email.mp3",
+      "i_would_like_a_coffee_please.mp3",
+      "i_would_like_to_go_to_the_airport.mp3",
+      "i_would_like_water.mp3",
+      "ice.mp3",
+      "idea.mp3",
+      "in_the_afternoon.mp3",
+      "in_the_evening.mp3",
+      "in_the_morning.mp3",
+      "inquiring_about_walking_or_travel_distance.mp3",
+      "insect.mp3",
+      "internet.mp3",
+      "interview.mp3",
+      "investment.mp3",
+      "invoice.mp3",
+      "is_it_far_from_here.mp3",
+      "island.mp3",
+      "it_is_100_sharp.mp3",
+      "it_is_200.mp3",
+      "it_is_too_expensive.mp3",
+      "japan.mp3",
+      "job.mp3",
+      "juice.mp3",
+      "kettle.mp3",
+      "key.mp3",
+      "keyboard.mp3",
+      "kilogram.mp3",
+      "laptop.mp3",
+      "late.mp3",
+      "lemon.mp3",
+      "let\\.mp3",
+      "let_me_share_my_screen.mp3",
+      "lets_schedule_a_meeting.mp3",
+      "letter.mp3",
+      "light.mp3",
+      "link.mp3",
+      "lion.mp3",
+      "love.mp3",
+      "luggage.mp3",
+      "lunch.mp3",
+      "magazine.mp3",
+      "man.mp3",
+      "manager.mp3",
+      "map.mp3",
+      "maybe.mp3",
+      "meat.mp3",
+      "medicine.mp3",
+      "meeting.mp3",
+      "message.mp3",
+      "microphone.mp3",
+      "midnight.mp3",
+      "milk.mp3",
+      "minute.mp3",
+      "mom.mp3",
+      "monday.mp3",
+      "money.mp3",
+      "month.mp3",
+      "moon.mp3",
+      "morning.mp3",
+      "mother.mp3",
+      "mountain.mp3",
+      "mouse.mp3",
+      "museum.mp3",
+      "music.mp3",
+      "my_battery_is_almost_dead.mp3",
+      "my_name_is.mp3",
+      "name.mp3",
+      "negative_response.mp3",
+      "new.mp3",
+      "nice_to_meet_you.mp3",
+      "night.mp3",
+      "nine.mp3",
+      "nine_oclock.mp3",
+      "nineteen.mp3",
+      "ninety.mp3",
+      "no.mp3",
+      "no_problem.mp3",
+      "noon.mp3",
+      "nose.mp3",
+      "noun_a_building_where_people_live.mp3",
+      "noun_a_close_companion_you_care_about.mp3",
+      "noun_a_friendly_loyal_pet.mp3",
+      "noun_a_learner_taking_classes.mp3",
+      "noun_a_place_of_learning.mp3",
+      "noun_a_small_furry_pet.mp3",
+      "noun_a_sweet_round_fruit.mp3",
+      "noun_advance_booking_for_room_or_table.mp3",
+      "noun_adverse_reaction_to_food.mp3",
+      "noun_airplane_journey.mp3",
+      "noun_airport_boarding_exit.mp3",
+      "noun_animal_that_swims_in_water.mp3",
+      "noun_baked_staple_food.mp3",
+      "noun_bill_for_goods_or_services.mp3",
+      "noun_border_inspection_at_airport.mp3",
+      "noun_breakfast_food_from_birds.mp3",
+      "noun_brightness_from_sun_or_lamp.mp3",
+      "noun_business_organization_or_firm.mp3",
+      "noun_cost_of_an_item.mp3",
+      "noun_currency_used_to_purchase_goods.mp3",
+      "noun_customer_or_business_partner.mp3",
+      "noun_daylight_star.mp3",
+      "noun_device_power_charge.mp3",
+      "noun_digital_document_or_folder_item.mp3",
+      "noun_display_monitor_on_phone_or_laptop.mp3",
+      "noun_doctor\\.mp3",
+      "noun_drink_made_from_fruit.mp3",
+      "noun_due_date_for_completing_work.mp3",
+      "noun_electronic_machine_for_work.mp3",
+      "noun_electronic_mail_message.mp3",
+      "noun_essential_clear_liquid.mp3",
+      "noun_essential_drink_for_life.mp3",
+      "noun_evening_meal.mp3",
+      "noun_female_parent.mp3",
+      "noun_financial_institution_for_money.mp3",
+      "noun_first_meal_of_the_day.mp3",
+      "noun_frozen_solid_water.mp3",
+      "noun_frozen_white_flakes_in_winter.mp3",
+      "noun_global_network.mp3",
+      "noun_group_working_together.mp3",
+      "noun_heavy_rain_wind_or_thunder.mp3",
+      "noun_high_body_temperature.mp3",
+      "noun_hot_herbal_or_leaf_drink.mp3",
+      "noun_hot_or_iced_herbal.mp3",
+      "noun_hotel_accommodation_space.mp3",
+      "noun_hub_for_airplanes_and_flights.mp3",
+      "noun_instructor_at_school.mp3",
+      "noun_large_grocery_store.mp3",
+      "noun_large_populated_urban_area.mp3",
+      "noun_male_parent.mp3",
+      "noun_medical_center_for_illness.mp3",
+      "noun_medical_physician.mp3",
+      "noun_medical_picture_of_bones.mp3",
+      "noun_metal_tool_to_open_doors.mp3",
+      "noun_midday_meal.mp3",
+      "noun_mobile_device_for_calling.mp3",
+      "noun_mobile_smartphone.mp3",
+      "noun_moving_air_outdoors.mp3",
+      "noun_nourishment_to_eat.mp3",
+      "noun_official_travel_identification_document.mp3",
+      "noun_pages_with_words_to_read.mp3",
+      "noun_pain_in_the_head.mp3",
+      "noun_parents_children_and_relatives.mp3",
+      "noun_pass_for_transit_cinema_or_events.mp3",
+      "noun_payment_card.mp3",
+      "noun_physical_bills_and_coins.mp3",
+      "noun_physical_hurt_or_ache.mp3",
+      "noun_physical_well-being.mp3",
+      "noun_place_to_buy_and_eat_meals.mp3",
+      "noun_place_with_rooms_for_travelers.mp3",
+      "noun_planned_work_assignment.mp3",
+      "noun_popular_brewed_morning_beverage.mp3",
+      "noun_price_reduction_or_sale.mp3",
+      "noun_printed_literature_or_study_material.mp3",
+      "noun_protective_strip_for_a_cut.mp3",
+      "noun_regular_employment_pay.mp3",
+      "noun_room_or_door_opener.mp3",
+      "noun_round_citrus_fruit_and_color.mp3",
+      "noun_secret_login_key.mp3",
+      "noun_shield_used_against_rain.mp3",
+      "noun_software_bug_or_mistake.mp3",
+      "noun_software_programming_or_passcode.mp3",
+      "noun_sound_made_when_speaking.mp3",
+      "noun_stop_for_trains_metro_or_buses.mp3",
+      "noun_store_for_medicine_and_prescriptions.mp3",
+      "noun_street_for_cars_to_drive.mp3",
+      "noun_suitcases_and_travel_bags.mp3",
+      "noun_supervisor_or_team_lead.mp3",
+      "noun_the_number_0.mp3",
+      "noun_timetable_or_calendar_plan.mp3",
+      "noun_treatment_or_drug_from_a_pharmacy.mp3",
+      "noun_urgent_crisis_requiring_help.mp3",
+      "noun_visual_guide_of_streets.mp3",
+      "noun_water_falling_from_clouds.mp3",
+      "noun_way_in_to_a_building.mp3",
+      "noun_way_out_of_a_building.mp3",
+      "noun_website_url_or_hyperlink.mp3",
+      "noun_what_a_person_is_called.mp3",
+      "noun_white_dairy_drink.mp3",
+      "noun_white_or_gray_mass_in_the_sky.mp3",
+      "noun_work_call_or_conference_session.mp3",
+      "noun_written_legal_agreement.mp3",
+      "noun_young_person.mp3",
+      "now.mp3",
+      "object.mp3",
+      "object_particle.mp3",
+      "office.mp3",
+      "offline.mp3",
+      "oil.mp3",
+      "old.mp3",
+      "on_time.mp3",
+      "one.mp3",
+      "one_hundred.mp3",
+      "one_oclock.mp3",
+      "one_thousand.mp3",
+      "online.mp3",
+      "open.mp3",
+      "operating_system.mp3",
+      "or.mp3",
+      "orange.mp3",
+      "ordering_a_beverage_politely_at_a_cafe.mp3",
+      "ordering_drinking_water.mp3",
+      "package.mp3",
+      "pain.mp3",
+      "park.mp3",
+      "passport.mp3",
+      "password.mp3",
+      "pay.mp3",
+      "person.mp3",
+      "pharmacy.mp3",
+      "phone.mp3",
+      "photo.mp3",
+      "piano.mp3",
+      "pink.mp3",
+      "please.mp3",
+      "please_repeat.mp3",
+      "please_speak_more_slowly.mp3",
+      "pleased_to_meet_you.mp3",
+      "plushie.mp3",
+      "pm.mp3",
+      "police.mp3",
+      "polite_greeting_used_after_600_pm.mp3",
+      "polite_greeting_used_from_dawn_until_1200_pm.mp3",
+      "polite_phrase_said_when_meeting_someone_for_the_first_time.mp3",
+      "polite_question_to_ask_someone_their_name.mp3",
+      "polite_request_when_someone_speaks_too_quickly.mp3",
+      "post_office.mp3",
+      "prescription.mp3",
+      "presentation.mp3",
+      "price.mp3",
+      "printer.mp3",
+      "product.mp3",
+      "project.mp3",
+      "promising_to_follow_up_in_writing.mp3",
+      "purple.mp3",
+      "quarter_of_an_hour.mp3",
+      "quarter_to_three.mp3",
+      "question.mp3",
+      "quiet.mp3",
+      "radio.mp3",
+      "rain.mp3",
+      "ready.mp3",
+      "receipt.mp3",
+      "red.mp3",
+      "refund.mp3",
+      "remote_work.mp3",
+      "report.mp3",
+      "requesting_a_cab_ride.mp3",
+      "requesting_seating_at_a_restaurant.mp3",
+      "requesting_urgent_medical_care.mp3",
+      "reservation.mp3",
+      "restaurant.mp3",
+      "resume.mp3",
+      "revenue.mp3",
+      "rice.mp3",
+      "rice_cake.mp3",
+      "road.mp3",
+      "room.mp3",
+      "salary.mp3",
+      "salt.mp3",
+      "saturday.mp3",
+      "save.mp3",
+      "schedule.mp3",
+      "school.mp3",
+      "screen.mp3",
+      "sea.mp3",
+      "search.mp3",
+      "second.mp3",
+      "see_you_later.mp3",
+      "see_you_soon.mp3",
+      "sell.mp3",
+      "send.mp3",
+      "server.mp3",
+      "service.mp3",
+      "setting_up_a_work_call_or_appointment.mp3",
+      "seven.mp3",
+      "seven_oclock.mp3",
+      "seventeen.mp3",
+      "seventy.mp3",
+      "ship.mp3",
+      "shipping.mp3",
+      "shoe.mp3",
+      "shoes.mp3",
+      "shop.mp3",
+      "signature.mp3",
+      "sister.mp3",
+      "six.mp3",
+      "six_oclock.mp3",
+      "sixteen.mp3",
+      "sixty.mp3",
+      "sky.mp3",
+      "slow.mp3",
+      "small.mp3",
+      "snow.mp3",
+      "software.mp3",
+      "source.mp3",
+      "south.mp3",
+      "speak_more_slowly.mp3",
+      "square.mp3",
+      "standard_farewell_phrase.mp3",
+      "standard_polite_reply_to_thank_you.mp3",
+      "standard_way_to_introduce_yourself.mp3",
+      "star.mp3",
+      "startup.mp3",
+      "stating_that_a_price_is_too_high.mp3",
+      "station.mp3",
+      "stew.mp3",
+      "store.mp3",
+      "storm.mp3",
+      "street.mp3",
+      "student.mp3",
+      "subway.mp3",
+      "success.mp3",
+      "summer.mp3",
+      "sun.mp3",
+      "sunday.mp3",
+      "supermarket.mp3",
+      "support.mp3",
+      "sushi.mp3",
+      "table.mp3",
+      "tablet.mp3",
+      "task.mp3",
+      "taxi.mp3",
+      "tea.mp3",
+      "teacher.mp3",
+      "team.mp3",
+      "telephone.mp3",
+      "ten.mp3",
+      "ten_oclock.mp3",
+      "ten_to_two.mp3",
+      "thank_you.mp3",
+      "thank_you_very_much.mp3",
+      "the_check_please.mp3",
+      "the_internet_connection_is_slow.mp3",
+      "the_menu_please.mp3",
+      "theater.mp3",
+      "thirteen.mp3",
+      "thirty.mp3",
+      "this.mp3",
+      "this_is_delicious.mp3",
+      "three.mp3",
+      "three_oclock.mp3",
+      "thursday.mp3",
+      "ticket.mp3",
+      "time.mp3",
+      "to_buy.mp3",
+      "to_come.mp3",
+      "to_drink.mp3",
+      "to_eat.mp3",
+      "to_go.mp3",
+      "to_help.mp3",
+      "to_know.mp3",
+      "to_learn.mp3",
+      "to_need.mp3",
+      "to_speak.mp3",
+      "to_understand.mp3",
+      "to_want.mp3",
+      "to_work.mp3",
+      "today.mp3",
+      "tomato.mp3",
+      "tomorrow.mp3",
+      "train.mp3",
+      "train_station.mp3",
+      "transfer.mp3",
+      "tree.mp3",
+      "tuesday.mp3",
+      "turn_left.mp3",
+      "turn_right.mp3",
+      "twelve.mp3",
+      "twelve_oclock.mp3",
+      "twenty.mp3",
+      "two.mp3",
+      "two_oclock.mp3",
+      "umbrella.mp3",
+      "universal_friendly_greeting.mp3",
+      "update.mp3",
+      "upload.mp3",
+      "vacation.mp3",
+      "vegetables.mp3",
+      "verb_consume_food.mp3",
+      "verb_gain_knowledge_or_skill.mp3",
+      "verb_grasp_the_meaning.mp3",
+      "verb_move_or_travel_somewhere.mp3",
+      "verb_say_words_communicate_in_a_language.mp3",
+      "verb_swallow_liquids.mp3",
+      "very_well_thank_you.mp3",
+      "visa.mp3",
+      "voice.mp3",
+      "wagon.mp3",
+      "warm_friendly_closing_remark.mp3",
+      "watch.mp3",
+      "water.mp3",
+      "we.mp3",
+      "web.mp3",
+      "website.mp3",
+      "wednesday.mp3",
+      "week.mp3",
+      "what.mp3",
+      "what_do_you_recommend.mp3",
+      "what_does_this_mean.mp3",
+      "what_is_the_wi-fi_password.mp3",
+      "what_is_your_name.mp3",
+      "what_time_is_it.mp3",
+      "what_time_is_it_now.mp3",
+      "what_time_is_the_departure.mp3",
+      "when.mp3",
+      "when_is_the_deadline.mp3",
+      "where.mp3",
+      "where_are_the_restrooms.mp3",
+      "where_are_you_from.mp3",
+      "where_is_the_airport.mp3",
+      "where_is_the_bathroom.mp3",
+      "where_is_the_bus_stop.mp3",
+      "where_is_the_hotel.mp3",
+      "where_is_the_nearest_pharmacy.mp3",
+      "where_is_the_restroom.mp3",
+      "where_is_the_train_station.mp3",
+      "white.mp3",
+      "who.mp3",
+      "why.mp3",
+      "wi-fi.mp3",
+      "wife.mp3",
+      "wind.mp3",
+      "window.mp3",
+      "wine.mp3",
+      "woman.mp3",
+      "work.mp3",
+      "x-ray.mp3",
+      "xylophone.mp3",
+      "year.mp3",
+      "yellow.mp3",
+      "yes.mp3",
+      "yesterday.mp3",
+      "yogurt.mp3",
+      "yolk.mp3",
+      "you\\.mp3",
+      "you_are_welcome.mp3",
+      "youre_welcome.mp3",
+      "zebra.mp3",
+      "zero.mp3"
+    ],
+    "numbers": [
+      "eight.mp3",
+      "eighteen.mp3",
+      "eighty.mp3",
+      "eleven.mp3",
+      "fifteen.mp3",
+      "fifty.mp3",
+      "five.mp3",
+      "forty.mp3",
+      "four.mp3",
+      "fourteen.mp3",
+      "half_past_two.mp3",
+      "nine.mp3",
+      "nineteen.mp3",
+      "ninety.mp3",
+      "one.mp3",
+      "one_hundred.mp3",
+      "one_thousand.mp3",
+      "quarter_to_three.mp3",
+      "seven.mp3",
+      "seventeen.mp3",
+      "seventy.mp3",
+      "six.mp3",
+      "sixteen.mp3",
+      "sixty.mp3",
+      "ten.mp3",
+      "thirteen.mp3",
+      "thirty.mp3",
+      "three.mp3",
+      "twelve.mp3",
+      "twenty.mp3",
+      "two.mp3",
+      "two_oclock.mp3",
+      "what_time_is_it.mp3",
+      "zero.mp3"
+    ],
+    "time": [
+      "half_past_two.mp3",
+      "quarter_to_three.mp3",
+      "two_oclock.mp3",
+      "what_time_is_it.mp3"
     ]
   }
 }

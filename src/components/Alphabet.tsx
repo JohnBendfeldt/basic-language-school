@@ -199,7 +199,8 @@ const Alphabet: React.FC<AlphabetProps> = ({
                                 text={exampleMeaning}
                                 lang={baseLanguage}
                                 className="example-pronunciation mini"
-                                useLocalAudio={false}
+                                useLocalAudio={true}
+                                audioCategory="words"
                                 label={`Listen to ${exampleMeaning}`}
                               />
                             )}

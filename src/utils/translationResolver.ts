@@ -82,7 +82,14 @@ export const EXTENDED_DICTIONARY: Record<string, Partial<Record<SupportedLanguag
   'vegetables': { en: 'Vegetables', es: 'Verduras', fr: 'Légumes', ru: 'Овощи', pt: 'Legumes', de: 'Gemüse', id: 'Sayuran', tr: 'Sebzeler' },
   'fruits': { en: 'Fruits', es: 'Frutas', fr: 'Fruits', ru: 'Фрукты', pt: 'Frutas', de: 'Obst', id: 'Buah-buahan', tr: 'Meyveler' },
   'fruit': { en: 'Fruit', es: 'Fruta', fr: 'Fruit', ru: 'Фрукт / Фрукты', pt: 'Fruta', de: 'Frucht', id: 'Buah', tr: 'Meyve' },
-  'rice': { en: 'Rice', es: 'Arroz', fr: 'Riz', ru: 'Рис', pt: 'Arroz', de: 'Reis', id: 'Nasi', tr: 'Pirinç' },
+  'banana': { en: 'Banana', es: 'Plátano / Banana', fr: 'Banane', ru: 'Банан', pt: 'Banana', de: 'Banane', id: 'Pisang', tr: 'Muz', ko: '바나나', ja: 'バナナ' },
+  'rice': { en: 'Rice', es: 'Arroz', fr: 'Riz', ru: 'Рис', pt: 'Arroz', de: 'Reis', id: 'Nasi', tr: 'Pirinç', ko: '쌀 / 밥', ja: '米 / ご飯' },
+  'rice cake': { en: 'Rice cake', es: 'Pastel de arroz', fr: 'Gâteau de riz', ru: 'Рисовый пирожок', pt: 'Bolo de arroz', de: 'Reiskuchen', id: 'Kue beras', tr: 'Pirinç keki', ko: '떡', ja: '餅 / お餅' },
+  'bridge': { en: 'Bridge', es: 'Puente', fr: 'Pont', ru: 'Мост', pt: 'Ponte', de: 'Brücke', id: 'Jembatan', tr: 'Köprü', ko: '다리', ja: '橋' },
+  'stew': { en: 'Stew', es: 'Guiso', fr: 'Ragoût', ru: 'Рагу', pt: 'Ensopado', de: 'Eintopf', id: 'Sup kental', tr: 'Güveç', ko: '찌개', ja: 'シチュー' },
+  'radio': { en: 'Radio', es: 'Radio', fr: 'Radio', ru: 'Радио', pt: 'Rádio', de: 'Radio', id: 'Radio', tr: 'Radyo', ko: '라디오', ja: 'ラジオ' },
+  'desk': { en: 'Desk', es: 'Escritorio', fr: 'Bureau', ru: 'Письменный стол', pt: 'Escrivaninha', de: 'Schreibtisch', id: 'Meja tulis', tr: 'Çalışma masası', ko: '책상', ja: '机' },
+  'music': { en: 'Music', es: 'Música', fr: 'Musique', ru: 'Музыка', pt: 'Música', de: 'Musik', id: 'Musik', tr: 'Müzik', ko: '음악', ja: '音楽' },
   'coffee': { en: 'Coffee', es: 'Café', fr: 'Café', ru: 'Кофе', pt: 'Café', de: 'Kaffee', id: 'Kopi', tr: 'Kahve' },
   'tea': { en: 'Tea', es: 'Té', fr: 'Thé', ru: 'Чай', pt: 'Chá', de: 'Tee', id: 'Teh', tr: 'Çay' },
   'beer': { en: 'Beer', es: 'Cerveza', fr: 'Bière', ru: 'Пиво', pt: 'Cerveja', de: 'Bier', id: 'Bir', tr: 'Bira' },
@@ -193,8 +200,8 @@ export const EXTENDED_DICTIONARY: Record<string, Partial<Record<SupportedLanguag
   'hot': { en: 'Hot', es: 'Caliente / Calor', fr: 'Chaud', ru: 'Жарко / Горячий', pt: 'Quente', de: 'Heiß', id: 'Panas', tr: 'Sıcak' },
   'hedgehog': { en: 'Hedgehog', es: 'Erizo', fr: 'Hérisson', ru: 'Ёж', pt: 'Ouriço', de: 'Igel', id: 'Landak', tr: 'Kirpi' },
   'beetle': { en: 'Beetle / Bug', es: 'Escarabajo', fr: 'Scarabée', ru: 'Жук', pt: 'Besouro', de: 'Käfer', id: 'Kumbang', tr: 'Böcek' },
-  'flower': { en: 'Flower', es: 'Flor', fr: 'Fleur', ru: 'Цветок', pt: 'Flor', de: 'Blume', id: 'Bunga', tr: 'Çiçek' },
-  'tree': { en: 'Tree', es: 'Árbol', fr: 'Arbre', ru: 'Дерево', pt: 'Árvore', de: 'Baum', id: 'Pohon', tr: 'Ağaç' },
+  'flower': { en: 'Flower', es: 'Flor', fr: 'Fleur', ru: 'Цветок', pt: 'Flor', de: 'Blume', id: 'Bunga', tr: 'Çiçek', ko: '꽃', ja: '花' },
+  'tree': { en: 'Tree', es: 'Árbol', fr: 'Arbre', ru: 'Дерево', pt: 'Árvore', de: 'Baum', id: 'Pohon', tr: 'Ağaç', ko: '나무', ja: '木' },
   'christmas tree': { en: 'Christmas tree', es: 'Árbol de Navidad', fr: 'Sapin de Noël', ru: 'Ёлка', pt: 'Árvore de Natal', de: 'Weihnachtsbaum', id: 'Pohon Natal', tr: 'Noel ağacı' },
   'zebra': { en: 'Zebra', es: 'Cebra', fr: 'Zèbre', ru: 'Зебра', pt: 'Zebra', de: 'Zebra', id: 'Zebra', tr: 'Zebra' },
 
@@ -483,7 +490,7 @@ export const EXTENDED_DICTIONARY: Record<string, Partial<Record<SupportedLanguag
 
   // Weather & Seasons Pack
   'wind': { en: 'Wind', es: 'Viento', fr: 'Vent', ru: 'Ветер', pt: 'Vento', de: 'Wind', id: 'Angin', tr: 'Rüzgar' },
-  'cloud': { en: 'Cloud', es: 'Nube', fr: 'Nuage', ru: 'Облако', pt: 'Nuvem', de: 'Wolke', id: 'Awan', tr: 'Bulut' },
+  'cloud': { en: 'Cloud', es: 'Nube', fr: 'Nuage', ru: 'Облако', pt: 'Nuvem', de: 'Wolke', id: 'Awan', tr: 'Bulut', ko: '구름', ja: '雲' },
   'storm': { en: 'Storm', es: 'Tormenta', fr: 'Orage', ru: 'Гроза', pt: 'Tempestade', de: 'Sturm', id: 'Badai', tr: 'Fırtına' },
 
   // Tech & Remote Work Pack
@@ -844,8 +851,9 @@ export const resolveTranslation = (
     .replace(/\s*\([^)]*\)\s*/g, ' ')
     .trim();
 
-  // 5. Check for multi-word or token matches in dictionary using word boundaries
-  for (const [key, mapping] of Object.entries(EXTENDED_DICTIONARY)) {
+  // 5. Check for multi-word or token matches in dictionary using word boundaries (longest keys first)
+  const sortedDict = Object.entries(EXTENDED_DICTIONARY).sort((a, b) => b[0].length - a[0].length);
+  for (const [key, mapping] of sortedDict) {
     if (key.length >= 3 && cleanKey.length >= 3) {
       const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       const wholeWordRegex = new RegExp(`(^|\\s)${escapedKey}(\\s|$)`, 'i');

@@ -309,4 +309,10 @@ describe('Page Dictionary & Multilingual Alphabet Localization', () => {
       window.Audio = OriginalAudio;
     }
   });
+
+  it('correctly resolves Rice cake (not Rice) for Korean 떡 and bridge for 다리', () => {
+    expect(resolveTranslation({ word: '떡', meaning: 'Rice cake' }, 'ko', 'en')).toBe('Rice cake');
+    expect(resolveTranslation({ word: '다리', meaning: 'Bridge' }, 'ko', 'en')).toBe('Bridge');
+    expect(resolveTranslation({ word: '바나나', meaning: 'Banana' }, 'ko', 'en')).toBe('Banana');
+  });
 });
