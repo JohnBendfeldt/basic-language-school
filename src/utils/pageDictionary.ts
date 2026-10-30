@@ -2074,6 +2074,14 @@ export const localizeCategoryBadge = (
     'tech': { en: 'Tech & IT', es: 'Tecnología', fr: 'Tech et IT', ru: 'Технологии', pt: 'Tecnologia', de: 'Tech & IT', id: 'Teknologi & IT', tr: 'Teknoloji ve Bilişim' },
     'business': { en: 'Business', es: 'Negocios', fr: 'Affaires', ru: 'Бизнес', pt: 'Negócios', de: 'Wirtschaft & Büro', id: 'Bisnis & Kantor', tr: 'İş ve Ofis' },
     'health': { en: 'Healthcare', es: 'Salud', fr: 'Santé', ru: 'Здоровье', pt: 'Saúde', de: 'Gesundheit', id: 'Kesehatan', tr: 'Sağlık' },
+    'verbs': { en: 'Verbs', es: 'Verbos', fr: 'Verbes', ru: 'Глаголы', pt: 'Verbos', de: 'Verben', id: 'Kata Kerja', tr: 'Fiiller' },
+    'calendar': { en: 'Calendar', es: 'Calendario', fr: 'Calendrier', ru: 'Календарь', pt: 'Calendário', de: 'Kalender', id: 'Kalender', tr: 'Takvim' },
+    'family': { en: 'Family', es: 'Familia', fr: 'Famille', ru: 'Семья', pt: 'Família', de: 'Familie', id: 'Keluarga', tr: 'Aile' },
+    'food': { en: 'Food', es: 'Comida', fr: 'Nourriture', ru: 'Еда', pt: 'Comida', de: 'Essen', id: 'Makanan', tr: 'Yiyecek' },
+    'general': { en: 'General', es: 'General', fr: 'Général', ru: 'Общее', pt: 'Geral', de: 'Allgemein', id: 'Umum', tr: 'Genel' },
+    'home': { en: 'Home', es: 'Hogar', fr: 'Maison', ru: 'Дом', pt: 'Casa', de: 'Zuhause', id: 'Rumah', tr: 'Ev' },
+    'nature': { en: 'Nature', es: 'Naturaleza', fr: 'Nature', ru: 'Природа', pt: 'Natureza', de: 'Natur', id: 'Alam', tr: 'Doğa' },
+    'question': { en: 'Questions', es: 'Preguntas', fr: 'Questions', ru: 'Вопросы', pt: 'Perguntas', de: 'Fragen', id: 'Pertanyaan', tr: 'Sorular' },
     'all': { en: 'All', es: 'Todos', fr: 'Tous', ru: 'Все', pt: 'Todos', de: 'Alle', id: 'Semua', tr: 'Tümü' }
   };
 

@@ -1211,28 +1211,28 @@ const commonWords: PhraseItem[] = [
     russian: 'большой',
     english: 'big',
     pronunciation: 'bal-shoy',
-    category: 'Colors',
+    category: 'Descriptions',
     icon: '🐘'
   },
   {
     russian: 'маленький',
     english: 'small',
     pronunciation: 'mah-leen-keey',
-    category: 'Colors',
+    category: 'Descriptions',
     icon: '🐁'
   },
   {
     russian: 'новый',
     english: 'new',
     pronunciation: 'noh-viy',
-    category: 'Colors',
+    category: 'Descriptions',
     icon: '✨'
   },
   {
     russian: 'старый',
     english: 'old',
     pronunciation: 'stah-riy',
-    category: 'Colors',
+    category: 'Descriptions',
     icon: '🕰️'
   },
   // Weather & Seasons

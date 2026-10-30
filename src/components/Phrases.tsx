@@ -33,7 +33,19 @@ const CATEGORY_ICONS: Record<string, string> = {
   'finance': '💵',
   'time': '⏱️',
   'questions': '❓',
-  'common verbs': '🏃'
+  'common verbs': '🏃',
+  'verbs': '🏃',
+  'descriptions': '📝',
+  'calendar': '📅',
+  'family': '👨‍👩‍👧',
+  'food': '🍎',
+  'general': '💡',
+  'home': '🏠',
+  'nature': '🌿',
+  'hour': '🕐',
+  'minutes': '⏲️',
+  'special': '🌟',
+  'question': '❓'
 };
 
 interface PhraseCardProps {
