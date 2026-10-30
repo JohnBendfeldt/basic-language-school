@@ -30,6 +30,10 @@ export interface UIStrings {
   hide: string;
   revealAll: string;
   hideAll: string;
+  topics: string;
+  clearFilters: string;
+  showCountItems: string;
+  closeLabel: string;
   pronunciationLabel: string;
   tapCardToRevealSubtitle: string;
 
@@ -85,6 +89,10 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     hide: 'Hide',
     revealAll: 'Reveal All',
     hideAll: 'Hide All',
+    topics: 'Topics',
+    clearFilters: 'Clear',
+    showCountItems: 'Show {n}',
+    closeLabel: 'Close',
     pronunciationLabel: 'Pronunciation:',
     tapCardToRevealSubtitle: 'Tap any card to reveal its translation and pronunciation',
 
@@ -138,6 +146,10 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     hide: 'Ocultar',
     revealAll: 'Mostrar Todo',
     hideAll: 'Ocultar Todo',
+    topics: 'Temas',
+    clearFilters: 'Borrar',
+    showCountItems: 'Mostrar {n}',
+    closeLabel: 'Cerrar',
     pronunciationLabel: 'Pronunciación:',
     tapCardToRevealSubtitle: 'Toca cualquier tarjeta para ver su traducción y pronunciación',
 
@@ -191,6 +203,10 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     hide: 'Masquer',
     revealAll: 'Tout Révéler',
     hideAll: 'Tout Masquer',
+    topics: 'Thèmes',
+    clearFilters: 'Effacer',
+    showCountItems: 'Afficher {n}',
+    closeLabel: 'Fermer',
     pronunciationLabel: 'Prononciation :',
     tapCardToRevealSubtitle: 'Appuyez sur une carte pour voir sa traduction et sa prononciation',
 
@@ -244,6 +260,10 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     hide: 'Скрыть',
     revealAll: 'Показать всё',
     hideAll: 'Скрыть всё',
+    topics: 'Темы',
+    clearFilters: 'Сбросить',
+    showCountItems: 'Показать {n}',
+    closeLabel: 'Закрыть',
     pronunciationLabel: 'Произношение:',
     tapCardToRevealSubtitle: 'Нажмите на любую карточку, чтобы увидеть перевод и произношение',
 
@@ -297,6 +317,10 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     hide: 'Ocultar',
     revealAll: 'Mostrar Tudo',
     hideAll: 'Ocultar Tudo',
+    topics: 'Temas',
+    clearFilters: 'Limpar',
+    showCountItems: 'Mostrar {n}',
+    closeLabel: 'Fechar',
     pronunciationLabel: 'Pronúncia:',
     tapCardToRevealSubtitle: 'Toque em qualquer cartão para ver sua tradução e pronúncia',
 
@@ -350,6 +374,10 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     hide: 'Ausblenden',
     revealAll: 'Alle anzeigen',
     hideAll: 'Alle ausblenden',
+    topics: 'Themen',
+    clearFilters: 'Zurücksetzen',
+    showCountItems: '{n} anzeigen',
+    closeLabel: 'Schließen',
     pronunciationLabel: 'Aussprache:',
     tapCardToRevealSubtitle: 'Tippe auf eine Karte, um Übersetzung und Aussprache anzuzeigen',
 
@@ -403,6 +431,10 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     hide: 'Sembunyikan',
     revealAll: 'Tampilkan Semua',
     hideAll: 'Sembunyikan Semua',
+    topics: 'Topik',
+    clearFilters: 'Hapus',
+    showCountItems: 'Tampilkan {n}',
+    closeLabel: 'Tutup',
     pronunciationLabel: 'Pelafalan:',
     tapCardToRevealSubtitle: 'Ketuk kartu mana saja untuk melihat terjemahan dan pelafalannya',
 
@@ -456,6 +488,10 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     hide: 'Gizle',
     revealAll: 'Tümünü Göster',
     hideAll: 'Tümünü Gizle',
+    topics: 'Konular',
+    clearFilters: 'Temizle',
+    showCountItems: '{n} göster',
+    closeLabel: 'Kapat',
     pronunciationLabel: 'Telaffuz:',
     tapCardToRevealSubtitle: 'Çevirisini ve telaffuzunu görmek için herhangi bir karta dokunun',
 
