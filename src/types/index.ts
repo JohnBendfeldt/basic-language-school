@@ -33,6 +33,58 @@ export interface PhraseItem {
   category?: string;
   icon?: string;
   level?: 1 | 2 | 3;
+  // Grammatical properties
+  partOfSpeech?: 'noun' | 'verb' | 'adjective' | 'adverb' | 'phrase' | 'pronoun' | 'preposition';
+  article?: 'der' | 'die' | 'das' | 'el' | 'la' | 'le' | string;
+  gender?: 'masculine' | 'feminine' | 'neuter' | 'plural';
+  plural?: string;
+  acceptedAlternatives?: string[];
+}
+
+// Grammar-related interfaces
+export interface GenderNounRule {
+  article: string;
+  gender: 'masculine' | 'feminine' | 'neuter' | 'plural';
+  color: string;
+  name: string;
+  description: string;
+  rules: string[];
+  examples: { word: string; article: string; meaning: string; icon?: string }[];
+}
+
+export interface VerbConjugation {
+  verb: string;
+  meaning: string;
+  tense: string;
+  type?: 'regular' | 'irregular' | 'modal';
+  forms: { pronoun: string; form: string }[];
+  exampleSentence?: { target: string; translation: string };
+}
+
+export interface GrammarDescription {
+  title: string;
+  explanation: string;
+  examples: { positive: string; comparative: string; superlative: string; meaning: string }[];
+}
+
+export interface GrammarFlashcard {
+  id: string;
+  type: 'gender' | 'verb' | 'description';
+  prompt: string;
+  options: string[];
+  correctAnswer: string;
+  explanation: string;
+  translation?: string;
+  gender?: 'masculine' | 'feminine' | 'neuter' | 'plural';
+  article?: string;
+  icon?: string;
+}
+
+export interface GrammarData {
+  genderRules?: GenderNounRule[];
+  verbs?: VerbConjugation[];
+  descriptions?: GrammarDescription[];
+  flashcards?: GrammarFlashcard[];
 }
 
 // Quiz-related interfaces
@@ -54,4 +106,5 @@ export interface AppData {
   numbers: PhraseItem[];
   commonWords: PhraseItem[];
   time?: PhraseItem[];
+  grammar?: GrammarData;
 }
