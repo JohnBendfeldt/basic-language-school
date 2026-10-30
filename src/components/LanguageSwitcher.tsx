@@ -407,63 +407,30 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
 
             {/* Language Selection List for Active Tab */}
             <div className="language-list" role="menu">
-              <div className="language-group-title">
-                {activeTab === 'target' 
-                  ? chrome.chooseLanguageToLearn
-                  : (ui.iSpeak || 'Choose Your Language (Interface & Meaning)')}
-              </div>
+              <div className="language-list-header">
+                <div className="language-group-title">
+                  {activeTab === 'target' 
+                    ? chrome.chooseLanguageToLearn
+                    : (ui.iSpeak || 'Choose Your Language (Interface & Meaning)')}
+                </div>
 
-              {/* Regional / Family Filter Pills */}
-              <div className="region-filter-bar" role="group" aria-label="Filter languages by region">
-                <button
-                  type="button"
-                  className={`region-pill ${selectedRegion === 'all' ? 'active' : ''}`}
-                  onClick={() => setSelectedRegion('all')}
-                >
-                  All ({availableLanguages.length})
-                </button>
-                <button
-                  type="button"
-                  className={`region-pill ${selectedRegion === 'romance' ? 'active' : ''}`}
-                  onClick={() => setSelectedRegion('romance')}
-                >
-                  🏛️ Romance
-                </button>
-                <button
-                  type="button"
-                  className={`region-pill ${selectedRegion === 'germanic' ? 'active' : ''}`}
-                  onClick={() => setSelectedRegion('germanic')}
-                >
-                  🏰 Germanic
-                </button>
-                <button
-                  type="button"
-                  className={`region-pill ${selectedRegion === 'slavic-eurasian' ? 'active' : ''}`}
-                  onClick={() => setSelectedRegion('slavic-eurasian')}
-                >
-                  🌍 Slavic & Eurasian
-                </button>
-                <button
-                  type="button"
-                  className={`region-pill ${selectedRegion === 'east-asian' ? 'active' : ''}`}
-                  onClick={() => setSelectedRegion('east-asian')}
-                >
-                  🌸 East Asian
-                </button>
-                <button
-                  type="button"
-                  className={`region-pill ${selectedRegion === 'south-asian' ? 'active' : ''}`}
-                  onClick={() => setSelectedRegion('south-asian')}
-                >
-                  🪷 South Asian
-                </button>
-                <button
-                  type="button"
-                  className={`region-pill ${selectedRegion === 'middle-eastern' ? 'active' : ''}`}
-                  onClick={() => setSelectedRegion('middle-eastern')}
-                >
-                  🌙 Middle Eastern
-                </button>
+                {/* Regional / Family Filter Dropdown */}
+                <div className="region-filter-dropdown-wrapper">
+                  <select
+                    className="region-filter-select"
+                    value={selectedRegion}
+                    onChange={(e) => setSelectedRegion(e.target.value as LanguageRegion)}
+                    aria-label="Filter languages by family"
+                  >
+                    <option value="all">🌍 All ({availableLanguages.length})</option>
+                    <option value="romance">🏛️ Romance</option>
+                    <option value="germanic">🏰 Germanic</option>
+                    <option value="slavic-eurasian">🌍 Slavic & Eurasian</option>
+                    <option value="east-asian">🌸 East Asian</option>
+                    <option value="south-asian">🪷 South Asian</option>
+                    <option value="middle-eastern">🌙 Middle Eastern</option>
+                  </select>
+                </div>
               </div>
 
               <div className="language-options-grid">

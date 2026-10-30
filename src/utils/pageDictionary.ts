@@ -401,6 +401,62 @@ export const getPageContent = (
           };
       }
     }
+
+    if (targetLang === 'zh') {
+      switch (baseLang) {
+        case 'ru':
+          return {
+            title: 'Китайский пиньинь и звуки (拼音)',
+            subtitle: '29 звуков пиньиня (инициали и финали) с правилами произношения, иероглифами (汉字) и студийным аудио'
+          };
+        case 'es':
+          return {
+            title: 'Pinyin y sonidos del chino mandarín (拼音)',
+            subtitle: '29 sonidos de pinyin (iniciales y finales) con guías de pronunciación, hanzi de ejemplo (汉字) y audio nativo'
+          };
+        case 'fr':
+          return {
+            title: 'Pinyin et sons du chinois mandarin (拼音)',
+            subtitle: '29 sons pinyin (initiales et finales) avec guides de prononciation, exemples de hanzi (汉字) et audio natif'
+          };
+        case 'pt':
+          return {
+            title: 'Pinyin e sons do chinês mandarim (拼音)',
+            subtitle: '29 sons de pinyin (iniciais e finais) com guias de pronúncia, exemplos em hanzi (汉字) e áudio nativo'
+          };
+        case 'de':
+          return {
+            title: 'Chinesisches Pinyin & Laute (拼音)',
+            subtitle: '29 Pinyin-Laute (Anlaute & Auslaute) mit Aussprachehilfen, Hanzi-Beispielen (汉字) und Studio-Audio'
+          };
+        case 'id':
+          return {
+            title: 'Pinyin & Bunyi Bahasa Mandarin (拼音)',
+            subtitle: '29 bunyi pinyin (konsonan awal & vokal akhir) dengan panduan pelafalan, contoh hanzi (汉字), dan audio studio'
+          };
+        case 'tr':
+          return {
+            title: 'Çince Pinyin ve Sesler (拼音)',
+            subtitle: 'Telaffuz rehberi, örnek hanzi (汉字) ve stüdyo sesiyle 29 pinyin sesi'
+          };
+        case 'ar':
+          return {
+            title: 'نظام البينيين الصيني والأصوات (拼音)',
+            subtitle: '29 صوتاً من أصوات البينيين الصينية مع قواعد النطق وأمثلة الحروف الصينية (汉字) وصوت الاستوديو'
+          };
+        case 'zh':
+          return {
+            title: '汉语拼音与发音',
+            subtitle: '29个声母与韵母核心发音，配有标准例词汉字与录音棚原声'
+          };
+        case 'en':
+        default:
+          return {
+            title: 'Mandarin Chinese Pinyin & Sounds (拼音)',
+            subtitle: '29 core Pinyin sounds (initials & finals) with pronunciation guides, example Hanzi (汉字), and native studio audio'
+          };
+      }
+    }
   }
 
   // 2. PHRASES & GREETINGS

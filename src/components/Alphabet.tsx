@@ -29,16 +29,32 @@ const Alphabet: React.FC<AlphabetProps> = ({
   const pageContent = getPageContent('alphabet', currentLanguage, baseLanguage);
   const labels = getAlphabetLabels(baseLanguage);
 
-  // Preserve legacy English native learner titles for backwards test compatibility
-  const headerTitle = baseLanguage === 'en'
-    ? (currentLanguage === 'ru' ? 'Russian Alphabet (Cyrillic)' : `${currentMeta.name} Alphabet`)
-    : pageContent.title;
+  // Distinct writing system titles and subtitles
+  let defaultEnTitle = `${currentMeta.name} Alphabet`;
+  let defaultEnSubtitle = `${data.length} letters with pronunciation guides, example vocabulary, and native studio audio`;
 
-  const headerSubtitle = baseLanguage === 'en'
-    ? (currentLanguage === 'ru'
-        ? '33 letters with pronunciation guides, example words, and studio neural audio'
-        : `${data.length} letters with pronunciation guides, example vocabulary, and native studio audio`)
-    : pageContent.subtitle;
+  if (currentLanguage === 'ru') {
+    defaultEnTitle = 'Russian Alphabet (Cyrillic)';
+    defaultEnSubtitle = '33 letters with pronunciation guides, example words, and studio neural audio';
+  } else if (currentLanguage === 'zh') {
+    defaultEnTitle = 'Mandarin Chinese Pinyin & Sounds (拼音)';
+    defaultEnSubtitle = '29 core Pinyin sounds (initials & finals) with pronunciation guides, example Hanzi (汉字), and native studio audio';
+  } else if (currentLanguage === 'ja') {
+    defaultEnTitle = 'Japanese Hiragana & Sounds (ひらがな)';
+    defaultEnSubtitle = '46 Hiragana characters with pronunciation guides, example words, and native studio audio';
+  } else if (currentLanguage === 'ko') {
+    defaultEnTitle = 'Korean Hangul & Sounds (한글)';
+    defaultEnSubtitle = '24 core Hangul letters (consonants & vowels) with pronunciation guides, example words, and native studio audio';
+  } else if (currentLanguage === 'hi') {
+    defaultEnTitle = 'Hindi Varnamala & Sounds (वर्णमाला)';
+    defaultEnSubtitle = '46 Devanagari letters with pronunciation guides, example words, and native studio audio';
+  } else if (currentLanguage === 'ar') {
+    defaultEnTitle = 'Arabic Alphabet & Sounds (الحروف العربية)';
+    defaultEnSubtitle = '28 Arabic letters with pronunciation guides, example words, and native studio audio';
+  }
+
+  const headerTitle = baseLanguage === 'en' ? defaultEnTitle : pageContent.title;
+  const headerSubtitle = baseLanguage === 'en' ? defaultEnSubtitle : pageContent.subtitle;
 
   const grammarMainLabel = ui?.grammar || (
     baseLanguage === 'de' ? 'Grammatik'
@@ -146,13 +162,24 @@ const Alphabet: React.FC<AlphabetProps> = ({
                 ? item.letter.replace(/İ/g, 'i').replace(/I/g, 'ı').toLowerCase()
                 : item.letter.toLowerCase();
 
+              const isCasedScript = ['en', 'es', 'fr', 'de', 'pt', 'id', 'tr', 'ru'].includes(currentLanguage);
+
               return (
                 <div className="alphabet-card" key={index}>
                   <div className="letter-container">
+                    {currentLanguage === 'zh' && (
+                      <span className="pinyin-badge">拼音 Pinyin</span>
+                    )}
                     <div className="letter-header">
                       <div className="letter-pair">
-                        <span className="letter-uppercase">{item.letter}</span>
-                        <span className="letter-lowercase">{lowerLetter}</span>
+                        {isCasedScript ? (
+                          <>
+                            <span className="letter-uppercase">{item.letter}</span>
+                            <span className="letter-lowercase">{lowerLetter}</span>
+                          </>
+                        ) : (
+                          <span className="letter-single">{item.letter}</span>
+                        )}
                       </div>
                     </div>
                     
