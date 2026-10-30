@@ -84,7 +84,7 @@ describe('UserMenu Component', () => {
     fireEvent.click(screen.getByRole('button', { name: /user menu for Test User/i }));
 
     // Verify items
-    expect(screen.getByText('My Progress & Stats')).toBeInTheDocument();
+    expect(screen.getByText('My Learning Progress')).toBeInTheDocument();
     expect(screen.getByText('Privacy Policy')).toBeInTheDocument();
     expect(screen.getByText('Terms of Service')).toBeInTheDocument();
 

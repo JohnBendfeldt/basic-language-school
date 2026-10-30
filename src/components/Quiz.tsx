@@ -16,7 +16,8 @@ import {
   getAlphabetQuizHint,
   LANGUAGE_NAMES_IN_BASE
 } from '../utils/translationResolver';
-import { localizeCategoryBadge, localizeLevelBadge, getQuizToolbarLabels, getQuizRecapLabels } from '../utils/pageDictionary';
+import { localizeCategoryBadge, localizeLevelBadge, getQuizToolbarLabels, getQuizRecapLabels, getMultiMeaningNote } from '../utils/pageDictionary';
+import { buildHomographIndex, lookupHomograph } from '../utils/homographs';
 import { UIStrings } from '../data/translations';
 import { SupportedLanguageId } from '../data/languages/types';
 import { useIsMobile } from '../hooks/useIsMobile';
@@ -323,8 +324,34 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   const incorrectSoundRef = useRef<HTMLAudioElement | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const isMobile = useIsMobile();
-  // On phones the quiz settings collapse into a one-line summary so the question stays on screen
+  // On phones the quiz settings collapse into a one-line summary so the question stays on screen.
+  // On desktop they start open and the learner can collapse them; that choice is remembered.
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [desktopSettingsOpen, setDesktopSettingsOpen] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem('basic_quiz_settings_open') !== 'false';
+    } catch {
+      return true;
+    }
+  });
+  const effectiveSettingsOpen = isMobile ? settingsOpen : desktopSettingsOpen;
+  const toggleSettings = () => {
+    if (isMobile) {
+      setSettingsOpen(prev => !prev);
+    } else {
+      setDesktopSettingsOpen(prev => {
+        const next = !prev;
+        try {
+          localStorage.setItem('basic_quiz_settings_open', String(next));
+        } catch {
+          /* ignore storage errors */
+        }
+        return next;
+      });
+    }
+    setIsTopicDropdownOpen(false);
+    setIsLevelDropdownOpen(false);
+  };
   const [dismissedKbTips, setDismissedKbTips] = useState<string[]>(() => {
     try {
       return JSON.parse(localStorage.getItem('basic_kb_tips_seen') || '[]');
@@ -725,6 +752,16 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   // All curriculum questions memoized
   const allCurriculumQuestions = useMemo(() => getAllQuestions(), [getAllQuestions]);
 
+  // Words spelled identically but with different meanings (e.g. 月 = Moon / Month) accept every meaning
+  const homographIndex = useMemo(() => {
+    if (!data) return new Map();
+    const rows: PhraseItem[] = [];
+    ['basicPhrases', 'numbers', 'commonWords', 'time'].forEach(cat => {
+      if (Array.isArray(data[cat])) rows.push(...(data[cat] as PhraseItem[]));
+    });
+    return buildHomographIndex(rows, item => resolveTranslation(item, currentLanguage, baseLanguage));
+  }, [data, currentLanguage, baseLanguage]);
+
   // Filter questions for the currently selected category & level
   const currentCategoryQuestions = useMemo(() => {
     let pool = allCurriculumQuestions;
@@ -1053,7 +1090,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           if (isListening) {
             // Listening mode: Prompt is target audio.
             // Learner may type either what they heard in targetLanguage, or their native baseLanguage translation.
-            const combinedAnswer = `${targetWord}/${baseWord}`.toLowerCase();
+            const homograph = lookupHomograph(homographIndex, targetWord);
+            const acceptedMeanings = homograph ? homograph.acceptedMeanings.join('/') : baseWord;
+            const combinedAnswer = `${targetWord}/${acceptedMeanings}`.toLowerCase();
             setCurrentQuestion({
               type: selected.category,
               prompt: targetWord,
@@ -1061,6 +1100,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               hint: getListeningHeader(currentLanguage, baseLanguage, currentMeta.name),
               meaningHint: baseWord,
               baseMeaning: baseWord,
+              alternateMeanings: homograph && homograph.distinctSenses.length > 1 ? homograph.distinctSenses : undefined,
               targetAudioWord: targetWord,
               promptAudioWord: targetWord,
               russian: targetWord,
@@ -1088,11 +1128,13 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           } else if (selected.isRussianToEnglish) {
             // Target -> Base: prompt is target word in foreign language, answer must be in learner's base/native language
             const promptText = targetWord;
-            const cleanAnswer = baseWord.toLowerCase();
+            const homograph = lookupHomograph(homographIndex, targetWord);
+            const cleanAnswer = (homograph ? homograph.acceptedMeanings.join('/') : baseWord).toLowerCase();
             setCurrentQuestion({
               type: selected.category,
               prompt: promptText,
               answer: cleanAnswer,
+              alternateMeanings: homograph && homograph.distinctSenses.length > 1 ? homograph.distinctSenses : undefined,
               hint: buildQuizQuestionHint(promptText, true, currentLanguage, baseLanguage),
               targetAudioWord: promptText,
               promptAudioWord: promptText,
@@ -1139,7 +1181,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         id: 'emergency-hello'
       });
     }
-  }, [data, getAllQuestions, activeCategory, quizMode, masteredWordIds, baseLanguage, currentLanguage, currentMeta.name]);
+  }, [data, getAllQuestions, activeCategory, quizMode, masteredWordIds, baseLanguage, currentLanguage, currentMeta.name, homographIndex]);
 
   const handleNextQuestion = useCallback(() => {
     setSessionIndex(prev => prev + 1);
@@ -1353,6 +1395,11 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           expandedTargets.push(noParens);
         }
       });
+
+      // An exact hit on ANY accepted answer wins before fuzzy matching runs against an earlier one
+      if (expandedTargets.some((t: string) => userAnswerNormalized === normalizeText(t))) {
+        isAnswerCorrect = true;
+      }
 
       for (const target of expandedTargets) {
         if (isAnswerCorrect) break;
@@ -2135,33 +2182,28 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   const localizedActiveLevel = localizeLevelBadge(activeLevel, baseLanguage);
 
   return (
-    <div className={`section quiz-section ${isMobile && !settingsOpen ? 'settings-collapsed' : ''}`}>
+    <div className={`section quiz-section ${!effectiveSettingsOpen ? 'settings-collapsed' : ''}`}>
       <h2 className="quiz-page-title">{ui.testYourKnowledge}</h2>
 
       {/* Unified Quiz Controls Toolbar with Dropdowns (Eliminates horizontal scrollers) */}
       <div className="quiz-toolbar-card">
-        {isMobile && (
-          <button
-            type="button"
-            className="quiz-settings-summary"
-            aria-expanded={settingsOpen}
-            onClick={() => {
-              setSettingsOpen(prev => !prev);
-              setIsTopicDropdownOpen(false);
-              setIsLevelDropdownOpen(false);
-            }}
-          >
-            <span className="quiz-settings-summary-text">
-              <span aria-hidden="true">{activeCategoryItem.icon}</span> {activeCategoryLabel}
-              {' · '}{localizedActiveLevel}
-              {' · '}{quizMode === 'writing' ? ui.writingMode : quizMode === 'listening' ? ui.listeningMode : ui.allModes}
-            </span>
-            <span className="quiz-settings-summary-end">
-              <span aria-hidden="true">⚙</span> {ui.quizSettings}
-              <FaChevronDown className={`quiz-dropdown-chevron ${settingsOpen ? 'rotated' : ''}`} aria-hidden="true" />
-            </span>
-          </button>
-        )}
+        <button
+          type="button"
+          className="quiz-settings-summary"
+          aria-expanded={effectiveSettingsOpen}
+          onClick={toggleSettings}
+        >
+          <span className="quiz-settings-summary-text">
+            <span aria-hidden="true">{activeCategoryItem.icon}</span> {activeCategoryLabel}
+            {' · '}{localizedActiveLevel}
+            {' · '}{quizMode === 'writing' ? ui.writingMode : quizMode === 'listening' ? ui.listeningMode : ui.allModes}
+          </span>
+          <span className="quiz-settings-summary-end">
+            <span aria-hidden="true">⚙</span> {ui.quizSettings}
+            <FaChevronDown className={`quiz-dropdown-chevron ${effectiveSettingsOpen ? 'rotated' : ''}`} aria-hidden="true" />
+          </span>
+        </button>
+
         <div className="quiz-toolbar-body">
           {/* Row 1: The two Dropdowns side-by-side */}
           <div className="quiz-toolbar-dropdowns-row">
@@ -2732,6 +2774,11 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                   {isCorrect && isWordJustMastered && (
                     <div className="word-mastered-note">
                       🏆 <strong>Word Mastered (5/5)!</strong> Removed from upcoming questions.
+                    </div>
+                  )}
+                  {currentQuestion.alternateMeanings?.length > 1 && (
+                    <div className="multi-meaning-note">
+                      🔀 {getMultiMeaningNote(baseLanguage, currentQuestion.prompt, currentQuestion.alternateMeanings)}
                     </div>
                   )}
                   {(currentQuestion.baseMeaning || currentQuestion.meaningHint) && (

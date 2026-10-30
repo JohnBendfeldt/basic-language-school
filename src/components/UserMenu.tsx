@@ -169,7 +169,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
                 }}
               >
                 <FaChartLine />
-                <span>My Progress & Stats</span>
+                <span>{chrome.myLearningProgress}</span>
               </button>
 
               {onNavigate && (
@@ -218,7 +218,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
 
               <button type="button" className="dropdown-item signout-btn" onClick={handleSignOut}>
                 <FaSignOutAlt />
-                <span>Sign Out</span>
+                <span>{chrome.signOut}</span>
               </button>
             </div>
           )}
