@@ -154,9 +154,15 @@ const Alphabet: React.FC<AlphabetProps> = ({
               }
 
               // Format phonetic example phrase with localized "as in" (e.g. "as in", "comme dans", "como en", "как в", "como em", "wie in", "seperti di", "gibi")
-              const localizedExamplePhrase = item.example
-                ? item.example.replace(/^(as in|comme dans|como en|как в|como em|wie in|seperti di)\s*/i, `${labels.asIn} `)
-                : '';
+              let localizedExamplePhrase = '';
+              if (item.examplesByLang && item.examplesByLang[baseLanguage]) {
+                const custom = item.examplesByLang[baseLanguage]!;
+                localizedExamplePhrase = custom.startsWith(labels.asIn) || /^(как|мягк|твёрд|звук|comme|wie|como|seperti)/i.test(custom)
+                  ? custom
+                  : `${labels.asIn} ${custom}`;
+              } else if (item.example) {
+                localizedExamplePhrase = item.example.replace(/^(as in|comme dans|como en|как в|como em|wie in|seperti di)\s*/i, `${labels.asIn} `);
+              }
 
               const lowerLetter = currentLanguage === 'tr'
                 ? item.letter.replace(/İ/g, 'i').replace(/I/g, 'ı').toLowerCase()
