@@ -218,7 +218,8 @@ export const SPECIAL_CHAR_MAP: Record<SupportedLanguageId, string[]> = {
   ja: ['っ', 'ゃ', 'ゅ', 'ょ', 'ー'],
   ko: ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ', 'ㅏ', 'ㅓ', 'ㅗ', 'ㅜ', 'ㅡ', 'ㅣ'],
   zh: [],
-  hi: ['ा', 'ि', 'ी', 'ु', 'ू', 'े', 'ै', 'ो', 'ौ', 'ं', '्']
+  hi: ['ा', 'ि', 'ी', 'ु', 'ू', 'े', 'ै', 'ो', 'ौ', 'ं', '्'],
+  ar: ['أ', 'إ', 'آ', 'ء', 'ة', 'ى', 'ئ', 'ؤ']
 };
 
 const getAudioCategory = (questionType: string): 'alphabet' | 'phrases' | 'numbers' | 'words' | 'time' | 'examples' => {

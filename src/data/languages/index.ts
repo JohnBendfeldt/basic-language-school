@@ -11,6 +11,7 @@ import koreanData from './ko/koreanData';
 import japaneseData from './ja/japaneseData';
 import chineseData from './zh/chineseData';
 import hindiData from './hi/hindiData';
+import arabicData from './ar/arabicData';
 
 export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
   ru: {
@@ -492,6 +493,46 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
       },
     },
     data: hindiData,
+  },
+  ar: {
+    id: 'ar',
+    name: 'Arabic',
+    nativeName: 'العربية',
+    flag: '🇸🇦',
+    code: 'ar-SA',
+    ttsVoice: 'ar-SA-ZariyahNeural',
+    hasKeyboard: true,
+    hasAlphabet: true,
+    hasTimeGuide: true,
+    appName: 'Basic Arabic',
+    domain: 'basicarabic.school',
+    seo: {
+      alphabet: {
+        title: 'Arabic Alphabet & Letters | Basic Arabic',
+        description: 'Master the 28 letters of the Arabic alphabet with pronunciation guides, example vocabulary, and studio audio.',
+      },
+      phrases: {
+        title: 'Essential Arabic Phrases | Basic Arabic',
+        description: 'Learn everyday Modern Standard Arabic greetings, courtesy expressions, and conversational phrases with native studio audio.',
+      },
+      numbers: {
+        title: 'Arabic Numbers & Time | Basic Arabic',
+        description: 'Master numbers in Arabic from 0 to 1,000 with native neural audio.',
+      },
+      time: {
+        title: 'Telling Time in Arabic | Basic Arabic',
+        description: 'Learn how to ask and tell time in Arabic with studio pronunciations.',
+      },
+      words: {
+        title: 'Core Arabic Vocabulary | Basic Arabic',
+        description: 'Essential high-frequency Arabic words across daily life, business, dining, and travel.',
+      },
+      quiz: {
+        title: 'Arabic Practice Quiz | Basic Arabic',
+        description: 'Test your Arabic alphabet, vocabulary, gender agreement, and grammar with interactive quizzes.',
+      },
+    },
+    data: arabicData,
   },
 };
 

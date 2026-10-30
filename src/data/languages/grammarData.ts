@@ -2364,6 +2364,253 @@ export const HINDI_GRAMMAR: GrammarData = {
   ],
 };
 
+
+export const ARABIC_GRAMMAR: GrammarData = {
+  genderRules: [
+    {
+      article: 'مذكر (Masculine)',
+      gender: 'masculine',
+      color: '#3b82f6',
+      name: 'Masculine Nouns (الأسماء المذكرة)',
+      description: 'Arabic nouns are masculine by default unless they have a feminine marker. Demonstrative pronoun is "هذا" (haadhaa - this).',
+      rules: [
+        'Nouns without feminine endings (like Taa Marbuta ة) are masculine: ولد (boy), كتاب (book), بيت (house).',
+        'Demonstrative pronoun for masculine singular: هذا كتاب (This is a book).',
+        'Adjectives agree with masculine nouns: كتاب جديد (a new book), ولد ذكي (a smart boy).',
+      ],
+      examples: [
+        { word: 'ولد (Boy)', article: 'مذكر', meaning: 'boy', icon: '👦' },
+        { word: 'كتاب (Book)', article: 'مذكر', meaning: 'book', icon: '📖' },
+        { word: 'قلم (Pen)', article: 'مذكر', meaning: 'pen', icon: '🖊️' },
+        { word: 'بيت (House)', article: 'مذكر', meaning: 'house', icon: '🏠' },
+      ],
+    },
+    {
+      article: 'مؤنث (Feminine)',
+      gender: 'feminine',
+      color: '#ec4899',
+      name: 'Feminine Nouns (الأسماء المؤنثة)',
+      description: 'Nouns ending in Taa Marbuta (ـة / ة) are feminine. Demonstrative pronoun is "هذه" (haadhihi - this).',
+      rules: [
+        'Nouns ending with Taa Marbuta (ة) are feminine: سيارة (car), مدينة (city), شجرة (tree).',
+        'Demonstrative pronoun for feminine singular: هذه سيارة (This is a car).',
+        'Adjectives modifying feminine nouns take Taa Marbuta: سيارة جديدة (a new car), مدينة جميلة (a beautiful city).',
+      ],
+      examples: [
+        { word: 'بنت (Girl)', article: 'مؤنث', meaning: 'girl', icon: '👧' },
+        { word: 'سيارة (Car)', article: 'مؤنث', meaning: 'car', icon: '🚗' },
+        { word: 'شجرة (Tree)', article: 'مؤنث', meaning: 'tree', icon: '🌳' },
+        { word: 'مدينة (City)', article: 'مؤنث', meaning: 'city', icon: '🏙️' },
+      ],
+    },
+  ],
+  descriptions: [
+    {
+      title: 'The Definite Article "Al-" & Sun/Moon Letters (أل التعريف)',
+      explanation: 'In Arabic, "the" is the prefix الـ (al-). Before Sun Letters (ت ث د ذ ر ز س ش ص ض ط ظ ل ن), the "l" assimilates (e.g. الشمس = ash-shams). Before Moon Letters, the "l" is pronounced clearly (e.g. القمر = al-qamar). When a noun is definite, its adjective must also take الـ (e.g. الكتاب الجديد = the new book).',
+      examples: [
+        { positive: 'الكتاب (The book - Moon)', comparative: 'الشمس (The sun - Sun)', superlative: 'السيارة (The car - Sun)', meaning: 'definite article (al-)' },
+        { positive: 'كتاب جديد (A new book)', comparative: 'الكتاب الجديد (The new book)', superlative: 'مدينة جميلة (A beautiful city)', meaning: 'noun-adjective agreement' },
+      ],
+    },
+  ],
+  verbs: [
+    {
+      verb: 'كان (to be / was)',
+      meaning: 'to be / was (past)',
+      tense: 'Past & Present Context',
+      type: 'irregular',
+      forms: [
+        { pronoun: 'أنا (I)', form: 'كنتُ (was)' },
+        { pronoun: 'أنتَ (You - m)', form: 'كنتَ (were)' },
+        { pronoun: 'أنتِ (You - f)', form: 'كنتِ (were)' },
+        { pronoun: 'هو (He)', form: 'كان (was)' },
+        { pronoun: 'هي (She)', form: 'كانت (was)' },
+        { pronoun: 'نحن (We)', form: 'كنا (were)' },
+        { pronoun: 'هم (They)', form: 'كانوا (were)' },
+      ],
+      exampleSentence: { target: 'كنا نتعلم اللغات معاً.', translation: 'We were learning languages together.' },
+    },
+    {
+      verb: 'عمل / يعمل (to work)',
+      meaning: 'to work',
+      tense: 'Present Tense (المضارع)',
+      type: 'regular',
+      forms: [
+        { pronoun: 'أنا (I)', form: 'أعمل (I work)' },
+        { pronoun: 'أنتَ (You - m)', form: 'تعمل (you work)' },
+        { pronoun: 'أنتِ (You - f)', form: 'تعملين (you work)' },
+        { pronoun: 'هو (He)', form: 'يعمل (he works)' },
+        { pronoun: 'هي (She)', form: 'تعمل (she works)' },
+        { pronoun: 'نحن (We)', form: 'نعمل (we work)' },
+      ],
+      exampleSentence: { target: 'هي تعمل في شركة دولية.', translation: 'She works in an international company.' },
+    },
+  ],
+  flashcards: [
+    {
+      id: 'ar-card-1',
+      type: 'gender',
+      prompt: 'Gender agreement: "A new car" ➔ سيارة ___',
+      prompts: {
+        en: 'Gender agreement: "A new car" ➔ سيارة ___',
+        ru: 'Согласование по роду: «Новая машина» ➔ سيارة ___',
+        de: 'Geschlechtsanpassung: „Neues Auto“ ➔ سيارة ___',
+        es: 'Concordancia de género: «Coche nuevo» ➔ سيارة ___',
+        fr: 'Accord en genre : « Nouvelle voiture » ➔ سيارة ___',
+        zh: '性属一致："新车" ➔ سيارة ___',
+        hi: 'लिंग सहसंबंध: "नई कार" ➔ سيارة ___',
+        ar: 'التطابق في التذكير والتأنيث: "سيارة جديدة" ➔ سيارة ___',
+      },
+      options: ['جديدة', 'جديد', 'جدد', 'جديدون'],
+      correctAnswer: 'جديدة',
+      explanation: 'Adjectives agree with feminine nouns ending in Taa Marbuta (ة) by also taking Taa Marbuta (سيارة جديدة).',
+      explanations: {
+        en: 'Adjectives agree with feminine nouns ending in Taa Marbuta (ة) by also taking Taa Marbuta (سيارة جديدة).',
+        ru: 'Прилагательное согласуется с существительным женского рода (с та-марбутой ة) и также принимает ة (سيارة جديدة).',
+        de: 'Adjektive passen sich an weibliche Nomen mit Taa Marbuta (ة) an und erhalten ebenfalls ein ة (سيارة جديدة).',
+        es: 'Los adjetivos concuerdan con sustantivos femeninos en Taa Marbuta (ة) llevando también ة (سيارة جديدة).',
+        fr: 'L\'adjectif s\'accorde avec le nom féminin terminé par Taa Marbuta (ة) en prenant également ة (سيارة جديدة).',
+        zh: '修饰以 ة（Taa Marbuta）结尾的阴性名词时，形容词也需加上 ة（سيارة جديدة）。',
+        hi: 'स्त्रीलिंग संज्ञा (تاء مربوطة ة) के साथ विशेषण भी ة लेकर आता है (سيارة جديدة)।',
+        ar: 'تتبع الصفة الموصوف المؤنث بتاء التأنيث المربوطة (سيارة جديدة).',
+      },
+      translation: 'new car',
+      translations: {
+        en: 'new car',
+        ru: 'новая машина',
+        de: 'neues Auto',
+        es: 'coche nuevo',
+        fr: 'nouvelle voiture',
+        zh: '新车',
+        hi: 'नई गाड़ी',
+        ar: 'سيارة جديدة',
+      },
+      icon: '🚗',
+    },
+    {
+      id: 'ar-card-2',
+      type: 'description',
+      prompt: 'Demonstrative pronoun: "This is a book (m)" ➔ ___ كتاب',
+      prompts: {
+        en: 'Demonstrative pronoun: "This is a book (m)" ➔ ___ كتاب',
+        ru: 'Указательное местоимение: «Это книга (м.р.)» ➔ ___ كتاب',
+        de: 'Demonstrativpronomen: „Das ist ein Buch (m)“ ➔ ___ كتاب',
+        es: 'Pronombre demostrativo: «Este es un libro (m)» ➔ ___ كتاب',
+        fr: 'Pronom démonstratif : « Ceci est un livre (m) » ➔ ___ كتاب',
+        zh: '指示代词："这是一本书（阳性）" ➔ ___ كتاب',
+        hi: 'संकेतवाचक सर्वनाम: "यह एक किताब है" ➔ ___ كتاب',
+        ar: 'اسم الإشارة: "هذا كتاب" ➔ ___ كتاب',
+      },
+      options: ['هذا', 'هذه', 'هؤلاء', 'ذلك'],
+      correctAnswer: 'هذا',
+      explanation: 'هذا (haadhaa) is used for masculine singular nouns, while هذه (haadhihi) is used for feminine singular nouns.',
+      explanations: {
+        en: 'هذا (haadhaa) is used for masculine singular nouns, while هذه (haadhihi) is used for feminine singular nouns.',
+        ru: 'هذا (haadhaa) используется для существительных мужского рода, а هذه (haadhihi) — для женского.',
+        de: 'هذا (haadhaa) wird für männliche Nomen im Singular verwendet, هذه (haadhihi) für weibliche.',
+        es: 'هذا (haadhaa) se utiliza para sustantivos masculinos singulares, mientras que هذه (haadhihi) para femeninos.',
+        fr: 'هذا (haadhaa) s\'utilise pour les noms masculins singuliers, tandis que هذه (haadhihi) s\'utilise pour les féminins.',
+        zh: 'هذا 用于阳性单数名词，هذه 用于阴性单数名词。كتاب 为阳性，故用 هذا。',
+        hi: 'पुल्लिंग एकवचन संज्ञा (كتاب) के लिए संकेतवाचक सर्वनाम "هذا" का प्रयोग होता है।',
+        ar: '"هذا" اسم إشارة للمفرد المذكر (هذا كتاب)، بينما "هذه" للمفرد المؤنث.',
+      },
+      translation: 'this is a book',
+      translations: {
+        en: 'this is a book',
+        ru: 'это книга',
+        de: 'das ist ein Buch',
+        es: 'este es un libro',
+        fr: 'ceci est un livre',
+        zh: '这是一本书',
+        hi: 'यह एक किताब है',
+        ar: 'هذا كتاب',
+      },
+      icon: '📖',
+    },
+    {
+      id: 'ar-card-3',
+      type: 'description',
+      prompt: 'Definite adjective agreement: "The big city" ➔ المدينة ___',
+      prompts: {
+        en: 'Definite adjective agreement: "The big city" ➔ المدينة ___',
+        ru: 'Согласование определенного артикля: «Большой город» ➔ المدينة ___',
+        de: 'Bestimmter Artikel bei Adjektiven: „Die große Stadt“ ➔ المدينة ___',
+        es: 'Concordancia con artículo definido: «La gran ciudad» ➔ المدينة ___',
+        fr: 'Accord de l\'article défini : « La grande ville » ➔ المدينة ___',
+        zh: '定冠词一致性："大城市" ➔ المدينة ___',
+        hi: 'निश्चयवाचक विशेषण सहसंबंध: "बड़ा शहर" ➔ المدينة ___',
+        ar: 'تطابق التعريف: "المدينة الكبيرة" ➔ المدينة ___',
+      },
+      options: ['الكبيرة', 'كبيرة', 'كبير', 'الكبير'],
+      correctAnswer: 'الكبيرة',
+      explanation: 'When an Arabic noun has the definite article الـ, its adjective must also take الـ and agree in gender (المدينة الكبيرة).',
+      explanations: {
+        en: 'When an Arabic noun has the definite article الـ, its adjective must also take الـ and agree in gender (المدينة الكبيرة).',
+        ru: 'Если существительное имеет определенный артикль الـ, его прилагательное также обязано иметь الـ и согласоваться в роде.',
+        de: 'Wenn ein arabisches Nomen den Artikel الـ hat, muss auch das Adjektiv الـ tragen und im Geschlecht übereinstimmen.',
+        es: 'Cuando un sustantivo árabe lleva el artículo definido الـ, su adjetivo también debe llevar الـ y concordar en género.',
+        fr: 'Quand le nom arabe prend l\'article défini الـ, son adjectif doit également prendre الـ et s\'accorder en genre.',
+        zh: '当阿拉伯语名词带有定冠词 الـ 时，其修饰形容词也必须带 الـ 并保持性属一致（المدينة الكبيرة）。',
+        hi: 'जब संज्ञा में निश्चयवाचक उपपद "الـ" हो, तो विशेषण में भी "الـ" जुड़ता है और लिंग सहमत रहता है।',
+        ar: 'إذا كان المنعوت معرفاً بأل، وجب على النعت أن يقترن بأل التعريف ويطابقه في التأنيث (المدينة الكبيرة).',
+      },
+      translation: 'the big city',
+      translations: {
+        en: 'the big city',
+        ru: 'большой город',
+        de: 'die große Stadt',
+        es: 'la gran ciudad',
+        fr: 'la grande ville',
+        zh: '大城市',
+        hi: 'बड़ा शहर',
+        ar: 'المدينة الكبيرة',
+      },
+      icon: '🏙️',
+    },
+    {
+      id: 'ar-card-4',
+      type: 'description',
+      prompt: 'Verb conjugation: "I work in an office" ➔ أنا ___ في مكتب',
+      prompts: {
+        en: 'Verb conjugation: "I work in an office" ➔ أنا ___ في مكتب',
+        ru: 'Спряжение глагола: «Я работаю в офисе» ➔ أنا ___ في مكتب',
+        de: 'Verbkonjugation: „Ich arbeite in einem Büro“ ➔ أنا ___ في مكتب',
+        es: 'Conjugación verbal: «Trabajo en una oficina» ➔ أنا ___ في مكتب',
+        fr: 'Conjugaison : « Je travaille dans un bureau » ➔ أنا ___ في مكتب',
+        zh: '动词变位："我在办公室工作" ➔ أنا ___ في مكتب',
+        hi: 'क्रिया रूप: "मैं कार्यालय में काम करता हूँ" ➔ أنا ___ في مكتب',
+        ar: 'تصريف الفعل: "أنا أعمل في مكتب" ➔ أنا ___ في مكتب',
+      },
+      options: ['أعمل', 'يعمل', 'تعمل', 'نعمل'],
+      correctAnswer: 'أعمل',
+      explanation: 'In the present tense, the first person singular pronoun أنا (I) takes the prefix أ- on the verb: أعمل (I work).',
+      explanations: {
+        en: 'In the present tense, the first person singular pronoun أنا (I) takes the prefix أ- on the verb: أعمل (I work).',
+        ru: 'В настоящем времени местоимение 1-го лица единственного числа أنا (я) требует приставки أ- у глагола: أعمل (я работаю).',
+        de: 'Im Präsens erhält das Verb beim Pronomen أنا (ich) das Präfix أ-: أعمل (ich arbeite).',
+        es: 'En presente, el pronombre de primera persona أنا (yo) añade el prefijo أ- al verbo: أعمل (trabajo).',
+        fr: 'Au présent, le pronom de la première personne أنا (je) ajoute le préfixe أ- au verbe : أعمل (je travaille).',
+        zh: '现在时中，第一人称单数 أنا（我）在动词前加前缀 أ-：أعمل（我工作）。',
+        hi: 'वर्तमान काल में उत्तम पुरुष एकवचन सर्वनाम "أنا" (मैं) के साथ क्रिया में "أ-" उपसर्ग लगता है: أعمل।',
+        ar: 'في الفعل المضارع، يبدأ فعل المتكلم المفرد بالهمزة مع الضمير "أنا": أعملُ.',
+      },
+      translation: 'I work in an office',
+      translations: {
+        en: 'I work in an office',
+        ru: 'я работаю в офисе',
+        de: 'ich arbeite in einem Büro',
+        es: 'trabajo en una oficina',
+        fr: 'je travaille dans un bureau',
+        zh: '我在办公室工作',
+        hi: 'मैं कार्यालय में काम करता हूँ',
+        ar: 'أنا أعمل في مكتب',
+      },
+      icon: '🏢',
+    },
+  ],
+};
+
 const LOCALIZED_ENGLISH_GRAMMAR: Partial<Record<SupportedLanguageId, Partial<GrammarData>>> = {
   ru: {
     genderRules: [
@@ -2845,6 +3092,66 @@ const LOCALIZED_ENGLISH_GRAMMAR: Partial<Record<SupportedLanguageId, Partial<Gra
         },
       ],
     },
+  ar: {
+    genderRules: [
+      {
+        article: 'a / an / the',
+        gender: 'neuter',
+        color: '#2563eb',
+        name: 'أدوات التعريف والتنكير (A, An, The)',
+        description: 'لا تحتوي اللغة الإنجليزية على تذكير وتأنيث نحوي للجمادات، بل تُستخدم أدوات التنكير (a / an) وأداة التعريف (the).',
+        rules: [
+          'استخدم "a" قبل الكلمات التي تبدأ بصوت ساكن: a book, a car, a university',
+          'استخدم "an" قبل الكلمات التي تبدأ بصوت متحرك: an apple, an hour (حرف h صامت), an elephant',
+          'استخدم "the" للدلالة على شيء محدد ومعروف لدى المتحدث والمستمع: the book on the table',
+        ],
+        examples: [
+          { word: 'apple', article: 'an', meaning: 'تفاحة', icon: '🍎' },
+          { word: 'book', article: 'a', meaning: 'كتاب', icon: '📖' },
+          { word: 'car', article: 'a', meaning: 'سيارة', icon: '🚗' },
+          { word: 'hour', article: 'an', meaning: 'ساعة', icon: '⏱️' },
+        ],
+      },
+    ],
+    verbs: [
+      {
+        verb: 'to be',
+        meaning: 'يكون / الكينونة',
+        tense: 'الحاضر والماضي',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I', form: 'am / was' },
+          { pronoun: 'you', form: 'are / were' },
+          { pronoun: 'he / she / it', form: 'is / was' },
+          { pronoun: 'we', form: 'are / were' },
+          { pronoun: 'they', form: 'are / were' },
+        ],
+        exampleSentence: { target: 'We are learning languages together.', translation: 'نحن نتعلم اللغات معاً.' },
+      },
+      {
+        verb: 'to have',
+        meaning: 'يملك / لديه',
+        tense: 'الحاضر والماضي',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I / you / we / they', form: 'have (had)' },
+          { pronoun: 'he / she / it', form: 'has (had)' },
+        ],
+        exampleSentence: { target: 'She has a meeting today.', translation: 'لديها اجتماع اليوم.' },
+      },
+    ],
+    descriptions: [
+      {
+        title: 'صيغ المقارنة والتفضيل في الإنجليزية',
+        explanation: 'تأخذ الصفات القصيرة اللاحقة -er / -est (مثل: fast -> faster -> fastest). أما الصفات الطويلة فتسبقها more / most (مثل: important -> more important -> most important).',
+        examples: [
+          { positive: 'good (جيد)', comparative: 'better (أفضل)', superlative: 'best (الأفضل)', meaning: 'جيد / أفضل / الأفضل' },
+          { positive: 'bad (سيئ)', comparative: 'worse (أسوأ)', superlative: 'worst (الأسوأ)', meaning: 'سيئ / أسوأ / الأسوأ' },
+          { positive: 'big (كبير)', comparative: 'bigger (أكبر)', superlative: 'biggest (الأكبر)', meaning: 'كبير / أكبر / الأكبر' },
+        ],
+      },
+    ],
+  },
   zh: {
     genderRules: [
       {
@@ -2967,6 +3274,7 @@ export const getGrammarForLanguage = (
       case 'ja': baseData = JAPANESE_GRAMMAR; break;
       case 'zh': baseData = CHINESE_GRAMMAR; break;
       case 'hi': baseData = HINDI_GRAMMAR; break;
+      case 'ar': baseData = ARABIC_GRAMMAR; break;
       default: baseData = GERMAN_GRAMMAR; break;
     }
   }

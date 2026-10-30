@@ -394,6 +394,44 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
         </svg>
       );
 
+    case 'ar':
+      return (
+        <svg
+          className="app-emblem arabic-flag"
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-label="Basic Arabic emblem"
+          role="img"
+        >
+          <defs>
+            <linearGradient id="arEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#006c35" />
+              <stop offset="50%" stopColor="#064e3b" />
+              <stop offset="100%" stopColor="#022c22" />
+            </linearGradient>
+            <linearGradient id="arGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#fde047" />
+              <stop offset="60%" stopColor="#f59e0b" />
+              <stop offset="100%" stopColor="#d97706" />
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#arEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" />
+          {/* Authentic Arabic Green Field with white inscription & sword motif */}
+          <g transform="translate(6, 6)">
+            <rect x="0" y="0" width="10" height="7" rx="1.5" fill="#006c35" />
+            {/* Arabic calligraphy flourish simulation */}
+            <path d="M1.5 2.2 Q3 1.6 5 2.2 T8.5 2.2" stroke="#ffffff" strokeWidth="0.6" strokeLinecap="round" fill="none" />
+            <path d="M2.5 3.2 Q5 2.8 7.5 3.2" stroke="#ffffff" strokeWidth="0.5" strokeLinecap="round" fill="none" />
+            {/* Traditional horizontal sword */}
+            <line x1="2" y1="4.8" x2="8" y2="4.8" stroke="#ffffff" strokeWidth="0.5" strokeLinecap="round" />
+            <line x1="7.5" y1="4.2" x2="7.5" y2="5.4" stroke="#ffffff" strokeWidth="0.4" strokeLinecap="round" />
+            <circle cx="8.3" cy="4.8" r="0.4" fill="#ffffff" />
+          </g>
+          {capGeometry('arGoldGrad')}
+        </svg>
+      );
+
     case 'en':
     default:
       return (
