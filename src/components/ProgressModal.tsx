@@ -3,6 +3,7 @@ import { FaTimes, FaTrophy, FaGraduationCap, FaRedo, FaCheckCircle, FaChartBar, 
 import { ProgressService } from '../services/progressService';
 import { UserStats, WordProgress } from '../types/progress';
 import PronunciationButton from './PronunciationButton';
+import { FlagIcon } from './FlagIcon';
 import { containsCyrillic } from '../utils/transliteration';
 import { useLanguage } from '../contexts/LanguageContext';
 import { SUPPORTED_LANGUAGES } from '../data/languages';
@@ -281,7 +282,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
             <label htmlFor="progress-lang-dropdown" className="progress-lang-label">
               {modalCopy.selectLanguageLabel}
             </label>
-            <span className="progress-lang-sublabel">8 languages</span>
+            <span className="progress-lang-sublabel">{Object.keys(SUPPORTED_LANGUAGES).length} languages</span>
           </div>
           <div className="progress-dropdown-wrapper" ref={dropdownRef}>
             <button
@@ -294,7 +295,9 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
               aria-label={`Current course: ${localizedActiveLangName}. Click to change course progress.`}
             >
               <div className="dropdown-trigger-main">
-                <span className="dropdown-trigger-flag">{activeMeta.flag}</span>
+                <span className="dropdown-trigger-flag">
+                  <FlagIcon lang={activeMeta.id} size={22} />
+                </span>
                 <span className="dropdown-trigger-name">{localizedActiveLangName}</span>
               </div>
               <div className="dropdown-trigger-end">
@@ -325,7 +328,9 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
                       }}
                     >
                       <div className="dropdown-item-left">
-                        <span className="dropdown-item-flag">{lang.flag}</span>
+                        <span className="dropdown-item-flag">
+                          <FlagIcon lang={lang.id} size={20} />
+                        </span>
                         <span className="dropdown-item-name">{localizedName}</span>
                       </div>
                       <div className="dropdown-item-right">
@@ -412,7 +417,9 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
                   title={`Switch active app language to ${localizedActiveLangName}`}
                 >
                   <span>{modalCopy.studyBtn(localizedActiveLangName)}</span>
-                  <span className="btn-flag">{activeMeta.flag}</span>
+                  <span className="btn-flag">
+                    <FlagIcon lang={activeMeta.id} size={18} />
+                  </span>
                 </button>
               )}
             </div>

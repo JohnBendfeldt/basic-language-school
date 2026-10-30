@@ -1,6 +1,27 @@
 import React from 'react';
 
-export type FlagLanguage = 'ru' | 'en' | 'es' | 'fr' | 'pt' | 'de' | 'id' | 'tr' | 'us' | 'ja' | 'ko';
+export type FlagLanguage =
+  | 'ru'
+  | 'en'
+  | 'es'
+  | 'fr'
+  | 'pt'
+  | 'de'
+  | 'id'
+  | 'tr'
+  | 'us'
+  | 'ja'
+  | 'ko'
+  | 'zh'
+  | 'cn'
+  | 'hi'
+  | 'in'
+  | 'ar'
+  | 'sa'
+  | 'bn'
+  | 'bd'
+  | 'ur'
+  | 'pk';
 
 interface FlagIconProps {
   lang: FlagLanguage | string;
@@ -220,6 +241,97 @@ export const FlagIcon: React.FC<FlagIconProps> = ({
         <circle cx="380" cy="240" r="60" fill="#0047a0" />
         <rect x="130" y="100" width="40" height="8" rx="2" fill="#000000" transform="rotate(35 150 104)" />
         <rect x="470" y="370" width="40" height="8" rx="2" fill="#000000" transform="rotate(35 490 374)" />
+      </svg>
+    );
+  }
+
+  if (norm === 'zh' || norm === 'cn' || norm === 'mandarin chinese') {
+    // Chinese flag: red field with gold stars
+    return (
+      <svg
+        viewBox="0 0 640 480"
+        style={commonStyle}
+        className={`flag-icon flag-zh ${className}`}
+        aria-label={ariaLabel || 'Chinese flag'}
+        role="img"
+      >
+        <rect width="640" height="480" fill="#de2910" />
+        <polygon points="128,64 148,124 210,124 160,160 179,220 128,183 77,220 96,160 46,124 108,124" fill="#ffde00" />
+        <polygon points="256,48 262,68 283,68 266,80 272,100 256,88 240,100 246,80 229,68 250,68" fill="#ffde00" transform="rotate(10 256 74)" />
+        <polygon points="307,96 313,116 334,116 317,128 323,148 307,136 291,148 297,128 280,116 301,116" fill="#ffde00" transform="rotate(25 307 122)" />
+        <polygon points="307,173 313,193 334,193 317,205 323,225 307,213 291,225 297,205 280,193 301,193" fill="#ffde00" transform="rotate(45 307 199)" />
+        <polygon points="256,221 262,241 283,241 266,253 272,273 256,261 240,273 246,253 229,241 250,241" fill="#ffde00" transform="rotate(65 256 247)" />
+      </svg>
+    );
+  }
+
+  if (norm === 'hi' || norm === 'in' || norm === 'hindi') {
+    // Indian flag: saffron, white, green with Ashoka Chakra
+    return (
+      <svg
+        viewBox="0 0 640 480"
+        style={commonStyle}
+        className={`flag-icon flag-in ${className}`}
+        aria-label={ariaLabel || 'Indian flag'}
+        role="img"
+      >
+        <rect width="640" height="160" fill="#ff9933" />
+        <rect y="160" width="640" height="160" fill="#ffffff" />
+        <rect y="320" width="640" height="160" fill="#138808" />
+        <circle cx="320" cy="240" r="56" fill="none" stroke="#000080" strokeWidth="8" />
+        <circle cx="320" cy="240" r="14" fill="#000080" />
+      </svg>
+    );
+  }
+
+  if (norm === 'ar' || norm === 'sa' || norm === 'modern standard arabic') {
+    // Saudi / Arabic flag: green field with white script and sword motif
+    return (
+      <svg
+        viewBox="0 0 640 480"
+        style={commonStyle}
+        className={`flag-icon flag-sa ${className}`}
+        aria-label={ariaLabel || 'Arabic flag'}
+        role="img"
+      >
+        <rect width="640" height="480" fill="#165d31" />
+        <path d="M180 295h280v12H180z M440 288l28 13-28 13z" fill="#ffffff" />
+        <text x="320" y="240" textAnchor="middle" fill="#ffffff" fontSize="56" fontWeight="bold" fontFamily="sans-serif">العربية</text>
+      </svg>
+    );
+  }
+
+  if (norm === 'bn' || norm === 'bd' || norm === 'bengali') {
+    // Bangladesh flag: green field with red circle
+    return (
+      <svg
+        viewBox="0 0 640 480"
+        style={commonStyle}
+        className={`flag-icon flag-bd ${className}`}
+        aria-label={ariaLabel || 'Bengali flag'}
+        role="img"
+      >
+        <rect width="640" height="480" fill="#006a4e" />
+        <circle cx="288" cy="240" r="144" fill="#f42a41" />
+      </svg>
+    );
+  }
+
+  if (norm === 'ur' || norm === 'pk' || norm === 'urdu') {
+    // Pakistan flag: green field, white hoist stripe, crescent and star
+    return (
+      <svg
+        viewBox="0 0 640 480"
+        style={commonStyle}
+        className={`flag-icon flag-pk ${className}`}
+        aria-label={ariaLabel || 'Urdu flag'}
+        role="img"
+      >
+        <rect width="640" height="480" fill="#01411c" />
+        <rect width="160" height="480" fill="#ffffff" />
+        <circle cx="410" cy="240" r="110" fill="#ffffff" />
+        <circle cx="438" cy="218" r="95" fill="#01411c" />
+        <polygon points="460,180 468,198 488,198 472,210 478,228 460,216 442,228 448,210 432,198 452,198" fill="#ffffff" transform="rotate(-20 460 204)" />
       </svg>
     );
   }

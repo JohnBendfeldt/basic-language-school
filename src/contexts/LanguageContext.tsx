@@ -36,6 +36,7 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export interface RoadmapLanguage {
+  id: string;
   name: string;
   nativeName: string;
   speakers: string;
@@ -45,11 +46,11 @@ export interface RoadmapLanguage {
 
 // Top most-spoken languages targeted for the platform roadmap
 export const ROADMAP_MOST_SPOKEN_LANGUAGES: RoadmapLanguage[] = [
-  { rank: 2, name: 'Mandarin Chinese', nativeName: '中文', speakers: '~1.18B', flag: '🇨🇳' },
-  { rank: 3, name: 'Hindi', nativeName: 'हिन्दी', speakers: '~611M', flag: '🇮🇳' },
-  { rank: 5, name: 'Modern Standard Arabic', nativeName: 'العربية', speakers: '~335M', flag: '🇸🇦' },
-  { rank: 7, name: 'Bengali', nativeName: 'বাংলা', speakers: '~274M', flag: '🇧🇩' },
-  { rank: 10, name: 'Urdu', nativeName: 'اردو', speakers: '~246M', flag: '🇵🇰' },
+  { id: 'zh', rank: 2, name: 'Mandarin Chinese', nativeName: '中文', speakers: '~1.18B', flag: '🇨🇳' },
+  { id: 'hi', rank: 3, name: 'Hindi', nativeName: 'हिन्दी', speakers: '~611M', flag: '🇮🇳' },
+  { id: 'ar', rank: 5, name: 'Modern Standard Arabic', nativeName: 'العربية', speakers: '~335M', flag: '🇸🇦' },
+  { id: 'bn', rank: 7, name: 'Bengali', nativeName: 'বাংলা', speakers: '~274M', flag: '🇧🇩' },
+  { id: 'ur', rank: 10, name: 'Urdu', nativeName: 'اردو', speakers: '~246M', flag: '🇵🇰' },
 ];
 
 // Active languages available on the platform
