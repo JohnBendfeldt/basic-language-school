@@ -3,7 +3,7 @@ import { FaChevronDown, FaCheck, FaGlobe, FaStar, FaExchangeAlt, FaTimes } from 
 import { useLanguage, ROADMAP_MOST_SPOKEN_LANGUAGES } from '../contexts/LanguageContext';
 import { SupportedLanguageId } from '../data/languages/types';
 import { FlagIcon } from './FlagIcon';
-import { getLocalizedLanguageName, getComponentChrome } from '../utils/pageDictionary';
+import { getLocalizedLanguageName, getComponentChrome, getLocalizedRegionName } from '../utils/pageDictionary';
 
 interface LanguageSwitcherProps {
   onLanguageChange?: (langId: SupportedLanguageId) => void;
@@ -27,23 +27,27 @@ export const LANGUAGE_REGION_MAP: Record<string, LanguageRegion> = {
   ko: 'east-asian',
   zh: 'east-asian',
   hi: 'south-asian',
+  bn: 'south-asian',
+  ur: 'south-asian',
   ar: 'middle-eastern',
 };
 
 const HIGH_AFFINITY_CORRIDORS: Record<string, SupportedLanguageId[]> = {
-  en: ['es', 'ar', 'hi', 'zh', 'fr', 'ja', 'ko', 'de', 'ru', 'pt', 'tr'],
+  en: ['es', 'ar', 'hi', 'zh', 'fr', 'ja', 'ko', 'de', 'ru', 'pt', 'tr', 'bn', 'ur'],
   es: ['pt', 'en', 'fr', 'zh', 'ja', 'de', 'ru', 'ar'],
   pt: ['es', 'en', 'fr', 'zh', 'ja', 'de'],
   fr: ['en', 'ar', 'es', 'zh', 'ja', 'de', 'pt', 'ru'],
   de: ['en', 'fr', 'zh', 'ja', 'es', 'ru', 'tr', 'ar'],
   ru: ['zh', 'de', 'en', 'ja', 'ko', 'tr', 'es', 'fr', 'hi', 'ar'],
-  tr: ['en', 'de', 'ar', 'zh', 'ko', 'ja', 'ru', 'fr'],
+  tr: ['en', 'de', 'ar', 'zh', 'ko', 'ja', 'ru', 'fr', 'ur'],
   id: ['zh', 'en', 'ja', 'ko', 'tr', 'de', 'ru', 'ar'],
   ko: ['zh', 'ja', 'en', 'es', 'de', 'fr', 'ru'],
   ja: ['zh', 'ko', 'en', 'es', 'de', 'fr', 'ru'],
   zh: ['en', 'ja', 'ko', 'ru', 'es', 'fr', 'de', 'hi', 'ar'],
-  hi: ['en', 'ru', 'de', 'fr', 'zh', 'es', 'ja', 'ar'],
-  ar: ['en', 'fr', 'tr', 'de', 'es', 'ru', 'zh', 'hi'],
+  hi: ['en', 'ur', 'bn', 'ru', 'de', 'fr', 'zh', 'es', 'ja', 'ar'],
+  ar: ['en', 'ur', 'fr', 'tr', 'de', 'es', 'ru', 'zh', 'hi'],
+  bn: ['en', 'hi', 'ur', 'ar', 'zh', 'de', 'fr'],
+  ur: ['en', 'ar', 'hi', 'bn', 'tr', 'de', 'fr'],
 };
 
 interface StoredLanguagePair {
@@ -67,6 +71,8 @@ const FLAG_EMOJIS: Record<string, string> = {
   zh: '🇨🇳',
   hi: '🇮🇳',
   ar: '🇸🇦',
+  bn: '🇧🇩',
+  ur: '🇵🇰',
 };
 
 const DEFAULT_INITIAL_PAIRS: StoredLanguagePair[] = [
@@ -75,6 +81,86 @@ const DEFAULT_INITIAL_PAIRS: StoredLanguagePair[] = [
   { base: 'en', target: 'de' },
   { base: 'en', target: 'ru' },
 ];
+
+const getRecentPairsTitle = (baseLang: SupportedLanguageId): string => {
+  switch (baseLang) {
+    case 'ru': return 'Недавние пары';
+    case 'es': return 'Pares recientes';
+    case 'fr': return 'Paires récentes';
+    case 'de': return 'Zuletzt verwendete Paare';
+    case 'pt': return 'Pares recentes';
+    case 'tr': return 'Son Kullanılan Çiftler';
+    case 'id': return 'Pasangan Terbaru';
+    case 'ja': return '最近の組み合わせ';
+    case 'ko': return '최근 언어 쌍';
+    case 'zh': return '最近选择的语言对';
+    case 'hi': return 'हाल के भाषा जोड़े';
+    case 'ar': return 'الأزواج الأخيرة';
+    case 'bn': return 'সাম্প্রতিক ভাষা জোড়া';
+    case 'ur': return 'حالیہ زبانوں کے جوڑے';
+    default: return 'Recent Pairs';
+  }
+};
+
+const getSuggestedTitle = (baseLang: SupportedLanguageId): string => {
+  switch (baseLang) {
+    case 'ru': return 'Рекомендуемые курсы';
+    case 'es': return 'Sugeridos para ti';
+    case 'fr': return 'Suggéré pour vous';
+    case 'de': return 'Empfohlen für dich';
+    case 'pt': return 'Sugeridos para você';
+    case 'tr': return 'Sizin İçin Önerilen';
+    case 'id': return 'Disarankan untuk Anda';
+    case 'ja': return 'おすすめのコース';
+    case 'ko': return '추천 학습 코스';
+    case 'zh': return '为你推荐';
+    case 'hi': return 'आपके लिए अनुशंसित';
+    case 'ar': return 'مقترحة لك';
+    case 'bn': return 'আপনার জন্য প্রস্তাবিত';
+    case 'ur': return 'آپ کے لیے تجویز کردہ';
+    default: return 'Suggested For You';
+  }
+};
+
+const getRoadmapTitle = (baseLang: SupportedLanguageId): string => {
+  switch (baseLang) {
+    case 'ru': return 'Глобальная карта развития языков';
+    case 'es': return 'Mapa global de idiomas';
+    case 'fr': return 'Feuille de route mondiale des langues';
+    case 'de': return 'Globale Sprachen-Roadmap';
+    case 'pt': return 'Roteiro global de idiomas';
+    case 'tr': return 'Küresel Dil Yol Haritası';
+    case 'id': return 'Peta Jalan Bahasa Global';
+    case 'ja': return '言語追加ロードマップ';
+    case 'ko': return '글로벌 언어 로드맵';
+    case 'zh': return '全球语言路线图';
+    case 'hi': return 'वैश्विक भाषा रोडमैप';
+    case 'ar': return 'خارطة طريق اللغات العالمية';
+    case 'bn': return 'গ্লোবাল ল্যাঙ্গুয়েজ রোডম্যাপ';
+    case 'ur': return 'عالمی زبانوں کا لائحہ عمل';
+    default: return 'Global Language Roadmap';
+  }
+};
+
+const getRoadmapSubtitle = (baseLang: SupportedLanguageId): string => {
+  switch (baseLang) {
+    case 'ru': return 'Приоритет отдаётся самым распространённым языкам мира, чтобы открыть обучение как можно большему числу людей.';
+    case 'es': return 'Priorizando los idiomas más hablados del mundo para llegar a la mayor cantidad de estudiantes.';
+    case 'fr': return 'Priorité aux langues les plus parlées au monde pour toucher un maximum d’apprenants.';
+    case 'de': return 'Wir priorisieren die meistgesprochenen Sprachen der Welt, um weltweit die meisten Lernenden zu erreichen.';
+    case 'pt': return 'Priorizando os idiomas mais falados do mundo para alcançar o maior número de estudantes.';
+    case 'tr': return 'Dünya genelinde en çok öğrenciye ulaşmak için en çok konuşulan dillere öncelik veriyoruz.';
+    case 'id': return 'Memprioritaskan bahasa yang paling banyak digunakan di dunia untuk menjangkau lebih banyak pelajar.';
+    case 'ja': return '世界で最も多く話されている言語を優先し、より多くの学習者へお届けします。';
+    case 'ko': return '전 세계 더 많은 학습자에게 다가가기 위해 가장 널리 사용되는 언어를 우선순위로 둡니다.';
+    case 'zh': return '优先开发全球使用人数最多的语言，让更多学习者轻松开启新语言之旅。';
+    case 'hi': return 'दुनिया भर में अधिक से अधिक शिक्षार्थियों तक पहुँचने के लिए सबसे अधिक बोली जाने वाली भाषाओं को प्राथमिकता दी जा रही है।';
+    case 'ar': return 'إعطاء الأولوية للغات الأكثر تحدثاً في العالم للوصول إلى أكبر عدد من المتعلمين.';
+    case 'bn': return 'বিশ্বব্যাপী সর্বাধিক শিক্ষার্থীদের কাছে পৌঁছানোর জন্য সর্বাধিক কথ্য ভাষাগুলিকে অগ্রাধিকার দেওয়া হচ্ছে।';
+    case 'ur': return 'دنیا بھر کے زیادہ سے زیادہ سیکھنے والوں تک پہنچنے کے لیے سب سے زیادہ بولی جانے والی زبانوں کو ترجیح دی جا رہی ہے۔';
+    default: return "Prioritizing the world's most spoken languages to reach the most learners worldwide.";
+  }
+};
 
 export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageChange, className = '' }) => {
   const {
@@ -355,7 +441,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
             <div className="quick-pairs-section">
               {recentPairs.length > 0 && (
                 <div className="quick-pairs-group">
-                  <div className="quick-pairs-title">⚡ {baseLanguage === 'de' ? 'Zuletzt verwendete Paare' : baseLanguage === 'es' ? 'Pares recientes' : baseLanguage === 'fr' ? 'Paires récentes' : baseLanguage === 'ru' ? 'Недавние пары' : baseLanguage === 'pt' ? 'Pares recentes' : baseLanguage === 'tr' ? 'Son Kullanılan Çiftler' : baseLanguage === 'id' ? 'Pasangan Terbaru' : 'Recent Pairs'}</div>
+                  <div className="quick-pairs-title">⚡ {getRecentPairsTitle(baseLanguage)}</div>
                   <div className="quick-pairs-chips">
                     {recentPairs.map(p => {
                       const isCurrent = baseLanguage === p.base && targetLanguage === p.target;
@@ -381,7 +467,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
 
               {availableLanguages.filter(l => l.available && l.id !== baseLanguage && (HIGH_AFFINITY_CORRIDORS[baseLanguage] || ['es', 'fr', 'en', 'de']).includes(l.id as SupportedLanguageId)).length > 0 && (
                 <div className="quick-pairs-group" style={{ marginTop: '0.65rem' }}>
-                  <div className="quick-pairs-title">✨ {baseLanguage === 'de' ? 'Empfohlen für dich' : baseLanguage === 'es' ? 'Sugeridos para ti' : baseLanguage === 'fr' ? 'Suggéré pour vous' : baseLanguage === 'ru' ? 'Рекомендуемые курсы' : baseLanguage === 'pt' ? 'Sugeridos para você' : baseLanguage === 'tr' ? 'Sizin İçin Önerilen' : baseLanguage === 'id' ? 'Disarankan untuk Anda' : 'Suggested For You'}</div>
+                  <div className="quick-pairs-title">✨ {getSuggestedTitle(baseLanguage)}</div>
                   <div className="quick-pairs-chips">
                     {availableLanguages
                       .filter(l => l.available && l.id !== baseLanguage && (HIGH_AFFINITY_CORRIDORS[baseLanguage] || ['es', 'fr', 'en', 'de']).includes(l.id as SupportedLanguageId))
@@ -422,13 +508,13 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                     onChange={(e) => setSelectedRegion(e.target.value as LanguageRegion)}
                     aria-label="Filter languages by family"
                   >
-                    <option value="all">🌍 All ({availableLanguages.length})</option>
-                    <option value="romance">🏛️ Romance</option>
-                    <option value="germanic">🏰 Germanic</option>
-                    <option value="slavic-eurasian">🌍 Slavic & Eurasian</option>
-                    <option value="east-asian">🌸 East Asian</option>
-                    <option value="south-asian">🪷 South Asian</option>
-                    <option value="middle-eastern">🌙 Middle Eastern</option>
+                    <option value="all">🌍 {getLocalizedRegionName('all', baseLanguage)} ({availableLanguages.length})</option>
+                    <option value="romance">🏛️ {getLocalizedRegionName('romance', baseLanguage)}</option>
+                    <option value="germanic">🏰 {getLocalizedRegionName('germanic', baseLanguage)}</option>
+                    <option value="slavic-eurasian">🌍 {getLocalizedRegionName('slavic-eurasian', baseLanguage)}</option>
+                    <option value="east-asian">🌸 {getLocalizedRegionName('east-asian', baseLanguage)}</option>
+                    <option value="south-asian">🪷 {getLocalizedRegionName('south-asian', baseLanguage)}</option>
+                    <option value="middle-eastern">🌙 {getLocalizedRegionName('middle-eastern', baseLanguage)}</option>
                   </select>
                 </div>
               </div>
@@ -474,10 +560,10 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                 <div className="language-roadmap-container">
                   <div className="language-roadmap-header">
                     <span className="roadmap-title-badge">
-                      <FaStar className="upcoming-icon" /> Global Language Roadmap
+                      <FaStar className="upcoming-icon" /> {getRoadmapTitle(baseLanguage)}
                     </span>
                     <p className="roadmap-subtitle">
-                      Prioritizing the world's most spoken languages to reach the most learners worldwide.
+                      {getRoadmapSubtitle(baseLanguage)}
                     </p>
                   </div>
 

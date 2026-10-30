@@ -13,9 +13,10 @@ import {
   extractDigit,
   resolveTranslation,
   buildQuizQuestionHint,
-  getAlphabetQuizHint
+  getAlphabetQuizHint,
+  LANGUAGE_NAMES_IN_BASE
 } from '../utils/translationResolver';
-import { localizeCategoryBadge, localizeLevelBadge, getQuizToolbarLabels } from '../utils/pageDictionary';
+import { localizeCategoryBadge, localizeLevelBadge, getQuizToolbarLabels, getQuizRecapLabels } from '../utils/pageDictionary';
 import { UIStrings } from '../data/translations';
 import { SupportedLanguageId } from '../data/languages/types';
 import { useIsMobile } from '../hooks/useIsMobile';
@@ -123,7 +124,7 @@ export const mapToSubCategoryKey = (cat: string | undefined): QuizCategoryFilter
 export const getCategoryLabel = (id: QuizCategoryFilter, ui?: UIStrings, baseLang?: SupportedLanguageId): string => {
   if (baseLang && baseLang !== 'en') {
     const localized = localizeCategoryBadge(id, baseLang);
-    if (localized && localized.toLowerCase() !== id.toLowerCase()) {
+    if (localized) {
       return localized;
     }
   }
@@ -219,7 +220,9 @@ export const SPECIAL_CHAR_MAP: Record<SupportedLanguageId, string[]> = {
   ko: ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ', 'ㅏ', 'ㅓ', 'ㅗ', 'ㅜ', 'ㅡ', 'ㅣ'],
   zh: [],
   hi: ['ा', 'ि', 'ी', 'ु', 'ू', 'े', 'ै', 'ो', 'ौ', 'ं', '्'],
-  ar: ['أ', 'إ', 'آ', 'ء', 'ة', 'ى', 'ئ', 'ؤ']
+  ar: ['أ', 'إ', 'آ', 'ء', 'ة', 'ى', 'ئ', 'ؤ'],
+  bn: ['া', 'ি', 'ী', 'ু', 'ূ', 'ে', 'ৈ', 'ো', 'ৌ', 'ং', 'ঃ', 'ঁ', '্', 'ৎ'],
+  ur: ['آ', 'ء', 'ؤ', 'ئ', 'ٹ', 'ڈ', 'ڑ', 'ں', 'ہ', 'ھ', 'ے']
 };
 
 const getAudioCategory = (questionType: string): 'alphabet' | 'phrases' | 'numbers' | 'words' | 'time' | 'examples' => {
@@ -241,6 +244,8 @@ const getAudioCategory = (questionType: string): 'alphabet' | 'phrases' | 'numbe
 
 const Quiz: React.FC<QuizProps> = ({ data }) => {
   const { currentLanguage, currentMeta, baseLanguage, ui } = useLanguage();
+  const recapLabels = useMemo(() => getQuizRecapLabels(baseLanguage), [baseLanguage]);
+  const targetNameInBase = useMemo(() => LANGUAGE_NAMES_IN_BASE[baseLanguage]?.[currentLanguage] || currentMeta.name, [baseLanguage, currentLanguage, currentMeta.name]);
 
   // Session Goal: 5, 10, or 20 questions (persisted per language)
   const [sessionGoal, setSessionGoal] = useState<number>(() => {
@@ -458,24 +463,39 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   };
 
   const getListeningHeader = (targetLang: SupportedLanguageId, baseLang: SupportedLanguageId, targetName: string) => {
+    const tName = LANGUAGE_NAMES_IN_BASE[baseLang]?.[targetLang] || targetName;
     switch (baseLang) {
       case 'es':
-        return `Escucha el audio y escribe lo que oyes en ${targetName}:`;
+        return `Escucha el audio y escribe lo que oyes en ${tName}:`;
       case 'fr':
-        return `Écoutez l'audio et écrivez ce que vous entendez en ${targetName} :`;
+        return `Écoutez l'audio et écrivez ce que vous entendez en ${tName} :`;
       case 'de':
-        return `Höre das Audio an und schreibe, was du auf ${targetName} hörst:`;
+        return `Höre das Audio an und schreibe, was du auf ${tName} hörst:`;
       case 'ru':
-        return `Послушайте аудио и напишите то, что слышите на ${targetName}:`;
+        return `Послушайте аудио и напишите то, что слышите на ${tName}:`;
       case 'pt':
-        return `Ouça o áudio e digite o que ouve em ${targetName}:`;
+        return `Ouça o áudio e digite o que ouve em ${tName}:`;
       case 'id':
-        return `Dengarkan audio dan ketik apa yang Anda dengar dalam ${targetName}:`;
+        return `Dengarkan audio dan ketik apa yang Anda dengar dalam ${tName}:`;
       case 'tr':
-        return `Sesi dinleyin ve ${targetName} dilinde duyduğunuzu yazın:`;
+        return `Sesi dinleyin ve ${tName} dilinde duyduğunuzu yazın:`;
+      case 'ja':
+        return `音声を聞いて${tName}で聞き取った内容を入力してください:`;
+      case 'ko':
+        return `오디오를 듣고 ${tName}로 들리는 내용을 입력하세요:`;
+      case 'zh':
+        return `听音频并输入你听到的${tName}:`;
+      case 'hi':
+        return `ऑडियो सुनें और जो सुन रहे हैं उसे ${tName} में लिखें:`;
+      case 'ar':
+        return `استمع إلى الصوت واكتب ما تسمعه ب${tName}:`;
+      case 'bn':
+        return `অডিও শুনুন এবং যা শুনছেন তা ${tName}-এ লিখুন:`;
+      case 'ur':
+        return `آڈیو سنیں اور جو سنتے ہیں اسے ${tName} میں لکھیں:`;
       case 'en':
       default:
-        return `Listen to the audio and type what you hear in ${targetName}:`;
+        return `Listen to the audio and type what you hear in ${tName}:`;
     }
   };
 
@@ -1727,19 +1747,34 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         case 'pt': return 'Digite o que você ouve ou a tradução...';
         case 'id': return 'Ketik apa yang Anda dengar atau artinya...';
         case 'tr': return 'Duyduğunuzu veya anlamını yazın...';
+        case 'ja': return '聞こえた内容または意味を入力...';
+        case 'ko': return '들리는 내용 또는 번역 입력...';
+        case 'zh': return '输入听到的内容或翻译...';
+        case 'hi': return 'जो सुन रहे हैं या उसका अनुवाद लिखें...';
+        case 'ar': return 'اكتب ما تسمعه أو الترجمة...';
+        case 'bn': return 'যা শুনেছেন বা অনুবাদটি লিখুন...';
+        case 'ur': return 'جو سنتے ہیں یا ترجمہ لکھیں...';
         default: return 'Type what you hear or translation...';
       }
     }
+    const targetNameInBase = LANGUAGE_NAMES_IN_BASE[baseLanguage]?.[currentLanguage] || currentMeta.name;
     if (expectedAnswerLanguage === currentLanguage) {
       switch (baseLanguage) {
-        case 'es': return `Escribe en ${currentMeta.name}...`;
-        case 'fr': return `Écrivez en ${currentMeta.name}...`;
-        case 'ru': return `Введите на ${currentMeta.name}...`;
-        case 'de': return `Tippe auf ${currentMeta.name}...`;
-        case 'pt': return `Digite em ${currentMeta.name}...`;
-        case 'id': return `Ketik dalam bahasa ${currentMeta.name}...`;
-        case 'tr': return `${currentMeta.name} dilinde yazın...`;
-        default: return `Type in ${currentMeta.name}...`;
+        case 'es': return `Escribe en ${targetNameInBase}...`;
+        case 'fr': return `Écrivez en ${targetNameInBase}...`;
+        case 'ru': return `Введите на ${targetNameInBase}...`;
+        case 'de': return `Tippe auf ${targetNameInBase}...`;
+        case 'pt': return `Digite em ${targetNameInBase}...`;
+        case 'id': return `Ketik dalam ${targetNameInBase}...`;
+        case 'tr': return `${targetNameInBase} dilinde yazın...`;
+        case 'ja': return `${targetNameInBase}で入力...`;
+        case 'ko': return `${targetNameInBase}로 입력...`;
+        case 'zh': return `用${targetNameInBase}输入...`;
+        case 'hi': return `${targetNameInBase} में लिखें...`;
+        case 'ar': return `اكتب ب${targetNameInBase}...`;
+        case 'bn': return `${targetNameInBase}-এ লিখুন...`;
+        case 'ur': return `${targetNameInBase} میں لکھیں...`;
+        default: return `Type in ${targetNameInBase}...`;
       }
     }
     switch (baseLanguage) {
@@ -1750,6 +1785,13 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       case 'pt': return 'Digite em português...';
       case 'id': return 'Ketik dalam bahasa Indonesia...';
       case 'tr': return 'Türkçe yazın...';
+      case 'ja': return '日本語で入力...';
+      case 'ko': return '한국어로 입력...';
+      case 'zh': return '用中文输入...';
+      case 'hi': return 'हिन्दी में लिखें...';
+      case 'ar': return 'اكتب بالعربية...';
+      case 'bn': return 'বাংলায় লিখুন...';
+      case 'ur': return 'اردو میں لکھیں...';
       default: return 'Type in English...';
     }
   };
@@ -1871,7 +1913,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
     return (
       <div className="section quiz-section quiz-recap-section">
-        <h2 className="quiz-recap-title">Quiz Session Complete!</h2>
+        <h2 className="quiz-recap-title">{recapLabels.sessionComplete}</h2>
 
         <div className="quiz-card quiz-recap-card">
           <div className="recap-praise-hero">
@@ -1886,7 +1928,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                 </span>
               </div>
             )}
-            <p className="recap-english-subtitle">{headlineSubtitle}</p>
+            <p className="recap-english-subtitle">
+              {baseLanguage !== 'en' ? recapLabels.feedbackSubtitle(percentage, targetNameInBase) : headlineSubtitle}
+            </p>
           </div>
 
           <div className="recap-hero-score">
@@ -1919,29 +1963,29 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               </svg>
               <div className="recap-ring-label">
                 <span className="recap-score-percent">{percentage}%</span>
-                <span className="recap-score-ratio">{sessionScore} / {sessionGoal} correct</span>
+                <span className="recap-score-ratio">{recapLabels.correctRatio(sessionScore, sessionGoal)}</span>
               </div>
             </div>
 
             <div className="recap-stats-grid" role="group" aria-label="Session summary stats">
               <div className="recap-stat-card">
-                <span className="stat-label">🎯 Goal</span>
+                <span className="stat-label">🎯 {recapLabels.goal}</span>
                 <span className="stat-value">{sessionGoal} Qs</span>
               </div>
               <div className="recap-stat-card correct">
-                <span className="stat-label">✅ Correct</span>
+                <span className="stat-label">✅ {recapLabels.correct}</span>
                 <span className="stat-value">{sessionScore}</span>
               </div>
               <div className="recap-stat-card streak-stat">
-                <span className="stat-label">🔥 Best Streak</span>
+                <span className="stat-label">🔥 {recapLabels.bestStreak}</span>
                 <span className="stat-value">{maxComboStreak}</span>
               </div>
               <div className="recap-stat-card highlight">
-                <span className="stat-label">🏆 Mastered</span>
+                <span className="stat-label">🏆 {recapLabels.mastered}</span>
                 <span className="stat-value">{activeMasteredCount} / {activeTotalQuestions}</span>
               </div>
               <div className="recap-stat-card pool-left">
-                <span className="stat-label">📚 Remaining</span>
+                <span className="stat-label">📚 {recapLabels.remaining}</span>
                 <span className="stat-value">{activeRemainingToMaster}</span>
               </div>
             </div>
@@ -1950,20 +1994,20 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               <div className="level-checkpoint-banner" role="status">
                 <span className="checkpoint-icon">🎓</span>
                 <div className="checkpoint-text">
-                  <strong>Level {activeLevel} Checkpoint Passed!</strong>
-                  <span>You showed solid command of Level {activeLevel} vocabulary ({percentage}% accuracy). Nicely done.</span>
+                  <strong>{recapLabels.levelCheckpoint(activeLevel, percentage).title}</strong>
+                  <span>{recapLabels.levelCheckpoint(activeLevel, percentage).desc}</span>
                 </div>
               </div>
             )}
 
             <p className="recap-save-notice">
-              <FaCheckCircle className="notice-icon" /> Logged as 1 completed quiz in your learning progress
+              <FaCheckCircle className="notice-icon" /> {recapLabels.loggedNotice}
             </p>
           </div>
 
           <div className="recap-next-session">
             <div className="recap-topic-selector">
-              <span className="goal-picker-label">Choose topic:</span>
+              <span className="goal-picker-label">{recapLabels.chooseTopic}</span>
               <div className="recap-topic-pills" role="tablist" aria-label="Choose quiz topic">
                 {ALL_QUIZ_CATEGORIES.map(cat => {
                   const isActive = activeCategory === cat.id;
@@ -1988,7 +2032,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             </div>
 
             <div className="recap-goal-picker">
-              <span className="goal-picker-label">Choose next quiz length:</span>
+              <span className="goal-picker-label">{recapLabels.chooseNextLength}</span>
               <div className="goal-picker-buttons" role="group" aria-label="Next quiz length">
                 {[5, 10, 20].map(count => (
                   <button
@@ -2013,13 +2057,13 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                 onClick={() => startNewQuizSession(sessionGoal)}
                 autoFocus
                 title="Start next quiz session"
-                aria-label={`Start Next Quiz (${sessionGoal} Qs)`}
+                aria-label={recapLabels.startNextQuiz(sessionGoal)}
               >
                 <span className="btn-main-label">
-                  <FaRedo className="btn-icon" /> Start Next Quiz ({sessionGoal} Qs)
+                  <FaRedo className="btn-icon" /> {recapLabels.startNextQuiz(sessionGoal)}
                 </span>
                 <span className="btn-hint-badge">
-                  press ↵ Enter
+                  {recapLabels.pressEnter}
                 </span>
               </button>
             </div>
@@ -2028,18 +2072,18 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           {missedInSession.length > 0 && (
             <div className="recap-missed-section">
               <div className="missed-header-row">
-                <h4>Words to Review from This Session ({missedInSession.length})</h4>
+                <h4>{recapLabels.wordsToReview(missedInSession.length)}</h4>
               </div>
-              <p className="missed-hint">Listen to the correct pronunciation to reinforce your memory:</p>
+              <p className="missed-hint">{recapLabels.reviewHint}</p>
               <div className="missed-words-list">
                 {missedInSession.map((item, idx) => (
                   <div key={idx} className="missed-word-item">
                     <div className="missed-word-details">
                       <div className="missed-word-prompt">{item.prompt}</div>
                       <div className="missed-word-answers">
-                        <span className="correct-answer-text">Answer: <strong>{item.answer.split('/')[0]}</strong></span>
+                        <span className="correct-answer-text">{recapLabels.answerLabel} <strong>{item.answer.split('/')[0]}</strong></span>
                         {item.userAnswer && (
-                          <span className="user-answer-text">You typed: <span className="strikethrough">{item.userAnswer}</span></span>
+                          <span className="user-answer-text">{recapLabels.youTypedLabel} <span className="strikethrough">{item.userAnswer}</span></span>
                         )}
                       </div>
                     </div>
@@ -2156,7 +2200,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
                 {isTopicDropdownOpen && (
                   <div className="quiz-dropdown-menu" role="listbox" aria-labelledby="topic-dropdown-label">
-                    <div className="quiz-dropdown-section-title">Core Curriculum</div>
+                    <div className="quiz-dropdown-section-title">{recapLabels.coreCurriculum}</div>
                     {CORE_MODULE_CATEGORIES.map(cat => {
                       const isSelected = activeCategory === cat.id;
                       const countInfo = categoryCounts[cat.id];
@@ -2188,7 +2232,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                       );
                     })}
 
-                    <div className="quiz-dropdown-section-title">Industry &amp; Specialized Packs</div>
+                    <div className="quiz-dropdown-section-title">{recapLabels.specializedPacks}</div>
                     {TOPIC_PACK_CATEGORIES.map(cat => {
                       const isSelected = activeCategory === cat.id;
                       const countInfo = categoryCounts[cat.id];
@@ -2396,7 +2440,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           {currentQuestion.isListeningMode && !showNext
             ? getListeningHeader(currentLanguage, baseLanguage, currentMeta.name)
             : currentQuestion.isListeningMode && showNext
-              ? `${baseLanguage === 'es' ? 'Escuchaste' : baseLanguage === 'ru' ? 'Вы услышали' : baseLanguage === 'fr' ? 'Vous avez entendu' : baseLanguage === 'de' ? 'Du hast gehört' : baseLanguage === 'pt' ? 'Você ouviu' : baseLanguage === 'id' ? 'Anda mendengar' : baseLanguage === 'tr' ? 'Duyduğunuz' : 'You heard'}: "${currentQuestion.prompt}"`
+              ? `${baseLanguage === 'es' ? 'Escuchaste' : baseLanguage === 'ru' ? 'Вы услышали' : baseLanguage === 'fr' ? 'Vous avez entendu' : baseLanguage === 'de' ? 'Du hast gehört' : baseLanguage === 'pt' ? 'Você ouviu' : baseLanguage === 'id' ? 'Anda mendengar' : baseLanguage === 'tr' ? 'Duyduğunuz' : baseLanguage === 'ja' ? 'あなたが聞いた音声' : baseLanguage === 'ko' ? '들은 내용' : baseLanguage === 'zh' ? '听到的内容' : baseLanguage === 'hi' ? 'आपने सुना' : baseLanguage === 'ar' ? 'ما سمعته' : baseLanguage === 'bn' ? 'আপনি শুনেছেন' : baseLanguage === 'ur' ? 'آپ نے سنا' : 'You heard'}: "${currentQuestion.prompt}"`
               : currentQuestion.hint}
         </h3>
         <div className="quiz-prompt">
@@ -2409,14 +2453,14 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                   className="quiz-listening-audio-btn"
                   audioCategory={getAudioCategory(currentQuestion.type)}
                 />
-                <span className="listening-replay-hint">Tap to play audio again</span>
+                <span className="listening-replay-hint">{recapLabels.replayAudio}</span>
               </div>
               {showListeningHint ? (
                 <div className="listening-hint-box">
                   {currentQuestion.type === 'alphabet' ? (
-                    <><span className="tip-icon-col" aria-hidden="true">💡</span><span className="tip-text">{currentQuestion.pronunciation ? `Letter pronunciation: /${currentQuestion.pronunciation}/` : `Sound of the letter`}</span></>
+                    <><span className="tip-icon-col" aria-hidden="true">💡</span><span className="tip-text">{currentQuestion.pronunciation ? `/${currentQuestion.pronunciation}/` : recapLabels.replayAudio}</span></>
                   ) : (
-                    <><span className="tip-icon-col" aria-hidden="true">💡</span><span className="tip-text">Meaning: {currentQuestion.meaningHint || currentQuestion.baseMeaning || currentQuestion.hint}</span></>
+                    <><span className="tip-icon-col" aria-hidden="true">💡</span><span className="tip-text">{recapLabels.meaningLabel}: {currentQuestion.meaningHint || currentQuestion.baseMeaning || currentQuestion.hint}</span></>
                   )}
                 </div>
               ) : (
@@ -2425,7 +2469,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                   className="show-listening-hint-btn"
                   onClick={() => setShowListeningHint(true)}
                 >
-                  Need a hint?
+                  {recapLabels.needHint}
                 </button>
               )}
             </div>
@@ -2444,7 +2488,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               {showNext && (currentQuestion.baseMeaning || currentQuestion.meaningHint) && (
                 <div className="quiz-prompt-meaning-badge">
                   <span className="meaning-label">
-                    {baseLanguage === 'es' ? 'Significado' : baseLanguage === 'ru' ? 'Значение' : baseLanguage === 'fr' ? 'Signification' : baseLanguage === 'de' ? 'Bedeutung' : baseLanguage === 'pt' ? 'Significado' : baseLanguage === 'id' ? 'Arti' : baseLanguage === 'tr' ? 'Anlamı' : 'Meaning'}:
+                    {recapLabels.meaningLabel}:
                   </span>{' '}
                   <strong>{currentQuestion.baseMeaning || currentQuestion.meaningHint}</strong>
                 </div>

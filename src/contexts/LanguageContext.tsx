@@ -46,8 +46,8 @@ export interface RoadmapLanguage {
 
 // Top most-spoken languages targeted for the platform roadmap
 export const ROADMAP_MOST_SPOKEN_LANGUAGES: RoadmapLanguage[] = [
-  { id: 'bn', rank: 7, name: 'Bengali', nativeName: 'বাংলা', speakers: '~274M', flag: '🇧🇩' },
-  { id: 'ur', rank: 10, name: 'Urdu', nativeName: 'اردو', speakers: '~246M', flag: '🇵🇰' },
+  { id: 'pa', rank: 11, name: 'Punjabi', nativeName: 'ਪੰਜਾਬੀ', speakers: '~150M', flag: '🇮🇳' },
+  { id: 'mr', rank: 12, name: 'Marathi', nativeName: 'मराठी', speakers: '~99M', flag: '🇮🇳' },
 ];
 
 // Active languages available on the platform
@@ -63,6 +63,8 @@ export const ALL_PLATFORM_LANGUAGES = [
   { id: 'zh', name: 'Mandarin Chinese', nativeName: '中文', flag: '🇨🇳', available: true },
   { id: 'hi', name: 'Hindi', nativeName: 'हिन्दी', flag: '🇮🇳', available: true },
   { id: 'ar', name: 'Arabic', nativeName: 'العربية', flag: '🇸🇦', available: true },
+  { id: 'bn', name: 'Bengali', nativeName: 'বাংলা', flag: '🇧🇩', available: true },
+  { id: 'ur', name: 'Urdu', nativeName: 'اردو', flag: '🇵🇰', available: true },
   { id: 'ko', name: 'Korean', nativeName: '한국어', flag: '🇰🇷', available: true },
   { id: 'ja', name: 'Japanese', nativeName: '日本語', flag: '🇯🇵', available: true },
 ];

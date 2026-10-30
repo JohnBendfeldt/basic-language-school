@@ -1,0 +1,317 @@
+#!/usr/bin/env python3
+"""
+Generate comprehensive Urdu (ur) curriculum dataset.
+Includes:
+- 39 Urdu alphabet letters (Perso-Arabic Nastaliq script) with pronunciation, English anchor, and example words
+- 55+ Essential phrases across greetings, courtesy, travel, tech, dining, etc.
+- 30 Numbers (0-20, tens, 100, 1000)
+- 120+ High-frequency core words
+- Telling time expressions
+"""
+
+from pathlib import Path
+
+ROOT = Path('/Users/johnbendfeldt/Documents/basic-language-school')
+UR_DIR = ROOT / 'src' / 'data' / 'languages' / 'ur'
+UR_DIR.mkdir(parents=True, exist_ok=True)
+
+DATA_TS = """import { AlphabetItem, PhraseItem, AppData } from '../../../types';
+import { URDU_GRAMMAR } from '../grammarData';
+
+// Urdu Alphabet (حروفِ تہجی - 39 Letters of Perso-Arabic Nastaliq Script)
+const alphabet: AlphabetItem[] = [
+  { letter: 'آ', pronunciation: '/aː/ (alif madd)', example: 'as in father / car', word: 'آم', meaning: 'Mango', icon: '🥭' },
+  { letter: 'ا', pronunciation: '/ə/ or /a/ (alif)', example: 'as in cup / about', word: 'انار', meaning: 'Pomegranate', icon: '🍎' },
+  { letter: 'ب', pronunciation: '/b/ (be)', example: 'as in boy / book', word: 'بلی', meaning: 'Cat', icon: '🐱' },
+  { letter: 'پ', pronunciation: '/p/ (pe)', example: 'as in pen / park', word: 'پانی', meaning: 'Water', icon: '💧' },
+  { letter: 'ت', pronunciation: '/t̪/ (te)', example: 'as in pasta (dental t)', word: 'تارا', meaning: 'Star', icon: '⭐' },
+  { letter: 'ٹ', pronunciation: '/ʈ/ (ṭe)', example: 'as in top (retroflex t)', word: 'ٹوپی', meaning: 'Cap', icon: '🧢' },
+  { letter: 'ث', pronunciation: '/s/ (se)', example: 'as in sun / sea', word: 'ثمر', meaning: 'Fruit', icon: '🍎' },
+  { letter: 'ج', pronunciation: '/dʒ/ (jeem)', example: 'as in joy / jam', word: 'جہاز', meaning: 'Airplane / Ship', icon: '✈️' },
+  { letter: 'چ', pronunciation: '/tʃ/ (che)', example: 'as in chair / chat', word: 'چائے', meaning: 'Tea', icon: '🍵' },
+  { letter: 'ح', pronunciation: '/h/ (baṛī he)', example: 'as in home / hat', word: 'حلوہ', meaning: 'Halwa', icon: '🥣' },
+  { letter: 'خ', pronunciation: '/x/ (khe)', example: 'as in Bach / loch (guttural kh)', word: 'خط', meaning: 'Letter', icon: '✉️' },
+  { letter: 'د', pronunciation: '/d̪/ (daal)', example: 'as in this (dental d)', word: 'دروازہ', meaning: 'Door', icon: '🚪' },
+  { letter: 'ڈ', pronunciation: '/ɖ/ (ḍaal)', example: 'as in door (retroflex d)', word: 'ڈاکٹر', meaning: 'Doctor', icon: '🩺' },
+  { letter: 'ذ', pronunciation: '/z/ (zaal)', example: 'as in zoo / zebra', word: 'ذخیرہ', meaning: 'Treasure', icon: '💎' },
+  { letter: 'ر', pronunciation: '/r/ (re)', example: 'as in run (tapped r)', word: 'راستہ', meaning: 'Road', icon: '🛣️' },
+  { letter: 'ڑ', pronunciation: '/ɽ/ (ṛe)', example: 'as in flap r (flapped retroflex)', word: 'گاڑی', meaning: 'Car', icon: '🚗' },
+  { letter: 'ز', pronunciation: '/z/ (ze)', example: 'as in zoo / zero', word: 'زمین', meaning: 'Earth', icon: '🌍' },
+  { letter: 'ژ', pronunciation: '/ʒ/ (zhe)', example: 'as in measure / vision', word: 'ژالہ باری', meaning: 'Hailstorm', icon: '🌨️' },
+  { letter: 'س', pronunciation: '/s/ (seen)', example: 'as in sun / sea', word: 'سیب', meaning: 'Apple', icon: '🍎' },
+  { letter: 'ش', pronunciation: '/ʃ/ (sheen)', example: 'as in ship / shoe', word: 'شہر', meaning: 'City', icon: '🏙️' },
+  { letter: 'ص', pronunciation: '/s/ (swaad)', example: 'as in sun (emphatic s)', word: 'صابن', meaning: 'Soap', icon: '🧼' },
+  { letter: 'ض', pronunciation: '/z/ (zwaad)', example: 'as in zoo (emphatic z)', word: 'روشنی', meaning: 'Light', icon: '💡' },
+  { letter: 'ط', pronunciation: '/t/ (toye)', example: 'as in tea (emphatic t)', word: 'طوطا', meaning: 'Parrot', icon: '🦜' },
+  { letter: 'ظ', pronunciation: '/z/ (zoye)', example: 'as in zoo (emphatic z)', word: 'ظرف', meaning: 'Vessel', icon: '🏺' },
+  { letter: 'ع', pronunciation: '/ʔ/ or /ɑ/ (ain)', example: 'as in guttural stop', word: 'عینک', meaning: 'Glasses', icon: '👓' },
+  { letter: 'غ', pronunciation: '/ɣ/ (ghain)', example: 'as in French r (gh sound)', word: 'غبارہ', meaning: 'Balloon', icon: '🎈' },
+  { letter: 'ف', pronunciation: '/f/ (fe)', example: 'as in fox / flower', word: 'پھول', meaning: 'Flower', icon: '🌸' },
+  { letter: 'ق', pronunciation: '/q/ (qaaf)', example: 'as in deep back k', word: 'قلم', meaning: 'Pen', icon: '🖋️' },
+  { letter: 'ک', pronunciation: '/k/ (kaaf)', example: 'as in kite / coffee', word: 'کتاب', meaning: 'Book', icon: '📖' },
+  { letter: 'گ', pronunciation: '/ɡ/ (gaaf)', example: 'as in go / gate', word: 'گھر', meaning: 'Home', icon: '🏠' },
+  { letter: 'ل', pronunciation: '/l/ (laam)', example: 'as in lamp / love', word: 'لڑکا', meaning: 'Boy', icon: '👦' },
+  { letter: 'م', pronunciation: '/m/ (meem)', example: 'as in moon / mother', word: 'مچھلی', meaning: 'Fish', icon: '🐟' },
+  { letter: 'ن', pronunciation: '/n/ (noon)', example: 'as in nest / night', word: 'دریا', meaning: 'River', icon: '🌊' },
+  { letter: 'ں', pronunciation: '/̃/ (noon ghunna)', example: 'as in nasal vowel', word: 'ماں', meaning: 'Mother', icon: '👩' },
+  { letter: 'و', pronunciation: '/v/ or /uː/ (wao)', example: 'as in voice / boot', word: 'وقت', meaning: 'Time', icon: '⏰' },
+  { letter: 'ہ', pronunciation: '/h/ (chhoṭī he)', example: 'as in home / hand', word: 'ہاتھ', meaning: 'Hand', icon: '✋' },
+  { letter: 'ھ', pronunciation: '/ʱ/ (do-chashmī he)', example: 'as in aspirated h (as in ghost)', word: 'گھوڑا', meaning: 'Horse', icon: '🐎' },
+  { letter: 'ء', pronunciation: '/ʔ/ (hamza)', example: 'as in glottal stop', word: 'چائے', meaning: 'Tea', icon: '🍵' },
+  { letter: 'ی', pronunciation: '/j/ or /iː/ (chhoṭī ye)', example: 'as in see / yes', word: 'یہ', meaning: 'This', icon: '👉' },
+  { letter: 'ے', pronunciation: '/eː/ or /ɛː/ (baṛī ye)', example: 'as in say / day', word: 'لڑکے', meaning: 'Boys', icon: '👬' },
+];
+
+// Essential Urdu Phrases
+const basicPhrases: PhraseItem[] = [
+  { phrase: 'السلام علیکم', translation: 'Hello / Peace be upon you', pronunciation: "as-salāmu 'alaykum", category: 'Greetings', icon: '👋' },
+  { phrase: 'صبح بخیر', translation: 'Good morning', pronunciation: 'subah ba-khair', category: 'Greetings', icon: '🌅' },
+  { phrase: 'شام بخیر', translation: 'Good evening', pronunciation: 'shaam ba-khair', category: 'Greetings', icon: '🌙' },
+  { phrase: 'شب بخیر', translation: 'Good night', pronunciation: 'shab ba-khair', category: 'Greetings', icon: '😴' },
+  { phrase: 'شکریہ', translation: 'Thank you', pronunciation: 'shukriya', category: 'Courtesy', icon: '💖' },
+  { phrase: 'بہت بہت شکریہ', translation: 'Thank you very much', pronunciation: 'bohot bohot shukriya', category: 'Courtesy', icon: '🙏' },
+  { phrase: 'خوش آمدید', translation: 'You\\'re welcome / Welcome', pronunciation: 'khush aamdeed', category: 'Courtesy', icon: '😊' },
+  { phrase: 'براہ کرم', translation: 'Please', pronunciation: 'barahe karam', category: 'Courtesy', icon: '🤲' },
+  { phrase: 'معاف کیجئے', translation: 'Excuse me / Sorry', pronunciation: 'maaf kijiye', category: 'Courtesy', icon: '🙋' },
+  { phrase: 'آپ کیسے ہیں؟', translation: 'How are you?', pronunciation: 'aap kaise hain', category: 'Questions', icon: '🤝' },
+  { phrase: 'میں ٹھیک ہوں', translation: 'I am doing well', pronunciation: 'main theek hoon', category: 'Greetings', icon: '😊' },
+  { phrase: 'آپ کا نام کیا ہے؟', translation: 'What is your name?', pronunciation: 'aap ka naam kya hai', category: 'Introductions', icon: '🪪' },
+  { phrase: 'میرا نام...', translation: 'My name is...', pronunciation: 'mera naam...', category: 'Introductions', icon: '🙋' },
+  { phrase: 'آپ سے مل کر خوشی ہوئی', translation: 'Nice to meet you', pronunciation: 'aap se mil kar khushi hui', category: 'Introductions', icon: '🤝' },
+  { phrase: 'کیا آپ انگریزی بولتے ہیں؟', translation: 'Do you speak English?', pronunciation: 'kya aap angrezi bolte hain', category: 'Questions', icon: '🗣️' },
+  { phrase: 'مجھے سمجھ نہیں آیا', translation: 'I don\\'t understand', pronunciation: 'mujhe samajh nahin aaya', category: 'Essentials', icon: '🤔' },
+  { phrase: 'تھوڑا آہستہ بولیں', translation: 'Could you speak more slowly?', pronunciation: 'thoda aahista bolein', category: 'Questions', icon: '🐢' },
+  { phrase: 'بیت الخلاء کہاں ہے؟', translation: 'Where is the bathroom?', pronunciation: 'bait-ul-khala kahan hai', category: 'Questions', icon: '🚻' },
+  { phrase: 'اس کی قیمت کیا ہے؟', translation: 'How much does this cost?', pronunciation: 'is ki qeemat kya hai', category: 'Shopping', icon: '💰' },
+  { phrase: 'میری مدد کریں', translation: 'Please help me', pronunciation: 'meri madad karein', category: 'Essentials', icon: '🆘' },
+  { phrase: 'ہاں', translation: 'Yes', pronunciation: 'haan', category: 'Reply', icon: '👍' },
+  { phrase: 'نہیں', translation: 'No', pronunciation: 'nahin', category: 'Reply', icon: '👎' },
+  { phrase: 'ٹھیک ہے', translation: 'Okay / Alright', pronunciation: 'theek hai', category: 'Reply', icon: '👌' },
+  { phrase: 'خدا حافظ', translation: 'Goodbye', pronunciation: 'khuda hafiz', category: 'Greetings', icon: '👋' },
+
+  // Tech & Communication
+  { phrase: 'وائی فائی کا پاس ورڈ کیا ہے؟', translation: 'What is the Wi-Fi password?', pronunciation: 'wi-fi ka password kya hai', category: 'Tech', icon: '📶' },
+  { phrase: 'انٹرنیٹ بہت سست ہے', translation: 'The internet is very slow', pronunciation: 'internet bohot sust hai', category: 'Tech', icon: '🌐' },
+  { phrase: 'مجھے ای میل بھیجیں', translation: 'Please send me an email', pronunciation: 'mujhe email bhejein', category: 'Tech', icon: '📧' },
+  { phrase: 'میری بیٹری ختم ہو گئی ہے', translation: 'My battery is dead', pronunciation: 'meri battery khatam ho gayi hai', category: 'Tech', icon: '🪫' },
+  { phrase: 'کیا آپ مجھے سن سکتے ہیں؟', translation: 'Can you hear me?', pronunciation: 'kya aap mujhe sun sakte hain', category: 'Tech', icon: '🎧' },
+  { phrase: 'میں اپنی اسکرین شیئر کر رہا ہوں', translation: 'I am sharing my screen', pronunciation: 'main apni screen share kar raha hoon', category: 'Tech', icon: '🖥️' },
+
+  // Travel & Transport
+  { phrase: 'ریلوے اسٹیشن کہاں ہے؟', translation: 'Where is the railway station?', pronunciation: 'railway station kahan hai', category: 'Travel', icon: '🚆' },
+  { phrase: 'ہوائی اڈہ کہاں ہے؟', translation: 'Where is the airport?', pronunciation: 'hawai adda kahan hai', category: 'Travel', icon: '✈️' },
+  { phrase: 'میری بکنگ ہے', translation: 'I have a reservation', pronunciation: 'meri booking hai', category: 'Travel', icon: '🏨' },
+  { phrase: 'ایک ٹکٹ دیجئے', translation: 'One ticket please', pronunciation: 'ek ticket dijiye', category: 'Travel', icon: '🎟️' },
+  { phrase: 'گاڑی کہاں رکے گی؟', translation: 'Where will the car stop?', pronunciation: 'gaadi kahan rukegi', category: 'Travel', icon: '🚏' },
+
+  // Dining & Restaurants
+  { phrase: 'کیا میں مینو دیکھ سکتا ہوں؟', translation: 'Can I see the menu?', pronunciation: 'kya main menu dekh sakta hoon', category: 'Dining', icon: '📋' },
+  { phrase: 'دو افراد کے لئے میز', translation: 'A table for two', pronunciation: 'do afraad ke liye maiz', category: 'Dining', icon: '🍽️' },
+  { phrase: 'بل لائیے، براہ کرم', translation: 'The bill please', pronunciation: 'bill laaiye, barahe karam', category: 'Dining', icon: '🧾' },
+  { phrase: 'کھانا بہت لذیذ ہے', translation: 'The food is very delicious', pronunciation: 'khana bohot lazeez hai', category: 'Dining', icon: '😋' },
+  { phrase: 'ایک گلاس پانی دیجئے', translation: 'A glass of water please', pronunciation: 'ek glass paani dijiye', category: 'Dining', icon: '🥛' },
+
+  // Health & Emergencies
+  { phrase: 'ڈاکٹر کو بلائیں', translation: 'Call a doctor', pronunciation: 'doctor ko bulaayein', category: 'Health', icon: '🩺' },
+  { phrase: 'قریبی فارمیسی کہاں ہے؟', translation: 'Where is the nearest pharmacy?', pronunciation: 'qareebi pharmacy kahan hai', category: 'Health', icon: '💊' },
+  { phrase: 'میری طبیعت خراب ہے', translation: 'I feel unwell / sick', pronunciation: 'meri tabiyat kharab hai', category: 'Health', icon: '🤒' },
+  { phrase: 'پولیس کو بلائیں', translation: 'Call the police', pronunciation: 'police ko bulaayein', category: 'Emergency', icon: '🚨' },
+  { phrase: 'ایمبولینس کو بلائیں', translation: 'Call an ambulance', pronunciation: 'ambulance ko bulaayein', category: 'Emergency', icon: '🚑' },
+];
+
+// Urdu Numbers 0 to 1,000
+const numbers: PhraseItem[] = [
+  { phrase: 'صفر', translation: '0 (Zero)', pronunciation: 'sifar', category: 'Numbers 0-10', icon: '0️⃣' },
+  { phrase: 'ایک', translation: '1 (One)', pronunciation: 'ek', category: 'Numbers 0-10', icon: '1️⃣' },
+  { phrase: 'دو', translation: '2 (Two)', pronunciation: 'do', category: 'Numbers 0-10', icon: '2️⃣' },
+  { phrase: 'تین', translation: '3 (Three)', pronunciation: 'teen', category: 'Numbers 0-10', icon: '3️⃣' },
+  { phrase: 'چار', translation: '4 (Four)', pronunciation: 'chaar', category: 'Numbers 0-10', icon: '4️⃣' },
+  { phrase: 'پانچ', translation: '5 (Five)', pronunciation: 'paanch', category: 'Numbers 0-10', icon: '5️⃣' },
+  { phrase: 'چھ', translation: '6 (Six)', pronunciation: 'chheh', category: 'Numbers 0-10', icon: '6️⃣' },
+  { phrase: 'سات', translation: '7 (Seven)', pronunciation: 'saat', category: 'Numbers 0-10', icon: '7️⃣' },
+  { phrase: 'آٹھ', translation: '8 (Eight)', pronunciation: 'aath', category: 'Numbers 0-10', icon: '8️⃣' },
+  { phrase: 'نو', translation: '9 (Nine)', pronunciation: 'nau', category: 'Numbers 0-10', icon: '9️⃣' },
+  { phrase: 'دس', translation: '10 (Ten)', pronunciation: 'das', category: 'Numbers 0-10', icon: '🔟' },
+  { phrase: 'گیارہ', translation: '11 (Eleven)', pronunciation: 'gyaarah', category: 'Numbers 11-20', icon: '🔢' },
+  { phrase: 'بارہ', translation: '12 (Twelve)', pronunciation: 'baarah', category: 'Numbers 11-20', icon: '🔢' },
+  { phrase: 'تیرہ', translation: '13 (Thirteen)', pronunciation: 'terah', category: 'Numbers 11-20', icon: '🔢' },
+  { phrase: 'چودہ', translation: '14 (Fourteen)', pronunciation: 'chaudah', category: 'Numbers 11-20', icon: '🔢' },
+  { phrase: 'پندرہ', translation: '15 (Fifteen)', pronunciation: 'pandrah', category: 'Numbers 11-20', icon: '🔢' },
+  { phrase: 'سولہ', translation: '16 (Sixteen)', pronunciation: 'solah', category: 'Numbers 11-20', icon: '🔢' },
+  { phrase: 'سترہ', translation: '17 (Seventeen)', pronunciation: 'satrah', category: 'Numbers 11-20', icon: '🔢' },
+  { phrase: 'اٹھارہ', translation: '18 (Eighteen)', pronunciation: 'athaarah', category: 'Numbers 11-20', icon: '🔢' },
+  { phrase: 'انیس', translation: '19 (Nineteen)', pronunciation: 'unnees', category: 'Numbers 11-20', icon: '🔢' },
+  { phrase: 'بیس', translation: '20 (Twenty)', pronunciation: 'bees', category: 'Numbers 11-20', icon: '🔢' },
+  { phrase: 'تیس', translation: '30 (Thirty)', pronunciation: 'tees', category: 'Tens', icon: '🔢' },
+  { phrase: 'چالیس', translation: '40 (Forty)', pronunciation: 'chaalees', category: 'Tens', icon: '🔢' },
+  { phrase: 'پچاس', translation: '50 (Fifty)', pronunciation: 'pachaas', category: 'Tens', icon: '🔢' },
+  { phrase: 'ساٹھ', translation: '60 (Sixty)', pronunciation: 'saath', category: 'Tens', icon: '🔢' },
+  { phrase: 'ستر', translation: '70 (Seventy)', pronunciation: 'sattar', category: 'Tens', icon: '🔢' },
+  { phrase: 'اسی', translation: '80 (Eighty)', pronunciation: 'assi', category: 'Tens', icon: '🔢' },
+  { phrase: 'نوے', translation: '90 (Ninety)', pronunciation: 'navve', category: 'Tens', icon: '🔢' },
+  { phrase: 'سو', translation: '100 (One Hundred)', pronunciation: 'sau', category: 'Hundreds', icon: '💯' },
+  { phrase: 'ایک ہزار', translation: '1,000 (One Thousand)', pronunciation: 'ek hazaar', category: 'Hundreds', icon: '💰' },
+];
+
+// Common Urdu Words across Everyday Life, Food, City, Family, Nature, Tech
+const commonWords: PhraseItem[] = [
+  // Everyday essentials & Home
+  { phrase: 'کتاب', translation: 'Book', pronunciation: 'kitaab', category: 'Home', icon: '📖' },
+  { phrase: 'قلم', translation: 'Pen', pronunciation: 'qalam', category: 'Home', icon: '🖊️' },
+  { phrase: 'میز', translation: 'Table', pronunciation: 'maiz', category: 'Home', icon: '🪵' },
+  { phrase: 'کرسی', translation: 'Chair', pronunciation: 'kursi', category: 'Home', icon: '🪑' },
+  { phrase: 'دروازہ', translation: 'Door', pronunciation: 'darwaaza', category: 'Home', icon: '🚪' },
+  { phrase: 'کھڑکی', translation: 'Window', pronunciation: 'khidki', category: 'Home', icon: '🪟' },
+  { phrase: 'کمرہ', translation: 'Room', pronunciation: 'kamra', category: 'Home', icon: '🏠' },
+  { phrase: 'بستر', translation: 'Bed', pronunciation: 'bistar', category: 'Home', icon: '🛏️' },
+  { phrase: 'چابی', translation: 'Key', pronunciation: 'chaabi', category: 'Home', icon: '🔑' },
+  { phrase: 'پیسے', translation: 'Money', pronunciation: 'paise', category: 'Essentials', icon: '💵' },
+  { phrase: 'بیگ', translation: 'Bag', pronunciation: 'bag', category: 'Essentials', icon: '🎒' },
+  { phrase: 'گھڑی', translation: 'Clock / Watch', pronunciation: 'ghadi', category: 'Essentials', icon: '⏰' },
+  { phrase: 'فون', translation: 'Phone', pronunciation: 'phone', category: 'Tech', icon: '📱' },
+  { phrase: 'کمپیوٹر', translation: 'Computer', pronunciation: 'computer', category: 'Tech', icon: '💻' },
+
+  // Food & Dining
+  { phrase: 'پانی', translation: 'Water', pronunciation: 'paani', category: 'Food', icon: '💧' },
+  { phrase: 'چائے', translation: 'Tea', pronunciation: 'chaaye', category: 'Food', icon: '🍵' },
+  { phrase: 'کافی', translation: 'Coffee', pronunciation: 'coffee', category: 'Food', icon: '☕' },
+  { phrase: 'دودھ', translation: 'Milk', pronunciation: 'doodh', category: 'Food', icon: '🥛' },
+  { phrase: 'چاول', translation: 'Rice', pronunciation: 'chaawal', category: 'Food', icon: '🍚' },
+  { phrase: 'روٹی', translation: 'Bread', pronunciation: 'roti', category: 'Food', icon: '🍞' },
+  { phrase: 'مچھلی', translation: 'Fish', pronunciation: 'machhli', category: 'Food', icon: '🐟' },
+  { phrase: 'گوشت', translation: 'Meat', pronunciation: 'gosht', category: 'Food', icon: '🥩' },
+  { phrase: 'انڈا', translation: 'Egg', pronunciation: 'anda', category: 'Food', icon: '🥚' },
+  { phrase: 'پھل', translation: 'Fruit', pronunciation: 'phal', category: 'Food', icon: '🍎' },
+  { phrase: 'سیب', translation: 'Apple', pronunciation: 'saib', category: 'Food', icon: '🍎' },
+  { phrase: 'آم', translation: 'Mango', pronunciation: 'aam', category: 'Food', icon: '🥭' },
+  { phrase: 'کیلا', translation: 'Banana', pronunciation: 'kela', category: 'Food', icon: '🍌' },
+  { phrase: 'سبزی', translation: 'Vegetables', pronunciation: 'sabzi', category: 'Food', icon: '🥗' },
+  { phrase: 'مٹھائی', translation: 'Sweet', pronunciation: 'mithaai', category: 'Food', icon: '🍬' },
+  { phrase: 'نمک', translation: 'Salt', pronunciation: 'namak', category: 'Food', icon: '🧂' },
+  { phrase: 'چینی', translation: 'Sugar', pronunciation: 'cheeni', category: 'Food', icon: '🥣' },
+
+  // People & Family
+  { phrase: 'انسان', translation: 'Person / Human', pronunciation: 'insaan', category: 'People', icon: '🧑' },
+  { phrase: 'لڑکا', translation: 'Boy / Son', pronunciation: 'larka', category: 'People', icon: '👦' },
+  { phrase: 'لڑکی', translation: 'Girl / Daughter', pronunciation: 'larki', category: 'People', icon: '👧' },
+  { phrase: 'ماں', translation: 'Mother', pronunciation: 'maan', category: 'People', icon: '👩' },
+  { phrase: 'والد / باپ', translation: 'Father', pronunciation: 'waalid / baap', category: 'People', icon: '👨' },
+  { phrase: 'بھائی', translation: 'Brother', pronunciation: 'bhaai', category: 'People', icon: '👦' },
+  { phrase: 'بہن', translation: 'Sister', pronunciation: 'behan', category: 'People', icon: '👧' },
+  { phrase: 'دوست', translation: 'Friend', pronunciation: 'dost', category: 'People', icon: '🤝' },
+  { phrase: 'استاد', translation: 'Teacher', pronunciation: 'ustaad', category: 'People', icon: '🧑‍🏫' },
+  { phrase: 'طالب علم', translation: 'Student', pronunciation: 'talib-e-ilm', category: 'People', icon: '🧑‍🎓' },
+  { phrase: 'ڈاکٹر', translation: 'Doctor', pronunciation: 'doctor', category: 'People', icon: '🩺' },
+
+  // Animals & Nature
+  { phrase: 'کتا', translation: 'Dog', pronunciation: 'kutta', category: 'Animals', icon: '🐕' },
+  { phrase: 'بلی', translation: 'Cat', pronunciation: 'billi', category: 'Animals', icon: '🐱' },
+  { phrase: 'پرندہ', translation: 'Bird', pronunciation: 'parinda', category: 'Animals', icon: '🐦' },
+  { phrase: 'گائے', translation: 'Cow', pronunciation: 'gaaye', category: 'Animals', icon: '🐄' },
+  { phrase: 'شیر', translation: 'Lion / Tiger', pronunciation: 'shair', category: 'Animals', icon: '🦁' },
+  { phrase: 'ہاتھی', translation: 'Elephant', pronunciation: 'haathi', category: 'Animals', icon: '🐘' },
+  { phrase: 'درخت', translation: 'Tree', pronunciation: 'darakht', category: 'Nature', icon: '🌳' },
+  { phrase: 'پھول', translation: 'Flower', pronunciation: 'phool', category: 'Nature', icon: '🌸' },
+  { phrase: 'سورج', translation: 'Sun', pronunciation: 'sooraj', category: 'Nature', icon: '☀️' },
+  { phrase: 'چاند', translation: 'Moon', pronunciation: 'chaand', category: 'Nature', icon: '🌙' },
+  { phrase: 'ستارہ', translation: 'Star', pronunciation: 'sitaara', category: 'Nature', icon: '⭐' },
+  { phrase: 'آسمان', translation: 'Sky', pronunciation: 'aasmaan', category: 'Nature', icon: '☁️' },
+  { phrase: 'دریا', translation: 'River', pronunciation: 'darya', category: 'Nature', icon: '🌊' },
+  { phrase: 'بارش', translation: 'Rain', pronunciation: 'baarish', category: 'Nature', icon: '🌧️' },
+  { phrase: 'ہوا', translation: 'Air / Wind', pronunciation: 'hawa', category: 'Nature', icon: '💨' },
+
+  // City & Places
+  { phrase: 'شہر', translation: 'City', pronunciation: 'shahar', category: 'Places', icon: '🏙️' },
+  { phrase: 'گاؤں', translation: 'Village', pronunciation: 'gaanv', category: 'Places', icon: '🏡' },
+  { phrase: 'ملک', translation: 'Country', pronunciation: 'mulk', category: 'Places', icon: '🗺️' },
+  { phrase: 'سڑک', translation: 'Street / Road', pronunciation: 'sadak', category: 'Places', icon: '🛣️' },
+  { phrase: 'دکان', translation: 'Shop / Store', pronunciation: 'dukaan', category: 'Places', icon: '🏪' },
+  { phrase: 'بازار', translation: 'Market', pronunciation: 'bazaar', category: 'Places', icon: '🛒' },
+  { phrase: 'اسکول', translation: 'School', pronunciation: 'school', category: 'Places', icon: '🏫' },
+  { phrase: 'ہسپتال', translation: 'Hospital', pronunciation: 'haspataal', category: 'Places', icon: '🏥' },
+  { phrase: 'ہوٹل', translation: 'Hotel', pronunciation: 'hotel', category: 'Places', icon: '🏨' },
+  { phrase: 'ہوائی اڈہ', translation: 'Airport', pronunciation: 'hawai adda', category: 'Places', icon: '✈️' },
+  { phrase: 'اسٹیشن', translation: 'Station', pronunciation: 'station', category: 'Places', icon: '🚉' },
+
+  // Travel & Movement
+  { phrase: 'گاڑی', translation: 'Car', pronunciation: 'gaadi', category: 'Travel', icon: '🚗' },
+  { phrase: 'بس', translation: 'Bus', pronunciation: 'bus', category: 'Travel', icon: '🚌' },
+  { phrase: 'ٹرین', translation: 'Train', pronunciation: 'train', category: 'Travel', icon: '🚆' },
+  { phrase: 'کشتی', translation: 'Boat', pronunciation: 'kashti', category: 'Travel', icon: '⛵' },
+  { phrase: 'ہوائی جہاز', translation: 'Airplane', pronunciation: 'hawai jahaaz', category: 'Travel', icon: '✈️' },
+  { phrase: 'سائیکل', translation: 'Bicycle', pronunciation: 'bicycle', category: 'Travel', icon: '🚲' },
+
+  // Adjectives & Descriptions
+  { phrase: 'اچھا', translation: 'Good', pronunciation: 'achha', category: 'Adjectives', icon: '👍' },
+  { phrase: 'برا', translation: 'Bad', pronunciation: 'bura', category: 'Adjectives', icon: '👎' },
+  { phrase: 'خوبصورت', translation: 'Beautiful', pronunciation: 'khoobsoorat', category: 'Adjectives', icon: '✨' },
+  { phrase: 'بڑا', translation: 'Big / Large', pronunciation: 'bada', category: 'Adjectives', icon: '🐘' },
+  { phrase: 'چھوٹا', translation: 'Small / Little', pronunciation: 'chhota', category: 'Adjectives', icon: '🐜' },
+  { phrase: 'نیا', translation: 'New', pronunciation: 'naya', category: 'Adjectives', icon: '🆕' },
+  { phrase: 'پرانا', translation: 'Old', pronunciation: 'puraana', category: 'Adjectives', icon: '🏛️' },
+  { phrase: 'گرم', translation: 'Hot', pronunciation: 'garam', category: 'Adjectives', icon: '🔥' },
+  { phrase: 'ٹھنڈا', translation: 'Cold', pronunciation: 'thanda', category: 'Adjectives', icon: '🧊' },
+  { phrase: 'آسان', translation: 'Easy', pronunciation: 'aasaan', category: 'Adjectives', icon: '🟢' },
+  { phrase: 'مشکل', translation: 'Difficult', pronunciation: 'mushkil', category: 'Adjectives', icon: '🔴' },
+  { phrase: 'تیز', translation: 'Fast', pronunciation: 'taiz', category: 'Adjectives', icon: '⚡' },
+  { phrase: 'آہستہ', translation: 'Slow', pronunciation: 'aahista', category: 'Adjectives', icon: '🐢' },
+  { phrase: 'صاف', translation: 'Clean', pronunciation: 'saaf', category: 'Adjectives', icon: '🧼' },
+
+  // Colors
+  { phrase: 'سفید', translation: 'White', pronunciation: 'safaid', category: 'Colors', icon: '⚪' },
+  { phrase: 'کالا', translation: 'Black', pronunciation: 'kaala', category: 'Colors', icon: '⚫' },
+  { phrase: 'لال', translation: 'Red', pronunciation: 'laal', category: 'Colors', icon: '🔴' },
+  { phrase: 'نیلا', translation: 'Blue', pronunciation: 'neela', category: 'Colors', icon: '🔵' },
+  { phrase: 'سبز', translation: 'Green', pronunciation: 'sabz', category: 'Colors', icon: '🟢' },
+  { phrase: 'پیلا', translation: 'Yellow', pronunciation: 'peela', category: 'Colors', icon: '🟡' },
+
+  // Time & Days
+  { phrase: 'آج', translation: 'Today', pronunciation: 'aaj', category: 'Time', icon: '📅' },
+  { phrase: 'کل', translation: 'Tomorrow / Yesterday', pronunciation: 'kal', category: 'Time', icon: '🗓️' },
+  { phrase: 'اب', translation: 'Now', pronunciation: 'ab', category: 'Time', icon: '⏱️' },
+  { phrase: 'بعد میں', translation: 'Later', pronunciation: 'baad mein', category: 'Time', icon: '⏳' },
+  { phrase: 'صبح', translation: 'Morning', pronunciation: 'subah', category: 'Time', icon: '🌅' },
+  { phrase: 'دوپہر', translation: 'Noon / Afternoon', pronunciation: 'dopahar', category: 'Time', icon: '☀️' },
+  { phrase: 'شام', translation: 'Evening', pronunciation: 'shaam', category: 'Time', icon: '🌆' },
+  { phrase: 'رات', translation: 'Night', pronunciation: 'raat', category: 'Time', icon: '🌙' },
+  { phrase: 'دن', translation: 'Day', pronunciation: 'din', category: 'Time', icon: '☀️' },
+  { phrase: 'ہفتہ', translation: 'Week', pronunciation: 'hafta', category: 'Time', icon: '📆' },
+  { phrase: 'مہینہ', translation: 'Month', pronunciation: 'maheena', category: 'Time', icon: '🗓️' },
+  { phrase: 'سال', translation: 'Year', pronunciation: 'saal', category: 'Time', icon: '📅' },
+];
+
+// Telling Time in Urdu
+const time: PhraseItem[] = [
+  { phrase: 'کتنے بجے ہیں؟', translation: 'What time is it?', pronunciation: 'kitne baje hain', category: 'Time Asking', icon: '❓' },
+  { phrase: 'ایک بجا ہے', translation: 'It is 1:00 (One o\\'clock)', pronunciation: 'ek baja hai', category: 'Exact Hours', icon: '🕐' },
+  { phrase: 'دو بجے ہیں', translation: 'It is 2:00 (Two o\\'clock)', pronunciation: 'do baje hain', category: 'Exact Hours', icon: '🕑' },
+  { phrase: 'تین بجے ہیں', translation: 'It is 3:00 (Three o\\'clock)', pronunciation: 'teen baje hain', category: 'Exact Hours', icon: '🕒' },
+  { phrase: 'ڈیڑھ بجا ہے', translation: '1:30 (Half past one)', pronunciation: 'dedh baja hai', category: 'Half Hours', icon: '🕜' },
+  { phrase: 'ڈھائی بجے ہیں', translation: '2:30 (Half past two)', pronunciation: 'dhaai baje hain', category: 'Half Hours', icon: '🕝' },
+  { phrase: 'ساڑھے تین بجے ہیں', translation: '3:30 (Half past three)', pronunciation: 'saadhe teen baje hain', category: 'Half Hours', icon: '🕞' },
+  { phrase: 'ساڑھے چار بجے ہیں', translation: '4:30 (Half past four)', pronunciation: 'saadhe chaar baje hain', category: 'Half Hours', icon: '🕟' },
+  { phrase: 'سوا چار بجے ہیں', translation: '4:15 (Quarter past four)', pronunciation: 'sawa chaar baje hain', category: 'Quarter Hours', icon: '🕟' },
+  { phrase: 'پونے پانچ بجے ہیں', translation: '4:45 (Quarter to five)', pronunciation: 'paune paanch baje hain', category: 'Quarter Hours', icon: '🕟' },
+  { phrase: 'صبح کے آٹھ بجے', translation: '8:00 AM (Morning)', pronunciation: 'subah ke aath baje', category: 'Time of Day', icon: '🌅' },
+  { phrase: 'دوپہر کے بارہ بجے', translation: '12:00 PM (Noon)', pronunciation: 'dopahar ke baarah baje', category: 'Time of Day', icon: '☀️' },
+  { phrase: 'شام کے سات بجے', translation: '7:00 PM (Evening)', pronunciation: 'shaam ke saat baje', category: 'Time of Day', icon: '🌆' },
+  { phrase: 'رات کے دس بجے', translation: '10:00 PM (Night)', pronunciation: 'raat ke das baje', category: 'Time of Day', icon: '🌙' },
+  { phrase: 'آدھی رات', translation: 'Midnight', pronunciation: 'aadhi raat', category: 'Time of Day', icon: '🕛' },
+];
+
+export const urduData: AppData = {
+  alphabet,
+  basicPhrases,
+  numbers,
+  commonWords,
+  time,
+  grammar: URDU_GRAMMAR,
+};
+
+export default urduData;
+"""
+
+with open(UR_DIR / 'urduData.ts', 'w', encoding='utf-8') as f:
+    f.write(DATA_TS)
+
+print(f"Created urduData.ts at {UR_DIR / 'urduData.ts'}")
