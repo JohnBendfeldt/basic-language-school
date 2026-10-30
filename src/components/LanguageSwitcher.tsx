@@ -28,14 +28,16 @@ export const LANGUAGE_REGION_MAP: Record<string, LanguageRegion> = {
 };
 
 const HIGH_AFFINITY_CORRIDORS: Record<string, SupportedLanguageId[]> = {
-  en: ['es', 'fr', 'de', 'ru', 'pt', 'tr'],
-  es: ['pt', 'en', 'fr', 'de', 'ru'],
-  pt: ['es', 'en', 'fr', 'de'],
-  fr: ['en', 'es', 'de', 'pt', 'ru'],
-  de: ['en', 'fr', 'es', 'ru', 'tr'],
-  ru: ['de', 'en', 'tr', 'es', 'fr'],
-  tr: ['en', 'de', 'ru', 'fr'],
-  id: ['en', 'tr', 'de', 'ru'],
+  en: ['es', 'fr', 'ja', 'ko', 'de', 'ru', 'pt', 'tr'],
+  es: ['pt', 'en', 'fr', 'ja', 'de', 'ru'],
+  pt: ['es', 'en', 'fr', 'ja', 'de'],
+  fr: ['en', 'es', 'ja', 'de', 'pt', 'ru'],
+  de: ['en', 'fr', 'ja', 'es', 'ru', 'tr'],
+  ru: ['de', 'en', 'ja', 'ko', 'tr', 'es', 'fr'],
+  tr: ['en', 'de', 'ko', 'ja', 'ru', 'fr'],
+  id: ['en', 'ja', 'ko', 'tr', 'de', 'ru'],
+  ko: ['ja', 'en', 'es', 'de', 'fr', 'ru'],
+  ja: ['ko', 'en', 'es', 'de', 'fr', 'ru'],
 };
 
 interface StoredLanguagePair {

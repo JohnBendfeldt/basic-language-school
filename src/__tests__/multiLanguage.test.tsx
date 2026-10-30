@@ -74,10 +74,10 @@ describe('Multi-Language Core Architecture', () => {
     expect(screen.getByRole('menuitem', { name: /german/i })).toBeInTheDocument();
     expect(screen.getByRole('menuitem', { name: /indonesian/i })).toBeInTheDocument();
     expect(screen.getByRole('menuitem', { name: /turkish/i })).toBeInTheDocument();
+    expect(screen.getByRole('menuitem', { name: /korean/i })).toBeInTheDocument();
+    expect(screen.getByRole('menuitem', { name: /japanese/i })).toBeInTheDocument();
 
-    // Should display upcoming badges for roadmap languages (Korean, Japanese)
-    expect(screen.getByText('Korean')).toBeInTheDocument();
-    expect(screen.getByText('Japanese')).toBeInTheDocument();
+    // Should display upcoming badges for roadmap languages
     expect(screen.getAllByText('Soon').length).toBeGreaterThanOrEqual(2);
   });
 

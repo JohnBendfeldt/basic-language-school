@@ -490,6 +490,90 @@ export const TERMS_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
     contactIntro: 'Bu Şartlarla ilgili her türlü soru için lütfen iletişime geçin:',
     footerPrompt: 'Verilerinizin nasıl işlendiği hakkında sorularınız mı var? ',
     footerLink: 'Gizlilik Politikasını Görüntüle'
+  },
+  ja: {
+    title: '利用規約',
+    lastUpdated: '最終更新日: 2026年10月',
+    backToPractice: '練習に戻る',
+    backToPracticeAria: '練習レッスンに戻る',
+    sections: [
+      {
+        heading: '1. 規約への同意',
+        paragraphs: [
+          'Basic Language School（basiclanguage.school）を利用することにより、利用者は本利用規約に同意したものとみなされます。同意いただけない場合はアプリの利用をお控えください。'
+        ]
+      },
+      {
+        heading: '2. サービスの目的',
+        paragraphs: [
+          'Basic Language School は、完全無料の自習型語学教育プラットフォームです。文字、発音、数字、単語、フレーズの学習を支援します。'
+        ]
+      },
+      {
+        heading: '3. アカウントと利用規則',
+        paragraphs: [
+          'アカウント登録なし（ゲストモード）でも全機能をご利用いただけます。Google や Microsoft でログインすると進捗が保存されます。不正なスクレイピングや攻撃行為は禁止されています。'
+        ]
+      },
+      {
+        heading: '4. 知的財産権',
+        paragraphs: [
+          '本アプリケーションのコードはオープンソース（MITライセンス）として提供されます。'
+        ]
+      },
+      {
+        heading: '5. 免責事項',
+        paragraphs: [
+          '本サービスは「現状有姿（AS IS）」で提供され、いかなる明示または黙示の保証も行いません。'
+        ]
+      }
+    ],
+    contactHeading: 'お問い合わせ',
+    contactIntro: '本規約についてのご質問は以下よりご連絡ください:',
+    footerPrompt: 'プライバシーポリシーをご確認ください: ',
+    footerLink: 'プライバシーポリシーを表示'
+  },
+  ko: {
+    title: '이용약관',
+    lastUpdated: '최종 수정일: 2026년 10월',
+    backToPractice: '학습으로 돌아가기',
+    backToPracticeAria: '학습 레슨으로 돌아가기',
+    sections: [
+      {
+        heading: '1. 약관의 동의',
+        paragraphs: [
+          'Basic Language School(basiclanguage.school)을 이용함으로써 본 이용약관에 동의하게 됩니다. 동의하지 않으시는 경우 서비스 이용을 중단해 주시기 바랍니다.'
+        ]
+      },
+      {
+        heading: '2. 서비스 목적',
+        paragraphs: [
+          'Basic Language School은 누구나 무료로 외국어(글자, 발음, 숫자, 어휘, 문법)를 익힐 수 있도록 제작된 자기주도형 학습 웹 애플리케이션입니다.'
+        ]
+      },
+      {
+        heading: '3. 계정 및 준수 사항',
+        paragraphs: [
+          '비로그인 게스트 모드로도 이용 가능하며, Google 또는 Microsoft 계정으로 로그인하여 학습 기록을 동기화할 수 있습니다. 비정상적인 자동화 도구나 봇을 통한 악용은 금지됩니다.'
+        ]
+      },
+      {
+        heading: '4. 지식재산권',
+        paragraphs: [
+          '본 서비스의 코드는 MIT 라이선스 오픈소스로 제공됩니다.'
+        ]
+      },
+      {
+        heading: '5. 보증의 부인',
+        paragraphs: [
+          '본 서비스는 "있는 그대로(AS IS)" 제공되며, 서비스의 완전성이나 무결성을 보증하지 않습니다.'
+        ]
+      }
+    ],
+    contactHeading: '문의처',
+    contactIntro: '약관에 관한 문의 사항은 아래로 문의해 주세요:',
+    footerPrompt: '개인정보 처리방침이 궁금하신가요? ',
+    footerLink: '개인정보 처리방침 보기'
   }
 };
 
@@ -984,5 +1068,69 @@ export const PRIVACY_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
     contactIntro: 'Gizlilikle ilgili tüm sorularınız için lütfen iletişime geçin:',
     footerPrompt: 'Hizmet şartlarımızı mı arıyorsunuz? ',
     footerLink: 'Hizmet Şartlarını Görüntüle'
+  },
+  ja: {
+    title: 'プライバシーポリシー',
+    lastUpdated: '最終更新日: 2026年10月',
+    backToPractice: '練習に戻る',
+    backToPracticeAria: '練習レッスンに戻る',
+    summaryTitle: 'プライバシーの要約',
+    summaryText: 'Basic Language School は教育プラットフォームであり、利用者のプライバシーを尊重します。広告トラッカーはなく、データの第三者への販売も行いません。',
+    sections: [
+      {
+        heading: '1. 収集する情報',
+        paragraphs: [
+          'ゲスト利用の場合、学習データはお使いの端末のブラウザ内（localStorage）にのみ保存されます。ログインした場合は、端末間同期のためにメールアドレスと学習進捗のみがクラウドに保存されます。'
+        ]
+      },
+      {
+        heading: '2. データの利用目的',
+        paragraphs: [
+          '学習進捗の保存、クイズの成績管理、機能改善のためにのみ使用されます。'
+        ]
+      },
+      {
+        heading: '3. データの安全性',
+        paragraphs: [
+          'すべての通信は暗号化（TLS）され、セキュアに管理されています。'
+        ]
+      }
+    ],
+    contactHeading: 'お問い合わせ',
+    contactIntro: 'プライバシーに関するお問い合わせは以下までお願いいたします:',
+    footerPrompt: '利用規約はこちら: ',
+    footerLink: '利用規約を表示'
+  },
+  ko: {
+    title: '개인정보 처리방침',
+    lastUpdated: '최종 수정일: 2026년 10월',
+    backToPractice: '학습으로 돌아가기',
+    backToPracticeAria: '학습 레슨으로 돌아가기',
+    summaryTitle: '개인정보 보호 원칙',
+    summaryText: 'Basic Language School은 이용자의 개인정보를 소중히 다룹니다. 광고 트래커나 제3자 데이터 판매가 없으며, 학습 진도 관리에 필요한 최소한의 정보만 사용합니다.',
+    sections: [
+      {
+        heading: '1. 수집하는 정보',
+        paragraphs: [
+          '비로그인 이용 시 모든 학습 데이터는 기기 로컬(localStorage)에만 저장됩니다. 로그인 시 기기 간 동기화를 위해 계정 이메일과 퀴즈 점수만 보관됩니다.'
+        ]
+      },
+      {
+        heading: '2. 정보의 이용 목적',
+        paragraphs: [
+          '단어 및 표현 복습 일정 관리와 학습 통계 제공 목적으로만 활용됩니다.'
+        ]
+      },
+      {
+        heading: '3. 데이터 보안',
+        paragraphs: [
+          '모든 데이터 전송은 최신 암호화 프로토콜(TLS)을 통해 안전하게 보호됩니다.'
+        ]
+      }
+    ],
+    contactHeading: '문의처',
+    contactIntro: '개인정보 보호 관련 문의 사항은 아래로 문의해 주시기 바랍니다:',
+    footerPrompt: '이용약관이 궁금하신가요? ',
+    footerLink: '이용약관 보기'
   }
 };

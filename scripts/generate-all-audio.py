@@ -82,6 +82,18 @@ CONFIGS = {
         "data_file": PROJECT_ROOT / "src" / "data" / "languages" / "tr" / "turkishData.ts",
         "output_dir": PUBLIC_AUDIO / "tr",
         "manifest": PUBLIC_AUDIO / "tr" / "index.json"
+    },
+    "ja": {
+        "voice": "ja-JP-KeitaNeural",
+        "data_file": PROJECT_ROOT / "src" / "data" / "languages" / "ja" / "japaneseData.ts",
+        "output_dir": PUBLIC_AUDIO / "ja",
+        "manifest": PUBLIC_AUDIO / "ja" / "index.json"
+    },
+    "ko": {
+        "voice": "ko-KR-InJoonNeural",
+        "data_file": PROJECT_ROOT / "src" / "data" / "languages" / "ko" / "koreanData.ts",
+        "output_dir": PUBLIC_AUDIO / "ko",
+        "manifest": PUBLIC_AUDIO / "ko" / "index.json"
     }
 }
 
@@ -97,7 +109,7 @@ def get_audio_filename(text: str, lang_id: str = "") -> str:
     # Remove punctuation, notes in parentheses, slashes
     clean = text.split('/')[0]
     clean = re.sub(r"\s*\([^)]*\)\s*", "", clean)
-    clean = re.sub(r"[?.,!¡¿'’\"«»:]", "", clean).strip().lower()
+    clean = re.sub(r"[?.,!¡¿'’\"«»:？。、！]", "", clean).strip().lower()
     clean = unicodedata.normalize("NFC", clean)
     return re.sub(r"\s+", "_", clean) + ".mp3"
 
@@ -195,24 +207,41 @@ def parse_standard_lang(data_file: Path, lang_id: str):
     if alpha_match:
         letters = extract_ts_strings("letter", alpha_match.group(1))
         words = extract_ts_strings("word", alpha_match.group(1))
+        
+        HANGUL_SPOKEN = {
+            "ㄱ": "기역", "ㄴ": "니은", "ㄷ": "디귿", "ㄹ": "리을", "ㅁ": "미음",
+            "ㅂ": "비읍", "ㅅ": "시옷", "ㅇ": "이응", "ㅈ": "지읒", "ㅊ": "치읓",
+            "ㅋ": "키읔", "ㅌ": "티읕", "ㅍ": "피읖", "ㅎ": "히읗",
+            "ㄲ": "쌍기역", "ㄸ": "쌍디귿", "ㅃ": "쌍비읍", "ㅆ": "쌍시옷", "ㅉ": "쌍지읒",
+            "ㅏ": "아", "ㅑ": "야", "ㅓ": "어", "ㅕ": "여", "ㅗ": "오", "ㅛ": "요",
+            "ㅜ": "우", "ㅠ": "유", "ㅡ": "으", "ㅣ": "이"
+        }
+
         for l in letters:
-            lower_l = l.replace("İ", "i").replace("I", "ı").lower() if lang_id == "tr" else l.lower()
-            spoken = l
-            if lang_id == "pt" and lower_l == "ç":
-                spoken = "cê-cedilha"
-            elif lang_id == "de" and lower_l == "ß":
-                spoken = "Eszett"
-            elif lang_id == "tr":
-                if lower_l == "ğ":
-                    spoken = "yumuşak ge"
-                elif lower_l == "ç":
-                    spoken = "çe"
-                elif lower_l == "ş":
-                    spoken = "şe"
-                elif lower_l == "ı":
-                    spoken = "ı"
-                elif lower_l == "i":
-                    spoken = "i"
+            if lang_id == "ko":
+                lower_l = l
+                spoken = HANGUL_SPOKEN.get(l, l)
+            elif lang_id == "ja":
+                lower_l = l
+                spoken = l
+            else:
+                lower_l = l.replace("İ", "i").replace("I", "ı").lower() if lang_id == "tr" else l.lower()
+                spoken = l
+                if lang_id == "pt" and lower_l == "ç":
+                    spoken = "cê-cedilha"
+                elif lang_id == "de" and lower_l == "ß":
+                    spoken = "Eszett"
+                elif lang_id == "tr":
+                    if lower_l == "ğ":
+                        spoken = "yumuşak ge"
+                    elif lower_l == "ç":
+                        spoken = "çe"
+                    elif lower_l == "ş":
+                        spoken = "şe"
+                    elif lower_l == "ı":
+                        spoken = "ı"
+                    elif lower_l == "i":
+                        spoken = "i"
             categories["alphabet"].append({"text": l, "spoken": spoken, "filename": f"{lower_l}.mp3"})
         for w in words:
             categories["examples"].append({"text": w, "spoken": w, "filename": get_audio_filename(w, lang_id)})

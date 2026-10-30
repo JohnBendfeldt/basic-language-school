@@ -40,14 +40,45 @@ const Alphabet: React.FC<AlphabetProps> = ({
         : `${data.length} letters with pronunciation guides, example vocabulary, and native studio audio`)
     : pageContent.subtitle;
 
-  const grammarTabLabel = baseLanguage === 'de' ? 'Grammatik & Karteikarten'
-    : baseLanguage === 'es' ? 'Gramática y Tarjetas'
-    : baseLanguage === 'fr' ? 'Grammaire et Flashcards'
-    : baseLanguage === 'ru' ? 'Грамматика и карточки'
-    : 'Grammar & Flashcards';
+  const grammarMainLabel = ui?.grammar || (
+    baseLanguage === 'de' ? 'Grammatik'
+    : baseLanguage === 'es' ? 'Gramática'
+    : baseLanguage === 'fr' ? 'Grammaire'
+    : baseLanguage === 'ru' ? 'Грамматика'
+    : baseLanguage === 'pt' ? 'Gramática'
+    : baseLanguage === 'tr' ? 'Dilbilgisi'
+    : baseLanguage === 'id' ? 'Tata Bahasa'
+    : 'Grammar'
+  );
 
-  const alphabetTabLabel = (ui && ui.alphabet ? `${ui.alphabet} & Sounds` : undefined) 
-    || (baseLanguage === 'de' ? 'Alphabet & Laute' : 'Alphabet & Sounds');
+  const grammarSuffix = baseLanguage === 'de' ? ' & Karteikarten'
+    : baseLanguage === 'es' ? ' y Tarjetas'
+    : baseLanguage === 'fr' ? ' et Flashcards'
+    : baseLanguage === 'ru' ? ' и карточки'
+    : baseLanguage === 'pt' ? ' e Cartões'
+    : baseLanguage === 'tr' ? ' ve Kartlar'
+    : baseLanguage === 'id' ? ' & Kartu'
+    : ' & Flashcards';
+
+  const alphabetMainLabel = ui?.alphabet || (
+    baseLanguage === 'de' ? 'Alphabet'
+    : baseLanguage === 'es' ? 'Alfabeto'
+    : baseLanguage === 'fr' ? 'Alphabet'
+    : baseLanguage === 'ru' ? 'Алфавит'
+    : baseLanguage === 'pt' ? 'Alfabeto'
+    : baseLanguage === 'tr' ? 'Alfabe'
+    : baseLanguage === 'id' ? 'Alfabet'
+    : 'Alphabet'
+  );
+
+  const alphabetSuffix = baseLanguage === 'de' ? ' & Laute'
+    : baseLanguage === 'es' ? ' y Sonidos'
+    : baseLanguage === 'fr' ? ' et Sons'
+    : baseLanguage === 'ru' ? ' и звуки'
+    : ' & Sounds';
+
+  const alphabetTabLabel = `${alphabetMainLabel}${alphabetSuffix}`;
+  const grammarTabLabel = `${grammarMainLabel}${grammarSuffix}`;
 
   return (
     <div className="section alphabet-section">
@@ -57,21 +88,29 @@ const Alphabet: React.FC<AlphabetProps> = ({
           type="button"
           role="tab"
           aria-selected={activeView === 'alphabet'}
+          aria-label={alphabetTabLabel}
           className={`segmented-tab-btn ${activeView === 'alphabet' ? 'active' : ''}`}
           onClick={() => setActiveView('alphabet')}
         >
           <span className="tab-icon">🔤</span>
-          <span>{alphabetTabLabel}</span>
+          <span className="tab-label-text">
+            <span className="tab-label-main">{alphabetMainLabel}</span>
+            <span className="tab-label-extra">{alphabetSuffix}</span>
+          </span>
         </button>
         <button
           type="button"
           role="tab"
           aria-selected={activeView === 'grammar'}
+          aria-label={grammarTabLabel}
           className={`segmented-tab-btn ${activeView === 'grammar' ? 'active' : ''}`}
           onClick={() => setActiveView('grammar')}
         >
           <span className="tab-icon">📖</span>
-          <span>{grammarTabLabel}</span>
+          <span className="tab-label-text">
+            <span className="tab-label-main">{grammarMainLabel}</span>
+            <span className="tab-label-extra">{grammarSuffix}</span>
+          </span>
         </button>
       </div>
 

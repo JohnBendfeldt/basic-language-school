@@ -408,7 +408,9 @@ export const getPageContent = (
       pt: 'Toque em qualquer cartão para ver sua tradução e pronúncia',
       de: 'Tippe auf eine Karte, um Übersetzung und Aussprache anzuzeigen',
       id: 'Ketuk kartu mana saja untuk melihat terjemahan dan pelafalannya',
-      tr: 'Çevirisini ve telaffuzunu görmek için herhangi bir karta dokunun'
+      tr: 'Çevirisini ve telaffuzunu görmek için herhangi bir karta dokunun',
+      ja: 'カードをタップして翻訳と発音を確認できます',
+      ko: '카드를 탭하여 번역과 발음을 확인하세요'
     };
 
     if (targetLang === 'en') {
@@ -598,7 +600,9 @@ export const getPageContent = (
       pt: 'Toque em qualquer cartão para ver sua tradução e pronúncia',
       de: 'Tippe auf eine Karte, um Übersetzung und Aussprache anzuzeigen',
       id: 'Ketuk kartu mana saja untuk melihat terjemahan dan pelafalannya',
-      tr: 'Çevirisini ve telaffuzunu görmek için herhangi bir karta dokunun'
+      tr: 'Çevirisini ve telaffuzunu görmek için herhangi bir karta dokunun',
+      ja: 'カードをタップして翻訳と発音を確認できます',
+      ko: '카드를 탭하여 번역과 발음을 확인하세요'
     };
 
     if (targetLang === 'en') {
@@ -1829,7 +1833,9 @@ export const getLocalizedAppName = (
       pt: 'Базовый Португальский',
       de: 'Базовый Немецкий',
       id: 'Базовый Индонезийский',
-      tr: 'Базовый Турецкий'
+      tr: 'Базовый Турецкий',
+      ja: 'Базовый Японский',
+      ko: 'Базовый Корейский'
     },
     es: {
       en: 'Inglés Básico',
@@ -1839,7 +1845,9 @@ export const getLocalizedAppName = (
       pt: 'Portugués Básico',
       de: 'Alemán Básico',
       id: 'Indonesio Básico',
-      tr: 'Turco Básico'
+      tr: 'Turco Básico',
+      ja: 'Japonés Básico',
+      ko: 'Coreano Básico'
     },
     fr: {
       en: 'Anglais de Base',
@@ -1849,7 +1857,9 @@ export const getLocalizedAppName = (
       pt: 'Portugais de Base',
       de: 'Allemand de Base',
       id: 'Indonésien de Base',
-      tr: 'Turc de Base'
+      tr: 'Turc de Base',
+      ja: 'Japonais de Base',
+      ko: 'Coréen de Base'
     },
     pt: {
       en: 'Inglês Básico',
@@ -1859,7 +1869,9 @@ export const getLocalizedAppName = (
       pt: 'Português Básico',
       de: 'Alemão Básico',
       id: 'Indonésio Básico',
-      tr: 'Turco Básico'
+      tr: 'Turco Básico',
+      ja: 'Japonês Básico',
+      ko: 'Coreano Básico'
     },
     de: {
       en: 'Basis-Englisch',
@@ -1869,7 +1881,9 @@ export const getLocalizedAppName = (
       pt: 'Basis-Portugiesisch',
       de: 'Basis-Deutsch',
       id: 'Basis-Indonesisch',
-      tr: 'Basis-Türkisch'
+      tr: 'Basis-Türkisch',
+      ja: 'Basis-Japanisch',
+      ko: 'Basis-Koreanisch'
     },
     id: {
       en: 'Bahasa Inggris Dasar',
@@ -1879,7 +1893,9 @@ export const getLocalizedAppName = (
       pt: 'Bahasa Portugis Dasar',
       de: 'Bahasa Jerman Dasar',
       id: 'Bahasa Indonesia Dasar',
-      tr: 'Bahasa Turki Dasar'
+      tr: 'Bahasa Turki Dasar',
+      ja: 'Bahasa Jepang Dasar',
+      ko: 'Bahasa Korea Dasar'
     },
     tr: {
       en: 'Temel İngilizce',
@@ -1889,7 +1905,9 @@ export const getLocalizedAppName = (
       pt: 'Temel Portekizce',
       de: 'Temel Almanca',
       id: 'Temel Endonezce',
-      tr: 'Temel Türkçe'
+      tr: 'Temel Türkçe',
+      ja: 'Temel Japonca',
+      ko: 'Temel Korece'
     },
     en: {
       en: 'Basic English',
@@ -1899,7 +1917,33 @@ export const getLocalizedAppName = (
       pt: 'Basic Portuguese',
       de: 'Basic German',
       id: 'Basic Indonesian',
-      tr: 'Basic Turkish'
+      tr: 'Basic Turkish',
+      ja: 'Basic Japanese',
+      ko: 'Basic Korean'
+    },
+    ja: {
+      en: 'ベーシック英語',
+      es: 'ベーシックスペイン語',
+      fr: 'ベーシックフランス語',
+      ru: 'ベーシックロシア語',
+      pt: 'ベーシックポルトガル語',
+      de: 'ベーシックドイツ語',
+      id: 'ベーシックインドネシア語',
+      tr: 'ベーシックトルコ語',
+      ja: 'ベーシック日本語',
+      ko: 'ベーシック韓国語'
+    },
+    ko: {
+      en: '베이직 영어',
+      es: '베이직 스페인어',
+      fr: '베이직 프랑스어',
+      ru: '베이직 러시아어',
+      pt: '베이직 포르투갈어',
+      de: '베이직 독일어',
+      id: '베이직 인도네시아어',
+      tr: '베이직 튀르키예어',
+      ja: '베이직 일본어',
+      ko: '베이직 한국어'
     }
   };
 
@@ -2015,6 +2059,32 @@ export const getLocalizedLanguageName = (
       zh: 'Çince',
       ko: 'Korece'
     },
+    ja: {
+      en: '英語',
+      es: 'スペイン語',
+      fr: 'フランス語',
+      ru: 'ロシア語',
+      de: 'ドイツ語',
+      pt: 'ポルトガル語',
+      id: 'インドネシア語',
+      tr: 'トルコ語',
+      ja: '日本語',
+      ko: '韓国語',
+      zh: '中国語'
+    },
+    ko: {
+      en: '영어',
+      es: '스페인어',
+      fr: '프랑스어',
+      ru: '러시아어',
+      de: '독일어',
+      pt: '포르투갈어',
+      id: '인도네시아어',
+      tr: '튀르키예어',
+      ja: '일본어',
+      ko: '한국어',
+      zh: '중국어'
+    },
     en: {}
   };
 
@@ -2031,7 +2101,7 @@ export const localizeCategoryBadge = (
   if (!category) return category;
 
   const key = category.trim().toLowerCase();
-  const map: Record<string, Record<SupportedLanguageId, string>> = {
+  const map: Record<string, Partial<Record<SupportedLanguageId, string>>> = {
     'greetings': { en: 'Greetings', es: 'Saludos', fr: 'Salutations', ru: 'Приветствия', pt: 'Saudações', de: 'Begrüßungen', id: 'Sapaan', tr: 'Selamlaşma' },
     'conversation': { en: 'Conversation', es: 'Conversación', fr: 'Conversation', ru: 'Разговор', pt: 'Conversação', de: 'Gespräch', id: 'Percakapan', tr: 'Sohbet' },
     'introductions': { en: 'Introductions', es: 'Presentaciones', fr: 'Présentations', ru: 'Знакомство', pt: 'Apresentações', de: 'Vorstellung', id: 'Perkenalan', tr: 'Tanışma' },
@@ -2089,7 +2159,7 @@ export const localizeCategoryBadge = (
 };
 
 export const localizeLevelBadge = (level: 'all' | 1 | 2 | 3, baseLang: SupportedLanguageId = 'en'): string => {
-  const map: Record<string, Record<SupportedLanguageId, string>> = {
+  const map: Record<string, Partial<Record<SupportedLanguageId, string>>> = {
     'all': {
       en: 'All Levels',
       es: 'Todos los niveles',
@@ -2144,6 +2214,8 @@ export const getQuizToolbarLabels = (baseLang: SupportedLanguageId = 'en') => {
     de: { topic: 'Themenbereich', level: 'Schwierigkeitsgrad', modality: 'Übungsmodus', questionOf: (c, t) => `Frage ${c} von ${t}` },
     id: { topic: 'Topik Materi', level: 'Tingkat Kemahiran', modality: 'Mode Latihan', questionOf: (c, t) => `Pertanyaan ${c} dari ${t}` },
     tr: { topic: 'Ders Konusu', level: 'Yeterlilik Seviyesi', modality: 'Pratik Modu', questionOf: (c, t) => `Soru ${c} / ${t}` },
+    ja: { topic: '学習トピック', level: '習熟度レベル', modality: '練習モード', questionOf: (c, t) => `問題 ${c} / ${t}` },
+    ko: { topic: '학습 주제', level: '난이도 수준', modality: '연습 모드', questionOf: (c, t) => `문제 ${c} / ${t}` },
   };
   return map[baseLang] || map.en;
 };
