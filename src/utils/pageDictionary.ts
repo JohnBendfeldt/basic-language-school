@@ -3873,6 +3873,118 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         confirmResetStats: 'Tüm ilerleme istatistiklerinizi sıfırlamak istediğinizden emin misiniz?',
         doneBtn: 'Tamam'
       };
+    case 'ja':
+      return {
+        installApp: 'アプリをインストール',
+        installAppTitle: 'このデバイスにアプリをインストール',
+        loadingLessons: 'レッスンを読み込み中...',
+        allRightsReserved: 'All Rights Reserved.',
+        aboutContact: '概要・お問い合わせ',
+        privacyPolicy: 'プライバシーポリシー',
+        termsOfService: '利用規約',
+        search: '検索',
+        searchTitle: '単語やフレーズを検索 (⌘K)',
+
+        customizingBadge: 'カスタマイズ中',
+        popularPairs: '人気の言語ペア',
+        chooseLanguageToLearn: '学びたい言語を選択',
+        upcomingCourses: '近日公開のコース',
+        soonBadge: '近日公開',
+        bidirectionalNotice: '双方向カリキュラム · スタジオ品質のネイティブ音声',
+        switchDirectionTitle: (baseName: string, targetName: string) =>
+          `学習方向を入れ替える：${baseName}を学ぶ（母語：${targetName}）`,
+
+        audioSpeedLabel: '音声速度',
+        studioVoicePace: 'スタジオ音声のペース',
+        speedDesc05: 'ゆっくり、音節をはっきり',
+        speedDesc075: '初心者向けのゆっくり速度',
+        speedDesc1: 'ネイティブの自然な速度',
+        speedDesc125: '流暢なリスニング練習',
+
+        personalStudyDashboard: '学習ダッシュボード',
+        learningPair: '学習言語ペア',
+        audioPlaybackSpeed: '音声の再生速度',
+        myLearningProgress: '学習の進捗',
+        accountCloudSync: 'アカウントとクラウド同期',
+        signOut: 'ログアウト',
+        syncSignIn: 'ログインして同期',
+
+        myStats: '学習統計',
+        signIn: 'ログイン',
+        signOutTitle: 'アカウントからログアウト',
+        progressModalTitle: '学習の進捗',
+        overallAccuracy: '全体の正答率',
+        questionsAttempted: '回答した問題数',
+        streak: '連続日数',
+        mastered: '習得済み',
+        accuracyByCategory: 'カテゴリ別の正答率',
+        alphabetCat: '文字と発音',
+        phrasesCat: '基本フレーズ',
+        commonWordsCat: '基本単語',
+        numbersCat: '数字と時間',
+        correctOfTotal: (correct: number, total: number) => `${total}問中${correct}問正解`,
+        syncPromoText: 'すべてのデバイスで進捗を同期しますか？',
+        signInRegister: 'ログイン / 登録',
+        resetAllStats: 'すべての統計をリセット',
+        confirmResetStats: 'すべての学習統計をリセットしてもよろしいですか？',
+        doneBtn: '完了'
+      };
+    case 'ko':
+      return {
+        installApp: '앱 설치',
+        installAppTitle: '이 기기에 앱 설치',
+        loadingLessons: '레슨을 불러오는 중...',
+        allRightsReserved: 'All Rights Reserved.',
+        aboutContact: '소개 및 문의',
+        privacyPolicy: '개인정보 처리방침',
+        termsOfService: '이용약관',
+        search: '검색',
+        searchTitle: '단어와 문구 검색 (⌘K)',
+
+        customizingBadge: '맞춤 설정 중',
+        popularPairs: '인기 언어 조합',
+        chooseLanguageToLearn: '배우고 싶은 언어를 선택하세요',
+        upcomingCourses: '출시 예정 강좌',
+        soonBadge: '출시 예정',
+        bidirectionalNotice: '양방향 커리큘럼 · 스튜디오급 원어민 음성',
+        switchDirectionTitle: (baseName: string, targetName: string) =>
+          `학습 방향 바꾸기: ${baseName} 학습 (모국어: ${targetName})`,
+
+        audioSpeedLabel: '음성 속도',
+        studioVoicePace: '스튜디오 음성 속도',
+        speedDesc05: '천천히, 음절을 또렷하게',
+        speedDesc075: '초보자용 느린 속도',
+        speedDesc1: '원어민의 자연스러운 속도',
+        speedDesc125: '유창한 듣기 연습',
+
+        personalStudyDashboard: '나의 학습 대시보드',
+        learningPair: '학습 언어 조합',
+        audioPlaybackSpeed: '음성 재생 속도',
+        myLearningProgress: '나의 학습 진도',
+        accountCloudSync: '계정 및 클라우드 동기화',
+        signOut: '로그아웃',
+        syncSignIn: '로그인하고 동기화',
+
+        myStats: '학습 통계',
+        signIn: '로그인',
+        signOutTitle: '계정에서 로그아웃',
+        progressModalTitle: '나의 학습 진도',
+        overallAccuracy: '전체 정답률',
+        questionsAttempted: '푼 문제 수',
+        streak: '연속 학습일',
+        mastered: '마스터함',
+        accuracyByCategory: '분류별 정답률',
+        alphabetCat: '문자와 발음',
+        phrasesCat: '기본 문구',
+        commonWordsCat: '기본 단어',
+        numbersCat: '숫자와 시간',
+        correctOfTotal: (correct: number, total: number) => `${total}문제 중 ${correct}문제 정답`,
+        syncPromoText: '모든 기기에서 학습 진도를 동기화하시겠어요?',
+        signInRegister: '로그인 / 가입',
+        resetAllStats: '모든 통계 초기화',
+        confirmResetStats: '모든 학습 통계를 초기화하시겠습니까?',
+        doneBtn: '완료'
+      };
     case 'zh':
       return {
         installApp: '安装应用',
