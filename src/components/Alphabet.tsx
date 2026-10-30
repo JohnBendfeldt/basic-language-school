@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PronunciationButton from './PronunciationButton';
 import Grammar from './Grammar';
+import WordIcon from './WordIcon';
 import { AlphabetItem } from '../types/index';
 import { useLanguage } from '../contexts/LanguageContext';
 import { getPageContent, getAlphabetLabels } from '../utils/pageDictionary';
@@ -136,7 +137,7 @@ const Alphabet: React.FC<AlphabetProps> = ({
                     <div className="example">
                       {item.icon && (
                         <span className="example-icon-badge" aria-hidden="true">
-                          {item.icon}
+                          <WordIcon icon={item.icon} word={exampleWord} meaning={exampleMeaning} size={22} />
                         </span>
                       )}
                       <div className="example-details">
