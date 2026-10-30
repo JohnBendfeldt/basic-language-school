@@ -7105,3 +7105,8 @@ html {
   line-height: 1;
 }
 .listening-hint-box .tip-text { flex: 1 1 auto; min-width: 0; overflow-wrap: anywhere; }
+
+/* Two-line tips: first sentence on top, remainder below it */
+.tip-text .tip-line { display: block; }
+.tip-text .tip-line:first-child { font-weight: 600; }
+.tip-text .tip-line-rest { opacity: 0.85; }
