@@ -12,6 +12,137 @@ interface GrammarProps {
   initialTab?: 'flashcards' | 'gender' | 'verbs' | 'descriptions';
 }
 
+const getVerbLanguageNotice = (
+  lang: string,
+  baseLang: string
+): { title: string; text: string } | null => {
+  if (lang === 'zh') {
+    if (baseLang === 'ru') {
+      return {
+        title: 'В китайском языке глаголы НЕ спрягаются!',
+        text: 'Форма глагола не меняется по лицам (я, ты, он, мы, они). Время, вид и направленность действия выражаются частицами: 在 (длительное), 了 (завершённое), 过 (опыт в прошлом), 要/会 (будущее/намерение) и отрицаниями 不 / 没.',
+      };
+    }
+    if (baseLang === 'de') {
+      return {
+        title: 'Im Chinesischen gibt es keine Konjugation!',
+        text: 'Die Verbform bleibt für alle Personen (ich, du, er, wir, sie) exakt gleich. Zeiten und Aspekte werden durch funktionale Partikeln wie 在 (Verlauf), 了 (abgeschlossen), 过 (Erfahrung) und 要 (Zukunft) ausgedrückt.',
+      };
+    }
+    if (baseLang === 'es') {
+      return {
+        title: '¡El chino mandarín no tiene conjugación verbal!',
+        text: 'La forma verbal es idéntica para todas las personas (yo, tú, él, nosotros). El tiempo y aspecto se expresan con partículas como 在 (en progreso), 了 (completado), 过 (experiencia) y 要 (futuro).',
+      };
+    }
+    if (baseLang === 'fr') {
+      return {
+        title: 'Le chinois mandarin ne se conjugue pas !',
+        text: 'La forme du verbe reste identique pour toutes les personnes (je, tu, il, nous). Le temps et l\'aspect s\'expriment par des particules comme 在 (en cours), 了 (accompli), 过 (expérience passée) et 要 (futur).',
+      };
+    }
+    return {
+      title: 'Mandarin Chinese has NO verb conjugations!',
+      text: 'Verbs never change by person (I, you, he, we, they all use the exact same base word). Time and aspect are expressed using functional particles like 在 (ongoing), 了 (completed), 过 (past experience), and 要 (future intention).',
+    };
+  }
+
+  if (lang === 'id') {
+    if (baseLang === 'ru') {
+      return {
+        title: 'В индонезийском языке нет спряжения глаголов!',
+        text: 'Глагол не меняется по лицам и числам. Время и модальность выражаются служебными словами: sedang (сейчас), sudah (уже), akan (будет) и belum (ещё не).',
+      };
+    }
+    if (baseLang === 'de') {
+      return {
+        title: 'Im Indonesischen gibt es keine Konjugation!',
+        text: 'Verben verändern sich weder nach Person noch nach Zahl. Zeiten werden durch Zeitmarken wie sedang (gerade), sudah (bereits) und akan (wird) angezeigt.',
+      };
+    }
+    if (baseLang === 'es') {
+      return {
+        title: '¡El indonesio no tiene conjugaciones verbales!',
+        text: 'El verbo no cambia según la persona. Los tiempos se indican mediante marcadores: sedang (actualmente), sudah (ya), akan (futuro) y belum (aún no).',
+      };
+    }
+    if (baseLang === 'fr') {
+      return {
+        title: 'L\'indonésien ne conjugue pas les verbes !',
+        text: 'Le verbe ne varie ni en personne ni en nombre. Le temps est indiqué par des marqueurs temporels : sedang (en cours), sudah (déjà), akan (futur) et belum (pas encore).',
+      };
+    }
+    return {
+      title: 'Indonesian verbs do NOT conjugate!',
+      text: 'Verbs never change form for person (I, you, they). Time is indicated using auxiliary marker words: sedang (currently), sudah (already), akan (will), and belum (not yet).',
+    };
+  }
+
+  if (lang === 'ja') {
+    if (baseLang === 'ru') {
+      return {
+        title: 'Японские глаголы НЕ изменяются по лицам!',
+        text: 'Форма одинакова для «я», «ты», «они». Глаголы спрягаются по уровню вежливости (вежливая 〜ます / словарная), времени (прошедшее 〜ました) и утверждению/отрицанию (〜ません).',
+      };
+    }
+    if (baseLang === 'de') {
+      return {
+        title: 'Japanische Verben konjugieren NICHT nach Person!',
+        text: 'Die Form ist für „ich“, „du“, „sie“ identisch. Verben ändern sich nach Höflichkeitsform (〜ます), Zeitform (Vergangenheit 〜ました) und Verneinung (〜ません).',
+      };
+    }
+    if (baseLang === 'es') {
+      return {
+        title: '¡Los verbos japoneses NO conjugan por persona!',
+        text: 'La forma es idéntica para "yo", "tú", "ellos". Los verbos cambian por nivel de cortesía (〜ます), tiempo (pasado 〜ました) y polaridad negativa (〜ません).',
+      };
+    }
+    if (baseLang === 'fr') {
+      return {
+        title: 'Les verbes japonais ne varient PAS selon la personne !',
+        text: 'La forme est identique pour « je », « tu », « ils ». Les verbes se déclinent selon la politesse (〜ます), le temps (passé 〜ました) et la polarité (négation 〜ません).',
+      };
+    }
+    return {
+      title: 'Japanese verbs do NOT conjugate by person!',
+      text: 'Whether saying "I", "you", or "they", the verb form is identical. Japanese verbs conjugate instead for politeness (polite 〜ます vs plain), tense (past 〜ました), and negative polarity (〜ません).',
+    };
+  }
+
+  if (lang === 'ko') {
+    if (baseLang === 'ru') {
+      return {
+        title: 'Корейские глаголы НЕ изменяются по лицам!',
+        text: 'Форма не зависит от лица (я, ты, мы). Глаголы изменяются по уровням вежливости (вежливый 해요체 / официальный 습니다), времени (прошедшее 았/었어요, будущее ㄹ 거예요) и отрицанию.',
+      };
+    }
+    if (baseLang === 'de') {
+      return {
+        title: 'Koreanische Verben konjugieren NICHT nach Person!',
+        text: 'Die Form ist unabhängig von der Person (ich, du, wir). Verben verändern sich nach Höflichkeitsstufen (해요체 / 습니다), Zeitformen (Vergangenheit 았/었어요, Zukunft ㄹ 거예요) und Verneinung.',
+      };
+    }
+    if (baseLang === 'es') {
+      return {
+        title: '¡Los verbos coreanos NO conjugan por persona!',
+        text: 'La forma no depende de la persona (yo, tú, nosotros). Los verbos cambian según el nivel de cortesía (해요체 / 습니다), el tiempo (pasado 았/었어요, futuro ㄹ 거예요) y la negación.',
+      };
+    }
+    if (baseLang === 'fr') {
+      return {
+        title: 'Les verbes coréens ne varient PAS selon la personne !',
+        text: 'La forme ne dépend pas de la personne (je, tu, nous). Les verbes se conjuguent selon le niveau de politesse (해요체 / 습니다), le temps (passé 았/었어요, futur ㄹ 거예요) et la négation.',
+      };
+    }
+    return {
+      title: 'Korean verbs do NOT conjugate by person!',
+      text: 'Korean verbs remain the same regardless of who the subject is (I, you, he, we). Instead, verbs conjugate for politeness levels (informal polite 해요, formal 습니다) and tenses (past 았/었어요, future ㄹ 거예요).',
+    };
+  }
+
+  return null;
+};
+
 export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'flashcards' }) => {
   const { currentLanguage, baseLanguage } = useLanguage();
 
@@ -434,6 +565,20 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
       {/* View 3: Verb Conjugation Tables */}
       {activeTab === 'verbs' && verbsList.length > 0 && (
         <div className="verb-matrix-container">
+          {(() => {
+            const notice = getVerbLanguageNotice(currentLanguage, baseLanguage);
+            if (!notice) return null;
+            return (
+              <div className="verb-grammar-notice">
+                <span className="notice-icon" aria-hidden="true">💡</span>
+                <div className="notice-body">
+                  <strong>{notice.title}</strong>
+                  <p>{notice.text}</p>
+                </div>
+              </div>
+            );
+          })()}
+
           <div className="verb-selector-scroll">
             {verbsList.map((v, idx) => (
               <button
@@ -467,12 +612,23 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
 
               <div className="conjugation-table">
                 {verbsList[activeVerbIndex].forms.map((item) => {
+                  const isNonPersonConjugated = ['zh', 'id', 'ja', 'ko'].includes(currentLanguage);
                   const cleanPronoun = item.pronoun.replace(/\s*\(.*?\)/g, '').split('/')[0].trim();
-                  const audioTarget = cleanPronoun ? `${cleanPronoun} ${item.form}` : item.form;
+                  const [mainForm, formDesc] = item.form.split(/\s*—\s*/);
+                  const cleanForm = mainForm.replace(/\s*\([^)]*\)\s*/g, '').split('/')[0].trim();
+                  
+                  let audioTarget = cleanForm;
+                  if (!isNonPersonConjugated && cleanPronoun && (!/[a-zA-Z]/.test(cleanPronoun) || currentLanguage === 'en')) {
+                    audioTarget = `${cleanPronoun} ${cleanForm}`;
+                  }
+
                   return (
                     <div key={item.pronoun} className="conjugation-row">
                       <span className="conj-pronoun">{item.pronoun}</span>
-                      <strong className="conj-form">{item.form}</strong>
+                      <div className="conj-form-wrap">
+                        <strong className="conj-form">{mainForm}</strong>
+                        {formDesc && <span className="conj-form-desc">{formDesc}</span>}
+                      </div>
                       <PronunciationButton
                         text={audioTarget}
                         lang={currentLanguage}
