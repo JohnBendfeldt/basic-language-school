@@ -178,6 +178,23 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
   );
 };
 
+const MOBILE_QUERY = '(max-width: 768px)';
+
+/** True on phone-sized viewports. Defaults to false where matchMedia is unavailable (e.g. jsdom). */
+const useIsMobile = (): boolean => {
+  const get = () => typeof window !== 'undefined' && typeof window.matchMedia === 'function' && window.matchMedia(MOBILE_QUERY).matches;
+  const [isMobile, setIsMobile] = useState<boolean>(get);
+  useEffect(() => {
+    if (typeof window.matchMedia !== 'function') return;
+    const mql = window.matchMedia(MOBILE_QUERY);
+    const onChange = () => setIsMobile(mql.matches);
+    onChange();
+    mql.addEventListener('change', onChange);
+    return () => mql.removeEventListener('change', onChange);
+  }, []);
+  return isMobile;
+};
+
 interface PhrasesProps {
   data: PhraseItem[];
   title: string;
@@ -190,7 +207,10 @@ const Phrases: React.FC<PhrasesProps> = ({
   contentType = 'phrases'
 }) => {
   const { currentLanguage, baseLanguage, ui } = useLanguage();
-  const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set());
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const isMobile = useIsMobile();
+  const activeCategory = selectedCategories.size === 0 ? 'all' : Array.from(selectedCategories).join('|');
   const [revealedCards, setRevealedCards] = useState<boolean[]>(
     new Array(data.length).fill(false)
   );
@@ -227,13 +247,40 @@ const Phrases: React.FC<PhrasesProps> = ({
   }, [data, contentType, baseLanguage]);
 
   const filteredData = useMemo(() => {
-    if (activeCategory === 'all') return data;
-    return data.filter(item => item.category === activeCategory);
-  }, [data, activeCategory]);
+    if (selectedCategories.size === 0) return data;
+    return data.filter(item => item.category && selectedCategories.has(item.category));
+  }, [data, selectedCategories]);
 
   useEffect(() => {
-    setActiveCategory('all');
+    setSelectedCategories(new Set());
+    setSheetOpen(false);
   }, [data, title, currentLanguage]);
+
+  // Close the topic sheet with Escape and lock background scroll while it is open
+  useEffect(() => {
+    if (!sheetOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSheetOpen(false);
+    };
+    document.addEventListener('keydown', onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [sheetOpen]);
+
+  const selectOnly = (id: string) => setSelectedCategories(new Set([id]));
+  const clearCategories = () => setSelectedCategories(new Set());
+  const toggleCategory = (id: string) => {
+    setSelectedCategories(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
 
   useEffect(() => {
     setRevealedCards(new Array(filteredData.length).fill(false));
@@ -276,21 +323,21 @@ const Phrases: React.FC<PhrasesProps> = ({
         </button>
       </div>
 
-      {categoryPills.length > 0 && (
+      {categoryPills.length > 0 && !isMobile && (
         <div className="topic-pack-filter-bar" role="group" aria-label="Filter by topic or industry pack">
           <button
             type="button"
-            className={`topic-pack-pill ${activeCategory === 'all' ? 'active' : ''}`}
-            aria-pressed={activeCategory === 'all'}
+            className={`topic-pack-pill ${selectedCategories.size === 0 ? 'active' : ''}`}
+            aria-pressed={selectedCategories.size === 0}
             data-category="all"
-            onClick={() => setActiveCategory('all')}
+            onClick={clearCategories}
           >
             <span className="topic-pack-icon" aria-hidden="true">✨</span>
             <span className="topic-pack-label">{allLabel}</span>
             <span className="topic-pack-count">{data.length}</span>
           </button>
           {categoryPills.map((pill) => {
-            const isSelected = activeCategory === pill.id;
+            const isSelected = selectedCategories.has(pill.id);
             return (
               <button
                 key={pill.id}
@@ -298,7 +345,7 @@ const Phrases: React.FC<PhrasesProps> = ({
                 className={`topic-pack-pill ${isSelected ? 'active' : ''}`}
                 aria-pressed={isSelected}
                 data-category={pill.id}
-                onClick={() => setActiveCategory(pill.id)}
+                onClick={() => selectOnly(pill.id)}
               >
                 <span className="topic-pack-icon" aria-hidden="true">{pill.icon}</span>
                 <span className="topic-pack-label">{pill.label}</span>
@@ -306,6 +353,125 @@ const Phrases: React.FC<PhrasesProps> = ({
               </button>
             );
           })}
+        </div>
+      )}
+
+      {categoryPills.length > 0 && isMobile && (
+        <div className="topic-mobile-filter">
+          <div className="topic-mobile-row">
+            <button
+              type="button"
+              className={`topic-mobile-open ${selectedCategories.size > 0 ? 'has-selection' : ''}`}
+              aria-haspopup="dialog"
+              aria-expanded={sheetOpen}
+              onClick={() => setSheetOpen(true)}
+            >
+              <span aria-hidden="true">🎛</span>
+              <span>{ui.topics}</span>
+              <span className="topic-pack-count">
+                {selectedCategories.size > 0 ? selectedCategories.size : categoryPills.length}
+              </span>
+              <span aria-hidden="true">▾</span>
+            </button>
+            <div className="topic-mobile-strip" role="group" aria-label="Quick topics">
+              <button
+                type="button"
+                className={`topic-pack-pill ${selectedCategories.size === 0 ? 'active' : ''}`}
+                aria-pressed={selectedCategories.size === 0}
+                onClick={clearCategories}
+              >
+                <span className="topic-pack-label">{allLabel}</span>
+              </button>
+              {categoryPills.slice(0, 6).map(pill => (
+                <button
+                  key={pill.id}
+                  type="button"
+                  className={`topic-pack-pill ${selectedCategories.has(pill.id) ? 'active' : ''}`}
+                  aria-pressed={selectedCategories.has(pill.id)}
+                  onClick={() => toggleCategory(pill.id)}
+                >
+                  <span className="topic-pack-icon" aria-hidden="true">{pill.icon}</span>
+                  <span className="topic-pack-label">{pill.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {selectedCategories.size > 0 && (
+            <div className="topic-selected-chips">
+              {categoryPills
+                .filter(pill => selectedCategories.has(pill.id))
+                .map(pill => (
+                  <button
+                    key={pill.id}
+                    type="button"
+                    className="topic-selected-chip"
+                    aria-label={`${pill.label} ✕`}
+                    onClick={() => toggleCategory(pill.id)}
+                  >
+                    {pill.icon} {pill.label} <span aria-hidden="true">✕</span>
+                  </button>
+                ))}
+              <button type="button" className="topic-clear-link" onClick={clearCategories}>
+                {ui.clearFilters}
+              </button>
+            </div>
+          )}
+
+          {sheetOpen && (
+            <div className="topic-sheet-backdrop" onClick={() => setSheetOpen(false)}>
+              <div
+                className="topic-sheet"
+                role="dialog"
+                aria-modal="true"
+                aria-label={ui.topics}
+                onClick={e => e.stopPropagation()}
+              >
+                <div className="topic-sheet-header">
+                  <h3>{ui.topics}</h3>
+                  <button
+                    type="button"
+                    className="topic-sheet-close"
+                    aria-label={ui.closeLabel}
+                    onClick={() => setSheetOpen(false)}
+                  >
+                    ✕
+                  </button>
+                </div>
+                <div className="topic-sheet-chips">
+                  {categoryPills.map(pill => {
+                    const on = selectedCategories.has(pill.id);
+                    return (
+                      <button
+                        key={pill.id}
+                        type="button"
+                        className={`topic-pack-pill ${on ? 'active' : ''}`}
+                        aria-pressed={on}
+                        onClick={() => toggleCategory(pill.id)}
+                      >
+                        <span className="topic-pack-icon" aria-hidden="true">{pill.icon}</span>
+                        <span className="topic-pack-label">{pill.label}</span>
+                        <span className="topic-pack-count">{pill.count}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+                <div className="topic-sheet-footer">
+                  <button
+                    type="button"
+                    className="topic-clear-link"
+                    onClick={clearCategories}
+                    disabled={selectedCategories.size === 0}
+                  >
+                    {ui.clearFilters}
+                  </button>
+                  <button type="button" className="topic-sheet-apply" onClick={() => setSheetOpen(false)}>
+                    {ui.showCountItems.replace('{n}', String(filteredData.length))}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
