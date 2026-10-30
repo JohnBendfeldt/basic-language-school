@@ -15,8 +15,10 @@ interface GrammarProps {
 export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'flashcards' }) => {
   const { currentLanguage, baseLanguage } = useLanguage();
 
-  // Dynamic language grammar
-  const activeGrammar: GrammarData = grammarData || getGrammarForLanguage(currentLanguage, baseLanguage);
+  // Dynamic language grammar: always resolve and localize for active language pair
+  const activeGrammar: GrammarData = React.useMemo(() => {
+    return getGrammarForLanguage(currentLanguage, baseLanguage, grammarData);
+  }, [currentLanguage, baseLanguage, grammarData]);
 
   const [activeTab, setActiveTab] = useState<'flashcards' | 'gender' | 'verbs' | 'descriptions'>(initialTab);
 
@@ -175,7 +177,8 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
 
               {/* Prompt Hero Card */}
               {(() => {
-                const promptParts = currentCard.prompt.split(/\s*➔\s*/);
+                const activePrompt = currentCard.prompts?.[baseLanguage] || currentCard.prompt;
+                const promptParts = activePrompt.split(/\s*➔\s*/);
                 const heroWord = promptParts[0];
                 const taskPrompt = promptParts.length > 1 ? promptParts[1] : null;
                 const hasComplexOptions = currentCard.options.some(
@@ -271,7 +274,7 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                       <div className={`grammar-feedback-box ${selectedOption === currentCard.correctAnswer ? 'feedback-correct' : 'feedback-incorrect'}`}>
                         <p className="feedback-explanation">
                           {selectedOption === currentCard.correctAnswer ? '✨ ' : '💡 '}
-                          {currentCard.explanation}
+                          {currentCard.explanations?.[baseLanguage] || currentCard.explanation}
                         </p>
 
                         <div className="feedback-actions">
@@ -470,10 +473,10 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
 
               <div className="comparison-table">
                 <div className="comparison-header-row">
-                  <span>Base (Positive)</span>
-                  <span>Comparative</span>
-                  <span>Superlative</span>
-                  <span>Meaning</span>
+                  <span>{baseLanguage === 'ru' ? 'Исходная форма' : baseLanguage === 'es' ? 'Positivo' : baseLanguage === 'fr' ? 'Positif' : baseLanguage === 'de' ? 'Grundform' : 'Base (Positive)'}</span>
+                  <span>{baseLanguage === 'ru' ? 'Сравнительная' : baseLanguage === 'es' ? 'Comparativo' : baseLanguage === 'fr' ? 'Comparatif' : baseLanguage === 'de' ? 'Komparativ' : 'Comparative'}</span>
+                  <span>{baseLanguage === 'ru' ? 'Превосходная' : baseLanguage === 'es' ? 'Superlativo' : baseLanguage === 'fr' ? 'Superlatif' : baseLanguage === 'de' ? 'Superlativ' : 'Superlative'}</span>
+                  <span>{baseLanguage === 'ru' ? 'Значение' : baseLanguage === 'es' ? 'Significado' : baseLanguage === 'fr' ? 'Sens' : baseLanguage === 'de' ? 'Bedeutung' : 'Meaning'}</span>
                 </div>
                 {desc.examples.map((item, rowIdx) => (
                   <div key={rowIdx} className="comparison-data-row">

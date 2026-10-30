@@ -115,7 +115,7 @@ const Alphabet: React.FC<AlphabetProps> = ({
       </div>
 
       {activeView === 'grammar' ? (
-        <Grammar grammarData={currentMeta.data.grammar} initialTab={grammarInitialTab} />
+        <Grammar initialTab={grammarInitialTab} />
       ) : (
         <>
           <div className="alphabet-header">
