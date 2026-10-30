@@ -149,7 +149,7 @@ describe('Multi-Language Core Architecture', () => {
     fireEvent.click(trigger);
 
     // Click EN -> FR quick pair chip
-    const enFrChip = screen.getByText('🇬🇧 EN → 🇫🇷 FR');
+    const enFrChip = screen.getByRole('button', { name: /Switch to pair EN to FR/i });
     fireEvent.click(enFrChip);
 
     // Now target is French

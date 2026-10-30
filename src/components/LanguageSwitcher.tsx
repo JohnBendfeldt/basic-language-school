@@ -258,8 +258,20 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
               <div className="language-modal-header-text">
                 <h2>{ui.switchPair || 'Language Learning Pair'}</h2>
                 <p>
-                  {ui.iSpeak && ui.iWantToLearn
-                    ? `${ui.iSpeak} & ${ui.iWantToLearn}`
+                  {baseLanguage === 'es'
+                    ? 'Elige tu idioma nativo y el curso que deseas estudiar'
+                    : baseLanguage === 'fr'
+                    ? 'Choisissez votre langue maternelle et le cours à étudier'
+                    : baseLanguage === 'de'
+                    ? 'Wähle deine Muttersprache und die Zielsprache'
+                    : baseLanguage === 'ru'
+                    ? 'Выберите родной язык и язык для изучения'
+                    : baseLanguage === 'pt'
+                    ? 'Escolha seu idioma nativo e o curso que deseja estudar'
+                    : baseLanguage === 'tr'
+                    ? 'Ana dilinizi ve öğrenmek istediğiniz dili seçin'
+                    : baseLanguage === 'id'
+                    ? 'Pilih bahasa ibu dan bahasa yang ingin Anda pelajari'
                     : 'Choose your native language and the language you want to study'}
                 </p>
               </div>
@@ -272,6 +284,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                 onClick={() => setActiveTab('base')}
                 role="button"
                 tabIndex={0}
+                aria-label={ui.iSpeak || 'I speak'}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -307,6 +320,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                 onClick={() => setActiveTab('target')}
                 role="button"
                 tabIndex={0}
+                aria-label={ui.iWantToLearn || 'I want to learn'}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -344,7 +358,11 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                           onClick={() => handleQuickPair(p.base, p.target)}
                           aria-label={`Switch to pair ${p.base.toUpperCase()} to ${p.target.toUpperCase()}`}
                         >
-                          {FLAG_EMOJIS[p.base] || '🌐'} {p.base.toUpperCase()} → {FLAG_EMOJIS[p.target] || '🌐'} {p.target.toUpperCase()}
+                          <FlagIcon lang={p.base} size={15} />
+                          <span>{p.base.toUpperCase()}</span>
+                          <span className="chip-arrow">→</span>
+                          <FlagIcon lang={p.target} size={15} />
+                          <span>{p.target.toUpperCase()}</span>
                         </button>
                       );
                     })}
@@ -354,7 +372,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
 
               {availableLanguages.filter(l => l.available && l.id !== baseLanguage && (HIGH_AFFINITY_CORRIDORS[baseLanguage] || ['es', 'fr', 'en', 'de']).includes(l.id as SupportedLanguageId)).length > 0 && (
                 <div className="quick-pairs-group" style={{ marginTop: '0.65rem' }}>
-                  <div className="quick-pairs-title">✨ {baseLanguage === 'de' ? 'Empfohlen für dich' : baseLanguage === 'es' ? 'Sugeridos para ti' : baseLanguage === 'fr' ? 'Suggéré pour vous' : baseLanguage === 'ru' ? 'Рекомендуемые курсы' : baseLanguage === 'pt' ? 'Sugeridos para você' : baseLanguage === 'tr' ? 'Sizin İçin Önerilen' : baseLanguage === 'id' ? 'Disarankan untuk Anda' : 'Suggested For You'} ({localizedBaseName})</div>
+                  <div className="quick-pairs-title">✨ {baseLanguage === 'de' ? 'Empfohlen für dich' : baseLanguage === 'es' ? 'Sugeridos para ti' : baseLanguage === 'fr' ? 'Suggéré pour vous' : baseLanguage === 'ru' ? 'Рекомендуемые курсы' : baseLanguage === 'pt' ? 'Sugeridos para você' : baseLanguage === 'tr' ? 'Sizin İçin Önerilen' : baseLanguage === 'id' ? 'Disarankan untuk Anda' : 'Suggested For You'}</div>
                   <div className="quick-pairs-chips">
                     {availableLanguages
                       .filter(l => l.available && l.id !== baseLanguage && (HIGH_AFFINITY_CORRIDORS[baseLanguage] || ['es', 'fr', 'en', 'de']).includes(l.id as SupportedLanguageId))
@@ -376,26 +394,6 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                   </div>
                 </div>
               )}
-            </div>
-
-            {/* Tab Selector: Choose which side to customize */}
-            <div className="pair-picker-tabs">
-              <button
-                type="button"
-                className={`pair-tab-btn ${activeTab === 'target' ? 'active' : ''}`}
-                onClick={() => setActiveTab('target')}
-              >
-                <span>{ui.iWantToLearn || 'Learning'}</span>
-                <span className="tab-current-badge">{localizedTargetName}</span>
-              </button>
-              <button
-                type="button"
-                className={`pair-tab-btn ${activeTab === 'base' ? 'active' : ''}`}
-                onClick={() => setActiveTab('base')}
-              >
-                <span>{ui.iSpeak || 'I speak'}</span>
-                <span className="tab-current-badge">{localizedBaseName}</span>
-              </button>
             </div>
 
             {/* Language Selection List for Active Tab */}
@@ -496,7 +494,9 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                   <div className="language-roadmap-chips">
                     {ROADMAP_MOST_SPOKEN_LANGUAGES.map((lang) => (
                       <div key={lang.name} className="roadmap-lang-chip" title={`${lang.name} (${lang.speakers})`}>
-                        <span className="chip-flag" aria-hidden="true">{lang.flag}</span>
+                        <span className="chip-flag" aria-hidden="true">
+                          <FlagIcon lang={lang.id || lang.name} size={20} />
+                        </span>
                         <div className="chip-info">
                           <span className="chip-name">{lang.name}</span>
                           <span className="chip-speakers">{lang.speakers}</span>
