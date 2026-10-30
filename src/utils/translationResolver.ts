@@ -1084,6 +1084,14 @@ export const buildQuizQuestionHint = (
         return `Apa arti dari "${promptWord}"?`;
       case 'tr':
         return `"${promptWord}" ne anlama geliyor?`;
+      case 'ja':
+        return `「${promptWord}」はどういう意味ですか？`;
+      case 'ko':
+        return `"${promptWord}"은(는) 무슨 뜻입니까?`;
+      case 'bn':
+        return `"${promptWord}" এর অর্থ কী?`;
+      case 'ur':
+        return `"${promptWord}" کا کیا مطلب ہے؟`;
       case 'zh':
         return `“${promptWord}”是什么意思？`;
       case 'hi':
@@ -1111,6 +1119,14 @@ export const buildQuizQuestionHint = (
         return `Bagaimana mengatakan "${promptWord}" dalam ${targetNameInBase}?`;
       case 'tr':
         return `${targetNameInBase} dilinde "${promptWord}" nasıl denir?`;
+      case 'ja':
+        return `「${promptWord}」を${targetNameInBase}でどう言いますか？`;
+      case 'ko':
+        return `"${promptWord}"을(를) ${targetNameInBase}로 어떻게 말합니까?`;
+      case 'bn':
+        return `${targetNameInBase}-এ "${promptWord}" কীভাবে বলবেন?`;
+      case 'ur':
+        return `${targetNameInBase} میں "${promptWord}" کیسے کہتے ہیں؟`;
       case 'zh':
         return `用${targetNameInBase}怎么说“${promptWord}”？`;
       case 'hi':

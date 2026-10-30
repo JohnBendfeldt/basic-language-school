@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useMemo, useRef } from 'react';
 import { FaTimes, FaTrophy, FaGraduationCap, FaRedo, FaCheckCircle, FaChartBar, FaArrowRight, FaFire, FaChevronDown, FaCheck } from 'react-icons/fa';
 import { ProgressService } from '../services/progressService';
-import { UserStats, WordProgress } from '../types/progress';
+import { UserStats, WordProgress, MASTERY_THRESHOLD } from '../types/progress';
+import { PROGRESS_MODAL_COPY } from '../utils/progressModalCopy';
 import PronunciationButton from './PronunciationButton';
 import { FlagIcon } from './FlagIcon';
 import { containsCyrillic } from '../utils/transliteration';
@@ -148,6 +149,8 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
   const localizedActiveLangName = getLocalizedLanguageName(selectedLang, baseLanguage, activeMeta.name);
 
   const modalCopy = (() => {
+    const translated = PROGRESS_MODAL_COPY[baseLanguage];
+    if (translated) return translated;
     switch (baseLanguage) {
       case 'ru':
         return {
@@ -163,7 +166,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
           masteredBadge: 'Изучено',
           curriculumMastery: (langName: string) => `Освоение курса: ${langName}`,
           masteryCountDesc: (mastered: number, total: number) =>
-            `Изучено ${mastered} из ${total} основных слов и фраз (уровень 5+)`,
+            `Изучено ${mastered} из ${total} основных слов и фраз (уровень ${MASTERY_THRESHOLD}+)`,
           studyBtn: (langName: string) => `Учить ${langName}`,
           dailyStreak: 'Дневная серия',
           quizzesCompleted: 'Пройдено тестов',
@@ -189,7 +192,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
           masteredBadge: 'Dominado',
           curriculumMastery: (langName: string) => `Dominio del Curso de ${langName}`,
           masteryCountDesc: (mastered: number, total: number) =>
-            `${mastered} de ${total} palabras y frases clave dominadas en Nivel 5+`,
+            `${mastered} de ${total} palabras y frases clave dominadas en Nivel ${MASTERY_THRESHOLD}+`,
           studyBtn: (langName: string) => `Estudiar ${langName}`,
           dailyStreak: 'Racha Diaria',
           quizzesCompleted: 'Cuestionarios Completados',
@@ -215,7 +218,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
           masteredBadge: 'Maîtrisé',
           curriculumMastery: (langName: string) => `Maîtrise du Programme (${langName})`,
           masteryCountDesc: (mastered: number, total: number) =>
-            `${mastered} sur ${total} mots et phrases clés maîtrisés au Niveau 5+`,
+            `${mastered} sur ${total} mots et phrases clés maîtrisés au Niveau ${MASTERY_THRESHOLD}+`,
           studyBtn: (langName: string) => `Étudier : ${langName}`,
           dailyStreak: 'Série Quotidienne',
           quizzesCompleted: 'Quiz Terminés',
@@ -242,7 +245,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
           masteredBadge: 'Mastered',
           curriculumMastery: (langName: string) => `${langName} Curriculum Mastery`,
           masteryCountDesc: (mastered: number, total: number) =>
-            `${mastered} of ${total} core words & phrases mastered at Level 3+`,
+            `${mastered} of ${total} core words & phrases mastered at Level ${MASTERY_THRESHOLD}+`,
           studyBtn: (langName: string) => `Study ${langName}`,
           dailyStreak: 'Daily Streak',
           quizzesCompleted: 'Quizzes Completed',
@@ -391,7 +394,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
                   <p>
                     {baseLanguage === 'en' ? (
                       <>
-                        <strong>{stats.wordsMasteredCount}</strong> of <strong>{totalCurriculum}</strong> core words &amp; phrases mastered at Level 3+
+                        <strong>{stats.wordsMasteredCount}</strong> of <strong>{totalCurriculum}</strong> core words &amp; phrases mastered at Level {MASTERY_THRESHOLD}+
                       </>
                     ) : (
                       modalCopy.masteryCountDesc(stats.wordsMasteredCount, totalCurriculum)
