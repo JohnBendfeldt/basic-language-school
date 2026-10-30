@@ -1,3 +1,5 @@
+import { SupportedLanguageId } from '../data/languages/types';
+
 /**
  * Shared TypeScript interfaces for Basic Language (basiclanguage.school)
  * Supports multiple languages (Russian, English, and future additions).
@@ -69,12 +71,15 @@ export interface GrammarDescription {
 
 export interface GrammarFlashcard {
   id: string;
-  type: 'gender' | 'verb' | 'description';
+  type: 'gender' | 'verb' | 'description' | 'article';
   prompt: string;
+  prompts?: Partial<Record<SupportedLanguageId, string>>;
   options: string[];
   correctAnswer: string;
   explanation: string;
+  explanations?: Partial<Record<SupportedLanguageId, string>>;
   translation?: string;
+  translations?: Partial<Record<SupportedLanguageId, string>>;
   gender?: 'masculine' | 'feminine' | 'neuter' | 'plural';
   article?: string;
   icon?: string;

@@ -254,6 +254,73 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
         </svg>
       );
 
+    case 'ja':
+      return (
+        <svg
+          className="app-emblem japanese-flag"
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-label="Basic Japanese emblem"
+          role="img"
+        >
+          <defs>
+            <linearGradient id="jaEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#831843" />
+              <stop offset="50%" stopColor="#1e1b4b" />
+              <stop offset="100%" stopColor="#0f172a" />
+            </linearGradient>
+            <linearGradient id="jaGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#fde047" />
+              <stop offset="60%" stopColor="#f59e0b" />
+              <stop offset="100%" stopColor="#d97706" />
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#jaEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" />
+          {/* Japanese flag: white field with red sun disc */}
+          <g transform="translate(6, 6)">
+            <rect x="0" y="0" width="10" height="7" rx="1.5" fill="#ffffff" />
+            <circle cx="5" cy="3.5" r="2.2" fill="#bc002d" />
+          </g>
+          {capGeometry('jaGoldGrad')}
+        </svg>
+      );
+
+    case 'ko':
+      return (
+        <svg
+          className="app-emblem korean-flag"
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-label="Basic Korean emblem"
+          role="img"
+        >
+          <defs>
+            <linearGradient id="koEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#1e3a8a" />
+              <stop offset="50%" stopColor="#1e1b4b" />
+              <stop offset="100%" stopColor="#0f172a" />
+            </linearGradient>
+            <linearGradient id="koGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#fde047" />
+              <stop offset="60%" stopColor="#f59e0b" />
+              <stop offset="100%" stopColor="#d97706" />
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#koEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" />
+          {/* Korean flag: white field with red/blue Taegeuk circle */}
+          <g transform="translate(6, 6)">
+            <rect x="0" y="0" width="10" height="7" rx="1.5" fill="#ffffff" />
+            <path d="M5 1.5 C6.2 1.5 7.2 2.5 7.2 3.5 C7.2 4.5 6.2 5.5 5 5.5 C3.8 5.5 2.8 4.5 2.8 3.5 C2.8 2.5 3.8 1.5 5 1.5 Z" fill="#0047a0" />
+            <path d="M2.8 3.5 C2.8 2.3 3.8 1.5 5 1.5 C6.2 1.5 7.2 2.3 7.2 3.5 C6.1 3.5 6.1 4.5 5 4.5 C3.9 4.5 3.9 3.5 2.8 3.5 Z" fill="#cd2e3a" />
+            <circle cx="6.1" cy="3" r="1.1" fill="#cd2e3a" />
+            <circle cx="3.9" cy="4" r="1.1" fill="#0047a0" />
+          </g>
+          {capGeometry('koGoldGrad')}
+        </svg>
+      );
+
     case 'en':
     default:
       return (

@@ -897,32 +897,111 @@ export const ENGLISH_GRAMMAR: GrammarData = {
   flashcards: [
     {
       id: 'en-card-1',
-      type: 'gender',
+      type: 'article',
       prompt: '___ apple',
       options: ['a', 'an'],
       correctAnswer: 'an',
       explanation: 'Apple begins with a vowel sound /æ/, so it takes "an apple".',
+      explanations: {
+        ru: 'Слово «apple» начинается с гласного звука /æ/, поэтому используется неопределённый артикль «an» («an apple»).',
+        es: '«Apple» comienza con un sonido vocálico /æ/, por lo que lleva el artículo «an» («an apple»).',
+        fr: '« Apple » commence par un son voyelle /æ/, on utilise donc l\'article « an » (« an apple »).',
+        de: '„Apple“ beginnt mit einem Vokallaut /æ/, daher wird der unbestimmte Artikel „an“ verwendet („an apple“).',
+        pt: '«Apple» começa com um som vocálico /æ/, por isso leva o artigo «an» («an apple»).',
+        tr: '«Apple» kelimesi /æ/ sesli harfiyle başladığı için «an» artikeli alır («an apple»).',
+        id: '«Apple» diawali dengan bunyi vokal /æ/, sehingga menggunakan artikel «an» («an apple»).',
+        ja: '「apple」は母音 /æ/ で始まるため、冠詞「an」を付けます（an apple）。',
+        ko: '«apple»은 모음 /æ/로 시작하므로 부정관사 «an»을 사용합니다 (an apple).'
+      },
       translation: 'an apple',
+      translations: {
+        ru: 'яблоко',
+        es: 'una manzana',
+        fr: 'une pomme',
+        de: 'ein Apfel',
+        pt: 'uma maçã',
+        tr: 'bir elma',
+        id: 'sebuah apel',
+        ja: 'りんご',
+        ko: '사과'
+      },
       icon: '🍎',
+      audioWord: 'apple',
     },
     {
       id: 'en-card-2',
-      type: 'gender',
+      type: 'article',
       prompt: '___ hour',
       options: ['a', 'an'],
       correctAnswer: 'an',
       explanation: 'Hour has a silent "h" and starts with a vowel sound /aʊər/, so it takes "an hour".',
+      explanations: {
+        ru: 'В слове «hour» буква «h» немая и слово начинается с гласного звука /aʊər/, поэтому используется артикль «an» («an hour»).',
+        es: 'La «h» en «hour» es muda y la palabra comienza con el sonido vocálico /aʊər/, por lo que lleva «an hour».',
+        fr: 'Le « h » de « hour » est muet et commence par un son voyelle /aʊər/, on utilise donc « an hour ».',
+        de: 'In „hour“ ist das „h“ stumm und beginnt mit dem Vokallaut /aʊər/, daher heißt es „an hour“.',
+        pt: 'A letra «h» em «hour» é muda e a palavra começa com som vocálico /aʊər/, usando-se «an hour».',
+        tr: '«Hour» kelimesindeki «h» harfi okunmaz ve sesli /aʊər/ ile başlar, bu yüzden «an hour» kullanılır.',
+        id: 'Huruf «h» pada «hour» tidak dibunyikan dan diawali bunyi vokal /aʊər/, sehingga menggunakan «an hour».',
+        ja: '「hour」の「h」は発音せず母音 /aʊər/ で始まるため、「an hour」になります。',
+        ko: '«hour»의 «h»는 묵음이고 모음 /aʊər/로 시작하므로 «an hour»를 사용합니다.'
+      },
       translation: 'an hour',
+      translations: {
+        ru: 'час',
+        es: 'una hora',
+        fr: 'une heure',
+        de: 'eine Stunde',
+        pt: 'uma hora',
+        tr: 'bir saat',
+        id: 'satu jam',
+        ja: '1時間',
+        ko: '한 시간'
+      },
       icon: '⏱️',
+      audioWord: 'hour',
     },
     {
       id: 'en-card-3',
       type: 'verb',
       prompt: 'Past tense of "to go"',
+      prompts: {
+        ru: 'Прошедшее время от глагола «to go»',
+        es: 'Pasado simple de "to go"',
+        fr: 'Prétérit du verbe "to go"',
+        de: 'Vergangenheitsform von "to go"',
+        pt: 'Passado simples de "to go"',
+        tr: '«to go» fiilinin geçmiş zaman hali',
+        id: 'Bentuk lampau dari «to go»',
+        ja: '「to go」の過去形',
+        ko: '«to go»의 과거형'
+      },
       options: ['goed', 'went', 'gone', 'going'],
       correctAnswer: 'went',
       explanation: 'Go is an irregular verb: go ➔ went ➔ gone.',
+      explanations: {
+        ru: '«Go» — неправильный глагол: форма прошедшего времени (Past Simple) — «went» (go ➔ went ➔ gone).',
+        es: '«Go» es un verbo irregular: su pasado simple es «went» (go ➔ went ➔ gone).',
+        fr: '« Go » est un verbe irrégulier : son prétérit est « went » (go ➔ went ➔ gone).',
+        de: '„Go“ ist ein unregelmäßiges Verb: Die Vergangenheitsform ist „went“ (go ➔ went ➔ gone).',
+        pt: '«Go» é um verbo irregular: seu passado simples é «went» (go ➔ went ➔ gone).',
+        tr: '«Go» düzensiz bir fiildir: geçmiş zaman hali «went» (go ➔ went ➔ gone).',
+        id: '«Go» adalah kata kerja tidak beraturan: bentuk lampaunya adalah «went» (go ➔ went ➔ gone).',
+        ja: '「go」は不規則動詞です。過去形は「went」になります（go ➔ went ➔ gone）。',
+        ko: '«go»는 불규칙 동사입니다. 과거형은 «went»입니다 (go ➔ went ➔ gone).'
+      },
       translation: 'went',
+      translations: {
+        ru: 'пошёл / поехала',
+        es: 'fue / fui',
+        fr: 'est allé(e)',
+        de: 'ging',
+        pt: 'foi',
+        tr: 'gitti',
+        id: 'pergi (lampau)',
+        ja: '行きました',
+        ko: '갔다'
+      },
       icon: '🚆',
     },
   ],
@@ -1260,18 +1339,166 @@ export const JAPANESE_GRAMMAR: GrammarData = {
   ],
 };
 
-export const getGrammarForLanguage = (lang: SupportedLanguageId): GrammarData => {
+const LOCALIZED_ENGLISH_GRAMMAR: Partial<Record<SupportedLanguageId, Partial<GrammarData>>> = {
+  ru: {
+    genderRules: [
+      {
+        article: 'a / an / the',
+        gender: 'neuter',
+        color: '#2563eb',
+        name: 'Артикли (A, An, The)',
+        description: 'В английском языке нет грамматического рода существительных, но используются определённый («the») и неопределённый («a / an») артикли в зависимости от начального звука слова.',
+        rules: [
+          'Используйте «a» перед согласными звуками: a book, a car, a university (начинается со звука /j/)',
+          'Используйте «an» перед гласными звуками: an apple, an hour (буква «h» немая), an elephant',
+          'Используйте «the» для конкретных или уже упомянутых предметов: the book on the table',
+        ],
+        examples: [
+          { word: 'apple', article: 'an', meaning: 'яблоко', icon: '🍎' },
+          { word: 'book', article: 'a', meaning: 'книга', icon: '📖' },
+          { word: 'car', article: 'a', meaning: 'машина', icon: '🚗' },
+          { word: 'hour', article: 'an', meaning: 'час', icon: '⏱️' },
+        ],
+      },
+    ],
+    verbs: [
+      {
+        verb: 'to be',
+        meaning: 'быть / являться',
+        tense: 'Настоящее и прошедшее время',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I', form: 'am / was' },
+          { pronoun: 'you', form: 'are / were' },
+          { pronoun: 'he / she / it', form: 'is / was' },
+          { pronoun: 'we', form: 'are / were' },
+          { pronoun: 'they', form: 'are / were' },
+        ],
+        exampleSentence: { target: 'We are learning languages together.', translation: 'Мы учим языки вместе.' },
+      },
+      {
+        verb: 'to have',
+        meaning: 'иметь / обладать',
+        tense: 'Настоящее и прошедшее время',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I / you / we / they', form: 'have (had)' },
+          { pronoun: 'he / she / it', form: 'has (had)' },
+        ],
+        exampleSentence: { target: 'She has a meeting today.', translation: 'У неё сегодня встреча.' },
+      },
+    ],
+    descriptions: [
+      {
+        title: 'Степени сравнения прилагательных',
+        explanation: 'Короткие прилагательные принимают суффиксы -er / -est (fast ➔ faster ➔ fastest). Более длинные прилагательные используют слова more / most (important ➔ more important ➔ most important).',
+        examples: [
+          { positive: 'good (хороший)', comparative: 'better (лучше)', superlative: 'best (лучший)', meaning: 'good / better / best' },
+          { positive: 'bad (плохой)', comparative: 'worse (хуже)', superlative: 'worst (худший)', meaning: 'bad / worse / worst' },
+          { positive: 'big (большой)', comparative: 'bigger (больше)', superlative: 'biggest (наибольший)', meaning: 'big / bigger / biggest' },
+        ],
+      },
+    ],
+  },
+  es: {
+    genderRules: [
+      {
+        article: 'a / an / the',
+        gender: 'neuter',
+        color: '#2563eb',
+        name: 'Artículos (A, An, The)',
+        description: 'El inglés no tiene género gramatical para sustantivos, pero usa artículos determinados ("the") e indeterminados ("a / an") según el sonido fonético inicial.',
+        rules: [
+          'Usa "a" antes de sonidos consonánticos: a book, a car, a university',
+          'Usa "an" antes de sonidos vocálicos: an apple, an hour (h muda), an elephant',
+          'Usa "the" para sustantivos específicos o ya mencionados: the book on the table',
+        ],
+        examples: [
+          { word: 'apple', article: 'an', meaning: 'una manzana', icon: '🍎' },
+          { word: 'book', article: 'a', meaning: 'un libro', icon: '📖' },
+          { word: 'car', article: 'a', meaning: 'un coche', icon: '🚗' },
+          { word: 'hour', article: 'an', meaning: 'una hora', icon: '⏱️' },
+        ],
+      },
+    ],
+    verbs: [
+      {
+        verb: 'to be',
+        meaning: 'ser / estar',
+        tense: 'Presente y Pasado',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I', form: 'am / was' },
+          { pronoun: 'you', form: 'are / were' },
+          { pronoun: 'he / she / it', form: 'is / was' },
+          { pronoun: 'we', form: 'are / were' },
+          { pronoun: 'they', form: 'are / were' },
+        ],
+        exampleSentence: { target: 'We are learning languages together.', translation: 'Estamos aprendiendo idiomas juntos.' },
+      },
+      {
+        verb: 'to have',
+        meaning: 'tener / haber',
+        tense: 'Presente y Pasado',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I / you / we / they', form: 'have (had)' },
+          { pronoun: 'he / she / it', form: 'has (had)' },
+        ],
+        exampleSentence: { target: 'She has a meeting today.', translation: 'Ella tiene una reunión hoy.' },
+      },
+    ],
+    descriptions: [
+      {
+        title: 'Comparación de adjetivos en inglés',
+        explanation: 'Los adjetivos cortos toman -er / -est (fast -> faster -> fastest). Los adjetivos más largos usan more / most (important -> more important -> most important).',
+        examples: [
+          { positive: 'good (bueno)', comparative: 'better (mejor)', superlative: 'best (el mejor)', meaning: 'good / better / best' },
+          { positive: 'bad (malo)', comparative: 'worse (peor)', superlative: 'worst (el peor)', meaning: 'bad / worse / worst' },
+          { positive: 'big (grande)', comparative: 'bigger (más grande)', superlative: 'biggest (el más grande)', meaning: 'big / bigger / biggest' },
+        ],
+      },
+    ],
+  },
+};
+
+export const getGrammarForLanguage = (
+  lang: SupportedLanguageId,
+  baseLang: SupportedLanguageId = 'en'
+): GrammarData => {
+  let baseData: GrammarData;
   switch (lang) {
-    case 'de': return GERMAN_GRAMMAR;
-    case 'ru': return RUSSIAN_GRAMMAR;
-    case 'es': return SPANISH_GRAMMAR;
-    case 'fr': return FRENCH_GRAMMAR;
-    case 'pt': return PORTUGUESE_GRAMMAR;
-    case 'en': return ENGLISH_GRAMMAR;
-    case 'tr': return TURKISH_GRAMMAR;
-    case 'id': return INDONESIAN_GRAMMAR;
-    case 'ko': return KOREAN_GRAMMAR;
-    case 'ja': return JAPANESE_GRAMMAR;
-    default: return GERMAN_GRAMMAR;
+    case 'de': baseData = GERMAN_GRAMMAR; break;
+    case 'ru': baseData = RUSSIAN_GRAMMAR; break;
+    case 'es': baseData = SPANISH_GRAMMAR; break;
+    case 'fr': baseData = FRENCH_GRAMMAR; break;
+    case 'pt': baseData = PORTUGUESE_GRAMMAR; break;
+    case 'en': baseData = ENGLISH_GRAMMAR; break;
+    case 'tr': baseData = TURKISH_GRAMMAR; break;
+    case 'id': baseData = INDONESIAN_GRAMMAR; break;
+    case 'ko': baseData = KOREAN_GRAMMAR; break;
+    case 'ja': baseData = JAPANESE_GRAMMAR; break;
+    default: baseData = GERMAN_GRAMMAR; break;
   }
+
+  // Localize flashcards for learner's baseLanguage
+  const localizedFlashcards = baseData.flashcards?.map(card => {
+    const prompt = card.prompts?.[baseLang] || card.prompt;
+    const explanation = card.explanations?.[baseLang] || card.explanation;
+    const translation = card.translations?.[baseLang] || card.translation;
+    return {
+      ...card,
+      prompt,
+      explanation,
+      translation,
+    };
+  });
+
+  const overlay = lang === 'en' ? LOCALIZED_ENGLISH_GRAMMAR[baseLang] : undefined;
+
+  return {
+    ...baseData,
+    ...(overlay || {}),
+    flashcards: localizedFlashcards || baseData.flashcards,
+  };
 };

@@ -5,6 +5,7 @@ import WordIcon from './WordIcon';
 import { useLanguage } from '../contexts/LanguageContext';
 import { GrammarData, GrammarFlashcard, GenderNounRule, VerbConjugation } from '../types';
 import { getGrammarForLanguage } from '../data/languages/grammarData';
+import { resolveTranslation } from '../utils/translationResolver';
 
 interface GrammarProps {
   grammarData?: GrammarData;
@@ -15,7 +16,7 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
   const { currentLanguage, baseLanguage } = useLanguage();
 
   // Dynamic language grammar
-  const activeGrammar: GrammarData = grammarData || getGrammarForLanguage(currentLanguage);
+  const activeGrammar: GrammarData = grammarData || getGrammarForLanguage(currentLanguage, baseLanguage);
 
   const [activeTab, setActiveTab] = useState<'flashcards' | 'gender' | 'verbs' | 'descriptions'>(initialTab);
 
@@ -83,6 +84,14 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
     descriptions: baseLanguage === 'de' ? 'Beschreibungen & Adjektive' : baseLanguage === 'es' ? 'Descripciones' : baseLanguage === 'fr' ? 'Descriptions' : baseLanguage === 'ru' ? 'Описания' : 'Descriptions',
     next: baseLanguage === 'de' ? 'Nächste Karte' : baseLanguage === 'es' ? 'Siguiente' : baseLanguage === 'fr' ? 'Suivant' : baseLanguage === 'ru' ? 'Далее' : 'Next Card',
     restart: baseLanguage === 'de' ? 'Neustart' : baseLanguage === 'es' ? 'Reiniciar' : baseLanguage === 'fr' ? 'Recommencer' : baseLanguage === 'ru' ? 'Заново' : 'Practice Again',
+    badgeArticles: baseLanguage === 'ru' ? '🏷️ Артикли (a / an)' : baseLanguage === 'es' ? '🏷️ Artículos (a / an)' : baseLanguage === 'fr' ? '🏷️ Articles (a / an)' : baseLanguage === 'de' ? '🏷️ Artikel (a / an)' : '🏷️ Articles (a / an)',
+    badgeGender: baseLanguage === 'ru' ? '🏷️ Род существительных' : baseLanguage === 'es' ? '🏷️ Género gramatical' : baseLanguage === 'fr' ? '🏷️ Genre des noms' : baseLanguage === 'de' ? '🏷️ Geschlecht' : '🏷️ Noun Gender',
+    badgeVerb: baseLanguage === 'ru' ? '🔄 Время глагола' : baseLanguage === 'es' ? '🔄 Tiempo verbal' : baseLanguage === 'fr' ? '🔄 Temps du verbe' : baseLanguage === 'de' ? '🔄 Zeitform' : '🔄 Verb Tense',
+    badgeDescription: baseLanguage === 'ru' ? '📐 Описание' : baseLanguage === 'es' ? '📐 Descripción' : baseLanguage === 'fr' ? '📐 Description' : baseLanguage === 'de' ? '📐 Beschreibung' : '📐 Description',
+    howToRecognize: baseLanguage === 'ru' ? 'Как распознать:' : baseLanguage === 'es' ? 'Cómo reconocerlo:' : baseLanguage === 'fr' ? 'Comment reconnaître :' : baseLanguage === 'de' ? 'Erkennungsmerkmale:' : 'How to recognize:',
+    highFrequencyExamples: baseLanguage === 'ru' ? 'Частые примеры:' : baseLanguage === 'es' ? 'Ejemplos frecuentes:' : baseLanguage === 'fr' ? 'Exemples fréquents :' : baseLanguage === 'de' ? 'Häufige Beispiele:' : 'High-frequency examples:',
+    exampleInContext: baseLanguage === 'ru' ? 'Пример в контексте:' : baseLanguage === 'es' ? 'Ejemplo en contexto:' : baseLanguage === 'fr' ? 'Exemple en contexte :' : baseLanguage === 'de' ? 'Beispiel im Kontext:' : 'Example in context:',
+    deckCompleted: baseLanguage === 'ru' ? 'Колода пройдена!' : baseLanguage === 'es' ? '¡Baraja completada!' : baseLanguage === 'fr' ? 'Paquet terminé !' : baseLanguage === 'de' ? 'Stapel abgeschlossen!' : 'Deck Completed!',
   };
 
   return (
@@ -151,7 +160,13 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
               {/* Header Badge & Deck Progress */}
               <div className="grammar-card-header">
                 <span className="grammar-category-badge">
-                  {currentCard.type === 'gender' ? '🏷️ Noun Gender' : currentCard.type === 'verb' ? '🔄 Verb Tense' : '📐 Description'}
+                  {currentCard.type === 'gender'
+                    ? (currentLanguage === 'en' ? localizedLabels.badgeArticles : localizedLabels.badgeGender)
+                    : currentCard.type === 'article'
+                    ? localizedLabels.badgeArticles
+                    : currentCard.type === 'verb'
+                    ? localizedLabels.badgeVerb
+                    : localizedLabels.badgeDescription}
                 </span>
                 <span className="grammar-progress-count">
                   {currentIndex + 1} / {flashcardDeck.length}
@@ -188,7 +203,18 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                       )}
                       <h3 className="grammar-card-prompt">{heroWord}</h3>
                       {currentCard.translation && (
-                        <p className="grammar-card-translation">{currentCard.translation}</p>
+                        <p className="grammar-card-translation">
+                          {currentCard.translations?.[baseLanguage] ||
+                            resolveTranslation(
+                              {
+                                word: currentCard.audioWord || heroWord.replace(/^___\s*/, '').trim(),
+                                meaning: currentCard.translation,
+                              },
+                              currentLanguage,
+                              baseLanguage
+                            ) ||
+                            currentCard.translation}
+                        </p>
                       )}
                       {taskPrompt && (
                         <div className="grammar-prompt-task-pill">
@@ -274,9 +300,19 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
           ) : (
             <div className="grammar-deck-complete-card">
               <span className="complete-trophy">🏆</span>
-              <h3>Deck Completed!</h3>
+              <h3>{localizedLabels.deckCompleted}</h3>
               <p className="complete-score">
-                You got <strong>{cardScore}</strong> out of <strong>{flashcardDeck.length}</strong> correct!
+                {baseLanguage === 'ru' ? (
+                  <>Правильно: <strong>{cardScore}</strong> из <strong>{flashcardDeck.length}</strong>!</>
+                ) : baseLanguage === 'es' ? (
+                  <>¡Acertaste <strong>{cardScore}</strong> de <strong>{flashcardDeck.length}</strong>!</>
+                ) : baseLanguage === 'fr' ? (
+                  <>Vous avez obtenu <strong>{cardScore}</strong> sur <strong>{flashcardDeck.length}</strong> !</>
+                ) : baseLanguage === 'de' ? (
+                  <>Du hast <strong>{cardScore}</strong> von <strong>{flashcardDeck.length}</strong> richtig!</>
+                ) : (
+                  <>You got <strong>{cardScore}</strong> out of <strong>{flashcardDeck.length}</strong> correct!</>
+                )}
               </p>
               <button
                 type="button"
@@ -309,7 +345,7 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
               <p className="gender-desc">{rule.description}</p>
 
               <div className="gender-rule-list">
-                <h5>How to recognize:</h5>
+                <h5>{localizedLabels.howToRecognize}</h5>
                 <ul>
                   {rule.rules.map((r, i) => (
                     <li key={i}>{r}</li>
@@ -318,7 +354,7 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
               </div>
 
               <div className="gender-examples-list">
-                <h5>High-frequency examples:</h5>
+                <h5>{localizedLabels.highFrequencyExamples}</h5>
                 <div className="gender-examples-grid">
                   {rule.examples.map((ex) => (
                     <div key={ex.word} className="gender-example-item">
@@ -404,7 +440,7 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
               {verbsList[activeVerbIndex].exampleSentence && (
                 <div className="verb-example-box">
                   <div className="verb-example-header-row">
-                    <span className="example-label">Example in context:</span>
+                    <span className="example-label">{localizedLabels.exampleInContext}</span>
                     <PronunciationButton
                       text={verbsList[activeVerbIndex].exampleSentence?.target || ''}
                       lang={currentLanguage}
