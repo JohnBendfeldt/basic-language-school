@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type FlagLanguage = 'ru' | 'en' | 'es' | 'fr' | 'pt' | 'de' | 'id' | 'tr' | 'us';
+export type FlagLanguage = 'ru' | 'en' | 'es' | 'fr' | 'pt' | 'de' | 'id' | 'tr' | 'us' | 'ja' | 'ko';
 
 interface FlagIconProps {
   lang: FlagLanguage | string;
@@ -183,6 +183,43 @@ export const FlagIcon: React.FC<FlagIconProps> = ({
           points="385,240 442,258 406,209 406,271 442,222"
           fill="#ffffff"
         />
+      </svg>
+    );
+  }
+
+  if (norm === 'ja') {
+    // Japanese flag (Hinomaru): white field with red sun disc
+    return (
+      <svg
+        viewBox="0 0 640 480"
+        style={commonStyle}
+        className={`flag-icon flag-ja ${className}`}
+        aria-label={ariaLabel || 'Japanese flag'}
+        role="img"
+      >
+        <rect width="640" height="480" fill="#ffffff" />
+        <circle cx="320" cy="240" r="144" fill="#bc002d" />
+      </svg>
+    );
+  }
+
+  if (norm === 'ko') {
+    // Korean flag (Taegeukgi): white field with red/blue Taegeuk
+    return (
+      <svg
+        viewBox="0 0 640 480"
+        style={commonStyle}
+        className={`flag-icon flag-ko ${className}`}
+        aria-label={ariaLabel || 'Korean flag'}
+        role="img"
+      >
+        <rect width="640" height="480" fill="#ffffff" />
+        <circle cx="320" cy="240" r="120" fill="#cd2e3a" />
+        <path d="M200 240C200 306.3 253.7 360 320 360C386.3 360 440 306.3 440 240H200Z" fill="#0047a0" />
+        <circle cx="260" cy="240" r="60" fill="#cd2e3a" />
+        <circle cx="380" cy="240" r="60" fill="#0047a0" />
+        <rect x="130" y="100" width="40" height="8" rx="2" fill="#000000" transform="rotate(35 150 104)" />
+        <rect x="470" y="370" width="40" height="8" rx="2" fill="#000000" transform="rotate(35 490 374)" />
       </svg>
     );
   }

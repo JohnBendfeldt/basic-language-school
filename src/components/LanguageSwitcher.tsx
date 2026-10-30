@@ -12,6 +12,59 @@ interface LanguageSwitcherProps {
 
 type PairTab = 'target' | 'base';
 
+export type LanguageRegion = 'all' | 'romance' | 'germanic' | 'slavic-eurasian' | 'east-asian';
+
+export const LANGUAGE_REGION_MAP: Record<string, LanguageRegion> = {
+  es: 'romance',
+  fr: 'romance',
+  pt: 'romance',
+  en: 'germanic',
+  de: 'germanic',
+  ru: 'slavic-eurasian',
+  tr: 'slavic-eurasian',
+  id: 'slavic-eurasian',
+  ja: 'east-asian',
+  ko: 'east-asian',
+};
+
+const HIGH_AFFINITY_CORRIDORS: Record<string, SupportedLanguageId[]> = {
+  en: ['es', 'fr', 'de', 'ru', 'pt', 'tr'],
+  es: ['pt', 'en', 'fr', 'de', 'ru'],
+  pt: ['es', 'en', 'fr', 'de'],
+  fr: ['en', 'es', 'de', 'pt', 'ru'],
+  de: ['en', 'fr', 'es', 'ru', 'tr'],
+  ru: ['de', 'en', 'tr', 'es', 'fr'],
+  tr: ['en', 'de', 'ru', 'fr'],
+  id: ['en', 'tr', 'de', 'ru'],
+};
+
+interface StoredLanguagePair {
+  base: SupportedLanguageId;
+  target: SupportedLanguageId;
+}
+
+const RECENT_PAIRS_STORAGE_KEY = 'basic_language_recent_pairs';
+
+const FLAG_EMOJIS: Record<string, string> = {
+  en: '🇬🇧',
+  es: '🇪🇸',
+  fr: '🇫🇷',
+  de: '🇩🇪',
+  ru: '🇷🇺',
+  pt: '🇧🇷',
+  id: '🇮🇩',
+  tr: '🇹🇷',
+  ja: '🇯🇵',
+  ko: '🇰🇷',
+};
+
+const DEFAULT_INITIAL_PAIRS: StoredLanguagePair[] = [
+  { base: 'en', target: 'fr' },
+  { base: 'en', target: 'es' },
+  { base: 'en', target: 'de' },
+  { base: 'en', target: 'ru' },
+];
+
 export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageChange, className = '' }) => {
   const {
     targetLanguage,
@@ -27,7 +80,36 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
 
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<PairTab>('target');
+  const [selectedRegion, setSelectedRegion] = useState<LanguageRegion>('all');
   const modalRef = useRef<HTMLDivElement>(null);
+
+  const [recentPairs, setRecentPairs] = useState<StoredLanguagePair[]>(() => {
+    try {
+      const raw = localStorage.getItem(RECENT_PAIRS_STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed.filter(p => p.base && p.target && p.base !== p.target).slice(0, 4);
+        }
+      }
+    } catch {
+      // ignore
+    }
+    return DEFAULT_INITIAL_PAIRS;
+  });
+
+  const recordRecentPair = (base: SupportedLanguageId, target: SupportedLanguageId) => {
+    setRecentPairs(prev => {
+      const filtered = prev.filter(p => !(p.base === base && p.target === target));
+      const updated = [{ base, target }, ...filtered].slice(0, 4);
+      try {
+        localStorage.setItem(RECENT_PAIRS_STORAGE_KEY, JSON.stringify(updated));
+      } catch {
+        // ignore
+      }
+      return updated;
+    });
+  };
 
   // Close modal on Escape key
   useEffect(() => {
@@ -54,9 +136,11 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
 
   const handleSelectTarget = (langId: string, available: boolean) => {
     if (!available) return;
-    setTargetLanguage(langId as SupportedLanguageId);
+    const nextTarget = langId as SupportedLanguageId;
+    setTargetLanguage(nextTarget);
+    recordRecentPair(baseLanguage, nextTarget);
     if (onLanguageChange) {
-      onLanguageChange(langId as SupportedLanguageId);
+      onLanguageChange(nextTarget);
     }
     setIsOpen(false);
   };
@@ -70,6 +154,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
       const newTarget = baseLanguage !== nextBase ? baseLanguage : (nextBase === 'en' ? 'es' : 'en');
       setBaseLanguage(nextBase);
       setTargetLanguage(newTarget);
+      recordRecentPair(nextBase, newTarget);
       if (onLanguageChange) {
         onLanguageChange(newTarget);
       }
@@ -77,12 +162,14 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
       // Normal case: learner is learning French, and changes native language from Russian to Indonesian.
       // Target MUST stay French! Base becomes Indonesian!
       setBaseLanguage(nextBase);
+      recordRecentPair(nextBase, targetLanguage);
     }
   };
 
   const handleQuickPair = (base: SupportedLanguageId, target: SupportedLanguageId) => {
     setBaseLanguage(base);
     setTargetLanguage(target);
+    recordRecentPair(base, target);
     if (onLanguageChange) {
       onLanguageChange(target);
     }
@@ -92,6 +179,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
   const handleSwapClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     swapLanguages();
+    recordRecentPair(targetLanguage, baseLanguage);
     if (onLanguageChange) {
       onLanguageChange(baseLanguage);
     }
@@ -238,95 +326,54 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
               </div>
             </div>
 
-            {/* Quick-Pairs Section */}
+            {/* Quick-Pairs Section: Recent & High-Affinity Corridors */}
             <div className="quick-pairs-section">
-              <div className="quick-pairs-title">{chrome.popularPairs}</div>
-              <div className="quick-pairs-chips">
-                <button
-                  type="button"
-                  className={`quick-pair-chip ${baseLanguage === 'en' && targetLanguage === 'es' ? 'active' : ''}`}
-                  onClick={() => handleQuickPair('en', 'es')}
-                >
-                  🇬🇧 EN → 🇪🇸 ES
-                </button>
-                <button
-                  type="button"
-                  className={`quick-pair-chip ${baseLanguage === 'es' && targetLanguage === 'en' ? 'active' : ''}`}
-                  onClick={() => handleQuickPair('es', 'en')}
-                >
-                  🇪🇸 ES → 🇬🇧 EN
-                </button>
-                <button
-                  type="button"
-                  className={`quick-pair-chip ${baseLanguage === 'en' && targetLanguage === 'fr' ? 'active' : ''}`}
-                  onClick={() => handleQuickPair('en', 'fr')}
-                >
-                  🇬🇧 EN → 🇫🇷 FR
-                </button>
-                <button
-                  type="button"
-                  className={`quick-pair-chip ${baseLanguage === 'fr' && targetLanguage === 'en' ? 'active' : ''}`}
-                  onClick={() => handleQuickPair('fr', 'en')}
-                >
-                  🇫🇷 FR → 🇬🇧 EN
-                </button>
-                <button
-                  type="button"
-                  className={`quick-pair-chip ${baseLanguage === 'en' && targetLanguage === 'ru' ? 'active' : ''}`}
-                  onClick={() => handleQuickPair('en', 'ru')}
-                >
-                  🇬🇧 EN → 🇷🇺 RU
-                </button>
-                <button
-                  type="button"
-                  className={`quick-pair-chip ${baseLanguage === 'ru' && targetLanguage === 'en' ? 'active' : ''}`}
-                  onClick={() => handleQuickPair('ru', 'en')}
-                >
-                  🇷🇺 RU → 🇬🇧 EN
-                </button>
-                <button
-                  type="button"
-                  className={`quick-pair-chip ${baseLanguage === 'en' && targetLanguage === 'pt' ? 'active' : ''}`}
-                  onClick={() => handleQuickPair('en', 'pt')}
-                >
-                  🇬🇧 EN → 🇧🇷 PT
-                </button>
-                <button
-                  type="button"
-                  className={`quick-pair-chip ${baseLanguage === 'en' && targetLanguage === 'de' ? 'active' : ''}`}
-                  onClick={() => handleQuickPair('en', 'de')}
-                >
-                  🇬🇧 EN → 🇩🇪 DE
-                </button>
-                <button
-                  type="button"
-                  className={`quick-pair-chip ${baseLanguage === 'en' && targetLanguage === 'id' ? 'active' : ''}`}
-                  onClick={() => handleQuickPair('en', 'id')}
-                >
-                  🇬🇧 EN → 🇮🇩 ID
-                </button>
-                <button
-                  type="button"
-                  className={`quick-pair-chip ${baseLanguage === 'en' && targetLanguage === 'tr' ? 'active' : ''}`}
-                  onClick={() => handleQuickPair('en', 'tr')}
-                >
-                  🇬🇧 EN → 🇹🇷 TR
-                </button>
-                <button
-                  type="button"
-                  className={`quick-pair-chip ${baseLanguage === 'es' && targetLanguage === 'ru' ? 'active' : ''}`}
-                  onClick={() => handleQuickPair('es', 'ru')}
-                >
-                  🇪🇸 ES → 🇷🇺 RU
-                </button>
-                <button
-                  type="button"
-                  className={`quick-pair-chip ${baseLanguage === 'ru' && targetLanguage === 'es' ? 'active' : ''}`}
-                  onClick={() => handleQuickPair('ru', 'es')}
-                >
-                  🇷🇺 RU → 🇪🇸 ES
-                </button>
-              </div>
+              {recentPairs.length > 0 && (
+                <div className="quick-pairs-group">
+                  <div className="quick-pairs-title">⚡ {baseLanguage === 'de' ? 'Zuletzt verwendete Paare' : baseLanguage === 'es' ? 'Pares recientes' : baseLanguage === 'fr' ? 'Paires récentes' : baseLanguage === 'ru' ? 'Недавние пары' : baseLanguage === 'pt' ? 'Pares recentes' : baseLanguage === 'tr' ? 'Son Kullanılan Çiftler' : baseLanguage === 'id' ? 'Pasangan Terbaru' : 'Recent Pairs'}</div>
+                  <div className="quick-pairs-chips">
+                    {recentPairs.map(p => {
+                      const isCurrent = baseLanguage === p.base && targetLanguage === p.target;
+                      return (
+                        <button
+                          key={`recent-${p.base}-${p.target}`}
+                          type="button"
+                          className={`quick-pair-chip ${isCurrent ? 'active' : ''}`}
+                          onClick={() => handleQuickPair(p.base, p.target)}
+                          aria-label={`Switch to pair ${p.base.toUpperCase()} to ${p.target.toUpperCase()}`}
+                        >
+                          {FLAG_EMOJIS[p.base] || '🌐'} {p.base.toUpperCase()} → {FLAG_EMOJIS[p.target] || '🌐'} {p.target.toUpperCase()}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {availableLanguages.filter(l => l.available && l.id !== baseLanguage && (HIGH_AFFINITY_CORRIDORS[baseLanguage] || ['es', 'fr', 'en', 'de']).includes(l.id as SupportedLanguageId)).length > 0 && (
+                <div className="quick-pairs-group" style={{ marginTop: '0.65rem' }}>
+                  <div className="quick-pairs-title">✨ {baseLanguage === 'de' ? 'Empfohlen für dich' : baseLanguage === 'es' ? 'Sugeridos para ti' : baseLanguage === 'fr' ? 'Suggéré pour vous' : baseLanguage === 'ru' ? 'Рекомендуемые курсы' : baseLanguage === 'pt' ? 'Sugeridos para você' : baseLanguage === 'tr' ? 'Sizin İçin Önerilen' : baseLanguage === 'id' ? 'Disarankan untuk Anda' : 'Suggested For You'} ({localizedBaseName})</div>
+                  <div className="quick-pairs-chips">
+                    {availableLanguages
+                      .filter(l => l.available && l.id !== baseLanguage && (HIGH_AFFINITY_CORRIDORS[baseLanguage] || ['es', 'fr', 'en', 'de']).includes(l.id as SupportedLanguageId))
+                      .map(tgt => {
+                        const isCurrent = targetLanguage === tgt.id;
+                        const localizedTgtName = getLocalizedLanguageName(tgt.id, baseLanguage, tgt.name);
+                        return (
+                          <button
+                            key={`sugg-${baseLanguage}-${tgt.id}`}
+                            type="button"
+                            className={`quick-pair-chip ${isCurrent ? 'active' : ''}`}
+                            onClick={() => handleQuickPair(baseLanguage, tgt.id as SupportedLanguageId)}
+                            aria-label={`Learn ${tgt.name}`}
+                          >
+                            <FlagIcon lang={tgt.id} size={14} /> {localizedTgtName}
+                          </button>
+                        );
+                      })}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Tab Selector: Choose which side to customize */}
@@ -357,9 +404,49 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                   : (ui.iSpeak || 'Choose Your Language (Interface & Meaning)')}
               </div>
 
+              {/* Regional / Family Filter Pills */}
+              <div className="region-filter-bar" role="group" aria-label="Filter languages by region">
+                <button
+                  type="button"
+                  className={`region-pill ${selectedRegion === 'all' ? 'active' : ''}`}
+                  onClick={() => setSelectedRegion('all')}
+                >
+                  All ({availableLanguages.length})
+                </button>
+                <button
+                  type="button"
+                  className={`region-pill ${selectedRegion === 'romance' ? 'active' : ''}`}
+                  onClick={() => setSelectedRegion('romance')}
+                >
+                  🏛️ Romance
+                </button>
+                <button
+                  type="button"
+                  className={`region-pill ${selectedRegion === 'germanic' ? 'active' : ''}`}
+                  onClick={() => setSelectedRegion('germanic')}
+                >
+                  🏰 Germanic
+                </button>
+                <button
+                  type="button"
+                  className={`region-pill ${selectedRegion === 'slavic-eurasian' ? 'active' : ''}`}
+                  onClick={() => setSelectedRegion('slavic-eurasian')}
+                >
+                  🌍 Slavic & Eurasian
+                </button>
+                <button
+                  type="button"
+                  className={`region-pill ${selectedRegion === 'east-asian' ? 'active' : ''}`}
+                  onClick={() => setSelectedRegion('east-asian')}
+                >
+                  🌸 East Asian
+                </button>
+              </div>
+
               <div className="language-options-grid">
                 {availableLanguages
                   .filter(l => l.available)
+                  .filter(l => selectedRegion === 'all' || LANGUAGE_REGION_MAP[l.id] === selectedRegion)
                   .map(lang => {
                     const isSelected = activeTab === 'target' 
                       ? lang.id === targetLanguage 
@@ -402,6 +489,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                   <div className="language-options-grid upcoming-grid">
                     {availableLanguages
                       .filter(l => !l.available)
+                      .filter(l => selectedRegion === 'all' || LANGUAGE_REGION_MAP[l.id] === selectedRegion)
                       .map(lang => {
                         const localizedOptName = getLocalizedLanguageName(lang.id, baseLanguage, lang.name);
                         return (
