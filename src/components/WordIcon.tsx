@@ -186,3 +186,4 @@ export const WordIcon: React.FC<WordIconProps> = ({
 };
 
 export default WordIcon;
+

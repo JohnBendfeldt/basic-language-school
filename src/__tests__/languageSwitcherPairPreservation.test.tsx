@@ -20,6 +20,7 @@ describe('LanguageSwitcher Language Pair Preservation', () => {
   beforeEach(() => {
     localStorage.clear();
     vi.clearAllMocks();
+    window.history.pushState({}, '', '/');
   });
 
   it('preserves French target language when changing base language from Russian to Indonesian (User Reported Fluke)', () => {
@@ -129,5 +130,68 @@ describe('LanguageSwitcher Language Pair Preservation', () => {
     expect(screen.getByTestId('target-lang').textContent).toBe('ru');
     expect(screen.getByTestId('base-lang').textContent).toBe('fr');
     expect(handleLanguageChange).toHaveBeenCalledWith('ru');
+  });
+
+  it('renders Recent Pairs and Suggested high-affinity corridors in the switcher', () => {
+    localStorage.setItem('basic_language_base_lang', 'en');
+    localStorage.setItem('basic_language_target_lang', 'de');
+    localStorage.setItem('basic_language_recent_pairs', JSON.stringify([
+      { base: 'en', target: 'de' },
+      { base: 'es', target: 'ru' }
+    ]));
+
+    render(
+      <LanguageProvider>
+        <LanguageSwitcher />
+        <ContextInspector />
+      </LanguageProvider>
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: /Current language pair/i }));
+
+    // Shows Recent Pairs heading
+    expect(screen.getByText(/Recent Pairs/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Switch to pair EN to DE/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Switch to pair ES to RU/i })).toBeInTheDocument();
+
+    // Shows Suggested high-affinity corridor
+    expect(screen.getByText(/Suggested For You/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Learn Spanish/i })).toBeInTheDocument();
+
+    // Clicking a recent pair switches both languages
+    fireEvent.click(screen.getByRole('button', { name: /Switch to pair ES to RU/i }));
+    expect(screen.getByTestId('base-lang').textContent).toBe('es');
+    expect(screen.getByTestId('target-lang').textContent).toBe('ru');
+  });
+
+  it('filters language options by regional / family categories', () => {
+    localStorage.setItem('basic_language_base_lang', 'en');
+    localStorage.setItem('basic_language_target_lang', 'es');
+
+    render(
+      <LanguageProvider>
+        <LanguageSwitcher />
+      </LanguageProvider>
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: /Current language pair/i }));
+
+    // Region filter buttons are present
+    expect(screen.getByRole('button', { name: /Romance/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /East Asian/i })).toBeInTheDocument();
+
+    // Click Romance filter
+    fireEvent.click(screen.getByRole('button', { name: /Romance/i }));
+
+    // Spanish, French, Portuguese should be present; German should not
+    expect(screen.getByRole('menuitem', { name: /Spanish/i })).toBeInTheDocument();
+    expect(screen.getByRole('menuitem', { name: /French/i })).toBeInTheDocument();
+    expect(screen.queryByRole('menuitem', { name: /German/i })).not.toBeInTheDocument();
+
+    // Click East Asian filter
+    fireEvent.click(screen.getByRole('button', { name: /East Asian/i }));
+    expect(screen.queryByRole('menuitem', { name: /Spanish/i })).not.toBeInTheDocument();
+    expect(screen.getByText(/Japanese/i)).toBeInTheDocument();
+    expect(screen.getByText(/Korean/i)).toBeInTheDocument();
   });
 });

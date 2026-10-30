@@ -54,3 +54,4 @@ describe('WordIcon - Smart Vector SVG & Emoji Engine', () => {
     expect(screen.getByText('🍎')).toBeInTheDocument();
   });
 });
+
