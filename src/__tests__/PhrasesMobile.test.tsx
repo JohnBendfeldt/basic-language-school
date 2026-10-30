@@ -152,3 +152,4 @@ describe('Phrases - cards', () => {
     expect(screen.getByRole('heading', { name: 'Common Words' })).toBeInTheDocument();
   });
 });
+

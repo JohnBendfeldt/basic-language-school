@@ -35,21 +35,6 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export interface RoadmapLanguage {
-  id: string;
-  name: string;
-  nativeName: string;
-  speakers: string;
-  flag: string;
-  rank: number;
-}
-
-// Top most-spoken languages targeted for the platform roadmap
-export const ROADMAP_MOST_SPOKEN_LANGUAGES: RoadmapLanguage[] = [
-  { id: 'pa', rank: 11, name: 'Punjabi', nativeName: 'ਪੰਜਾਬੀ', speakers: '~150M', flag: '🇮🇳' },
-  { id: 'mr', rank: 12, name: 'Marathi', nativeName: 'मराठी', speakers: '~99M', flag: '🇮🇳' },
-];
-
 // Active languages available on the platform
 export const ALL_PLATFORM_LANGUAGES = [
   { id: 'ru', name: 'Russian', nativeName: 'Русский', flag: '🇷🇺', available: true },

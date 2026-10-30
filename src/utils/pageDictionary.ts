@@ -3264,8 +3264,6 @@ export interface ComponentChromeStrings {
   customizingBadge: string;
   popularPairs: string;
   chooseLanguageToLearn: string;
-  upcomingCourses: string;
-  soonBadge: string;
   bidirectionalNotice: string;
   switchDirectionTitle: (baseName: string, targetName: string) => string;
 
@@ -3325,8 +3323,6 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         customizingBadge: 'تخصيص',
         popularPairs: 'اللغات الشائعة',
         chooseLanguageToLearn: 'اختر لغة لتتعلمها',
-        upcomingCourses: 'دورات قادمة',
-        soonBadge: 'قريباً',
         bidirectionalNotice: 'منهج تعليمي ثنائي الاتجاه · صوت استوديو عصبي',
         switchDirectionTitle: (baseName, targetName) =>
           `تبديل الاتجاه: تعلم ${baseName} من ${targetName}`,
@@ -3382,8 +3378,6 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         customizingBadge: 'কাস্টমাইজ',
         popularPairs: 'জনপ্রিয় ভাষা জোড়া',
         chooseLanguageToLearn: 'শেখার জন্য ভাষা বেছে নিন',
-        upcomingCourses: 'আসন্ন কোর্স',
-        soonBadge: 'শীঘ্রই',
         bidirectionalNotice: 'দ্বিমুখী পাঠ্যক্রম · স্টুডিও নিউরাল ভয়েস',
         switchDirectionTitle: (baseName: string, targetName: string) =>
           `দিক পরিবর্তন: ${targetName} থেকে ${baseName} শিখুন`,
@@ -3439,8 +3433,6 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         customizingBadge: 'ترمیم',
         popularPairs: 'مشہور زبانیں',
         chooseLanguageToLearn: 'سیکھنے کے لیے زبان منتخب کریں',
-        upcomingCourses: 'آنے والے کورسز',
-        soonBadge: 'جلد آرہا ہے',
         bidirectionalNotice: 'دو طرفہ نصاب · اسٹوڈیو نیورل وائس',
         switchDirectionTitle: (baseName: string, targetName: string) =>
           `سمت تبدیل کریں: ${targetName} سے ${baseName} سیکھیں`,
@@ -3496,8 +3488,6 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         customizingBadge: 'Настройка курса',
         popularPairs: 'Популярные языковые пары',
         chooseLanguageToLearn: 'Выберите язык для изучения',
-        upcomingCourses: 'Скоро появятся',
-        soonBadge: 'Скоро',
         bidirectionalNotice: 'Двустороннее обучение · Студийная озвучка',
         switchDirectionTitle: (baseName, targetName) =>
           `Поменять направление: изучать ${baseName} (мой язык: ${targetName})`,
@@ -3552,8 +3542,6 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         customizingBadge: 'Personalizando',
         popularPairs: 'Pares Populares',
         chooseLanguageToLearn: 'Elige el idioma para aprender',
-        upcomingCourses: 'Próximos Cursos',
-        soonBadge: 'Pronto',
         bidirectionalNotice: 'Currículo bidireccional · Voz neural de estudio',
         switchDirectionTitle: (baseName, targetName) =>
           `Cambiar dirección: aprender ${baseName} desde ${targetName}`,
@@ -3608,8 +3596,6 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         customizingBadge: 'Personnalisation',
         popularPairs: 'Paires Populaires',
         chooseLanguageToLearn: 'Choisir la langue à apprendre',
-        upcomingCourses: 'Cours à Venir',
-        soonBadge: 'Bientôt',
         bidirectionalNotice: 'Programme bidirectionnel · Voix neurale de studio',
         switchDirectionTitle: (baseName, targetName) =>
           `Inverser la direction : apprendre ${baseName} depuis ${targetName}`,
@@ -3664,8 +3650,6 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         customizingBadge: 'Personalizando',
         popularPairs: 'Pares Populares',
         chooseLanguageToLearn: 'Escolha o idioma para aprender',
-        upcomingCourses: 'Próximos Cursos',
-        soonBadge: 'Em breve',
         bidirectionalNotice: 'Currículo bidirecional · Voz neural de estúdio',
         switchDirectionTitle: (baseName, targetName) =>
           `Inverter direção: aprender ${baseName} a partir de ${targetName}`,
@@ -3720,8 +3704,6 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         customizingBadge: 'Anpassen',
         popularPairs: 'Beliebte Sprachpaare',
         chooseLanguageToLearn: 'Lernsprache auswählen',
-        upcomingCourses: 'Kommende Kurse',
-        soonBadge: 'Bald',
         bidirectionalNotice: 'Bidirektionaler Lehrplan · Studio-Neuralstimme',
         switchDirectionTitle: (baseName, targetName) =>
           `Richtung wechseln: ${baseName} von ${targetName} lernen`,
@@ -3776,8 +3758,6 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         customizingBadge: 'Menyesuaikan',
         popularPairs: 'Pasangan Populer',
         chooseLanguageToLearn: 'Pilih Bahasa untuk Dipelajari',
-        upcomingCourses: 'Kursus Mendatang',
-        soonBadge: 'Segera',
         bidirectionalNotice: 'Kurikulum dua arah · Suara neural studio',
         switchDirectionTitle: (baseName, targetName) =>
           `Tukar arah: Belajar ${baseName} dari ${targetName}`,
@@ -3832,8 +3812,6 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         customizingBadge: 'Özelleştirme',
         popularPairs: 'Popüler Çiftler',
         chooseLanguageToLearn: 'Öğrenilecek Dili Seçin',
-        upcomingCourses: 'Yakında Gelecek Kurslar',
-        soonBadge: 'Yakında',
         bidirectionalNotice: 'Çift yönlü müfredat · Stüdyo nöral ses',
         switchDirectionTitle: (baseName, targetName) =>
           `Yönü değiştir: ${targetName} dilinden ${baseName} öğren`,
@@ -3888,8 +3866,6 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         customizingBadge: 'カスタマイズ中',
         popularPairs: '人気の言語ペア',
         chooseLanguageToLearn: '学びたい言語を選択',
-        upcomingCourses: '近日公開のコース',
-        soonBadge: '近日公開',
         bidirectionalNotice: '双方向カリキュラム · スタジオ品質のネイティブ音声',
         switchDirectionTitle: (baseName: string, targetName: string) =>
           `学習方向を入れ替える：${baseName}を学ぶ（母語：${targetName}）`,
@@ -3944,8 +3920,6 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         customizingBadge: '맞춤 설정 중',
         popularPairs: '인기 언어 조합',
         chooseLanguageToLearn: '배우고 싶은 언어를 선택하세요',
-        upcomingCourses: '출시 예정 강좌',
-        soonBadge: '출시 예정',
         bidirectionalNotice: '양방향 커리큘럼 · 스튜디오급 원어민 음성',
         switchDirectionTitle: (baseName: string, targetName: string) =>
           `학습 방향 바꾸기: ${baseName} 학습 (모국어: ${targetName})`,
@@ -4000,8 +3974,6 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         customizingBadge: '课程配置中',
         popularPairs: '热门语言对',
         chooseLanguageToLearn: '选择您想学习的语言',
-        upcomingCourses: '即将推出',
-        soonBadge: '即将上线',
         bidirectionalNotice: '双向母语教学 · 录音棚级母语发音',
         switchDirectionTitle: (baseName: string, targetName: string) =>
           `对调学习方向：学习 ${baseName}（母语：${targetName}）`,
@@ -4056,8 +4028,6 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         customizingBadge: 'अनुकूलन जारी',
         popularPairs: 'लोकप्रिय भाषा जोड़े',
         chooseLanguageToLearn: 'सीखने के लिए भाषा चुनें',
-        upcomingCourses: 'आगामी पाठ्यक्रम',
-        soonBadge: 'शीघ्र',
         bidirectionalNotice: 'द्विदिशीय पाठ्यक्रम · स्टूडियो न्यूरल वॉइस',
         switchDirectionTitle: (baseName: string, targetName: string) =>
           `दिशा बदलें: ${targetName} से ${baseName} सीखें`,
@@ -4113,8 +4083,6 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         customizingBadge: 'Customizing',
         popularPairs: 'Popular Pairs',
         chooseLanguageToLearn: 'Choose Language to Learn',
-        upcomingCourses: 'Upcoming Courses',
-        soonBadge: 'Soon',
         bidirectionalNotice: 'Bidirectional curriculum · Studio neural voice',
         switchDirectionTitle: (baseName, targetName) =>
           `Switch direction: Learn ${baseName} from ${targetName}`,
@@ -4207,6 +4175,30 @@ export const getRelaxedAndBriskSpeedLabels = (baseLang: SupportedLanguageId): { 
     ar: { relaxed: 'وتيرة مريحة', brisk: 'إيقاع طبيعي سريع' },
     bn: { relaxed: 'স্বাচ্ছন্দ্যময় গতি', brisk: 'দ্রুত স্বাভাবিক ছন্দ' },
     ur: { relaxed: 'آرام دہ رفتار', brisk: 'تیز قدرتی رفتار' },
+  };
+  return table[baseLang] ?? table.en;
+};
+
+/** Text of the "Request a Language" note shown at the bottom of the language picker. */
+export const getLanguageRequestCopy = (
+  baseLang: SupportedLanguageId
+): { title: string; before: string; after: string } => {
+  const table: Record<SupportedLanguageId, { title: string; before: string; after: string }> = {
+    en: { title: 'Request a Language', before: "Have a language you'd love to learn? Email", after: 'to request it. Once this project is open source, community contributions will enable support for even more languages!' },
+    es: { title: 'Solicita un idioma', before: '¿Hay un idioma que te gustaría aprender? Escribe a', after: 'para pedirlo. ¡Cuando este proyecto sea de código abierto, las contribuciones de la comunidad permitirán aún más idiomas!' },
+    fr: { title: 'Demandez une langue', before: 'Une langue que vous aimeriez apprendre ? Écrivez à', after: 'pour la demander. Une fois ce projet open source, les contributions de la communauté permettront d’ajouter encore plus de langues !' },
+    ru: { title: 'Запросить язык', before: 'Хотите изучать другой язык? Напишите на', after: 'и мы рассмотрим запрос. Когда проект станет открытым, вклад сообщества позволит добавить ещё больше языков!' },
+    pt: { title: 'Peça um idioma', before: 'Quer aprender outro idioma? Escreva para', after: 'para solicitá-lo. Quando o projeto for de código aberto, as contribuições da comunidade permitirão ainda mais idiomas!' },
+    de: { title: 'Sprache anfragen', before: 'Möchtest du eine andere Sprache lernen? Schreibe an', after: 'um sie anzufragen. Sobald das Projekt Open Source ist, ermöglichen Beiträge der Community noch mehr Sprachen!' },
+    id: { title: 'Minta Bahasa', before: 'Ingin belajar bahasa lain? Kirim email ke', after: 'untuk memintanya. Setelah proyek ini open source, kontribusi komunitas akan menghadirkan lebih banyak bahasa!' },
+    tr: { title: 'Dil Talep Et', before: 'Öğrenmek istediğiniz başka bir dil mi var? Şu adrese yazın:', after: 'Bu proje açık kaynak olduğunda topluluk katkılarıyla daha da fazla dil desteklenecek!' },
+    ja: { title: '言語をリクエスト', before: '学びたい言語はありますか？こちらにメールしてください：', after: 'このプロジェクトがオープンソースになれば、コミュニティの協力でさらに多くの言語に対応できます！' },
+    ko: { title: '언어 요청', before: '배우고 싶은 언어가 있나요? 이메일을 보내 주세요:', after: '이 프로젝트가 오픈 소스가 되면 커뮤니티 기여로 더 많은 언어를 지원할 수 있습니다!' },
+    zh: { title: '申请新语言', before: '想学习其他语言吗？请发送邮件至', after: '提出申请。项目开源后，社区贡献将支持更多语言！' },
+    hi: { title: 'भाषा का अनुरोध करें', before: 'कोई और भाषा सीखना चाहते हैं? ईमेल करें:', after: 'अनुरोध करने के लिए। प्रोजेक्ट के ओपन सोर्स होने पर समुदाय के योगदान से और भी भाषाएँ जुड़ेंगी!' },
+    ar: { title: 'اطلب لغة', before: 'هل ترغب في تعلّم لغة أخرى؟ راسلنا على', after: 'لطلبها. وعندما يصبح المشروع مفتوح المصدر ستتيح مساهمات المجتمع دعم المزيد من اللغات!' },
+    bn: { title: 'ভাষার অনুরোধ করুন', before: 'অন্য কোনো ভাষা শিখতে চান? ইমেইল করুন:', after: 'অনুরোধ জানাতে। প্রকল্পটি ওপেন সোর্স হলে কমিউনিটির অবদানে আরও ভাষা যুক্ত হবে!' },
+    ur: { title: 'زبان کی درخواست کریں', before: 'کوئی اور زبان سیکھنا چاہتے ہیں؟ ای میل کریں:', after: 'درخواست کے لیے۔ پروجیکٹ اوپن سورس ہونے پر کمیونٹی کے تعاون سے مزید زبانیں شامل ہوں گی!' },
   };
   return table[baseLang] ?? table.en;
 };

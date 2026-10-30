@@ -53,7 +53,7 @@ describe('Multi-Language Core Architecture', () => {
     expect(localStorage.getItem('basic_language_active_lang')).toBe('en');
   });
 
-  it('renders LanguageSwitcher with active courses and upcoming courses (Spanish, French)', () => {
+  it('renders LanguageSwitcher with every available course and the language request note', () => {
     render(
       <LanguageProvider>
         <LanguageSwitcher />
@@ -77,8 +77,11 @@ describe('Multi-Language Core Architecture', () => {
     expect(screen.getByRole('menuitem', { name: /korean/i })).toBeInTheDocument();
     expect(screen.getByRole('menuitem', { name: /japanese/i })).toBeInTheDocument();
 
-    // Should display upcoming badges for roadmap languages
-    expect(screen.getAllByText('Soon').length).toBeGreaterThanOrEqual(2);
+    // The old roadmap (Punjabi, Marathi, "Soon" badges) is gone; only the request note remains
+    expect(screen.queryByText('Soon')).not.toBeInTheDocument();
+    expect(screen.queryByText(/Punjabi|Marathi/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Roadmap/i)).not.toBeInTheDocument();
+    expect(screen.getByText('Request a Language')).toBeInTheDocument();
   });
 
   it('resolves English audio paths in PronunciationButton', () => {
