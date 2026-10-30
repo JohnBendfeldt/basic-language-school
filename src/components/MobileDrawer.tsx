@@ -12,7 +12,8 @@ import {
   FaInfoCircle,
   FaDownload,
   FaCheck,
-  FaGlobe
+  FaGlobe,
+  FaSearch
 } from 'react-icons/fa';
 import { useLanguage, SpeechSpeed } from '../contexts/LanguageContext';
 import { FlagIcon } from './FlagIcon';
@@ -26,6 +27,7 @@ interface MobileDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   onNavigate: (section: string) => void;
+  onOpenSearch?: () => void;
   installPrompt?: any;
   onInstallClick?: () => void;
 }
@@ -43,6 +45,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
   isOpen,
   onClose,
   onNavigate,
+  onOpenSearch,
   installPrompt,
   onInstallClick
 }) => {
@@ -155,6 +158,30 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
           </div>
 
           <div className="mobile-drawer-scrollable">
+            {/* Quick Search Action */}
+            {onOpenSearch && (
+              <div
+                className="drawer-card drawer-search-card"
+                onClick={() => {
+                  onClose();
+                  onOpenSearch();
+                }}
+                role="button"
+                tabIndex={0}
+              >
+                <div className="drawer-action-content">
+                  <div className="drawer-action-icon search-icon">
+                    <FaSearch />
+                  </div>
+                  <div className="drawer-action-text">
+                    <h3>Search Concepts & Words</h3>
+                    <p>Instant lookup across phrases & grammar</p>
+                  </div>
+                </div>
+                <span className="drawer-action-arrow">›</span>
+              </div>
+            )}
+
             {/* Section 1: Active Language Learning Pair */}
             <div className="drawer-card drawer-pair-card">
               <div className="drawer-card-label">

@@ -7,15 +7,22 @@ import { getGrammarForLanguage } from '../data/languages/grammarData';
 
 interface GrammarProps {
   grammarData?: GrammarData;
+  initialTab?: 'flashcards' | 'gender' | 'verbs' | 'descriptions';
 }
 
-export const Grammar: React.FC<GrammarProps> = ({ grammarData }) => {
+export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'flashcards' }) => {
   const { currentLanguage, baseLanguage } = useLanguage();
 
   // Dynamic language grammar
   const activeGrammar: GrammarData = grammarData || getGrammarForLanguage(currentLanguage);
 
-  const [activeTab, setActiveTab] = useState<'flashcards' | 'gender' | 'verbs' | 'descriptions'>('flashcards');
+  const [activeTab, setActiveTab] = useState<'flashcards' | 'gender' | 'verbs' | 'descriptions'>(initialTab);
+
+  React.useEffect(() => {
+    if (initialTab) {
+      setActiveTab(initialTab);
+    }
+  }, [initialTab]);
 
   // Flashcard Deck State
   const flashcardDeck: GrammarFlashcard[] = activeGrammar.flashcards && activeGrammar.flashcards.length > 0

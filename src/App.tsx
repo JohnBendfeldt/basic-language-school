@@ -14,7 +14,9 @@ import TermsOfService from './components/TermsOfService';
 import About from './components/About';
 import MobileDrawer from './components/MobileDrawer';
 import AppEmblem from './components/AppEmblem';
-import { FaBars } from 'react-icons/fa';
+import SearchModal from './components/SearchModal';
+import { SearchResultItem } from './utils/searchEngine';
+import { FaBars, FaSearch } from 'react-icons/fa';
 import { initVoices, cancelAllSpeech } from './utils/speech';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import { SupportedLanguageId } from './data/languages/types';
@@ -77,6 +79,35 @@ const AppContent: React.FC = () => {
   const [installPrompt, setInstallPrompt] = useState<any>(null);
   const [speechInitialized, setSpeechInitialized] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [alphabetSubTab, setAlphabetSubTab] = useState<'alphabet' | 'grammar'>('alphabet');
+  const [grammarInitialTab, setGrammarInitialTab] = useState<'flashcards' | 'gender' | 'verbs' | 'descriptions'>('flashcards');
+
+  // Listen for Cmd+K or Ctrl+K to toggle Search
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setIsSearchOpen(prev => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const handleSearchResultSelect = (result: SearchResultItem) => {
+    setIsSearchOpen(false);
+    if (result.section === 'alphabet' && result.grammarTab) {
+      setAlphabetSubTab('grammar');
+      setGrammarInitialTab(result.grammarTab);
+      handleSectionChange('alphabet');
+    } else {
+      if (result.section === 'alphabet') {
+        setAlphabetSubTab('alphabet');
+      }
+      handleSectionChange(result.section);
+    }
+  };
 
   // Update SEO Title & Meta tags dynamically per language and section
   const updateMeta = useCallback((section: string) => {
@@ -207,7 +238,13 @@ const AppContent: React.FC = () => {
 
     switch (activeSection) {
       case 'alphabet':
-        return <Alphabet data={currentMeta.data.alphabet} />;
+        return (
+          <Alphabet 
+            data={currentMeta.data.alphabet} 
+            initialSubTab={alphabetSubTab}
+            grammarInitialTab={grammarInitialTab}
+          />
+        );
       case 'phrases':
         return (
           <Phrases 
@@ -281,6 +318,19 @@ const AppContent: React.FC = () => {
 
           {/* Desktop Actions: Spacious row on wider screens */}
           <div className="header-actions desktop-header-actions">
+            {/* Quick Concept & Word Search */}
+            <button
+              type="button"
+              className="header-search-btn"
+              onClick={() => setIsSearchOpen(true)}
+              aria-label="Search vocabulary and phrases"
+              title="Search concepts (⌘K)"
+            >
+              <FaSearch className="search-btn-icon" />
+              <span className="search-btn-label">Search</span>
+              <kbd className="search-btn-kbd">⌘K</kbd>
+            </button>
+
             {/* Playback speed selector (.50x to 1.25x) */}
             <VoiceSpeedControl />
 
@@ -297,6 +347,15 @@ const AppContent: React.FC = () => {
 
           {/* Mobile Actions: Clean, uncluttered, thumb-friendly */}
           <div className="header-actions mobile-header-actions">
+            <button
+              type="button"
+              className="mobile-search-btn"
+              onClick={() => setIsSearchOpen(true)}
+              aria-label="Search vocabulary and phrases"
+              title="Search"
+            >
+              <FaSearch />
+            </button>
             <LanguageSwitcher onLanguageChange={handleLanguageChange} />
             <button
               type="button"
@@ -322,6 +381,7 @@ const AppContent: React.FC = () => {
           isOpen={isDrawerOpen}
           onClose={() => setIsDrawerOpen(false)}
           onNavigate={handleSectionChange}
+          onOpenSearch={() => setIsSearchOpen(true)}
           installPrompt={installPrompt}
           onInstallClick={handleInstallClick}
         />
@@ -334,6 +394,14 @@ const AppContent: React.FC = () => {
       <BottomNavigation 
         activeSection={activeSection} 
         setActiveSection={handleSectionChange} 
+      />
+
+      {/* Global Concept & Vocabulary Search Modal */}
+      <SearchModal
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        onSelectResult={handleSearchResultSelect}
+        appData={currentMeta.data}
       />
       
       <footer>
