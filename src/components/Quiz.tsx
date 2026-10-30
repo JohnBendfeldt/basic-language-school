@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { FaCheck, FaTimes, FaKeyboard, FaTrophy, FaRedo, FaCheckCircle, FaTimesCircle, FaStar, FaGraduationCap, FaChevronDown } from 'react-icons/fa';
+import { FaCheck, FaTimes, FaKeyboard, FaTrophy, FaRedo, FaCheckCircle, FaTimesCircle, FaStar, FaGraduationCap, FaChevronDown, FaExclamationTriangle } from 'react-icons/fa';
 import RussianKeyboard from './RussianKeyboard';
 import PronunciationButton from './PronunciationButton';
 import { transliterate, containsCyrillic } from '../utils/transliteration';
+import { evaluateSmartAnswer } from '../utils/fuzzyMatcher';
 import { ProgressService } from '../services/progressService';
 import { MASTERY_THRESHOLD } from '../types/progress';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -302,6 +303,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   const [currentQuestion, setCurrentQuestion] = useState<any>(null);
   const [userAnswer, setUserAnswer] = useState('');
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
+  const [isTypoAccepted, setIsTypoAccepted] = useState(false);
+  const [typoFeedback, setTypoFeedback] = useState<string | null>(null);
+  const [isOverridden, setIsOverridden] = useState(false);
   const [showNext, setShowNext] = useState(false);
   const [showKeyboard, setShowKeyboard] = useState(false);
   const [showPhoneticGuide, setShowPhoneticGuide] = useState(false);
@@ -825,6 +829,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   const getRandomQuestion = useCallback((overrideMastered?: Set<string>, categoryOverride?: QuizCategoryFilter, modeOverride?: QuizMode, levelOverride?: QuizLevelFilter) => {
     setUserAnswer('');
     setIsCorrect(null);
+    setIsTypoAccepted(false);
+    setTypoFeedback(null);
+    setIsOverridden(false);
     setShowNext(false);
     setSpellingDiff(null);
     setIsWordJustMastered(false);
@@ -1161,6 +1168,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     setShowNext(false);
     setUserAnswer('');
     setIsCorrect(null);
+    setIsTypoAccepted(false);
+    setTypoFeedback(null);
+    setIsOverridden(false);
     setSpellingDiff(null);
     setIsWordJustMastered(false);
     setShowListeningHint(false);
@@ -1367,7 +1377,18 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             }
           }
         } else {
-          // 4. English phrase matching with contraction expansion, synonyms, and article tolerance
+          // 4. Smart fuzzy matching with token-level typo tolerance, synonyms, and contractions
+          const smartResult = evaluateSmartAnswer(userAnswer, expandedTargets);
+          if (smartResult.isMatch) {
+            isAnswerCorrect = true;
+            if (smartResult.isTypo) {
+              setIsTypoAccepted(true);
+              setTypoFeedback(smartResult.feedbackNote || null);
+            }
+            break;
+          }
+
+          // Fallback English phrase matching with contraction expansion, synonyms, and article tolerance
           const userEnglishNorm = normalizeEnglishPhrase(userAnswer);
           const targetEnglishNorm = normalizeEnglishPhrase(target);
 
@@ -1506,6 +1527,23 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     } catch (e) {
       console.warn(`Error playing ${type} sound`, e);
     }
+  };
+
+  const handleOverrideAnswer = () => {
+    if (isCorrect) return;
+    setIsCorrect(true);
+    setIsOverridden(true);
+    setIsTypoAccepted(false);
+    setTypoFeedback(null);
+    const newSessionScore = sessionScore + 1;
+    setSessionScore(newSessionScore);
+    setComboStreak(prev => {
+      const next = prev + 1;
+      setMaxComboStreak(m => Math.max(m, next));
+      return next;
+    });
+    setMissedInSession(prev => prev.filter(m => m.prompt !== currentQuestion?.prompt));
+    playSound(correctSoundRef.current, "correct");
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -2575,7 +2613,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       {/* Fluid Duolingo-style Bottom Feedback Sheet */}
       {showNext && isCorrect !== null && (
         <div 
-          className={`quiz-feedback-drawer ${isCorrect ? 'feedback-correct' : 'feedback-incorrect'}`}
+          className={`quiz-feedback-drawer ${isCorrect ? (isTypoAccepted ? 'feedback-almost' : 'feedback-correct') : 'feedback-incorrect'}`}
           role="region"
           aria-live="polite"
         >
@@ -2583,14 +2621,32 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             <div className="feedback-info-area">
               <div className="feedback-header-row">
                 {isCorrect ? (
-                  <FaCheckCircle className="feedback-icon correct-icon" />
+                  isTypoAccepted ? (
+                    <FaExclamationTriangle className="feedback-icon almost-icon" />
+                  ) : (
+                    <FaCheckCircle className="feedback-icon correct-icon" />
+                  )
                 ) : (
                   <FaTimesCircle className="feedback-icon incorrect-icon" />
                 )}
                 <div className="feedback-text-content">
                   <span className="feedback-title">
-                    {isCorrect ? ui.correct : ui.incorrect}
+                    {isCorrect 
+                      ? (isOverridden 
+                          ? (baseLanguage === 'de' ? 'Richtig! (Akzeptiert)' : 'Correct! (Overridden)') 
+                          : (isTypoAccepted ? (baseLanguage === 'de' ? 'Fast richtig! (Akzeptiert)' : 'Almost right! (Accepted)') : ui.correct))
+                      : ui.incorrect}
                   </span>
+                  {isOverridden && (
+                    <div className="feedback-overridden-note">
+                      🎉 {baseLanguage === 'de' ? 'Antwort als richtig akzeptiert! Serie gerettet.' : 'Answer accepted as correct! Streak preserved.'}
+                    </div>
+                  )}
+                  {isTypoAccepted && typoFeedback && !isOverridden && (
+                    <div className="feedback-typo-note">
+                      ✏️ <strong>{typoFeedback}</strong>
+                    </div>
+                  )}
                   {!isCorrect && (
                     <div className="feedback-answer-line">
                       <span>{ui.correctAnswerIs} </span>
@@ -2662,6 +2718,17 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             </div>
 
             <div className="feedback-action-area">
+              {!isCorrect && (
+                <button 
+                  type="button" 
+                  className="feedback-override-button" 
+                  onClick={handleOverrideAnswer}
+                  aria-label="I was right"
+                  title="Mark your answer as correct if your phrasing was valid"
+                >
+                  💡 {baseLanguage === 'de' ? 'Ich hatte recht' : baseLanguage === 'es' ? 'Tenía razón' : baseLanguage === 'fr' ? "J'avais raison" : baseLanguage === 'ru' ? 'Я был прав' : 'I was right'}
+                </button>
+              )}
               {sessionAnswered < sessionGoal ? (
                 <button 
                   className={`feedback-continue-button ${isCorrect ? 'btn-next-correct' : 'btn-next-incorrect'}`} 

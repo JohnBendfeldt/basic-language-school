@@ -1,4 +1,5 @@
 import { AlphabetItem, PhraseItem, AppData } from '../../../types/index';
+import { GERMAN_GRAMMAR } from '../grammarData';
 
 // German alphabet (30 letters: 26 standard + Ä, Ö, Ü, ß) with pronunciation and examples
 const alphabet: AlphabetItem[] = [
@@ -65,7 +66,7 @@ const basicPhrases: PhraseItem[] = [
   { phrase: 'Können Sie meinen Bildschirm sehen?', translation: 'Can you see my screen?', pronunciation: 'KÖN-nen zee MY-nen BILT-sheerm ZAY-en', category: 'Tech', icon: '🖥️' },
   { phrase: 'Wie lautet das WLAN-Passwort?', translation: 'What is the Wi-Fi password?', pronunciation: 'vee LOW-tet dahs VEE-lahn PAHS-vort', category: 'Tech', icon: '📶' },
   // Business & Office
-  { phrase: 'Planen wir ein Meeting', translation: 'Let\'s schedule a meeting', pronunciation: 'PLAH-nen veer ayn MEE-ting', category: 'Business', icon: '📅' },
+  { phrase: 'Planen wir ein Meeting', translation: "Let's schedule a meeting / Let's plan a meeting / Are we planning a meeting / Shall we plan a meeting", pronunciation: 'PLAH-nen veer ayn MEE-ting', category: 'Business', icon: '📅' },
   { phrase: 'Ich schicke Ihnen eine E-Mail', translation: 'I will send you an email', pronunciation: 'ikh SHIK-eh EE-nen EYE-neh EE-mayl', category: 'Business', icon: '📧' },
   { phrase: 'Wann ist die Frist?', translation: 'When is the deadline?', pronunciation: 'vahn ist dee frist', category: 'Business', icon: '⏳' },
   // Healthcare & Pharmacy
@@ -121,24 +122,24 @@ const numbers: PhraseItem[] = [
 const commonWords: PhraseItem[] = [
   { phrase: 'Ja', translation: 'Yes', pronunciation: 'yah', category: 'Essentials', icon: '✅' },
   { phrase: 'Nein', translation: 'No', pronunciation: 'nyn', category: 'Essentials', icon: '❌' },
-  { phrase: 'Wasser', translation: 'Water', pronunciation: 'VAHS-ser', category: 'Food & Drink', icon: '💧' },
-  { phrase: 'Essen', translation: 'Food / Meal', pronunciation: 'ES-sen', category: 'Food & Drink', icon: '🍲' },
-  { phrase: 'Kaffee', translation: 'Coffee', pronunciation: 'KAH-feh', category: 'Food & Drink', icon: '☕' },
-  { phrase: 'Zeit', translation: 'Time', pronunciation: 'tsyt', category: 'Time', icon: '⏱️' },
-  { phrase: 'Heute', translation: 'Today', pronunciation: 'HOY-teh', category: 'Time', icon: '📅' },
-  { phrase: 'Morgen', translation: 'Tomorrow / Morning', pronunciation: 'MOR-gen', category: 'Time', icon: '🌅' },
-  { phrase: 'Gestern', translation: 'Yesterday', pronunciation: 'GES-tern', category: 'Time', icon: '⏮️' },
-  { phrase: 'Arbeit', translation: 'Work / Job', pronunciation: 'AHR-byt', category: 'Work', icon: '💼' },
-  { phrase: 'Büro', translation: 'Office', pronunciation: 'bü-ROH', category: 'Work', icon: '🏢' },
-  { phrase: 'Geld', translation: 'Money', pronunciation: 'gelt', category: 'Finance', icon: '💵' },
-  { phrase: 'Hilfe', translation: 'Help', pronunciation: 'HIL-feh', category: 'Essentials', icon: '🆘' },
-  { phrase: 'Freund', translation: 'Friend', pronunciation: 'froynt', category: 'People', icon: '🧑‍🤝‍🧑' },
-  { phrase: 'Familie', translation: 'Family', pronunciation: 'fah-MEE-lyeh', category: 'People', icon: '👨‍👩‍👧' },
-  { phrase: 'Haus', translation: 'Home / House', pronunciation: 'hows', category: 'Places', icon: '🏠' },
-  { phrase: 'Stadt', translation: 'City', pronunciation: 'shtaht', category: 'Places', icon: '🏙️' },
-  { phrase: 'Land', translation: 'Country', pronunciation: 'lahnt', category: 'Places', icon: '🗺️' },
-  { phrase: 'Auto', translation: 'Car', pronunciation: 'OW-toh', category: 'Transport', icon: '🚗' },
-  { phrase: 'Zug', translation: 'Train', pronunciation: 'tsook', category: 'Transport', icon: '🚆' },
+  { phrase: 'Wasser', translation: 'Water', pronunciation: 'VAHS-ser', category: 'Food & Drink', icon: '💧', article: 'das', gender: 'neuter', partOfSpeech: 'noun' },
+  { phrase: 'Essen', translation: 'Food / Meal', pronunciation: 'ES-sen', category: 'Food & Drink', icon: '🍲', article: 'das', gender: 'neuter', partOfSpeech: 'noun' },
+  { phrase: 'Kaffee', translation: 'Coffee', pronunciation: 'KAH-feh', category: 'Food & Drink', icon: '☕', article: 'der', gender: 'masculine', partOfSpeech: 'noun' },
+  { phrase: 'Zeit', translation: 'Time', pronunciation: 'tsyt', category: 'Time', icon: '⏱️', article: 'die', gender: 'feminine', partOfSpeech: 'noun' },
+  { phrase: 'Heute', translation: 'Today', pronunciation: 'HOY-teh', category: 'Time', icon: '📅', partOfSpeech: 'adverb' },
+  { phrase: 'Morgen', translation: 'Tomorrow / Morning', pronunciation: 'MOR-gen', category: 'Time', icon: '🌅', article: 'der', gender: 'masculine', partOfSpeech: 'noun' },
+  { phrase: 'Gestern', translation: 'Yesterday', pronunciation: 'GES-tern', category: 'Time', icon: '⏮️', partOfSpeech: 'adverb' },
+  { phrase: 'Arbeit', translation: 'Work / Job', pronunciation: 'AHR-byt', category: 'Work', icon: '💼', article: 'die', gender: 'feminine', partOfSpeech: 'noun' },
+  { phrase: 'Büro', translation: 'Office', pronunciation: 'bü-ROH', category: 'Work', icon: '🏢', article: 'das', gender: 'neuter', partOfSpeech: 'noun' },
+  { phrase: 'Geld', translation: 'Money', pronunciation: 'gelt', category: 'Finance', icon: '💵', article: 'das', gender: 'neuter', partOfSpeech: 'noun' },
+  { phrase: 'Hilfe', translation: 'Help', pronunciation: 'HIL-feh', category: 'Essentials', icon: '🆘', article: 'die', gender: 'feminine', partOfSpeech: 'noun' },
+  { phrase: 'Freund', translation: 'Friend', pronunciation: 'froynt', category: 'People', icon: '🧑‍🤝‍🧑', article: 'der', gender: 'masculine', partOfSpeech: 'noun' },
+  { phrase: 'Familie', translation: 'Family', pronunciation: 'fah-MEE-lyeh', category: 'People', icon: '👨‍👩‍👧', article: 'die', gender: 'feminine', partOfSpeech: 'noun' },
+  { phrase: 'Haus', translation: 'Home / House', pronunciation: 'hows', category: 'Places', icon: '🏠', article: 'das', gender: 'neuter', partOfSpeech: 'noun' },
+  { phrase: 'Stadt', translation: 'City', pronunciation: 'shtaht', category: 'Places', icon: '🏙️', article: 'die', gender: 'feminine', partOfSpeech: 'noun' },
+  { phrase: 'Land', translation: 'Country', pronunciation: 'lahnt', category: 'Places', icon: '🗺️', article: 'das', gender: 'neuter', partOfSpeech: 'noun' },
+  { phrase: 'Auto', translation: 'Car', pronunciation: 'OW-toh', category: 'Transport', icon: '🚗', article: 'das', gender: 'neuter', partOfSpeech: 'noun' },
+  { phrase: 'Zug', translation: 'Train', pronunciation: 'tsook', category: 'Transport', icon: '🚆', article: 'der', gender: 'masculine', partOfSpeech: 'noun' },
   // Colors & Descriptions
   { phrase: 'Rot', translation: 'Red', pronunciation: 'roht', category: 'Colors', icon: '🔴' },
   { phrase: 'Blau', translation: 'Blue', pronunciation: 'blow', category: 'Colors', icon: '🔵' },
@@ -524,7 +525,7 @@ const commonWords: PhraseItem[] = [
   // Batch 6: Communicative Travel, Daily & Clock Time Syllabus
   { phrase: 'Kein Problem', translation: 'No problem', category: 'Phrases', level: 1, icon: '✅' },
   { phrase: 'Bis bald', translation: 'See you soon', category: 'Phrases', level: 1, icon: '👋' },
-  { phrase: 'Planen wir ein Meeting', translation: 'Let\'s schedule a meeting', category: 'Business', level: 1, icon: '📅' },
+  { phrase: 'Planen wir ein Meeting', translation: "Let's schedule a meeting / Let's plan a meeting / Are we planning a meeting / Shall we plan a meeting", category: 'Business', level: 1, icon: '📅' },
   { phrase: 'Es ist drei Uhr', translation: 'It is three o\'clock (3:00)', category: 'Time', level: 1, icon: '🕒' },
   { phrase: 'Es ist vier Uhr', translation: 'It is four o\'clock (4:00)', category: 'Time', level: 1, icon: '🕓' },
   { phrase: 'Es ist fünf Uhr', translation: 'It is five o\'clock (5:00)', category: 'Time', level: 1, icon: '🕔' },
@@ -555,6 +556,7 @@ const germanData: AppData = {
   numbers,
   commonWords,
   time,
+  grammar: GERMAN_GRAMMAR,
 };
 
 export default germanData;
