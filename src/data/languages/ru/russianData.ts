@@ -11,231 +11,264 @@ const alphabet: AlphabetItem[] = [
     pronunciation: 'a',
     example: 'as in father',
     russianWord: 'автобус',
-    englishWord: 'bus'
+    englishWord: 'bus',
+    icon: '🚌'
   },
   {
     letter: 'Б',
     pronunciation: 'b',
     example: 'as in boy',
     russianWord: 'брат',
-    englishWord: 'brother'
+    englishWord: 'brother',
+    icon: '👦'
   },
   {
     letter: 'В',
     pronunciation: 'v',
     example: 'as in very',
     russianWord: 'вода',
-    englishWord: 'water'
+    englishWord: 'water',
+    icon: '💧'
   },
   {
     letter: 'Г',
     pronunciation: 'g',
     example: 'as in go',
     russianWord: 'город',
-    englishWord: 'city'
+    englishWord: 'city',
+    icon: '🏙️'
   },
   {
     letter: 'Д',
     pronunciation: 'd',
     example: 'as in dog',
     russianWord: 'дом',
-    englishWord: 'house'
+    englishWord: 'house',
+    icon: '🏠'
   },
   {
     letter: 'Е',
     pronunciation: 'ye',
     example: 'as in yes',
     russianWord: 'ем',
-    englishWord: 'I eat'
+    englishWord: 'I eat',
+    icon: '🍽️'
   },
   {
     letter: 'Ё',
     pronunciation: 'yo',
     example: 'as in yogurt',
     russianWord: 'ёлка',
-    englishWord: 'Christmas tree'
+    englishWord: 'Christmas tree',
+    icon: '🎄'
   },
   {
     letter: 'Ж',
     pronunciation: 'zh',
     example: 'as in measure',
     russianWord: 'журнал',
-    englishWord: 'magazine'
+    englishWord: 'magazine',
+    icon: '📰'
   },
   {
     letter: 'З',
     pronunciation: 'z',
     example: 'as in zoo',
     russianWord: 'завод',
-    englishWord: 'factory'
+    englishWord: 'factory',
+    icon: '🏭'
   },
   {
     letter: 'И',
     pronunciation: 'ee',
     example: 'as in meet',
     russianWord: 'имя',
-    englishWord: 'name'
+    englishWord: 'name',
+    icon: '🏷️'
   },
   {
     letter: 'Й',
     pronunciation: 'y',
     example: 'as in boy',
     russianWord: 'йогурт',
-    englishWord: 'yogurt'
+    englishWord: 'yogurt',
+    icon: '🥛'
   },
   {
     letter: 'К',
     pronunciation: 'k',
     example: 'as in kite',
     russianWord: 'кошка',
-    englishWord: 'cat'
+    englishWord: 'cat',
+    icon: '🐱'
   },
   {
     letter: 'Л',
     pronunciation: 'l',
     example: 'as in lamp',
     russianWord: 'любовь',
-    englishWord: 'love'
+    englishWord: 'love',
+    icon: '❤️'
   },
   {
     letter: 'М',
     pronunciation: 'm',
     example: 'as in man',
     russianWord: 'мама',
-    englishWord: 'mom'
+    englishWord: 'mom',
+    icon: '👩'
   },
   {
     letter: 'Н',
     pronunciation: 'n',
     example: 'as in not',
     russianWord: 'нос',
-    englishWord: 'nose'
+    englishWord: 'nose',
+    icon: '👃'
   },
   {
     letter: 'О',
     pronunciation: 'o',
     example: 'as in more',
     russianWord: 'окно',
-    englishWord: 'window'
+    englishWord: 'window',
+    icon: '🪟'
   },
   {
     letter: 'П',
     pronunciation: 'p',
     example: 'as in pet',
     russianWord: 'папа',
-    englishWord: 'dad'
+    englishWord: 'dad',
+    icon: '👨'
   },
   {
     letter: 'Р',
     pronunciation: 'r',
     example: 'rolled r',
     russianWord: 'рыба',
-    englishWord: 'fish'
+    englishWord: 'fish',
+    icon: '🐟'
   },
   {
     letter: 'С',
     pronunciation: 's',
     example: 'as in sun',
     russianWord: 'собака',
-    englishWord: 'dog'
+    englishWord: 'dog',
+    icon: '🐕'
   },
   {
     letter: 'Т',
     pronunciation: 't',
     example: 'as in top',
     russianWord: 'телефон',
-    englishWord: 'telephone'
+    englishWord: 'telephone',
+    icon: '📞'
   },
   {
     letter: 'У',
     pronunciation: 'oo',
     example: 'as in moon',
     russianWord: 'утро',
-    englishWord: 'morning'
+    englishWord: 'morning',
+    icon: '🌅'
   },
   {
     letter: 'Ф',
     pronunciation: 'f',
     example: 'as in fun',
     russianWord: 'фото',
-    englishWord: 'photo'
+    englishWord: 'photo',
+    icon: '📷'
   },
   {
     letter: 'Х',
     pronunciation: 'kh',
     example: 'as in Bach',
     russianWord: 'хлеб',
-    englishWord: 'bread'
+    englishWord: 'bread',
+    icon: '🍞'
   },
   {
     letter: 'Ц',
     pronunciation: 'ts',
     example: 'as in bits',
     russianWord: 'центр',
-    englishWord: 'center'
+    englishWord: 'center',
+    icon: '🎯'
   },
   {
     letter: 'Ч',
     pronunciation: 'ch',
     example: 'as in check',
     russianWord: 'чай',
-    englishWord: 'tea'
+    englishWord: 'tea',
+    icon: '🍵'
   },
   {
     letter: 'Ш',
     pronunciation: 'sh',
     example: 'as in shine',
     russianWord: 'школа',
-    englishWord: 'school'
+    englishWord: 'school',
+    icon: '🏫'
   },
   {
     letter: 'Щ',
     pronunciation: 'shch',
     example: 'as in fresh cheese',
     russianWord: 'щека',
-    englishWord: 'cheek'
+    englishWord: 'cheek',
+    icon: '😊'
   },
   {
     letter: 'Ъ',
     pronunciation: 'hard sign',
     example: 'separates consonant and vowel',
     russianWord: 'объект',
-    englishWord: 'object'
+    englishWord: 'object',
+    icon: '📦'
   },
   {
     letter: 'Ы',
     pronunciation: 'i',
     example: 'no English equivalent',
     russianWord: 'мы',
-    englishWord: 'we'
+    englishWord: 'we',
+    icon: '👥'
   },
   {
     letter: 'Ь',
     pronunciation: 'soft sign',
     example: 'softens preceding consonant',
     russianWord: 'мать',
-    englishWord: 'mother'
+    englishWord: 'mother',
+    icon: '👩‍👧'
   },
   {
     letter: 'Э',
     pronunciation: 'e',
     example: 'as in bet',
     russianWord: 'это',
-    englishWord: 'this'
+    englishWord: 'this',
+    icon: '👉'
   },
   {
     letter: 'Ю',
     pronunciation: 'yu',
     example: 'as in you',
     russianWord: 'юг',
-    englishWord: 'south'
+    englishWord: 'south',
+    icon: '🧭'
   },
   {
     letter: 'Я',
     pronunciation: 'ya',
     example: 'as in yard',
     russianWord: 'яблоко',
-    englishWord: 'apple'
+    englishWord: 'apple',
+    icon: '🍎'
   }
 ];
 
