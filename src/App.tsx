@@ -83,6 +83,27 @@ const AppContent: React.FC = () => {
   const [alphabetSubTab, setAlphabetSubTab] = useState<'alphabet' | 'grammar'>('alphabet');
   const [grammarInitialTab, setGrammarInitialTab] = useState<'flashcards' | 'gender' | 'verbs' | 'descriptions'>('flashcards');
 
+  // Platform-aware search shortcut (⌘K on macOS/iOS, Ctrl K on Windows/Linux)
+  const [searchShortcut, setSearchShortcut] = useState({
+    kbd: '⌘K',
+    title: 'Search concepts (⌘K)',
+  });
+
+  useEffect(() => {
+    if (typeof navigator !== 'undefined') {
+      const isMac = (
+        /Mac|iPhone|iPod|iPad/i.test(navigator.platform || '') ||
+        /Mac OS X/i.test(navigator.userAgent || '')
+      );
+      if (!isMac) {
+        setSearchShortcut({
+          kbd: 'Ctrl K',
+          title: 'Search concepts (Ctrl+K)',
+        });
+      }
+    }
+  }, []);
+
   // Listen for Cmd+K or Ctrl+K to toggle Search
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -324,11 +345,11 @@ const AppContent: React.FC = () => {
               className="header-search-btn"
               onClick={() => setIsSearchOpen(true)}
               aria-label="Search vocabulary and phrases"
-              title="Search concepts (⌘K)"
+              title={searchShortcut.title}
             >
               <FaSearch className="search-btn-icon" />
               <span className="search-btn-label">Search</span>
-              <kbd className="search-btn-kbd">⌘K</kbd>
+              <kbd className="search-btn-kbd">{searchShortcut.kbd}</kbd>
             </button>
 
             {/* Playback speed selector (.50x to 1.25x) */}
