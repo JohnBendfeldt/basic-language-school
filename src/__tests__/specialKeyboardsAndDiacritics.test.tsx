@@ -1,5 +1,4 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Quiz, { SPECIAL_CHAR_MAP } from '../components/Quiz';
 import { LanguageProvider } from '../contexts/LanguageContext';

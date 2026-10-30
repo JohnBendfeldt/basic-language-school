@@ -1,11 +1,11 @@
 import App from '../App';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import React from 'react';
 import { LanguageProvider, useLanguage } from '../contexts/LanguageContext';
 import LanguageSwitcher from '../components/LanguageSwitcher';
 import PronunciationButton from '../components/PronunciationButton';
-import { SUPPORTED_LANGUAGES, DEFAULT_LANGUAGE } from '../data/languages';
+import { DEFAULT_LANGUAGE } from '../data/languages';
 
 const TestConsumerComponent: React.FC = () => {
   const { currentLanguage, currentMeta, setLanguage, availableLanguages } = useLanguage();

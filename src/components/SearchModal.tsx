@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { FaSearch, FaTimes, FaArrowRight, FaBookOpen, FaComment, FaListUl, FaFont, FaBolt } from 'react-icons/fa';
+import { FaSearch, FaTimes, FaArrowRight, FaBookOpen, FaComment, FaListUl } from 'react-icons/fa';
 import PronunciationButton from './PronunciationButton';
 import WordIcon from './WordIcon';
 import { useLanguage } from '../contexts/LanguageContext';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaCheckCircle, FaTimesCircle, FaRedo, FaBookOpen, FaBolt, FaListUl, FaVolumeUp } from 'react-icons/fa';
+import { FaCheckCircle, FaTimesCircle, FaRedo, FaBookOpen, FaBolt, FaListUl } from 'react-icons/fa';
 import PronunciationButton from './PronunciationButton';
 import WordIcon from './WordIcon';
 import { useLanguage } from '../contexts/LanguageContext';

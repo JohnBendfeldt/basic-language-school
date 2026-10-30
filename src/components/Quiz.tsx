@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { FaCheck, FaTimes, FaKeyboard, FaTrophy, FaRedo, FaCheckCircle, FaTimesCircle, FaStar, FaGraduationCap, FaChevronDown, FaExclamationTriangle } from 'react-icons/fa';
+import { FaCheck, FaKeyboard, FaTrophy, FaRedo, FaCheckCircle, FaTimesCircle, FaStar, FaGraduationCap, FaChevronDown, FaExclamationTriangle } from 'react-icons/fa';
 import RussianKeyboard from './RussianKeyboard';
 import PronunciationButton from './PronunciationButton';
 import { transliterate, containsCyrillic } from '../utils/transliteration';
@@ -1825,8 +1825,6 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   // --- RENDER RECAP SCREEN WHEN SESSION IS COMPLETE ---
   if (isSessionComplete) {
     const percentage = sessionGoal > 0 ? Math.round((sessionScore / sessionGoal) * 100) : 0;
-    const masteredCount = totalMasteredWordsCount;
-    const remainingToMaster = Math.max(0, totalCurriculumWords - masteredCount);
 
     let headlineTitle = '';
     let headlinePronunciation = '';
@@ -2117,7 +2115,6 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
   // --- RENDER ACTIVE QUIZ SESSION ---
   const progressPercent = sessionGoal > 0 ? Math.min(100, Math.round((sessionAnswered / sessionGoal) * 100)) : 0;
-  const questionsLeft = Math.max(0, sessionGoal - sessionAnswered);
 
   const activeCategoryItem = ALL_QUIZ_CATEGORIES.find(c => c.id === activeCategory) || ALL_QUIZ_CATEGORIES[0];
   const activeCategoryLabel = getCategoryLabel(activeCategoryItem.id, ui, baseLanguage);
