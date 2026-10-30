@@ -191,7 +191,7 @@ describe('LanguageSwitcher Language Pair Preservation', () => {
     // Click East Asian filter
     fireEvent.click(screen.getByRole('button', { name: /East Asian/i }));
     expect(screen.queryByRole('menuitem', { name: /Spanish/i })).not.toBeInTheDocument();
-    expect(screen.getByText(/Japanese/i)).toBeInTheDocument();
-    expect(screen.getByText(/Korean/i)).toBeInTheDocument();
+    expect(screen.getByRole('menuitem', { name: /Japanese/i })).toBeInTheDocument();
+    expect(screen.getByRole('menuitem', { name: /Korean/i })).toBeInTheDocument();
   });
 });

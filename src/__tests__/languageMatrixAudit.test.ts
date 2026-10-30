@@ -20,9 +20,9 @@ import {
   getEnglishTimeGuide,
 } from '../utils/pageDictionary';
 
-const LANGUAGES: SupportedLanguageId[] = ['en', 'es', 'fr', 'ru', 'pt', 'de', 'id', 'tr'];
+const LANGUAGES = ['en', 'es', 'fr', 'ru', 'pt', 'de', 'id', 'tr'] as const;
 
-const DATA_BY_LANG: Record<SupportedLanguageId, typeof englishData> = {
+const DATA_BY_LANG: Record<typeof LANGUAGES[number], typeof englishData> = {
   en: englishData,
   es: spanishData,
   fr: frenchData,

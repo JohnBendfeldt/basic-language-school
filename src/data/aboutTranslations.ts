@@ -483,5 +483,117 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     footerPrompt: 'Yasal belgelerimizi inceleyin:',
     privacyLinkText: 'Gizlilik Politikası',
     termsLinkText: 'Hizmet Şartları'
+  },
+  ja: {
+    title: 'Basic Language School について',
+    subtitle: '誰でも学べる、自由でオープンな言語学習プラットフォーム。',
+    backToPractice: '練習に戻る',
+    backToPracticeAria: '練習レッスンに戻る',
+    appOverviewTitle: 'Basic Language School とは？',
+    appOverviewParagraphs: [
+      'Basic Language School は、完全な初心者から自信を持って基礎的な会話ができるレベルまで導く、無料の自習型ウェブアプリです。',
+      '課金ウォールや課金タイマー、不必要なライフ制限は一切なく、広告もありません。'
+    ],
+    featuresTitle: '主な特徴',
+    features: [
+      {
+        icon: '🌐',
+        title: 'マルチ言語対応 & 双方向学習',
+        desc: '英語、日本語、韓国語、スペイン語、フランス語、ドイツ語、ロシア語、ポルトガル語などを母国語から直接学習できます。'
+      },
+      {
+        icon: '🎧',
+        title: 'スタジオ品質のネイティブ音声',
+        desc: 'すべての単語やフレーズに自然で明瞭な発音音声を用意し、速度調節（0.5×〜1.25×）も可能です。'
+      },
+      {
+        icon: '⚡',
+        title: '間隔反復クイズ & タイプ練習',
+        desc: 'タイポ許容機能とスマートな判定でストレスなくリスニング・ライティングを習得できます。'
+      },
+      {
+        icon: '📱',
+        title: 'オフライン対応 PWA',
+        desc: 'ホーム画面に追加して、電波の届かないオフライン環境でも学習を続けられます。'
+      },
+      {
+        icon: '🔒',
+        title: 'プライバシー重視',
+        desc: '学習履歴はブラウザ内に安全に保存され、オプションでクラウド同期も可能です。'
+      }
+    ],
+    creatorTitle: '開発者について',
+    creatorBio: [
+      'こんにちは、開発者の John Bendfeldt です。言語学習と教育への情熱から Basic Language School を開発しました。',
+      '新しい言語を学ぶことは世界への扉を開きます。誰もが手軽に学べる環境をこれからも提供していきます。'
+    ],
+    contactTitle: 'お問い合わせ・フィードバック',
+    contactIntro: 'ご質問、ご提案、誤字・発音の修正報告など、お気軽にフィードバックをお寄せください。',
+    contactNameLabel: '開発者:',
+    contactEmailLabel: 'メール:',
+    contactBugsLabel: '改善提案・バグ報告:',
+    communityTitle: 'オープンソース展開',
+    communityParagraphs: [
+      'カリキュラムと発音の整備を進めながら、GitHub を通じたコミュニティ貢献の受付を計画しています。'
+    ],
+    footerPrompt: '利用規約とプライバシーポリシー:',
+    privacyLinkText: 'プライバシーポリシー',
+    termsLinkText: '利用規約'
+  },
+  ko: {
+    title: '소개 & 문의',
+    subtitle: '누구나 자유롭게 배울 수 있는 오픈 어학 학습 플랫폼.',
+    backToPractice: '학습으로 돌아가기',
+    backToPracticeAria: '학습 레슨으로 돌아가기',
+    appOverviewTitle: 'Basic Language School이란?',
+    appOverviewParagraphs: [
+      'Basic Language School은 완전한 기초 학습자부터 자신감 있게 대화할 수 있는 기초 실력까지 이끌어주는 무료 자기주도형 웹 앱입니다.',
+      '유료 결제벽, 결제 타이머, 불필요한 하트 시스템이나 광고 없이 모든 커리큘럼을 무료로 이용할 수 있습니다.'
+    ],
+    featuresTitle: '주요 기능 및 핵심 아키텍처',
+    features: [
+      {
+        icon: '🌐',
+        title: '다국어 & 양방향 학습 지원',
+        desc: '영어, 한국어, 일본어, 스페인어, 프랑스어, 독일어, 러시아어 등을 모국어로부터 직접 학습할 수 있습니다.'
+      },
+      {
+        icon: '🎧',
+        title: '자연스러운 스튜디오 네이티브 음성',
+        desc: '모든 단어와 표현에 명확하고 자연스러운 원어민 음성을 제공하며, 속도 조절(0.5×~1.25×)도 지원합니다.'
+      },
+      {
+        icon: '⚡',
+        title: '스마트 오타 허용 퀴즈 & 복습',
+        desc: '사소한 오타에 유연한 스마트 퍼지 매칭과 쓰기/듣기 연습으로 좌절 없이 학습할 수 있습니다.'
+      },
+      {
+        icon: '📱',
+        title: '오프라인 완벽 지원 PWA',
+        desc: '홈 화면에 설치하여 오프라인 환경에서도 인터넷 연결 없이 언제 어디서나 학습할 수 있습니다.'
+      },
+      {
+        icon: '🔒',
+        title: '프라이버시 최우선',
+        desc: '학습 기록은 기기 로컬에 안전하게 저장되며, 선택적으로 클라우드 동기화가 가능합니다.'
+      }
+    ],
+    creatorTitle: '개발자 소개',
+    creatorBio: [
+      '안녕하세요, 개발자 John Bendfeldt입니다. 어학과 교육에 대한 열정으로 Basic Language School을 제작했습니다.',
+      '새로운 언어를 배우는 것은 새로운 세상을 만나는 일입니다. 누구나 부담 없이 언어를 익힐 수 있도록 돕겠습니다.'
+    ],
+    contactTitle: '문의 및 피드백',
+    contactIntro: '질문이나 개선 제안, 발음/오타 제보가 있으신가요? 여러분의 피드백은 서비스 개선에 큰 힘이 됩니다.',
+    contactNameLabel: '개발자:',
+    contactEmailLabel: '이메일:',
+    contactBugsLabel: '제안 및 버그 제보:',
+    communityTitle: '오픈소스 비전',
+    communityParagraphs: [
+      '커리큘럼 보강과 음성 튜닝을 거쳐 GitHub을 통한 오픈소스화 및 커뮤니티 기여를 지원할 계획입니다.'
+    ],
+    footerPrompt: '법적 고지:',
+    privacyLinkText: '개인정보 처리방침',
+    termsLinkText: '이용약관'
   }
 };

@@ -7,6 +7,8 @@ import portugueseData from './pt/portugueseData';
 import germanData from './de/germanData';
 import indonesianData from './id/indonesianData';
 import turkishData from './tr/turkishData';
+import koreanData from './ko/koreanData';
+import japaneseData from './ja/japaneseData';
 
 export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
   ru: {
@@ -328,6 +330,86 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
       },
     },
     data: turkishData,
+  },
+  ko: {
+    id: 'ko',
+    name: 'Korean',
+    nativeName: '한국어',
+    flag: '🇰🇷',
+    code: 'ko-KR',
+    ttsVoice: 'ko-KR-InJoonNeural',
+    hasKeyboard: false,
+    hasAlphabet: true,
+    hasTimeGuide: true,
+    appName: 'Basic Korean',
+    domain: 'basickorean.school',
+    seo: {
+      alphabet: {
+        title: 'Korean Alphabet (Hangul) | Basic Korean',
+        description: 'Learn the Korean Hangul alphabet with consonants, vowels, pronunciation guides, and studio audio.',
+      },
+      phrases: {
+        title: 'Basic Korean Phrases | Basic Korean',
+        description: 'Learn essential everyday Korean phrases and greetings with authentic native audio.',
+      },
+      numbers: {
+        title: 'Korean Numbers & Time | Basic Korean',
+        description: 'Master Sino-Korean and Native Korean numbers and time expressions.',
+      },
+      time: {
+        title: 'Telling Time in Korean | Basic Korean',
+        description: 'Learn how to ask and tell time in Korean.',
+      },
+      words: {
+        title: 'Core Korean Vocabulary | Basic Korean',
+        description: 'Essential high-frequency Korean vocabulary for beginners and travelers.',
+      },
+      quiz: {
+        title: 'Korean Practice Quiz | Basic Korean',
+        description: 'Test your Korean Hangul, vocabulary, and grammar with interactive quizzes.',
+      },
+    },
+    data: koreanData,
+  },
+  ja: {
+    id: 'ja',
+    name: 'Japanese',
+    nativeName: '日本語',
+    flag: '🇯🇵',
+    code: 'ja-JP',
+    ttsVoice: 'ja-JP-KeitaNeural',
+    hasKeyboard: false,
+    hasAlphabet: true,
+    hasTimeGuide: true,
+    appName: 'Basic Japanese',
+    domain: 'basicjapanese.school',
+    seo: {
+      alphabet: {
+        title: 'Japanese Hiragana Alphabet | Basic Japanese',
+        description: 'Learn all 46 Japanese Hiragana characters with pronunciation guides, example vocabulary, and audio.',
+      },
+      phrases: {
+        title: 'Basic Japanese Phrases | Basic Japanese',
+        description: 'Essential Japanese conversation, polite greetings, and travel phrases.',
+      },
+      numbers: {
+        title: 'Japanese Numbers & Time | Basic Japanese',
+        description: 'Learn numbers 0 to 1,000 and time expressions in Japanese.',
+      },
+      time: {
+        title: 'Telling Time in Japanese | Basic Japanese',
+        description: 'Learn how to ask and tell time in Japanese with authentic pronunciation.',
+      },
+      words: {
+        title: 'Common Japanese Words | Basic Japanese',
+        description: 'Master high-frequency Japanese vocabulary across daily life and dining.',
+      },
+      quiz: {
+        title: 'Japanese Practice Quiz | Basic Japanese',
+        description: 'Interactive quizzes for Japanese kana, vocabulary, and sentence structures.',
+      },
+    },
+    data: japaneseData,
   },
 };
 

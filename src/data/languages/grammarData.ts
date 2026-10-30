@@ -1043,6 +1043,206 @@ export const INDONESIAN_GRAMMAR: GrammarData = {
   ],
 };
 
+export const KOREAN_GRAMMAR: GrammarData = {
+  descriptions: [
+    {
+      title: 'Korean Particles (조사 - 은/는, 이/가, 을/를)',
+      explanation: 'Korean uses postpositional particles to mark grammatical roles. 은/는 marks topic/contrast. 이/가 marks subject. 을/를 marks direct object. Korean has NO grammatical gender!',
+      examples: [
+        { positive: '저는 (jeo-neun)', comparative: '물이 (mul-i)', superlative: '밥을 (bap-eul)', meaning: '저 (topic) + 물 (subject) + 밥 (object)' },
+        { positive: '은 / 을 (after consonant)', comparative: '는 / 를 (after vowel)', superlative: '이 / 가 (sub consonant/vowel)', meaning: '책을 (book-obj) vs 커피를 (coffee-obj)' },
+      ],
+    },
+    {
+      title: 'Polite Speech Levels (존댓말 - 아요/어요 & ㅂ니다/습니다)',
+      explanation: 'Korean verbs conjugate for politeness rather than person (I/you/we). Everyday polite style uses -아요/어요, while formal/business style uses -ㅂ니다/습니다.',
+      examples: [
+        { positive: '가다 (to go)', comparative: '가요 (polite)', superlative: '갑니다 (formal)', meaning: 'Everyday vs formal polite' },
+        { positive: '먹다 (to eat)', comparative: '먹어요 (polite)', superlative: '먹습니다 (formal)', meaning: 'Stem ending in vowel vs consonant' },
+      ],
+    },
+  ],
+  verbs: [
+    {
+      verb: '가다 (to go)',
+      meaning: 'to go',
+      tense: '현재 시제 (Present Tense)',
+      type: 'regular',
+      forms: [
+        { pronoun: '나 / 저 (I)', form: '가요 (gayo)' },
+        { pronoun: '너 / 당신 (You)', form: '가요 (gayo)' },
+        { pronoun: '그 / 그녀 (He / She)', form: '가요 (gayo)' },
+        { pronoun: '우리 (We)', form: '가요 (gayo)' },
+        { pronoun: '여러분 (You all)', form: '가요 (gayo)' },
+        { pronoun: '그들 (They)', form: '가요 (gayo)' },
+      ],
+      exampleSentence: { target: '지금 학교에 가요.', translation: 'I am going to school now.' },
+    },
+    {
+      verb: '먹다 (to eat)',
+      meaning: 'to eat',
+      tense: '현재 시제 (Present Tense)',
+      type: 'regular',
+      forms: [
+        { pronoun: '나 / 저 (I)', form: '먹어요 (meogeoyo)' },
+        { pronoun: '너 / 당신 (You)', form: '먹어요 (meogeoyo)' },
+        { pronoun: '그 / 그녀 (He / She)', form: '먹어요 (meogeoyo)' },
+        { pronoun: '우리 (We)', form: '먹어요 (meogeoyo)' },
+        { pronoun: '여러분 (You all)', form: '먹어요 (meogeoyo)' },
+        { pronoun: '그들 (They)', form: '먹어요 (meogeoyo)' },
+      ],
+      exampleSentence: { target: '맛있는 밥을 먹어요.', translation: 'I eat delicious food.' },
+    },
+    {
+      verb: '하다 (to do)',
+      meaning: 'to do',
+      tense: '현재 시제 (Present Tense)',
+      type: 'irregular',
+      forms: [
+        { pronoun: '나 / 저 (I)', form: '해요 (haeyo)' },
+        { pronoun: '너 / 당신 (You)', form: '해요 (haeyo)' },
+        { pronoun: '그 / 그녀 (He / She)', form: '해요 (haeyo)' },
+        { pronoun: '우리 (We)', form: '해요 (haeyo)' },
+        { pronoun: '여러분 (You all)', form: '해요 (haeyo)' },
+        { pronoun: '그들 (They)', form: '해요 (haeyo)' },
+      ],
+      exampleSentence: { target: '한국어 공부를 해요.', translation: 'I study Korean.' },
+    },
+  ],
+  flashcards: [
+    {
+      id: 'ko-card-1',
+      type: 'description',
+      prompt: '"I drink water" ➔ 저는 물___ 마셔요',
+      options: ['을', '를', '는', '이'],
+      correctAnswer: '을',
+      explanation: '"물" ends with a consonant (ㄹ), so the object particle "을" is attached.',
+      translation: 'I drink water',
+      icon: '💧',
+    },
+    {
+      id: 'ko-card-2',
+      type: 'verb',
+      prompt: 'Polite present tense of "가다" (to go)',
+      options: ['가요', '가세요', '갔어요', '갑니다'],
+      correctAnswer: '가요',
+      explanation: '가다 combines with -아요 to form "가요" in the standard polite style.',
+      translation: 'go / am going',
+      icon: '🚶',
+    },
+    {
+      id: 'ko-card-3',
+      type: 'description',
+      prompt: 'Topic marker after vowel: "저" (I/me) ➔ 저___',
+      options: ['는', '은', '를', '가'],
+      correctAnswer: '는',
+      explanation: 'Words ending in a vowel take "는" as the topic marker: 저는.',
+      translation: 'As for me / I',
+      icon: '🙋',
+    },
+  ],
+};
+
+export const JAPANESE_GRAMMAR: GrammarData = {
+  descriptions: [
+    {
+      title: 'Japanese Particles (助詞 - は, が, を, に, で)',
+      explanation: 'Particles mark grammatical functions: は (wa) marks topic, が (ga) marks subject, を (o) marks direct object, に (ni) marks target/time, で (de) marks location of action. Japanese has NO grammatical gender!',
+      examples: [
+        { positive: '私は (watashi wa)', comparative: '水を (mizu o)', superlative: '飲みます (nomimasu)', meaning: 'Topic + Object + Verb (SOV order)' },
+        { positive: '学校に (to school)', comparative: '駅で (at station)', superlative: '友達と (with friend)', meaning: 'Direction (に) vs Location (で) vs With (と)' },
+      ],
+    },
+    {
+      title: 'Polite Verb Endings (です & ます)',
+      explanation: 'Standard polite Japanese uses です (desu) after nouns/adjectives and 〜ます (masu) after verb stems. Negatives end in 〜ません (masen), and past forms end in 〜ました (mashita).',
+      examples: [
+        { positive: '食べます (tabemasu)', comparative: '食べません (don\'t eat)', superlative: '食べました (ate)', meaning: 'Polite present vs negative vs past' },
+        { positive: '学生です (I am student)', comparative: 'ではありません (am not)', superlative: 'でした (was)', meaning: 'Noun + desu inflections' },
+      ],
+    },
+  ],
+  verbs: [
+    {
+      verb: '食べる (taberu - to eat)',
+      meaning: 'to eat',
+      tense: '丁寧語 (Polite Present)',
+      type: 'regular',
+      forms: [
+        { pronoun: '私 (I)', form: '食べます (tabemasu)' },
+        { pronoun: 'あなた (You)', form: '食べます (tabemasu)' },
+        { pronoun: '彼 / 彼女 (He / She)', form: '食べます (tabemasu)' },
+        { pronoun: '私たち (We)', form: '食べます (tabemasu)' },
+        { pronoun: 'あなたたち (You all)', form: '食べます (tabemasu)' },
+        { pronoun: '彼ら (They)', form: '食べます (tabemasu)' },
+      ],
+      exampleSentence: { target: '美味しいご飯を食べます。', translation: 'I eat delicious food.' },
+    },
+    {
+      verb: '行く (iku - to go)',
+      meaning: 'to go',
+      tense: '丁寧語 (Polite Present)',
+      type: 'regular',
+      forms: [
+        { pronoun: '私 (I)', form: '行きます (ikimasu)' },
+        { pronoun: 'あなた (You)', form: '行きます (ikimasu)' },
+        { pronoun: '彼 / 彼女 (He / She)', form: '行きます (ikimasu)' },
+        { pronoun: '私たち (We)', form: '行きます (ikimasu)' },
+        { pronoun: 'あなたたち (You all)', form: '行きます (ikimasu)' },
+        { pronoun: '彼ら (They)', form: '行きます (ikimasu)' },
+      ],
+      exampleSentence: { target: '明日、東京に行きます。', translation: 'I will go to Tokyo tomorrow.' },
+    },
+    {
+      verb: 'する (suru - to do)',
+      meaning: 'to do',
+      tense: '丁寧語 (Polite Present)',
+      type: 'irregular',
+      forms: [
+        { pronoun: '私 (I)', form: 'します (shimasu)' },
+        { pronoun: 'あなた (You)', form: 'します (shimasu)' },
+        { pronoun: '彼 / 彼女 (He / She)', form: 'します (shimasu)' },
+        { pronoun: '私たち (We)', form: 'します (shimasu)' },
+        { pronoun: 'あなたたち (You all)', form: 'します (shimasu)' },
+        { pronoun: '彼ら (They)', form: 'します (shimasu)' },
+      ],
+      exampleSentence: { target: '日本語を勉強します。', translation: 'I study Japanese.' },
+    },
+  ],
+  flashcards: [
+    {
+      id: 'ja-card-1',
+      type: 'description',
+      prompt: '"I eat an apple" ➔ わたしは りんご ___ たべます',
+      options: ['を', 'は', 'に', 'で'],
+      correctAnswer: 'を',
+      explanation: 'The particle "を" (pronounced "o") marks the direct object of the verb.',
+      translation: 'I eat an apple',
+      icon: '🍎',
+    },
+    {
+      id: 'ja-card-2',
+      type: 'verb',
+      prompt: 'Polite past tense of "行きます" (to go)',
+      options: ['行きました', '行きません', '行くでした', '行きます'],
+      correctAnswer: '行きました',
+      explanation: 'Polite past tense replaces 〜ます with 〜ました: 行きました (went).',
+      translation: 'went',
+      icon: '🚆',
+    },
+    {
+      id: 'ja-card-3',
+      type: 'description',
+      prompt: 'Topic marker in Japanese (pronounced "wa"): わたし___',
+      options: ['は', 'わ', 'が', 'を'],
+      correctAnswer: 'は',
+      explanation: 'The topic particle is written with the hiragana "は" (ha) but pronounced "wa".',
+      translation: 'As for me / I',
+      icon: '🙋',
+    },
+  ],
+};
+
 export const getGrammarForLanguage = (lang: SupportedLanguageId): GrammarData => {
   switch (lang) {
     case 'de': return GERMAN_GRAMMAR;
@@ -1053,6 +1253,8 @@ export const getGrammarForLanguage = (lang: SupportedLanguageId): GrammarData =>
     case 'en': return ENGLISH_GRAMMAR;
     case 'tr': return TURKISH_GRAMMAR;
     case 'id': return INDONESIAN_GRAMMAR;
+    case 'ko': return KOREAN_GRAMMAR;
+    case 'ja': return JAPANESE_GRAMMAR;
     default: return GERMAN_GRAMMAR;
   }
 };

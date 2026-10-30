@@ -12,6 +12,9 @@ export interface NumberMapping {
   de: string;
   id: string;
   tr: string;
+  ja?: string;
+  ko?: string;
+  [key: string]: any;
   allWords: string[];
 }
 
@@ -48,7 +51,7 @@ export const NUMBER_TABLE: Record<number, NumberMapping> = {
   1000: { digit: 1000, en: 'One thousand', es: 'Mil', fr: 'Mille', ru: 'Тысяча', pt: 'Mil', de: 'Tausend', id: 'Seribu', tr: 'Bin', allWords: ['thousand', 'one thousand', 'a thousand', 'mil', 'mille', 'тысяча', 'tausend', 'eintausend', 'seribu', 'bin', '1000'] }
 };
 
-export const EXTENDED_DICTIONARY: Record<string, Record<SupportedLanguageId, string>> = {
+export const EXTENDED_DICTIONARY: Record<string, Partial<Record<SupportedLanguageId, string>>> = {
   // People & Family
   'man': { en: 'Man', es: 'Hombre', fr: 'Homme', ru: 'Мужчина', pt: 'Homem', de: 'Mann', id: 'Pria', tr: 'Erkek' },
   'woman': { en: 'Woman', es: 'Mujer', fr: 'Femme', ru: 'Женщина', pt: 'Mulher', de: 'Frau', id: 'Wanita', tr: 'Kadın' },
@@ -796,16 +799,18 @@ export const resolveTranslation = (
 
   for (const candidate of rawCandidates) {
     const lower = candidate.toLowerCase();
-    if (EXTENDED_DICTIONARY[lower] && EXTENDED_DICTIONARY[lower][baseLang]) {
-      return EXTENDED_DICTIONARY[lower][baseLang];
+    const val = EXTENDED_DICTIONARY[lower]?.[baseLang];
+    if (val) {
+      return val;
     }
     const cleaned = lower
       .replace(/^noun:\s*/i, '')
       .replace(/^verb:\s*/i, '')
       .replace(/\s*\([^)]*\)\s*/g, ' ')
       .trim();
-    if (cleaned && EXTENDED_DICTIONARY[cleaned] && EXTENDED_DICTIONARY[cleaned][baseLang]) {
-      return EXTENDED_DICTIONARY[cleaned][baseLang];
+    const valCleaned = EXTENDED_DICTIONARY[cleaned]?.[baseLang];
+    if (cleaned && valCleaned) {
+      return valCleaned;
     }
   }
 
@@ -824,7 +829,8 @@ export const resolveTranslation = (
         (mapping.id && (mapping.id.toLowerCase() === directTarget || mapping.id.toLowerCase().replace(/\s*\([^)]*\)\s*/g, ' ').trim() === directTargetClean)) ||
         (mapping.tr && (mapping.tr.toLowerCase() === directTarget || mapping.tr.toLowerCase().replace(/\s*\([^)]*\)\s*/g, ' ').trim() === directTargetClean))
       ) {
-        if (mapping[baseLang]) return mapping[baseLang];
+        const valBase = mapping[baseLang];
+        if (valBase) return valBase;
       }
     }
   }
@@ -844,8 +850,9 @@ export const resolveTranslation = (
       const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       const wholeWordRegex = new RegExp(`(^|\\s)${escapedKey}(\\s|$)`, 'i');
       if (wholeWordRegex.test(cleanKey)) {
-        if (mapping[baseLang]) {
-          return mapping[baseLang];
+        const valKey = mapping[baseLang];
+        if (valKey) {
+          return valKey;
         }
       }
     }
@@ -872,14 +879,16 @@ export const resolveTranslation = (
  * Localized Language Names in the native speaker's tongue
  */
 export const LANGUAGE_NAMES_IN_BASE: Record<SupportedLanguageId, Record<SupportedLanguageId, string>> = {
-  en: { en: 'English', es: 'Spanish', fr: 'French', ru: 'Russian', pt: 'Portuguese', de: 'German', id: 'Indonesian', tr: 'Turkish' },
-  es: { en: 'inglés', es: 'español', fr: 'francés', ru: 'ruso', pt: 'portugués', de: 'alemán', id: 'indonesio', tr: 'turco' },
-  fr: { en: 'anglais', es: 'espagnol', fr: 'français', ru: 'russe', pt: 'portugais', de: 'allemand', id: 'indonésien', tr: 'turc' },
-  ru: { en: 'английском', es: 'испанском', fr: 'французском', ru: 'русском', pt: 'португальском', de: 'немецком', id: 'индонезийском', tr: 'турецком' },
-  pt: { en: 'inglês', es: 'espanhol', fr: 'francês', ru: 'russo', pt: 'português', de: 'alemão', id: 'indonésio', tr: 'turco' },
-  de: { en: 'Englisch', es: 'Spanisch', fr: 'Französisch', ru: 'Russisch', pt: 'Portugiesisch', de: 'Deutsch', id: 'Indonesisch', tr: 'Türkisch' },
-  id: { en: 'bahasa Inggris', es: 'bahasa Spanyol', fr: 'bahasa Prancis', ru: 'bahasa Rusia', pt: 'bahasa Portugis', de: 'bahasa Jerman', id: 'bahasa Indonesia', tr: 'bahasa Turki' },
-  tr: { en: 'İngilizce', es: 'İspanyolca', fr: 'Fransızca', ru: 'Rusça', pt: 'Portekizce', de: 'Almanca', id: 'Endonezce', tr: 'Türkçe' }
+  en: { en: 'English', es: 'Spanish', fr: 'French', ru: 'Russian', pt: 'Portuguese', de: 'German', id: 'Indonesian', tr: 'Turkish', ja: 'Japanese', ko: 'Korean' },
+  es: { en: 'inglés', es: 'español', fr: 'francés', ru: 'ruso', pt: 'portugués', de: 'alemán', id: 'indonesio', tr: 'turco', ja: 'japonés', ko: 'coreano' },
+  fr: { en: 'anglais', es: 'espagnol', fr: 'français', ru: 'russe', pt: 'portugais', de: 'allemand', id: 'indonésien', tr: 'turc', ja: 'japonais', ko: 'coréen' },
+  ru: { en: 'английском', es: 'испанском', fr: 'французском', ru: 'русском', pt: 'португальском', de: 'немецком', id: 'индонезийском', tr: 'турецком', ja: 'японском', ko: 'корейском' },
+  pt: { en: 'inglês', es: 'espanhol', fr: 'francês', ru: 'russo', pt: 'português', de: 'alemão', id: 'indonésio', tr: 'turco', ja: 'japonês', ko: 'coreano' },
+  de: { en: 'Englisch', es: 'Spanisch', fr: 'Französisch', ru: 'Russisch', pt: 'Portugiesisch', de: 'Deutsch', id: 'Indonesisch', tr: 'Türkisch', ja: 'Japanisch', ko: 'Koreanisch' },
+  id: { en: 'bahasa Inggris', es: 'bahasa Spanyol', fr: 'bahasa Prancis', ru: 'bahasa Rusia', pt: 'bahasa Portugis', de: 'bahasa Jerman', id: 'bahasa Indonesia', tr: 'bahasa Turki', ja: 'bahasa Jepang', ko: 'bahasa Korea' },
+  tr: { en: 'İngilizce', es: 'İspanyolca', fr: 'Fransızca', ru: 'Rusça', pt: 'Portekizce', de: 'Almanca', id: 'Endonezce', tr: 'Türkçe', ja: 'Japonca', ko: 'Korece' },
+  ja: { en: '英語', es: 'スペイン語', fr: 'フランス語', ru: 'ロシア語', pt: 'ポルトガル語', de: 'ドイツ語', id: 'インドネシア語', tr: 'トルコ語', ja: '日本語', ko: '韓国語' },
+  ko: { en: '영어', es: '스페인어', fr: '프랑스어', ru: '러시아어', pt: '포르투갈어', de: '독일어', id: '인도네시아어', tr: '튀르키예어', ja: '일본어', ko: '한국어' },
 };
 
 /**

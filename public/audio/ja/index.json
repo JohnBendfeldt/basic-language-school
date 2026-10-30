@@ -1,0 +1,934 @@
+{
+  "language": "ja",
+  "voice": "ja-JP-KeitaNeural",
+  "generated": "2026-10-30T16:02:57.680654Z",
+  "files": {
+    "alphabet": [
+      {
+        "filename": "あ.mp3",
+        "path": "/audio/ja/alphabet/あ.mp3",
+        "text": "あ"
+      },
+      {
+        "filename": "い.mp3",
+        "path": "/audio/ja/alphabet/い.mp3",
+        "text": "い"
+      },
+      {
+        "filename": "う.mp3",
+        "path": "/audio/ja/alphabet/う.mp3",
+        "text": "う"
+      },
+      {
+        "filename": "え.mp3",
+        "path": "/audio/ja/alphabet/え.mp3",
+        "text": "え"
+      },
+      {
+        "filename": "お.mp3",
+        "path": "/audio/ja/alphabet/お.mp3",
+        "text": "お"
+      },
+      {
+        "filename": "か.mp3",
+        "path": "/audio/ja/alphabet/か.mp3",
+        "text": "か"
+      },
+      {
+        "filename": "き.mp3",
+        "path": "/audio/ja/alphabet/き.mp3",
+        "text": "き"
+      },
+      {
+        "filename": "く.mp3",
+        "path": "/audio/ja/alphabet/く.mp3",
+        "text": "く"
+      },
+      {
+        "filename": "け.mp3",
+        "path": "/audio/ja/alphabet/け.mp3",
+        "text": "け"
+      },
+      {
+        "filename": "こ.mp3",
+        "path": "/audio/ja/alphabet/こ.mp3",
+        "text": "こ"
+      },
+      {
+        "filename": "さ.mp3",
+        "path": "/audio/ja/alphabet/さ.mp3",
+        "text": "さ"
+      },
+      {
+        "filename": "し.mp3",
+        "path": "/audio/ja/alphabet/し.mp3",
+        "text": "し"
+      },
+      {
+        "filename": "す.mp3",
+        "path": "/audio/ja/alphabet/す.mp3",
+        "text": "す"
+      },
+      {
+        "filename": "せ.mp3",
+        "path": "/audio/ja/alphabet/せ.mp3",
+        "text": "せ"
+      },
+      {
+        "filename": "そ.mp3",
+        "path": "/audio/ja/alphabet/そ.mp3",
+        "text": "そ"
+      },
+      {
+        "filename": "た.mp3",
+        "path": "/audio/ja/alphabet/た.mp3",
+        "text": "た"
+      },
+      {
+        "filename": "ち.mp3",
+        "path": "/audio/ja/alphabet/ち.mp3",
+        "text": "ち"
+      },
+      {
+        "filename": "つ.mp3",
+        "path": "/audio/ja/alphabet/つ.mp3",
+        "text": "つ"
+      },
+      {
+        "filename": "て.mp3",
+        "path": "/audio/ja/alphabet/て.mp3",
+        "text": "て"
+      },
+      {
+        "filename": "と.mp3",
+        "path": "/audio/ja/alphabet/と.mp3",
+        "text": "と"
+      },
+      {
+        "filename": "な.mp3",
+        "path": "/audio/ja/alphabet/な.mp3",
+        "text": "な"
+      },
+      {
+        "filename": "に.mp3",
+        "path": "/audio/ja/alphabet/に.mp3",
+        "text": "に"
+      },
+      {
+        "filename": "ぬ.mp3",
+        "path": "/audio/ja/alphabet/ぬ.mp3",
+        "text": "ぬ"
+      },
+      {
+        "filename": "ね.mp3",
+        "path": "/audio/ja/alphabet/ね.mp3",
+        "text": "ね"
+      },
+      {
+        "filename": "の.mp3",
+        "path": "/audio/ja/alphabet/の.mp3",
+        "text": "の"
+      },
+      {
+        "filename": "は.mp3",
+        "path": "/audio/ja/alphabet/は.mp3",
+        "text": "は"
+      },
+      {
+        "filename": "ひ.mp3",
+        "path": "/audio/ja/alphabet/ひ.mp3",
+        "text": "ひ"
+      },
+      {
+        "filename": "ふ.mp3",
+        "path": "/audio/ja/alphabet/ふ.mp3",
+        "text": "ふ"
+      },
+      {
+        "filename": "へ.mp3",
+        "path": "/audio/ja/alphabet/へ.mp3",
+        "text": "へ"
+      },
+      {
+        "filename": "ほ.mp3",
+        "path": "/audio/ja/alphabet/ほ.mp3",
+        "text": "ほ"
+      },
+      {
+        "filename": "ま.mp3",
+        "path": "/audio/ja/alphabet/ま.mp3",
+        "text": "ま"
+      },
+      {
+        "filename": "み.mp3",
+        "path": "/audio/ja/alphabet/み.mp3",
+        "text": "み"
+      },
+      {
+        "filename": "む.mp3",
+        "path": "/audio/ja/alphabet/む.mp3",
+        "text": "む"
+      },
+      {
+        "filename": "め.mp3",
+        "path": "/audio/ja/alphabet/め.mp3",
+        "text": "め"
+      },
+      {
+        "filename": "も.mp3",
+        "path": "/audio/ja/alphabet/も.mp3",
+        "text": "も"
+      },
+      {
+        "filename": "や.mp3",
+        "path": "/audio/ja/alphabet/や.mp3",
+        "text": "や"
+      },
+      {
+        "filename": "ゆ.mp3",
+        "path": "/audio/ja/alphabet/ゆ.mp3",
+        "text": "ゆ"
+      },
+      {
+        "filename": "よ.mp3",
+        "path": "/audio/ja/alphabet/よ.mp3",
+        "text": "よ"
+      },
+      {
+        "filename": "ら.mp3",
+        "path": "/audio/ja/alphabet/ら.mp3",
+        "text": "ら"
+      },
+      {
+        "filename": "り.mp3",
+        "path": "/audio/ja/alphabet/り.mp3",
+        "text": "り"
+      },
+      {
+        "filename": "る.mp3",
+        "path": "/audio/ja/alphabet/る.mp3",
+        "text": "る"
+      },
+      {
+        "filename": "れ.mp3",
+        "path": "/audio/ja/alphabet/れ.mp3",
+        "text": "れ"
+      },
+      {
+        "filename": "ろ.mp3",
+        "path": "/audio/ja/alphabet/ろ.mp3",
+        "text": "ろ"
+      },
+      {
+        "filename": "わ.mp3",
+        "path": "/audio/ja/alphabet/わ.mp3",
+        "text": "わ"
+      },
+      {
+        "filename": "を.mp3",
+        "path": "/audio/ja/alphabet/を.mp3",
+        "text": "を"
+      },
+      {
+        "filename": "ん.mp3",
+        "path": "/audio/ja/alphabet/ん.mp3",
+        "text": "ん"
+      }
+    ],
+    "examples": [
+      {
+        "filename": "ありがとう.mp3",
+        "path": "/audio/ja/examples/ありがとう.mp3",
+        "text": "ありがとう"
+      },
+      {
+        "filename": "いぬ.mp3",
+        "path": "/audio/ja/examples/いぬ.mp3",
+        "text": "いぬ"
+      },
+      {
+        "filename": "うみ.mp3",
+        "path": "/audio/ja/examples/うみ.mp3",
+        "text": "うみ"
+      },
+      {
+        "filename": "えき.mp3",
+        "path": "/audio/ja/examples/えき.mp3",
+        "text": "えき"
+      },
+      {
+        "filename": "お茶.mp3",
+        "path": "/audio/ja/examples/お茶.mp3",
+        "text": "お茶"
+      },
+      {
+        "filename": "かさ.mp3",
+        "path": "/audio/ja/examples/かさ.mp3",
+        "text": "かさ"
+      },
+      {
+        "filename": "き.mp3",
+        "path": "/audio/ja/examples/き.mp3",
+        "text": "き"
+      },
+      {
+        "filename": "くるま.mp3",
+        "path": "/audio/ja/examples/くるま.mp3",
+        "text": "くるま"
+      },
+      {
+        "filename": "けいたい.mp3",
+        "path": "/audio/ja/examples/けいたい.mp3",
+        "text": "けいたい"
+      },
+      {
+        "filename": "コーヒー.mp3",
+        "path": "/audio/ja/examples/コーヒー.mp3",
+        "text": "コーヒー"
+      },
+      {
+        "filename": "さかな.mp3",
+        "path": "/audio/ja/examples/さかな.mp3",
+        "text": "さかな"
+      },
+      {
+        "filename": "しんかんせん.mp3",
+        "path": "/audio/ja/examples/しんかんせん.mp3",
+        "text": "しんかんせん"
+      },
+      {
+        "filename": "すし.mp3",
+        "path": "/audio/ja/examples/すし.mp3",
+        "text": "すし"
+      },
+      {
+        "filename": "せんせい.mp3",
+        "path": "/audio/ja/examples/せんせい.mp3",
+        "text": "せんせい"
+      },
+      {
+        "filename": "そら.mp3",
+        "path": "/audio/ja/examples/そら.mp3",
+        "text": "そら"
+      },
+      {
+        "filename": "たまご.mp3",
+        "path": "/audio/ja/examples/たまご.mp3",
+        "text": "たまご"
+      },
+      {
+        "filename": "ちず.mp3",
+        "path": "/audio/ja/examples/ちず.mp3",
+        "text": "ちず"
+      },
+      {
+        "filename": "つくえ.mp3",
+        "path": "/audio/ja/examples/つくえ.mp3",
+        "text": "つくえ"
+      },
+      {
+        "filename": "てがみ.mp3",
+        "path": "/audio/ja/examples/てがみ.mp3",
+        "text": "てがみ"
+      },
+      {
+        "filename": "ともだち.mp3",
+        "path": "/audio/ja/examples/ともだち.mp3",
+        "text": "ともだち"
+      },
+      {
+        "filename": "なつ.mp3",
+        "path": "/audio/ja/examples/なつ.mp3",
+        "text": "なつ"
+      },
+      {
+        "filename": "にほん.mp3",
+        "path": "/audio/ja/examples/にほん.mp3",
+        "text": "にほん"
+      },
+      {
+        "filename": "ぬいぐるみ.mp3",
+        "path": "/audio/ja/examples/ぬいぐるみ.mp3",
+        "text": "ぬいぐるみ"
+      },
+      {
+        "filename": "ねこ.mp3",
+        "path": "/audio/ja/examples/ねこ.mp3",
+        "text": "ねこ"
+      },
+      {
+        "filename": "のみもの.mp3",
+        "path": "/audio/ja/examples/のみもの.mp3",
+        "text": "のみもの"
+      },
+      {
+        "filename": "はな.mp3",
+        "path": "/audio/ja/examples/はな.mp3",
+        "text": "はな"
+      },
+      {
+        "filename": "ひこうき.mp3",
+        "path": "/audio/ja/examples/ひこうき.mp3",
+        "text": "ひこうき"
+      },
+      {
+        "filename": "ふね.mp3",
+        "path": "/audio/ja/examples/ふね.mp3",
+        "text": "ふね"
+      },
+      {
+        "filename": "へや.mp3",
+        "path": "/audio/ja/examples/へや.mp3",
+        "text": "へや"
+      },
+      {
+        "filename": "ほん.mp3",
+        "path": "/audio/ja/examples/ほん.mp3",
+        "text": "ほん"
+      },
+      {
+        "filename": "まど.mp3",
+        "path": "/audio/ja/examples/まど.mp3",
+        "text": "まど"
+      },
+      {
+        "filename": "みず.mp3",
+        "path": "/audio/ja/examples/みず.mp3",
+        "text": "みず"
+      },
+      {
+        "filename": "むし.mp3",
+        "path": "/audio/ja/examples/むし.mp3",
+        "text": "むし"
+      },
+      {
+        "filename": "めがね.mp3",
+        "path": "/audio/ja/examples/めがね.mp3",
+        "text": "めがね"
+      },
+      {
+        "filename": "もり.mp3",
+        "path": "/audio/ja/examples/もり.mp3",
+        "text": "もり"
+      },
+      {
+        "filename": "やま.mp3",
+        "path": "/audio/ja/examples/やま.mp3",
+        "text": "やま"
+      },
+      {
+        "filename": "ゆき.mp3",
+        "path": "/audio/ja/examples/ゆき.mp3",
+        "text": "ゆき"
+      },
+      {
+        "filename": "よる.mp3",
+        "path": "/audio/ja/examples/よる.mp3",
+        "text": "よる"
+      },
+      {
+        "filename": "らいおん.mp3",
+        "path": "/audio/ja/examples/らいおん.mp3",
+        "text": "らいおん"
+      },
+      {
+        "filename": "りんご.mp3",
+        "path": "/audio/ja/examples/りんご.mp3",
+        "text": "りんご"
+      },
+      {
+        "filename": "るす.mp3",
+        "path": "/audio/ja/examples/るす.mp3",
+        "text": "るす"
+      },
+      {
+        "filename": "れいぞうこ.mp3",
+        "path": "/audio/ja/examples/れいぞうこ.mp3",
+        "text": "れいぞうこ"
+      },
+      {
+        "filename": "ろうそく.mp3",
+        "path": "/audio/ja/examples/ろうそく.mp3",
+        "text": "ろうそく"
+      },
+      {
+        "filename": "わに.mp3",
+        "path": "/audio/ja/examples/わに.mp3",
+        "text": "わに"
+      },
+      {
+        "filename": "を.mp3",
+        "path": "/audio/ja/examples/を.mp3",
+        "text": "を"
+      },
+      {
+        "filename": "にほん.mp3",
+        "path": "/audio/ja/examples/にほん.mp3",
+        "text": "にほん"
+      }
+    ],
+    "phrases": [
+      {
+        "filename": "こんにちは.mp3",
+        "path": "/audio/ja/phrases/こんにちは.mp3",
+        "text": "こんにちは"
+      },
+      {
+        "filename": "おはようございます.mp3",
+        "path": "/audio/ja/phrases/おはようございます.mp3",
+        "text": "おはようございます"
+      },
+      {
+        "filename": "こんばんは.mp3",
+        "path": "/audio/ja/phrases/こんばんは.mp3",
+        "text": "こんばんは"
+      },
+      {
+        "filename": "ありがとうございます.mp3",
+        "path": "/audio/ja/phrases/ありがとうございます.mp3",
+        "text": "ありがとうございます"
+      },
+      {
+        "filename": "どういたしまして.mp3",
+        "path": "/audio/ja/phrases/どういたしまして.mp3",
+        "text": "どういたしまして"
+      },
+      {
+        "filename": "はい.mp3",
+        "path": "/audio/ja/phrases/はい.mp3",
+        "text": "はい"
+      },
+      {
+        "filename": "いいえ.mp3",
+        "path": "/audio/ja/phrases/いいえ.mp3",
+        "text": "いいえ"
+      },
+      {
+        "filename": "すみません.mp3",
+        "path": "/audio/ja/phrases/すみません.mp3",
+        "text": "すみません"
+      },
+      {
+        "filename": "ごめんなさい.mp3",
+        "path": "/audio/ja/phrases/ごめんなさい.mp3",
+        "text": "ごめんなさい"
+      },
+      {
+        "filename": "さようなら.mp3",
+        "path": "/audio/ja/phrases/さようなら.mp3",
+        "text": "さようなら"
+      },
+      {
+        "filename": "お願いします.mp3",
+        "path": "/audio/ja/phrases/お願いします.mp3",
+        "text": "お願いします"
+      },
+      {
+        "filename": "はじめまして.mp3",
+        "path": "/audio/ja/phrases/はじめまして.mp3",
+        "text": "はじめまして"
+      },
+      {
+        "filename": "私の名前はです.mp3",
+        "path": "/audio/ja/phrases/私の名前はです.mp3",
+        "text": "私の名前は...です"
+      },
+      {
+        "filename": "お名前は何ですか.mp3",
+        "path": "/audio/ja/phrases/お名前は何ですか.mp3",
+        "text": "お名前は何ですか？"
+      },
+      {
+        "filename": "英語が話せますか.mp3",
+        "path": "/audio/ja/phrases/英語が話せますか.mp3",
+        "text": "英語が話せますか？"
+      },
+      {
+        "filename": "日本語が少し話せます.mp3",
+        "path": "/audio/ja/phrases/日本語が少し話せます.mp3",
+        "text": "日本語が少し話せます"
+      },
+      {
+        "filename": "わかりません.mp3",
+        "path": "/audio/ja/phrases/わかりません.mp3",
+        "text": "わかりません"
+      },
+      {
+        "filename": "もう一度お願いします.mp3",
+        "path": "/audio/ja/phrases/もう一度お願いします.mp3",
+        "text": "もう一度お願いします"
+      },
+      {
+        "filename": "トイレはどこですか.mp3",
+        "path": "/audio/ja/phrases/トイレはどこですか.mp3",
+        "text": "トイレはどこですか？"
+      },
+      {
+        "filename": "これはいくらですか.mp3",
+        "path": "/audio/ja/phrases/これはいくらですか.mp3",
+        "text": "これはいくらですか？"
+      },
+      {
+        "filename": "助けてください.mp3",
+        "path": "/audio/ja/phrases/助けてください.mp3",
+        "text": "助けてください"
+      },
+      {
+        "filename": "いただきます.mp3",
+        "path": "/audio/ja/phrases/いただきます.mp3",
+        "text": "いただきます"
+      },
+      {
+        "filename": "ごちそうさまでした.mp3",
+        "path": "/audio/ja/phrases/ごちそうさまでした.mp3",
+        "text": "ごちそうさまでした"
+      },
+      {
+        "filename": "お会計をお願いします.mp3",
+        "path": "/audio/ja/phrases/お会計をお願いします.mp3",
+        "text": "お会計をお願いします"
+      },
+      {
+        "filename": "wi-fiのパスワードは何ですか.mp3",
+        "path": "/audio/ja/phrases/wi-fiのパスワードは何ですか.mp3",
+        "text": "Wi-Fiのパスワードは何ですか？"
+      }
+    ],
+    "numbers": [
+      {
+        "filename": "ゼロ.mp3",
+        "path": "/audio/ja/numbers/ゼロ.mp3",
+        "text": "ゼロ"
+      },
+      {
+        "filename": "一.mp3",
+        "path": "/audio/ja/numbers/一.mp3",
+        "text": "一"
+      },
+      {
+        "filename": "二.mp3",
+        "path": "/audio/ja/numbers/二.mp3",
+        "text": "二"
+      },
+      {
+        "filename": "三.mp3",
+        "path": "/audio/ja/numbers/三.mp3",
+        "text": "三"
+      },
+      {
+        "filename": "四.mp3",
+        "path": "/audio/ja/numbers/四.mp3",
+        "text": "四"
+      },
+      {
+        "filename": "五.mp3",
+        "path": "/audio/ja/numbers/五.mp3",
+        "text": "五"
+      },
+      {
+        "filename": "六.mp3",
+        "path": "/audio/ja/numbers/六.mp3",
+        "text": "六"
+      },
+      {
+        "filename": "七.mp3",
+        "path": "/audio/ja/numbers/七.mp3",
+        "text": "七"
+      },
+      {
+        "filename": "八.mp3",
+        "path": "/audio/ja/numbers/八.mp3",
+        "text": "八"
+      },
+      {
+        "filename": "九.mp3",
+        "path": "/audio/ja/numbers/九.mp3",
+        "text": "九"
+      },
+      {
+        "filename": "十.mp3",
+        "path": "/audio/ja/numbers/十.mp3",
+        "text": "十"
+      },
+      {
+        "filename": "十一.mp3",
+        "path": "/audio/ja/numbers/十一.mp3",
+        "text": "十一"
+      },
+      {
+        "filename": "十二.mp3",
+        "path": "/audio/ja/numbers/十二.mp3",
+        "text": "十二"
+      },
+      {
+        "filename": "十三.mp3",
+        "path": "/audio/ja/numbers/十三.mp3",
+        "text": "十三"
+      },
+      {
+        "filename": "十四.mp3",
+        "path": "/audio/ja/numbers/十四.mp3",
+        "text": "十四"
+      },
+      {
+        "filename": "十五.mp3",
+        "path": "/audio/ja/numbers/十五.mp3",
+        "text": "十五"
+      },
+      {
+        "filename": "十六.mp3",
+        "path": "/audio/ja/numbers/十六.mp3",
+        "text": "十六"
+      },
+      {
+        "filename": "十七.mp3",
+        "path": "/audio/ja/numbers/十七.mp3",
+        "text": "十七"
+      },
+      {
+        "filename": "十八.mp3",
+        "path": "/audio/ja/numbers/十八.mp3",
+        "text": "十八"
+      },
+      {
+        "filename": "十九.mp3",
+        "path": "/audio/ja/numbers/十九.mp3",
+        "text": "十九"
+      },
+      {
+        "filename": "二十.mp3",
+        "path": "/audio/ja/numbers/二十.mp3",
+        "text": "二十"
+      },
+      {
+        "filename": "三十.mp3",
+        "path": "/audio/ja/numbers/三十.mp3",
+        "text": "三十"
+      },
+      {
+        "filename": "四十.mp3",
+        "path": "/audio/ja/numbers/四十.mp3",
+        "text": "四十"
+      },
+      {
+        "filename": "五十.mp3",
+        "path": "/audio/ja/numbers/五十.mp3",
+        "text": "五十"
+      },
+      {
+        "filename": "六十.mp3",
+        "path": "/audio/ja/numbers/六十.mp3",
+        "text": "六十"
+      },
+      {
+        "filename": "七十.mp3",
+        "path": "/audio/ja/numbers/七十.mp3",
+        "text": "七十"
+      },
+      {
+        "filename": "八十.mp3",
+        "path": "/audio/ja/numbers/八十.mp3",
+        "text": "八十"
+      },
+      {
+        "filename": "九十.mp3",
+        "path": "/audio/ja/numbers/九十.mp3",
+        "text": "九十"
+      },
+      {
+        "filename": "百.mp3",
+        "path": "/audio/ja/numbers/百.mp3",
+        "text": "百"
+      },
+      {
+        "filename": "千.mp3",
+        "path": "/audio/ja/numbers/千.mp3",
+        "text": "千"
+      }
+    ],
+    "words": [
+      {
+        "filename": "水.mp3",
+        "path": "/audio/ja/words/水.mp3",
+        "text": "水"
+      },
+      {
+        "filename": "ご飯.mp3",
+        "path": "/audio/ja/words/ご飯.mp3",
+        "text": "ご飯"
+      },
+      {
+        "filename": "お茶.mp3",
+        "path": "/audio/ja/words/お茶.mp3",
+        "text": "お茶"
+      },
+      {
+        "filename": "コーヒー.mp3",
+        "path": "/audio/ja/words/コーヒー.mp3",
+        "text": "コーヒー"
+      },
+      {
+        "filename": "パン.mp3",
+        "path": "/audio/ja/words/パン.mp3",
+        "text": "パン"
+      },
+      {
+        "filename": "りんご.mp3",
+        "path": "/audio/ja/words/りんご.mp3",
+        "text": "りんご"
+      },
+      {
+        "filename": "牛乳.mp3",
+        "path": "/audio/ja/words/牛乳.mp3",
+        "text": "牛乳"
+      },
+      {
+        "filename": "人.mp3",
+        "path": "/audio/ja/words/人.mp3",
+        "text": "人"
+      },
+      {
+        "filename": "友達.mp3",
+        "path": "/audio/ja/words/友達.mp3",
+        "text": "友達"
+      },
+      {
+        "filename": "家族.mp3",
+        "path": "/audio/ja/words/家族.mp3",
+        "text": "家族"
+      },
+      {
+        "filename": "お母さん.mp3",
+        "path": "/audio/ja/words/お母さん.mp3",
+        "text": "お母さん"
+      },
+      {
+        "filename": "お父さん.mp3",
+        "path": "/audio/ja/words/お父さん.mp3",
+        "text": "お父さん"
+      },
+      {
+        "filename": "先生.mp3",
+        "path": "/audio/ja/words/先生.mp3",
+        "text": "先生"
+      },
+      {
+        "filename": "学生.mp3",
+        "path": "/audio/ja/words/学生.mp3",
+        "text": "学生"
+      },
+      {
+        "filename": "家.mp3",
+        "path": "/audio/ja/words/家.mp3",
+        "text": "家"
+      },
+      {
+        "filename": "学校.mp3",
+        "path": "/audio/ja/words/学校.mp3",
+        "text": "学校"
+      },
+      {
+        "filename": "会社.mp3",
+        "path": "/audio/ja/words/会社.mp3",
+        "text": "会社"
+      },
+      {
+        "filename": "病院.mp3",
+        "path": "/audio/ja/words/病院.mp3",
+        "text": "病院"
+      },
+      {
+        "filename": "駅.mp3",
+        "path": "/audio/ja/words/駅.mp3",
+        "text": "駅"
+      },
+      {
+        "filename": "本.mp3",
+        "path": "/audio/ja/words/本.mp3",
+        "text": "本"
+      },
+      {
+        "filename": "お金.mp3",
+        "path": "/audio/ja/words/お金.mp3",
+        "text": "お金"
+      },
+      {
+        "filename": "時間.mp3",
+        "path": "/audio/ja/words/時間.mp3",
+        "text": "時間"
+      },
+      {
+        "filename": "今日.mp3",
+        "path": "/audio/ja/words/今日.mp3",
+        "text": "今日"
+      },
+      {
+        "filename": "明日.mp3",
+        "path": "/audio/ja/words/明日.mp3",
+        "text": "明日"
+      },
+      {
+        "filename": "昨日.mp3",
+        "path": "/audio/ja/words/昨日.mp3",
+        "text": "昨日"
+      }
+    ],
+    "time": [
+      {
+        "filename": "今何時ですか.mp3",
+        "path": "/audio/ja/time/今何時ですか.mp3",
+        "text": "今何時ですか？"
+      },
+      {
+        "filename": "一時.mp3",
+        "path": "/audio/ja/time/一時.mp3",
+        "text": "一時"
+      },
+      {
+        "filename": "二時.mp3",
+        "path": "/audio/ja/time/二時.mp3",
+        "text": "二時"
+      },
+      {
+        "filename": "三時.mp3",
+        "path": "/audio/ja/time/三時.mp3",
+        "text": "三時"
+      },
+      {
+        "filename": "四時.mp3",
+        "path": "/audio/ja/time/四時.mp3",
+        "text": "四時"
+      },
+      {
+        "filename": "五時.mp3",
+        "path": "/audio/ja/time/五時.mp3",
+        "text": "五時"
+      },
+      {
+        "filename": "午前.mp3",
+        "path": "/audio/ja/time/午前.mp3",
+        "text": "午前"
+      },
+      {
+        "filename": "午後.mp3",
+        "path": "/audio/ja/time/午後.mp3",
+        "text": "午後"
+      },
+      {
+        "filename": "朝.mp3",
+        "path": "/audio/ja/time/朝.mp3",
+        "text": "朝"
+      },
+      {
+        "filename": "昼.mp3",
+        "path": "/audio/ja/time/昼.mp3",
+        "text": "昼"
+      },
+      {
+        "filename": "夜.mp3",
+        "path": "/audio/ja/time/夜.mp3",
+        "text": "夜"
+      }
+    ]
+  }
+}

@@ -1,0 +1,769 @@
+{
+  "language": "ko",
+  "voice": "ko-KR-InJoonNeural",
+  "generated": "2026-10-30T16:00:41.983159Z",
+  "files": {
+    "alphabet": [
+      {
+        "filename": "ㄱ.mp3",
+        "path": "/audio/ko/alphabet/ㄱ.mp3",
+        "text": "ㄱ"
+      },
+      {
+        "filename": "ㄴ.mp3",
+        "path": "/audio/ko/alphabet/ㄴ.mp3",
+        "text": "ㄴ"
+      },
+      {
+        "filename": "ㄷ.mp3",
+        "path": "/audio/ko/alphabet/ㄷ.mp3",
+        "text": "ㄷ"
+      },
+      {
+        "filename": "ㄹ.mp3",
+        "path": "/audio/ko/alphabet/ㄹ.mp3",
+        "text": "ㄹ"
+      },
+      {
+        "filename": "ㅁ.mp3",
+        "path": "/audio/ko/alphabet/ㅁ.mp3",
+        "text": "ㅁ"
+      },
+      {
+        "filename": "ㅂ.mp3",
+        "path": "/audio/ko/alphabet/ㅂ.mp3",
+        "text": "ㅂ"
+      },
+      {
+        "filename": "ㅅ.mp3",
+        "path": "/audio/ko/alphabet/ㅅ.mp3",
+        "text": "ㅅ"
+      },
+      {
+        "filename": "ㅇ.mp3",
+        "path": "/audio/ko/alphabet/ㅇ.mp3",
+        "text": "ㅇ"
+      },
+      {
+        "filename": "ㅈ.mp3",
+        "path": "/audio/ko/alphabet/ㅈ.mp3",
+        "text": "ㅈ"
+      },
+      {
+        "filename": "ㅊ.mp3",
+        "path": "/audio/ko/alphabet/ㅊ.mp3",
+        "text": "ㅊ"
+      },
+      {
+        "filename": "ㅋ.mp3",
+        "path": "/audio/ko/alphabet/ㅋ.mp3",
+        "text": "ㅋ"
+      },
+      {
+        "filename": "ㅌ.mp3",
+        "path": "/audio/ko/alphabet/ㅌ.mp3",
+        "text": "ㅌ"
+      },
+      {
+        "filename": "ㅍ.mp3",
+        "path": "/audio/ko/alphabet/ㅍ.mp3",
+        "text": "ㅍ"
+      },
+      {
+        "filename": "ㅎ.mp3",
+        "path": "/audio/ko/alphabet/ㅎ.mp3",
+        "text": "ㅎ"
+      },
+      {
+        "filename": "ㅏ.mp3",
+        "path": "/audio/ko/alphabet/ㅏ.mp3",
+        "text": "ㅏ"
+      },
+      {
+        "filename": "ㅑ.mp3",
+        "path": "/audio/ko/alphabet/ㅑ.mp3",
+        "text": "ㅑ"
+      },
+      {
+        "filename": "ㅓ.mp3",
+        "path": "/audio/ko/alphabet/ㅓ.mp3",
+        "text": "ㅓ"
+      },
+      {
+        "filename": "ㅕ.mp3",
+        "path": "/audio/ko/alphabet/ㅕ.mp3",
+        "text": "ㅕ"
+      },
+      {
+        "filename": "ㅗ.mp3",
+        "path": "/audio/ko/alphabet/ㅗ.mp3",
+        "text": "ㅗ"
+      },
+      {
+        "filename": "ㅛ.mp3",
+        "path": "/audio/ko/alphabet/ㅛ.mp3",
+        "text": "ㅛ"
+      },
+      {
+        "filename": "ㅜ.mp3",
+        "path": "/audio/ko/alphabet/ㅜ.mp3",
+        "text": "ㅜ"
+      },
+      {
+        "filename": "ㅠ.mp3",
+        "path": "/audio/ko/alphabet/ㅠ.mp3",
+        "text": "ㅠ"
+      },
+      {
+        "filename": "ㅡ.mp3",
+        "path": "/audio/ko/alphabet/ㅡ.mp3",
+        "text": "ㅡ"
+      },
+      {
+        "filename": "ㅣ.mp3",
+        "path": "/audio/ko/alphabet/ㅣ.mp3",
+        "text": "ㅣ"
+      },
+      {
+        "filename": "ㄲ.mp3",
+        "path": "/audio/ko/alphabet/ㄲ.mp3",
+        "text": "ㄲ"
+      },
+      {
+        "filename": "ㄸ.mp3",
+        "path": "/audio/ko/alphabet/ㄸ.mp3",
+        "text": "ㄸ"
+      },
+      {
+        "filename": "ㅃ.mp3",
+        "path": "/audio/ko/alphabet/ㅃ.mp3",
+        "text": "ㅃ"
+      },
+      {
+        "filename": "ㅆ.mp3",
+        "path": "/audio/ko/alphabet/ㅆ.mp3",
+        "text": "ㅆ"
+      },
+      {
+        "filename": "ㅉ.mp3",
+        "path": "/audio/ko/alphabet/ㅉ.mp3",
+        "text": "ㅉ"
+      }
+    ],
+    "examples": [
+      {
+        "filename": "가방.mp3",
+        "path": "/audio/ko/examples/가방.mp3",
+        "text": "가방"
+      },
+      {
+        "filename": "나무.mp3",
+        "path": "/audio/ko/examples/나무.mp3",
+        "text": "나무"
+      },
+      {
+        "filename": "다리.mp3",
+        "path": "/audio/ko/examples/다리.mp3",
+        "text": "다리"
+      },
+      {
+        "filename": "라디오.mp3",
+        "path": "/audio/ko/examples/라디오.mp3",
+        "text": "라디오"
+      },
+      {
+        "filename": "모자.mp3",
+        "path": "/audio/ko/examples/모자.mp3",
+        "text": "모자"
+      },
+      {
+        "filename": "바나나.mp3",
+        "path": "/audio/ko/examples/바나나.mp3",
+        "text": "바나나"
+      },
+      {
+        "filename": "사과.mp3",
+        "path": "/audio/ko/examples/사과.mp3",
+        "text": "사과"
+      },
+      {
+        "filename": "안경.mp3",
+        "path": "/audio/ko/examples/안경.mp3",
+        "text": "안경"
+      },
+      {
+        "filename": "자동차.mp3",
+        "path": "/audio/ko/examples/자동차.mp3",
+        "text": "자동차"
+      },
+      {
+        "filename": "치즈.mp3",
+        "path": "/audio/ko/examples/치즈.mp3",
+        "text": "치즈"
+      },
+      {
+        "filename": "커피.mp3",
+        "path": "/audio/ko/examples/커피.mp3",
+        "text": "커피"
+      },
+      {
+        "filename": "토마토.mp3",
+        "path": "/audio/ko/examples/토마토.mp3",
+        "text": "토마토"
+      },
+      {
+        "filename": "피아노.mp3",
+        "path": "/audio/ko/examples/피아노.mp3",
+        "text": "피아노"
+      },
+      {
+        "filename": "하늘.mp3",
+        "path": "/audio/ko/examples/하늘.mp3",
+        "text": "하늘"
+      },
+      {
+        "filename": "아이.mp3",
+        "path": "/audio/ko/examples/아이.mp3",
+        "text": "아이"
+      },
+      {
+        "filename": "야구.mp3",
+        "path": "/audio/ko/examples/야구.mp3",
+        "text": "야구"
+      },
+      {
+        "filename": "어머니.mp3",
+        "path": "/audio/ko/examples/어머니.mp3",
+        "text": "어머니"
+      },
+      {
+        "filename": "여우.mp3",
+        "path": "/audio/ko/examples/여우.mp3",
+        "text": "여우"
+      },
+      {
+        "filename": "오이.mp3",
+        "path": "/audio/ko/examples/오이.mp3",
+        "text": "오이"
+      },
+      {
+        "filename": "요리.mp3",
+        "path": "/audio/ko/examples/요리.mp3",
+        "text": "요리"
+      },
+      {
+        "filename": "우유.mp3",
+        "path": "/audio/ko/examples/우유.mp3",
+        "text": "우유"
+      },
+      {
+        "filename": "유리.mp3",
+        "path": "/audio/ko/examples/유리.mp3",
+        "text": "유리"
+      },
+      {
+        "filename": "음악.mp3",
+        "path": "/audio/ko/examples/음악.mp3",
+        "text": "음악"
+      },
+      {
+        "filename": "이름.mp3",
+        "path": "/audio/ko/examples/이름.mp3",
+        "text": "이름"
+      },
+      {
+        "filename": "꽃.mp3",
+        "path": "/audio/ko/examples/꽃.mp3",
+        "text": "꽃"
+      },
+      {
+        "filename": "떡.mp3",
+        "path": "/audio/ko/examples/떡.mp3",
+        "text": "떡"
+      },
+      {
+        "filename": "빵.mp3",
+        "path": "/audio/ko/examples/빵.mp3",
+        "text": "빵"
+      },
+      {
+        "filename": "쌀.mp3",
+        "path": "/audio/ko/examples/쌀.mp3",
+        "text": "쌀"
+      },
+      {
+        "filename": "찌개.mp3",
+        "path": "/audio/ko/examples/찌개.mp3",
+        "text": "찌개"
+      }
+    ],
+    "phrases": [
+      {
+        "filename": "안녕하세요.mp3",
+        "path": "/audio/ko/phrases/안녕하세요.mp3",
+        "text": "안녕하세요"
+      },
+      {
+        "filename": "감사합니다.mp3",
+        "path": "/audio/ko/phrases/감사합니다.mp3",
+        "text": "감사합니다"
+      },
+      {
+        "filename": "고맙습니다.mp3",
+        "path": "/audio/ko/phrases/고맙습니다.mp3",
+        "text": "고맙습니다"
+      },
+      {
+        "filename": "네.mp3",
+        "path": "/audio/ko/phrases/네.mp3",
+        "text": "네"
+      },
+      {
+        "filename": "아니요.mp3",
+        "path": "/audio/ko/phrases/아니요.mp3",
+        "text": "아니요"
+      },
+      {
+        "filename": "죄송합니다.mp3",
+        "path": "/audio/ko/phrases/죄송합니다.mp3",
+        "text": "죄송합니다"
+      },
+      {
+        "filename": "실례합니다.mp3",
+        "path": "/audio/ko/phrases/실례합니다.mp3",
+        "text": "실례합니다"
+      },
+      {
+        "filename": "안녕히_가세요.mp3",
+        "path": "/audio/ko/phrases/안녕히_가세요.mp3",
+        "text": "안녕히 가세요"
+      },
+      {
+        "filename": "안녕히_계세요.mp3",
+        "path": "/audio/ko/phrases/안녕히_계세요.mp3",
+        "text": "안녕히 계세요"
+      },
+      {
+        "filename": "만나서_반갑습니다.mp3",
+        "path": "/audio/ko/phrases/만나서_반갑습니다.mp3",
+        "text": "만나서 반갑습니다"
+      },
+      {
+        "filename": "제_이름은_입니다.mp3",
+        "path": "/audio/ko/phrases/제_이름은_입니다.mp3",
+        "text": "제 이름은... 입니다"
+      },
+      {
+        "filename": "이름이_뭐예요.mp3",
+        "path": "/audio/ko/phrases/이름이_뭐예요.mp3",
+        "text": "이름이 뭐예요?"
+      },
+      {
+        "filename": "영어_할_수_있어요.mp3",
+        "path": "/audio/ko/phrases/영어_할_수_있어요.mp3",
+        "text": "영어 할 수 있어요?"
+      },
+      {
+        "filename": "한국어_조금_해요.mp3",
+        "path": "/audio/ko/phrases/한국어_조금_해요.mp3",
+        "text": "한국어 조금 해요"
+      },
+      {
+        "filename": "잘_모르겠어요.mp3",
+        "path": "/audio/ko/phrases/잘_모르겠어요.mp3",
+        "text": "잘 모르겠어요"
+      },
+      {
+        "filename": "천천히_말해_주세요.mp3",
+        "path": "/audio/ko/phrases/천천히_말해_주세요.mp3",
+        "text": "천천히 말해 주세요"
+      },
+      {
+        "filename": "화장실이_어디예요.mp3",
+        "path": "/audio/ko/phrases/화장실이_어디예요.mp3",
+        "text": "화장실이 어디예요?"
+      },
+      {
+        "filename": "이거_얼마예요.mp3",
+        "path": "/audio/ko/phrases/이거_얼마예요.mp3",
+        "text": "이거 얼마예요?"
+      },
+      {
+        "filename": "도와주세요.mp3",
+        "path": "/audio/ko/phrases/도와주세요.mp3",
+        "text": "도와주세요"
+      },
+      {
+        "filename": "잘_먹겠습니다.mp3",
+        "path": "/audio/ko/phrases/잘_먹겠습니다.mp3",
+        "text": "잘 먹겠습니다"
+      },
+      {
+        "filename": "메뉴판_주세요.mp3",
+        "path": "/audio/ko/phrases/메뉴판_주세요.mp3",
+        "text": "메뉴판 주세요"
+      },
+      {
+        "filename": "계산해_주세요.mp3",
+        "path": "/audio/ko/phrases/계산해_주세요.mp3",
+        "text": "계산해 주세요"
+      },
+      {
+        "filename": "와이파이_비밀번호가_뭐예요.mp3",
+        "path": "/audio/ko/phrases/와이파이_비밀번호가_뭐예요.mp3",
+        "text": "와이파이 비밀번호가 뭐예요?"
+      },
+      {
+        "filename": "어디에_있어요.mp3",
+        "path": "/audio/ko/phrases/어디에_있어요.mp3",
+        "text": "어디에 있어요?"
+      },
+      {
+        "filename": "좋아요.mp3",
+        "path": "/audio/ko/phrases/좋아요.mp3",
+        "text": "좋아요"
+      }
+    ],
+    "numbers": [
+      {
+        "filename": "영.mp3",
+        "path": "/audio/ko/numbers/영.mp3",
+        "text": "영"
+      },
+      {
+        "filename": "일.mp3",
+        "path": "/audio/ko/numbers/일.mp3",
+        "text": "일"
+      },
+      {
+        "filename": "이.mp3",
+        "path": "/audio/ko/numbers/이.mp3",
+        "text": "이"
+      },
+      {
+        "filename": "삼.mp3",
+        "path": "/audio/ko/numbers/삼.mp3",
+        "text": "삼"
+      },
+      {
+        "filename": "사.mp3",
+        "path": "/audio/ko/numbers/사.mp3",
+        "text": "사"
+      },
+      {
+        "filename": "오.mp3",
+        "path": "/audio/ko/numbers/오.mp3",
+        "text": "오"
+      },
+      {
+        "filename": "육.mp3",
+        "path": "/audio/ko/numbers/육.mp3",
+        "text": "육"
+      },
+      {
+        "filename": "칠.mp3",
+        "path": "/audio/ko/numbers/칠.mp3",
+        "text": "칠"
+      },
+      {
+        "filename": "팔.mp3",
+        "path": "/audio/ko/numbers/팔.mp3",
+        "text": "팔"
+      },
+      {
+        "filename": "구.mp3",
+        "path": "/audio/ko/numbers/구.mp3",
+        "text": "구"
+      },
+      {
+        "filename": "십.mp3",
+        "path": "/audio/ko/numbers/십.mp3",
+        "text": "십"
+      },
+      {
+        "filename": "십일.mp3",
+        "path": "/audio/ko/numbers/십일.mp3",
+        "text": "십일"
+      },
+      {
+        "filename": "십이.mp3",
+        "path": "/audio/ko/numbers/십이.mp3",
+        "text": "십이"
+      },
+      {
+        "filename": "십삼.mp3",
+        "path": "/audio/ko/numbers/십삼.mp3",
+        "text": "십삼"
+      },
+      {
+        "filename": "십사.mp3",
+        "path": "/audio/ko/numbers/십사.mp3",
+        "text": "십사"
+      },
+      {
+        "filename": "십오.mp3",
+        "path": "/audio/ko/numbers/십오.mp3",
+        "text": "십오"
+      },
+      {
+        "filename": "십육.mp3",
+        "path": "/audio/ko/numbers/십육.mp3",
+        "text": "십육"
+      },
+      {
+        "filename": "십칠.mp3",
+        "path": "/audio/ko/numbers/십칠.mp3",
+        "text": "십칠"
+      },
+      {
+        "filename": "십팔.mp3",
+        "path": "/audio/ko/numbers/십팔.mp3",
+        "text": "십팔"
+      },
+      {
+        "filename": "십구.mp3",
+        "path": "/audio/ko/numbers/십구.mp3",
+        "text": "십구"
+      },
+      {
+        "filename": "이십.mp3",
+        "path": "/audio/ko/numbers/이십.mp3",
+        "text": "이십"
+      },
+      {
+        "filename": "삼십.mp3",
+        "path": "/audio/ko/numbers/삼십.mp3",
+        "text": "삼십"
+      },
+      {
+        "filename": "사십.mp3",
+        "path": "/audio/ko/numbers/사십.mp3",
+        "text": "사십"
+      },
+      {
+        "filename": "오십.mp3",
+        "path": "/audio/ko/numbers/오십.mp3",
+        "text": "오십"
+      },
+      {
+        "filename": "육십.mp3",
+        "path": "/audio/ko/numbers/육십.mp3",
+        "text": "육십"
+      },
+      {
+        "filename": "칠십.mp3",
+        "path": "/audio/ko/numbers/칠십.mp3",
+        "text": "칠십"
+      },
+      {
+        "filename": "팔십.mp3",
+        "path": "/audio/ko/numbers/팔십.mp3",
+        "text": "팔십"
+      },
+      {
+        "filename": "구십.mp3",
+        "path": "/audio/ko/numbers/구십.mp3",
+        "text": "구십"
+      },
+      {
+        "filename": "백.mp3",
+        "path": "/audio/ko/numbers/백.mp3",
+        "text": "백"
+      },
+      {
+        "filename": "천.mp3",
+        "path": "/audio/ko/numbers/천.mp3",
+        "text": "천"
+      }
+    ],
+    "words": [
+      {
+        "filename": "물.mp3",
+        "path": "/audio/ko/words/물.mp3",
+        "text": "물"
+      },
+      {
+        "filename": "밥.mp3",
+        "path": "/audio/ko/words/밥.mp3",
+        "text": "밥"
+      },
+      {
+        "filename": "차.mp3",
+        "path": "/audio/ko/words/차.mp3",
+        "text": "차"
+      },
+      {
+        "filename": "커피.mp3",
+        "path": "/audio/ko/words/커피.mp3",
+        "text": "커피"
+      },
+      {
+        "filename": "빵.mp3",
+        "path": "/audio/ko/words/빵.mp3",
+        "text": "빵"
+      },
+      {
+        "filename": "사과.mp3",
+        "path": "/audio/ko/words/사과.mp3",
+        "text": "사과"
+      },
+      {
+        "filename": "우유.mp3",
+        "path": "/audio/ko/words/우유.mp3",
+        "text": "우유"
+      },
+      {
+        "filename": "사람.mp3",
+        "path": "/audio/ko/words/사람.mp3",
+        "text": "사람"
+      },
+      {
+        "filename": "친구.mp3",
+        "path": "/audio/ko/words/친구.mp3",
+        "text": "친구"
+      },
+      {
+        "filename": "가족.mp3",
+        "path": "/audio/ko/words/가족.mp3",
+        "text": "가족"
+      },
+      {
+        "filename": "어머니.mp3",
+        "path": "/audio/ko/words/어머니.mp3",
+        "text": "어머니"
+      },
+      {
+        "filename": "아버지.mp3",
+        "path": "/audio/ko/words/아버지.mp3",
+        "text": "아버지"
+      },
+      {
+        "filename": "선생님.mp3",
+        "path": "/audio/ko/words/선생님.mp3",
+        "text": "선생님"
+      },
+      {
+        "filename": "학생.mp3",
+        "path": "/audio/ko/words/학생.mp3",
+        "text": "학생"
+      },
+      {
+        "filename": "집.mp3",
+        "path": "/audio/ko/words/집.mp3",
+        "text": "집"
+      },
+      {
+        "filename": "학교.mp3",
+        "path": "/audio/ko/words/학교.mp3",
+        "text": "학교"
+      },
+      {
+        "filename": "회사.mp3",
+        "path": "/audio/ko/words/회사.mp3",
+        "text": "회사"
+      },
+      {
+        "filename": "병원.mp3",
+        "path": "/audio/ko/words/병원.mp3",
+        "text": "병원"
+      },
+      {
+        "filename": "식당.mp3",
+        "path": "/audio/ko/words/식당.mp3",
+        "text": "식당"
+      },
+      {
+        "filename": "역.mp3",
+        "path": "/audio/ko/words/역.mp3",
+        "text": "역"
+      },
+      {
+        "filename": "책.mp3",
+        "path": "/audio/ko/words/책.mp3",
+        "text": "책"
+      },
+      {
+        "filename": "돈.mp3",
+        "path": "/audio/ko/words/돈.mp3",
+        "text": "돈"
+      },
+      {
+        "filename": "시간.mp3",
+        "path": "/audio/ko/words/시간.mp3",
+        "text": "시간"
+      },
+      {
+        "filename": "오늘.mp3",
+        "path": "/audio/ko/words/오늘.mp3",
+        "text": "오늘"
+      },
+      {
+        "filename": "내일.mp3",
+        "path": "/audio/ko/words/내일.mp3",
+        "text": "내일"
+      },
+      {
+        "filename": "어제.mp3",
+        "path": "/audio/ko/words/어제.mp3",
+        "text": "어제"
+      }
+    ],
+    "time": [
+      {
+        "filename": "몇_시예요.mp3",
+        "path": "/audio/ko/time/몇_시예요.mp3",
+        "text": "몇 시예요?"
+      },
+      {
+        "filename": "한_시.mp3",
+        "path": "/audio/ko/time/한_시.mp3",
+        "text": "한 시"
+      },
+      {
+        "filename": "두_시.mp3",
+        "path": "/audio/ko/time/두_시.mp3",
+        "text": "두 시"
+      },
+      {
+        "filename": "세_시.mp3",
+        "path": "/audio/ko/time/세_시.mp3",
+        "text": "세 시"
+      },
+      {
+        "filename": "네_시.mp3",
+        "path": "/audio/ko/time/네_시.mp3",
+        "text": "네 시"
+      },
+      {
+        "filename": "다섯_시.mp3",
+        "path": "/audio/ko/time/다섯_시.mp3",
+        "text": "다섯 시"
+      },
+      {
+        "filename": "오전.mp3",
+        "path": "/audio/ko/time/오전.mp3",
+        "text": "오전"
+      },
+      {
+        "filename": "오후.mp3",
+        "path": "/audio/ko/time/오후.mp3",
+        "text": "오후"
+      },
+      {
+        "filename": "아침.mp3",
+        "path": "/audio/ko/time/아침.mp3",
+        "text": "아침"
+      },
+      {
+        "filename": "저녁.mp3",
+        "path": "/audio/ko/time/저녁.mp3",
+        "text": "저녁"
+      },
+      {
+        "filename": "밤.mp3",
+        "path": "/audio/ko/time/밤.mp3",
+        "text": "밤"
+      }
+    ]
+  }
+}
