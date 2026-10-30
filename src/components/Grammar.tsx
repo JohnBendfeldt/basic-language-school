@@ -555,28 +555,33 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
               <div className="gender-examples-list">
                 <h5>{localizedLabels.highFrequencyExamples}</h5>
                 <div className="gender-examples-grid">
-                  {rule.examples.map((ex) => (
-                    <div key={ex.word} className="gender-example-item">
-                      <WordIcon
-                        icon={ex.icon || '📌'}
-                        word={ex.word}
-                        meaning={ex.meaning}
-                        size={22}
-                        className="example-icon"
-                      />
-                      <div className="example-text-wrap">
-                        <strong className="example-target" style={{ color: rule.color }}>
-                          {currentLanguage === 'ru' ? ex.word : `${rule.article} ${ex.word}`}
-                        </strong>
-                        <span className="example-meaning">{ex.meaning}</span>
+                  {rule.examples.map((ex) => {
+                    const hasGrammaticalArticle = ['de', 'fr', 'es', 'pt', 'en'].includes(currentLanguage);
+                    const displayTarget = hasGrammaticalArticle ? `${rule.article} ${ex.word}` : ex.word;
+                    return (
+                      <div key={ex.word} className="gender-example-item">
+                        <WordIcon
+                          icon={ex.icon || '📌'}
+                          word={ex.word}
+                          meaning={ex.meaning}
+                          size={22}
+                          className="example-icon"
+                        />
+                        <div className="example-text-wrap">
+                          <strong className="example-target" style={{ color: rule.color }}>
+                            {displayTarget}
+                          </strong>
+                          <span className="example-meaning">{ex.meaning}</span>
+                        </div>
+                        <PronunciationButton
+                          text={displayTarget}
+                          lang={currentLanguage}
+                          audioCategory="grammar"
+                          className="example-mini-audio"
+                        />
                       </div>
-                      <PronunciationButton
-                        text={currentLanguage === 'ru' ? ex.word : `${rule.article} ${ex.word}`}
-                        lang={currentLanguage}
-                        className="example-mini-audio"
-                      />
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </div>

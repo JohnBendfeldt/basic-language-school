@@ -14,7 +14,7 @@ const alphabet: AlphabetItem[] = [
   { letter: 'ऐ', pronunciation: '/ɛː/ (ai)', example: 'as in cat', word: 'ऐनक', meaning: 'Spectacles', icon: '👓' },
   { letter: 'ओ', pronunciation: '/oː/ (o)', example: 'as in go', word: 'ओखली', meaning: 'Mortar', icon: '🥣' },
   { letter: 'औ', pronunciation: '/ɔː/ (au)', example: 'as in caught', word: 'औरत', meaning: 'Woman', icon: '👩' },
-  { letter: 'अं', pronunciation: '/əŋ/ (ang)', example: 'as in अंगूर (Grapes)', word: 'अंगूर', meaning: 'Grapes', icon: '🍇' },
+  { letter: 'अं', pronunciation: '/əŋ/ (ang)', example: 'as in uncle / sing (nasal)', word: 'अंगूर', meaning: 'Grapes', icon: '🍇' },
   { letter: 'क', pronunciation: '/kə/ (ka)', example: 'as in kite', word: 'कमल', meaning: 'Lotus', icon: '🪷' },
   { letter: 'ख', pronunciation: '/kʰə/ (kha)', example: 'as in kite (aspirated)', word: 'खरगोश', meaning: 'Rabbit', icon: '🐇' },
   { letter: 'ग', pronunciation: '/ɡə/ (ga)', example: 'as in go', word: 'गमला', meaning: 'Flowerpot', icon: '🪴' },

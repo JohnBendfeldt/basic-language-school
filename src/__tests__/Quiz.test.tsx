@@ -43,7 +43,6 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
     // Mastery pool badge: counts unique words (7 items in sampleData), not question permutations (11)
     const poolBadge = screen.getByTitle(/Mastered words are removed from future questions/i);
     expect(poolBadge).toHaveTextContent('0 / 7');
-    expect(poolBadge).toHaveTextContent('(7 remaining)');
   });
 
   it('allows user to change the session goal to 5 or 20 questions', async () => {

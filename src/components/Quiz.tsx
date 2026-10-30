@@ -460,22 +460,22 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   const getListeningHeader = (targetLang: SupportedLanguageId, baseLang: SupportedLanguageId, targetName: string) => {
     switch (baseLang) {
       case 'es':
-        return `🎧 Práctica de escucha: Escucha y escribe lo que oyes en ${targetName}`;
+        return `Escucha el audio y escribe lo que oyes en ${targetName}:`;
       case 'fr':
-        return `🎧 Pratique d'écoute : Écoutez et écrivez ce que vous entendez en ${targetName}`;
+        return `Écoutez l'audio et écrivez ce que vous entendez en ${targetName} :`;
       case 'de':
-        return `🎧 Hörverstehen: Höre zu und schreibe, was du auf ${targetName} hörst`;
+        return `Höre das Audio an und schreibe, was du auf ${targetName} hörst:`;
       case 'ru':
-        return `🎧 Аудирование: Послушайте и напишите то, что слышите на ${targetName}`;
+        return `Послушайте аудио и напишите то, что слышите на ${targetName}:`;
       case 'pt':
-        return `🎧 Prática de escuta: Ouça e digite o que ouve em ${targetName}`;
+        return `Ouça o áudio e digite o que ouve em ${targetName}:`;
       case 'id':
-        return `🎧 Latihan Mendengar: Dengarkan dan ketik apa yang Anda dengar dalam ${targetName}`;
+        return `Dengarkan audio dan ketik apa yang Anda dengar dalam ${targetName}:`;
       case 'tr':
-        return `🎧 Dinleme Alıştırması: Dinleyin ve ${targetName} dilinde duyduğunuzu yazın`;
+        return `Sesi dinleyin ve ${targetName} dilinde duyduğunuzu yazın:`;
       case 'en':
       default:
-        return `🎧 Listening Practice: Listen and type what you hear in ${targetName}`;
+        return `Listen to the audio and type what you hear in ${targetName}:`;
     }
   };
 
@@ -2388,7 +2388,6 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         <div className="curriculum-pool-badge" title="Mastered words are removed from future questions">
           <span className="pool-icon">🏆</span>
           <span>{ui.masteredLabel} <strong>{activeMasteredCount}</strong> / {activeTotalQuestions}</span>
-          <span className="pool-remaining-tag">({activeRemainingToMaster} {ui.remainingLabel})</span>
         </div>
       </div>
 
@@ -2397,16 +2396,12 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           {currentQuestion.isListeningMode && !showNext
             ? getListeningHeader(currentLanguage, baseLanguage, currentMeta.name)
             : currentQuestion.isListeningMode && showNext
-              ? `🎧 ${baseLanguage === 'es' ? 'Escuchaste' : baseLanguage === 'ru' ? 'Вы услышали' : baseLanguage === 'fr' ? 'Vous avez entendu' : baseLanguage === 'de' ? 'Du hast gehört' : baseLanguage === 'pt' ? 'Você ouviu' : baseLanguage === 'id' ? 'Anda mendengar' : baseLanguage === 'tr' ? 'Duyduğunuz' : 'You heard'}: "${currentQuestion.prompt}"`
+              ? `${baseLanguage === 'es' ? 'Escuchaste' : baseLanguage === 'ru' ? 'Вы услышали' : baseLanguage === 'fr' ? 'Vous avez entendu' : baseLanguage === 'de' ? 'Du hast gehört' : baseLanguage === 'pt' ? 'Você ouviu' : baseLanguage === 'id' ? 'Anda mendengar' : baseLanguage === 'tr' ? 'Duyduğunuz' : 'You heard'}: "${currentQuestion.prompt}"`
               : currentQuestion.hint}
         </h3>
         <div className="quiz-prompt">
           {currentQuestion.isListeningMode && !showNext ? (
             <div className="quiz-listening-card">
-              <div className="listening-badge-row">
-                <span className="listening-badge">🎧 {ui.listeningMode}</span>
-                <span className="listening-hint-text">{ui.listeningPromptHint}</span>
-              </div>
               <div className="listening-audio-player">
                 <PronunciationButton 
                   text={currentQuestion.promptAudioWord || currentQuestion.targetAudioWord || currentQuestion.russian || currentQuestion.prompt}
