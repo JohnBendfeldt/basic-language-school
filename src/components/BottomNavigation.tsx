@@ -11,14 +11,38 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({
   activeSection, 
   setActiveSection
 }) => {
-  const { ui } = useLanguage();
+  const { ui, baseLanguage } = useLanguage();
+
+  const getAlphabetGrammarLabel = () => {
+    switch (baseLanguage) {
+      case 'ru': return 'Алфавит &\nГрамматика';
+      case 'es': return 'Alfabeto &\nGramática';
+      case 'fr': return 'Alphabet &\nGrammaire';
+      case 'de': return 'Alphabet &\nGrammatik';
+      case 'pt': return 'Alfabeto &\nGramática';
+      case 'tr': return 'Alfabe &\nDilbilgisi';
+      case 'id': return 'Alfabet &\nTata Bahasa';
+      case 'ko': return '한글 &\n문법';
+      case 'ja': return 'かな &\n文法';
+      default: return 'Alphabet &\nGrammar';
+    }
+  };
+
+  const getAlphabetGrammarAria = () => {
+    return ui?.alphabetAndGrammar || 'Alphabet & Grammar';
+  };
 
   const navItems = [
-    { id: 'alphabet', label: ui?.alphabet || 'Alphabet', icon: <FaFont /> },
-    { id: 'phrases', label: ui?.basicPhrases || 'Phrases', icon: <FaComment /> },
-    { id: 'words', label: ui?.commonWords || 'Words', icon: <FaListUl /> },
-    { id: 'numbers', label: ui?.numbersAndTime || 'Numbers & Time', icon: <FaCalculator /> },
-    { id: 'quiz', label: ui?.quiz || 'Quiz', icon: <FaQuestionCircle /> }
+    { 
+      id: 'alphabet', 
+      label: getAlphabetGrammarLabel(),
+      ariaLabel: getAlphabetGrammarAria(),
+      icon: <FaFont /> 
+    },
+    { id: 'phrases', label: ui?.basicPhrases || 'Phrases', ariaLabel: ui?.basicPhrases || 'Phrases', icon: <FaComment /> },
+    { id: 'words', label: ui?.commonWords || 'Words', ariaLabel: ui?.commonWords || 'Words', icon: <FaListUl /> },
+    { id: 'numbers', label: ui?.numbersAndTime || 'Numbers & Time', ariaLabel: ui?.numbersAndTime || 'Numbers & Time', icon: <FaCalculator /> },
+    { id: 'quiz', label: ui?.quiz || 'Quiz', ariaLabel: ui?.quiz || 'Quiz', icon: <FaQuestionCircle /> }
   ];
 
   const handleNavClick = (id: string) => {
@@ -42,7 +66,7 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({
           key={item.id}
           className={`bottom-nav-item ${(activeSection === item.id || (item.id === 'numbers' && activeSection === 'time')) ? 'active' : ''}`}
           onClick={() => handleNavClick(item.id)}
-          aria-label={`Switch to ${item.label} section`}
+          aria-label={item.ariaLabel ? `Switch to ${item.ariaLabel} section` : `Switch to ${item.label.replace('\n', ' ')} section`}
           data-section={item.id}
         >
           <div className="bottom-nav-icon">{item.icon}</div>

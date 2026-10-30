@@ -460,8 +460,15 @@ footer {
 
 .grammar-prompt-icon {
   font-size: 2.5rem;
-  display: block;
-  margin-bottom: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.5rem auto;
+}
+
+.word-icon-svg {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .grammar-card-prompt {
@@ -4011,7 +4018,7 @@ footer {
 .bottom-nav-label {
   font-size: 0.7rem;
   font-weight: 500;
-  white-space: normal;
+  white-space: pre-line;
   text-align: center;
   line-height: 1.15;
   overflow-wrap: anywhere;

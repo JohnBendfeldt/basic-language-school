@@ -327,7 +327,7 @@ const commonWords: PhraseItem[] = [
   { phrase: 'Billet', translation: 'Ticket', pronunciation: 'bee-YEH', category: 'Travel', level: 1, icon: '🎫' },
   { phrase: 'Passeport', translation: 'Passport', pronunciation: 'pahs-POHR', category: 'Travel', level: 1, icon: '🛂' },
   { phrase: 'Bateau', translation: 'Boat', pronunciation: 'bah-TOH', category: 'Travel', level: 1, icon: '⛵' },
-  { phrase: 'Table', translation: 'Table', pronunciation: 'TAH-bluh', category: 'Home', level: 1, icon: '🪑' },
+  { phrase: 'Table', translation: 'Table', pronunciation: 'TAH-bluh', category: 'Home', level: 1, icon: 'svg:table' },
   { phrase: 'Chaise', translation: 'Chair', pronunciation: 'SHEHZ', category: 'Home', level: 1, icon: '🪑' },
   { phrase: 'Porte', translation: 'Door', pronunciation: 'POHRT', category: 'Home', level: 1, icon: '🚪' },
   { phrase: 'Fenêtre', translation: 'Window', pronunciation: 'fuh-NEH-truh', category: 'Home', level: 1, icon: '🪟' },

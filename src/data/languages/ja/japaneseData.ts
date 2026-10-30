@@ -20,7 +20,7 @@ const alphabet: AlphabetItem[] = [
   { letter: 'そ', pronunciation: '/so/', example: 'as in そら (Sky)', word: 'そら', meaning: 'Sky', icon: '☁️' },
   { letter: 'た', pronunciation: '/ta/', example: 'as in たまご (Egg)', word: 'たまご', meaning: 'Egg', icon: '🥚' },
   { letter: 'ち', pronunciation: '/chi/', example: 'as in ちず (Map)', word: 'ちず', meaning: 'Map', icon: '🗺️' },
-  { letter: 'つ', pronunciation: '/tsu/', example: 'as in つくえ (Desk / Table)', word: 'つくえ', meaning: 'Desk / Table', icon: '🪑' },
+  { letter: 'つ', pronunciation: '/tsu/', example: 'as in つくえ (Desk / Table)', word: 'つくえ', meaning: 'Desk / Table', icon: 'svg:table' },
   { letter: 'て', pronunciation: '/te/', example: 'as in てがみ (Letter)', word: 'てがみ', meaning: 'Letter', icon: '✉️' },
   { letter: 'と', pronunciation: '/to/', example: 'as in ともだち (Friend)', word: 'ともだち', meaning: 'Friend', icon: '🤝' },
   { letter: 'な', pronunciation: '/na/', example: 'as in なつ (Summer)', word: 'なつ', meaning: 'Summer', icon: '☀️' },

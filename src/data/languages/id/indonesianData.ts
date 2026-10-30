@@ -333,7 +333,7 @@ const commonWords: PhraseItem[] = [
   { phrase: 'Pesawat', translation: 'Airplane', pronunciation: 'peh-SAH-waht', category: 'Travel', level: 1, icon: '✈️' },
   { phrase: 'Tiket', translation: 'Ticket', pronunciation: 'TEE-keht', category: 'Travel', level: 1, icon: '🎫' },
   { phrase: 'Perahu', translation: 'Boat', pronunciation: 'peh-RAH-hoo', category: 'Travel', level: 1, icon: '⛵' },
-  { phrase: 'Meja', translation: 'Table', pronunciation: 'MEH-jah', category: 'Home', level: 1, icon: '🪑' },
+  { phrase: 'Meja', translation: 'Table', pronunciation: 'MEH-jah', category: 'Home', level: 1, icon: 'svg:table' },
   { phrase: 'Kursi', translation: 'Chair', pronunciation: 'KOOR-see', category: 'Home', level: 1, icon: '🪑' },
   { phrase: 'Pintu', translation: 'Door', pronunciation: 'PEEN-too', category: 'Home', level: 1, icon: '🚪' },
   { phrase: 'Jendela', translation: 'Window', pronunciation: 'jehn-DEH-lah', category: 'Home', level: 1, icon: '🪟' },

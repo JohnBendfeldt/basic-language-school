@@ -93,38 +93,116 @@ export const TeacherSVG: React.FC<{ size?: number; className?: string }> = ({ si
   </svg>
 );
 
-const TABLE_KEYWORDS = new Set([
+const TABLE_KEYWORDS = [
   'table',
+  'tables',
   'tisch',
+  'tische',
   'стол',
+  'стола',
+  'столе',
+  'столы',
   'mesa',
+  'mesas',
   'meja',
   'masa',
+  'masalar',
   'la table',
   'der tisch',
-]);
+  'una mesa',
+  'desk / table',
+  'desk',
+  '탁자',
+  '식탁',
+  '테이블',
+  '机',
+  'つくえ',
+  'テーブル',
+  '食卓',
+];
 
-const MEETING_KEYWORDS = new Set([
+const CHAIR_KEYWORDS = [
+  'chair',
+  'chairs',
+  'stuhl',
+  'stühle',
+  'стул',
+  'стулья',
+  'стуле',
+  'silla',
+  'sillas',
+  'chaise',
+  'chaises',
+  'cadeira',
+  'cadeiras',
+  'kursi',
+  'sandalye',
+  'sandalyeler',
+  '의자',
+  'いす',
+  'イス',
+  '椅子',
+];
+
+const MEETING_KEYWORDS = [
   'meeting',
+  'meetings',
   'besprechung',
   'reunión',
   'reunion',
   'planen',
   'planifions',
   'планировать',
+  'план',
   'miting',
-]);
+  'rapat',
+  'toplantı',
+  'toplanti',
+  '회의',
+  '모임',
+  '会議',
+  'かいぎ',
+];
 
-const TEACHER_KEYWORDS = new Set([
+const TEACHER_KEYWORDS = [
   'teacher',
+  'teachers',
   'lehrer',
+  'lehrerin',
   'учитель',
+  'учительница',
+  'преподаватель',
   'profesor',
+  'profesora',
   'professeur',
+  'professeure',
   'öğretmen',
   'ogretmen',
   'guru',
-]);
+  '선생님',
+  '교사',
+  '先生',
+  'せんせい',
+  '教師',
+];
+
+/**
+ * Robust token and word-boundary matching across multiple alphabets and punctuation
+ */
+const matchKeywordInText = (text: string, keywords: string[]): boolean => {
+  if (!text) return false;
+  const lower = text.toLowerCase();
+  for (const kw of keywords) {
+    const kwLower = kw.toLowerCase();
+    if (lower === kwLower) return true;
+    const escaped = kwLower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(^|[^\\p{L}\\p{N}])${escaped}([^\\p{L}\\p{N}]|$)`, 'u');
+    if (regex.test(lower)) {
+      return true;
+    }
+  }
+  return false;
+};
 
 /**
  * Smart WordIcon: Renders custom vector SVGs when Unicode emojis are inaccurate or missing,
@@ -152,24 +230,28 @@ export const WordIcon: React.FC<WordIconProps> = ({
     return <TeacherSVG size={size} className={className} />;
   }
 
+  // Check if concept is explicitly a chair (so we never falsely replace chairs)
+  const isChair = matchKeywordInText(normWord, CHAIR_KEYWORDS) || matchKeywordInText(normMeaning, CHAIR_KEYWORDS);
+
   // 2. Automatic emoji gap overrides:
   // E.g. If the word or meaning is "Table" but the icon was given a chair 🪑
   if (
-    (TABLE_KEYWORDS.has(normWord) || TABLE_KEYWORDS.has(normMeaning)) &&
+    !isChair &&
+    (matchKeywordInText(normWord, TABLE_KEYWORDS) || matchKeywordInText(normMeaning, TABLE_KEYWORDS)) &&
     (icon === '🪑' || !icon)
   ) {
     return <TableSVG size={size} className={className} />;
   }
 
   // Meeting / Planning
-  if (MEETING_KEYWORDS.has(normWord) || MEETING_KEYWORDS.has(normMeaning)) {
+  if (matchKeywordInText(normWord, MEETING_KEYWORDS) || matchKeywordInText(normMeaning, MEETING_KEYWORDS)) {
     if (icon === '📅' || icon === '👥' || !icon) {
       return <MeetingBoardSVG size={size} className={className} />;
     }
   }
 
   // Teacher / Instructor
-  if (TEACHER_KEYWORDS.has(normWord) || TEACHER_KEYWORDS.has(normMeaning)) {
+  if (matchKeywordInText(normWord, TEACHER_KEYWORDS) || matchKeywordInText(normMeaning, TEACHER_KEYWORDS)) {
     if (icon === '🏫' || !icon) {
       return <TeacherSVG size={size} className={className} />;
     }

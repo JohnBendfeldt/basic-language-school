@@ -46,6 +46,9 @@ describe('Alphabet & Grammar Section Integration', () => {
 
     // First card: ___ Tisch (table) with options der, die, das
     expect(screen.getByText(/Tisch/i)).toBeInTheDocument();
+    // Verify Table SVG is rendered instead of mismatched chair emoji 🪑
+    expect(screen.getByLabelText('Table')).toBeInTheDocument();
+    expect(screen.queryByText('🪑')).not.toBeInTheDocument();
 
     const derBtn = screen.getByRole('button', { name: 'der' });
     const dieBtn = screen.getByRole('button', { name: 'die' });
@@ -146,5 +149,15 @@ describe('Alphabet & Grammar Section Integration', () => {
 
     expect(screen.getByText(/Мужской род/i)).toBeInTheDocument();
     expect(screen.getByText(/Женский род/i)).toBeInTheDocument();
+  });
+
+  it('renders Table SVG for Russian table flashcard (стол)', () => {
+    const russianGrammar = getGrammarForLanguage('ru');
+    render(<Grammar grammarData={russianGrammar} />);
+
+    // First card in Russian flashcards is стол (table)
+    expect(screen.getByText(/стол/i)).toBeInTheDocument();
+    expect(screen.getByLabelText('Table')).toBeInTheDocument();
+    expect(screen.queryByText('🪑')).not.toBeInTheDocument();
   });
 });

@@ -24,6 +24,16 @@ describe('WordIcon - Smart Vector SVG & Emoji Engine', () => {
     rerender(<WordIcon icon="🪑" word="Table" meaning="table" />);
     expect(screen.getByLabelText('Table')).toBeInTheDocument();
     expect(screen.queryByText('🪑')).not.toBeInTheDocument();
+
+    // Full grammar flashcard prompt sentence (user screenshot case)
+    rerender(<WordIcon icon="🪑" word="стол (table) ➔ какой род?" meaning="table (masculine)" />);
+    expect(screen.getByLabelText('Table')).toBeInTheDocument();
+    expect(screen.queryByText('🪑')).not.toBeInTheDocument();
+
+    // German grammar flashcard prompt
+    rerender(<WordIcon icon="🪑" word="Tisch (table) ➔ der, die, oder das?" meaning="table (masculine)" />);
+    expect(screen.getByLabelText('Table')).toBeInTheDocument();
+    expect(screen.queryByText('🪑')).not.toBeInTheDocument();
   });
 
   it('preserves chair emoji 🪑 when the concept actually is a chair', () => {
