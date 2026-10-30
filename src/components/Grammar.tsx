@@ -55,6 +55,22 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
 
   const currentCard = flashcardDeck[currentIndex] || flashcardDeck[0];
 
+  // Stable pseudo-random shuffle of options for each flashcard so answers aren't predictable
+  const cardOptions = React.useMemo(() => {
+    if (!currentCard?.options) return [];
+    const opts = [...currentCard.options];
+    let seed = 0;
+    for (let i = 0; i < (currentCard.id || '').length; i++) {
+      seed = (seed * 31 + currentCard.id.charCodeAt(i)) & 0xffffffff;
+    }
+    for (let i = opts.length - 1; i > 0; i--) {
+      seed = (seed * 1664525 + 1013904223) & 0xffffffff;
+      const j = Math.abs(seed) % (i + 1);
+      [opts[i], opts[j]] = [opts[j], opts[i]];
+    }
+    return opts;
+  }, [currentCard?.id, currentCard?.options]);
+
   const handleOptionClick = (option: string) => {
     if (selectedOption !== null) return;
     setSelectedOption(option);
@@ -181,7 +197,7 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                 const promptParts = activePrompt.split(/\s*➔\s*/);
                 const heroWord = promptParts[0];
                 const taskPrompt = promptParts.length > 1 ? promptParts[1] : null;
-                const hasComplexOptions = currentCard.options.some(
+                const hasComplexOptions = cardOptions.some(
                   (opt) => opt.includes('(') || opt.length > 7
                 );
                 const audioTextToPlay = currentCard.audioWord
@@ -189,6 +205,33 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                   : currentCard.article
                     ? `${currentCard.article} ${heroWord.replace(/^___\s*/, '').trim()}`
                     : heroWord.replace(/^___\s*/, '').trim() || currentCard.correctAnswer;
+
+                const renderPromptWithBlank = (text: string) => {
+                  if (!text || !text.includes('___')) return text;
+                  const parts = text.split('___');
+                  const isCorrect = selectedOption === currentCard.correctAnswer;
+
+                  return (
+                    <>
+                      {parts.map((part, idx) => (
+                        <React.Fragment key={idx}>
+                          {part}
+                          {idx < parts.length - 1 && (
+                            selectedOption ? (
+                              <span className={`grammar-blank-filled ${isCorrect ? 'correct' : 'incorrect'}`}>
+                                {selectedOption}
+                              </span>
+                            ) : (
+                              <span className="grammar-blank-slot" aria-label="blank space">
+                                <span className="grammar-blank-line" />
+                              </span>
+                            )
+                          )}
+                        </React.Fragment>
+                      ))}
+                    </>
+                  );
+                };
 
                 return (
                   <>
@@ -204,7 +247,7 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                           />
                         </div>
                       )}
-                      <h3 className="grammar-card-prompt">{heroWord}</h3>
+                      <h3 className="grammar-card-prompt">{renderPromptWithBlank(heroWord)}</h3>
                       {currentCard.translation && (
                         <p className="grammar-card-translation">
                           {currentCard.translations?.[baseLanguage] ||
@@ -222,14 +265,14 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                       {taskPrompt && (
                         <div className="grammar-prompt-task-pill">
                           <span className="task-pill-arrow">➔</span>
-                          <span>{taskPrompt}</span>
+                          <span>{renderPromptWithBlank(taskPrompt)}</span>
                         </div>
                       )}
                     </div>
 
                     {/* Option Buttons */}
                     <div className={`grammar-options-grid ${hasComplexOptions ? 'options-stacked' : 'options-compact'}`}>
-                      {currentCard.options.map((option) => {
+                      {cardOptions.map((option) => {
                         const isSelected = selectedOption === option;
                         const isCorrect = option === currentCard.correctAnswer;
                         let btnStateClass = '';

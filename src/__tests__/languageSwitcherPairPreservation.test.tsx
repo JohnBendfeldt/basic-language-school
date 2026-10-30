@@ -176,20 +176,20 @@ describe('LanguageSwitcher Language Pair Preservation', () => {
 
     fireEvent.click(screen.getByRole('button', { name: /Current language pair/i }));
 
-    // Region filter buttons are present
-    expect(screen.getByRole('button', { name: /Romance/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /East Asian/i })).toBeInTheDocument();
+    // Region filter dropdown is present
+    const filterSelect = screen.getByLabelText(/Filter languages by family/i);
+    expect(filterSelect).toBeInTheDocument();
 
-    // Click Romance filter
-    fireEvent.click(screen.getByRole('button', { name: /Romance/i }));
+    // Select Romance filter
+    fireEvent.change(filterSelect, { target: { value: 'romance' } });
 
     // Spanish, French, Portuguese should be present; German should not
     expect(screen.getByRole('menuitem', { name: /Spanish/i })).toBeInTheDocument();
     expect(screen.getByRole('menuitem', { name: /French/i })).toBeInTheDocument();
     expect(screen.queryByRole('menuitem', { name: /German/i })).not.toBeInTheDocument();
 
-    // Click East Asian filter
-    fireEvent.click(screen.getByRole('button', { name: /East Asian/i }));
+    // Select East Asian filter
+    fireEvent.change(filterSelect, { target: { value: 'east-asian' } });
     expect(screen.queryByRole('menuitem', { name: /Spanish/i })).not.toBeInTheDocument();
     expect(screen.getByRole('menuitem', { name: /Japanese/i })).toBeInTheDocument();
     expect(screen.getByRole('menuitem', { name: /Korean/i })).toBeInTheDocument();

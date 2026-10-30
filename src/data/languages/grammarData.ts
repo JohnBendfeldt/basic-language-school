@@ -1416,7 +1416,7 @@ export const TURKISH_GRAMMAR: GrammarData = {
         es: 'Plural de «ev» [vocal anterior «e»]',
         fr: 'Pluriel de « ev » [voyelle antérieure « e »]',
       },
-      options: ['evler', 'evlar'],
+      options: ['evlar', 'evler'],
       correctAnswer: 'evler',
       explanation: 'Front vowels (e, i, ö, ü) harmonically take -ler: "evler".',
       explanations: {
@@ -1447,7 +1447,7 @@ export const TURKISH_GRAMMAR: GrammarData = {
         es: 'Plural de «araba» [vocal posterior «a»]',
         fr: 'Pluriel de « araba » [voyelle postérieure « a »]',
       },
-      options: ['arabalar', 'arabaler'],
+      options: ['arabaler', 'arabalar'],
       correctAnswer: 'arabalar',
       explanation: 'Back vowels (a, ı, o, u) harmonically take -lar: "arabalar".',
       explanations: {
@@ -1523,7 +1523,7 @@ export const INDONESIAN_GRAMMAR: GrammarData = {
         es: '«Estoy comiendo ahora» ➔ Saya ___ makan',
         fr: '« Je suis en train de manger » ➔ Saya ___ makan',
       },
-      options: ['sedang', 'sudah', 'akan'],
+      options: ['sudah', 'sedang', 'akan'],
       correctAnswer: 'sedang',
       explanation: '"sedang" indicates an ongoing action in the present continuous.',
       explanations: {
@@ -1554,7 +1554,7 @@ export const INDONESIAN_GRAMMAR: GrammarData = {
         es: 'Plural de «buku» (libro)',
         fr: 'Pluriel de « buku » (livre)',
       },
-      options: ['buku-buku', 'bukus', 'parabuku'],
+      options: ['bukus', 'buku-buku', 'parabuku'],
       correctAnswer: 'buku-buku',
       explanation: 'Indonesian expresses plural by repeating the noun (reduplication): "buku-buku".',
       explanations: {
@@ -1655,7 +1655,7 @@ export const KOREAN_GRAMMAR: GrammarData = {
         es: '«Bebo agua» ➔ 저는 물___ 마셔요',
         fr: '« Je bois de l\'eau » ➔ 저는 물___ 마셔요',
       },
-      options: ['을', '를', '는', '이'],
+      options: ['를', '을', '는', '이'],
       correctAnswer: '을',
       explanation: '"물" ends with a consonant (ㄹ), so the object particle "을" is attached.',
       explanations: {
@@ -1686,7 +1686,7 @@ export const KOREAN_GRAMMAR: GrammarData = {
         es: 'Presente cortés de "가다" (ir)',
         fr: 'Présent poli de « 가다 » (aller)',
       },
-      options: ['가요', '가세요', '갔어요', '갑니다'],
+      options: ['가세요', '갔어요', '가요', '갑니다'],
       correctAnswer: '가요',
       explanation: '가다 combines with -아요 to form "가요" in the standard polite style.',
       explanations: {
@@ -1717,7 +1717,7 @@ export const KOREAN_GRAMMAR: GrammarData = {
         es: 'Partícula de tema tras vocal: «저» (yo) ➔ 저___',
         fr: 'Particule de thème après voyelle : « 저 » (je) ➔ 저___',
       },
-      options: ['는', '은', '를', '가'],
+      options: ['은', '는', '를', '가'],
       correctAnswer: '는',
       explanation: 'Words ending in a vowel take "는" as the topic marker: 저는.',
       explanations: {
@@ -1818,7 +1818,7 @@ export const JAPANESE_GRAMMAR: GrammarData = {
         es: '«Como una manzana» ➔ わたしは りんご ___ たべます',
         fr: '« Je mange une pomme » ➔ わたしは りんご ___ たべます',
       },
-      options: ['を', 'は', 'に', 'で'],
+      options: ['は', 'を', 'に', 'で'],
       correctAnswer: 'を',
       explanation: 'The particle "を" (pronounced "o") marks the direct object of the verb.',
       explanations: {
@@ -1849,7 +1849,7 @@ export const JAPANESE_GRAMMAR: GrammarData = {
         es: 'Pasado cortés de "行きます" (ir)',
         fr: 'Passé poli de « 行きます » (aller)',
       },
-      options: ['行きました', '行きません', '行くでした', '行きます'],
+      options: ['行きません', '行きました', '行くでした', '行きます'],
       correctAnswer: '行きました',
       explanation: 'Polite past tense replaces 〜ます with 〜ました: 行きました (went).',
       explanations: {
@@ -1880,7 +1880,7 @@ export const JAPANESE_GRAMMAR: GrammarData = {
         es: 'Partícula de tema en japonés (pronunciada «wa»): わたし___',
         fr: 'Particule de thème en japonais (prononcée « wa ») : わたし___',
       },
-      options: ['は', 'わ', 'が', 'を'],
+      options: ['わ', 'が', 'は', 'を'],
       correctAnswer: 'は',
       explanation: 'The topic particle is written with the hiragana "は" (ha) but pronounced "wa".',
       explanations: {
@@ -2005,7 +2005,7 @@ export const CHINESE_GRAMMAR: GrammarData = {
         fr: 'Classificateur pour les livres : « 一___书 » (Un livre) ➔ 一___书',
         zh: '书籍量词："一___书" ➔ 一___书',
       },
-      options: ['本', '个', '只', '张'],
+      options: ['个', '本', '只', '张'],
       correctAnswer: '本',
       explanation: '本 (běn) is the dedicated measure word for bound volumes such as books and notebooks.',
       explanations: {
@@ -2039,7 +2039,7 @@ export const CHINESE_GRAMMAR: GrammarData = {
         fr: 'Particule interrogative oui/non : « Êtes-vous enseignant ? » ➔ 你是老师___？',
         zh: '疑问助词："你是老师___？"',
       },
-      options: ['吗', '呢', '吧', '的'],
+      options: ['呢', '吗', '吧', '的'],
       correctAnswer: '吗',
       explanation: '吗 (ma) placed at the end of a statement turns it into a direct yes/no question without changing word order.',
       explanations: {
@@ -2073,7 +2073,7 @@ export const CHINESE_GRAMMAR: GrammarData = {
         fr: 'Particule de possession : « Mon ami » ➔ 我___朋友',
         zh: '结构助词："我的朋友" ➔ 我___朋友',
       },
-      options: ['的', '了', '吗', '个'],
+      options: ['了', '的', '吗', '个'],
       correctAnswer: '的',
       explanation: '的 (de) links a possessor or modifier to a noun (我 + 的 + 朋友 = my friend).',
       explanations: {
@@ -2107,7 +2107,7 @@ export const CHINESE_GRAMMAR: GrammarData = {
         fr: 'Phrase comparative : « La Chine est plus grande que le Japon » ➔ 中国___日本大',
         zh: '比较句："中国比日本大" ➔ 中国___日本大',
       },
-      options: ['比', '很', '最', '更'],
+      options: ['很', '最', '比', '更'],
       correctAnswer: '比',
       explanation: '比 (bǐ) is placed between two nouns in the pattern "A 比 B + Adjective" to mean A is more [adj] than B.',
       explanations: {
@@ -2226,7 +2226,7 @@ export const HINDI_GRAMMAR: GrammarData = {
         zh: '性属一致："好女孩" ➔ ___ लड़की',
         hi: 'लिंग सहसंबंध: "अच्छी लड़की" ➔ ___ लड़की',
       },
-      options: ['अच्छी', 'अच्छा', 'अच्छे', 'अच्छों'],
+      options: ['अच्छा', 'अच्छी', 'अच्छे', 'अच्छों'],
       correctAnswer: 'अच्छी',
       explanation: 'Adjectives ending in -ā change to -ī when modifying feminine nouns (अच्छा लड़का ➔ अच्छी लड़की).',
       explanations: {
@@ -2263,7 +2263,7 @@ export const HINDI_GRAMMAR: GrammarData = {
         zh: '后置词："在桌子上" ➔ मेज़ ___',
         hi: 'परसर्ग (कारक चिह्न): "मेज़ पर" ➔ मेज़ ___',
       },
-      options: ['पर', 'में', 'से', 'को'],
+      options: ['में', 'पर', 'से', 'को'],
       correctAnswer: 'पर',
       explanation: 'पर (par) means "on" or "at" and is placed immediately after the noun in Hindi.',
       explanations: {
@@ -2300,7 +2300,7 @@ export const HINDI_GRAMMAR: GrammarData = {
         zh: '助动词"是"："我很好" ➔ मैं ठीक ___',
         hi: 'सहायक क्रिया (होना): "मैं ठीक हूँ" ➔ मैं ठीक ___',
       },
-      options: ['हूँ', 'है', 'हैं', 'हो'],
+      options: ['है', 'हैं', 'हूँ', 'हो'],
       correctAnswer: 'हूँ',
       explanation: 'In the present tense, pronoun मैं (main - I) always pairs with auxiliary हूँ (hoon - am).',
       explanations: {
@@ -2337,7 +2337,7 @@ export const HINDI_GRAMMAR: GrammarData = {
         zh: '所有格："拉姆的书" ➔ राम ___ किताब',
         hi: 'सम्बन्ध कारक: "राम की किताब" ➔ राम ___ किताब',
       },
-      options: ['की', 'का', 'के', 'को'],
+      options: ['का', 'के', 'की', 'को'],
       correctAnswer: 'की',
       explanation: 'Possessive postposition agrees with the possessed item: का (m.sg), के (m.pl), की (feminine). Since किताब is feminine, we use की.',
       explanations: {
@@ -2462,7 +2462,7 @@ export const ARABIC_GRAMMAR: GrammarData = {
         hi: 'लिंग सहसंबंध: "नई कार" ➔ سيارة ___',
         ar: 'التطابق في التذكير والتأنيث: "سيارة جديدة" ➔ سيارة ___',
       },
-      options: ['جديدة', 'جديد', 'جدد', 'جديدون'],
+      options: ['جديد', 'جديدة', 'جدد', 'جديدون'],
       correctAnswer: 'جديدة',
       explanation: 'Adjectives agree with feminine nouns ending in Taa Marbuta (ة) by also taking Taa Marbuta (سيارة جديدة).',
       explanations: {
@@ -2502,7 +2502,7 @@ export const ARABIC_GRAMMAR: GrammarData = {
         hi: 'संकेतवाचक सर्वनाम: "यह एक किताब है" ➔ ___ كتاب',
         ar: 'اسم الإشارة: "هذا كتاب" ➔ ___ كتاب',
       },
-      options: ['هذا', 'هذه', 'هؤلاء', 'ذلك'],
+      options: ['هذه', 'هذا', 'هؤلاء', 'ذلك'],
       correctAnswer: 'هذا',
       explanation: 'هذا (haadhaa) is used for masculine singular nouns, while هذه (haadhihi) is used for feminine singular nouns.',
       explanations: {
@@ -2542,7 +2542,7 @@ export const ARABIC_GRAMMAR: GrammarData = {
         hi: 'निश्चयवाचक विशेषण सहसंबंध: "बड़ा शहर" ➔ المدينة ___',
         ar: 'تطابق التعريف: "المدينة الكبيرة" ➔ المدينة ___',
       },
-      options: ['الكبيرة', 'كبيرة', 'كبير', 'الكبير'],
+      options: ['كبيرة', 'كبير', 'الكبيرة', 'الكبير'],
       correctAnswer: 'الكبيرة',
       explanation: 'When an Arabic noun has the definite article الـ, its adjective must also take الـ and agree in gender (المدينة الكبيرة).',
       explanations: {
@@ -2582,7 +2582,7 @@ export const ARABIC_GRAMMAR: GrammarData = {
         hi: 'क्रिया रूप: "मैं कार्यालय में काम करता हूँ" ➔ أنا ___ في مكتب',
         ar: 'تصريف الفعل: "أنا أعمل في مكتب" ➔ أنا ___ في مكتب',
       },
-      options: ['أعمل', 'يعمل', 'تعمل', 'نعمل'],
+      options: ['يعمل', 'أعمل', 'تعمل', 'نعمل'],
       correctAnswer: 'أعمل',
       explanation: 'In the present tense, the first person singular pronoun أنا (I) takes the prefix أ- on the verb: أعمل (I work).',
       explanations: {
