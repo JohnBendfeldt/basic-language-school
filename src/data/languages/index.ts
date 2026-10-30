@@ -10,6 +10,7 @@ import turkishData from './tr/turkishData';
 import koreanData from './ko/koreanData';
 import japaneseData from './ja/japaneseData';
 import chineseData from './zh/chineseData';
+import hindiData from './hi/hindiData';
 
 export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
   ru: {
@@ -451,6 +452,46 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
       },
     },
     data: chineseData,
+  },
+  hi: {
+    id: 'hi',
+    name: 'Hindi',
+    nativeName: 'हिन्दी',
+    flag: '🇮🇳',
+    code: 'hi-IN',
+    ttsVoice: 'hi-IN-SwaraNeural',
+    hasKeyboard: false,
+    hasAlphabet: true,
+    hasTimeGuide: true,
+    appName: 'Basic Hindi',
+    domain: 'basichindi.school',
+    seo: {
+      alphabet: {
+        title: 'Hindi Alphabet & Devanagari Script | Basic Hindi',
+        description: 'Master the Hindi Devanagari script vowels (swar) and consonants (vyanjan) with native studio audio.',
+      },
+      phrases: {
+        title: 'Essential Hindi Phrases | Basic Hindi',
+        description: 'Learn everyday Hindi greetings, courtesy expressions, and conversational phrases with native studio audio.',
+      },
+      numbers: {
+        title: 'Hindi Numbers & Time | Basic Hindi',
+        description: 'Master numbers in Hindi from 0 to 1,000 with native neural audio.',
+      },
+      time: {
+        title: 'Telling Time in Hindi | Basic Hindi',
+        description: 'Learn how to ask and tell time in Hindi with studio pronunciations.',
+      },
+      words: {
+        title: 'Core Hindi Vocabulary | Basic Hindi',
+        description: 'Essential high-frequency Hindi words across daily life, business, dining, and travel.',
+      },
+      quiz: {
+        title: 'Hindi Practice Quiz | Basic Hindi',
+        description: 'Test your Hindi script, vocabulary, gender agreement, and grammar with interactive quizzes.',
+      },
+    },
+    data: hindiData,
   },
 };
 

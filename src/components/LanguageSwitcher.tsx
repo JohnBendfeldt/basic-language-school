@@ -12,7 +12,7 @@ interface LanguageSwitcherProps {
 
 type PairTab = 'target' | 'base';
 
-export type LanguageRegion = 'all' | 'romance' | 'germanic' | 'slavic-eurasian' | 'east-asian';
+export type LanguageRegion = 'all' | 'romance' | 'germanic' | 'slavic-eurasian' | 'east-asian' | 'south-asian';
 
 export const LANGUAGE_REGION_MAP: Record<string, LanguageRegion> = {
   es: 'romance',
@@ -26,20 +26,22 @@ export const LANGUAGE_REGION_MAP: Record<string, LanguageRegion> = {
   ja: 'east-asian',
   ko: 'east-asian',
   zh: 'east-asian',
+  hi: 'south-asian',
 };
 
 const HIGH_AFFINITY_CORRIDORS: Record<string, SupportedLanguageId[]> = {
-  en: ['es', 'zh', 'fr', 'ja', 'ko', 'de', 'ru', 'pt', 'tr'],
+  en: ['es', 'hi', 'zh', 'fr', 'ja', 'ko', 'de', 'ru', 'pt', 'tr'],
   es: ['pt', 'en', 'fr', 'zh', 'ja', 'de', 'ru'],
   pt: ['es', 'en', 'fr', 'zh', 'ja', 'de'],
   fr: ['en', 'es', 'zh', 'ja', 'de', 'pt', 'ru'],
   de: ['en', 'fr', 'zh', 'ja', 'es', 'ru', 'tr'],
-  ru: ['zh', 'de', 'en', 'ja', 'ko', 'tr', 'es', 'fr'],
+  ru: ['zh', 'de', 'en', 'ja', 'ko', 'tr', 'es', 'fr', 'hi'],
   tr: ['en', 'de', 'zh', 'ko', 'ja', 'ru', 'fr'],
   id: ['zh', 'en', 'ja', 'ko', 'tr', 'de', 'ru'],
   ko: ['zh', 'ja', 'en', 'es', 'de', 'fr', 'ru'],
   ja: ['zh', 'ko', 'en', 'es', 'de', 'fr', 'ru'],
-  zh: ['en', 'ja', 'ko', 'ru', 'es', 'fr', 'de'],
+  zh: ['en', 'ja', 'ko', 'ru', 'es', 'fr', 'de', 'hi'],
+  hi: ['en', 'ru', 'de', 'fr', 'zh', 'es', 'ja'],
 };
 
 interface StoredLanguagePair {
@@ -60,6 +62,8 @@ const FLAG_EMOJIS: Record<string, string> = {
   tr: '🇹🇷',
   ja: '🇯🇵',
   ko: '🇰🇷',
+  zh: '🇨🇳',
+  hi: '🇮🇳',
 };
 
 const DEFAULT_INITIAL_PAIRS: StoredLanguagePair[] = [
@@ -442,6 +446,13 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                   onClick={() => setSelectedRegion('east-asian')}
                 >
                   🌸 East Asian
+                </button>
+                <button
+                  type="button"
+                  className={`region-pill ${selectedRegion === 'south-asian' ? 'active' : ''}`}
+                  onClick={() => setSelectedRegion('south-asian')}
+                >
+                  🪷 South Asian
                 </button>
               </div>
 

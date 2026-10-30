@@ -1,0 +1,3830 @@
+{
+  "Yes": [
+    "हाँ",
+    "haan"
+  ],
+  "No": [
+    "नहीं",
+    "nahīn"
+  ],
+  "Help": [
+    "मदद",
+    "madad"
+  ],
+  "Idea": [
+    "विचार / उपाय",
+    "vichār / upāy"
+  ],
+  "Question": [
+    "प्रश्न / सवाल",
+    "prashna / savāl"
+  ],
+  "Example": [
+    "उदाहरण",
+    "udāharan"
+  ],
+  "Mom": [
+    "माँ",
+    "mān"
+  ],
+  "Dad": [
+    "पापा / पिताजी",
+    "pāpā / pitājī"
+  ],
+  "Object": [
+    "वस्तु / चीज़",
+    "vastu / cheez"
+  ],
+  "Source": [
+    "स्रोत",
+    "srot"
+  ],
+  "Web": [
+    "वेब",
+    "veb"
+  ],
+  "Heart": [
+    "दिल / हृदय",
+    "dil / hriday"
+  ],
+  "Cup": [
+    "कप / प्याला",
+    "kap / pyālā"
+  ],
+  "Oil": [
+    "तेल",
+    "tel"
+  ],
+  "Or": [
+    "या / अथवा",
+    "yā / athavā"
+  ],
+  "This": [
+    "यह / इस",
+    "yeh / is"
+  ],
+  "I eat": [
+    "मैं खाता हूँ",
+    "main khātā hoon"
+  ],
+  "Maybe": [
+    "शायद",
+    "shāyad"
+  ],
+  "Success": [
+    "सफलता",
+    "safaltā"
+  ],
+  "Water": [
+    "पानी",
+    "pānī"
+  ],
+  "Food / Meal": [
+    "खाना / भोजन",
+    "khānā / bhojan"
+  ],
+  "Coffee": [
+    "कॉफ़ी",
+    "kŏfī"
+  ],
+  "Tea": [
+    "चाय",
+    "chāy"
+  ],
+  "Bread": [
+    "रोटी / ब्रेड",
+    "rotī / bred"
+  ],
+  "Milk": [
+    "दूध",
+    "dūdh"
+  ],
+  "Meat": [
+    "माँस",
+    "māns"
+  ],
+  "Fish": [
+    "मछली",
+    "machhlī"
+  ],
+  "Vegetables": [
+    "सब्ज़ियाँ",
+    "sabziyān"
+  ],
+  "Vegetable": [
+    "सब्ज़ी",
+    "sabzī"
+  ],
+  "Fruit": [
+    "फल",
+    "phal"
+  ],
+  "Apple": [
+    "सेब",
+    "seb"
+  ],
+  "Banana": [
+    "केला",
+    "kelā"
+  ],
+  "Orange (fruit)": [
+    "संतरा",
+    "santrā"
+  ],
+  "Strawberry": [
+    "स्ट्रॉबेरी",
+    "strŏberī"
+  ],
+  "Egg": [
+    "अंडा",
+    "andā"
+  ],
+  "Cheese": [
+    "पनीर",
+    "panīr"
+  ],
+  "Rice": [
+    "चावल",
+    "chāval"
+  ],
+  "Sugar": [
+    "चीनी / शक्कर",
+    "chīnī / shakkar"
+  ],
+  "Salt": [
+    "नमक",
+    "namak"
+  ],
+  "Soup": [
+    "सूप / शोरबा",
+    "sūp"
+  ],
+  "Salad": [
+    "सलाद",
+    "salād"
+  ],
+  "Potato": [
+    "आलू",
+    "ālū"
+  ],
+  "Tomato": [
+    "टमाटर",
+    "tamātar"
+  ],
+  "Onion": [
+    "प्याज़",
+    "pyāz"
+  ],
+  "Garlic": [
+    "लहसुन",
+    "lahsun"
+  ],
+  "Butter": [
+    "मक्खन",
+    "makkhan"
+  ],
+  "Chicken": [
+    "मुर्ग़ा / चिकन",
+    "murgā / chikan"
+  ],
+  "Beef": [
+    "गोमाँस",
+    "gomāns"
+  ],
+  "Pork": [
+    "सूअर का माँस",
+    "sūar kā māns"
+  ],
+  "Yogurt": [
+    "दही",
+    "dahī"
+  ],
+  "Borscht": [
+    "बोर्स्ट (सूप)",
+    "borsht"
+  ],
+  "Yolk": [
+    "ज़र्दी (अंडे की पीली ज़र्दी)",
+    "zardī"
+  ],
+  "Kettle": [
+    "केतली",
+    "ketlī"
+  ],
+  "Lemon": [
+    "नींबू",
+    "nīmbū"
+  ],
+  "Grape": [
+    "अंगूर",
+    "angūr"
+  ],
+  "Glass (cup)": [
+    "गिलास",
+    "gilās"
+  ],
+  "Friend": [
+    "दोस्त / मित्र",
+    "dost / mitra"
+  ],
+  "Family": [
+    "परिवार",
+    "parivār"
+  ],
+  "Man": [
+    "पुरुष / आदमी",
+    "purush / ādmī"
+  ],
+  "Woman": [
+    "महिला / औरत",
+    "mahilā / aurat"
+  ],
+  "Child": [
+    "बच्चा",
+    "bachchā"
+  ],
+  "Boy": [
+    "लड़का",
+    "laṛkā"
+  ],
+  "Girl": [
+    "लड़की",
+    "laṛkī"
+  ],
+  "Father": [
+    "पिता / पापा",
+    "pitā / pāpā"
+  ],
+  "Mother": [
+    "माता / माँ",
+    "mātā / mān"
+  ],
+  "Husband": [
+    "पति",
+    "pati"
+  ],
+  "Wife": [
+    "पत्नी",
+    "patnī"
+  ],
+  "Brother": [
+    "भाई",
+    "bhāī"
+  ],
+  "Sister": [
+    "बहन",
+    "bahan"
+  ],
+  "Son": [
+    "बेटा / पुत्र",
+    "betā / putra"
+  ],
+  "Daughter": [
+    "बेटी / पुत्री",
+    "betī / putrī"
+  ],
+  "Parents": [
+    "माता-पिता",
+    "mātā-pitā"
+  ],
+  "Grandfather": [
+    "दादा / नाना",
+    "dādā / nānā"
+  ],
+  "Grandmother": [
+    "दादी / नानी",
+    "dādī / nānī"
+  ],
+  "Teacher": [
+    "शिक्षक / अध्यापक",
+    "shikshak / adhyāpak"
+  ],
+  "Student": [
+    "छात्र / विद्यार्थी",
+    "chhātra / vidyārthī"
+  ],
+  "Doctor": [
+    "डॉक्टर / चिकित्सक",
+    "dŏktar"
+  ],
+  "Nurse": [
+    "नर्स / परिचारिका",
+    "nars"
+  ],
+  "Police officer": [
+    "पुलिस अधिकारी",
+    "pulis adhikārī"
+  ],
+  "Firefighter": [
+    "दमकलकर्मी",
+    "damkalkarmī"
+  ],
+  "Lawyer": [
+    "वकील",
+    "vakīl"
+  ],
+  "Engineer": [
+    "इंजीनियर / अभियंता",
+    "injīniyar"
+  ],
+  "Developer": [
+    "डेवलपर / विकासकर्ता",
+    "devalapar"
+  ],
+  "Designer": [
+    "डिज़ाइनर",
+    "dizāinar"
+  ],
+  "Manager": [
+    "प्रबंधक / मैनेजर",
+    "prabandhak"
+  ],
+  "Colleague": [
+    "सहकर्मी",
+    "sahkarmī"
+  ],
+  "Boss": [
+    "बॉस / मालिक",
+    "bŏs / mālik"
+  ],
+  "Client": [
+    "ग्राहक / क्लाइंट",
+    "grāhak"
+  ],
+  "Customer": [
+    "ग्राहक",
+    "grāhak"
+  ],
+  "Guest": [
+    "अतिथि / मेहमान",
+    "atithi / mehmān"
+  ],
+  "Driver": [
+    "चालक / ड्राइवर",
+    "chālak / drāivar"
+  ],
+  "Waiter": [
+    "वेटर / बैरा",
+    "vetar"
+  ],
+  "Chef": [
+    "रसोइया / शेफ़",
+    "rasoiyā / shef"
+  ],
+  "Patient": [
+    "मरीज़ / रोगी",
+    "marīz / rogī"
+  ],
+  "Baby": [
+    "शिशु / छोटा बच्चा",
+    "shishu / chhotā bachchā"
+  ],
+  "Person": [
+    "व्यक्ति / इंसान",
+    "vyakti / insān"
+  ],
+  "People": [
+    "लोग",
+    "log"
+  ],
+  "Czar / King": [
+    "राजा / ज़ार",
+    "rājā / zār"
+  ],
+  "Medicine": [
+    "दवा / औषधि",
+    "davā / aushadhi"
+  ],
+  "Pain": [
+    "दर्द / पीड़ा",
+    "dard / pīdā"
+  ],
+  "Fever": [
+    "बुख़ार",
+    "bukhār"
+  ],
+  "Allergy": [
+    "एलर्जी",
+    "elarjī"
+  ],
+  "Headache": [
+    "सिरदर्द",
+    "sirdard"
+  ],
+  "Stomachache": [
+    "पेट दर्द",
+    "pet dard"
+  ],
+  "Cough": [
+    "खाँसी",
+    "khānsī"
+  ],
+  "Cold (illness)": [
+    "ज़ुकाम / ठंड",
+    "zukām / thand"
+  ],
+  "Prescription": [
+    "नुस्ख़ा / पर्चा",
+    "nuskha"
+  ],
+  "Pharmacy": [
+    "दवाखाना",
+    "davākhānā"
+  ],
+  "Hospital": [
+    "अस्पताल",
+    "aspatāl"
+  ],
+  "Ambulance": [
+    "एम्बुलेंस / रोगी वाहन",
+    "embulens"
+  ],
+  "Emergency": [
+    "आपातकाल",
+    "āpātkāl"
+  ],
+  "Bandage": [
+    "पट्टी",
+    "pattī"
+  ],
+  "Blood": [
+    "रक्त / ख़ून",
+    "rakta / khūn"
+  ],
+  "Eye": [
+    "आँख",
+    "āankh"
+  ],
+  "Eyes": [
+    "आँखें",
+    "āankhein"
+  ],
+  "Cheek": [
+    "गाल",
+    "gāl"
+  ],
+  "Nose": [
+    "नाक",
+    "nāk"
+  ],
+  "Ear": [
+    "कान",
+    "kān"
+  ],
+  "Mouth": [
+    "मुँह",
+    "munh"
+  ],
+  "Tooth": [
+    "दाँत",
+    "dāant"
+  ],
+  "Head": [
+    "सिर",
+    "sir"
+  ],
+  "Hand": [
+    "हाथ",
+    "hāth"
+  ],
+  "Foot": [
+    "पैर",
+    "pair"
+  ],
+  "Leg": [
+    "टांग / पैर",
+    "tāng / pair"
+  ],
+  "Arm": [
+    "बाँह / भुजा",
+    "bāanh"
+  ],
+  "Finger": [
+    "उँगली",
+    "ungalī"
+  ],
+  "Back": [
+    "पीठ",
+    "peeth"
+  ],
+  "Home / House": [
+    "घर / मकान",
+    "ghar / makān"
+  ],
+  "Apartment": [
+    "अपार्टमेंट / फ़्लैट",
+    "apārtment / flait"
+  ],
+  "Room": [
+    "कमरा",
+    "kamrā"
+  ],
+  "Kitchen": [
+    "रसोईघर / किचन",
+    "rasoīghar"
+  ],
+  "Bathroom": [
+    "स्नानघर / बाथरूम",
+    "snānghar"
+  ],
+  "Bedroom": [
+    "शयनकक्ष / बेडरूम",
+    "shayankaksh"
+  ],
+  "Living room": [
+    "बैठक / लिविंग रूम",
+    "baithak"
+  ],
+  "Table": [
+    "मेज़",
+    "mez"
+  ],
+  "Chair": [
+    "कुर्सी",
+    "kursī"
+  ],
+  "Bed": [
+    "बिस्तर / पलंग",
+    "bistar / palang"
+  ],
+  "Door": [
+    "दरवाज़ा",
+    "darvāzā"
+  ],
+  "Window": [
+    "खिड़की",
+    "khidkī"
+  ],
+  "Floor": [
+    "फ़र्श",
+    "farsh"
+  ],
+  "Wall": [
+    "दीवार",
+    "dīvār"
+  ],
+  "Roof": [
+    "छत",
+    "chhat"
+  ],
+  "Balcony": [
+    "बालकनी / छज्जा",
+    "bālkanī"
+  ],
+  "Key": [
+    "चाबी",
+    "chābī"
+  ],
+  "Lock": [
+    "ताला",
+    "tālā"
+  ],
+  "Lamp": [
+    "दीपक / लैंप",
+    "dīpak / laimp"
+  ],
+  "Mirror": [
+    "आईना / शीशा",
+    "āīnā / sheeshā"
+  ],
+  "Clock / Watch": [
+    "घड़ी",
+    "ghadī"
+  ],
+  "Watch / Clock": [
+    "घड़ी",
+    "ghadī"
+  ],
+  "Bag": [
+    "थैला / बैग",
+    "thailā / baig"
+  ],
+  "Luggage": [
+    "सामान / लगेज",
+    "sāmān / lagej"
+  ],
+  "Closet": [
+    "अलमारी",
+    "almārī"
+  ],
+  "Glasses": [
+    "चश्मा",
+    "chashmā"
+  ],
+  "Shoe": [
+    "जूता",
+    "jūtā"
+  ],
+  "Clothes": [
+    "कपड़े",
+    "kapde"
+  ],
+  "Shirt": [
+    "क़मीज़ / शर्ट",
+    "qameez / shart"
+  ],
+  "Pants": [
+    "पतलून / पैंट",
+    "patlūn / paint"
+  ],
+  "Dress": [
+    "पोशाक / ड्रेस",
+    "poshāk / dres"
+  ],
+  "Coat": [
+    "कोट",
+    "kot"
+  ],
+  "Hat": [
+    "टोपी",
+    "topī"
+  ],
+  "Socks": [
+    "मोज़े",
+    "moze"
+  ],
+  "Towel": [
+    "तौलिया",
+    "tauliyā"
+  ],
+  "Soap": [
+    "साबुन",
+    "sābun"
+  ],
+  "Shampoo": [
+    "शैम्पू",
+    "shaimpū"
+  ],
+  "Toothbrush": [
+    "टूथब्रश",
+    "tūthbrash"
+  ],
+  "Toothpaste": [
+    "टूथपेस्ट / दंतमंजन",
+    "tūthpest"
+  ],
+  "Entrance": [
+    "प्रवेश द्वार",
+    "pravesh dvār"
+  ],
+  "City": [
+    "शहर",
+    "shahar"
+  ],
+  "Country": [
+    "देश",
+    "desh"
+  ],
+  "Street": [
+    "सड़क / रास्ता",
+    "sadak / rāstā"
+  ],
+  "Road": [
+    "सड़क / मार्ग",
+    "sadak / mārg"
+  ],
+  "Square (plaza)": [
+    "चौक / मैदान",
+    "chauk / maidān"
+  ],
+  "Park": [
+    "पार्क / बगीचा",
+    "pārk / bagīchā"
+  ],
+  "Bridge": [
+    "पुल",
+    "pul"
+  ],
+  "Building": [
+    "इमारत / भवन",
+    "imārat / bhavan"
+  ],
+  "Store / Shop": [
+    "दुकान",
+    "dukān"
+  ],
+  "Shop / Store": [
+    "दुकान",
+    "dukān"
+  ],
+  "Supermarket": [
+    "सुपरमार्केट / बाज़ार",
+    "suparmārket"
+  ],
+  "Market": [
+    "बाज़ार / मंडी",
+    "bāzār / mandī"
+  ],
+  "Bakery": [
+    "बेकरी / नानबाई",
+    "bekarī"
+  ],
+  "Bank": [
+    "बैंक",
+    "baink"
+  ],
+  "Post office": [
+    "डाकघर",
+    "dākghar"
+  ],
+  "Library": [
+    "पुस्तकालय / लाइब्रेरी",
+    "pustakālay"
+  ],
+  "School": [
+    "विद्यालय / स्कूल",
+    "vidyālay / skūl"
+  ],
+  "University": [
+    "विश्वविद्यालय / यूनिवर्सिटी",
+    "vishvavidyālay"
+  ],
+  "Museum": [
+    "संग्रहालय / म्यूज़ियम",
+    "sangrahālay"
+  ],
+  "Cinema": [
+    "सिनेमाघर / सिनेमा",
+    "sinemā"
+  ],
+  "Theater": [
+    "रंगमंच / थिएटर",
+    "rangmanch / thietar"
+  ],
+  "Restaurant": [
+    "रेस्तरां / भोजनालय",
+    "restarān"
+  ],
+  "Cafe": [
+    "कैफ़े / कॉफ़ी शॉप",
+    "kaife"
+  ],
+  "Bar": [
+    "बार / मदिरालय",
+    "bār"
+  ],
+  "Hotel": [
+    "होटल",
+    "hotel"
+  ],
+  "Airport": [
+    "हवाई अड्डा",
+    "havāī addā"
+  ],
+  "Train station": [
+    "रेलवे स्टेशन",
+    "relve steshan"
+  ],
+  "Bus stop": [
+    "बस स्टॉप / बस अड्डा",
+    "bas stŏp"
+  ],
+  "Subway": [
+    "मेट्रो / सबवे",
+    "metro"
+  ],
+  "Car": [
+    "गाड़ी / कार",
+    "gādī / kār"
+  ],
+  "Bus": [
+    "बस",
+    "bas"
+  ],
+  "Train": [
+    "ट्रेन / रेलगाड़ी",
+    "tren / relgādī"
+  ],
+  "Airplane": [
+    "हवाई जहाज़ / विमान",
+    "havāī jahāz"
+  ],
+  "Boat": [
+    "नाव / कश्ती",
+    "nāv / kashtī"
+  ],
+  "Ship": [
+    "जहाज़ / समुद्री पोत",
+    "jahāz"
+  ],
+  "Bicycle": [
+    "साइकिल",
+    "sāikil"
+  ],
+  "Taxi": [
+    "टैक्सी",
+    "taiksī"
+  ],
+  "Ticket": [
+    "टिकट",
+    "tikat"
+  ],
+  "Passport": [
+    "पासपोर्ट",
+    "pāsport"
+  ],
+  "Visa": [
+    "वीज़ा",
+    "vīzā"
+  ],
+  "Map": [
+    "नक्शा / मानचित्र",
+    "nakshā"
+  ],
+  "Flight": [
+    "उड़ान / फ़्लाइट",
+    "udān / flāit"
+  ],
+  "Reservation": [
+    "आरक्षण / बुकिंग",
+    "ārakshan / buking"
+  ],
+  "Wagon / Car": [
+    "डिब्बा / वैगन",
+    "dibbā / vaigan"
+  ],
+  "Island": [
+    "द्वीप / टापू",
+    "dvīp / tāpū"
+  ],
+  "South": [
+    "दक्षिण",
+    "dakshin"
+  ],
+  "Sun": [
+    "सूरज / सूर्य",
+    "sūraj / sūrya"
+  ],
+  "Moon": [
+    "चाँद / चंद्रमा",
+    "chānd / chandramā"
+  ],
+  "Star": [
+    "तारा / नक्षत्र",
+    "tārā"
+  ],
+  "Sky": [
+    "आसमान / आकाश",
+    "āsmān / ākāsh"
+  ],
+  "Cloud": [
+    "क्लाउड",
+    "klāud"
+  ],
+  "Rain": [
+    "बारिश / वर्षा",
+    "bārish / varshā"
+  ],
+  "Snow": [
+    "बर्फ़",
+    "barf"
+  ],
+  "Wind": [
+    "हवा / पवन",
+    "havā / pavan"
+  ],
+  "Storm": [
+    "तूफ़ान / आँधी",
+    "tūfān"
+  ],
+  "Weather": [
+    "मौसम",
+    "mausam"
+  ],
+  "Nature": [
+    "प्रकृति / कुदरत",
+    "prakriti"
+  ],
+  "Tree": [
+    "पेड़ / वृक्ष",
+    "ped / vriksh"
+  ],
+  "Flower": [
+    "फूल / पुष्प",
+    "phūl / pushpa"
+  ],
+  "Grass": [
+    "घास",
+    "ghās"
+  ],
+  "Forest": [
+    "जंगल / वन",
+    "jangal / van"
+  ],
+  "Mountain": [
+    "पहाड़ / पर्वत",
+    "pahād / parvat"
+  ],
+  "River": [
+    "नदी / सरिता",
+    "nadī"
+  ],
+  "Lake": [
+    "झील",
+    "jheel"
+  ],
+  "Sea": [
+    "समुद्र / सागर",
+    "samudra / sāgar"
+  ],
+  "Ocean": [
+    "महासागर",
+    "mahāsāgar"
+  ],
+  "Beach": [
+    "समुद्र तट / बीच",
+    "bīch / samudra tat"
+  ],
+  "Fire": [
+    "आग / अग्नि",
+    "āg / agni"
+  ],
+  "Earth": [
+    "पृथ्वी / धरती",
+    "prithvī / dhartī"
+  ],
+  "Air": [
+    "हवा / वायु",
+    "havā / vāyu"
+  ],
+  "Bird": [
+    "पक्षी / चिड़िया",
+    "pakshī / chidiyā"
+  ],
+  "Dog": [
+    "कुत्ता",
+    "kuttā"
+  ],
+  "Cat": [
+    "बिल्ली",
+    "billī"
+  ],
+  "Horse": [
+    "घोड़ा",
+    "ghodā"
+  ],
+  "Cow": [
+    "गाय",
+    "gāy"
+  ],
+  "Sheep": [
+    "भेड़",
+    "bhed"
+  ],
+  "Pig": [
+    "सूअर",
+    "sūar"
+  ],
+  "Lion": [
+    "शेर / सिंह",
+    "sher / sinh"
+  ],
+  "Tiger": [
+    "बाघ",
+    "bāgh"
+  ],
+  "Bear": [
+    "भालू",
+    "bhālū"
+  ],
+  "Elephant": [
+    "हाथी",
+    "hāthī"
+  ],
+  "Monkey": [
+    "बंदर",
+    "bandar"
+  ],
+  "Snake": [
+    "साँप / सर्प",
+    "sāanp"
+  ],
+  "Mouse": [
+    "चूहा",
+    "chūhā"
+  ],
+  "Rabbit": [
+    "खरगोश",
+    "khargosh"
+  ],
+  "Duck": [
+    "बत्तख़",
+    "battakh"
+  ],
+  "Christmas tree": [
+    "क्रिसमस ट्री",
+    "krismas trī"
+  ],
+  "Computer": [
+    "कंप्यूटर / संगणक",
+    "kampyūtar"
+  ],
+  "Laptop": [
+    "लैपटॉप",
+    "laiptŏp"
+  ],
+  "Phone": [
+    "फ़ोन / मोबाइल",
+    "fon / mobāil"
+  ],
+  "Smartphone": [
+    "स्मार्टफ़ोन",
+    "smārtfon"
+  ],
+  "Screen": [
+    "स्क्रीन / पर्दा",
+    "skrīn"
+  ],
+  "Keyboard": [
+    "कीबोर्ड / कुंजीपटल",
+    "kībōrd"
+  ],
+  "Mouse (computer)": [
+    "माउस",
+    "māus"
+  ],
+  "Internet": [
+    "इंटरनेट",
+    "intarnet"
+  ],
+  "Wi-Fi": [
+    "वाई-फ़ाई",
+    "vāī-fāī"
+  ],
+  "Website": [
+    "वेबसाइट",
+    "vebsāit"
+  ],
+  "Email": [
+    "ईमेल",
+    "īmel"
+  ],
+  "Password": [
+    "पासवर्ड / कूटशब्द",
+    "pāsvard"
+  ],
+  "Account": [
+    "खाता / अकाउंट",
+    "khātā / akāunt"
+  ],
+  "File": [
+    "फ़ाइल / नस्ती",
+    "fāil"
+  ],
+  "Folder": [
+    "फ़ोल्डर",
+    "foldar"
+  ],
+  "Data": [
+    "डेटा / आँकड़े",
+    "detā"
+  ],
+  "Database": [
+    "डेटाबेस",
+    "detābes"
+  ],
+  "Software": [
+    "सॉफ़्टवेयर",
+    "sŏftveyar"
+  ],
+  "Application / App": [
+    "एप्लिकेशन / ऐप",
+    "aip"
+  ],
+  "Code": [
+    "कोड",
+    "kod"
+  ],
+  "Bug / Error": [
+    "त्रुटि / बग",
+    "truti / bag"
+  ],
+  "Error": [
+    "त्रुटि / ग़लती",
+    "truti / galtī"
+  ],
+  "Fix": [
+    "सुधार / फ़िक्स",
+    "sudhār"
+  ],
+  "Update": [
+    "अपडेट / अद्यतन",
+    "apadet"
+  ],
+  "Download": [
+    "डाउनलोड",
+    "dāunlod"
+  ],
+  "Upload": [
+    "अपलोड",
+    "apalod"
+  ],
+  "Search": [
+    "खोज / सर्च",
+    "khoj / sarch"
+  ],
+  "Link": [
+    "लिंक / कड़ी",
+    "link"
+  ],
+  "Network": [
+    "नेटवर्क / संजाल",
+    "netvark"
+  ],
+  "Server": [
+    "सर्वर",
+    "sarvar"
+  ],
+  "Security": [
+    "सुरक्षा",
+    "surakshā"
+  ],
+  "Backup": [
+    "बैकअप",
+    "baikap"
+  ],
+  "Login": [
+    "लॉग इन",
+    "lŏg in"
+  ],
+  "Logout": [
+    "लॉग आउट",
+    "lŏg āut"
+  ],
+  "Settings": [
+    "सेटिंग्स / व्यवस्था",
+    "setingz"
+  ],
+  "Profile": [
+    "प्रोफ़ाइल",
+    "profāil"
+  ],
+  "Message": [
+    "संदेश / मैसेज",
+    "sandesh"
+  ],
+  "Notification": [
+    "अधिसूचना / नोटिफिकेशन",
+    "adhisūchnā"
+  ],
+  "Battery": [
+    "बैटरी",
+    "baitarī"
+  ],
+  "Charger": [
+    "चार्जर",
+    "chārjar"
+  ],
+  "Camera": [
+    "कैमरा",
+    "kaimarā"
+  ],
+  "Microphone": [
+    "माइक्रोफ़ोन / माइक",
+    "māikrofon"
+  ],
+  "Headphones": [
+    "हेडफ़ोन",
+    "hedfon"
+  ],
+  "Speaker": [
+    "स्पीकर",
+    "spīkar"
+  ],
+  "Remote work": [
+    "दूरस्थ कार्य / रिमोट वर्क",
+    "rimot vark"
+  ],
+  "Video call": [
+    "वीडियो कॉल",
+    "vīdiyo kŏl"
+  ],
+  "Screen sharing": [
+    "स्क्रीन शेयरिंग",
+    "skrīn sheyaring"
+  ],
+  "Chat": [
+    "चैट / बातचीत",
+    "chait"
+  ],
+  "Task": [
+    "कार्य / काम",
+    "kārya / kām"
+  ],
+  "Deadline": [
+    "अंतिम तिथि / डेडलाइन",
+    "dedlāin"
+  ],
+  "Release / Launch": [
+    "रिलीज़ / शुभारंभ",
+    "rilīz"
+  ],
+  "Performance": [
+    "प्रदर्शन / परफ़ॉर्मेंस",
+    "pradarshan"
+  ],
+  "Optimization": [
+    "अनुकूलन / ऑप्टिमाइज़ेशन",
+    "anukūlan"
+  ],
+  "Refactor": [
+    "रीफ़ैक्टर / पुनर्गठन",
+    "rīfaiktar"
+  ],
+  "Review": [
+    "समीक्षा / रिव्यू",
+    "samīkshā"
+  ],
+  "Feedback": [
+    "प्रतिक्रिया / फ़ीडबैक",
+    "pratikriyā"
+  ],
+  "API": [
+    "एपीआई (API)",
+    "e-pī-āī"
+  ],
+  "Git / Repository": [
+    "गिट रिपॉजिटरी",
+    "git ripŏzitarī"
+  ],
+  "Pull request": [
+    "पुल रिक्वेस्ट",
+    "pul rikvest"
+  ],
+  "Deployment": [
+    "तैनाती / डिप्लॉयमेंट",
+    "diploiment"
+  ],
+  "Monitoring": [
+    "निगरानी / मॉनिटरिंग",
+    "nigarānī"
+  ],
+  "Production (server)": [
+    "प्रोडक्शन सर्वर",
+    "prodakshan sarvar"
+  ],
+  "Staging": [
+    "स्टेजिंग",
+    "stejing"
+  ],
+  "Environment": [
+    "वातावरण / एनवायरनमेंट",
+    "vātāvaran"
+  ],
+  "Work / Job": [
+    "काम / नौकरी",
+    "kām / naukrī"
+  ],
+  "Office": [
+    "कार्यालय / दफ़्तर",
+    "kāryālay / daftar"
+  ],
+  "Company": [
+    "कंपनी / संस्था",
+    "kumpanī"
+  ],
+  "Team": [
+    "टीम / दल",
+    "tīm / dal"
+  ],
+  "Project": [
+    "परियोजना / प्रोजेक्ट",
+    "pariyojanā"
+  ],
+  "Meeting": [
+    "बैठक / मीटिंग",
+    "baithak / mīting"
+  ],
+  "Presentation": [
+    "प्रस्तुति / प्रेजेंटेशन",
+    "prastuti"
+  ],
+  "Report": [
+    "रिपोर्ट / प्रतिवेदन",
+    "riport"
+  ],
+  "Contract": [
+    "अनुबंध / अनुबंध पत्र",
+    "anubandh"
+  ],
+  "Salary": [
+    "वेतन / तनख्वाह",
+    "vetan / tankhvāh"
+  ],
+  "Interview": [
+    "साक्षात्कार / इंटरव्यू",
+    "sākshātkār"
+  ],
+  "Resume": [
+    "बायोडाटा / रिज़्यूमे",
+    "bāyodātā"
+  ],
+  "Business": [
+    "व्यवसाय / व्यापार",
+    "vyavasāy / vyāpār"
+  ],
+  "Budget": [
+    "बजट / आय-व्ययक",
+    "bajat"
+  ],
+  "Invoice": [
+    "चालान / इनवॉइस",
+    "invŏis"
+  ],
+  "Receipt": [
+    "रसीद",
+    "rasīd"
+  ],
+  "Tax": [
+    "कर / टैक्स",
+    "kar / taiks"
+  ],
+  "Sale": [
+    "बिक्री / सेल",
+    "bikrī"
+  ],
+  "Purchase": [
+    "ख़रीदारी / क्रय",
+    "kharīdārī"
+  ],
+  "Discount": [
+    "छूट / डिस्काउंट",
+    "chhūt"
+  ],
+  "Agreement": [
+    "सहमति / समझौता",
+    "sahmati / samjhautā"
+  ],
+  "Proposal": [
+    "प्रस्ताव",
+    "prastāv"
+  ],
+  "Strategy": [
+    "रणनीति / कार्यनीति",
+    "rannanīti"
+  ],
+  "Goal / Target": [
+    "लक्ष्य / टारगेट",
+    "lakshya"
+  ],
+  "Schedule": [
+    "समय सारणी / शेड्यूल",
+    "samay sāranī"
+  ],
+  "Agenda": [
+    "कार्यसूची / एजेंडा",
+    "kāryasūchī"
+  ],
+  "Minute (meeting)": [
+    "कार्यवृत्त / मिनिट्स",
+    "kāryavritti"
+  ],
+  "Audit": [
+    "लेखा परीक्षा / ऑडिट",
+    "ŏdit"
+  ],
+  "Compliance": [
+    "अनुपालन / कम्प्लायंस",
+    "anupālan"
+  ],
+  "Product": [
+    "उत्पाद / प्रोडक्ट",
+    "utpād"
+  ],
+  "Feature": [
+    "सुविधा / फ़ीचर",
+    "suvidhā / fīchar"
+  ],
+  "Roadmap": [
+    "रोडमैप / कार्ययोजना",
+    "rodmaip"
+  ],
+  "Sprint": [
+    "स्प्रिंट",
+    "sprint"
+  ],
+  "Backlog": [
+    "बैकलॉग",
+    "baiklŏg"
+  ],
+  "Money": [
+    "पैसे / रुपया",
+    "paise / rupayā"
+  ],
+  "Cash": [
+    "नकद / कैश",
+    "nakad"
+  ],
+  "Credit card": [
+    "क्रेडिट कार्ड",
+    "kredit kārd"
+  ],
+  "Price": [
+    "मूल्य / क़ीमत",
+    "mūlya / qeemat"
+  ],
+  "Cost": [
+    "लागत / ख़र्च",
+    "lāgat"
+  ],
+  "Cheap": [
+    "सस्ता",
+    "sastā"
+  ],
+  "Expensive": [
+    "महँगा",
+    "mahangā"
+  ],
+  "Pay": [
+    "भुगतान / पैसे चुकाना",
+    "bhugtān"
+  ],
+  "Buy": [
+    "ख़रीदना",
+    "kharīdnā"
+  ],
+  "Sell": [
+    "बेचना",
+    "bechnā"
+  ],
+  "Wallet": [
+    "बटुआ / पर्स",
+    "batuā / pars"
+  ],
+  "Bank account": [
+    "बैंक खाता",
+    "baink khātā"
+  ],
+  "Transfer": [
+    "स्थानांतरण / ट्रांसफ़र",
+    "trānsfar"
+  ],
+  "Refund": [
+    "धनवापसी / रिफ़ंड",
+    "rifand"
+  ],
+  "Coin": [
+    "सिक्का",
+    "sikkā"
+  ],
+  "Bill (currency)": [
+    "नोट / काग़ज़ी मुद्रा",
+    "not"
+  ],
+  "ATM": [
+    "एटीएम (ATM)",
+    "e-tī-em"
+  ],
+  "Change (money)": [
+    "खुले पैसे / छुट्टे",
+    "khule paise"
+  ],
+  "Tip": [
+    "टिप / बख़्शीश",
+    "tip / bakhsheesh"
+  ],
+  "Total": [
+    "कुल / जोड़",
+    "kul"
+  ],
+  "A table for two, please": [
+    "दो लोगों के लिए एक मेज़, कृपया",
+    "do logon ke liye ek mez, kripayā"
+  ],
+  "The menu, please": [
+    "कृपया मेनू दिखाइए",
+    "kripayā menū dikhāiye"
+  ],
+  "The check, please": [
+    "कृपया बिल ले आइए",
+    "kripayā bil le āiye"
+  ],
+  "I have a reservation": [
+    "मेरी बुकिंग / आरक्षण है",
+    "merī buking hai"
+  ],
+  "What do you recommend?": [
+    "आप क्या पसंद करने की सलाह देते हैं?",
+    "aap kyā salāh dete hain?"
+  ],
+  "Delicious": [
+    "स्वादिष्ट / बहुत बढ़िया",
+    "svādisht"
+  ],
+  "Fork": [
+    "काँटा",
+    "kāantā"
+  ],
+  "Knife": [
+    "चाकू / छुरी",
+    "chākū"
+  ],
+  "Spoon": [
+    "चम्मच",
+    "chammach"
+  ],
+  "Plate": [
+    "थाली / प्लेट",
+    "thālī / plet"
+  ],
+  "Napkin": [
+    "नेपकिन / रुमाल",
+    "nepkin"
+  ],
+  "Time / Weather": [
+    "समय / मौसम",
+    "samay / mausam"
+  ],
+  "Today": [
+    "आज",
+    "aaj"
+  ],
+  "Tomorrow / Morning": [
+    "कल (आने वाला) / सुबह",
+    "kal / subah"
+  ],
+  "Tomorrow": [
+    "कल (आने वाला)",
+    "kal"
+  ],
+  "Yesterday": [
+    "कल (बीता हुआ)",
+    "kal"
+  ],
+  "Hour": [
+    "घंटा",
+    "ghantā"
+  ],
+  "Minute": [
+    "मिनट",
+    "minat"
+  ],
+  "Second": [
+    "सेकंड",
+    "sekand"
+  ],
+  "Day": [
+    "दिन / वार",
+    "din / vār"
+  ],
+  "Week": [
+    "सप्ताह / हफ़्ता",
+    "saptāh / haftā"
+  ],
+  "Month": [
+    "महीना / माह",
+    "mahīnā"
+  ],
+  "Year": [
+    "वर्ष / साल",
+    "varsh / sāl"
+  ],
+  "Morning": [
+    "सुबह / प्रातःकाल",
+    "subah"
+  ],
+  "Afternoon": [
+    "दोपहर / मध्याह्न",
+    "dopahar"
+  ],
+  "Evening": [
+    "शाम / संध्या",
+    "shaam"
+  ],
+  "Night": [
+    "रात / रात्रि",
+    "raat"
+  ],
+  "Midnight": [
+    "आधी रात",
+    "ādhī raat"
+  ],
+  "Noon": [
+    "दोपहर के 12 बजे",
+    "dopahar"
+  ],
+  "Monday": [
+    "सोमवार",
+    "somvār"
+  ],
+  "Tuesday": [
+    "मंगलवार",
+    "mangalvār"
+  ],
+  "Wednesday": [
+    "बुधवार",
+    "budhvār"
+  ],
+  "Thursday": [
+    "गुरुवार / बृहस्पतिवार",
+    "guruvār"
+  ],
+  "Friday": [
+    "शुक्रवार",
+    "shukravār"
+  ],
+  "Saturday": [
+    "शनिवार",
+    "shanivār"
+  ],
+  "Sunday": [
+    "रविवार / इतवार",
+    "ravivār"
+  ],
+  "Weekend": [
+    "सप्ताहांत / वीकेंड",
+    "saptāhānt"
+  ],
+  "Holiday": [
+    "छुट्टी / अवकाश",
+    "chhuttī"
+  ],
+  "Season": [
+    "ऋतु / मौसम",
+    "ritu / mausam"
+  ],
+  "Spring": [
+    "वसंत",
+    "vasant"
+  ],
+  "Summer": [
+    "गर्मी / ग्रीष्म",
+    "garmī"
+  ],
+  "Autumn / Fall": [
+    "पतझड़ / शरद",
+    "patjhad"
+  ],
+  "Winter": [
+    "सर्दी / शीतकाल",
+    "sardī"
+  ],
+  "Red": [
+    "लाल",
+    "lāl"
+  ],
+  "Blue": [
+    "नीला",
+    "neelā"
+  ],
+  "Green": [
+    "हरा",
+    "harā"
+  ],
+  "Yellow": [
+    "पीला",
+    "peelā"
+  ],
+  "Black": [
+    "काला",
+    "kālā"
+  ],
+  "White": [
+    "सफ़ेद",
+    "safed"
+  ],
+  "Orange": [
+    "नारंगी",
+    "nārangī"
+  ],
+  "Purple": [
+    "बैंगनी",
+    "bainganī"
+  ],
+  "Pink": [
+    "गुलाबी",
+    "gulābī"
+  ],
+  "Brown": [
+    "भूरा",
+    "bhūrā"
+  ],
+  "Gray": [
+    "स्लेटी / धूसर",
+    "sletī"
+  ],
+  "Gold": [
+    "सुनहरा / सोने जैसा",
+    "sunahrā"
+  ],
+  "Silver": [
+    "चाँदी जैसा / रूपहला",
+    "chāndī jaisā"
+  ],
+  "Big": [
+    "बड़ा",
+    "badā"
+  ],
+  "Small": [
+    "छोटा",
+    "chhotā"
+  ],
+  "New": [
+    "नया",
+    "nayā"
+  ],
+  "Old": [
+    "पुराना",
+    "purānā"
+  ],
+  "Good": [
+    "अच्छा",
+    "achhā"
+  ],
+  "Bad": [
+    "बुरा / ख़राब",
+    "burā / kharāb"
+  ],
+  "Hot": [
+    "गर्म",
+    "garm"
+  ],
+  "Cold": [
+    "ठंडा",
+    "thandā"
+  ],
+  "Warm": [
+    "गुनगुना / सुखद गर्म",
+    "gungunā"
+  ],
+  "Cool": [
+    "शीतल / सुहावना ठंडा",
+    "sheetal"
+  ],
+  "Fast": [
+    "तेज़",
+    "tez"
+  ],
+  "Slow": [
+    "धीमा",
+    "dhīmā"
+  ],
+  "Easy": [
+    "आसान / सरल",
+    "āsān / saral"
+  ],
+  "Difficult": [
+    "कठिन / मुश्किल",
+    "kathin / mushkil"
+  ],
+  "Beautiful": [
+    "सुंदर / ख़ूबसूरत",
+    "sundar / khūbsūrat"
+  ],
+  "Ugly": [
+    "बदसूरत",
+    "badsūrat"
+  ],
+  "Clean": [
+    "साफ़ / स्वच्छ",
+    "saaf / svachh"
+  ],
+  "Dirty": [
+    "गंदा / मैला",
+    "gandā"
+  ],
+  "Happy": [
+    "ख़ुश / प्रसन्न",
+    "khush"
+  ],
+  "Sad": [
+    "उदास / दुखी",
+    "udās / dukhī"
+  ],
+  "Tired": [
+    "थका हुआ",
+    "thakā huā"
+  ],
+  "Hungry": [
+    "भूखा",
+    "bhūkhā"
+  ],
+  "Thirsty": [
+    "प्यासा",
+    "pyāsā"
+  ],
+  "Busy": [
+    "व्यस्त / मसरूफ़",
+    "vyasta"
+  ],
+  "Free": [
+    "निःशुल्क (मुफ़्त) / आज़ाद",
+    "muft / āzād"
+  ],
+  "Open": [
+    "खुला",
+    "khulā"
+  ],
+  "Closed": [
+    "बंद",
+    "band"
+  ],
+  "Near": [
+    "पास / नज़दीक",
+    "pās / nazdeek"
+  ],
+  "Far": [
+    "दूर",
+    "dūr"
+  ],
+  "Right (correct)": [
+    "सही / उचित",
+    "sahī"
+  ],
+  "Wrong": [
+    "ग़लत",
+    "galat"
+  ],
+  "Early": [
+    "जल्दी / समय से पहले",
+    "jaldī"
+  ],
+  "Late": [
+    "देर से / विलंब",
+    "der se"
+  ],
+  "Strong": [
+    "मज़बूत / ताक़तवर",
+    "mazbūt"
+  ],
+  "Weak": [
+    "कमज़ोर",
+    "kamzor"
+  ],
+  "Rich": [
+    "अमीर / धनी",
+    "amīr / dhanī"
+  ],
+  "Poor": [
+    "ग़रीब / निर्धन",
+    "garīb"
+  ],
+  "Important": [
+    "महत्वपूर्ण / ज़रूरी",
+    "mahatvapūrna"
+  ],
+  "Safe": [
+    "सुरक्षित",
+    "surakshit"
+  ],
+  "Dangerous": [
+    "ख़तरनाक",
+    "khatarnāk"
+  ],
+  "To learn": [
+    "सीखना",
+    "sīkhnā"
+  ],
+  "To speak": [
+    "बोलना",
+    "bolnā"
+  ],
+  "To eat": [
+    "खाना",
+    "khānā"
+  ],
+  "To drink": [
+    "पीना",
+    "pīnā"
+  ],
+  "To go": [
+    "जाना",
+    "jānā"
+  ],
+  "To come": [
+    "आना",
+    "ānā"
+  ],
+  "To see": [
+    "देखना",
+    "dekhnā"
+  ],
+  "To look": [
+    "देखना / नज़र डालना",
+    "dekhnā"
+  ],
+  "To hear": [
+    "सुनना",
+    "sunnā"
+  ],
+  "To listen": [
+    "ध्यान से सुनना",
+    "dhyān se sunnā"
+  ],
+  "To read": [
+    "पढ़ना",
+    "padhnā"
+  ],
+  "To write": [
+    "लिखना",
+    "likhnā"
+  ],
+  "To sleep": [
+    "सोना",
+    "sonā"
+  ],
+  "To wake up": [
+    "जागना / उठना",
+    "jāgnā"
+  ],
+  "To work": [
+    "काम करना",
+    "kām karnā"
+  ],
+  "To study": [
+    "अध्ययन करना / पढ़ाई करना",
+    "padhāī karnā"
+  ],
+  "To understand": [
+    "समझना",
+    "samajhnā"
+  ],
+  "To know (facts)": [
+    "जानना / पता होना",
+    "jānnā"
+  ],
+  "To know (person)": [
+    "पहचानना / जानना",
+    "pahchānnā"
+  ],
+  "To want": [
+    "चाहना",
+    "chāhnā"
+  ],
+  "To need": [
+    "ज़रूरत होना",
+    "zaroorat honā"
+  ],
+  "To like": [
+    "पसंद करना",
+    "pasand karnā"
+  ],
+  "To love": [
+    "प्यार करना / प्रेम करना",
+    "pyār karnā"
+  ],
+  "To live": [
+    "रहना / जीना",
+    "rahnā"
+  ],
+  "To open": [
+    "खोलना",
+    "kholnā"
+  ],
+  "To close": [
+    "बंद करना",
+    "band karnā"
+  ],
+  "To buy": [
+    "ख़रीदना",
+    "kharīdnā"
+  ],
+  "To sell": [
+    "बेचना",
+    "bechnā"
+  ],
+  "To pay": [
+    "पैसे चुकाना / भुगतान करना",
+    "bhugtān karnā"
+  ],
+  "To give": [
+    "देना",
+    "denā"
+  ],
+  "To take": [
+    "लेना",
+    "lenā"
+  ],
+  "To ask": [
+    "पूछना",
+    "pūchhnā"
+  ],
+  "To answer": [
+    "उत्तर देना / जवाब देना",
+    "javāb denā"
+  ],
+  "To say": [
+    "कहना",
+    "kahnā"
+  ],
+  "To tell": [
+    "बताना / सुनाना",
+    "batānā"
+  ],
+  "To help": [
+    "मदद करना / सहायता करना",
+    "madad karnā"
+  ],
+  "To call": [
+    "बुलाना / फ़ोन करना",
+    "bulānā / fon karnā"
+  ],
+  "To wait": [
+    "प्रतीक्षा करना / इंतज़ार करना",
+    "intazār karnā"
+  ],
+  "To find": [
+    "ढूँढना / पाना",
+    "dhūndhnā"
+  ],
+  "To lose": [
+    "खोना / गँवाना",
+    "khonā"
+  ],
+  "To remember": [
+    "याद रखना",
+    "yād rakhnā"
+  ],
+  "To forget": [
+    "भूलना",
+    "bhūlnā"
+  ],
+  "To think": [
+    "सोचना / विचार करना",
+    "sochnā"
+  ],
+  "To feel": [
+    "महसूस करना",
+    "mahsūs karnā"
+  ],
+  "To start / begin": [
+    "शुरू करना / प्रारंभ करना",
+    "shurū karnā"
+  ],
+  "To finish / end": [
+    "ख़त्म करना / समाप्त करना",
+    "khatm karnā"
+  ],
+  "To stop": [
+    "रुकना / रोकना",
+    "ruknā"
+  ],
+  "To travel": [
+    "यात्रा करना / सफ़र करना",
+    "yātrā karnā"
+  ],
+  "To walk": [
+    "चलना / टहलना",
+    "chalnā"
+  ],
+  "To run": [
+    "दौड़ना / भागना",
+    "daudnā"
+  ],
+  "To drive": [
+    "गाड़ी चलाना / ड्राइव करना",
+    "gādī chalānā"
+  ],
+  "To fly": [
+    "उड़ना / हवाई सफ़र करना",
+    "udnā"
+  ],
+  "To swim": [
+    "तैरना",
+    "tairnā"
+  ],
+  "To cook": [
+    "खाना पकाना",
+    "khānā pakānā"
+  ],
+  "To clean": [
+    "साफ़ करना",
+    "saaf karnā"
+  ],
+  "To wash": [
+    "धोना",
+    "dhonā"
+  ],
+  "Zero (0)": [
+    "शून्य",
+    "shūnya"
+  ],
+  "0 (Zero)": [
+    "शून्य",
+    "shūnya"
+  ],
+  "One hundred (100)": [
+    "सौ",
+    "sau"
+  ],
+  "100 (One hundred)": [
+    "सौ",
+    "sau"
+  ],
+  "One thousand (1000)": [
+    "हज़ार",
+    "hazār"
+  ],
+  "1,000 (One thousand)": [
+    "हज़ार",
+    "hazār"
+  ],
+  "Who": [
+    "कौन",
+    "kaun"
+  ],
+  "What": [
+    "क्या",
+    "kyā"
+  ],
+  "Where": [
+    "कहाँ",
+    "kahān"
+  ],
+  "When": [
+    "कब",
+    "kab"
+  ],
+  "Why": [
+    "क्यों",
+    "kyon"
+  ],
+  "How": [
+    "कैसे",
+    "kaise"
+  ],
+  "How much / How many": [
+    "कितना / कितने",
+    "kitnā / kitne"
+  ],
+  "I": [
+    "मैं",
+    "main"
+  ],
+  "You (informal)": [
+    "तुम / तू",
+    "tum / tū"
+  ],
+  "You (formal)": [
+    "आप",
+    "aap"
+  ],
+  "He": [
+    "वह / यह (पुल्लिंग)",
+    "vah"
+  ],
+  "She": [
+    "वह / यह (स्त्रीलिंग)",
+    "vah"
+  ],
+  "It": [
+    "यह / वह",
+    "yeh / vah"
+  ],
+  "We": [
+    "हम",
+    "ham"
+  ],
+  "They": [
+    "वे / वो",
+    "ve / vo"
+  ],
+  "My": [
+    "मेरा / मेरी / मेरे",
+    "merā"
+  ],
+  "Your": [
+    "तुम्हारा / आपका",
+    "tumhārā / āpkā"
+  ],
+  "His": [
+    "उसका / उसके",
+    "uskā"
+  ],
+  "Her": [
+    "उसका / उसकी",
+    "uskī"
+  ],
+  "Our": [
+    "हमारा / हमारी",
+    "hamārā"
+  ],
+  "Their": [
+    "उनका / उनकी",
+    "unkā"
+  ],
+  "Hello (formal)": [
+    "नमस्ते / नमस्कार",
+    "namaste / namaskār"
+  ],
+  "Hello! / Hi!": [
+    "नमस्ते!",
+    "namaste!"
+  ],
+  "Good afternoon": [
+    "शुभ दोपहर",
+    "shubh dopahar"
+  ],
+  "How are you? (formal)": [
+    "आप कैसे हैं?",
+    "aap kaise hain?"
+  ],
+  "Very well, thank you": [
+    "बहुत अच्छा, धन्यवाद",
+    "bahut achhā, dhanyavād"
+  ],
+  "You are welcome": [
+    "आपका स्वागत है",
+    "āpkā svāgat hai"
+  ],
+  "I am sorry": [
+    "मुझे खेद है / माफ़ कीजिये",
+    "maaf kījiye"
+  ],
+  "Have a great day": [
+    "आपका दिन बहुत अच्छा रहे",
+    "aapkā din achhā rahe"
+  ],
+  "No problem": [
+    "कोई बात नहीं",
+    "koī baat nahīn"
+  ],
+  "See you soon": [
+    "जल्द ही मिलेंगे",
+    "jald hī milenge"
+  ],
+  "Kilogram": [
+    "किलोग्राम / किलो",
+    "kilogrām"
+  ],
+  "Kilo": [
+    "किलो",
+    "kilo"
+  ],
+  "Pen": [
+    "कलम / पेन",
+    "kalam / pen"
+  ],
+  "Pencil": [
+    "पेंसिल",
+    "pensil"
+  ],
+  "Notebook": [
+    "नोटबुक / कॉपी",
+    "notbuk"
+  ],
+  "Health": [
+    "स्वास्थ्य / सेहत",
+    "svāsthya / sehat"
+  ],
+  "Gate": [
+    "गेट / प्रवेश द्वार",
+    "get / pravesh dvār"
+  ],
+  "Exit": [
+    "निकास",
+    "nikās"
+  ],
+  "Customs": [
+    "सीमा शुल्क / कस्टम्स",
+    "seemā shulk"
+  ],
+  "Tablet": [
+    "टैबलेट",
+    "taiblet"
+  ],
+  "Cable": [
+    "केबल / तार",
+    "kebal / tār"
+  ],
+  "Web / Internet": [
+    "इंटरनेट / वेब",
+    "intarnet / veb"
+  ],
+  "Printer": [
+    "प्रिंटर",
+    "printar"
+  ],
+  "Search / Find": [
+    "खोजना / ढूँढना",
+    "khojnā / dhūndhnā"
+  ],
+  "Save": [
+    "सहेजना / सेव करना",
+    "sahejnā / sev karnā"
+  ],
+  "Delete": [
+    "हटाना / डिलीट करना",
+    "hatānā / dilīt karnā"
+  ],
+  "Send": [
+    "भेजना",
+    "bhejnā"
+  ],
+  "Online": [
+    "ऑनलाइन",
+    "ŏnlāin"
+  ],
+  "Offline": [
+    "ऑफ़लाइन",
+    "ŏflāin"
+  ],
+  "Support / Help Desk": [
+    "सहायता केंद्र / सपोर्ट",
+    "sahāyatā kendra"
+  ],
+  "Close": [
+    "बंद करना",
+    "band karnā"
+  ],
+  "Employee": [
+    "कर्मचारी",
+    "karmachārī"
+  ],
+  "Signature": [
+    "हस्ताक्षर / दस्तख़त",
+    "hastākshar"
+  ],
+  "Vacation": [
+    "छुट्टी / अवकाश",
+    "chhuttī / avakāsh"
+  ],
+  "Resume / CV": [
+    "बायोडाटा / रिज़्यूमे",
+    "bāyodātā"
+  ],
+  "Service": [
+    "सेवा",
+    "sevā"
+  ],
+  "Shipping": [
+    "वितरण / शिपिंग",
+    "shipping"
+  ],
+  "Package": [
+    "पैकेट / पार्सल",
+    "paiket / pārsal"
+  ],
+  "Hardware": [
+    "हार्डवेयर",
+    "hārḍveyar"
+  ],
+  "Cloud storage": [
+    "क्लाउड स्टोरेज",
+    "klāud storej"
+  ],
+  "Artificial Intelligence (AI)": [
+    "कृत्रिम बुद्धिमत्ता (एआई)",
+    "kritrim buddhimattā"
+  ],
+  "Algorithm": [
+    "एल्गोरिदम / कलन विधि",
+    "elgoridam"
+  ],
+  "Cybersecurity": [
+    "साइबर सुरक्षा",
+    "sāibar surakshā"
+  ],
+  "Operating system": [
+    "ऑपरेटिंग सिस्टम",
+    "ŏpareting sistam"
+  ],
+  "Investment": [
+    "निवेश",
+    "nivesh"
+  ],
+  "Profit": [
+    "लाभ / मुनाफ़ा",
+    "lābh / munāfā"
+  ],
+  "Loss": [
+    "हानि / नुक़सान",
+    "hāni / nuqsān"
+  ],
+  "Revenue": [
+    "राजस्व / आय",
+    "rājasva / āy"
+  ],
+  "Expense": [
+    "ख़र्च / व्यय",
+    "kharch / vyay"
+  ],
+  "Marketing": [
+    "विपणन / मार्केटिंग",
+    "vipanan / mārketing"
+  ],
+  "Sales": [
+    "बिक्री",
+    "bikrī"
+  ],
+  "Advertisement": [
+    "विज्ञापन / ऐड",
+    "vigyāpan"
+  ],
+  "Brand": [
+    "ब्रांड / छाप",
+    "brānd"
+  ],
+  "Customer service": [
+    "ग्राहक सेवा",
+    "grāhak sevā"
+  ],
+  "Agreement / Contract": [
+    "समझौता / अनुबंध",
+    "samjhautā / anubandh"
+  ],
+  "Partnership": [
+    "साझेदारी / पार्टनरशिप",
+    "sājhedārī"
+  ],
+  "Shareholder": [
+    "शेयरधारक",
+    "sheyardhārak"
+  ],
+  "Strategy / Plan": [
+    "रणनीति / योजना",
+    "rannanīti / yojanā"
+  ],
+  "Goal": [
+    "लक्ष्य / ध्येय",
+    "lakshya / dhyey"
+  ],
+  "Timeline": [
+    "समय सीमा / टाइमलाइन",
+    "samay seemā"
+  ],
+  "Progress": [
+    "प्रगति / तरक़्क़ी",
+    "pragati"
+  ],
+  "Achievement": [
+    "उपलब्धि / सिद्धि",
+    "upalabdhi"
+  ],
+  "Challenge": [
+    "चुनौती",
+    "chunautī"
+  ],
+  "Solution": [
+    "समाधान / हल",
+    "samādhān / hal"
+  ],
+  "Decision": [
+    "निर्णय / फ़ैसला",
+    "nirnay / faislā"
+  ],
+  "Meeting room": [
+    "बैठक कक्ष / मीटिंग रूम",
+    "baithak kaksh"
+  ],
+  "Whiteboard": [
+    "व्हाइटबोर्ड",
+    "vhāitbord"
+  ],
+  "Coffee machine": [
+    "कॉफ़ी मशीन",
+    "kŏfī mashīn"
+  ],
+  "Water cooler": [
+    "वाटर कूलर",
+    "vātar kūlar"
+  ],
+  "Elevator": [
+    "लिफ़्ट",
+    "lift"
+  ],
+  "Stairs": [
+    "सीढ़ियाँ",
+    "seedhiyān"
+  ],
+  "Parking": [
+    "पार्किंग",
+    "pārking"
+  ],
+  "Reception": [
+    "स्वागत कक्ष / रिसेप्शन",
+    "svāgat kaksh"
+  ],
+  "Security desk": [
+    "सुरक्षा डेस्क",
+    "surakshā desk"
+  ],
+  "Identification (ID)": [
+    "पहचान पत्र (आईडी)",
+    "pahchān patra"
+  ],
+  "Badge": [
+    "बैज / पहचान बिल्ला",
+    "baij"
+  ],
+  "Visitor": [
+    "आगंतुक / दर्शक",
+    "āgantuk"
+  ],
+  "Interview candidate": [
+    "साक्षात्कार उम्मीदवार",
+    "sākshātkār ummīdvār"
+  ],
+  "Job offer": [
+    "नौकरी का प्रस्ताव",
+    "naukrī kā prastāv"
+  ],
+  "Promotion": [
+    "पदोन्नति / प्रमोशन",
+    "padonnati"
+  ],
+  "Resignation": [
+    "इस्तीफ़ा / त्यागपत्र",
+    "istīfā"
+  ],
+  "Retirement": [
+    "सेवानिवृत्ति / रिटायरमेंट",
+    "sevānivritti"
+  ],
+  "Health insurance": [
+    "स्वास्थ्य बीमा",
+    "svāsthya bīmā"
+  ],
+  "Bonus": [
+    "बोनस / अतिरिक्त लाभ",
+    "bonas"
+  ],
+  "Commission": [
+    "कमीशन / दलाली",
+    "kamīshan"
+  ],
+  "Overtime": [
+    "अतिरिक्त समय / ओवरटाइम",
+    "overtāim"
+  ],
+  "Workplace": [
+    "कार्यस्थल",
+    "kāryasthal"
+  ],
+  "Coworker": [
+    "सहकर्मी / साथी",
+    "sahkarmī"
+  ],
+  "Headquarters": [
+    "मुख्यालय",
+    "mukhyālay"
+  ],
+  "Branch office": [
+    "शाखा कार्यालय",
+    "shākhā kāryālay"
+  ],
+  "Conference": [
+    "सम्मेलन / कॉन्फ्रेंस",
+    "sammelan"
+  ],
+  "Workshop": [
+    "कार्यशाला / वर्कशॉप",
+    "kāryashālā"
+  ],
+  "Training": [
+    "प्रशिक्षण / ट्रेनिंग",
+    "prashikshan"
+  ],
+  "Certificate": [
+    "प्रमाणपत्र",
+    "pramānpatra"
+  ],
+  "Degree": [
+    "डिग्री / उपाधि",
+    "digrī"
+  ],
+  "Skill": [
+    "कौशल / हुनर",
+    "kaushal"
+  ],
+  "Experience": [
+    "अनुभव",
+    "anubhav"
+  ],
+  "Knowledge": [
+    "ज्ञान / जानकारी",
+    "gyān"
+  ],
+  "Research": [
+    "अनुसंधान / शोध",
+    "anusandhān / shodh"
+  ],
+  "Analysis": [
+    "विश्लेषण",
+    "vishleshan"
+  ],
+  "Survey": [
+    "सर्वेक्षण / सर्वे",
+    "sarvekshan"
+  ],
+  "Statistics": [
+    "सांख्यिकी / आँकड़े",
+    "sānkhyikī"
+  ],
+  "Growth": [
+    "वृद्धि / विकास",
+    "vriddhi / vikās"
+  ],
+  "Trend": [
+    "प्रवृत्ति / ट्रेंड",
+    "pravritti"
+  ],
+  "Forecast": [
+    "पूर्वानुमान",
+    "pūrvānumān"
+  ],
+  "Risk": [
+    "जोखिम / ख़तरा",
+    "jokhim"
+  ],
+  "Opportunity": [
+    "अवसर / मौक़ा",
+    "avsar / mauqā"
+  ],
+  "Efficiency": [
+    "दक्षता / कार्यकुशलता",
+    "dakshatā"
+  ],
+  "Productivity": [
+    "उत्पादकता",
+    "utpādakatā"
+  ],
+  "Quality": [
+    "गुणवत्ता / क्वालिटी",
+    "gunavattā"
+  ],
+  "Standard": [
+    "मानक / स्तर",
+    "mānak"
+  ],
+  "Regulation": [
+    "विनियम / नियम",
+    "viniyam"
+  ],
+  "Policy": [
+    "नीति / पॉलिसी",
+    "nīti"
+  ],
+  "Procedure": [
+    "प्रक्रिया / तरीक़ा",
+    "prakriyā"
+  ],
+  "Protocol": [
+    "प्रोटोकॉल / नियम संहिता",
+    "protokŏl"
+  ],
+  "Guideline": [
+    "दिशानिर्देश",
+    "dishānirdesh"
+  ],
+  "Manual": [
+    "नियमावली / मैनुअल",
+    "niyamāvalī"
+  ],
+  "Documentation": [
+    "दस्तावेज़ीकरण",
+    "dastāvezīkaran"
+  ],
+  "License": [
+    "लाइसेंस / अनुज्ञप्ति",
+    "lāisens"
+  ],
+  "Patent": [
+    "पेटेंट",
+    "petent"
+  ],
+  "Trademark": [
+    "ट्रेडमार्क / व्यापार चिह्न",
+    "tredmārk"
+  ],
+  "Copyright": [
+    "कॉपीराइट / सर्वाधिकार",
+    "kŏpīrāit"
+  ],
+  "Intellectual property": [
+    "बौद्धिक संपदा",
+    "bauddhīk sampadā"
+  ],
+  "Contractor": [
+    "ठेकेदार / कॉन्ट्रैक्टर",
+    "thekedār"
+  ],
+  "Supplier": [
+    "आपूर्तिकर्ता / सप्लायर",
+    "āpūrtikartā"
+  ],
+  "Vendor": [
+    "विक्रेता / वेंडर",
+    "vikretā"
+  ],
+  "Warehouse": [
+    "गोदाम / वेयरहाउस",
+    "godām"
+  ],
+  "Inventory": [
+    "इन्वेंटरी / सामान सूची",
+    "inventarī"
+  ],
+  "Supply chain": [
+    "आपूर्ति श्रृंखला",
+    "āpūrti shrinkhalā"
+  ],
+  "Logistics": [
+    "रसद / लॉजिस्टिक्स",
+    "logistiks"
+  ],
+  "Delivery": [
+    "वितरण / डिलीवरी",
+    "delivery"
+  ],
+  "Freight": [
+    "माल भाड़ा / फ्रेट",
+    "fret"
+  ],
+  "Cargo": [
+    "माल / कार्गो",
+    "māl / kārgo"
+  ],
+  "Port": [
+    "बंदरगाह",
+    "bandargāh"
+  ],
+  "Border": [
+    "सीमा / बॉर्डर",
+    "seemā"
+  ],
+  "Transit": [
+    "पारगमन / ट्रांज़िट",
+    "trānzit"
+  ],
+  "Station": [
+    "स्टेशन",
+    "steshan"
+  ],
+  "Platform": [
+    "प्लेटफ़ॉर्म",
+    "pletfŏrm"
+  ],
+  "Track": [
+    "पटरी / ट्रैक",
+    "patrī"
+  ],
+  "Ticket counter": [
+    "टिकट काउंटर / टिकट खिड़की",
+    "tikat kāuntar"
+  ],
+  "Information desk": [
+    "पूछताछ केंद्र / सूचना पटल",
+    "pūchhtāchh kendra"
+  ],
+  "Waiting room": [
+    "प्रतीक्षालय / वेटिंग रूम",
+    "prateekshālay"
+  ],
+  "Luggage cart": [
+    "सामान की ट्रॉली",
+    "trŏlī"
+  ],
+  "Security check": [
+    "सुरक्षा जाँच",
+    "surakshā jānch"
+  ],
+  "Boarding pass": [
+    "बोर्डिंग पास",
+    "bording pās"
+  ],
+  "Terminal": [
+    "टर्मिनल",
+    "terminal"
+  ],
+  "Runway": [
+    "रनवे",
+    "ranve"
+  ],
+  "Cockpit": [
+    "कॉकपिट / विमान चालक कक्ष",
+    "kŏkpit"
+  ],
+  "Cabin": [
+    "केबिन / कमरा",
+    "kebin"
+  ],
+  "Aisle seat": [
+    "गलियारे वाली सीट",
+    "galiyāre vālī seet"
+  ],
+  "Window seat": [
+    "खिड़की वाली सीट",
+    "khidkī vālī seet"
+  ],
+  "Seatbelt": [
+    "सीट बेल्ट / सुरक्षा पेटी",
+    "seet belt"
+  ],
+  "Overhead compartment": [
+    "ऊपरी डिब्बा",
+    "ūparī dibbā"
+  ],
+  "Takeoff": [
+    "उड़ान भरना / टेकऑफ़",
+    "tekŏf"
+  ],
+  "Landing": [
+    "उतरना / लैंडिंग",
+    "laining"
+  ],
+  "Turbulence": [
+    "विमान का डगमगाना / टर्बुलेंस",
+    "tarbulens"
+  ],
+  "Delay": [
+    "देरी / विलंब",
+    "derī / vilamb"
+  ],
+  "Cancellation": [
+    "रद्दीकरण / कैंसिलेशन",
+    "raddīkaran"
+  ],
+  "Connection (flight)": [
+    "कनेक्टिंग फ़्लाइट",
+    "kanekting flāit"
+  ],
+  "Lost and found": [
+    "खोया-पाया विभाग",
+    "khoyā-pāyā"
+  ],
+  "Baggage claim": [
+    "सामान वापसी केंद्र",
+    "sāmān vāpasī"
+  ],
+  "Souvenir": [
+    "स्मृति चिह्न / यादगार चीज़",
+    "smriti chihna"
+  ],
+  "Postcard": [
+    "पोस्टकार्ड",
+    "postkārd"
+  ],
+  "Stamp": [
+    "डाक टिकट",
+    "dāk tikat"
+  ],
+  "Guidebook": [
+    "मार्गदर्शिका / गाइडबुक",
+    "mārgadarshikā"
+  ],
+  "Tour": [
+    "दौरा / पर्यटन",
+    "daurā / paryatan"
+  ],
+  "Sightseeing": [
+    "दर्शनीय स्थल देखना",
+    "darshanīya sthal"
+  ],
+  "Attraction": [
+    "आकर्षण / दर्शनीय स्थल",
+    "ākarshan"
+  ],
+  "Monument": [
+    "स्मारक",
+    "smārak"
+  ],
+  "Palace": [
+    "महल / राजमहल",
+    "mahal"
+  ],
+  "Castle": [
+    "क़िला / दुर्ग",
+    "qilā / durg"
+  ],
+  "Temple": [
+    "मंदिर",
+    "mandir"
+  ],
+  "Church": [
+    "चर्च / गिरजाघर",
+    "charch / girjāghar"
+  ],
+  "Mosque": [
+    "मस्जिद",
+    "masjid"
+  ],
+  "Synagogue": [
+    "यहूदी प्रार्थनालय",
+    "yahūdī prārthanālay"
+  ],
+  "Fountain": [
+    "फ़व्वारा",
+    "favvārā"
+  ],
+  "Statue": [
+    "मूर्ति / प्रतिमा",
+    "mūrti / pratimā"
+  ],
+  "Bridge / Overpass": [
+    "पुल / उपरिगामी सेतु",
+    "pul"
+  ],
+  "Highway": [
+    "राजमार्ग / हाईवे",
+    "rājmārg"
+  ],
+  "Traffic light": [
+    "ट्रैफ़िक लाइट / बत्ती",
+    "traifik lāit"
+  ],
+  "Pedestrian crossing": [
+    "पैदल पारपथ / ज़ेबरा क्रॉसिंग",
+    "paidāl pārpath"
+  ],
+  "Sidewalk": [
+    "फ़ुटपाथ / पैदल रास्ता",
+    "futpāth"
+  ],
+  "Crossroad / Intersection": [
+    "चौराहा",
+    "chaurāhā"
+  ],
+  "Roundabout": [
+    "गोल चक्कर / गोलचक्कर",
+    "gol chakkar"
+  ],
+  "Alley": [
+    "गली",
+    "galī"
+  ],
+  "Neighborhood": [
+    "पड़ोस / मुहल्ला",
+    "pados / muhallā"
+  ],
+  "District": [
+    "ज़िला / इलाक़ा",
+    "zilā / ilāqā"
+  ],
+  "Suburb": [
+    "उपनगर / उपनगरीय इलाक़ा",
+    "upnagar"
+  ],
+  "Village": [
+    "गाँव / ग्राम",
+    "gāanv / grām"
+  ],
+  "Countryside": [
+    "ग्रामीण क्षेत्र / देहात",
+    "grāmīn kshetra"
+  ],
+  "Valley": [
+    "घाटी / वादी",
+    "ghātī"
+  ],
+  "Hill": [
+    "पहाड़ी / टीला",
+    "pahādī"
+  ],
+  "Cliff": [
+    "चट्टान / भृगु",
+    "chattān"
+  ],
+  "Cave": [
+    "गुफ़ा",
+    "gufā"
+  ],
+  "Waterfall": [
+    "झरना / जलप्रपात",
+    "jharnā"
+  ],
+  "Desert": [
+    "रेगिस्तान / मरुस्थल",
+    "registān"
+  ],
+  "Jungle": [
+    "जंगल / बीहड़",
+    "jangal"
+  ],
+  "Canyon": [
+    "कंदरा / घाटी",
+    "kandarā"
+  ],
+  "Coast": [
+    "तट / किनारा",
+    "tat / kinārā"
+  ],
+  "Harbor": [
+    "बंदरगाह / पोताश्रय",
+    "bandargāh"
+  ],
+  "Canal": [
+    "नहर",
+    "nahar"
+  ],
+  "Stream": [
+    "धारा / नाला",
+    "dhārā"
+  ],
+  "Pond": [
+    "तालाब / पोखरा",
+    "tālāb"
+  ],
+  "Swamp": [
+    "दलदल",
+    "daldal"
+  ],
+  "Glacier": [
+    "हिमनद / ग्लेशियर",
+    "himnad"
+  ],
+  "Volcano": [
+    "ज्वालामुखी",
+    "jvālāmukhī"
+  ],
+  "Earthquake": [
+    "भूकंप / भूचाल",
+    "bhūkamp"
+  ],
+  "Tsunami": [
+    "सुनामी",
+    "sunāmī"
+  ],
+  "Flood": [
+    "बाढ़ / जलप्लावन",
+    "bāadh"
+  ],
+  "Drought": [
+    "सूखा / अकाल",
+    "sūkhā"
+  ],
+  "Fog": [
+    "कोहरा / कुहासा",
+    "koharā"
+  ],
+  "Frost": [
+    "पाला / पाला पड़ना",
+    "pālā"
+  ],
+  "Hail": [
+    "ओले / ओलावृष्टि",
+    "ole"
+  ],
+  "Thunder": [
+    "गड़गड़ाहट / बादल की गरज",
+    "gadgadāhat"
+  ],
+  "Lightning": [
+    "बिजली / तड़ित",
+    "bijlī"
+  ],
+  "Rainbow": [
+    "इंद्रधनुष",
+    "indradhanush"
+  ],
+  "Sunrise": [
+    "सूर्योदय",
+    "sūryoday"
+  ],
+  "Sunset": [
+    "सूर्यास्त",
+    "sūryāst"
+  ],
+  "Dawn": [
+    "भोर / उषाकाल",
+    "bhor"
+  ],
+  "Dusk": [
+    "गोधूलि / साँझ",
+    "sāanjh"
+  ],
+  "Shadow": [
+    "छाया / परछाईं",
+    "chhāyā / parchhāīn"
+  ],
+  "Darkness": [
+    "अंधेरा / अंधकार",
+    "andherā"
+  ],
+  "Light": [
+    "रोशनी / प्रकाश",
+    "roshnī / prakāsh"
+  ],
+  "Brightness": [
+    "चमक / चमक-दमक",
+    "chamak"
+  ],
+  "Heat": [
+    "गर्मी / ताप",
+    "garmī / tāp"
+  ],
+  "Humidity": [
+    "नमी / आर्द्रता",
+    "namī / ārdrata"
+  ],
+  "Revenue / Income": [
+    "राजस्व / आमदनी",
+    "rājasva / āmdanī"
+  ],
+  "Startup": [
+    "स्टार्टअप / नया उद्यम",
+    "stārtap"
+  ],
+  "Fruits": [
+    "फल",
+    "phal"
+  ],
+  "Beer": [
+    "बीयर",
+    "bīyar"
+  ],
+  "Wine": [
+    "शराब / वाइन",
+    "sharāb / vāin"
+  ],
+  "Breakfast": [
+    "नाश्ता / सुबह का जलपान",
+    "nāshtā"
+  ],
+  "Lunch": [
+    "दोपहर का भोजन / लंच",
+    "dopahar kā bhojan"
+  ],
+  "Dinner": [
+    "रात का भोजन / डिनर",
+    "raat kā bhojan"
+  ],
+  "Center": [
+    "केंद्र / मध्य",
+    "kendra / madhya"
+  ],
+  "Factory": [
+    "कारख़ाना / फ़ैक्ट्री",
+    "kārkhānā / faiktrī"
+  ],
+  "Magazine": [
+    "पत्रिका / मैगज़ीन",
+    "patrikā"
+  ],
+  "Umbrella": [
+    "छाता / छतरी",
+    "chhātā / chhatrī"
+  ],
+  "Photo": [
+    "तस्वीर / फ़ोटो",
+    "tasvīr / foto"
+  ],
+  "Card": [
+    "कार्ड / ताश",
+    "kārd"
+  ],
+  "Fast / Quick": [
+    "तेज़ / जल्दी",
+    "tez / jaldī"
+  ],
+  "Ready": [
+    "तैयार",
+    "taiyār"
+  ],
+  "Voice": [
+    "आवाज़ / वाणी",
+    "āvāz / vānī"
+  ],
+  "Ice": [
+    "बर्फ़",
+    "barf"
+  ],
+  "Hedgehog": [
+    "साही / कंटीला चूहा",
+    "sāhī"
+  ],
+  "Beetle / Bug": [
+    "कीड़ा / भृंग",
+    "kīdā / bhring"
+  ],
+  "Zebra": [
+    "ज़ेबरा / वनमानुष",
+    "zebarā"
+  ],
+  "Name": [
+    "नाम",
+    "naam"
+  ],
+  "Quiet": [
+    "शांत / चुप",
+    "shānt / chup"
+  ],
+  "Subway / Metro": [
+    "मेट्रो",
+    "metro"
+  ],
+  "Square / Plaza": [
+    "चौक / मैदान",
+    "chauk / maidān"
+  ],
+  "Police": [
+    "पुलिस",
+    "pulis"
+  ],
+  "X-ray": [
+    "एक्स-रे",
+    "eks-re"
+  ],
+  "Xylophone": [
+    "ज़ाइलोफ़ोन / काष्ठतरंग",
+    "zāilofon"
+  ],
+  "Now": [
+    "अब / अभी",
+    "ab / abhī"
+  ],
+  "To know": [
+    "जानना / मालूम होना",
+    "jānnā / mālūm honā"
+  ],
+  "Hello (informal)": [
+    "नमस्ते / हैलो",
+    "namaste / hailo"
+  ],
+  "I am fine, thank you": [
+    "मैं ठीक हूँ, धन्यवाद",
+    "main theek hoon, dhanyavād"
+  ],
+  "Thank you": [
+    "धन्यवाद",
+    "dhanyavād"
+  ],
+  "Where are you from?": [
+    "आप कहाँ से हैं?",
+    "aap kahān se hain?"
+  ],
+  "I am from...": [
+    "मैं... से हूँ",
+    "main... se hoon"
+  ],
+  "Bye (informal)": [
+    "अलविदा / बाय",
+    "alvidā / bāy"
+  ],
+  "Have a nice day": [
+    "आपका दिन शुभ हो",
+    "aapkā din shubh ho"
+  ],
+  "I understand": [
+    "मैं समझ गया / समझ गई",
+    "main samajh gayā"
+  ],
+  "Please repeat": [
+    "कृपया दोहराएँ",
+    "kripayā dohrāein"
+  ],
+  "Please speak more slowly": [
+    "कृपया और धीरे बोलें",
+    "kripayā aur dheere bolein"
+  ],
+  "Can you speak more slowly?": [
+    "क्या आप थोड़ा और धीरे बोल सकते हैं?",
+    "kyā aap thodā aur dheere bol sakte hain?"
+  ],
+  "Speak more slowly": [
+    "धीरे बोलें",
+    "dheere bolein"
+  ],
+  "I speak a little Russian": [
+    "मैं थोड़ी रूसी बोलता हूँ",
+    "main thodī rūsī boltā hoon"
+  ],
+  "What does this mean?": [
+    "इसका क्या मतलब है?",
+    "iskā kyā matlab hai?"
+  ],
+  "How do you say...?": [
+    "...को क्या कहते हैं?",
+    "...ko kyā kahte hain?"
+  ],
+  "How do you say this in Russian?": [
+    "इसे रूसी में कैसे कहते हैं?",
+    "ise rūsī mein kaise kahte hain?"
+  ],
+  "Can you help me?": [
+    "क्या आप मेरी मदद कर सकते हैं?",
+    "kyā aap merī madad kar sakte hain?"
+  ],
+  "I need help": [
+    "मुझे मदद की ज़रूरत है",
+    "mujhe madad kī zaroorat hai"
+  ],
+  "Help me": [
+    "मेरी मदद करें",
+    "merī madad karein"
+  ],
+  "Where is the airport?": [
+    "हवाई अड्डा कहाँ है?",
+    "havāī addā kahān hai?"
+  ],
+  "I would like to go to the airport": [
+    "मैं हवाई अड्डे जाना चाहता हूँ",
+    "main havāī adde jānā chāhtā hoon"
+  ],
+  "What time is the departure?": [
+    "रवाना होने का समय क्या है?",
+    "ravānā hone kā samay kyā hai?"
+  ],
+  "Where is the hotel?": [
+    "होटल कहाँ है?",
+    "hotel kahān hai?"
+  ],
+  "How much is a ticket?": [
+    "एक टिकट कितने का है?",
+    "ek tikat kitne kā hai?"
+  ],
+  "Turn left": [
+    "बाएँ मुड़ें",
+    "bāein mudein"
+  ],
+  "Turn right": [
+    "दाएँ मुड़ें",
+    "dāein mudein"
+  ],
+  "Go straight ahead": [
+    "सीधे आगे जाएँ",
+    "seedhe aage jāein"
+  ],
+  "Can I see the menu, please?": [
+    "क्या मुझे मेनू मिल सकता है?",
+    "kyā mujhe menū mil saktā hai?"
+  ],
+  "I would like water": [
+    "मुझे पानी चाहिए",
+    "mujhe pānī chāhiye"
+  ],
+  "I want to eat": [
+    "मुझे भूख लगी है / मैं खाना चाहता हूँ",
+    "main khānā chāhtā hoon"
+  ],
+  "I want to drink": [
+    "मुझे प्यास लगी है / मैं पीना चाहता हूँ",
+    "main peenā chāhtā hoon"
+  ],
+  "This is delicious!": [
+    "यह बहुत स्वादिष्ट है!",
+    "yeh bahut svādisht hai!"
+  ],
+  "How much does this cost?": [
+    "इसकी क़ीमत क्या है?",
+    "iskī qeemat kyā hai?"
+  ],
+  "Can I pay by card?": [
+    "क्या मैं कार्ड से भुगतान कर सकता हूँ?",
+    "kyā main kārd se bhugtān kar saktā hoon?"
+  ],
+  "I am just looking": [
+    "मैं बस देख रहा हूँ",
+    "main bas dekh rahā hoon"
+  ],
+  "I am just looking, thank you": [
+    "मैं बस देख रहा हूँ, धन्यवाद",
+    "main bas dekh rahā hoon, dhanyavād"
+  ],
+  "Do you have this in another size?": [
+    "क्या आपके पास यह किसी अन्य आकार में है?",
+    "kyā āpke pās yeh anya ākār mein hai?"
+  ],
+  "I don't understand": [
+    "मुझे समझ नहीं आया",
+    "mujhe samajh nahīn aayā"
+  ],
+  "Call the police": [
+    "पुलिस को बुलाएँ",
+    "pulis ko bulāein"
+  ],
+  "I lost my passport": [
+    "मेरा पासपोर्ट खो गया है",
+    "merā pāsport kho gayā hai"
+  ],
+  "What time is it now?": [
+    "अभी क्या समय हुआ है?",
+    "abhī kyā samay huā hai?"
+  ],
+  "At what time?": [
+    "किस समय पर?",
+    "kis samay par?"
+  ],
+  "One o'clock (1:00)": [
+    "एक बजा है",
+    "ek bajā hai"
+  ],
+  "Two o'clock (2:00)": [
+    "दो बजे हैं",
+    "do baje hain"
+  ],
+  "Three o'clock (3:00)": [
+    "तीन बजे हैं",
+    "teen baje hain"
+  ],
+  "Exactly three o'clock": [
+    "ठीक तीन बजे",
+    "theek teen baje"
+  ],
+  "Four o'clock (4:00)": [
+    "चार बजे हैं",
+    "chaar baje hain"
+  ],
+  "Five o'clock (5:00)": [
+    "पाँच बजे हैं",
+    "paanch baje hain"
+  ],
+  "Six o'clock (6:00)": [
+    "छह बजे हैं",
+    "chhah baje hain"
+  ],
+  "Seven o'clock (7:00)": [
+    "सात बजे हैं",
+    "saat baje hain"
+  ],
+  "Eight o'clock (8:00)": [
+    "आठ बजे हैं",
+    "aath baje hain"
+  ],
+  "Nine o'clock (9:00)": [
+    "नौ बजे हैं",
+    "nau baje hain"
+  ],
+  "Ten o'clock (10:00)": [
+    "दस बजे हैं",
+    "das baje hain"
+  ],
+  "Eleven o'clock (11:00)": [
+    "ग्यारह बजे हैं",
+    "gyārah baje hain"
+  ],
+  "Twelve o'clock (12:00)": [
+    "बारह बजे हैं",
+    "bārah baje hain"
+  ],
+  "Half past two (2:30)": [
+    "ढाई बजे हैं (2:30)",
+    "dhāī baje hain"
+  ],
+  "Quarter to three (2:45)": [
+    "पौने तीन बजे हैं (2:45)",
+    "paune teen baje hain"
+  ],
+  "Half past twelve (12:30)": [
+    "साढ़े बारह बजे हैं (12:30)",
+    "saadhe bārah baje hain"
+  ],
+  "Ten to two (1:50)": [
+    "दो बजने में दस मिनट",
+    "do bajne mein das minat"
+  ],
+  "Half an hour": [
+    "आधा घंटा",
+    "ādhā ghantā"
+  ],
+  "Quarter of an hour": [
+    "पंद्रह मिनट / एक चौथाई घंटा",
+    "pandrah minat"
+  ],
+  "In the morning (a.m.)": [
+    "सुबह (एएम)",
+    "subah"
+  ],
+  "In the afternoon (p.m.)": [
+    "दोपहर (पीएम)",
+    "dopahar"
+  ],
+  "At night": [
+    "रात में",
+    "raat mein"
+  ],
+  "On time": [
+    "समय पर",
+    "samay par"
+  ],
+  "Hello / Good morning": [
+    "नमस्ते / सुप्रभात",
+    "namaste / suprabhāt"
+  ],
+  "Hi / Bye": [
+    "नमस्ते / अलविदा",
+    "namaste / alvidā"
+  ],
+  "How are you?": [
+    "आप कैसे हैं?",
+    "aap kaise hain?"
+  ],
+  "And you?": [
+    "और आप?",
+    "aur aap?"
+  ],
+  "What is your name?": [
+    "आपका नाम क्या है?",
+    "aapkā naam kyā hai?"
+  ],
+  "Can you repeat?": [
+    "क्या आप दोहरा सकते हैं?",
+    "kyā aap dohrā sakte hain?"
+  ],
+  "Is it far from here?": [
+    "क्या यह यहाँ से दूर है?",
+    "kyā yeh yahān se dūr hai?"
+  ],
+  "Let me share my screen": [
+    "मैं अपनी स्क्रीन साझा करता हूँ",
+    "main apnī skrīn sājhā kartā hoon"
+  ],
+  "The internet connection is slow": [
+    "इंटरनेट कनेक्शन धीमा है",
+    "intarnet kanekshan dhīmā hai"
+  ],
+  "Can you send it by email?": [
+    "क्या आप इसे ईमेल से भेज सकते हैं?",
+    "kyā aap ise īmel se bhej sakte hain?"
+  ],
+  "My battery is almost dead": [
+    "मेरी बैटरी ख़त्म होने वाली है",
+    "merī baitarī khatm hone vālī hai"
+  ],
+  "Where is the bus stop?": [
+    "बस स्टॉप कहाँ है?",
+    "bas stŏp kahān hai?"
+  ],
+  "How do I get to the airport?": [
+    "हवाई अड्डे कैसे जाऊँ?",
+    "havāī adde kaise jāūn?"
+  ],
+  "I would like a coffee, please": [
+    "कृपया मुझे एक कॉफ़ी दीजिए",
+    "kripayā mujhe ek kŏfī dījiye"
+  ],
+  "A bottle of water, please": [
+    "कृपया पानी की एक बोतल दीजिए",
+    "kripayā pānī kī ek botal dījiye"
+  ],
+  "It is three o'clock": [
+    "तीन बजे हैं",
+    "teen baje hain"
+  ],
+  "It is four o'clock": [
+    "चार बजे हैं",
+    "chaar baje hain"
+  ],
+  "It is five o'clock": [
+    "पाँच बजे हैं",
+    "paanch baje hain"
+  ],
+  "It is six o'clock": [
+    "छह बजे हैं",
+    "chhah baje hain"
+  ],
+  "It is seven o'clock": [
+    "सात बजे हैं",
+    "saat baje hain"
+  ],
+  "It is eight o'clock": [
+    "आठ बजे हैं",
+    "aath baje hain"
+  ],
+  "It is nine o'clock": [
+    "नौ बजे हैं",
+    "nau baje hain"
+  ],
+  "It is ten o'clock": [
+    "दस बजे हैं",
+    "das baje hain"
+  ],
+  "It is eleven o'clock": [
+    "ग्यारह बजे हैं",
+    "gyārah baje hain"
+  ],
+  "Rice cake": [
+    "चावल की टिकिया",
+    "chāval kī tikiyā"
+  ],
+  "Stew": [
+    "गाढ़ा सूप / स्टू",
+    "stū"
+  ],
+  "Radio": [
+    "रेडियो",
+    "rediyo"
+  ],
+  "Desk": [
+    "लेखन मेज़ / डेस्क",
+    "desk"
+  ],
+  "Music": [
+    "संगीत",
+    "sangeet"
+  ],
+  "House / Home": [
+    "घर / मकान",
+    "ghar / makān"
+  ],
+  "Telephone": [
+    "टेलीफ़ोन / फ़ोन",
+    "telīfon"
+  ],
+  "Book": [
+    "किताब / पुस्तक",
+    "kitāb"
+  ],
+  "What?": [
+    "क्या?",
+    "kyā?"
+  ],
+  "Where?": [
+    "कहाँ?",
+    "kahān?"
+  ],
+  "When?": [
+    "कब?",
+    "kab?"
+  ],
+  "Who?": [
+    "कौन?",
+    "kaun?"
+  ],
+  "Why?": [
+    "क्यों?",
+    "kyon?"
+  ],
+  "How?": [
+    "कैसे?",
+    "kaise?"
+  ],
+  "Juice": [
+    "रस / जूस",
+    "jūs"
+  ],
+  "Love": [
+    "प्यार / प्रेम",
+    "pyār / prem"
+  ],
+  "Good morning": [
+    "सुप्रभात",
+    "suprabhāt"
+  ],
+  "Good evening": [
+    "शुभ संध्या",
+    "shubh sandhyā"
+  ],
+  "Good night": [
+    "शुभ रात्रि",
+    "shubh rātri"
+  ],
+  "Please": [
+    "कृपया",
+    "kripayā"
+  ],
+  "Thank you very much": [
+    "बहुत-बहुत धन्यवाद",
+    "bahut bahut dhanyavād"
+  ],
+  "Excuse me": [
+    "माफ़ कीजिए / सुनिए",
+    "maaf kījiye"
+  ],
+  "My name is...": [
+    "मेरा नाम... है",
+    "merā naam... hai"
+  ],
+  "Nice to meet you": [
+    "आपसे मिलकर बहुत खुशी हुई",
+    "aapse milkar khushī huī"
+  ],
+  "Goodbye": [
+    "अलविदा / फिर मिलेंगे",
+    "alvidā"
+  ],
+  "See you later": [
+    "बाद में मिलते हैं",
+    "bād mein milte hain"
+  ],
+  "Could you repeat that, please?": [
+    "कृपया क्या आप इसे दोहरा सकते हैं?",
+    "kripayā ise dohrā sakte hain?"
+  ],
+  "Do you speak English?": [
+    "क्या आप अंग्रेज़ी बोलते हैं?",
+    "kyā aap angrezī bolte hain?"
+  ],
+  "Help!": [
+    "बचाओ! / मदद!",
+    "bachāo! / madad!"
+  ],
+  "Where is the restroom?": [
+    "शौचालय कहाँ है?",
+    "shauchālay kahān hai?"
+  ],
+  "Where is the train station?": [
+    "रेलवे स्टेशन कहाँ है?",
+    "relve steshan kahān hai?"
+  ],
+  "I need a taxi": [
+    "मुझे टैक्सी चाहिए",
+    "mujhe taiksī chāhiye"
+  ],
+  "How much does it cost?": [
+    "यह कितने का है?",
+    "yeh kitne kā hai?"
+  ],
+  "Do you accept credit cards?": [
+    "क्या आप क्रेडिट कार्ड लेते हैं?",
+    "kyā aap kredit kārd lete hain?"
+  ],
+  "It is too expensive": [
+    "यह बहुत महँगा है",
+    "yeh bahut mahangā hai"
+  ],
+  "I need a doctor": [
+    "मुझे डॉक्टर की ज़रूरत है",
+    "mujhe dŏktar kī zaroorat hai"
+  ],
+  "What time is it?": [
+    "क्या समय हुआ है?",
+    "kyā samay huā hai?"
+  ],
+  "It is 1:00 sharp": [
+    "ठीक एक बजा है",
+    "theek ek bajā hai"
+  ],
+  "It is 2:00": [
+    "दो बजे हैं",
+    "do baje hain"
+  ],
+  "3:30 (half past three)": [
+    "साढ़े तीन (3:30)",
+    "saadhe teen"
+  ],
+  "4:15 (quarter past four)": [
+    "सवा चार (4:15)",
+    "savā chaar"
+  ],
+  "4:45 (quarter to five)": [
+    "पौने पाँच (4:45)",
+    "paune paanch"
+  ],
+  "In the evening (p.m.)": [
+    "शाम को",
+    "shaam ko"
+  ],
+  "Noon / Midday": [
+    "दोपहर के 12 बजे",
+    "dopahar"
+  ],
+  "I am doing well, thank you": [
+    "मैं बहुत अच्छा हूँ, धन्यवाद",
+    "main bahut achhā hoon, dhanyavād"
+  ],
+  "Pleased to meet you": [
+    "आपसे मिलकर अत्यंत प्रसन्नता हुई",
+    "aapse milkar prasannatā huī"
+  ],
+  "Could you speak slower, please?": [
+    "कृपया थोड़ा धीरे बोलिए",
+    "kripayā thodā dheere boliye"
+  ],
+  "Can you hear me?": [
+    "क्या आप मुझे सुन सकते हैं?",
+    "kyā aap mujhe sun sakte hain?"
+  ],
+  "Can you see my screen?": [
+    "क्या आप मेरी स्क्रीन देख सकते हैं?",
+    "kyā aap merī skrīn dekh sakte hain?"
+  ],
+  "What is the Wi-Fi password?": [
+    "वाई-फ़ाई का पासवर्ड क्या है?",
+    "vāī-fāī kā pāsvard kyā hai?"
+  ],
+  "Let's schedule a meeting": [
+    "आइए एक मीटिंग तय करते हैं",
+    "āiye ek mīting tay karte hain"
+  ],
+  "I will send you an email": [
+    "मैं आपको ईमेल भेज दूँगा",
+    "main āpko īmel bhej dūngā"
+  ],
+  "When is the deadline?": [
+    "अंतिम तिथि कब है?",
+    "antim tithi kab hai?"
+  ],
+  "Where is the nearest pharmacy?": [
+    "सबसे नज़दीकी दवाखाना कहाँ है?",
+    "sabse nazdīkī davākhānā kahān hai?"
+  ],
+  "I am allergic to nuts": [
+    "मुझे मेवों से एलर्जी है",
+    "mujhe mevon se elarjī hai"
+  ],
+  "Job": [
+    "नौकरी / काम",
+    "naukrī / kām"
+  ],
+  "Artificial intelligence": [
+    "कृत्रिम बुद्धिमत्ता (एआई)",
+    "kritrim buddhimattā"
+  ],
+  "Carrot": [
+    "गाजर",
+    "gājar"
+  ],
+  "Glass": [
+    "काँच / गिलास",
+    "kāanch / gilās"
+  ],
+  "Suitcase": [
+    "सूटकेस / पेटी",
+    "sūtkes"
+  ],
+  "Backpack": [
+    "पिठ्ठू बस्ता / बैकपैक",
+    "baikpaik"
+  ]
+}

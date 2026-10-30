@@ -2132,6 +2132,238 @@ export const CHINESE_GRAMMAR: GrammarData = {
   ],
 };
 
+export const HINDI_GRAMMAR: GrammarData = {
+  genderRules: [
+    {
+      article: 'पुल्लिंग (Masculine)',
+      gender: 'masculine',
+      color: '#3b82f6',
+      name: 'Masculine Nouns (पुल्लिंग)',
+      description: 'Hindi nouns are divided into two grammatical genders: Masculine and Feminine. Most masculine nouns end in -ā (आ) in singular and change to -e (ए) in plural.',
+      rules: [
+        'Nouns ending in -ā (आ) are usually masculine: लड़का (laṛkā - boy), कमरा (kamrā - room), कुत्ता (kuttā - dog).',
+        'In plural, masculine -ā changes to -e: लड़का ➔ लड़के (laṛke - boys), कमरा ➔ कमरे (kamre - rooms).',
+        'Adjectives agree with masculine nouns: अच्छा लड़का (good boy), बड़े कमरे (big rooms).',
+      ],
+      examples: [
+        { word: 'लड़का (Boy)', article: 'पुल्लिंग', meaning: 'boy', icon: '👦' },
+        { word: 'कमरा (Room)', article: 'पुल्लिंग', meaning: 'room', icon: '🚪' },
+        { word: 'दरवाज़ा (Door)', article: 'पुल्लिंग', meaning: 'door', icon: '🚪' },
+        { word: 'सेब (Apple)', article: 'पुल्लिंग', meaning: 'apple', icon: '🍎' },
+      ],
+    },
+    {
+      article: 'स्त्रीलिंग (Feminine)',
+      gender: 'feminine',
+      color: '#ec4899',
+      name: 'Feminine Nouns (स्त्रीलिंग)',
+      description: 'Nouns ending in -ī (ई), -iyā (इया), or -t (त) are typically feminine. Plural forms take -iyā̃ (इयाँ) or -ẽ (एं).',
+      rules: [
+        'Nouns ending in -ī (ई) are feminine: लड़की (laṛkī - girl), गाड़ी (gāṛī - car), नदी (nadī - river).',
+        'In plural, feminine -ī changes to -iyā̃: लड़की ➔ लड़कियाँ (laṛkiyā̃ - girls), गाड़ी ➔ गाड़ियाँ (gāṛiyā̃ - cars).',
+        'Adjectives take -ī with feminine nouns in both singular and plural: अच्छी लड़की (good girl), अच्छी लड़कियाँ (good girls).',
+      ],
+      examples: [
+        { word: 'लड़की (Girl)', article: 'स्त्रीलिंग', meaning: 'girl', icon: '👧' },
+        { word: 'किताब (Book)', article: 'स्त्रीलिंग', meaning: 'book', icon: '📖' },
+        { word: 'गाड़ी (Car)', article: 'स्त्रीलिंग', meaning: 'car', icon: '🚗' },
+        { word: 'रात (Night)', article: 'स्त्रीलिंग', meaning: 'night', icon: '🌙' },
+      ],
+    },
+  ],
+  descriptions: [
+    {
+      title: 'Hindi Postpositions (परसर्ग - में, पर, से, को, का/के/की)',
+      explanation: 'Unlike English prepositions that come BEFORE a noun, Hindi uses postpositions that follow the noun. When a postposition follows, the noun enters the oblique case (e.g. लड़का ➔ लड़के को).',
+      examples: [
+        { positive: 'कमरे में (In the room)', comparative: 'मेज़ पर (On the table)', superlative: 'दिल्ली से (From Delhi)', meaning: 'in / on / from' },
+        { positive: 'दोस्त को (To the friend)', comparative: "राम का घर (Ram's house - m.sg)", superlative: "राम की किताब (Ram's book - f.sg)", meaning: 'to / possessive of' },
+      ],
+    },
+  ],
+  verbs: [
+    {
+      verb: 'होना (to be)',
+      meaning: 'to be / exist',
+      tense: 'Present & Past',
+      type: 'irregular',
+      forms: [
+        { pronoun: 'मैं (I)', form: 'हूँ (am) / था/थी (was)' },
+        { pronoun: 'तू (You - intimate)', form: 'है (are) / था/थी (was)' },
+        { pronoun: 'वह / यह (He / She / It)', form: 'है (is) / था/थी (was)' },
+        { pronoun: 'तुम (You - familiar)', form: 'हो (are) / थे/थीं (were)' },
+        { pronoun: 'हम (We)', form: 'हैं (are) / थे/थीं (were)' },
+        { pronoun: 'आप (You - formal)', form: 'हैं (are) / थे/थीं (were)' },
+        { pronoun: 'वे / ये (They)', form: 'हैं (are) / थे/थीं (were)' },
+      ],
+      exampleSentence: { target: 'हम साथ में भाषा सीख रहे हैं।', translation: 'We are learning languages together.' },
+    },
+    {
+      verb: 'करना (to do)',
+      meaning: 'to do / make',
+      tense: 'Present & Past',
+      type: 'irregular',
+      forms: [
+        { pronoun: 'मैं (I)', form: 'करता हूँ / करती हूँ' },
+        { pronoun: 'तुम / आप (You)', form: 'करते हो / करते हैं' },
+        { pronoun: 'वह (He/She)', form: 'करता है / करती है' },
+        { pronoun: 'हम / वे (We/They)', form: 'करते हैं / करती हैं' },
+      ],
+      exampleSentence: { target: 'वह अपना काम करती है।', translation: 'She does her work.' },
+    },
+  ],
+  flashcards: [
+    {
+      id: 'hi-card-1',
+      type: 'gender',
+      prompt: 'Gender agreement: "Good girl" ➔ ___ लड़की',
+      prompts: {
+        en: 'Gender agreement: "Good girl" ➔ ___ लड़की',
+        ru: 'Согласование по роду: «Хорошая девочка» ➔ ___ लड़की',
+        de: 'Geschlechtsanpassung: „Gutes Mädchen“ ➔ ___ लड़की',
+        es: 'Concordancia de género: «Buena niña» ➔ ___ लड़की',
+        fr: 'Accord en genre : « Bonne fille » ➔ ___ लड़की',
+        zh: '性属一致："好女孩" ➔ ___ लड़की',
+        hi: 'लिंग सहसंबंध: "अच्छी लड़की" ➔ ___ लड़की',
+      },
+      options: ['अच्छी', 'अच्छा', 'अच्छे', 'अच्छों'],
+      correctAnswer: 'अच्छी',
+      explanation: 'Adjectives ending in -ā change to -ī when modifying feminine nouns (अच्छा लड़का ➔ अच्छी लड़की).',
+      explanations: {
+        en: 'Adjectives ending in -ā change to -ī when modifying feminine nouns (अच्छा लड़का ➔ अच्छी लड़की).',
+        ru: 'Прилагательные на -ā принимают окончание -ī перед существительными женского рода (अच्छा लड़का ➔ अच्छी लड़की).',
+        de: 'Adjektive auf -ā ändern sich zu -ī vor weiblichen Nomen (अच्छा लड़का ➔ अच्छी लड़की).',
+        es: 'Los adjetivos terminados en -ā cambian a -ī con sustantivos femeninos (अच्छा लड़का ➔ अच्छी लड़की).',
+        fr: 'Les adjectifs en -ā se terminent en -ī devant un nom féminin (अच्छा लड़का ➔ अच्छी लड़की).',
+        zh: '修饰阴性名词时，以 -ā 结尾的形容词变为 -ī（अच्छा लड़का ➔ अच्छी लड़की）。',
+        hi: 'स्त्रीलिंग संज्ञा (लड़की) के साथ विशेषण का स्त्रीलिंग रूप "अच्छी" प्रयुक्त होता है।',
+      },
+      translation: 'good girl',
+      translations: {
+        en: 'good girl',
+        ru: 'хорошая девочка',
+        de: 'gutes Mädchen',
+        es: 'buena niña',
+        fr: 'bonne fille',
+        zh: '好女孩',
+        hi: 'अच्छी लड़की',
+      },
+      icon: '👧',
+    },
+    {
+      id: 'hi-card-2',
+      type: 'description',
+      prompt: 'Postposition: "On the table" ➔ मेज़ ___',
+      prompts: {
+        en: 'Postposition: "On the table" ➔ मेज़ ___',
+        ru: 'Послелог: «На столе» ➔ मेज़ ___',
+        de: 'Postposition: „Auf dem Tisch“ ➔ मेज़ ___',
+        es: 'Posposición: «Sobre la mesa» ➔ मेज़ ___',
+        fr: 'Postposition : « Sur la table » ➔ मेज़ ___',
+        zh: '后置词："在桌子上" ➔ मेज़ ___',
+        hi: 'परसर्ग (कारक चिह्न): "मेज़ पर" ➔ मेज़ ___',
+      },
+      options: ['पर', 'में', 'से', 'को'],
+      correctAnswer: 'पर',
+      explanation: 'पर (par) means "on" or "at" and is placed immediately after the noun in Hindi.',
+      explanations: {
+        en: 'पर (par) means "on" or "at" and is placed immediately after the noun in Hindi.',
+        ru: 'Послелог पर (par) означает «на» и ставится непосредственно после существительного.',
+        de: 'पर (par) bedeutet „auf / an“ und steht im Hindi direkt hinter dem Nomen.',
+        es: 'पर (par) significa «en / sobre» y se coloca directamente después del sustantivo en hindi.',
+        fr: 'पर (par) signifie « sur / à » et se place directement après le nom en hindi.',
+        zh: '后置词"पर"（par）表示"在……上"，直接放在名词之后。',
+        hi: 'अधिकरण कारक के लिए "पर" का प्रयोग होता है (मेज़ पर = on the table)।',
+      },
+      translation: 'on the table',
+      translations: {
+        en: 'on the table',
+        ru: 'на столе',
+        de: 'auf dem Tisch',
+        es: 'sobre la mesa',
+        fr: 'sur la table',
+        zh: '在桌子上',
+        hi: 'मेज़ पर',
+      },
+      icon: '🪵',
+    },
+    {
+      id: 'hi-card-3',
+      type: 'description',
+      prompt: 'Auxiliary "to be": "I am fine" ➔ मैं ठीक ___',
+      prompts: {
+        en: 'Auxiliary "to be": "I am fine" ➔ मैं ठीक ___',
+        ru: 'Вспомогательный глагол «быть»: «Я в порядке» ➔ मैं ठीक ___',
+        de: 'Hilfsverb „sein“: „Mir geht es gut“ ➔ मैं ठीक ___',
+        es: 'Verbo auxiliar «ser/estar»: «Estoy bien» ➔ मैं ठीक ___',
+        fr: 'Verbe auxiliaire « être » : « Je vais bien » ➔ मैं ठीक ___',
+        zh: '助动词"是"："我很好" ➔ मैं ठीक ___',
+        hi: 'सहायक क्रिया (होना): "मैं ठीक हूँ" ➔ मैं ठीक ___',
+      },
+      options: ['हूँ', 'है', 'हैं', 'हो'],
+      correctAnswer: 'हूँ',
+      explanation: 'In the present tense, pronoun मैं (main - I) always pairs with auxiliary हूँ (hoon - am).',
+      explanations: {
+        en: 'In the present tense, pronoun मैं (main - I) always pairs with auxiliary हूँ (hoon - am).',
+        ru: 'В настоящем времени местоимение मैं (я) всегда согласуется со связкой हूँ (есть/являюсь).',
+        de: 'Im Präsens steht beim Pronomen मैं (ich) immer das Hilfsverb हूँ (bin).',
+        es: 'En presente, el pronombre मैं (yo) siempre concuerda con हूँ (estoy/soy).',
+        fr: "Au présent, le pronom मैं (je) s'associe obligatoirement avec हूँ (suis).",
+        zh: '现在时中，第一人称单数主语"मैं"（我）固定搭配助动词"हूँ"（hoon）。',
+        hi: 'उत्तम पुरुष एकवचन "मैं" के साथ वर्तमान काल में सहायक क्रिया "हूँ" आती है।',
+      },
+      translation: 'I am fine',
+      translations: {
+        en: 'I am fine',
+        ru: 'я в порядке',
+        de: 'mir geht es gut',
+        es: 'estoy bien',
+        fr: 'je vais bien',
+        zh: '我很好',
+        hi: 'मैं ठीक हूँ',
+      },
+      icon: '✨',
+    },
+    {
+      id: 'hi-card-4',
+      type: 'description',
+      prompt: 'Possessive: "Ram\'s book (f)" ➔ राम ___ किताब',
+      prompts: {
+        en: 'Possessive: "Ram\'s book (f)" ➔ राम ___ किताब',
+        ru: 'Притяжательный падеж: «Книга Рама» ➔ राम ___ किताब',
+        de: 'Possessiv: „Rams Buch“ ➔ राम ___ किताब',
+        es: 'Posesivo: «El libro de Ram» ➔ राम ___ किताब',
+        fr: 'Possessif : « Le livre de Ram » ➔ राम ___ किताब',
+        zh: '所有格："拉姆的书" ➔ राम ___ किताब',
+        hi: 'सम्बन्ध कारक: "राम की किताब" ➔ राम ___ किताब',
+      },
+      options: ['की', 'का', 'के', 'को'],
+      correctAnswer: 'की',
+      explanation: 'Possessive postposition agrees with the possessed item: का (m.sg), के (m.pl), की (feminine). Since किताब is feminine, we use की.',
+      explanations: {
+        en: 'Possessive postposition agrees with the possessed item: का (m.sg), के (m.pl), की (feminine). Since किताब is feminine, we use की.',
+        ru: 'Притяжательный послелог согласуется с объектом владения: का (м.р. ед.), के (м.р. мн.), की (ж.р.). Так как किताब женского рода, используется की.',
+        de: 'Die Genitiv-Partikel richtet sich nach dem Besitztum: का (m.sg), के (m.pl), की (weiblich). Da किताब feminin ist, steht की.',
+        es: 'La partícula posesiva concuerda con lo poseído: का (m.sg), के (m.pl), की (femenino). Como किताब es femenino, se usa की.',
+        fr: "La postposition possessive s'accorde avec l'objet possédé : का (m.sg), के (m.pl), की (fém.). Comme किताब est féminin, on utilise की.",
+        zh: '领属助词根据所修饰的名词变格：का（阳单）、के（阳复）、की（阴性）。因 किताब 为阴性，故用 की。',
+        hi: 'सम्बन्ध कारक का परसर्ग अधिकृत संज्ञा के अनुसार बदलता है: पुल्लिंग में "का/के" और स्त्रीलिंग (किताब) में "की" आता है।',
+      },
+      translation: "Ram's book",
+      translations: {
+        en: "Ram's book",
+        ru: 'книга Рама',
+        de: 'Rams Buch',
+        es: 'el libro de Ram',
+        fr: 'le livre de Ram',
+        zh: '拉姆的书',
+        hi: 'राम की किताब',
+      },
+      icon: '📖',
+    },
+  ],
+};
+
 const LOCALIZED_ENGLISH_GRAMMAR: Partial<Record<SupportedLanguageId, Partial<GrammarData>>> = {
   ru: {
     genderRules: [
@@ -2553,6 +2785,66 @@ const LOCALIZED_ENGLISH_GRAMMAR: Partial<Record<SupportedLanguageId, Partial<Gra
       },
     ],
   },
+    hi: {
+      genderRules: [
+        {
+          article: 'a / an / the',
+          gender: 'neuter',
+          color: '#2563eb',
+          name: 'उपनाम व उपपद (Articles: A, An, The)',
+          description: 'अंग्रेज़ी संज्ञाओं में व्याकरणिक लिंग नहीं होता, लेकिन शब्द के आरम्भिक उच्चारण के आधार पर अनिश्चित उपपद (a / an) और निश्चित उपपद (the) का उपयोग किया जाता है।',
+          rules: [
+            'व्यंजन (Consonant) ध्वनि से शुरू होने वाले शब्दों से पहले "a" आता है: a book, a car, a university (प्रारंभिक ध्वनि /j/)',
+            'स्वर (Vowel) ध्वनि से शुरू होने वाले शब्दों से पहले "an" आता है: an apple, an hour ("h" अनुच्चारित), an elephant',
+            'किसी विशिष्ट या पूर्व-परिचित वस्तु के लिए "the" आता है: the book on the table',
+          ],
+          examples: [
+            { word: 'apple', article: 'an', meaning: 'सेब', icon: '🍎' },
+            { word: 'book', article: 'a', meaning: 'किताब', icon: '📖' },
+            { word: 'car', article: 'a', meaning: 'गाड़ी', icon: '🚗' },
+            { word: 'hour', article: 'an', meaning: 'घंटा', icon: '⏱️' },
+          ],
+        },
+      ],
+      verbs: [
+        {
+          verb: 'to be',
+          meaning: 'होना',
+          tense: 'वर्तमान और भूतकाल',
+          type: 'irregular',
+          forms: [
+            { pronoun: 'I', form: 'am / was' },
+            { pronoun: 'you', form: 'are / were' },
+            { pronoun: 'he / she / it', form: 'is / was' },
+            { pronoun: 'we', form: 'are / were' },
+            { pronoun: 'they', form: 'are / were' },
+          ],
+          exampleSentence: { target: 'We are learning languages together.', translation: 'हम एक साथ भाषा सीख रहे हैं।' },
+        },
+        {
+          verb: 'to have',
+          meaning: 'पास होना / रखना',
+          tense: 'वर्तमान और भूतकाल',
+          type: 'irregular',
+          forms: [
+            { pronoun: 'I / you / we / they', form: 'have (had)' },
+            { pronoun: 'he / she / it', form: 'has (had)' },
+          ],
+          exampleSentence: { target: 'She has a meeting today.', translation: 'उसकी आज एक मीटिंग है।' },
+        },
+      ],
+      descriptions: [
+        {
+          title: 'अंग्रेज़ी विशेषण तुलना (Degrees of Comparison)',
+          explanation: 'छोटे विशेषणों में -er / -est जुड़ता है (fast -> faster -> fastest)। लम्बे विशेषणों से पहले more / most लगाया जाता है (important -> more important -> most important)।',
+          examples: [
+            { positive: 'good (अच्छा)', comparative: 'better (बेहतर)', superlative: 'best (सर्वश्रेष्ठ)', meaning: 'अच्छा / बेहतर / सर्वश्रेष्ठ' },
+            { positive: 'bad (बुरा)', comparative: 'worse (बदतर)', superlative: 'worst (सबसे बुरा)', meaning: 'बुरा / बदतर / सबसे बुरा' },
+            { positive: 'big (बड़ा)', comparative: 'bigger (और बड़ा)', superlative: 'biggest (सबसे बड़ा)', meaning: 'बड़ा / और बड़ा / सबसे बड़ा' },
+          ],
+        },
+      ],
+    },
   zh: {
     genderRules: [
       {
@@ -2674,6 +2966,7 @@ export const getGrammarForLanguage = (
       case 'ko': baseData = KOREAN_GRAMMAR; break;
       case 'ja': baseData = JAPANESE_GRAMMAR; break;
       case 'zh': baseData = CHINESE_GRAMMAR; break;
+      case 'hi': baseData = HINDI_GRAMMAR; break;
       default: baseData = GERMAN_GRAMMAR; break;
     }
   }
