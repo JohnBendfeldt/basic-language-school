@@ -12,6 +12,8 @@ import indonesianData from '../data/languages/id/indonesianData';
 import turkishData from '../data/languages/tr/turkishData';
 import { resolveTranslation, extractDigit } from '../utils/translationResolver';
 import { getCandidateAudioPathsForText } from '../components/PronunciationButton';
+import { getGrammarForLanguage } from '../data/languages/grammarData';
+import { SUPPORTED_LANGUAGES } from '../data/languages';
 import {
   getPageContent,
   getAlphabetLabels,
@@ -211,5 +213,62 @@ describe('56-Language-Pair Matrix Audit (Translations, Numbers, UI Chrome & Neur
     expect(idGuide.rules[0].title).toBe("O'clock & Jam Tepat");
     expect(idGuide.rules[1].title).toBe('Past & To (Bagian dari Jam)');
     expect(idGuide.rules[2].title).toBe('AM vs PM (Format 12 Jam)');
+  });
+
+  it('audits grammar localization across all 10 supported target languages and reference base languages', () => {
+    const allTargetLanguages = Object.keys(SUPPORTED_LANGUAGES) as SupportedLanguageId[];
+    const referenceBaseLanguages: SupportedLanguageId[] = ['en', 'de', 'es', 'fr', 'ru'];
+
+    const grammarAuditFailures: string[] = [];
+
+    for (const targetLang of allTargetLanguages) {
+      for (const baseLang of referenceBaseLanguages) {
+        if (targetLang === baseLang) continue;
+
+        const grammar = getGrammarForLanguage(targetLang, baseLang);
+
+        // 1. Flashcards check: all cards must have valid localized explanation and translation
+        if (!grammar.flashcards || grammar.flashcards.length === 0) {
+          grammarAuditFailures.push(`[${targetLang} <- ${baseLang}] No flashcards found`);
+        } else {
+          for (const card of grammar.flashcards) {
+            if (!card.explanation || card.explanation.trim().length === 0) {
+              grammarAuditFailures.push(`[${targetLang} <- ${baseLang}] Card ${card.id} has empty explanation`);
+            }
+
+            // If card has localized explanations, ensure the returned explanation matches baseLang
+            if (card.explanations && card.explanations[baseLang]) {
+              if (card.explanation !== card.explanations[baseLang]) {
+                grammarAuditFailures.push(
+                  `[${targetLang} <- ${baseLang}] Card ${card.id} explanation was not localized for ${baseLang}`
+                );
+              }
+            }
+          }
+        }
+
+        // 2. English target special checks: must have full localized titles and rules
+        if (targetLang === 'en') {
+          if (grammar.descriptions && grammar.descriptions.length > 0) {
+            const desc = grammar.descriptions[0];
+            if (desc.title === 'English Adjective Comparison') {
+              grammarAuditFailures.push(`[en <- ${baseLang}] Description title remained in English`);
+            }
+            if (desc.explanation.startsWith('Short adjectives take -er')) {
+              grammarAuditFailures.push(`[en <- ${baseLang}] Description explanation remained in English`);
+            }
+          }
+
+          if (grammar.genderRules && grammar.genderRules.length > 0) {
+            const rule = grammar.genderRules[0];
+            if (rule.name === 'Articles (A, An, The)') {
+              grammarAuditFailures.push(`[en <- ${baseLang}] Gender/article rule name remained in English`);
+            }
+          }
+        }
+      }
+    }
+
+    expect(grammarAuditFailures).toEqual([]);
   });
 });
