@@ -12,7 +12,7 @@ interface PronunciationButtonProps {
   className?: string;
   useLocalAudio?: boolean;
   isAlphabet?: boolean;
-  audioCategory?: 'alphabet' | 'words' | 'phrases' | 'numbers' | 'examples' | 'basicPhrases' | 'commonWords' | 'time';
+  audioCategory?: 'alphabet' | 'words' | 'phrases' | 'numbers' | 'examples' | 'basicPhrases' | 'commonWords' | 'time' | 'grammar';
 }
 
 export const getCandidateAudioPathsForText = (
@@ -60,13 +60,13 @@ export const getCandidateAudioPathsForText = (
   if (primaryCategory === 'commonWords') primaryCategory = 'words';
 
   const folders = Array.from(
-    new Set([primaryCategory, 'words', 'phrases', 'examples', 'numbers', 'time'])
+    new Set([primaryCategory, 'grammar', 'words', 'phrases', 'examples', 'numbers', 'time'])
   );
 
   const fileNames = [fileName];
-  // If text has an article or pronoun prefix (e.g. "der tisch" -> "tisch", "он знает" -> "знает", "el libro" -> "libro")
+  // If text has an article or pronoun prefix (e.g. "der tisch" -> "tisch", "он знает" -> "знает", "el libro" -> "libro", "siz gidiyorsunuz" -> "gidiyorsunuz")
   const strippedPrefix = cleanText.replace(
-    /^(der|die|das|el|la|los|las|un|una|le|l'|les|une|o|a|os|as|um|uma|the|a|an|он|она|оно|они|я|ты|мы|вы|ich|du|er|sie|es|wir|ihr|je|tu|il|elle|nous|vous|ils|elles|yo|tú|él|ella|nosotros|vosotros|ellos|eu|você|ele|ela|nós|eles)\s+/i,
+    /^(der|die|das|el|la|los|las|un|una|le|l'|les|une|o|a|os|as|um|uma|the|a|an|он|она|оно|они|я|ты|мы|вы|ich|du|er|sie|es|wir|ihr|je|tu|il|elle|nous|vous|ils|elles|yo|tú|él|ella|nosotros|vosotros|ellos|eu|você|ele|ela|nós|eles|ben|sen|o|biz|siz|onlar|أنا|أنت|هو|هي|نحن|هم|मैं|तू|तुम|आप|वह|हम|वे)\s+/i,
     ''
   );
   if (strippedPrefix && strippedPrefix !== cleanText) {

@@ -1319,6 +1319,7 @@ export const ENGLISH_GRAMMAR: GrammarData = {
       id: 'en-card-3',
       type: 'verb',
       prompt: 'Past tense of "to go"',
+      audioWord: 'went',
       prompts: {
         ru: 'Прошедшее время от глагола «to go»',
         es: 'Pasado simple de "to go"',
@@ -1366,9 +1367,12 @@ export const TURKISH_GRAMMAR: GrammarData = {
     {
       title: 'Turkish Vowel Harmony (Ünlü Uyumu)',
       explanation: 'Turkish suffixes change vowels to match the word stem. Back vowels (a, ı, o, u) take back suffixes (-lar, -da). Front vowels (e, i, ö, ü) take front suffixes (-ler, -de). Turkish has NO grammatical gender!',
+      headers: ['Root Word (Kök)', 'Plural (-ler / -lar)', 'Locative In/At (-de / -da)', 'Vowel Harmony Rule'],
       examples: [
-        { positive: 'ev (house)', comparative: 'evler (houses)', superlative: 'evde (in the house)', meaning: 'Front vowel e -> -ler, -de' },
-        { positive: 'araba (car)', comparative: 'arabalar (cars)', superlative: 'arabada (in the car)', meaning: 'Back vowel a -> -lar, -da' },
+        { positive: 'ev (house)', comparative: 'evler (houses)', superlative: 'evde (in the house)', meaning: 'Front vowel (e) → -ler / -de' },
+        { positive: 'araba (car)', comparative: 'arabalar (cars)', superlative: 'arabada (in the car)', meaning: 'Back vowel (a) → -lar / -da' },
+        { positive: 'köy (village)', comparative: 'köyler (villages)', superlative: 'köyde (in the village)', meaning: 'Front rounded (ö) → -ler / -de' },
+        { positive: 'okul (school)', comparative: 'okullar (schools)', superlative: 'okulda (at school)', meaning: 'Back rounded (u) → -lar / -da' },
       ],
     },
   ],
@@ -1475,9 +1479,10 @@ export const INDONESIAN_GRAMMAR: GrammarData = {
     {
       title: 'Indonesian Word Order & Time Markers',
       explanation: 'Indonesian has NO verb conjugation, NO grammatical gender, and NO tenses! Adjectives follow nouns (rumah besar = house big = big house). Time is indicated simply with marker words: "sudah" (already/past), "sedang" (currently), and "akan" (will/future).',
+      headers: ['Base Verb / Noun', 'In-Progress (sedang)', 'Completed (sudah)', 'Function & Word Order'],
       examples: [
-        { positive: 'makan (eat)', comparative: 'sedang makan (eating now)', superlative: 'sudah makan (already ate)', meaning: 'No conjugation needed!' },
-        { positive: 'rumah (house)', comparative: 'rumah besar (big house)', superlative: 'rumah-rumah (houses)', meaning: 'Plural is reduplicated' },
+        { positive: 'makan (eat)', comparative: 'sedang makan (eating now)', superlative: 'sudah makan (already ate)', meaning: 'Time markers before verb' },
+        { positive: 'rumah (house)', comparative: 'rumah besar (big house)', superlative: 'rumah-rumah (houses)', meaning: 'Plural by word repetition' },
       ],
     },
   ],
@@ -1599,6 +1604,7 @@ export const KOREAN_GRAMMAR: GrammarData = {
     {
       title: 'Korean Particles (조사 - 은/는, 이/가, 을/를)',
       explanation: 'Korean uses postpositional particles to mark grammatical roles. 은/는 marks topic/contrast. 이/가 marks subject. 을/를 marks direct object. Korean has NO grammatical gender!',
+      headers: ['Topic (은/는)', 'Subject (이/가)', 'Object (을/를)', 'Role & Consonant/Vowel Rule'],
       examples: [
         { positive: '저는 (jeo-neun)', comparative: '물이 (mul-i)', superlative: '밥을 (bap-eul)', meaning: '저 (topic) + 물 (subject) + 밥 (object)' },
         { positive: '은 / 을 (after consonant)', comparative: '는 / 를 (after vowel)', superlative: '이 / 가 (sub consonant/vowel)', meaning: '책을 (book-obj) vs 커피를 (coffee-obj)' },
@@ -1607,6 +1613,7 @@ export const KOREAN_GRAMMAR: GrammarData = {
     {
       title: 'Polite Speech Levels (존댓말 - 아요/어요 & ㅂ니다/습니다)',
       explanation: 'Korean verbs conjugate for politeness rather than person (I/you/we). Everyday polite style uses -아요/어요, while formal/business style uses -ㅂ니다/습니다.',
+      headers: ['Dictionary Form (기본형)', 'Everyday Polite (아요/어요)', 'Formal Polite (ㅂ니다/습니다)', 'Context & Politeness'],
       examples: [
         { positive: '가다 (to go)', comparative: '가요 (polite)', superlative: '갑니다 (formal)', meaning: 'Everyday vs formal polite' },
         { positive: '먹다 (to eat)', comparative: '먹어요 (polite)', superlative: '먹습니다 (formal)', meaning: 'Stem ending in vowel vs consonant' },
@@ -1762,6 +1769,7 @@ export const JAPANESE_GRAMMAR: GrammarData = {
     {
       title: 'Japanese Particles (助詞 - は, が, を, に, で)',
       explanation: 'Particles mark grammatical functions: は (wa) marks topic, が (ga) marks subject, を (o) marks direct object, に (ni) marks target/time, で (de) marks location of action. Japanese has NO grammatical gender!',
+      headers: ['Topic / Subject', 'Direct Object', 'Action / Verb', 'Grammar Role (SOV)'],
       examples: [
         { positive: '私は (watashi wa)', comparative: '水を (mizu o)', superlative: '飲みます (nomimasu)', meaning: 'Topic + Object + Verb (SOV order)' },
         { positive: '学校に (to school)', comparative: '駅で (at station)', superlative: '友達と (with friend)', meaning: 'Direction (に) vs Location (で) vs With (と)' },
@@ -1770,6 +1778,7 @@ export const JAPANESE_GRAMMAR: GrammarData = {
     {
       title: 'Polite Verb Endings (です & ます)',
       explanation: 'Standard polite Japanese uses です (desu) after nouns/adjectives and 〜ます (masu) after verb stems. Negatives end in 〜ません (masen), and past forms end in 〜ました (mashita).',
+      headers: ['Present Polite (〜ます)', 'Negative (〜ません)', 'Past Form (〜ました)', 'Category & Role'],
       examples: [
         { positive: '食べます (tabemasu)', comparative: '食べません (don\'t eat)', superlative: '食べました (ate)', meaning: 'Polite present vs negative vs past' },
         { positive: '学生です (I am student)', comparative: 'ではありません (am not)', superlative: 'でした (was)', meaning: 'Noun + desu inflections' },
@@ -1923,27 +1932,35 @@ export const JAPANESE_GRAMMAR: GrammarData = {
 export const CHINESE_GRAMMAR: GrammarData = {
   descriptions: [
     {
-      title: 'Chinese Measure Words (量词 - 个, 本, 只, 杯, 张)',
+      title: 'Chinese Measure Words (量词 - 个, 本, 只, 杯, 辆)',
       explanation: 'In Chinese, whenever you count nouns or use "this/that" (这/那), you must insert a measure word (classifier) before the noun. Mandarin Chinese has NO grammatical gender or plural suffixes!',
+      headers: ['Noun (名词)', 'Measure Word (量词)', 'Example Phrase', 'Rule & Context'],
       examples: [
-        { positive: '一个人 (yí gè rén)', comparative: '一本书 (yì běn shū)', superlative: '一只猫 (yì zhī māo)', meaning: 'One person (个) / One book (本) / One cat (只)' },
-        { positive: '一杯水 (yì bēi shuǐ)', comparative: '一张票 (yì zhāng piào)', superlative: '这辆车 (zhè liàng chē)', meaning: 'One cup of water (杯) / One ticket (张) / This car (辆)' },
+        { positive: '人 (rén - person)', comparative: '个 (gè)', superlative: '一个人 (yí gè rén)', meaning: 'Universal classifier for people and common nouns' },
+        { positive: '书 (shū - book)', comparative: '本 (běn)', superlative: '一本书 (yì běn shū)', meaning: 'Classifier for bound books and notebooks' },
+        { positive: '猫 (māo - cat)', comparative: '只 (zhī)', superlative: '一只猫 (yì zhī māo)', meaning: 'Classifier for small animals and birds' },
+        { positive: '车 (chē - car)', comparative: '辆 (liàng)', superlative: '一辆车 (yí liàng chē)', meaning: 'Classifier for wheeled road vehicles' },
       ],
     },
     {
       title: 'Essential Particles (助词 - 的, 了, 吗, 吧)',
       explanation: 'Chinese grammar relies on functional sentence particles rather than verb conjugations. "的" marks possession/attributes, "了" marks completed actions or change of state, "吗" forms yes/no questions, and "吧" suggests an action.',
+      headers: ['Particle (助词)', 'Function (功能)', 'Example (例句)', 'Meaning (含义)'],
       examples: [
-        { positive: '我的朋友 (my friend)', comparative: '吃了吗？ (Did you eat?)', superlative: '你好吗？ (How are you?)', meaning: 'Possessive (的) vs Completed (了) vs Question (吗)' },
-        { positive: '我们走吧！ (Let\'s go!)', comparative: '我懂了 (I understood)', superlative: '红色的车 (Red car)', meaning: 'Suggestion (吧) vs State change (了) vs Adjective modifier (的)' },
+        { positive: '的 (de)', comparative: 'Possession / Attribute', superlative: '我的朋友 (wǒ de péngyou)', meaning: 'My friend' },
+        { positive: '了 (le)', comparative: 'Completion / Change', superlative: '我懂了 (wǒ dǒng le)', meaning: 'I understood / Now I understand' },
+        { positive: '吗 (ma)', comparative: 'Yes/No Question', superlative: '你好吗？ (nǐ hǎo ma?)', meaning: 'How are you?' },
+        { positive: '吧 (ba)', comparative: 'Suggestion / Polite tone', superlative: '我们走吧！ (wǒmen zǒu ba!)', meaning: 'Let\'s go!' },
       ],
     },
     {
       title: 'Comparison with 比 (bǐ - Comparative & Superlative)',
       explanation: 'To compare two nouns, use the structure: A 比 B + Adjective (A is more [adj] than B). For superlatives, place 最 (zuì) directly in front of the adjective.',
+      headers: ['Base (原级)', 'Comparative (比 / 比较级)', 'Superlative (最 / 最高级)', 'Meaning (翻译)'],
       examples: [
-        { positive: '中国比日本大', comparative: '飞机比火车快', superlative: '这个最好', meaning: 'China is bigger than Japan / Airplanes are faster than trains / This is the best' },
-        { positive: '好 (good)', comparative: '更好 (better)', superlative: '最好 (best)', meaning: 'Basic vs comparative vs superlative' },
+        { positive: '好 (hǎo - good)', comparative: '更好 (gèng hǎo - better)', superlative: '最好 (zuì hǎo - best)', meaning: 'Good -> Better -> Best' },
+        { positive: '大 (dà - big)', comparative: '中国比日本大', superlative: '这个最大 (zhè ge zuì dà)', meaning: 'China is bigger than Japan / This is the biggest' },
+        { positive: '快 (kuài - fast)', comparative: '飞机比火车快', superlative: '飞机最快 (fēijī zuì kuài)', meaning: 'Planes are faster than trains / Planes are fastest' },
       ],
     },
   ],
@@ -2192,9 +2209,13 @@ export const HINDI_GRAMMAR: GrammarData = {
     {
       title: 'Hindi Postpositions (परसर्ग - में, पर, से, को, का/के/की)',
       explanation: 'Unlike English prepositions that come BEFORE a noun, Hindi uses postpositions that follow the noun. When a postposition follows, the noun enters the oblique case (e.g. लड़का ➔ लड़के को).',
+      headers: ['Noun / Context', 'Postposition Phrase', 'Oblique Case / Possessive', 'Meaning & Function'],
       examples: [
-        { positive: 'कमरे में (In the room)', comparative: 'मेज़ पर (On the table)', superlative: 'दिल्ली से (From Delhi)', meaning: 'in / on / from' },
-        { positive: 'दोस्त को (To the friend)', comparative: "राम का घर (Ram's house - m.sg)", superlative: "राम की किताब (Ram's book - f.sg)", meaning: 'to / possessive of' },
+        { positive: 'कमरा (room)', comparative: 'कमरे में (kamre mẽ)', superlative: 'In the room', meaning: 'Locative: inside (oblique -e)' },
+        { positive: 'मेज़ (table)', comparative: 'मेज़ पर (mez par)', superlative: 'On the table', meaning: 'Locative: on / at' },
+        { positive: 'दिल्ली (Delhi)', comparative: 'दिल्ली से (dillī se)', superlative: 'From Delhi', meaning: 'Ablative: from / since' },
+        { positive: 'दोस्त (friend)', comparative: 'दोस्त को (dost ko)', superlative: 'To the friend', meaning: 'Dative / Accusative: to' },
+        { positive: 'राम (Ram)', comparative: 'राम का घर (m.sg)', superlative: "राम की किताब (f.sg)", meaning: "Possessive of (का/की/के)" },
       ],
     },
   ],
@@ -2425,9 +2446,12 @@ export const ARABIC_GRAMMAR: GrammarData = {
     {
       title: 'The Definite Article "Al-" & Sun/Moon Letters (أل التعريف)',
       explanation: 'In Arabic, "the" is the prefix الـ (al-). Before Sun Letters (ت ث د ذ ر ز س ش ص ض ط ظ ل ن), the "l" assimilates (e.g. الشمس = ash-shams). Before Moon Letters, the "l" is pronounced clearly (e.g. القمر = al-qamar). When a noun is definite, its adjective must also take الـ (e.g. الكتاب الجديد = the new book).',
+      headers: ['Indefinite Noun', 'Definite (الـ)', 'Sun / Moon Class', 'Meaning & Rule'],
       examples: [
-        { positive: 'الكتاب (The book - Moon)', comparative: 'الشمس (The sun - Sun)', superlative: 'السيارة (The car - Sun)', meaning: 'definite article (al-)' },
-        { positive: 'كتاب جديد (A new book)', comparative: 'الكتاب الجديد (The new book)', superlative: 'مدينة جميلة (A beautiful city)', meaning: 'noun-adjective agreement' },
+        { positive: 'كتاب (kitāb - book)', comparative: 'الكِتَاب (al-kitāb)', superlative: 'حرف قمري (Moon letter k)', meaning: 'Pronounce lām clearly: al-kitāb' },
+        { positive: 'شمس (shams - sun)', comparative: 'الشَّمْس (ash-shams)', superlative: 'حرف شمسي (Sun letter sh)', meaning: 'Assimilate lām: ash-shams' },
+        { positive: 'قمر (qamar - moon)', comparative: 'القَمَر (al-qamar)', superlative: 'حرف قمري (Moon letter q)', meaning: 'Pronounce lām clearly: al-qamar' },
+        { positive: 'سيارة (sayyārah - car)', comparative: 'السَّيَّارَة (as-sayyārah)', superlative: 'حرف شمسي (Sun letter s)', meaning: 'Assimilate lām: as-sayyārah' },
       ],
     },
   ],
