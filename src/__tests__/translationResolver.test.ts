@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import { describe, it, expect } from 'vitest';
 import {
   NUMBER_TABLE,
@@ -9,6 +11,10 @@ import {
   LANGUAGE_NAMES_IN_BASE,
 } from '../utils/translationResolver';
 import { SupportedLanguageId } from '../data/languages/types';
+import { SUPPORTED_LANGUAGES } from '../data/languages';
+import { getCandidateAudioPathsForText } from '../components/PronunciationButton';
+
+const PUBLIC_DIR = path.resolve(__dirname, '../../public');
 
 const ALL: SupportedLanguageId[] = ['en', 'es', 'fr', 'ru', 'pt', 'de', 'id', 'tr', 'zh', 'ja', 'ko', 'hi', 'ar', 'bn', 'ur'];
 const NON_LATIN: SupportedLanguageId[] = ['ru', 'zh', 'ja', 'ko', 'hi', 'ar', 'bn', 'ur'];
@@ -78,7 +84,7 @@ describe('getLocalizedNumber', () => {
   });
 
   it('falls back to the English word when the language has no entry', () => {
-    expect(getLocalizedNumber('7', 'ko')).toBe('7 (Seven)');
+    expect(getLocalizedNumber('7', 'xx' as SupportedLanguageId)).toBe('7 (Seven)');
   });
 
   it('returns null for text that is not a number', () => {
@@ -176,5 +182,45 @@ describe('buildQuizQuestionHint', () => {
   it('names the target language in the base language for "how do you say" questions', () => {
     expect(buildQuizQuestionHint('house', false, 'es', 'ru')).toContain(LANGUAGE_NAMES_IN_BASE.ru.es);
     expect(buildQuizQuestionHint('house', false, 'es', 'fr')).toContain('espagnol');
+  });
+});
+
+describe('NUMBER_TABLE stays in sync with each language\'s number curriculum and audio', () => {
+  const NATIVE: SupportedLanguageId[] = ['ja', 'ko', 'bn', 'ur'];
+
+  const numberRows = (lang: SupportedLanguageId) =>
+    SUPPORTED_LANGUAGES[lang].data.numbers.map((p) => ({
+      word: (p.phrase ?? '').toString(),
+      digit: extractDigit((p.translation ?? '').toString()),
+    }));
+
+  it.each(NATIVE)('%s: every curriculum number word is the NUMBER_TABLE word for its digit', (lang) => {
+    const problems: string[] = [];
+    for (const { word, digit } of numberRows(lang)) {
+      if (digit === null || !NUMBER_TABLE[digit]) continue;
+      if (NUMBER_TABLE[digit][lang] !== word) problems.push(`${digit}: table has "${NUMBER_TABLE[digit][lang]}", curriculum has "${word}"`);
+      if (!NUMBER_TABLE[digit].allWords.includes(word)) problems.push(`${digit}: "${word}" is not an accepted word`);
+    }
+    expect(problems).toEqual([]);
+  });
+
+  it.each(NATIVE)('%s: the number word shown in the quiz has a studio recording on disk', (lang) => {
+    const missing: string[] = [];
+    for (const [digit, entry] of Object.entries(NUMBER_TABLE)) {
+      const word = entry[lang];
+      if (!word) {
+        missing.push(`${digit}: no ${lang} word`);
+        continue;
+      }
+      const paths = getCandidateAudioPathsForText(word, lang, 'numbers');
+      const exists = paths.some((p) => fs.existsSync(path.join(PUBLIC_DIR, decodeURIComponent(p).replace(/^\//, ''))));
+      if (!exists) missing.push(`${digit}: ${word}`);
+    }
+    expect(missing).toEqual([]);
+  });
+
+  it.each(NATIVE)('%s: a number prompt resolves to "digit (native word)" instead of English', (lang) => {
+    expect(resolveTranslation({ phrase: 'quince', translation: '15 (Fifteen)' }, 'es', lang)).toBe(`15 (${NUMBER_TABLE[15][lang]})`);
+    expect(getLocalizedNumber('7', lang)).toBe(`7 (${NUMBER_TABLE[7][lang]})`);
   });
 });
