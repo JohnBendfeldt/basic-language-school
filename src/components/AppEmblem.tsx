@@ -359,6 +359,41 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
         </svg>
       );
 
+    case 'hi':
+      return (
+        <svg
+          className="app-emblem hindi-flag"
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-label="Basic Hindi emblem"
+          role="img"
+        >
+          <defs>
+            <linearGradient id="hiEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#ea580c" />
+              <stop offset="50%" stopColor="#1e3a8a" />
+              <stop offset="100%" stopColor="#0f172a" />
+            </linearGradient>
+            <linearGradient id="hiGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#fde047" />
+              <stop offset="60%" stopColor="#f59e0b" />
+              <stop offset="100%" stopColor="#d97706" />
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#hiEmblemBg)" stroke="rgba(255,255,255,0.22)" strokeWidth="1.5" />
+          {/* Indian Tiranga: Saffron, White with Ashoka Chakra, Green */}
+          <g transform="translate(6, 6)">
+            <rect x="0" y="0" width="10" height="2.3" rx="0.5" fill="#ff9933" />
+            <rect x="0" y="2.3" width="10" height="2.4" fill="#ffffff" />
+            <circle cx="5" cy="3.5" r="0.9" fill="none" stroke="#000080" strokeWidth="0.4" />
+            <circle cx="5" cy="3.5" r="0.3" fill="#000080" />
+            <rect x="0" y="4.7" width="10" height="2.3" rx="0.5" fill="#138808" />
+          </g>
+          {capGeometry('hiGoldGrad')}
+        </svg>
+      );
+
     case 'en':
     default:
       return (
