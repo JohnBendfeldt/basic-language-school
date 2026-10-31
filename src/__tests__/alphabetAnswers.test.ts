@@ -106,4 +106,92 @@ describe('Alphabet Accepted Answers Utility', () => {
       expect(answers).toContain('soft');
     });
   });
+
+  describe('Bengali Alphabet', () => {
+    it('accepts single letter, phonetic names, and sound variations for ঠ', () => {
+      const answers = getAlphabetAcceptedAnswers('ঠ', '/ʈʰɔ/ (tho)', 'bn');
+      expect(answers).toContain('ঠ');
+      expect(answers).toContain('tho');
+      expect(answers).toContain('th');
+      expect(answers).toContain('t');
+      expect(answers).toContain('tha');
+    });
+
+    it('accepts single letter, pho, fo, and ha variations for ফ', () => {
+      const answers = getAlphabetAcceptedAnswers('ফ', '/pʰɔ/ or /fɔ/ (pho/fo)', 'bn');
+      expect(answers).toContain('ফ');
+      expect(answers).toContain('pho');
+      expect(answers).toContain('fo');
+      expect(answers).toContain('f');
+      expect(answers).toContain('ph');
+      expect(answers).toContain('ha');
+    });
+
+    it('accepts single letter, tho, th, and t for থ', () => {
+      const answers = getAlphabetAcceptedAnswers('থ', '/t̪ʰɔ/ (tho)', 'bn');
+      expect(answers).toContain('থ');
+      expect(answers).toContain('tho');
+      expect(answers).toContain('th');
+      expect(answers).toContain('t');
+    });
+
+    it('accepts khanda ta, khanda tho, quan do tho, and t variations for ৎ', () => {
+      const answers = getAlphabetAcceptedAnswers('ৎ', '/t̪/ (khanda ta)', 'bn');
+      expect(answers).toContain('ৎ');
+      expect(answers).toContain('khanda ta');
+      expect(answers).toContain('khandata');
+      expect(answers).toContain('khanda tho');
+      expect(answers).toContain('quan do tho');
+      expect(answers).toContain('t');
+    });
+
+    it('accepts o, a, aw, and shoro for vowel অ', () => {
+      const answers = getAlphabetAcceptedAnswers('অ', '/ɔ/ (o)', 'bn');
+      expect(answers).toContain('অ');
+      expect(answers).toContain('o');
+      expect(answers).toContain('a');
+    });
+
+    it('accepts k, ko, and ka for consonant ক', () => {
+      const answers = getAlphabetAcceptedAnswers('ক', '/kɔ/ (ko)', 'bn');
+      expect(answers).toContain('ক');
+      expect(answers).toContain('ko');
+      expect(answers).toContain('k');
+      expect(answers).toContain('ka');
+    });
+  });
+
+  describe('Hindi, Urdu & Arabic Alphabets', () => {
+    it('accepts tha, th, and t for Hindi ठ', () => {
+      const answers = getAlphabetAcceptedAnswers('ठ', '/ʈʰə/ (tha)', 'hi');
+      expect(answers).toContain('ठ');
+      expect(answers).toContain('tha');
+      expect(answers).toContain('th');
+      expect(answers).toContain('t');
+    });
+
+    it('accepts alif madd, aa, and a for Urdu آ', () => {
+      const answers = getAlphabetAcceptedAnswers('آ', '/aː/ (alif madd)', 'ur');
+      expect(answers).toContain('آ');
+      expect(answers).toContain('alif madd');
+      expect(answers).toContain('aa');
+      expect(answers).toContain('a');
+    });
+
+    it('accepts faa, fa, and f for Arabic ف', () => {
+      const answers = getAlphabetAcceptedAnswers('ف', '/f/ (faa)', 'ar');
+      expect(answers).toContain('ف');
+      expect(answers).toContain('faa');
+      expect(answers).toContain('fa');
+      expect(answers).toContain('f');
+    });
+
+    it('accepts ayn, ain, and a for Arabic ع', () => {
+      const answers = getAlphabetAcceptedAnswers('ع', '/ʕ/ (ayn)', 'ar');
+      expect(answers).toContain('ع');
+      expect(answers).toContain('ayn');
+      expect(answers).toContain('ain');
+      expect(answers).toContain('a');
+    });
+  });
 });

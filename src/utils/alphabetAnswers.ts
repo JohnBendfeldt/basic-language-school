@@ -132,6 +132,189 @@ const RUSSIAN_LETTER_ANSWERS: Record<string, string[]> = {
   Я: ['ya', 'ia']
 };
 
+// Bengali alphabet sounds & common phonetic Latin spellings
+export const BENGALI_LETTER_ANSWERS: Record<string, string[]> = {
+  'অ': ['o', 'a', 'aw', 'shor o', 'shor-o', 'shoro'],
+  'আ': ['aa', 'a', 'shor aa', 'shor-aa', 'shoraa'],
+  'ই': ['i', 'ee', 'e', 'hrasho i', 'rhasho i'],
+  'ঈ': ['ee', 'i', 'ii', 'dirgho i', 'dhirgho i'],
+  'উ': ['u', 'oo', 'hrasho u', 'rhasho u'],
+  'ঊ': ['oo', 'u', 'uu', 'dirgho u', 'dhirgho u'],
+  'ঋ': ['ri', 'ree', 'rri', 'hri'],
+  'এ': ['e', 'ay', 'ae'],
+  'ঐ': ['oi', 'oj', 'oy'],
+  'ও': ['o', 'oh'],
+  'ঔ': ['ou', 'ow', 'au'],
+  'ক': ['ko', 'k', 'ka'],
+  'খ': ['kho', 'kh', 'kha', 'k'],
+  'গ': ['go', 'g', 'ga'],
+  'ঘ': ['gho', 'gh', 'gha', 'g'],
+  'ঙ': ['ngo', 'ng', 'nga', 'ung', 'umo'],
+  'চ': ['cho', 'ch', 'cha', 'c'],
+  'ছ': ['chho', 'chh', 'chha', 'ch', 'cho'],
+  'জ': ['jo', 'j', 'ja', 'z', 'zo'],
+  'ঝ': ['jho', 'jh', 'jha', 'j'],
+  'ঞ': ['nio', 'nyo', 'ni', 'io', 'eeyon', 'n'],
+  'ট': ['to', 't', 'ta', 'ṭ', 'ṭo'],
+  'ঠ': ['tho', 'th', 't', 'ṭh', 'ṭho', 'tha', 'to', 'ta'],
+  'ড': ['do', 'd', 'da', 'ḍ', 'ḍo'],
+  'ঢ': ['dho', 'dh', 'dha', 'd', 'ḍh', 'ḍho', 'do', 'da'],
+  'ণ': ['no', 'n', 'na', 'moddho no', 'murdhonno no', 'ṇ'],
+  'ত': ['to', 't', 'ta'],
+  'থ': ['tho', 'th', 't', 'tha', 'to', 'ta'],
+  'দ': ['do', 'd', 'da'],
+  'ধ': ['dho', 'dh', 'dha', 'd', 'do', 'da'],
+  'ন': ['no', 'n', 'na', 'donto no'],
+  'প': ['po', 'p', 'pa'],
+  'ফ': ['pho', 'fo', 'ph', 'f', 'pha', 'fa', 'p', 'po', 'ha'],
+  'ব': ['bo', 'b', 'ba'],
+  'ভ': ['bho', 'bh', 'bha', 'v', 'vo', 'va', 'b'],
+  'ম': ['mo', 'm', 'ma'],
+  'য': ['jo', 'j', 'ja', 'y', 'yo', 'ya', 'ontostho jo'],
+  'র': ['ro', 'r', 'ra'],
+  'ল': ['lo', 'l', 'la'],
+  'শ': ['sho', 'sh', 'sha', 'talobbo sho', 's'],
+  'ষ': ['sho', 'sh', 'sha', 'murdhonno sho', 's', 'ṣ'],
+  'স': ['sho', 'so', 'sh', 's', 'sha', 'sa', 'donto sho'],
+  'হ': ['ho', 'h', 'ha'],
+  'ড়': ['rho', 'rh', 'r', 'ro', 'ra', 'd-e-bindu ro', 'd e bindu ro'],
+  'ঢ়': ['rho', 'rh', 'r', 'ro', 'ra', 'dh-e-bindu ro', 'dh e bindu ro'],
+  'য়': ['y', 'yo', 'ya', 'e', 'ontostho e', 'ontostho y'],
+  'ৎ': ['khanda ta', 'khandata', 'khanda tho', 'khandatho', 'khanda to', 'khandato', 'quan do tho', 'quandotho', 'quan do ta', 't', 'ta', 'th', 'tho', 'to'],
+  'ং': ['anusvara', 'anushbar', 'anushbor', 'anusvar', 'ng', 'ong'],
+  'ঃ': ['visarga', 'bishorgo', 'bisarga', 'h', 'oh'],
+  'ঁ': ['chandrabindu', 'chondrobindu', 'candrabindu', 'nasal', 'n']
+};
+
+// Hindi alphabet sounds & common phonetic Latin spellings
+export const HINDI_LETTER_ANSWERS: Record<string, string[]> = {
+  'अ': ['a', 'short a'],
+  'आ': ['aa', 'a'],
+  'इ': ['i', 'ee', 'chhoti i'],
+  'ई': ['ee', 'i', 'ii', 'badi ee'],
+  'उ': ['u', 'oo', 'chhota u'],
+  'ऊ': ['oo', 'u', 'uu', 'bada oo'],
+  'ऋ': ['ri', 'ree', 'rri'],
+  'ए': ['e', 'ay'],
+  'ऐ': ['ai', 'ae'],
+  'ओ': ['o', 'oh'],
+  'औ': ['au', 'ou', 'ow'],
+  'अं': ['ang', 'an', 'am'],
+  'क': ['ka', 'k'],
+  'ख': ['kha', 'kh', 'k'],
+  'ग': ['ga', 'g'],
+  'घ': ['gha', 'gh', 'g'],
+  'ङ': ['nga', 'ng'],
+  'च': ['cha', 'ch', 'c'],
+  'छ': ['chha', 'chh', 'ch'],
+  'ज': ['ja', 'j', 'z'],
+  'झ': ['jha', 'jh', 'j'],
+  'ञ': ['nya', 'ny', 'nia', 'n'],
+  'ट': ['ta', 't'],
+  'ठ': ['tha', 'th', 't'],
+  'ड': ['da', 'd'],
+  'ढ': ['dha', 'dh', 'd'],
+  'ण': ['na', 'n'],
+  'त': ['ta', 't'],
+  'थ': ['tha', 'th', 't'],
+  'द': ['da', 'd'],
+  'ध': ['dha', 'dh', 'd'],
+  'न': ['na', 'n'],
+  'प': ['pa', 'p'],
+  'फ': ['pha', 'ph', 'fa', 'f', 'p'],
+  'ब': ['ba', 'b'],
+  'भ': ['bha', 'bh', 'b'],
+  'म': ['ma', 'm'],
+  'य': ['ya', 'y'],
+  'र': ['ra', 'r'],
+  'ल': ['la', 'l'],
+  'व': ['va', 'v', 'wa', 'w'],
+  'श': ['sha', 'sh', 's'],
+  'ष': ['sha', 'sh', 's'],
+  'स': ['sa', 's'],
+  'ह': ['ha', 'h'],
+  'क्ष': ['ksha', 'ksh', 'x'],
+  'त्र': ['tra', 'tr'],
+  'ज्ञ': ['gya', 'gyan', 'jnya']
+};
+
+// Urdu alphabet sounds & common phonetic Latin spellings
+export const URDU_LETTER_ANSWERS: Record<string, string[]> = {
+  'آ': ['alif madd', 'alif madda', 'aa', 'a'],
+  'ا': ['alif', 'a'],
+  'ب': ['be', 'bay', 'b'],
+  'پ': ['pe', 'pay', 'p'],
+  'ت': ['te', 'tay', 't'],
+  'ٹ': ['te', 'tay', 't', 'ṭe'],
+  'ث': ['se', 'say', 's'],
+  'ج': ['jeem', 'jim', 'j'],
+  'چ': ['che', 'chay', 'ch'],
+  'ح': ['he', 'bari he', 'badi he', 'h'],
+  'خ': ['khe', 'khay', 'kh'],
+  'د': ['daal', 'dal', 'd'],
+  'ڈ': ['daal', 'dal', 'd', 'ḍaal'],
+  'ذ': ['zaal', 'zal', 'z'],
+  'ر': ['re', 'ray', 'r'],
+  'ڑ': ['re', 'ray', 'r', 'ṛe'],
+  'ز': ['ze', 'zay', 'z'],
+  'ژ': ['zhe', 'zhay', 'zh'],
+  'س': ['seen', 'sin', 's'],
+  'ش': ['sheen', 'shin', 'sh'],
+  'ص': ['swaad', 'swad', 'saad', 's'],
+  'ض': ['zwaad', 'zwad', 'zaad', 'z'],
+  'ط': ['toye', 'toe', 'toy', 't'],
+  'ظ': ['zoye', 'zoe', 'zoy', 'z'],
+  'ع': ['ain', 'ayn', 'a'],
+  'غ': ['ghain', 'ghayn', 'gh'],
+  'ف': ['fe', 'fay', 'f'],
+  'ق': ['qaaf', 'qaf', 'q', 'k'],
+  'ک': ['kaaf', 'kaf', 'k'],
+  'گ': ['gaaf', 'gaf', 'g'],
+  'ل': ['laam', 'lam', 'l'],
+  'م': ['meem', 'mim', 'm'],
+  'ن': ['noon', 'nun', 'n'],
+  'ں': ['noon ghunna', 'nun ghunna', 'n'],
+  'و': ['wao', 'waw', 'w', 'v', 'o', 'u'],
+  'ہ': ['chhoti he', 'heh', 'h'],
+  'ھ': ['do chashmi he', 'he', 'h'],
+  'ء': ['hamza', 'hamzah', 'a'],
+  'ی': ['chhoti ye', 'ye', 'y', 'i', 'ee'],
+  'ے': ['bari ye', 'badi ye', 'ye', 'ay', 'e']
+};
+
+// Arabic alphabet sounds & common phonetic Latin spellings
+export const ARABIC_LETTER_ANSWERS: Record<string, string[]> = {
+  'أ': ['alif', 'alef', 'a', 'aa'],
+  'ب': ['baa', 'ba', 'b'],
+  'ت': ['taa', 'ta', 't'],
+  'ث': ['thaa', 'tha', 'th'],
+  'ج': ['jeem', 'jim', 'j'],
+  'ح': ['haa', 'ha', 'h'],
+  'خ': ['khaa', 'kha', 'kh', 'x'],
+  'د': ['daal', 'dal', 'd'],
+  'ذ': ['dhaal', 'dhal', 'dh', 'th'],
+  'ر': ['raa', 'ra', 'r'],
+  'ز': ['zaay', 'zay', 'zain', 'z'],
+  'س': ['seen', 'sin', 's'],
+  'ش': ['sheen', 'shin', 'sh'],
+  'ص': ['saad', 'sad', 's'],
+  'ض': ['daad', 'dad', 'd'],
+  'ط': ['taa', 'ta', 't'],
+  'ظ': ['dhaa', 'dha', 'zhaa', 'dh', 'z'],
+  'ع': ['ayn', 'ain', 'a', '3'],
+  'غ': ['ghayn', 'ghain', 'gh'],
+  'ف': ['faa', 'fa', 'f'],
+  'ق': ['qaaf', 'qaf', 'q', 'k'],
+  'ك': ['kaaf', 'kaf', 'k'],
+  'ل': ['laam', 'lam', 'l'],
+  'م': ['meem', 'mim', 'm'],
+  'ن': ['noon', 'nun', 'n'],
+  'هـ': ['haa', 'ha', 'h'],
+  'ه': ['haa', 'ha', 'h'],
+  'و': ['waaw', 'waw', 'w', 'u', 'oo'],
+  'ي': ['yaa', 'ya', 'y', 'i', 'ee']
+};
+
 /**
  * Normalizes an IPA phonetic string into common Latin keyboard approximations.
  */
@@ -143,22 +326,42 @@ function normalizeIpaToAscii(ipa: string): string[] {
   s = s.replace(/[/\[\]]/g, '').trim();
   if (s) variants.push(s);
 
-  // Common IPA character replacements
+  // Common IPA character replacements across Western, Cyrillic, Indic, and Semitic phonetics
   const ascii = s
-    .replace(/ɑ/g, 'a')
+    .replace(/ɑ|ɒ/g, 'a')
     .replace(/æ/g, 'ae')
     .replace(/eɪ/g, 'ei')
     .replace(/ɛ/g, 'e')
-    .replace(/ə/g, 'e')
+    .replace(/ə/g, 'a')
+    .replace(/ɔ/g, 'o')
     .replace(/ɪ/g, 'i')
     .replace(/iː/g, 'ee')
+    .replace(/uː/g, 'oo')
+    .replace(/ʈ/g, 't')
+    .replace(/ɖ/g, 'd')
+    .replace(/t̪/g, 't')
+    .replace(/d̪/g, 'd')
+    .replace(/ʰ|ʱ/g, 'h')
+    .replace(/ŋ/g, 'ng')
+    .replace(/ɲ/g, 'ny')
+    .replace(/ɽ/g, 'r')
+    .replace(/ħ/g, 'h')
+    .replace(/x/g, 'kh')
+    .replace(/ɣ/g, 'gh')
+    .replace(/q/g, 'k')
+    .replace(/ʔ|ʕ/g, 'a')
+    .replace(/sˤ/g, 's')
+    .replace(/dˤ/g, 'd')
+    .replace(/tˤ/g, 't')
+    .replace(/ðˤ/g, 'dh')
+    .replace(/e̯/g, 'y')
+    .replace(/[̃ː]/g, '')
     .replace(/biː/g, 'b')
     .replace(/diː/g, 'd')
     .replace(/siː/g, 'c')
     .replace(/ʃ/g, 'sh')
     .replace(/ʒ/g, 'j')
     .replace(/ʁ|ɾ/g, 'r')
-    .replace(/ɲ/g, 'ny')
     .replace(/θ/g, 'th')
     .replace(/dubləve/g, 'double ve')
     .replace(/iɡʁɛk/g, 'i grec')
@@ -174,9 +377,9 @@ function normalizeIpaToAscii(ipa: string): string[] {
 /**
  * Returns an exhaustive list of accepted user answers for any alphabet question.
  *
- * @param character The letter symbol (e.g. 'C', 'H', 'Ñ', 'Б')
- * @param pronunciation The raw pronunciation string from the dataset (e.g. '/se/ or /k/', 'silent /atʃe/')
- * @param language The language code ('es', 'fr', 'en', 'ru')
+ * @param character The letter symbol (e.g. 'C', 'H', 'Ñ', 'Б', 'ঠ')
+ * @param pronunciation The raw pronunciation string from the dataset (e.g. '/se/ or /k/', '/ʈʰɔ/ (tho)')
+ * @param language The language code ('es', 'fr', 'en', 'ru', 'bn', 'hi', 'ur', 'ar')
  * @returns Array of lowercase valid answer strings
  */
 export function getAlphabetAcceptedAnswers(
@@ -188,23 +391,35 @@ export function getAlphabetAcceptedAnswers(
   const charUpper = character.toUpperCase().trim();
   const charLower = character.toLowerCase().trim();
 
-  // 1. The letter itself is always acceptable (e.g. user typed 'c' for prompt 'C')
-  if (charLower) {
-    accepted.add(charLower);
-  }
-
-  // 2. Language-specific dictionary lookup
+  // 1. Language-specific dictionary lookup (phonetic pronunciations prioritized first)
   let dict: Record<string, string[]> | undefined;
   if (language === 'es') dict = SPANISH_LETTER_ANSWERS;
   else if (language === 'fr') dict = FRENCH_LETTER_ANSWERS;
   else if (language === 'en') dict = ENGLISH_LETTER_ANSWERS;
   else if (language === 'ru') dict = RUSSIAN_LETTER_ANSWERS;
+  else if (language === 'bn') dict = BENGALI_LETTER_ANSWERS;
+  else if (language === 'hi') dict = HINDI_LETTER_ANSWERS;
+  else if (language === 'ur') dict = URDU_LETTER_ANSWERS;
+  else if (language === 'ar') dict = ARABIC_LETTER_ANSWERS;
 
-  if (dict && dict[charUpper]) {
-    dict[charUpper].forEach(ans => accepted.add(ans.toLowerCase().trim()));
+  const foundInDict = dict && (dict[charUpper] || dict[character]);
+  if (foundInDict) {
+    foundInDict.forEach(ans => accepted.add(ans.toLowerCase().trim()));
   }
 
-  // Also check Spanish / French / English if language not matched
+  // Cross-lookup in other dictionaries if not matched by language parameter
+  if (BENGALI_LETTER_ANSWERS[character]) {
+    BENGALI_LETTER_ANSWERS[character].forEach(ans => accepted.add(ans.toLowerCase().trim()));
+  }
+  if (HINDI_LETTER_ANSWERS[character]) {
+    HINDI_LETTER_ANSWERS[character].forEach(ans => accepted.add(ans.toLowerCase().trim()));
+  }
+  if (URDU_LETTER_ANSWERS[character]) {
+    URDU_LETTER_ANSWERS[character].forEach(ans => accepted.add(ans.toLowerCase().trim()));
+  }
+  if (ARABIC_LETTER_ANSWERS[character]) {
+    ARABIC_LETTER_ANSWERS[character].forEach(ans => accepted.add(ans.toLowerCase().trim()));
+  }
   if (SPANISH_LETTER_ANSWERS[charUpper]) {
     SPANISH_LETTER_ANSWERS[charUpper].forEach(ans => accepted.add(ans.toLowerCase().trim()));
   }
@@ -213,6 +428,14 @@ export function getAlphabetAcceptedAnswers(
   }
   if (ENGLISH_LETTER_ANSWERS[charUpper]) {
     ENGLISH_LETTER_ANSWERS[charUpper].forEach(ans => accepted.add(ans.toLowerCase().trim()));
+  }
+  if (RUSSIAN_LETTER_ANSWERS[charUpper]) {
+    RUSSIAN_LETTER_ANSWERS[charUpper].forEach(ans => accepted.add(ans.toLowerCase().trim()));
+  }
+
+  // 2. The letter itself is acceptable (e.g. user typed 'c' for prompt 'C', or 'ঠ' for 'ঠ')
+  if (charLower) {
+    accepted.add(charLower);
   }
 
   // 3. Dynamic parsing from the dataset pronunciation string
