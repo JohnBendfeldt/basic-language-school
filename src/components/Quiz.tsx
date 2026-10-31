@@ -16,8 +16,9 @@ import {
   getAlphabetQuizHint,
   LANGUAGE_NAMES_IN_BASE
 } from '../utils/translationResolver';
-import { localizeCategoryBadge, localizeLevelBadge, getQuizToolbarLabels, getQuizRecapLabels, getMultiMeaningNote } from '../utils/pageDictionary';
+import { localizeCategoryBadge, localizeLevelBadge, getQuizToolbarLabels, getQuizRecapLabels, getMultiMeaningNote, getPraiseHeadline, getPraiseTier } from '../utils/pageDictionary';
 import { buildHomographIndex, lookupHomograph } from '../utils/homographs';
+import { canonicalizeScript } from '../utils/textNormalization';
 import { UIStrings } from '../data/translations';
 import { SupportedLanguageId } from '../data/languages/types';
 import { useIsMobile } from '../hooks/useIsMobile';
@@ -526,7 +527,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     }
   };
 
-  const normalizeText = (text: string): string => {
+  const normalizeText = (rawText: string): string => {
+    // Make equivalent keyboard characters, wide punctuation and optional diacritics comparable
+    const text = canonicalizeScript(rawText);
     let mainText = text;
     const outsideParentheses = text.replace(/\s*\([^)]*\)\s*/g, "");
     if (outsideParentheses.trim()) {
@@ -1873,88 +1876,15 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   if (isSessionComplete) {
     const percentage = sessionGoal > 0 ? Math.round((sessionScore / sessionGoal) * 100) : 0;
 
-    let headlineTitle = '';
-    let headlinePronunciation = '';
-    let headlineSubtitle = '';
-    let recapIcon = null;
-
-    if (percentage === 100) {
-      recapIcon = <FaTrophy className="recap-icon gold" />;
-      if (currentLanguage === 'es') {
-        headlineTitle = '¡Excelente!';
-        headlinePronunciation = '¡Puntaje perfecto!';
-        headlineSubtitle = '¡Puntaje perfecto! Has dominado todas las preguntas de esta sesión.';
-      } else if (currentLanguage === 'fr') {
-        headlineTitle = 'Parfait !';
-        headlinePronunciation = 'Score parfait !';
-        headlineSubtitle = 'Score parfait ! Vous avez maîtrisé toutes les questions de cette session.';
-      } else if (currentLanguage === 'en') {
-        headlineTitle = 'Outstanding!';
-        headlinePronunciation = 'Perfect score!';
-        headlineSubtitle = 'Perfect score! You mastered every single question in this session.';
-      } else {
-        headlineTitle = 'Отлично!';
-        headlinePronunciation = 'Otlichno!';
-        headlineSubtitle = 'Perfect score! You mastered every question in this session.';
-      }
-    } else if (percentage >= 80) {
-      recapIcon = <FaTrophy className="recap-icon silver" />;
-      if (currentLanguage === 'es') {
-        headlineTitle = '¡Muy bien!';
-        headlinePronunciation = '¡Mwee byehn!';
-        headlineSubtitle = '¡Excelente trabajo! Tus habilidades en español están mejorando mucho.';
-      } else if (currentLanguage === 'fr') {
-        headlineTitle = 'Très bien !';
-        headlinePronunciation = 'Treh byahn !';
-        headlineSubtitle = 'Excellent travail ! Vos compétences en français progressent à grands pas.';
-      } else if (currentLanguage === 'en') {
-        headlineTitle = 'Great Job!';
-        headlinePronunciation = 'Well done!';
-        headlineSubtitle = 'Outstanding effort! Your English communication skills are growing stronger.';
-      } else {
-        headlineTitle = 'Молодец!';
-        headlinePronunciation = 'Molodets!';
-        headlineSubtitle = 'Outstanding job! Your Russian skills are getting stronger.';
-      }
-    } else if (percentage >= 60) {
-      recapIcon = <FaStar className="recap-icon bronze" />;
-      if (currentLanguage === 'es') {
-        headlineTitle = '¡Buen trabajo!';
-        headlinePronunciation = '¡Bwehn trah-BAH-hoh!';
-        headlineSubtitle = '¡Buen progreso! Un poco más de práctica y lo dominarás.';
-      } else if (currentLanguage === 'fr') {
-        headlineTitle = 'Bien joué !';
-        headlinePronunciation = 'Byahn zhoo-AY !';
-        headlineSubtitle = 'Des progrès solides ! Encore un peu d’entraînement et vous maîtriserez tout.';
-      } else if (currentLanguage === 'en') {
-        headlineTitle = 'Good Progress!';
-        headlinePronunciation = 'Keep going!';
-        headlineSubtitle = 'Solid progress! A little more practice and you will ace every question.';
-      } else {
-        headlineTitle = 'Хорошо!';
-        headlinePronunciation = 'Khorosho!';
-        headlineSubtitle = 'Solid progress! A little more practice and you will ace it.';
-      }
-    } else {
-      recapIcon = <FaGraduationCap className="recap-icon practice" />;
-      if (currentLanguage === 'es') {
-        headlineTitle = 'La práctica hace al maestro';
-        headlinePronunciation = '¡Sigue practicando!';
-        headlineSubtitle = 'La repetición es la clave del aprendizaje. ¡Cada intento te acerca a la fluidez!';
-      } else if (currentLanguage === 'fr') {
-        headlineTitle = 'C’est en forgeant qu’on devient forgeron';
-        headlinePronunciation = 'Continuez à pratiquer !';
-        headlineSubtitle = 'La répétition est la clé de la réussite. Chaque essai renforce votre mémoire !';
-      } else if (currentLanguage === 'en') {
-        headlineTitle = 'Practice makes perfect';
-        headlinePronunciation = 'Step by step';
-        headlineSubtitle = 'Repetition builds lasting confidence. Keep up the great work!';
-      } else {
-        headlineTitle = 'Повторение — мать учения';
-        headlinePronunciation = 'Povtorenie — mat ucheniya';
-        headlineSubtitle = 'Repetition is the mother of learning. Practice makes perfect!';
-      }
-    }
+    const praiseTier = getPraiseTier(percentage);
+    const recapIcon =
+      praiseTier === 'perfect' ? <FaTrophy className="recap-icon gold" />
+      : praiseTier === 'great' ? <FaTrophy className="recap-icon silver" />
+      : praiseTier === 'good' ? <FaStar className="recap-icon bronze" />
+      : <FaGraduationCap className="recap-icon practice" />;
+    // Praise is in the language being learned; the explanation under it is in the learner's own language
+    const { title: headlineTitle, pronunciation: headlinePronunciation } = getPraiseHeadline(currentLanguage, percentage);
+    const headlineSubtitle = recapLabels.feedbackSubtitle(percentage, targetNameInBase);
 
     return (
       <div className="section quiz-section quiz-recap-section">
@@ -1974,7 +1904,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               </div>
             )}
             <p className="recap-english-subtitle">
-              {baseLanguage !== 'en' ? recapLabels.feedbackSubtitle(percentage, targetNameInBase) : headlineSubtitle}
+              {headlineSubtitle}
             </p>
           </div>
 

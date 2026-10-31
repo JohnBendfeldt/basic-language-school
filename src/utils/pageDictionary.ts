@@ -4224,3 +4224,111 @@ export const getLanguagePickerCopy = (baseLang: SupportedLanguageId): { subtitle
   };
   return table[baseLang] ?? table.en;
 };
+
+export type PraiseTier = 'perfect' | 'great' | 'good' | 'practice';
+
+export const getPraiseTier = (percentage: number): PraiseTier =>
+  percentage === 100 ? 'perfect' : percentage >= 80 ? 'great' : percentage >= 60 ? 'good' : 'practice';
+
+/**
+ * Short praise shown on the quiz recap, in the language being learned, with a pronunciation hint
+ * (romanization for non-Latin scripts) so every learner also practices a phrase they can say aloud.
+ */
+export const getPraiseHeadline = (
+  targetLang: SupportedLanguageId,
+  percentage: number
+): { title: string; pronunciation: string } => {
+  const table: Record<SupportedLanguageId, Record<PraiseTier, { title: string; pronunciation: string }>> = {
+    en: {
+      perfect: { title: 'Outstanding!', pronunciation: 'Perfect score!' },
+      great: { title: 'Great Job!', pronunciation: 'Well done!' },
+      good: { title: 'Good Progress!', pronunciation: 'Keep going!' },
+      practice: { title: 'Practice makes perfect', pronunciation: 'Step by step' },
+    },
+    es: {
+      perfect: { title: '¡Excelente!', pronunciation: '¡Puntaje perfecto!' },
+      great: { title: '¡Muy bien!', pronunciation: '¡Mwee byehn!' },
+      good: { title: '¡Buen trabajo!', pronunciation: '¡Bwehn trah-BAH-hoh!' },
+      practice: { title: 'La práctica hace al maestro', pronunciation: '¡Sigue practicando!' },
+    },
+    fr: {
+      perfect: { title: 'Parfait !', pronunciation: 'Score parfait !' },
+      great: { title: 'Très bien !', pronunciation: 'Treh byahn !' },
+      good: { title: 'Bien joué !', pronunciation: 'Byahn zhoo-AY !' },
+      practice: { title: 'C’est en forgeant qu’on devient forgeron', pronunciation: 'Continuez à pratiquer !' },
+    },
+    ru: {
+      perfect: { title: 'Отлично!', pronunciation: 'Otlichno!' },
+      great: { title: 'Молодец!', pronunciation: 'Molodets!' },
+      good: { title: 'Хорошо!', pronunciation: 'Khorosho!' },
+      practice: { title: 'Повторение — мать учения', pronunciation: 'Povtorenie — mat ucheniya' },
+    },
+    de: {
+      perfect: { title: 'Ausgezeichnet!', pronunciation: 'OWS-ge-tsyke-net' },
+      great: { title: 'Sehr gut!', pronunciation: 'zair goot' },
+      good: { title: 'Gut gemacht!', pronunciation: 'goot ge-MAKHT' },
+      practice: { title: 'Übung macht den Meister', pronunciation: 'EW-bung makht dayn MY-ster' },
+    },
+    pt: {
+      perfect: { title: 'Excelente!', pronunciation: 'ex-se-LEN-tchi' },
+      great: { title: 'Muito bem!', pronunciation: 'MWEEN-too bayn' },
+      good: { title: 'Bom trabalho!', pronunciation: 'bohm tra-BA-lyoo' },
+      practice: { title: 'A prática leva à perfeição', pronunciation: 'a PRA-tchi-ka LEH-va a per-fay-SOWN' },
+    },
+    id: {
+      perfect: { title: 'Luar biasa!', pronunciation: 'LOO-ar bee-AH-sah' },
+      great: { title: 'Bagus sekali!', pronunciation: 'BAH-goos seh-KAH-lee' },
+      good: { title: 'Kerja bagus!', pronunciation: 'KER-jah BAH-goos' },
+      practice: { title: 'Latihan membuat sempurna', pronunciation: 'lah-TEE-han mem-BOO-at sem-POOR-nah' },
+    },
+    tr: {
+      perfect: { title: 'Mükemmel!', pronunciation: 'mew-kem-MEL' },
+      great: { title: 'Çok iyi!', pronunciation: 'chok ee-YEE' },
+      good: { title: 'İyi iş!', pronunciation: 'ee-YEE ish' },
+      practice: { title: 'Tekrar ustalık getirir', pronunciation: 'tek-RAR oos-tah-LUK geh-teer-EER' },
+    },
+    ja: {
+      perfect: { title: '完璧です！', pronunciation: 'Kanpeki desu!' },
+      great: { title: 'よくできました！', pronunciation: 'Yoku dekimashita!' },
+      good: { title: 'いい調子！', pronunciation: 'Ii chōshi!' },
+      practice: { title: '継続は力なり', pronunciation: 'Keizoku wa chikara nari' },
+    },
+    ko: {
+      perfect: { title: '완벽해요!', pronunciation: 'Wanbyeokaeyo!' },
+      great: { title: '잘했어요!', pronunciation: 'Jalhaesseoyo!' },
+      good: { title: '좋아요!', pronunciation: 'Joayo!' },
+      practice: { title: '연습이 완벽을 만든다', pronunciation: 'Yeonseubi wanbyeogeul mandeunda' },
+    },
+    zh: {
+      perfect: { title: '太棒了！', pronunciation: 'Tài bàng le!' },
+      great: { title: '做得好！', pronunciation: 'Zuò de hǎo!' },
+      good: { title: '不错！', pronunciation: 'Bú cuò!' },
+      practice: { title: '熟能生巧', pronunciation: 'Shú néng shēng qiǎo' },
+    },
+    hi: {
+      perfect: { title: 'शानदार!', pronunciation: 'Shaandaar!' },
+      great: { title: 'बहुत बढ़िया!', pronunciation: 'Bahut badhiya!' },
+      good: { title: 'अच्छा प्रयास!', pronunciation: 'Achchha prayaas!' },
+      practice: { title: 'अभ्यास से ही पूर्णता आती है', pronunciation: 'Abhyaas se hi poornata aati hai' },
+    },
+    ar: {
+      perfect: { title: 'ممتاز!', pronunciation: 'Mumtaaz!' },
+      great: { title: 'أحسنت!', pronunciation: 'Ahsanta!' },
+      good: { title: 'جيد!', pronunciation: 'Jayyid!' },
+      practice: { title: 'التكرار يعلّم الشطّار', pronunciation: 'At-Takraar yu\'allim ash-shuttaar' },
+    },
+    bn: {
+      perfect: { title: 'চমৎকার!', pronunciation: 'Chomotkar!' },
+      great: { title: 'দারুণ!', pronunciation: 'Darun!' },
+      good: { title: 'ভালো!', pronunciation: 'Bhalo!' },
+      practice: { title: 'অভ্যাসেই পারদর্শিতা', pronunciation: 'Obhyaashei paardorshita' },
+    },
+    ur: {
+      perfect: { title: 'شاندار!', pronunciation: 'Shaandaar!' },
+      great: { title: 'بہت خوب!', pronunciation: 'Bohat khoob!' },
+      good: { title: 'اچھا!', pronunciation: 'Achha!' },
+      practice: { title: 'مشق سے کمال آتا ہے', pronunciation: 'Mashq se kamaal aata hai' },
+    },
+  };
+  return (table[targetLang] ?? table.en)[getPraiseTier(percentage)];
+};
