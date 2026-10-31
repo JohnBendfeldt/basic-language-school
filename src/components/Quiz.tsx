@@ -223,7 +223,7 @@ export const SPECIAL_CHAR_MAP: Record<SupportedLanguageId, string[]> = {
   zh: [],
   hi: ['ा', 'ि', 'ी', 'ु', 'ू', 'े', 'ै', 'ो', 'ौ', 'ं', '्'],
   ar: ['أ', 'إ', 'آ', 'ء', 'ة', 'ى', 'ئ', 'ؤ'],
-  bn: ['া', 'ি', 'ী', 'ু', 'ূ', 'ে', 'ৈ', 'ো', 'ৌ', 'ং', 'ঃ', 'ঁ', '্', 'ৎ'],
+  bn: ['া', 'ি', 'ী', 'ু', 'ূ', 'ে', 'ৈ', 'ো', 'ৌ', 'ং', 'ঃ', 'ঁ', '্', 'ৎ', 'ড়', 'ঢ়', 'য়'],
   ur: ['آ', 'ء', 'ؤ', 'ئ', 'ٹ', 'ڈ', 'ڑ', 'ں', 'ہ', 'ھ', 'ے']
 };
 
@@ -1778,8 +1778,17 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
   const activeSpecialChars = useMemo(() => {
     if (!currentQuestion || showNext) return [];
+    if (currentQuestion.type && currentQuestion.type.includes('alphabet')) {
+      const chars = new Set<string>();
+      if (currentQuestion.prompt && currentQuestion.prompt.length <= 4 && !/^[a-zA-Z0-9\s]+$/.test(currentQuestion.prompt)) {
+        chars.add(currentQuestion.prompt);
+      }
+      (SPECIAL_CHAR_MAP[currentLanguage] || []).forEach(c => chars.add(c));
+      (SPECIAL_CHAR_MAP[expectedAnswerLanguage] || []).forEach(c => chars.add(c));
+      return Array.from(chars);
+    }
     return SPECIAL_CHAR_MAP[expectedAnswerLanguage] || [];
-  }, [currentQuestion, showNext, expectedAnswerLanguage]);
+  }, [currentQuestion, showNext, expectedAnswerLanguage, currentLanguage]);
 
   const getDynamicPlaceholder = (): string => {
     if (!currentQuestion) return ui.yourAnswerHere;
@@ -1787,6 +1796,15 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       return baseLanguage === 'ru'
         ? 'Введите на русском...'
         : 'Type in Russian (or phonetically in English)...';
+    }
+    if (currentQuestion.type && currentQuestion.type.includes('alphabet')) {
+      switch (baseLanguage) {
+        case 'ru': return 'Введите произношение (или нажмите букву)...';
+        case 'es': return 'Escribe la pronunciación (o toca la letra)...';
+        case 'fr': return 'Tapez la prononciation (ou touchez la lettre)...';
+        case 'de': return 'Tippe die Aussprache (oder tippe den Buchstaben)...';
+        default: return 'Type pronunciation or tap the letter...';
+      }
     }
     if (currentQuestion.isListeningMode) {
       switch (baseLanguage) {
@@ -2056,7 +2074,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                     <div className="missed-word-details">
                       <div className="missed-word-prompt">{item.prompt}</div>
                       <div className="missed-word-answers">
-                        <span className="correct-answer-text">{recapLabels.answerLabel} <strong>{item.answer.split('/')[0]}</strong></span>
+                        <span className="correct-answer-text">{recapLabels.answerLabel} <strong>{getCleanDisplayAnswer(item.answer, item.prompt, item.category)}</strong></span>
                         {item.userAnswer && (
                           <span className="user-answer-text">{recapLabels.youTypedLabel} <span className="strikethrough">{item.userAnswer}</span></span>
                         )}

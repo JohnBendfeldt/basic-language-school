@@ -338,5 +338,229 @@ describe('Bengali Quiz Praise Screen & Special Keys toolbar', () => {
     // Character was inserted
     expect(input.value).toBe(`হ${specialChars[0]}`);
   });
+
+  it('provides quick-tap button for the target letter itself during alphabet practice', async () => {
+    localStorage.clear();
+    localStorage.setItem('basic_quiz_mode', 'writing');
+    localStorage.setItem('basic_quiz_mode_bn', 'writing');
+    window.history.pushState({}, '', '/learn/bn/quiz');
+
+    const testData = {
+      alphabet: [{
+        character: 'ঠ',
+        pronunciation: '/ʈʰɔ/ (tho)',
+        example: 'as in top',
+        word: 'ঠোঁট'
+      }]
+    };
+
+    render(
+      <LanguageProvider>
+        <Quiz data={testData} />
+      </LanguageProvider>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByRole('textbox')).toBeInTheDocument();
+    });
+
+    // The letter 'ঠ' itself should be available as a quick-tap button above the input
+    const letterKeyBtn = screen.getByRole('button', { name: 'Insert ঠ' });
+    expect(letterKeyBtn).toBeInTheDocument();
+
+    const input = screen.getByRole('textbox') as HTMLInputElement;
+    fireEvent.click(letterKeyBtn);
+    expect(input.value).toBe('ঠ');
+
+    // Submitting the tapped native letter counts as correct
+    fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+    expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
+  });
+
+  it('accepts phonetic Latin spelling for Bengali alphabet letters ঠ, ফ, থ, ৎ', async () => {
+    localStorage.clear();
+    localStorage.setItem('basic_quiz_mode', 'writing');
+    localStorage.setItem('basic_quiz_mode_bn', 'writing');
+    window.history.pushState({}, '', '/learn/bn/quiz');
+
+    const testAlphabet = [
+      { letter: 'ঠ', pronunciation: '/ʈʰɔ/ (tho)', expectedPhonetics: ['t', 'th', 'tho', 'tha'] },
+      { letter: 'ফ', pronunciation: '/pʰɔ/ or /fɔ/ (pho/fo)', expectedPhonetics: ['f', 'ph', 'pho', 'fo', 'ha'] },
+      { letter: 'থ', pronunciation: '/t̪ʰɔ/ (tho)', expectedPhonetics: ['t', 'th', 'tho'] },
+      { letter: 'ৎ', pronunciation: '/t̪/ (khanda ta)', expectedPhonetics: ['quan do tho', 'khanda ta', 'khandata', 't', 'ta'] }
+    ];
+
+    for (const item of testAlphabet) {
+      for (const typed of item.expectedPhonetics) {
+        cleanup();
+        render(
+          <LanguageProvider>
+            <Quiz data={{
+              alphabet: [{
+                character: item.letter,
+                pronunciation: item.pronunciation,
+                example: '',
+                word: ''
+              }]
+            }} />
+          </LanguageProvider>
+        );
+
+        await waitFor(() => {
+          expect(screen.getByRole('textbox')).toBeInTheDocument();
+        });
+
+        const input = screen.getByRole('textbox');
+        fireEvent.change(input, { target: { value: typed } });
+        fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+
+        expect(screen.getByText(/Correct!/i), `Letter ${item.letter} should accept phonetic spelling "${typed}"`).toBeInTheDocument();
+      }
+    }
+  });
+
+  it('displays the letter and its phonetic pronunciation in the Words to Review recap section', async () => {
+    localStorage.clear();
+    localStorage.setItem('basic_quiz_mode', 'writing');
+    localStorage.setItem('basic_quiz_mode_bn', 'writing');
+    window.history.pushState({}, '', '/learn/bn/quiz');
+
+    vi.spyOn(Math, 'random').mockReturnValue(0.01);
+
+    const testData = {
+      alphabet: [{
+        character: 'ঠ',
+        pronunciation: '/ʈʰɔ/ (tho)',
+        example: 'as in top',
+        word: 'ঠোঁট'
+      }]
+    };
+
+    render(
+      <LanguageProvider>
+        <Quiz data={testData} />
+      </LanguageProvider>
+    );
+
+    const goalBtn = await screen.findByRole('button', { name: '5 Qs' });
+    fireEvent.click(goalBtn);
+
+    await waitFor(() => {
+      expect(screen.getByRole('textbox')).toBeInTheDocument();
+    });
+
+    // Answer 5 questions with wrong answer 'xyz' to see recap review list
+    for (let i = 0; i < 5; i++) {
+      await waitFor(() => {
+        expect(screen.getByRole('textbox')).toBeInTheDocument();
+      });
+
+      const input = screen.getByRole('textbox');
+      fireEvent.change(input, { target: { value: 'xyz' } });
+      fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+
+      if (i < 4) {
+        const nextBtn = await screen.findByRole('button', { name: new RegExp(`Next Question \\(${i + 2}/5\\)`, 'i') });
+        fireEvent.click(nextBtn);
+      } else {
+        const finishBtn = await screen.findByRole('button', { name: /Complete Quiz & View Results/i });
+        fireEvent.click(finishBtn);
+      }
+    }
+
+    // On recap screen:
+    await waitFor(() => {
+      expect(screen.getByText(/Words to Review/i)).toBeInTheDocument();
+      const reviewItems = screen.getAllByText(/ঠ\s*\(tho\)/i);
+      expect(reviewItems.length).toBeGreaterThan(0);
+      expect(reviewItems[0]).toBeInTheDocument();
+    });
+  });
+});
+
+describe('Phonetic Alphabet Acceptance Across Hindi, Urdu, Arabic, and Russian', () => {
+  it('Hindi: accepts single-character and phonetic Latin transliterations', async () => {
+    localStorage.clear();
+    localStorage.setItem('basic_quiz_mode', 'writing');
+    window.history.pushState({}, '', '/learn/hi/quiz');
+
+    render(
+      <LanguageProvider>
+        <Quiz data={{
+          alphabet: [{
+            character: 'ठ',
+            pronunciation: '/ʈʰə/ (tha)',
+            example: 'as in top',
+            word: 'ठप्पा'
+          }]
+        }} />
+      </LanguageProvider>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByRole('textbox')).toBeInTheDocument();
+    });
+
+    const input = screen.getByRole('textbox');
+    fireEvent.change(input, { target: { value: 't' } });
+    fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+    expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
+  });
+
+  it('Urdu: accepts name and sound transliterations', async () => {
+    localStorage.clear();
+    localStorage.setItem('basic_quiz_mode', 'writing');
+    window.history.pushState({}, '', '/learn/ur/quiz');
+
+    render(
+      <LanguageProvider>
+        <Quiz data={{
+          alphabet: [{
+            character: 'آ',
+            pronunciation: '/aː/ (alif madd)',
+            example: 'as in father',
+            word: 'آم'
+          }]
+        }} />
+      </LanguageProvider>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByRole('textbox')).toBeInTheDocument();
+    });
+
+    const input = screen.getByRole('textbox');
+    fireEvent.change(input, { target: { value: 'alif madd' } });
+    fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+    expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
+  });
+
+  it('Arabic: accepts name and sound transliterations', async () => {
+    localStorage.clear();
+    localStorage.setItem('basic_quiz_mode', 'writing');
+    window.history.pushState({}, '', '/learn/ar/quiz');
+
+    render(
+      <LanguageProvider>
+        <Quiz data={{
+          alphabet: [{
+            character: 'ف',
+            pronunciation: '/f/ (faa)',
+            example: 'as in fish',
+            word: 'فندق'
+          }]
+        }} />
+      </LanguageProvider>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByRole('textbox')).toBeInTheDocument();
+    });
+
+    const input = screen.getByRole('textbox');
+    fireEvent.change(input, { target: { value: 'f' } });
+    fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+    expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
+  });
 });
 
