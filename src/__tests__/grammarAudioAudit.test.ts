@@ -3,6 +3,7 @@ import path from 'path';
 import { describe, it } from 'vitest';
 import { getGrammarForLanguage } from '../data/languages/grammarData';
 import { getCandidateAudioPathsForText } from '../components/PronunciationButton';
+import { getSpokenGrammarWord } from '../components/Grammar';
 import { SupportedLanguageId } from '../data/languages/types';
 
 const PUBLIC_DIR = path.resolve(__dirname, '../../public');
@@ -153,6 +154,27 @@ describe('Grammar Audio Audit Across All Languages', () => {
           if (!diskFileExistsForCandidates(cardCandidates)) {
             missing.push(`[flashcard ${card.id}] "${audioTextToPlay}"`);
             addTarget(lang, audioTextToPlay, audioTextToPlay);
+          }
+        }
+      }
+
+      // 4. Descriptions & Adjectives
+      if (grammar.descriptions) {
+        for (const desc of grammar.descriptions) {
+          for (const item of desc.examples) {
+            const forms = [item.positive, item.comparative, item.superlative];
+            for (const f of forms) {
+              if (f) {
+                const spoken = getSpokenGrammarWord(f, lang);
+                if (spoken) {
+                  const formCandidates = getCandidateAudioPathsForText(spoken, lang, 'grammar');
+                  if (!diskFileExistsForCandidates(formCandidates)) {
+                    missing.push(`[description] "${f}" -> target: "${spoken}"`);
+                    addTarget(lang, spoken, spoken);
+                  }
+                }
+              }
+            }
           }
         }
       }
