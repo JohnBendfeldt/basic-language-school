@@ -218,10 +218,22 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
 
   const handleSpeak = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    if (isPlaying) return;
     
     // Warm up audio subsystem on click (unlocks Web Audio & AudioContext immediately)
     warmUpAudioContext();
+
+    // If already playing local audio file, allow instant replay on repeat clicks
+    if (isPlaying && audioRef.current && audioRef.current.src) {
+      try {
+        audioRef.current.currentTime = 0;
+        audioRef.current.playbackRate = speechSpeed;
+        audioRef.current.play().catch(() => {});
+        return;
+      } catch {
+        // Fall through to regular playback logic
+      }
+    }
+    if (isPlaying) return;
 
     // Safety guard: In Russian mode, ensure text is Cyrillic or digits
     if (effectiveLangId === 'ru' && !containsCyrillic(text) && !/^\d+$/.test(text.trim())) {

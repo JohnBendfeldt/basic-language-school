@@ -321,13 +321,15 @@ const Alphabet: React.FC<AlphabetProps> = ({
                       )}
                       <div className="example-details">
                         <div className="example-word-row">
-                          <strong className="example-label">{labels.example}</strong>
-                          <span className="example-word">{exampleWord}</span>
-                          {item.wordPronunciation && (
-                            <span className="example-word-pronunciation" title="Pronunciation">
-                              ({item.wordPronunciation})
-                            </span>
-                          )}
+                          <span className="example-word-text">
+                            <strong className="example-label">{labels.example}</strong>{' '}
+                            <span className="example-word">{exampleWord}</span>{' '}
+                            {item.wordPronunciation && (
+                              <span className="example-word-pronunciation" title="Pronunciation">
+                                ({item.wordPronunciation})
+                              </span>
+                            )}
+                          </span>
                           <PronunciationButton 
                             text={exampleWord} 
                             className="example-pronunciation"
