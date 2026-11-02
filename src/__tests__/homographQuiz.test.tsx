@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
+import { renderSettled } from './testUtils';
 import Quiz from '../components/Quiz';
 
 window.HTMLMediaElement.prototype.play = vi.fn().mockImplementation(() => Promise.resolve());
@@ -28,7 +29,7 @@ describe('Quiz - ambiguous words accept every meaning', () => {
   afterEach(() => vi.restoreAllMocks());
 
   it('accepts the first meaning and tells the learner the word has several', async () => {
-    render(<Quiz data={homographData} />);
+    await renderSettled(<Quiz data={homographData} />);
     await screen.findByRole('textbox');
     answer('Moon');
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
@@ -38,7 +39,7 @@ describe('Quiz - ambiguous words accept every meaning', () => {
   });
 
   it('accepts the other meaning as a correct answer too', async () => {
-    render(<Quiz data={homographData} />);
+    await renderSettled(<Quiz data={homographData} />);
     await screen.findByRole('textbox');
     answer('Month');
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
@@ -47,7 +48,7 @@ describe('Quiz - ambiguous words accept every meaning', () => {
   });
 
   it('still rejects an unrelated answer and still explains the ambiguity', async () => {
-    render(<Quiz data={homographData} />);
+    await renderSettled(<Quiz data={homographData} />);
     await screen.findByRole('textbox');
     answer('Banana');
     expect(screen.getByText('Not quite')).toBeInTheDocument();
@@ -55,7 +56,7 @@ describe('Quiz - ambiguous words accept every meaning', () => {
   });
 
   it('does not show the note for an unambiguous word', async () => {
-    render(<Quiz data={{ basicPhrases: [{ phrase: '犬', translation: 'Dog', pronunciation: 'inu' }] }} />);
+    await renderSettled(<Quiz data={{ basicPhrases: [{ phrase: '犬', translation: 'Dog', pronunciation: 'inu' }] }} />);
     await screen.findByRole('textbox');
     answer('Dog');
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
@@ -63,7 +64,7 @@ describe('Quiz - ambiguous words accept every meaning', () => {
   });
 
   it('merges near-synonyms (Fruit / Fruits) silently without a note', async () => {
-    render(
+    await renderSettled(
       <Quiz
         data={{
           basicPhrases: [

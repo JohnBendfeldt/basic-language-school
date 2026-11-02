@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { screen, fireEvent, waitFor } from '@testing-library/react';
+import { renderSettled } from './testUtils';
 import Quiz from '../components/Quiz';
 import { ProgressService } from '../services/progressService';
 import { LanguageProvider } from '../contexts/LanguageContext';
@@ -34,7 +35,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
   });
 
   it('renders default session goal of 10 questions and pool indicator', async () => {
-    render(<Quiz data={sampleData} />);
+    await renderSettled(<Quiz data={sampleData} />);
 
     // Session goal pills
     expect(screen.getByRole('button', { name: '10 Qs' })).toHaveClass('active');
@@ -47,7 +48,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
   });
 
   it('allows user to change the session goal to 5 or 20 questions', async () => {
-    render(<Quiz data={sampleData} />);
+    await renderSettled(<Quiz data={sampleData} />);
 
     const fivePill = screen.getByRole('button', { name: '5 Qs' });
     fireEvent.click(fivePill);
@@ -68,7 +69,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
     // Mock getMasteredWordIds to return 'alphabet-А' as already mastered
     vi.spyOn(ProgressService, 'getMasteredWordIds').mockResolvedValue(new Set(['alphabet-А']));
 
-    render(<Quiz data={{
+    await renderSettled(<Quiz data={{
       alphabet: [
         { character: 'А', pronunciation: 'ah' },
         { character: 'Б', pronunciation: 'beh' }
@@ -97,7 +98,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
       completedAt: new Date().toISOString()
     });
 
-    render(<Quiz data={{
+    await renderSettled(<Quiz data={{
       alphabet: [{ character: 'А', pronunciation: 'ah' }]
     }} />);
 
@@ -146,7 +147,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
 
   it('accepts conversational synonyms and contractions for English phrases (e.g., wheres the restroom for where is the bathroom)', async () => {
     vi.spyOn(Math, 'random').mockReturnValue(0.2); // Selects 'What does this mean in English?'
-    render(<Quiz data={{
+    await renderSettled(<Quiz data={{
       basicPhrases: [
         { english: 'Where is the bathroom', russian: 'Где туалет', pronunciation: 'gdye too-ah-lyet' }
       ]
@@ -164,7 +165,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
   it('strictly segregates quiz directions: rejects prompt language in Base -> Target questions', async () => {
     // Force Base -> Target question (e.g. prompt is "Remote work", expects Spanish "Teletrabajo")
     vi.spyOn(Math, 'random').mockReturnValue(0.8);
-    render(
+    await renderSettled(
       <Quiz data={{
         commonWords: [
           { phrase: 'Teletrabajo', translation: 'Remote work', pronunciation: 'teh-leh-trah-BAH-hoh', category: 'Business' }
@@ -183,7 +184,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
   });
 
   it('renders the fluid bottom feedback drawer on answer check', async () => {
-    render(<Quiz data={{
+    await renderSettled(<Quiz data={{
       alphabet: [{ character: 'А', pronunciation: 'ah' }]
     }} />);
 
@@ -201,7 +202,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
 
   it('accepts numeric equivalents including formatted digits like 1,000 for one thousand (тысяча)', async () => {
     vi.spyOn(Math, 'random').mockReturnValue(0.2); // Selects 'What does this mean in English?'
-    render(<Quiz data={{
+    await renderSettled(<Quiz data={{
       numbers: [
         { english: 'One thousand', russian: 'тысяча', pronunciation: 'tih-see-cha' }
       ]
@@ -215,7 +216,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
   });
 
   it('does NOT accept digits like 1 for alphabet pronunciation questions like M', async () => {
-    render(<Quiz data={{
+    await renderSettled(<Quiz data={{
       alphabet: [
         { character: 'М', pronunciation: 'm', example: 'as in man' }
       ]
@@ -231,7 +232,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
 
   it('accepts common 1-letter typos on short words like чаи for чай (tea) with spelling guidance', async () => {
     vi.spyOn(Math, 'random').mockReturnValue(0.99); // Selects index 1: English-to-Russian ("HOW DO YOU SAY THIS IN RUSSIAN? tea")
-    render(<Quiz data={{
+    await renderSettled(<Quiz data={{
       commonWords: [
         { english: 'tea', russian: 'чай', pronunciation: 'chay' }
       ]
@@ -247,7 +248,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
 
   it('accepts interchangeable Russian letters ё and е without penalty', async () => {
     vi.spyOn(Math, 'random').mockReturnValue(0.99);
-    render(<Quiz data={{
+    await renderSettled(<Quiz data={{
       commonWords: [
         { english: 'hedgehog', russian: 'ёж', pronunciation: 'yozh' }
       ]
@@ -261,7 +262,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
   });
 
   it('renders category dropdown for all topics and switches active category', async () => {
-    render(<Quiz data={{
+    await renderSettled(<Quiz data={{
       ...sampleData,
       time: [
         { english: 'Monday', russian: 'Понедельник', pronunciation: 'pah-nee-dyel-neek' }
@@ -308,7 +309,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
       completedAt: new Date().toISOString()
     });
 
-    render(<Quiz data={{
+    await renderSettled(<Quiz data={{
       time: [
         { english: 'Today', russian: 'Сегодня', pronunciation: 'see-voh-dnya' }
       ]
@@ -353,7 +354,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
   });
 
   it('renders modality pills (Writing, Listening, All Modes) and displays repeat tip banner', async () => {
-    render(<Quiz data={sampleData} />);
+    await renderSettled(<Quiz data={sampleData} />);
 
     // Check repeat hint banner
     expect(screen.getByText(/Tip: Try repeating words and phrases aloud as you hear them\./i)).toBeInTheDocument();
@@ -372,7 +373,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
   });
 
   it('switches to Listening Ear-Training Mode: renders audio card, hides prompt text, and allows hint toggle', async () => {
-    render(<Quiz data={{
+    await renderSettled(<Quiz data={{
       basicPhrases: [
         { english: 'Hello', russian: 'Привет', pronunciation: 'pree-vyet' }
       ]
@@ -407,7 +408,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
   });
 
   it('filters by Industry & Topic Packs (e.g. Tech & IT, Business, Healthcare)', async () => {
-    render(<Quiz data={{
+    await renderSettled(<Quiz data={{
       basicPhrases: [
         { english: 'Hello', russian: 'Привет', category: 'Greetings' }
       ],
@@ -434,7 +435,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
   });
 
   it('filters by Vocabulary Levels (Level 1, Level 2, Level 3)', async () => {
-    render(<Quiz data={{
+    await renderSettled(<Quiz data={{
       commonWords: [
         { english: 'Computer', russian: 'Компьютер', category: 'Tech', level: 1 },
         { english: 'Algorithm', russian: 'Алгоритм', category: 'Tech', level: 3 }
@@ -461,7 +462,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
   });
 
   it('tracks in-quiz combo streak on consecutive correct answers', async () => {
-    render(<Quiz data={{
+    await renderSettled(<Quiz data={{
       basicPhrases: [
         { english: 'Hello', russian: 'Привет' },
         { english: 'Thank you', russian: 'Спасибо' }
@@ -518,7 +519,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
       time: []
     };
 
-    render(
+    await renderSettled(
       <LanguageProvider>
         <Quiz data={frenchSampleData} />
       </LanguageProvider>
