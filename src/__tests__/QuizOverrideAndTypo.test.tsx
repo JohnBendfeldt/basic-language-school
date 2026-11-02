@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
+import { renderSettled } from './testUtils';
 import Quiz from '../components/Quiz';
 
 // Mock Audio
@@ -14,7 +15,7 @@ describe('Quiz - Smart Fuzzy Matching, Typo Acceptance & "I Was Right" Override'
 
   it('accepts single-letter typos in conversational sentences as "Almost right! (Accepted)"', async () => {
     vi.spyOn(Math, 'random').mockReturnValue(0.1); // Forces Target -> Base question
-    render(
+    await renderSettled(
       <Quiz
         data={{
           basicPhrases: [
@@ -43,7 +44,7 @@ describe('Quiz - Smart Fuzzy Matching, Typo Acceptance & "I Was Right" Override'
 
   it('provides an "I was right" override button when an answer is marked incorrect', async () => {
     vi.spyOn(Math, 'random').mockReturnValue(0.1);
-    render(
+    await renderSettled(
       <Quiz
         data={{
           basicPhrases: [

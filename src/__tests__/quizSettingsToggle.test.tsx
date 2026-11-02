@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
+import { renderSettled, settle } from './testUtils';
 import Quiz from '../components/Quiz';
 
 const sampleData = {
@@ -17,8 +18,8 @@ const setViewport = (isMobile: boolean) => {
   })) as any;
 };
 
-const renderQuiz = () => {
-  const utils = render(<Quiz data={sampleData} />);
+const renderQuiz = async () => {
+  const utils = await renderSettled(<Quiz data={sampleData} />);
   return {
     ...utils,
     section: utils.container.querySelector('.quiz-section')!,
@@ -29,8 +30,8 @@ const renderQuiz = () => {
 describe('Quiz settings panel - mobile', () => {
   beforeEach(() => setViewport(true));
 
-  it('starts collapsed and toggles open and closed when the summary is tapped', () => {
-    const { section, button } = renderQuiz();
+  it('starts collapsed and toggles open and closed when the summary is tapped', async () => {
+    const { section, button } = await renderQuiz();
     expect(section).toHaveClass('settings-collapsed');
     expect(button).toHaveAttribute('aria-expanded', 'false');
     fireEvent.click(button);
@@ -40,13 +41,13 @@ describe('Quiz settings panel - mobile', () => {
     expect(section).toHaveClass('settings-collapsed');
   });
 
-  it('ignores the desktop preference so phones always start collapsed', () => {
+  it('ignores the desktop preference so phones always start collapsed', async () => {
     localStorage.setItem('basic_quiz_settings_open', 'true');
-    expect(renderQuiz().section).toHaveClass('settings-collapsed');
+    expect((await renderQuiz()).section).toHaveClass('settings-collapsed');
   });
 
-  it('does not overwrite the saved desktop preference when toggled', () => {
-    const { button } = renderQuiz();
+  it('does not overwrite the saved desktop preference when toggled', async () => {
+    const { button } = await renderQuiz();
     fireEvent.click(button);
     expect(localStorage.getItem('basic_quiz_settings_open')).toBeNull();
   });
@@ -55,15 +56,15 @@ describe('Quiz settings panel - mobile', () => {
 describe('Quiz settings panel - desktop', () => {
   beforeEach(() => setViewport(false));
 
-  it('starts open by default', () => {
-    const { section, button } = renderQuiz();
+  it('starts open by default', async () => {
+    const { section, button } = await renderQuiz();
     expect(section).not.toHaveClass('settings-collapsed');
     expect(button).toHaveAttribute('aria-expanded', 'true');
     expect(section.querySelector('.quiz-toolbar-body')).not.toBeNull();
   });
 
-  it('lets the learner collapse and re-open it', () => {
-    const { section, button } = renderQuiz();
+  it('lets the learner collapse and re-open it', async () => {
+    const { section, button } = await renderQuiz();
     fireEvent.click(button);
     expect(section).toHaveClass('settings-collapsed');
     expect(button).toHaveAttribute('aria-expanded', 'false');
@@ -71,40 +72,35 @@ describe('Quiz settings panel - desktop', () => {
     expect(section).not.toHaveClass('settings-collapsed');
   });
 
-  it('remembers a collapsed panel the next time the quiz is opened', () => {
-    const first = renderQuiz();
+  it('remembers a collapsed panel the next time the quiz is opened', async () => {
+    const first = await renderQuiz();
     fireEvent.click(first.button);
     expect(localStorage.getItem('basic_quiz_settings_open')).toBe('false');
     first.unmount();
 
-    expect(renderQuiz().section).toHaveClass('settings-collapsed');
+    expect((await renderQuiz()).section).toHaveClass('settings-collapsed');
   });
 
-  it('remembers an open panel after it was collapsed and re-opened', () => {
-    const first = renderQuiz();
+  it('remembers an open panel after it was collapsed and re-opened', async () => {
+    const first = await renderQuiz();
     fireEvent.click(first.button);
     fireEvent.click(first.button);
     expect(localStorage.getItem('basic_quiz_settings_open')).toBe('true');
     first.unmount();
 
-    expect(renderQuiz().section).not.toHaveClass('settings-collapsed');
+    expect((await renderQuiz()).section).not.toHaveClass('settings-collapsed');
   });
 
-  it('stays open after answering a question (only phones auto-collapse)', () => {
-    const { section, getByRole } = (() => {
-      const r = renderQuiz();
-      return { section: r.section, getByRole: r.getByRole };
-    })();
+  it('stays open after answering a question (only phones auto-collapse)', async () => {
+    const { section, getByRole } = await renderQuiz();
     fireEvent.change(getByRole('textbox'), { target: { value: 'ah' } });
     fireEvent.click(getByRole('button', { name: /Check Answer/i }));
+    await settle();
     expect(section).not.toHaveClass('settings-collapsed');
   });
 
-  it('closes any open dropdown when the panel is collapsed', () => {
-    const { container, button, getByTestId } = (() => {
-      const r = renderQuiz();
-      return { container: r.container, button: r.button, getByTestId: r.getByTestId };
-    })();
+  it('closes any open dropdown when the panel is collapsed', async () => {
+    const { container, button, getByTestId } = await renderQuiz();
     fireEvent.click(getByTestId('topic-dropdown-trigger'));
     expect(getByTestId('topic-dropdown-trigger')).toHaveAttribute('aria-expanded', 'true');
     fireEvent.click(button);

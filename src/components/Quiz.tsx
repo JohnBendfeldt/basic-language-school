@@ -1793,9 +1793,23 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   const getDynamicPlaceholder = (): string => {
     if (!currentQuestion) return ui.yourAnswerHere;
     if (needsRussianKeyboard) {
-      return baseLanguage === 'ru'
-        ? 'Введите на русском...'
-        : 'Type in Russian (or phonetically in English)...';
+      switch (baseLanguage) {
+        case 'ru': return 'Введите на русском...';
+        case 'es': return 'Escribe en ruso (o fonéticamente con letras latinas)...';
+        case 'fr': return 'Écrivez en russe (ou phonétiquement en lettres latines)...';
+        case 'de': return 'Tippe auf Russisch (oder phonetisch mit lateinischen Buchstaben)...';
+        case 'pt': return 'Digite em russo (ou foneticamente com letras latinas)...';
+        case 'id': return 'Ketik dalam bahasa Rusia (atau fonetik dengan huruf Latin)...';
+        case 'tr': return 'Rusça yazın (veya Latin harfleriyle fonetik olarak)...';
+        case 'ja': return 'ロシア語で入力(またはラテン文字で発音どおりに)...';
+        case 'ko': return '러시아어로 입력 (또는 라틴 문자로 발음대로)...';
+        case 'zh': return '用俄语输入(或用拉丁字母按发音输入)...';
+        case 'hi': return 'रूसी में लिखें (या लैटिन अक्षरों में ध्वन्यात्मक रूप से)...';
+        case 'ar': return 'اكتب بالروسية (أو صوتيًا بالأحرف اللاتينية)...';
+        case 'bn': return 'রুশ ভাষায় লিখুন (অথবা ল্যাটিন অক্ষরে ধ্বনি অনুযায়ী)...';
+        case 'ur': return 'روسی میں لکھیں (یا لاطینی حروف میں صوتی طور پر)...';
+        default: return 'Type in Russian (or phonetically in English)...';
+      }
     }
     if (currentQuestion.type && currentQuestion.type.includes('alphabet')) {
       switch (baseLanguage) {
