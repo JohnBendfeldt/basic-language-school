@@ -49,9 +49,22 @@ test.describe('Playwright E2E: Mandarin Pinyin Guide, About Story Tab, Grammar A
     const allCards = page.locator('.alphabet-card');
     await expect(allCards).toHaveCount(29);
 
-    // 3. Verify Pinyin Guide: Tones tab
+    // 3. Verify Pinyin Guide: Tones tab and full-width layout
     const guide = page.locator('.pinyin-guide-container');
     await expect(guide).toBeVisible();
+
+    // Verify Guide expands across full content width (> 1000px on 1280px viewport, eliminating the old 880px limit)
+    const guideBox = await guide.boundingBox();
+    expect(guideBox).not.toBeNull();
+    expect(guideBox!.width).toBeGreaterThan(950);
+
+    // Track audio requests to confirm 200 OK (no 404 delays)
+    const audioResponses: { url: string; status: number }[] = [];
+    page.on('response', (response) => {
+      if (response.url().includes('/audio/zh/')) {
+        audioResponses.push({ url: response.url(), status: response.status() });
+      }
+    });
 
     // 5 tone cards (High Flat, Rising, Falling-Rising Dip, Falling, Neutral)
     const toneCards = guide.locator('.pinyin-tone-card');
@@ -61,6 +74,17 @@ test.describe('Playwright E2E: Mandarin Pinyin Guide, About Story Tab, Grammar A
     await expect(toneCards.nth(2)).toContainText('3rd Tone');
     await expect(toneCards.nth(2)).toContainText('Falling-Rising Dip');
     await expect(toneCards.nth(4)).toContainText('Neutral Tone');
+
+    // Click 1st tone "妈" audio button and verify it loads 200 OK immediately
+    const ma1Btn = toneCards.nth(0).locator('.tone-audio-btn');
+    await ma1Btn.click();
+    await page.waitForTimeout(300);
+
+    const maResponses = audioResponses.filter((r) => r.url.includes('%E5%A6%88') || r.url.includes('妈'));
+    expect(maResponses.length).toBeGreaterThan(0);
+    for (const r of maResponses) {
+      expect([200, 206]).toContain(r.status);
+    }
 
     // 4. Switch to Syllable Anatomy tab
     const formulaTab = guide.getByRole('tab', { name: /Syllable Anatomy/i });
@@ -105,6 +129,12 @@ test.describe('Playwright E2E: Mandarin Pinyin Guide, About Story Tab, Grammar A
     const teaserBanner = page.locator('.chinese-about-teaser');
     await expect(teaserBanner).toBeVisible();
     await expect(teaserBanner).toContainText('Curious how Chinese writing evolved');
+
+    // Verify Teaser expands across full content width (> 950px on 1280px viewport, eliminating the old 880px limit)
+    const teaserBox = await teaserBanner.boundingBox();
+    expect(teaserBox).not.toBeNull();
+    expect(teaserBox!.width).toBeGreaterThan(950);
+
     await teaserBanner.click();
 
     // 2. Verify segmented tab switched to About
@@ -113,6 +143,11 @@ test.describe('Playwright E2E: Mandarin Pinyin Guide, About Story Tab, Grammar A
 
     const aboutContainer = page.locator('.language-about-container');
     await expect(aboutContainer).toBeVisible();
+
+    // Verify About Container expands across full content width (> 950px on 1280px viewport)
+    const aboutBox = await aboutContainer.boundingBox();
+    expect(aboutBox).not.toBeNull();
+    expect(aboutBox!.width).toBeGreaterThan(950);
 
     // 3. Verify Hero Banner & Meta Information
     await expect(aboutContainer.locator('.about-hero-title')).toHaveText('The Story of Mandarin & Simplified Chinese');
