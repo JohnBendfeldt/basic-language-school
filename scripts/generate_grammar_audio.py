@@ -33,14 +33,40 @@ VOICES = {
     'zh': 'zh-CN-XiaoxiaoNeural',
     'hi': 'hi-IN-SwaraNeural',
     'ar': 'ar-SA-ZariyahNeural',
+    'bn': 'bn-BD-NabanitaNeural',
+    'ur': 'ur-PK-UzmaNeural',
 }
 
-def clean_speech_text(text: str) -> str:
+def clean_speech_text(text: str, lang: str = 'en') -> str:
     # Remove Latin notes in brackets or parens e.g. "लड़का (Boy)" -> "लड़का", "먹다 (meokda)" -> "먹다"
     clean = re.sub(r'\s*\([^)]*\)\s*', ' ', text)
     clean = re.sub(r'\s*\[[^\]]*\]\s*', ' ', clean)
     clean = re.sub(r'[«»"“”„‟`]', '', clean)
     clean = re.sub(r'\s*—\s*.*', '', clean) # remove translation descriptions
+
+    # If non-latin, extract the native script:
+    if lang == 'zh':
+        m = re.findall(r'[\u4e00-\u9fa5]+', clean)
+        if m: return ''.join(m)
+    elif lang == 'ja':
+        m = re.findall(r'[\u3040-\u309f\u30a0-\u30ff\u4e00-\u9faf]+', clean)
+        if m: return ''.join(m)
+    elif lang == 'ko':
+        m = re.findall(r'[\uac00-\ud7af\u1100-\u11ff]+', clean)
+        if m: return ' '.join(m)
+    elif lang == 'ar':
+        m = re.findall(r'[\u0600-\u06ff]+', clean)
+        if m: return ' '.join(m)
+    elif lang == 'hi':
+        m = re.findall(r'[\u0900-\u097f]+', clean)
+        if m: return ' '.join(m)
+    elif lang == 'bn':
+        m = re.findall(r'[\u0980-\u09ff]+', clean)
+        if m: return ' '.join(m)
+    elif lang == 'ur':
+        m = re.findall(r'[\u0600-\u06ff\u0750-\u077f\ufb50-\ufdff\ufe70-\ufeff]+', clean)
+        if m: return ' '.join(m)
+
     clean = re.sub(r'\s+', ' ', clean).strip()
     return clean
 
@@ -90,7 +116,7 @@ async def main():
     for item in targets:
         lang = item['lang']
         raw_spoken = item['spoken']
-        text_spoken = clean_speech_text(raw_spoken)
+        text_spoken = clean_speech_text(raw_spoken, lang)
         fn = item['filename']
         if not text_spoken or not fn:
             continue

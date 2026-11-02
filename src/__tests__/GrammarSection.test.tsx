@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Alphabet from '../components/Alphabet';
-import Grammar from '../components/Grammar';
+import Grammar, { getSpokenGrammarWord } from '../components/Grammar';
 import { GERMAN_GRAMMAR, getGrammarForLanguage } from '../data/languages/grammarData';
 import { LanguageProvider } from '../contexts/LanguageContext';
 
@@ -244,5 +244,64 @@ describe('Alphabet & Grammar Section Integration', () => {
     // Verify verb form rows have distinct aspect/tense forms rather than repeating the same form
     expect(screen.getByText(/Affirmative \(肯定句\)/i)).toBeInTheDocument();
     expect(screen.getByText(/Negative \(否定句\)/i)).toBeInTheDocument();
+  });
+
+  it('correctly cleans grammar words for speech audio across scripts via getSpokenGrammarWord', () => {
+    expect(getSpokenGrammarWord('gut (good)', 'de')).toBe('gut');
+    expect(getSpokenGrammarWord('besser (better)', 'de')).toBe('besser');
+    expect(getSpokenGrammarWord('am besten (best)', 'de')).toBe('am besten');
+    expect(getSpokenGrammarWord('новый (masc)', 'ru')).toBe('новый');
+    expect(getSpokenGrammarWord('ev (house)', 'tr')).toBe('ev');
+    expect(getSpokenGrammarWord('evler (houses)', 'tr')).toBe('evler');
+    expect(getSpokenGrammarWord('快 kuài (fast)', 'zh')).toBe('快');
+    expect(getSpokenGrammarWord('更快 gèng kuài (faster)', 'zh')).toBe('更快');
+    expect(getSpokenGrammarWord('高い takai (high/expensive)', 'ja')).toBe('高い');
+    expect(getSpokenGrammarWord('빠르다 ppareuda (fast)', 'ko')).toBe('빠르다');
+    expect(getSpokenGrammarWord('كَبِير kabīr (big)', 'ar')).toBe('كَبِير');
+    expect(getSpokenGrammarWord('बड़ा baṛā (big)', 'hi')).toBe('बड़ा');
+    expect(getSpokenGrammarWord('ভালো bhalo (good)', 'bn')).toBe('ভালো');
+    expect(getSpokenGrammarWord('بڑا baṛā (big)', 'ur')).toBe('بڑا');
+  });
+
+  it('renders interactive audio buttons for every pattern/adjective in Descriptions view', () => {
+    localStorage.setItem('basic_language_target_lang', 'de');
+    localStorage.setItem('basic_language_base_lang', 'en');
+
+    render(
+      <LanguageProvider>
+        <Grammar grammarData={GERMAN_GRAMMAR} initialTab="descriptions" />
+      </LanguageProvider>
+    );
+
+    // Positive, Comparative, Superlative audio buttons should exist
+    const gutAudio = screen.getByLabelText(/^Pronounce gut$/i);
+    const besserAudio = screen.getByLabelText(/^Pronounce besser$/i);
+    const amBestenAudio = screen.getByLabelText(/^Pronounce am besten$/i);
+
+    expect(gutAudio).toBeInTheDocument();
+    expect(besserAudio).toBeInTheDocument();
+    expect(amBestenAudio).toBeInTheDocument();
+
+    // Clicking does not crash and invokes speech media
+    fireEvent.click(gutAudio);
+    fireEvent.click(besserAudio);
+    fireEvent.click(amBestenAudio);
+  });
+
+  it('renders audio buttons in Descriptions for Turkish vowel harmony patterns', () => {
+    localStorage.setItem('basic_language_target_lang', 'tr');
+    localStorage.setItem('basic_language_base_lang', 'en');
+
+    const turkishGrammar = getGrammarForLanguage('tr');
+    render(
+      <LanguageProvider>
+        <Grammar grammarData={turkishGrammar} initialTab="descriptions" />
+      </LanguageProvider>
+    );
+
+    // Turkish root and suffix forms
+    expect(screen.getByLabelText(/^Pronounce ev$/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/^Pronounce evler$/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/^Pronounce evde$/i)).toBeInTheDocument();
   });
 });

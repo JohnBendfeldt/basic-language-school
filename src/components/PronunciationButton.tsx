@@ -305,6 +305,11 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
       tr: 'tr-TR',
       ja: 'ja-JP',
       ko: 'ko-KR',
+      zh: 'zh-CN',
+      hi: 'hi-IN',
+      ar: 'ar-SA',
+      bn: 'bn-IN',
+      ur: 'ur-PK',
     };
     const speechLang = lang || langCodeMap[effectiveLangId] || 'en-US';
     speak(

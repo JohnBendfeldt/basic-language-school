@@ -57,6 +57,11 @@ export const getBestVoiceForLang = (lang: string): SpeechSynthesisVoice | null =
     pt: ['Luciana', 'Antonio', 'Felipe', 'Google português do Brasil'],
     id: ['Gadis', 'Ardi', 'Indah', 'Google Bahasa Indonesia'],
     tr: ['Ahmet', 'Filiz', 'Yelda', 'Google Türkçe'],
+    zh: ['Tingting', 'Meijia', 'Sinji', 'Xiaoxiao', 'Yunxi', 'Google 普通话', 'Google 國語'],
+    hi: ['Lekha', 'Swara', 'Madhur', 'Google हिन्दी'],
+    ar: ['Maged', 'Tarik', 'Laila', 'Shakir', 'Hoda', 'Google العربية'],
+    bn: ['Bashkar', 'Tanishaa', 'Google বাংলা'],
+    ur: ['Asad', 'Uzma', 'Google اردو'],
   };
 
   // 1. Check for known high-quality native voice names matching target prefix

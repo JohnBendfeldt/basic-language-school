@@ -12,6 +12,42 @@ interface GrammarProps {
   initialTab?: 'flashcards' | 'gender' | 'verbs' | 'descriptions';
 }
 
+export const getSpokenGrammarWord = (text: string, lang: string): string => {
+  if (!text) return '';
+  // Remove parenthetical notes/translations, e.g. "gut (good)" -> "gut", "ev (house)" -> "ev"
+  const cleaned = text
+    .replace(/\s*\([^)]*\)\s*/g, ' ')
+    .replace(/\s*\[[^\]]*\]\s*/g, ' ')
+    .replace(/[«»"“”„‟`]/g, '')
+    .trim();
+
+  // For non-Latin scripts, if both native and Latin transliteration exist, extract native script:
+  if (lang === 'zh') {
+    const hanziMatch = cleaned.match(/[\u4e00-\u9fa5]+/g);
+    if (hanziMatch) return hanziMatch.join('');
+  } else if (lang === 'ja') {
+    const jpMatch = cleaned.match(/[\u3040-\u309f\u30a0-\u30ff\u4e00-\u9faf]+/g);
+    if (jpMatch) return jpMatch.join('');
+  } else if (lang === 'ko') {
+    const koMatch = cleaned.match(/[\uac00-\ud7af\u1100-\u11ff]+/g);
+    if (koMatch) return koMatch.join(' ');
+  } else if (lang === 'ar') {
+    const arMatch = cleaned.match(/[\u0600-\u06ff]+/g);
+    if (arMatch) return arMatch.join(' ');
+  } else if (lang === 'hi') {
+    const hiMatch = cleaned.match(/[\u0900-\u097f]+/g);
+    if (hiMatch) return hiMatch.join(' ');
+  } else if (lang === 'bn') {
+    const bnMatch = cleaned.match(/[\u0980-\u09ff]+/g);
+    if (bnMatch) return bnMatch.join(' ');
+  } else if (lang === 'ur') {
+    const urMatch = cleaned.match(/[\u0600-\u06ff\u0750-\u077f\ufb50-\ufdff\ufe70-\ufeff]+/g);
+    if (urMatch) return urMatch.join(' ');
+  }
+
+  return cleaned.split('/')[0].split(/\s*—\s*/)[0].trim();
+};
+
 const getVerbLanguageNotice = (
   lang: string,
   baseLang: string
@@ -706,14 +742,53 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                   <span>{desc.headers?.[2] || (baseLanguage === 'ru' ? 'Превосходная' : baseLanguage === 'es' ? 'Superlativo' : baseLanguage === 'fr' ? 'Superlatif' : baseLanguage === 'de' ? 'Superlativ' : 'Superlative')}</span>
                   <span>{desc.headers?.[3] || (baseLanguage === 'ru' ? 'Значение' : baseLanguage === 'es' ? 'Significado' : baseLanguage === 'fr' ? 'Sens' : baseLanguage === 'de' ? 'Bedeutung' : 'Meaning')}</span>
                 </div>
-                {desc.examples.map((item, rowIdx) => (
-                  <div key={rowIdx} className="comparison-data-row">
-                    <span className="comp-positive">{item.positive}</span>
-                    <span className="comp-comparative">{item.comparative}</span>
-                    <span className="comp-superlative">{item.superlative}</span>
-                    <span className="comp-meaning">{item.meaning}</span>
-                  </div>
-                ))}
+                {desc.examples.map((item, rowIdx) => {
+                  const spokenPos = getSpokenGrammarWord(item.positive, currentLanguage);
+                  const spokenComp = getSpokenGrammarWord(item.comparative, currentLanguage);
+                  const spokenSuper = getSpokenGrammarWord(item.superlative, currentLanguage);
+
+                  return (
+                    <div key={rowIdx} className="comparison-data-row">
+                      <div className="comp-cell comp-positive">
+                        <span className="comp-text">{item.positive}</span>
+                        {spokenPos && (
+                          <PronunciationButton
+                            text={spokenPos}
+                            lang={currentLanguage}
+                            audioCategory="grammar"
+                            className="comp-mini-audio"
+                            label={`Pronounce ${spokenPos}`}
+                          />
+                        )}
+                      </div>
+                      <div className="comp-cell comp-comparative">
+                        <span className="comp-text">{item.comparative}</span>
+                        {spokenComp && (
+                          <PronunciationButton
+                            text={spokenComp}
+                            lang={currentLanguage}
+                            audioCategory="grammar"
+                            className="comp-mini-audio"
+                            label={`Pronounce ${spokenComp}`}
+                          />
+                        )}
+                      </div>
+                      <div className="comp-cell comp-superlative">
+                        <span className="comp-text">{item.superlative}</span>
+                        {spokenSuper && (
+                          <PronunciationButton
+                            text={spokenSuper}
+                            lang={currentLanguage}
+                            audioCategory="grammar"
+                            className="comp-mini-audio"
+                            label={`Pronounce ${spokenSuper}`}
+                          />
+                        )}
+                      </div>
+                      <span className="comp-meaning">{item.meaning}</span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           ))}
