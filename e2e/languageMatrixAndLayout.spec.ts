@@ -37,7 +37,8 @@ test.describe('Playwright E2E: Layout, Modals, Alignment & Neural Audio Matrix',
     const langModal = page.getByRole('dialog', { name: /Language selection modal/i });
     await expect(langModal).toBeVisible();
 
-    const iSpeakTab = langModal.locator('.pair-tab-btn').nth(1);
+    // The "I speak" box (base language) is the first of the two pair boxes in the modal
+    const iSpeakTab = langModal.locator('.pair-box.base-box');
     await iSpeakTab.click();
 
     const frenchOption = langModal.getByRole('menuitem', { name: /Французский/i });
