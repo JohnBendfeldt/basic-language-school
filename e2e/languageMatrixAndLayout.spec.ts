@@ -351,5 +351,75 @@ test.describe('Playwright E2E: Layout, Modals, Alignment & Neural Audio Matrix',
     await expect(page.locator('.quiz-listening-audio-btn')).toBeVisible();
     await expect(page.locator('.show-listening-hint-btn')).toBeVisible();
   });
+
+  test('Grammar tabs layout: Noun Genders, Verb Tenses, and Descriptions share consistent 980px width, non-compacted table, and mobile responsiveness', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.addInitScript(() => {
+      localStorage.setItem('basic_language_base_lang', 'en');
+      localStorage.setItem('basic_language_target_lang', 'de');
+    });
+
+    await page.goto('/learn/de/alphabet');
+
+    // Switch to Grammar & Flashcards tab
+    const grammarTab = page.locator('.section-segmented-control button[role="tab"]').nth(1);
+    await grammarTab.click();
+    await expect(grammarTab).toHaveClass(/active/);
+
+    // 1. Check Noun Genders tab width
+    const gendersTabBtn = page.getByRole('tab', { name: /Noun Genders/i });
+    await expect(gendersTabBtn).toBeVisible();
+    await gendersTabBtn.click();
+    const gendersGrid = page.locator('.gender-rules-grid');
+    await expect(gendersGrid).toBeVisible();
+    const gendersBox = await gendersGrid.boundingBox();
+    expect(gendersBox).not.toBeNull();
+    expect(gendersBox!.width).toBeGreaterThanOrEqual(920);
+    expect(gendersBox!.width).toBeLessThanOrEqual(1000);
+
+    // 2. Check Verb Tenses tab width (consistent with Noun Genders)
+    const verbsTabBtn = page.getByRole('tab', { name: /Verb Tenses/i });
+    await expect(verbsTabBtn).toBeVisible();
+    await verbsTabBtn.click();
+    const verbsContainer = page.locator('.verb-matrix-container');
+    await expect(verbsContainer).toBeVisible();
+    const verbsBox = await verbsContainer.boundingBox();
+    expect(verbsBox).not.toBeNull();
+    expect(verbsBox!.width).toBeGreaterThanOrEqual(920);
+    expect(verbsBox!.width).toBeLessThanOrEqual(1000);
+
+    // 3. Check Descriptions tab width (consistent 980px, no longer compacted at 650px)
+    const descTabBtn = page.getByRole('tab', { name: /Descriptions/i });
+    await expect(descTabBtn).toBeVisible();
+    await descTabBtn.click();
+    const descContainer = page.locator('.descriptions-container');
+    await expect(descContainer).toBeVisible();
+    const descBox = await descContainer.boundingBox();
+    expect(descBox).not.toBeNull();
+    expect(descBox!.width).toBeGreaterThanOrEqual(920);
+    expect(descBox!.width).toBeLessThanOrEqual(1000);
+
+    // Width difference between all 3 tabs must be practically zero (harmonious layout)
+    expect(Math.abs(verbsBox!.width - descBox!.width)).toBeLessThan(5);
+    expect(Math.abs(gendersBox!.width - descBox!.width)).toBeLessThan(5);
+
+    // 4. Mobile responsiveness check (375px phone)
+    await page.setViewportSize({ width: 375, height: 667 });
+    await page.waitForTimeout(200);
+
+    // Assert that the page body does not have horizontal overflow blowout
+    const isOverflowing = await page.evaluate(() => {
+      return document.documentElement.scrollWidth > document.documentElement.clientWidth;
+    });
+    expect(isOverflowing).toBe(false);
+
+    // Assert description card fits within phone screen
+    const mobileDescCard = page.locator('.description-card').first();
+    const cardBox = await mobileDescCard.boundingBox();
+    expect(cardBox).not.toBeNull();
+    expect(cardBox!.width).toBeLessThanOrEqual(375);
+  });
 });
 
