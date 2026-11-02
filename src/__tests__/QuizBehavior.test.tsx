@@ -279,6 +279,57 @@ describe('Quiz - spelling tolerance when checking answers', () => {
     expect(screen.getByText('Not quite')).toBeInTheDocument();
   });
 
+  // Regression: a one-letter change that makes a different real word used to be marked correct.
+  it.each([
+    ['Casa', 'House', 'Mouse'],
+    ['Gato', 'Cat', 'Cut'],
+    ['Gato', 'Cat', 'Car'],
+    ['Frío', 'Cold', 'Gold'],
+    ['Noche', 'Night', 'Light'],
+    ['Perro', 'Dog', 'Dig'],
+  ])('rejects a different word one letter away: %s (%s) answered "%s"', async (phrase, meaning, typed) => {
+    await renderWithLang({ basicPhrases: [{ phrase, translation: meaning, pronunciation: '' }] });
+    await check(typed);
+    expect(screen.getByText('Not quite')).toBeInTheDocument();
+  });
+
+  it('still accepts a keyboard slip on a short word it can only be a typo of', async () => {
+    await renderWithLang({ basicPhrases: [{ phrase: 'Agua', translation: 'Water', pronunciation: '' }] });
+    await check('Watr');
+    expect(screen.queryByText('Not quite')).not.toBeInTheDocument();
+  });
+
+  it('rejects a phrase with one wrong word even though most words match', async () => {
+    await renderWithLang({
+      basicPhrases: [{ phrase: 'Me gusta mi coche', translation: 'I like my car', pronunciation: '' }],
+    });
+    await check('I like my banana');
+    expect(screen.getByText('Not quite')).toBeInTheDocument();
+  });
+
+  it('rejects a phrase where one word is swapped for a similar word', async () => {
+    await renderWithLang({
+      basicPhrases: [{ phrase: 'Me gusta mi gato', translation: 'I like my cat', pronunciation: '' }],
+    });
+    await check('I like my car');
+    expect(screen.getByText('Not quite')).toBeInTheDocument();
+  });
+
+  it('still accepts a slip inside a phrase', async () => {
+    await renderWithLang({
+      basicPhrases: [{ phrase: 'Dónde está el baño', translation: 'Where is the bathroom', pronunciation: '' }],
+    });
+    await check('where is the bathrom');
+    expect(screen.queryByText('Not quite')).not.toBeInTheDocument();
+  });
+
+  it('rejects a different short Russian word one letter away', async () => {
+    setPair('ru', 'en', 'listening');
+    await renderWithLang({ commonWords: [{ english: 'House', russian: 'дом', pronunciation: 'dom' }] });
+    await check('дым');
+    expect(screen.getByText('Not quite')).toBeInTheDocument();
+  });
+
   it('rejects a too-short or empty-looking answer', async () => {
     await renderWithLang(long);
     await check('Be');
@@ -330,3 +381,4 @@ describe('Quiz - placeholder names the language to answer in', () => {
     expect(getInput().placeholder).not.toMatch(/^Type in /);
   });
 });
+
