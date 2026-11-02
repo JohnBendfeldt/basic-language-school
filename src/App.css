@@ -1334,6 +1334,17 @@ footer {
   white-space: nowrap;
 }
 
+.example-word-pronunciation {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #4f46e5;
+  background: rgba(99, 102, 241, 0.08);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-style: normal;
+  white-space: nowrap;
+}
+
 .example-meaning-row {
   display: flex;
   align-items: center;

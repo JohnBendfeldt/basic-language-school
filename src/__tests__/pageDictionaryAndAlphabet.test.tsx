@@ -331,4 +331,18 @@ describe('Page Dictionary & Multilingual Alphabet Localization', () => {
     // Letter d should display "как в дом"
     expect(screen.getByText(/как в дом/i)).toBeInTheDocument();
   });
+
+  it('renders phonetic spelling (Pinyin/Romanization) for example words in non-Latin scripts', () => {
+    render(
+      <TestLanguagePairWrapper targetLang="zh" baseLang="en">
+        <Alphabet data={chineseData.alphabet} />
+      </TestLanguagePairWrapper>
+    );
+
+    // Verify Pinyin appears right next to Chinese characters
+    expect(screen.getByText('(bàba)')).toBeInTheDocument();
+    expect(screen.getByText('(píngguǒ)')).toBeInTheDocument();
+    expect(screen.getByText('(māo)')).toBeInTheDocument();
+    expect(screen.getByText('(zhōngguó)')).toBeInTheDocument();
+  });
 });

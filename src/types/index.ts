@@ -17,6 +17,7 @@ export interface AlphabetItem {
   // English / general properties
   word?: string;
   meaning?: string;
+  wordPronunciation?: string;
   phonics?: string;
   icon?: string;
 }
