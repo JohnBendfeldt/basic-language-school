@@ -302,4 +302,104 @@ test.describe('Playwright E2E: Mandarin Pinyin Guide, About Story Tab, Grammar A
     await expect(input).toBeEnabled();
     await expect(input).toHaveValue('');
   });
+
+  test('Bengali & Korean: Example words stay inside cards without overflow and row dividers align horizontally', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.addInitScript(() => {
+      localStorage.setItem('basic_language_base_lang', 'en');
+      localStorage.setItem('basic_language_target_lang', 'bn');
+    });
+
+    await page.goto('/learn/bn/alphabet');
+
+    const cards = page.locator('.alphabet-card');
+    await expect(cards.first()).toBeVisible();
+
+    // Verify Bengali top 4 cards: example section and speaker buttons stay within card boundaries
+    for (let i = 0; i < 4; i++) {
+      const card = cards.nth(i);
+      const cardBox = await card.boundingBox();
+      expect(cardBox).not.toBeNull();
+
+      const exampleRow = card.locator('.example-word-row');
+      const exampleBox = await exampleRow.boundingBox();
+      expect(exampleBox).not.toBeNull();
+      // Ensure example row does not overflow horizontally beyond card padding
+      expect(exampleBox!.x + exampleBox!.width).toBeLessThanOrEqual(cardBox!.x + cardBox!.width + 1);
+
+      const speakerBtn = card.locator('.example-word-row .example-pronunciation');
+      const speakerBox = await speakerBtn.boundingBox();
+      expect(speakerBox).not.toBeNull();
+      expect(speakerBox!.x + speakerBox!.width).toBeLessThanOrEqual(cardBox!.x + cardBox!.width);
+    }
+
+    // Verify divider lines align across cards in the row
+    const examples = page.locator('.alphabet-card .example');
+    const bBox0 = await examples.nth(0).boundingBox();
+    const bBox1 = await examples.nth(1).boundingBox();
+    const bBox2 = await examples.nth(2).boundingBox();
+    const bBox3 = await examples.nth(3).boundingBox();
+    expect(Math.abs(bBox0!.y - bBox1!.y)).toBeLessThanOrEqual(3);
+    expect(Math.abs(bBox1!.y - bBox2!.y)).toBeLessThanOrEqual(3);
+    expect(Math.abs(bBox2!.y - bBox3!.y)).toBeLessThanOrEqual(3);
+
+    // Switch to Korean and verify horizontal divider alignment
+    await page.goto('/learn/ko/alphabet');
+    const koExamples = page.locator('.alphabet-card .example');
+    const kBox0 = await koExamples.nth(0).boundingBox();
+    const kBox1 = await koExamples.nth(1).boundingBox();
+    const kBox2 = await koExamples.nth(2).boundingBox();
+    const kBox3 = await koExamples.nth(3).boundingBox();
+    expect(Math.abs(kBox0!.y - kBox1!.y)).toBeLessThanOrEqual(3);
+    expect(Math.abs(kBox1!.y - kBox2!.y)).toBeLessThanOrEqual(3);
+    expect(Math.abs(kBox2!.y - kBox3!.y)).toBeLessThanOrEqual(3);
+  });
+
+  test('About Page: Hero title is readable white and trait example boxes are bottom-aligned', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.addInitScript(() => {
+      localStorage.setItem('basic_language_base_lang', 'en');
+      localStorage.setItem('basic_language_target_lang', 'ko');
+    });
+
+    await page.goto('/learn/ko/alphabet');
+
+    // Switch to About tab for Korean
+    const aboutTab = page.locator('.section-segmented-control button[role="tab"]').nth(2);
+    await aboutTab.click();
+
+    const aboutContainer = page.locator('.language-about-container');
+    await expect(aboutContainer).toBeVisible();
+
+    // 1. Verify Hero title has luminous white text (not dark navy from .section h2)
+    const heroTitle = aboutContainer.locator('.about-hero-title');
+    await expect(heroTitle).toBeVisible();
+    const titleColor = await heroTitle.evaluate((el) => window.getComputedStyle(el).color);
+    expect(titleColor).toBe('rgb(255, 255, 255)');
+
+    // 2. Verify Linguistic Secrets & Superpowers cards have bottom-aligned example boxes
+    const traitExampleBoxes = aboutContainer.locator('.trait-example-box');
+    const count = await traitExampleBoxes.count();
+    expect(count).toBeGreaterThanOrEqual(3);
+
+    // Get bottom edge (y + height) for each example box in the top row
+    const box0 = await traitExampleBoxes.nth(0).boundingBox();
+    const box1 = await traitExampleBoxes.nth(1).boundingBox();
+    const box2 = await traitExampleBoxes.nth(2).boundingBox();
+    expect(box0).not.toBeNull();
+    expect(box1).not.toBeNull();
+    expect(box2).not.toBeNull();
+
+    const bottom0 = box0!.y + box0!.height;
+    const bottom1 = box1!.y + box1!.height;
+    const bottom2 = box2!.y + box2!.height;
+
+    // All example boxes must be bottom-aligned at the bottom of their cards within 3px
+    expect(Math.abs(bottom0 - bottom1)).toBeLessThanOrEqual(3);
+    expect(Math.abs(bottom1 - bottom2)).toBeLessThanOrEqual(3);
+  });
 });
