@@ -38,7 +38,7 @@ const PATH_TO_SECTION: Record<string, string> = {
   'contact': 'about',
 };
 
-const parsePath = (): { langId?: SupportedLanguageId; section: string } => {
+const parsePath = (): { langId?: SupportedLanguageId; section: string; subTab?: 'alphabet' | 'grammar' } => {
   if (typeof window === 'undefined') return { section: 'alphabet' };
 
   const segments = window.location.pathname
@@ -48,6 +48,7 @@ const parsePath = (): { langId?: SupportedLanguageId; section: string } => {
 
   let langId: SupportedLanguageId | undefined;
   let section = 'alphabet';
+  let subTab: 'alphabet' | 'grammar' | undefined;
 
   if (segments.length === 0) {
     return { section: 'alphabet' };
@@ -57,30 +58,41 @@ const parsePath = (): { langId?: SupportedLanguageId; section: string } => {
   if (segments[0] === 'learn') {
     if (segments[1] && segments[1] in SUPPORTED_LANGUAGES) {
       langId = segments[1] as SupportedLanguageId;
-      section = segments[2] && PATH_TO_SECTION[segments[2]] ? PATH_TO_SECTION[segments[2]] : 'alphabet';
+      if (segments[2] === 'grammar') {
+        section = 'alphabet';
+        subTab = 'grammar';
+      } else {
+        section = segments[2] && PATH_TO_SECTION[segments[2]] ? PATH_TO_SECTION[segments[2]] : 'alphabet';
+      }
     } else if (segments[1] && PATH_TO_SECTION[segments[1]]) {
       section = PATH_TO_SECTION[segments[1]];
     }
   } else if (segments[0] in SUPPORTED_LANGUAGES) {
     // Handle /:lang/:section or /:lang
     langId = segments[0] as SupportedLanguageId;
-    section = segments[1] && PATH_TO_SECTION[segments[1]] ? PATH_TO_SECTION[segments[1]] : 'alphabet';
+    if (segments[1] === 'grammar') {
+      section = 'alphabet';
+      subTab = 'grammar';
+    } else {
+      section = segments[1] && PATH_TO_SECTION[segments[1]] ? PATH_TO_SECTION[segments[1]] : 'alphabet';
+    }
   } else if (PATH_TO_SECTION[segments[0]]) {
     // Handle root /:section (e.g. /alphabet, /quiz)
     section = PATH_TO_SECTION[segments[0]];
   }
 
-  return { langId, section };
+  return { langId, section, subTab };
 };
 
 const AppContent: React.FC = () => {
   const { currentLanguage, currentMeta, setLanguage, baseLanguage } = useLanguage();
-  const [activeSection, setActiveSection] = useState<string>(() => parsePath().section);
+  const parsed = parsePath();
+  const [activeSection, setActiveSection] = useState<string>(() => parsed.section);
   const [installPrompt, setInstallPrompt] = useState<any>(null);
   const [speechInitialized, setSpeechInitialized] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [alphabetSubTab, setAlphabetSubTab] = useState<'alphabet' | 'grammar'>('alphabet');
+  const [alphabetSubTab, setAlphabetSubTab] = useState<'alphabet' | 'grammar'>(() => parsed.subTab || 'alphabet');
   const [grammarInitialTab, setGrammarInitialTab] = useState<'flashcards' | 'gender' | 'verbs' | 'descriptions'>('flashcards');
 
   // Platform-aware search shortcut (⌘K on macOS/iOS, Ctrl K on Windows/Linux)
@@ -160,6 +172,9 @@ const AppContent: React.FC = () => {
         setLanguage(parsed.langId);
       }
       setActiveSection(parsed.section);
+      if (parsed.subTab) {
+        setAlphabetSubTab(parsed.subTab);
+      }
       updateMeta(parsed.section);
       window.scrollTo(0, 0);
     };
