@@ -1,3 +1,4 @@
+import { settle } from './testUtils';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { AuthModal } from '../components/AuthModal';
@@ -48,13 +49,14 @@ describe('UserMenu Component', () => {
     expect(screen.getByTitle('Sign in to sync progress')).toBeInTheDocument();
   });
 
-  it('opens AuthModal when clicking Sign In', () => {
+  it('opens AuthModal when clicking Sign In', async () => {
     render(<UserMenu />);
 
     const signInBtn = screen.getByTitle('Sign in to sync progress');
     fireEvent.click(signInBtn);
 
     expect(screen.getByText('Sync Your Learning Progress')).toBeInTheDocument();
+    await settle();
   });
 
   it('opens ProgressModal when clicking My Stats', async () => {
@@ -66,6 +68,7 @@ describe('UserMenu Component', () => {
     await waitFor(() => {
       expect(screen.getByText('Your Learning Progress')).toBeInTheDocument();
     });
+    await settle();
   });
 
   it('renders dropdown with Privacy Policy, Terms, and Stats when user is logged in', async () => {
@@ -91,6 +94,7 @@ describe('UserMenu Component', () => {
     // Click Privacy Policy
     fireEvent.click(screen.getByText('Privacy Policy'));
     expect(onNavigate).toHaveBeenCalledWith('privacy');
+    await settle();
   });
 });
 

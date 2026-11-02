@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
-import { render, screen, fireEvent, cleanup, waitFor } from '@testing-library/react';
+import { screen, fireEvent, cleanup, waitFor } from '@testing-library/react';
+import { renderSettled, settle } from './testUtils';
 import Quiz, { SPECIAL_CHAR_MAP } from '../components/Quiz';
 import { canonicalizeScript } from '../utils/textNormalization';
 import { getPraiseHeadline, getPraiseTier } from '../utils/pageDictionary';
@@ -124,13 +125,13 @@ describe('Quiz accepts equivalent spellings in other scripts', () => {
     vi.restoreAllMocks();
   });
 
-  const answerListening = (phrase: string, meaning: string, typed: string, targetLang: SupportedLanguageId) => {
+  const answerListening = async (phrase: string, meaning: string, typed: string, targetLang: SupportedLanguageId) => {
     localStorage.clear();
     localStorage.setItem('basic_quiz_mode', 'listening');
     localStorage.setItem(`basic_quiz_mode_${targetLang}`, 'listening');
     window.history.pushState({}, '', `/learn/${targetLang}/quiz`);
     vi.spyOn(Math, 'random').mockReturnValue(0.1); // listening: the answer is the phrase itself
-    render(
+    await renderSettled(
       <LanguageProvider>
         <Quiz data={{ basicPhrases: [{ phrase, translation: meaning, pronunciation: '' }] }} />
       </LanguageProvider>
@@ -139,40 +140,41 @@ describe('Quiz accepts equivalent spellings in other scripts', () => {
     fireEvent.change(input, { target: { value: typed } });
     const checkBtn = screen.getByRole('button', { name: /Check Answer/i });
     fireEvent.click(checkBtn);
+    await settle();
   };
 
-  it('Bengali: a letter typed as one character matches the stored letter + nukta', () => {
-    answerListening('\u09AC\u09A1\u09BC\u09CB', 'Big', '\u09AC\u09DC\u09CB', 'bn');
+  it('Bengali: a letter typed as one character matches the stored letter + nukta', async () => {
+    await     answerListening('\u09AC\u09A1\u09BC\u09CB', 'Big', '\u09AC\u09DC\u09CB', 'bn');
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
   });
 
-  it('Hindi: the sentence-ending danda is optional', () => {
-    answerListening('वह अपना काम करती है।', 'She does her work', 'वह अपना काम करती है', 'hi');
+  it('Hindi: the sentence-ending danda is optional', async () => {
+    await     answerListening('वह अपना काम करती है।', 'She does her work', 'वह अपना काम करती है', 'hi');
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
   });
 
-  it('Arabic: short vowels and hamza do not have to be typed', () => {
-    answerListening('أَهْلاً وَسَهْلاً', 'Welcome', 'اهلا وسهلا', 'ar');
+  it('Arabic: short vowels and hamza do not have to be typed', async () => {
+    await     answerListening('أَهْلاً وَسَهْلاً', 'Welcome', 'اهلا وسهلا', 'ar');
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
   });
 
-  it('Urdu: a Persian or Arabic keyboard yeh is accepted', () => {
-    answerListening('ٹھیک ہے', 'OK', 'ٹھيک ہے', 'ur');
+  it('Urdu: a Persian or Arabic keyboard yeh is accepted', async () => {
+    await     answerListening('ٹھیک ہے', 'OK', 'ٹھيک ہے', 'ur');
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
   });
 
-  it('Japanese: the question mark is optional', () => {
-    answerListening('お元気ですか？', 'How are you?', 'お元気ですか', 'ja');
+  it('Japanese: the question mark is optional', async () => {
+    await     answerListening('お元気ですか？', 'How are you?', 'お元気ですか', 'ja');
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
   });
 
-  it('Spanish: the inverted question mark is optional', () => {
-    answerListening('¿Cómo estás?', 'How are you?', 'Cómo estás', 'es');
+  it('Spanish: the inverted question mark is optional', async () => {
+    await     answerListening('¿Cómo estás?', 'How are you?', 'Cómo estás', 'es');
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
   });
 
-  it('still marks a genuinely different Bengali word wrong', () => {
-    answerListening('\u09AC\u09A1\u09BC\u09CB', 'Big', '\u099B\u09CB\u099F', 'bn');
+  it('still marks a genuinely different Bengali word wrong', async () => {
+    await     answerListening('\u09AC\u09A1\u09BC\u09CB', 'Big', '\u099B\u09CB\u099F', 'bn');
     expect(screen.getByText('Not quite')).toBeInTheDocument();
   });
 });
@@ -243,7 +245,7 @@ describe('Bengali Quiz Praise Screen & Special Keys toolbar', () => {
       time: []
     };
 
-    render(
+    await renderSettled(
       <LanguageProvider>
         <Quiz data={testData} />
       </LanguageProvider>
@@ -268,6 +270,7 @@ describe('Bengali Quiz Praise Screen & Special Keys toolbar', () => {
       const input = screen.getByRole('textbox');
       fireEvent.change(input, { target: { value: answers[i] } });
       fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+      await settle();
 
       if (i < 4) {
         const nextBtn = await screen.findByRole('button', { name: new RegExp(`Next Question \\(${i + 2}/5\\)`, 'i') });
@@ -310,7 +313,7 @@ describe('Bengali Quiz Praise Screen & Special Keys toolbar', () => {
       }]
     };
 
-    render(
+    await renderSettled(
       <LanguageProvider>
         <Quiz data={testData} />
       </LanguageProvider>
@@ -354,7 +357,7 @@ describe('Bengali Quiz Praise Screen & Special Keys toolbar', () => {
       }]
     };
 
-    render(
+    await renderSettled(
       <LanguageProvider>
         <Quiz data={testData} />
       </LanguageProvider>
@@ -374,6 +377,7 @@ describe('Bengali Quiz Praise Screen & Special Keys toolbar', () => {
 
     // Submitting the tapped native letter counts as correct
     fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+    await settle();
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
   });
 
@@ -393,7 +397,7 @@ describe('Bengali Quiz Praise Screen & Special Keys toolbar', () => {
     for (const item of testAlphabet) {
       for (const typed of item.expectedPhonetics) {
         cleanup();
-        render(
+        await renderSettled(
           <LanguageProvider>
             <Quiz data={{
               alphabet: [{
@@ -413,6 +417,7 @@ describe('Bengali Quiz Praise Screen & Special Keys toolbar', () => {
         const input = screen.getByRole('textbox');
         fireEvent.change(input, { target: { value: typed } });
         fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+        await settle();
 
         expect(screen.getByText(/Correct!/i), `Letter ${item.letter} should accept phonetic spelling "${typed}"`).toBeInTheDocument();
       }
@@ -436,7 +441,7 @@ describe('Bengali Quiz Praise Screen & Special Keys toolbar', () => {
       }]
     };
 
-    render(
+    await renderSettled(
       <LanguageProvider>
         <Quiz data={testData} />
       </LanguageProvider>
@@ -458,6 +463,7 @@ describe('Bengali Quiz Praise Screen & Special Keys toolbar', () => {
       const input = screen.getByRole('textbox');
       fireEvent.change(input, { target: { value: 'xyz' } });
       fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+      await settle();
 
       if (i < 4) {
         const nextBtn = await screen.findByRole('button', { name: new RegExp(`Next Question \\(${i + 2}/5\\)`, 'i') });
@@ -484,7 +490,7 @@ describe('Phonetic Alphabet Acceptance Across Hindi, Urdu, Arabic, and Russian',
     localStorage.setItem('basic_quiz_mode', 'writing');
     window.history.pushState({}, '', '/learn/hi/quiz');
 
-    render(
+    await renderSettled(
       <LanguageProvider>
         <Quiz data={{
           alphabet: [{
@@ -504,6 +510,7 @@ describe('Phonetic Alphabet Acceptance Across Hindi, Urdu, Arabic, and Russian',
     const input = screen.getByRole('textbox');
     fireEvent.change(input, { target: { value: 't' } });
     fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+    await settle();
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
   });
 
@@ -512,7 +519,7 @@ describe('Phonetic Alphabet Acceptance Across Hindi, Urdu, Arabic, and Russian',
     localStorage.setItem('basic_quiz_mode', 'writing');
     window.history.pushState({}, '', '/learn/ur/quiz');
 
-    render(
+    await renderSettled(
       <LanguageProvider>
         <Quiz data={{
           alphabet: [{
@@ -532,6 +539,7 @@ describe('Phonetic Alphabet Acceptance Across Hindi, Urdu, Arabic, and Russian',
     const input = screen.getByRole('textbox');
     fireEvent.change(input, { target: { value: 'alif madd' } });
     fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+    await settle();
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
   });
 
@@ -540,7 +548,7 @@ describe('Phonetic Alphabet Acceptance Across Hindi, Urdu, Arabic, and Russian',
     localStorage.setItem('basic_quiz_mode', 'writing');
     window.history.pushState({}, '', '/learn/ar/quiz');
 
-    render(
+    await renderSettled(
       <LanguageProvider>
         <Quiz data={{
           alphabet: [{
@@ -560,6 +568,7 @@ describe('Phonetic Alphabet Acceptance Across Hindi, Urdu, Arabic, and Russian',
     const input = screen.getByRole('textbox');
     fireEvent.change(input, { target: { value: 'f' } });
     fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+    await settle();
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
   });
 });

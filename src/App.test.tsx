@@ -6,10 +6,11 @@ describe('App', () => {
     window.history.pushState({}, '', '/');
   });
 
-  test('renders Basic Russian heading', () => {
+  test('renders Basic Russian heading', async () => {
     render(<App />);
     const headingElement = screen.getByRole('heading', { name: /basic russian/i, level: 1 });
     expect(headingElement).toBeInTheDocument();
+    await waitFor(() => expect(document.querySelector('.loading-section')).toBeNull());
   });
 
   test('navigates to Privacy Policy when clicking footer link', async () => {

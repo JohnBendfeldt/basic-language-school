@@ -1,4 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { settle } from './testUtils';
 import { render, screen, fireEvent, waitFor, within } from '@testing-library/react';
 import { LanguageProvider } from '../contexts/LanguageContext';
 import ProgressModal from '../components/ProgressModal';
@@ -176,6 +177,7 @@ describe('ProgressModal', () => {
     const study = await screen.findByRole('button', { name: /Study French/i });
     fireEvent.click(study);
     expect(onClose).toHaveBeenCalledTimes(1);
+    await settle();
   });
 
   it('closes the language dropdown with Escape and with an outside click', async () => {

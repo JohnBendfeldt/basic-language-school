@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { screen, fireEvent, waitFor } from '@testing-library/react';
-import { renderSettled } from './testUtils';
+import { renderSettled, settle } from './testUtils';
 import Quiz from '../components/Quiz';
 import { ProgressService } from '../services/progressService';
 import { LanguageProvider } from '../contexts/LanguageContext';
@@ -111,13 +111,16 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
       const input = screen.getByRole('textbox');
       fireEvent.change(input, { target: { value: 'ah' } });
       fireEvent.click(screen.getByRole('button', { name: 'Check Answer' }));
+      await settle();
 
       if (i < 5) {
         const nextBtn = screen.getByRole('button', { name: new RegExp(`Next Question \\(${i + 1}/5\\)`, 'i') });
         fireEvent.click(nextBtn);
+        await settle();
       } else {
         const finishBtn = screen.getByRole('button', { name: /Complete Quiz & View Results/i });
         fireEvent.click(finishBtn);
+        await settle();
       }
     }
 
@@ -143,6 +146,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
     // Active quiz returns!
     expect(screen.getByText('Test Your Knowledge')).toBeInTheDocument();
     expect(screen.getByText('of 5')).toBeInTheDocument();
+    await settle();
   });
 
   it('accepts conversational synonyms and contractions for English phrases (e.g., wheres the restroom for where is the bathroom)', async () => {
@@ -158,6 +162,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
     // User types contraction + synonym "wheres the restroom"
     fireEvent.change(input, { target: { value: 'wheres the restroom' } });
     fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+    await settle();
 
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
   });
@@ -177,6 +182,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
     // User types English prompt "remote work" when asked for the target Spanish word
     fireEvent.change(input, { target: { value: 'remote work' } });
     fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+    await settle();
 
     // Must be rejected as incorrect!
     expect(screen.getByText(/Not quite/i)).toBeInTheDocument();
@@ -191,6 +197,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
     const input = await screen.findByRole('textbox');
     fireEvent.change(input, { target: { value: 'wrong' } });
     fireEvent.click(screen.getByRole('button', { name: 'Check Answer' }));
+    await settle();
 
     // Bottom feedback sheet should be present with Not quite
     const drawer = document.querySelector('.quiz-feedback-drawer');
@@ -211,6 +218,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
     const input = await screen.findByRole('textbox');
     fireEvent.change(input, { target: { value: '1,000' } });
     fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+    await settle();
 
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
   });
@@ -225,6 +233,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
     const input = await screen.findByRole('textbox');
     fireEvent.change(input, { target: { value: '1' } });
     fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+    await settle();
 
     expect(screen.getByText('Not quite')).toBeInTheDocument();
     expect(screen.queryByText(/Correct!/i)).not.toBeInTheDocument();
@@ -241,6 +250,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
     const input = await screen.findByRole('textbox');
     fireEvent.change(input, { target: { value: 'чаи' } });
     fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+    await settle();
 
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
     expect(screen.getByText(/Correct spelling:/i)).toBeInTheDocument();
@@ -257,6 +267,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
     const input = await screen.findByRole('textbox');
     fireEvent.change(input, { target: { value: 'еж' } });
     fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+    await settle();
 
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
   });
@@ -332,13 +343,16 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
       const ans = promptText.includes('Сегодня') ? 'today' : 'сегодня';
       fireEvent.change(input, { target: { value: ans } });
       fireEvent.click(screen.getByRole('button', { name: 'Check Answer' }));
+      await settle();
 
       if (i < 5) {
         const nextBtn = screen.getByRole('button', { name: new RegExp(`Next Question \\(${i + 1}/5\\)`, 'i') });
         fireEvent.click(nextBtn);
+        await settle();
       } else {
         const finishBtn = screen.getByRole('button', { name: /Complete Quiz & View Results/i });
         fireEvent.click(finishBtn);
+        await settle();
       }
     }
 
@@ -403,6 +417,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
     const input = screen.getByRole('textbox');
     fireEvent.change(input, { target: { value: 'Привет' } });
     fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+    await settle();
 
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
   });
@@ -480,9 +495,11 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
     const input = screen.getByRole('textbox');
     fireEvent.change(input, { target: { value: answer1 } });
     fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+    await settle();
 
     // Proceed to question 2
     fireEvent.click(screen.getByRole('button', { name: /Next Question/i }));
+    await settle();
 
     // Answer second question correctly
     const promptText2 = document.querySelector('.quiz-prompt')?.textContent || '';
@@ -495,6 +512,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
     const input2 = screen.getByRole('textbox');
     fireEvent.change(input2, { target: { value: answer2 } });
     fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+    await settle();
 
     // Check that combo streak badge appears
     expect(screen.getByText(/in a row/i)).toBeInTheDocument();

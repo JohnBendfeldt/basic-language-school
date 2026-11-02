@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { screen, fireEvent } from '@testing-library/react';
-import { renderSettled } from './testUtils';
+import { renderSettled, settle } from './testUtils';
 import Quiz from '../components/Quiz';
 
 // Mock Audio
@@ -33,6 +33,7 @@ describe('Quiz - Smart Fuzzy Matching, Typo Acceptance & "I Was Right" Override'
     // Learner types with a typo ("wer" instead of "we")
     fireEvent.change(input, { target: { value: 'Are wer planning a meeting' } });
     fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+    await settle();
 
     // Should be accepted with an encouraging "Almost right! (Accepted)" note!
     expect(screen.getByText(/Almost right! \(Accepted\)/i)).toBeInTheDocument();
@@ -62,6 +63,7 @@ describe('Quiz - Smart Fuzzy Matching, Typo Acceptance & "I Was Right" Override'
     // User types an unlisted alternative or creative translation
     fireEvent.change(input, { target: { value: 'Pleasant midday to you' } });
     fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+    await settle();
 
     // Initially marked incorrect
     expect(screen.getByText('Not quite')).toBeInTheDocument();
@@ -72,6 +74,7 @@ describe('Quiz - Smart Fuzzy Matching, Typo Acceptance & "I Was Right" Override'
 
     // User clicks "I was right"
     fireEvent.click(overrideBtn);
+    await settle();
 
     // Answer is converted to correct, score is awarded, and streak preserved!
     expect(screen.getByText(/Richtig!|Correct! \(Overridden\)/i)).toBeInTheDocument();
