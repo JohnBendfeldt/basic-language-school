@@ -3,6 +3,7 @@ import PronunciationButton from './PronunciationButton';
 import Grammar from './Grammar';
 import WordIcon from './WordIcon';
 import PinyinGuide from './PinyinGuide';
+import LanguageAbout from './LanguageAbout';
 import { AlphabetItem } from '../types/index';
 import { useLanguage } from '../contexts/LanguageContext';
 import { getPageContent, getAlphabetLabels } from '../utils/pageDictionary';
@@ -14,7 +15,7 @@ const CHINESE_INITIALS = new Set([
 
 interface AlphabetProps {
   data: AlphabetItem[];
-  initialSubTab?: 'alphabet' | 'grammar';
+  initialSubTab?: 'alphabet' | 'grammar' | 'about';
   grammarInitialTab?: 'flashcards' | 'gender' | 'verbs' | 'descriptions';
 }
 
@@ -24,7 +25,7 @@ const Alphabet: React.FC<AlphabetProps> = ({
   grammarInitialTab = 'flashcards'
 }) => {
   const { currentLanguage, baseLanguage, currentMeta, ui } = useLanguage();
-  const [activeView, setActiveView] = useState<'alphabet' | 'grammar'>(initialSubTab);
+  const [activeView, setActiveView] = useState<'alphabet' | 'grammar' | 'about'>(initialSubTab);
   const [zhFilter, setZhFilter] = useState<'all' | 'initials' | 'finals'>('all');
 
   React.useEffect(() => {
@@ -107,12 +108,39 @@ const Alphabet: React.FC<AlphabetProps> = ({
     : baseLanguage === 'ru' ? ' и звуки'
     : ' & Sounds';
 
+  const aboutMainLabel = (
+    baseLanguage === 'de' ? 'Über die Sprache'
+    : baseLanguage === 'es' ? 'Sobre el idioma'
+    : baseLanguage === 'fr' ? 'À propos'
+    : baseLanguage === 'ru' ? 'О языке'
+    : baseLanguage === 'pt' ? 'Sobre o idioma'
+    : baseLanguage === 'tr' ? 'Dil Hakkında'
+    : baseLanguage === 'id' ? 'Tentang Bahasa'
+    : baseLanguage === 'zh' ? '语言故事'
+    : baseLanguage === 'ja' ? '言語について'
+    : baseLanguage === 'ko' ? '언어 소개'
+    : 'About & Origins'
+  );
+
+  const aboutSuffix = (
+    baseLanguage === 'de' ? ' & Geschichte'
+    : baseLanguage === 'es' ? ' e Historia'
+    : baseLanguage === 'fr' ? ' & Histoire'
+    : baseLanguage === 'ru' ? ' и история'
+    : baseLanguage === 'pt' ? ' e História'
+    : baseLanguage === 'tr' ? ' ve Tarihçe'
+    : baseLanguage === 'id' ? ' & Sejarah'
+    : baseLanguage === 'zh' ? ' 与历史'
+    : ' & History'
+  );
+
   const alphabetTabLabel = `${alphabetMainLabel}${alphabetSuffix}`;
   const grammarTabLabel = `${grammarMainLabel}${grammarSuffix}`;
+  const aboutTabLabel = `${aboutMainLabel}${aboutSuffix}`;
 
   return (
     <div className="section alphabet-section">
-      {/* Segmented Control: Alphabet vs Grammar */}
+      {/* Segmented Control: Alphabet vs Grammar vs About */}
       <div className="section-segmented-control" role="tablist">
         <button
           type="button"
@@ -142,10 +170,26 @@ const Alphabet: React.FC<AlphabetProps> = ({
             <span className="tab-label-extra">{grammarSuffix}</span>
           </span>
         </button>
+        <button
+          type="button"
+          role="tab"
+          aria-selected={activeView === 'about'}
+          aria-label={aboutTabLabel}
+          className={`segmented-tab-btn ${activeView === 'about' ? 'active' : ''}`}
+          onClick={() => setActiveView('about')}
+        >
+          <span className="tab-icon">🌏</span>
+          <span className="tab-label-text">
+            <span className="tab-label-main">{aboutMainLabel}</span>
+            <span className="tab-label-extra">{aboutSuffix}</span>
+          </span>
+        </button>
       </div>
 
       {activeView === 'grammar' ? (
         <Grammar initialTab={grammarInitialTab} />
+      ) : activeView === 'about' ? (
+        <LanguageAbout currentLanguage={currentLanguage} baseLanguage={baseLanguage} />
       ) : (
         <>
           <div className="alphabet-header">
@@ -154,6 +198,25 @@ const Alphabet: React.FC<AlphabetProps> = ({
               {headerSubtitle}
             </p>
           </div>
+
+          {currentLanguage === 'zh' && (
+            <div
+              className="chinese-about-teaser"
+              onClick={() => setActiveView('about')}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setActiveView('about'); }}
+              aria-label="Learn about the history of Chinese writing and Pinyin"
+            >
+              <div className="teaser-content">
+                <span className="teaser-icon">📜</span>
+                <span className="teaser-text">
+                  Curious how Chinese writing evolved from ancient oracle bones to Simplified characters & Pinyin in the 1950s?
+                </span>
+              </div>
+              <span className="teaser-link">Read the Story ➜</span>
+            </div>
+          )}
 
           {currentLanguage === 'zh' && (
             <PinyinGuide baseLanguage={baseLanguage} />
