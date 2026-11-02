@@ -1,0 +1,477 @@
+import React, { useState } from 'react';
+import { FaChevronDown, FaLightbulb, FaKeyboard } from 'react-icons/fa';
+import PronunciationButton from './PronunciationButton';
+import { SupportedLanguageId } from '../data/languages/types';
+
+interface PinyinGuideProps {
+  baseLanguage: SupportedLanguageId;
+}
+
+interface ToneCard {
+  toneNumber: number;
+  toneName: string;
+  mark: string;
+  contour: 'high-flat' | 'rising' | 'dipping' | 'falling' | 'neutral';
+  pitchDescription: string;
+  pinyin: string;
+  hanzi: string;
+  translation: string;
+  sampleDescription: string;
+}
+
+export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(() => {
+    try {
+      const saved = localStorage.getItem('basic_pinyin_guide_open');
+      return saved !== 'false';
+    } catch {
+      return true;
+    }
+  });
+
+  const [activeTab, setActiveTab] = useState<'tones' | 'anatomy' | 'typing'>('tones');
+
+  const toggleOpen = () => {
+    setIsOpen(prev => {
+      const next = !prev;
+      try {
+        localStorage.setItem('basic_pinyin_guide_open', String(next));
+      } catch {
+        // ignore
+      }
+      return next;
+    });
+  };
+
+  // Localized text dictionary for base languages
+  const text = React.useMemo(() => {
+    switch (baseLanguage) {
+      case 'ru':
+        return {
+          badge: 'Гид по фонетике',
+          title: 'Как устроен пиньинь и тоны',
+          subtitle: 'Мост от латинских букв к китайским иероглифам (汉字)',
+          toggleShow: 'Показать гид по пиньиню',
+          toggleHide: 'Скрыть гид',
+          tabTones: '4 тона и нейтральный',
+          tabAnatomy: 'Формула слога',
+          tabTyping: 'Как печатать иероглифы',
+          toneHeader: 'В китайском языке тон полностью меняет значение слова:',
+          formulaTitle: 'Анатомия китайского слога',
+          formulaDesc: 'Каждый произносимый слог в путунхуа строится по строгой формуле:',
+          typingTitle: 'От латинских букв к китайским иероглифам',
+          typingDesc: 'На смартфонах и компьютерах китайский язык печатают с помощью стандартной клавиатуры:',
+          homophoneTitle: 'Зачем нужны иероглифы, если есть пиньинь?',
+          homophoneDesc: 'В китайском языке огромное количество омофонов — слов с одинаковым звучанием. Например, слог «shì» может означать «быть» (是), «дело» (事), «город» (市) или «комната» (室). Иероглифы устраняют путаницу и передают точный смысл, а пиньинь служит проводником к их произношению.'
+        };
+      case 'es':
+        return {
+          badge: 'Guía de fonética',
+          title: 'Cómo funciona el Pinyin y los Tonos',
+          subtitle: 'El puente de las letras latinas a los caracteres chinos (汉字)',
+          toggleShow: 'Mostrar guía de Pinyin',
+          toggleHide: 'Ocultar guía',
+          tabTones: 'Los 4 Tonos y Neutro',
+          tabAnatomy: 'Fórmula de la Sílaba',
+          tabTyping: 'Cómo escribir Hanzi',
+          toneHeader: 'En mandarín, el tono cambia totalmente el significado de la palabra:',
+          formulaTitle: 'Anatomía de una sílaba en chino',
+          formulaDesc: 'Cada sílaba hablada se forma siguiendo una fórmula estricta:',
+          typingTitle: 'De letras latinas a caracteres chinos',
+          typingDesc: 'En teléfonos y computadoras, el chino se escribe con un teclado latino estándar:',
+          homophoneTitle: '¿Por qué necesitamos caracteres si tenemos Pinyin?',
+          homophoneDesc: 'El chino tiene numerosos homófonos (palabras que suenan idéntico). Por ejemplo, «shì» puede significar «ser» (是), «asunto» (事), «ciudad» (市) o «habitación» (室). Los caracteres eliminan la ambigüedad, mientras que el pinyin guía la pronunciación.'
+        };
+      case 'fr':
+        return {
+          badge: 'Guide phonétique',
+          title: 'Comment fonctionnent le Pinyin et les Tons',
+          subtitle: 'Le pont entre les lettres latines et les caractères chinois (汉字)',
+          toggleShow: 'Afficher le guide Pinyin',
+          toggleHide: 'Masquer le guide',
+          tabTones: 'Les 4 Tons et Neutre',
+          tabAnatomy: 'Formule de la syllabe',
+          tabTyping: 'Comment taper les Hanzi',
+          toneHeader: 'En mandarin, le ton change complètement le sens du mot :',
+          formulaTitle: 'Anatomie d\'une syllabe chinoise',
+          formulaDesc: 'Chaque syllabe parlée est construite selon une formule stricte :',
+          typingTitle: 'Des lettres latines aux caractères chinois',
+          typingDesc: 'Sur téléphones et ordinateurs, le chinois se tape avec un clavier latin standard :',
+          homophoneTitle: 'Pourquoi des caractères si le Pinyin existe ?',
+          homophoneDesc: 'Le chinois compte de très nombreux homophones. Par exemple, « shì » peut signifier « être » (是), « affaire » (事), « ville » (市) ou « pièce » (室). Les caractères éliminent toute ambiguïté, tandis que le pinyin guide la prononciation.'
+        };
+      case 'de':
+        return {
+          badge: 'Phonetischer Leitfaden',
+          title: 'Wie Pinyin und Töne funktionieren',
+          subtitle: 'Die Brücke von lateinischen Buchstaben zu chinesischen Schriftzeichen (汉字)',
+          toggleShow: 'Pinyin-Leitfaden anzeigen',
+          toggleHide: 'Leitfaden ausblenden',
+          tabTones: 'Die 4 Töne & Neutral',
+          tabAnatomy: 'Silben-Formel',
+          tabTyping: 'Hanzi tippen',
+          toneHeader: 'Im Mandarin verändert der Ton die Wortbedeutung vollständig:',
+          formulaTitle: 'Aufbau einer chinesischen Silbe',
+          formulaDesc: 'Jede Silbe setzt sich nach einer klaren Regel zusammen:',
+          typingTitle: 'Von lateinischen Buchstaben zu Schriftzeichen',
+          typingDesc: 'Auf Tastaturen wird Chinesisch über die normale lateinische Tastatur getippt:',
+          homophoneTitle: 'Warum gibt es Schriftzeichen trotz Pinyin?',
+          homophoneDesc: 'Mandarin hat viele Homophone (gleichklingende Wörter). Die Silbe «shì» kann z. B. «sein» (是), «Angelegenheit» (事), «Stadt» (市) oder «Zimmer» (室) bedeuten. Schriftzeichen schaffen Klarheit, während Pinyin die Aussprache zeigt.'
+        };
+      case 'en':
+      default:
+        return {
+          badge: 'Phonetic Guide',
+          title: 'How Pinyin & Tones Work',
+          subtitle: 'The bridge from Latin letters to Chinese characters (汉字)',
+          toggleShow: 'Show Pinyin & Tones Guide',
+          toggleHide: 'Hide Guide',
+          tabTones: 'The 4 Tones & Neutral',
+          tabAnatomy: 'Syllable Anatomy',
+          tabTyping: 'How Latin Letters Become Hanzi',
+          toneHeader: 'In Mandarin Chinese, pitch and tone determine the word’s exact meaning:',
+          formulaTitle: 'Anatomy of a Mandarin Syllable',
+          formulaDesc: 'Every spoken syllable in Mandarin follows a three-part structural formula:',
+          typingTitle: 'How Latin Letters Become Chinese Characters',
+          typingDesc: 'On smartphones and computers, Chinese is typed using a standard English/Latin QWERTY keyboard:',
+          homophoneTitle: 'Why Characters (Hanzi) Still Matter',
+          homophoneDesc: 'Mandarin has dozens of homophones — words sharing the exact same sound and tone. For instance, the syllable "shì" can mean "to be" (是), "event/matter" (事), "city" (市), or "room" (室). Characters eliminate all ambiguity in writing, while Pinyin provides the universal pronunciation key.'
+        };
+    }
+  }, [baseLanguage]);
+
+  const toneCards: ToneCard[] = [
+    {
+      toneNumber: 1,
+      toneName: '1st Tone (High Flat · 阴平)',
+      mark: 'ā',
+      contour: 'high-flat',
+      pitchDescription: 'High, steady pitch held high (55)',
+      pinyin: 'mā',
+      hanzi: '妈',
+      translation: 'Mother',
+      sampleDescription: 'Singing a high musical note evenly'
+    },
+    {
+      toneNumber: 2,
+      toneName: '2nd Tone (Rising · 阳平)',
+      mark: 'á',
+      contour: 'rising',
+      pitchDescription: 'Starts mid-pitch and glides high (35)',
+      pinyin: 'má',
+      hanzi: '麻',
+      translation: 'Hemp / Numb',
+      sampleDescription: 'Like asking a question in surprise: "What?!"'
+    },
+    {
+      toneNumber: 3,
+      toneName: '3rd Tone (Falling-Rising Dip · 上声)',
+      mark: 'ǎ',
+      contour: 'dipping',
+      pitchDescription: 'Dips down low before curving upward (214)',
+      pinyin: 'mǎ',
+      hanzi: '马',
+      translation: 'Horse',
+      sampleDescription: 'Like a thoughtful "Well..." with a vocal drop'
+    },
+    {
+      toneNumber: 4,
+      toneName: '4th Tone (Falling Sharp · 去声)',
+      mark: 'à',
+      contour: 'falling',
+      pitchDescription: 'Starts high and drops sharply downward (51)',
+      pinyin: 'mà',
+      hanzi: '骂',
+      translation: 'To scold',
+      sampleDescription: 'Like a firm command or emphatic "No!"'
+    },
+    {
+      toneNumber: 5,
+      toneName: 'Neutral Tone (Light · 轻声)',
+      mark: 'a',
+      contour: 'neutral',
+      pitchDescription: 'Short, soft, unstressed release',
+      pinyin: 'ma',
+      hanzi: '吗',
+      translation: 'Question particle',
+      sampleDescription: 'Soft and quick at the end of a sentence (你好吗?)'
+    }
+  ];
+
+  return (
+    <div className="pinyin-guide-container">
+      {/* Header Banner & Collapse Toggle */}
+      <div className="pinyin-guide-header">
+        <div className="pinyin-guide-title-wrap">
+          <span className="pinyin-guide-badge">🀄 {text.badge}</span>
+          <h3 className="pinyin-guide-title">{text.title}</h3>
+          <p className="pinyin-guide-subtitle">{text.subtitle}</p>
+        </div>
+        <button
+          type="button"
+          onClick={toggleOpen}
+          className="pinyin-toggle-btn"
+          aria-expanded={isOpen}
+          aria-label={isOpen ? text.toggleHide : text.toggleShow}
+        >
+          <span>{isOpen ? text.toggleHide : text.toggleShow}</span>
+          <FaChevronDown className={`pinyin-toggle-icon ${isOpen ? 'open' : ''}`} />
+        </button>
+      </div>
+
+      {isOpen && (
+        <div className="pinyin-guide-body">
+          {/* Navigation Sub-Tabs */}
+          <div className="pinyin-guide-tabs" role="tablist">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === 'tones'}
+              className={`pinyin-tab-btn ${activeTab === 'tones' ? 'active' : ''}`}
+              onClick={() => setActiveTab('tones')}
+            >
+              🎵 {text.tabTones}
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === 'anatomy'}
+              className={`pinyin-tab-btn ${activeTab === 'anatomy' ? 'active' : ''}`}
+              onClick={() => setActiveTab('anatomy')}
+            >
+              🧩 {text.tabAnatomy}
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeTab === 'typing'}
+              className={`pinyin-tab-btn ${activeTab === 'typing' ? 'active' : ''}`}
+              onClick={() => setActiveTab('typing')}
+            >
+              ⌨️ {text.tabTyping}
+            </button>
+          </div>
+
+          {/* TAB 1: THE 4 TONES */}
+          {activeTab === 'tones' && (
+            <div className="pinyin-tab-panel tones-panel">
+              <p className="pinyin-panel-intro">
+                <FaLightbulb className="panel-hint-icon" /> {text.toneHeader}
+              </p>
+
+              <div className="pinyin-tone-grid">
+                {toneCards.map((card) => (
+                  <div key={card.toneNumber} className={`pinyin-tone-card tone-${card.toneNumber}`}>
+                    <div className="tone-card-top">
+                      <span className="tone-name-badge">{card.toneName}</span>
+                      <div className="tone-pitch-visual" aria-hidden="true">
+                        {card.contour === 'high-flat' && (
+                          <svg width="40" height="28" viewBox="0 0 40 28">
+                            <line x1="4" y1="8" x2="36" y2="8" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
+                          </svg>
+                        )}
+                        {card.contour === 'rising' && (
+                          <svg width="40" height="28" viewBox="0 0 40 28">
+                            <line x1="4" y1="22" x2="36" y2="8" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
+                          </svg>
+                        )}
+                        {card.contour === 'dipping' && (
+                          <svg width="40" height="28" viewBox="0 0 40 28">
+                            <path d="M 4 10 Q 20 25 36 8" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
+                          </svg>
+                        )}
+                        {card.contour === 'falling' && (
+                          <svg width="40" height="28" viewBox="0 0 40 28">
+                            <line x1="4" y1="8" x2="36" y2="22" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
+                          </svg>
+                        )}
+                        {card.contour === 'neutral' && (
+                          <svg width="40" height="28" viewBox="0 0 40 28">
+                            <circle cx="20" cy="14" r="5" fill="currentColor" />
+                          </svg>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="tone-card-center">
+                      <div className="tone-hanzi-wrap">
+                        <span className="tone-hanzi">{card.hanzi}</span>
+                        <span className="tone-pinyin">{card.pinyin}</span>
+                      </div>
+                      <PronunciationButton
+                        text={card.hanzi}
+                        lang="zh"
+                        audioCategory="words"
+                        useLocalAudio={true}
+                        label={`Listen to ${card.hanzi} (${card.pinyin})`}
+                        className="tone-audio-btn"
+                      />
+                    </div>
+
+                    <div className="tone-card-bottom">
+                      <span className="tone-meaning">"{card.translation}"</span>
+                      <span className="tone-pitch-desc">{card.pitchDescription}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* TAB 2: SYLLABLE FORMULA */}
+          {activeTab === 'anatomy' && (
+            <div className="pinyin-tab-panel anatomy-panel">
+              <h4 className="pinyin-panel-title">{text.formulaTitle}</h4>
+              <p className="pinyin-panel-intro">{text.formulaDesc}</p>
+
+              {/* Visual Formula Equation */}
+              <div className="pinyin-formula-equation">
+                <div className="formula-block initial">
+                  <span className="block-label">Initial · 声母</span>
+                  <span className="block-val">b</span>
+                  <span className="block-sub">Consonant Start</span>
+                </div>
+                <span className="formula-op">+</span>
+                <div className="formula-block final">
+                  <span className="block-label">Final · 韵母</span>
+                  <span className="block-val">a</span>
+                  <span className="block-sub">Vowel Core</span>
+                </div>
+                <span className="formula-op">+</span>
+                <div className="formula-block tone">
+                  <span className="block-label">Tone · 声调</span>
+                  <span className="block-val">ˋ (4th)</span>
+                  <span className="block-sub">Pitch Contour</span>
+                </div>
+                <span className="formula-op">=</span>
+                <div className="formula-block result">
+                  <span className="block-label">Pinyin</span>
+                  <span className="block-val">bà</span>
+                  <span className="block-sub">Spoken Syllable</span>
+                </div>
+                <span className="formula-arrow">➜</span>
+                <div className="formula-block hanzi">
+                  <span className="block-label">Hanzi</span>
+                  <span className="block-val">爸</span>
+                  <span className="block-sub">Dad</span>
+                </div>
+              </div>
+
+              {/* Breakdown Cards */}
+              <div className="pinyin-breakdown-cards">
+                <div className="breakdown-card">
+                  <h5 className="breakdown-card-title">1. The 21 Initials (声母 · Shēngmǔ)</h5>
+                  <p className="breakdown-card-text">
+                    Consonants placed at the start of a syllable. The letters below in our chart represent all 21 initials:
+                  </p>
+                  <div className="pinyin-pill-cloud">
+                    <span className="pinyin-pill">b</span>
+                    <span className="pinyin-pill">p</span>
+                    <span className="pinyin-pill">m</span>
+                    <span className="pinyin-pill">f</span>
+                    <span className="pinyin-pill">d</span>
+                    <span className="pinyin-pill">t</span>
+                    <span className="pinyin-pill">n</span>
+                    <span className="pinyin-pill">l</span>
+                    <span className="pinyin-pill">g</span>
+                    <span className="pinyin-pill">k</span>
+                    <span className="pinyin-pill">h</span>
+                    <span className="pinyin-pill">j</span>
+                    <span className="pinyin-pill">q</span>
+                    <span className="pinyin-pill">x</span>
+                    <span className="pinyin-pill">zh</span>
+                    <span className="pinyin-pill">ch</span>
+                    <span className="pinyin-pill">sh</span>
+                    <span className="pinyin-pill">r</span>
+                    <span className="pinyin-pill">z</span>
+                    <span className="pinyin-pill">c</span>
+                    <span className="pinyin-pill">s</span>
+                  </div>
+                </div>
+
+                <div className="breakdown-card">
+                  <h5 className="breakdown-card-title">2. Finals (韵母 · Yùnmǔ) & Semi-Vowels</h5>
+                  <p className="breakdown-card-text">
+                    Vowels and endings that complete the syllable. Tone marks are always placed over vowels (a &gt; o &gt; e &gt; i/u/ü):
+                  </p>
+                  <div className="pinyin-pill-cloud">
+                    <span className="pinyin-pill">a</span>
+                    <span className="pinyin-pill">o</span>
+                    <span className="pinyin-pill">e</span>
+                    <span className="pinyin-pill">i</span>
+                    <span className="pinyin-pill">u</span>
+                    <span className="pinyin-pill">ü</span>
+                    <span className="pinyin-pill special">y (yī)</span>
+                    <span className="pinyin-pill special">w (wū)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 3: HOW TYPING WORKS (LATIN TO HANZI) */}
+          {activeTab === 'typing' && (
+            <div className="pinyin-tab-panel typing-panel">
+              <h4 className="pinyin-panel-title">
+                <FaKeyboard className="panel-icon" /> {text.typingTitle}
+              </h4>
+              <p className="pinyin-panel-intro">{text.typingDesc}</p>
+
+              {/* Interactive Visual Keyboard Flow */}
+              <div className="pinyin-typing-flow">
+                <div className="typing-step">
+                  <span className="step-num">Step 1</span>
+                  <div className="step-mock-keyboard">
+                    <span className="key-cap">n</span>
+                    <span className="key-cap">i</span>
+                    <span className="key-cap">h</span>
+                    <span className="key-cap">a</span>
+                    <span className="key-cap">o</span>
+                  </div>
+                  <span className="step-caption">Type Latin letters without tones</span>
+                </div>
+
+                <div className="flow-arrow">➜</div>
+
+                <div className="typing-step">
+                  <span className="step-num">Step 2</span>
+                  <div className="step-mock-candidates">
+                    <span className="candidate-choice active">1. 你好</span>
+                    <span className="candidate-choice">2. 拟好</span>
+                    <span className="candidate-choice">3. 泥耗</span>
+                  </div>
+                  <span className="step-caption">Keyboard predicts matching Hanzi</span>
+                </div>
+
+                <div className="flow-arrow">➜</div>
+
+                <div className="typing-step">
+                  <span className="step-num">Step 3</span>
+                  <div className="step-mock-output">
+                    <span className="output-hanzi">你好！</span>
+                    <span className="output-meaning">(Hello!)</span>
+                  </div>
+                  <span className="step-caption">Select #1 to insert the character</span>
+                </div>
+              </div>
+
+              {/* Homophones Explanation Box */}
+              <div className="pinyin-homophone-box">
+                <div className="homophone-badge">💡 {text.homophoneTitle}</div>
+                <p className="homophone-text">{text.homophoneDesc}</p>
+                <div className="homophone-examples">
+                  <span className="homophone-chip"><strong>是</strong> (shì) · To be</span>
+                  <span className="homophone-chip"><strong>事</strong> (shì) · Matter</span>
+                  <span className="homophone-chip"><strong>市</strong> (shì) · City</span>
+                  <span className="homophone-chip"><strong>室</strong> (shì) · Room</span>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default PinyinGuide;

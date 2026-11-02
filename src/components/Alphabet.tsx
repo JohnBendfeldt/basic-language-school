@@ -2,10 +2,15 @@ import React, { useState } from 'react';
 import PronunciationButton from './PronunciationButton';
 import Grammar from './Grammar';
 import WordIcon from './WordIcon';
+import PinyinGuide from './PinyinGuide';
 import { AlphabetItem } from '../types/index';
 import { useLanguage } from '../contexts/LanguageContext';
 import { getPageContent, getAlphabetLabels } from '../utils/pageDictionary';
 import { resolveTranslation } from '../utils/translationResolver';
+
+const CHINESE_INITIALS = new Set([
+  'b', 'p', 'm', 'f', 'd', 't', 'n', 'l', 'g', 'k', 'h', 'j', 'q', 'x', 'zh', 'ch', 'sh', 'r', 'z', 'c', 's'
+]);
 
 interface AlphabetProps {
   data: AlphabetItem[];
@@ -20,12 +25,21 @@ const Alphabet: React.FC<AlphabetProps> = ({
 }) => {
   const { currentLanguage, baseLanguage, currentMeta, ui } = useLanguage();
   const [activeView, setActiveView] = useState<'alphabet' | 'grammar'>(initialSubTab);
+  const [zhFilter, setZhFilter] = useState<'all' | 'initials' | 'finals'>('all');
 
   React.useEffect(() => {
     if (initialSubTab) {
       setActiveView(initialSubTab);
     }
   }, [initialSubTab]);
+
+  const displayItems = React.useMemo(() => {
+    if (currentLanguage !== 'zh' || zhFilter === 'all') return data;
+    if (zhFilter === 'initials') {
+      return data.filter(item => CHINESE_INITIALS.has(item.letter));
+    }
+    return data.filter(item => !CHINESE_INITIALS.has(item.letter));
+  }, [data, currentLanguage, zhFilter]);
   const pageContent = getPageContent('alphabet', currentLanguage, baseLanguage);
   const labels = getAlphabetLabels(baseLanguage);
 
@@ -141,8 +155,38 @@ const Alphabet: React.FC<AlphabetProps> = ({
             </p>
           </div>
 
+          {currentLanguage === 'zh' && (
+            <PinyinGuide baseLanguage={baseLanguage} />
+          )}
+
+          {currentLanguage === 'zh' && (
+            <div className="zh-alphabet-filter-bar" role="group" aria-label="Pinyin sound filters">
+              <button
+                type="button"
+                className={`zh-filter-chip ${zhFilter === 'all' ? 'active' : ''}`}
+                onClick={() => setZhFilter('all')}
+              >
+                All Sounds ({data.length})
+              </button>
+              <button
+                type="button"
+                className={`zh-filter-chip ${zhFilter === 'initials' ? 'active' : ''}`}
+                onClick={() => setZhFilter('initials')}
+              >
+                Initials · 声母 ({data.filter(i => CHINESE_INITIALS.has(i.letter)).length})
+              </button>
+              <button
+                type="button"
+                className={`zh-filter-chip ${zhFilter === 'finals' ? 'active' : ''}`}
+                onClick={() => setZhFilter('finals')}
+              >
+                Finals · 韵母 ({data.filter(i => !CHINESE_INITIALS.has(i.letter)).length})
+              </button>
+            </div>
+          )}
+
           <div className="alphabet-container">
-            {data.map((item, index) => {
+            {displayItems.map((item, index) => {
               const exampleWord = item.russianWord || item.word;
 
               // Resolve translation in the learner's base language
