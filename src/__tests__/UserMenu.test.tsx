@@ -1,3 +1,4 @@
+import { settle } from './testUtils';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { LanguageProvider } from '../contexts/LanguageContext';
@@ -109,11 +110,13 @@ describe('UserMenu - signed in', () => {
     expect(screen.queryByLabelText('User menu for Maria Lopez')).not.toBeInTheDocument();
   });
 
-  it('opens the progress dialog from the menu', () => {
+  it('opens the progress dialog from the menu', async () => {
     renderMenu({ initialUser: user() });
     fireEvent.click(screen.getByLabelText('User menu for Maria Lopez'));
     fireEvent.click(screen.getByText('My Learning Progress'));
     expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+    // The dialog loads progress data asynchronously; let it finish inside act
+    await settle();
   });
 
   it('localizes the menu items instead of leaving English labels', () => {

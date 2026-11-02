@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { screen, fireEvent } from '@testing-library/react';
+import { renderSettled } from './testUtils';
 import Quiz, { SPECIAL_CHAR_MAP } from '../components/Quiz';
 import { LanguageProvider } from '../contexts/LanguageContext';
 
@@ -20,7 +21,7 @@ describe('Special Characters & Dynamic Mobile Keyboard Integration', () => {
     expect(SPECIAL_CHAR_MAP.id).toEqual([]);
   });
 
-  it('renders Spanish special character toolbar and sets input lang="es" when answer is expected in Spanish', () => {
+  it('renders Spanish special character toolbar and sets input lang="es" when answer is expected in Spanish', async () => {
     window.history.pushState({}, '', '/learn/es/quiz');
     const spanishSingleData = {
       basicPhrases: [{
@@ -35,7 +36,7 @@ describe('Special Characters & Dynamic Mobile Keyboard Integration', () => {
       time: []
     };
 
-    render(
+    await renderSettled(
       <LanguageProvider>
         <Quiz data={spanishSingleData as any} />
       </LanguageProvider>
@@ -55,7 +56,7 @@ describe('Special Characters & Dynamic Mobile Keyboard Integration', () => {
     }
   });
 
-  it('renders German special characters (ä, ö, ü, ß) and sets lang="de" on input', () => {
+  it('renders German special characters (ä, ö, ü, ß) and sets lang="de" on input', async () => {
     window.history.pushState({}, '', '/learn/de/quiz');
     const germanSingleData = {
       basicPhrases: [{
@@ -70,7 +71,7 @@ describe('Special Characters & Dynamic Mobile Keyboard Integration', () => {
       time: []
     };
 
-    render(
+    await renderSettled(
       <LanguageProvider>
         <Quiz data={germanSingleData as any} />
       </LanguageProvider>
@@ -90,7 +91,7 @@ describe('Special Characters & Dynamic Mobile Keyboard Integration', () => {
     }
   });
 
-  it('renders French special characters (é, è, ç, œ) and sets lang="fr" on input', () => {
+  it('renders French special characters (é, è, ç, œ) and sets lang="fr" on input', async () => {
     window.history.pushState({}, '', '/learn/fr/quiz');
     const frenchSingleData = {
       basicPhrases: [{
@@ -105,7 +106,7 @@ describe('Special Characters & Dynamic Mobile Keyboard Integration', () => {
       time: []
     };
 
-    render(
+    await renderSettled(
       <LanguageProvider>
         <Quiz data={frenchSingleData as any} />
       </LanguageProvider>
@@ -122,7 +123,7 @@ describe('Special Characters & Dynamic Mobile Keyboard Integration', () => {
     }
   });
 
-  it('renders Turkish special characters (ç, ğ, ı, ö, ş, ü, İ) and sets lang="tr" on input', () => {
+  it('renders Turkish special characters (ç, ğ, ı, ö, ş, ü, İ) and sets lang="tr" on input', async () => {
     window.history.pushState({}, '', '/learn/tr/quiz');
     const turkishSingleData = {
       basicPhrases: [{
@@ -137,7 +138,7 @@ describe('Special Characters & Dynamic Mobile Keyboard Integration', () => {
       time: []
     };
 
-    render(
+    await renderSettled(
       <LanguageProvider>
         <Quiz data={turkishSingleData as any} />
       </LanguageProvider>

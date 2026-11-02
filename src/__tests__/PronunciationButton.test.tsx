@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
 import { LanguageProvider } from '../contexts/LanguageContext';
 
 const speechMocks = vi.hoisted(() => ({
@@ -103,7 +103,9 @@ describe('PronunciationButton', () => {
     expect(instances.at(-1)?.src).toBe('/audio/es/words/casa.mp3');
     expect(screen.getByRole('button', { name: 'Speaking...' })).toBeDisabled();
 
-    instances.at(-1)!.onended!();
+    act(() => {
+      instances.at(-1)!.onended!();
+    });
     await waitFor(() => expect(screen.getByRole('button', { name: 'Pronounce' })).toBeEnabled());
     expect(speechMocks.speak).not.toHaveBeenCalled();
   });

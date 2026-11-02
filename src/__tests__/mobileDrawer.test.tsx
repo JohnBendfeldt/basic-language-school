@@ -1,3 +1,4 @@
+import { settle } from './testUtils';
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { LanguageProvider } from '../contexts/LanguageContext';
@@ -85,7 +86,7 @@ describe('MobileDrawer Component', () => {
     expect(handleClose).toHaveBeenCalled();
   });
 
-  it('opens MobileDrawer when clicking the hamburger button in App', () => {
+  it('opens MobileDrawer when clicking the hamburger button in App', async () => {
     render(<App />);
 
     const hamburgerBtn = screen.getByRole('button', { name: /open settings and menu/i });
@@ -95,9 +96,10 @@ describe('MobileDrawer Component', () => {
 
     expect(screen.getByRole('dialog', { name: /settings and options menu/i })).toBeInTheDocument();
     expect(screen.getByText('Personal Study Dashboard')).toBeInTheDocument();
+    await settle();
   });
 
-  it('triggers AuthModal and dismisses drawer when clicking Sign In & Sync', () => {
+  it('triggers AuthModal and dismisses drawer when clicking Sign In & Sync', async () => {
     const handleClose = vi.fn();
     render(
       <LanguageProvider>
@@ -110,9 +112,10 @@ describe('MobileDrawer Component', () => {
 
     expect(handleClose).toHaveBeenCalledTimes(1);
     expect(screen.getByRole('heading', { name: /sync your learning progress/i })).toBeInTheDocument();
+    await settle();
   });
 
-  it('triggers ProgressModal and dismisses drawer when clicking My Learning Progress', () => {
+  it('triggers ProgressModal and dismisses drawer when clicking My Learning Progress', async () => {
     const handleClose = vi.fn();
     render(
       <LanguageProvider>
@@ -125,5 +128,7 @@ describe('MobileDrawer Component', () => {
 
     expect(handleClose).toHaveBeenCalledTimes(1);
     expect(screen.getByRole('heading', { name: /your learning progress/i })).toBeInTheDocument();
+    // The dialog loads progress data asynchronously; let it finish inside act
+    await settle();
   });
 });

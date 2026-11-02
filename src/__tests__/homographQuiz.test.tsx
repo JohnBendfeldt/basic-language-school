@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { screen, fireEvent } from '@testing-library/react';
-import { renderSettled } from './testUtils';
+import { renderSettled, settle } from './testUtils';
 import Quiz from '../components/Quiz';
 
 window.HTMLMediaElement.prototype.play = vi.fn().mockImplementation(() => Promise.resolve());
@@ -14,9 +14,10 @@ const homographData = {
   ],
 };
 
-const answer = (text: string) => {
+const answer = async (text: string) => {
   fireEvent.change(screen.getByRole('textbox'), { target: { value: text } });
   fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+  await settle();
 };
 
 describe('Quiz - ambiguous words accept every meaning', () => {
@@ -31,7 +32,7 @@ describe('Quiz - ambiguous words accept every meaning', () => {
   it('accepts the first meaning and tells the learner the word has several', async () => {
     await renderSettled(<Quiz data={homographData} />);
     await screen.findByRole('textbox');
-    answer('Moon');
+    await answer('Moon');
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
     const note = document.querySelector('.multi-meaning-note');
     expect(note?.textContent).toContain('Moon');
@@ -41,7 +42,7 @@ describe('Quiz - ambiguous words accept every meaning', () => {
   it('accepts the other meaning as a correct answer too', async () => {
     await renderSettled(<Quiz data={homographData} />);
     await screen.findByRole('textbox');
-    answer('Month');
+    await answer('Month');
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
     expect(screen.queryByText('Not quite')).not.toBeInTheDocument();
     expect(document.querySelector('.multi-meaning-note')).not.toBeNull();
@@ -50,7 +51,7 @@ describe('Quiz - ambiguous words accept every meaning', () => {
   it('still rejects an unrelated answer and still explains the ambiguity', async () => {
     await renderSettled(<Quiz data={homographData} />);
     await screen.findByRole('textbox');
-    answer('Banana');
+    await answer('Banana');
     expect(screen.getByText('Not quite')).toBeInTheDocument();
     expect(document.querySelector('.multi-meaning-note')?.textContent).toContain('Moon');
   });
@@ -58,7 +59,7 @@ describe('Quiz - ambiguous words accept every meaning', () => {
   it('does not show the note for an unambiguous word', async () => {
     await renderSettled(<Quiz data={{ basicPhrases: [{ phrase: '犬', translation: 'Dog', pronunciation: 'inu' }] }} />);
     await screen.findByRole('textbox');
-    answer('Dog');
+    await answer('Dog');
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
     expect(document.querySelector('.multi-meaning-note')).toBeNull();
   });
@@ -75,7 +76,7 @@ describe('Quiz - ambiguous words accept every meaning', () => {
       />
     );
     await screen.findByRole('textbox');
-    answer('Fruit');
+    await answer('Fruit');
     expect(screen.getByText(/Correct!/i)).toBeInTheDocument();
     expect(document.querySelector('.multi-meaning-note')).toBeNull();
   });
