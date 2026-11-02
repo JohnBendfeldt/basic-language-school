@@ -38,6 +38,121 @@ export const levenshteinDistance = (a: string, b: string): number => {
   return matrix[a.length][b.length];
 };
 
+// Keyboard rows (QWERTY and Russian ЙЦУКЕН) used to tell a slipped finger from a different word.
+// Each row is shifted sideways on a real keyboard, so positions carry a horizontal offset.
+const ROW_OFFSETS = [0, 0.25, 0.75];
+const KEY_ROWS: Array<{ layout: number; row: number; keys: string }> = [
+  { layout: 0, row: 0, keys: 'qwertyuiop' },
+  { layout: 0, row: 1, keys: 'asdfghjkl' },
+  { layout: 0, row: 2, keys: 'zxcvbnm' },
+  { layout: 1, row: 0, keys: 'йцукенгшщзхъ' },
+  { layout: 1, row: 1, keys: 'фывапролджэ' },
+  { layout: 1, row: 2, keys: 'ячсмитьбю' },
+];
+
+const KEY_POSITIONS = new Map<string, { layout: number; row: number; x: number }>();
+KEY_ROWS.forEach(({ layout, row, keys }) => {
+  [...keys].forEach((ch, col) => KEY_POSITIONS.set(ch, { layout, row, x: col + ROW_OFFSETS[row] }));
+});
+
+/**
+ * True when two different letters sit next to each other on the same keyboard layout.
+ */
+export const keysAreAdjacent = (a: string, b: string): boolean => {
+  const p = KEY_POSITIONS.get(a.toLowerCase());
+  const q = KEY_POSITIONS.get(b.toLowerCase());
+  if (!p || !q || p.layout !== q.layout) return false;
+  if (a.toLowerCase() === b.toLowerCase()) return false;
+  return Math.abs(p.row - q.row) <= 1 && Math.abs(p.x - q.x) <= 1;
+};
+
+const stripDiacritics = (s: string): string => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+// Letter pairs learners genuinely mix up (look-alike spellings), accepted even in short words.
+const CONFUSABLE_PAIRS: Array<[string, string]> = [
+  ['и', 'й'],
+  ['е', 'ё'],
+  ['ь', 'ъ'],
+];
+const areConfusable = (a: string, b: string): boolean => {
+  const x = a.toLowerCase();
+  const y = b.toLowerCase();
+  return CONFUSABLE_PAIRS.some(([p, q]) => (x === p && y === q) || (x === q && y === p));
+};
+
+/** Index of the single differing letter, or -1 when the strings differ in length or in more than one place. */
+const singleSubstitutionIndex = (a: string, b: string): number => {
+  if (a.length !== b.length) return -1;
+  let found = -1;
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] !== b[i]) {
+      if (found !== -1) return -1;
+      found = i;
+    }
+  }
+  return found;
+};
+
+/**
+ * Decide whether `user` looks like a typing slip of `target`, as opposed to a different word.
+ *
+ * - 'answer': the learner's whole answer. Words of 4 letters or fewer must be exact, so
+ *   cat/car, dog/dig, cold/gold can never be confused. The only exceptions are a well-known
+ *   look-alike letter pair (such as и/й in Russian) or a missing accent.
+ * - 'token': one word inside a longer phrase that otherwise matches.
+ *
+ * One extra or missing letter is a slip. One wrong letter is a slip only when the two keys are
+ * neighbours on the keyboard (or differ only by an accent). Two swapped neighbouring letters
+ * are a slip. Long words (8+ letters) keep a two-edit allowance because they rarely collide.
+ */
+export const isPlausibleTypo = (
+  user: string,
+  target: string,
+  context: 'answer' | 'token' = 'answer'
+): boolean => {
+  if (user === target) return true;
+  const distance = levenshteinDistance(user, target);
+  if (distance === 0) return true;
+
+  const longer = Math.max(user.length, target.length);
+  const shorter = Math.min(user.length, target.length);
+
+  const sub = singleSubstitutionIndex(user, target);
+  if (sub !== -1) {
+    const a = user[sub];
+    const b = target[sub];
+    // Look-alike letters and accent slips are fine in words of three letters or more
+    if (longer >= 3 && (areConfusable(a, b) || stripDiacritics(a) === stripDiacritics(b))) return true;
+    // Otherwise a wrong letter is a different word in short words, and a slip only for neighbouring keys
+    if (longer < 5) return false;
+    return keysAreAdjacent(a, b);
+  }
+
+  if (context === 'answer' && longer < 5) return false;
+
+  if (distance === 1) {
+    return shorter >= 2; // one extra or missing letter
+  }
+
+  if (distance === 2) {
+    if (user.length === target.length && longer >= 3) {
+      const diff: number[] = [];
+      for (let i = 0; i < user.length; i++) if (user[i] !== target[i]) diff.push(i);
+      if (
+        diff.length === 2 &&
+        diff[1] === diff[0] + 1 &&
+        user[diff[0]] === target[diff[1]] &&
+        user[diff[1]] === target[diff[0]]
+      ) {
+        return true; // swapped neighbouring letters
+      }
+    }
+    return context === 'token' ? longer >= 6 : longer >= 8;
+  }
+
+  return false;
+};
+
 /**
  * Strip leading/trailing punctuation and common grammatical articles
  */
@@ -195,6 +310,29 @@ export const tokenize = (text: string): string[] => {
 };
 
 /**
+ * Words that carry no meaning on their own; missing one of these never makes an answer wrong.
+ */
+const STOP_WORDS = ['are', 'we', 'let', 'us', 'is', 'the', 'a', 'an', 'shall', 'do', 'i', 'you'];
+const isStopWord = (w: string): boolean => STOP_WORDS.includes(w);
+
+/**
+ * Like isPlausibleTypo, but for whole phrases: every word that differs must itself be a
+ * typing slip. "I like my car" -> "I like my cat" is a different word, not a typo.
+ */
+export const isPlausiblePhraseTypo = (user: string, target: string): boolean => {
+  const userWords = tokenize(user);
+  const targetWords = tokenize(target);
+  if (userWords.length <= 1 && targetWords.length <= 1) {
+    return isPlausibleTypo(user, target, 'answer');
+  }
+  if (userWords.length === targetWords.length) {
+    return userWords.every((w, i) => w === targetWords[i] || isPlausibleTypo(w, targetWords[i], 'token'));
+  }
+  // Different word counts (for example a slipped space): judge the whole text leniently.
+  return isPlausibleTypo(user, target, 'token');
+};
+
+/**
  * Evaluate smart fuzzy match between user input and target answers.
  * Supports token-level typo tolerance (e.g. 'wer' -> 'we'), contraction expansion,
  * and conversational synonyms.
@@ -249,7 +387,7 @@ export const evaluateSmartAnswer = (
     // 3. Whole-phrase Levenshtein tolerance
     const fullDistance = levenshteinDistance(userNorm, targetNorm);
     const maxAllowedDist = targetNorm.length >= 8 ? 2 : (targetNorm.length >= 4 ? 1 : 0);
-    if (fullDistance <= maxAllowedDist) {
+    if (fullDistance <= maxAllowedDist && isPlausiblePhraseTypo(userNorm, targetNorm)) {
       // Find the specific word with the typo
       const targetTokens = tokenize(targetNorm);
       const userTokens = tokenize(userNorm);
@@ -287,6 +425,7 @@ export const evaluateSmartAnswer = (
 
     if (targetTokens.length > 0 && userTokens.length > 0) {
       let matchedCount = 0;
+      let unmatchedMeaningful = 0;
       let typoDetected = false;
       let lastTypo: { user: string; target: string } | undefined;
 
@@ -312,17 +451,28 @@ export const evaluateSmartAnswer = (
           }
         }
 
-        if (bestTokenMatchDist <= maxTokenDist) {
+        // A one-word answer is judged as a whole answer (strict); a word inside a phrase is judged leniently.
+        const typoContext = userTokens.length === 1 && targetTokens.length === 1 ? 'answer' : 'token';
+        if (
+          bestTokenMatchDist <= maxTokenDist &&
+          isPlausibleTypo(matchedUserToken, tToken, typoContext)
+        ) {
           matchedCount += 1;
           typoDetected = true;
           lastTypo = { user: matchedUserToken, target: tToken };
+        } else if (!isStopWord(tToken)) {
+          unmatchedMeaningful += 1;
         }
       });
 
       const tokenSimilarity = matchedCount / Math.max(targetTokens.length, userTokens.length);
 
-      // Match passes if at least 70% of meaningful tokens match, or all tokens match with minor typos
-      if (tokenSimilarity >= 0.7 || (matchedCount === targetTokens.length && matchedCount >= 2)) {
+      // Match passes if at least 70% of the tokens match, or all tokens match with minor typos,
+      // but never when a meaningful word was missed ("I like my banana" is not "I like my car").
+      if (
+        unmatchedMeaningful === 0 &&
+        (tokenSimilarity >= 0.7 || (matchedCount === targetTokens.length && matchedCount >= 2))
+      ) {
         const candidate: FuzzyMatchResult = {
           isMatch: true,
           isTypo: typoDetected,
@@ -339,7 +489,6 @@ export const evaluateSmartAnswer = (
       }
 
       // Also check content words overlap (ignoring modal/auxiliary verbs like are, we, let, us)
-      const isStopWord = (w: string) => ['are', 'we', 'let', 'us', 'is', 'the', 'a', 'an', 'shall', 'do', 'i', 'you'].includes(w);
       const targetContent = targetCanonTokens.filter(w => !isStopWord(w));
       const userContent = userCanonTokens.filter(w => !isStopWord(w));
 

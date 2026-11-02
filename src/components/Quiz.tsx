@@ -3,7 +3,7 @@ import { FaCheck, FaKeyboard, FaTrophy, FaRedo, FaCheckCircle, FaTimesCircle, Fa
 import RussianKeyboard from './RussianKeyboard';
 import PronunciationButton from './PronunciationButton';
 import { transliterate, containsCyrillic } from '../utils/transliteration';
-import { evaluateSmartAnswer } from '../utils/fuzzyMatcher';
+import { evaluateSmartAnswer, isPlausiblePhraseTypo } from '../utils/fuzzyMatcher';
 import { ProgressService } from '../services/progressService';
 import { MASTERY_THRESHOLD } from '../types/progress';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -1441,7 +1441,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           ) {
             const maxErrors = targetNormalized.length >= 7 ? 2 : 1;
             const distance = levenshteinDistance(userRu, targetRu);
-            if (distance <= maxErrors) {
+            if (distance <= maxErrors && isPlausiblePhraseTypo(userRu, targetRu)) {
               isAnswerCorrect = true;
               if (containsCyrillic(targetNormalized)) {
                 setSpellingDiff(getSpellingDifferences(userAnswerNormalized, targetNormalized));
@@ -1503,7 +1503,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           ) {
             const engMaxErrors = targetEnglishNorm.length >= 7 ? 2 : 1;
             const engDistance = levenshteinDistance(userEnglishNorm, targetEnglishNorm);
-            if (engDistance <= engMaxErrors) {
+            if (engDistance <= engMaxErrors && isPlausiblePhraseTypo(userEnglishNorm, targetEnglishNorm)) {
               isAnswerCorrect = true;
               if (engDistance > 0) {
                 setSpellingDiff(getSpellingDifferences(userAnswer.trim(), target));
