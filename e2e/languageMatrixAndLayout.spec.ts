@@ -569,9 +569,8 @@ test.describe('Playwright E2E: Layout, Modals, Alignment & Neural Audio Matrix',
     await page.goto('/learn/fr/alphabet');
     await page.locator('.segmented-tab-btn').nth(2).click();
     await expect(page.locator('.language-about-container')).toBeVisible();
-    const frAboutText = (await page.locator('.language-about-container').textContent()) || '';
-    expect(frAboutText).not.toContain('$\\rightarrow$');
-    expect(frAboutText).toContain('les amis → lay-zah-mee');
+    await expect(page.locator('.language-about-container')).toContainText('les amis → lay-zah-mee');
+    await expect(page.locator('.language-about-container')).not.toContainText('$\\rightarrow$');
 
     // 2. Interactive test of BOTH language pickers ("I speak" -> Mandarin, "I want to learn" -> Spanish)
     await page.getByRole('button', { name: /Current language pair/i }).first().click();
@@ -745,6 +744,95 @@ test.describe('Playwright E2E: Layout, Modals, Alignment & Neural Audio Matrix',
     expect(mobileBox).not.toBeNull();
     expect(mobileBox!.x).toBeGreaterThanOrEqual(0);
     expect(mobileBox!.x + mobileBox!.width).toBeLessThanOrEqual(390);
+  });
+
+  test('Grammar Flashcards: expanded 16-card deck, option & prompt neural MP3 speaker buttons without premature answer selection, and 390px RTL mobile fit', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.addInitScript(() => {
+      if (!localStorage.getItem('basic_language_base_lang')) {
+        localStorage.setItem('basic_language_base_lang', 'zh');
+        localStorage.setItem('basic_language_target_lang', 'de');
+      }
+      (window as any).__playedAudioSrcs = [];
+      const origPlay = window.HTMLMediaElement.prototype.play;
+      window.HTMLMediaElement.prototype.play = function (this: HTMLMediaElement) {
+        if (this.src) {
+          (window as any).__playedAudioSrcs.push(this.src);
+        }
+        return origPlay.apply(this);
+      };
+    });
+
+    const grammarAudioStatuses: Array<{ url: string; status: number }> = [];
+    page.on('response', (res) => {
+      if (res.url().includes('/audio/de/grammar/') || res.url().includes('/audio/sounds/')) {
+        grammarAudioStatuses.push({ url: res.url(), status: res.status() });
+      }
+    });
+
+    await page.goto('/learn/de/alphabet');
+    await page.locator('.section-segmented-control button[role="tab"]').nth(1).click();
+
+    await expect(page.locator('.grammar-progress-count')).toContainText('1 / 16');
+
+    const promptSpeaker = page.locator('.grammar-prompt-audio-btn');
+    await expect(promptSpeaker).toBeVisible();
+    await expect(promptSpeaker).toHaveAttribute('aria-label', 'Pronounce Tisch');
+
+    const optionButtons = page.locator('.grammar-option-btn');
+    const optionSpeakers = page.locator('.grammar-option-audio-btn');
+    await expect(optionButtons).toHaveCount(3);
+    await expect(optionSpeakers).toHaveCount(3);
+
+    // Click option speaker for "der" — must play 200/206 OK studio MP3 without selecting/disabling options
+    await page.getByRole('button', { name: 'Pronounce der', exact: true }).click();
+    await expect(page.locator('.grammar-feedback-box')).toBeHidden();
+    await expect(optionButtons.first()).toBeEnabled();
+    await expect
+      .poll(() =>
+        grammarAudioStatuses.some(
+          (r) => r.url.endsWith('/audio/de/grammar/der.mp3') && (r.status === 200 || r.status === 206)
+        )
+      )
+      .toBe(true);
+
+    // Now select correct option "der" and verify correct.mp3 chime + localized Mandarin feedback + updated full-phrase prompt speaker
+    await page.locator('.grammar-option-btn').filter({ hasText: /^der$/ }).click();
+    await expect(page.locator('.grammar-feedback-box')).toBeVisible();
+    await expect(page.locator('.feedback-explanation')).toContainText('阳性');
+    await expect(promptSpeaker).toHaveAttribute('aria-label', 'Pronounce der Tisch');
+    await expect
+      .poll(() =>
+        page.evaluate(() =>
+          ((window as any).__playedAudioSrcs || []).some((s: string) => s.endsWith('/audio/sounds/correct.mp3'))
+        )
+      )
+      .toBe(true);
+
+    // Verify 390x844 mobile RTL (ur -> ar) fits all option buttons & speaker icons inside phone viewport
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.evaluate(() => {
+      localStorage.setItem('basic_language_base_lang', 'ur');
+      localStorage.setItem('basic_language_target_lang', 'ar');
+    });
+    await page.goto('/learn/ar/alphabet');
+    await page.locator('.section-segmented-control button[role="tab"]').nth(1).click();
+
+    await expect(page.locator('.grammar-progress-count')).toContainText('1 / 15');
+    const mobileScrollW = await page.evaluate(() => document.documentElement.scrollWidth);
+    expect(mobileScrollW).toBeLessThanOrEqual(390);
+
+    const arOptionSpeakers = page.locator('.grammar-option-audio-btn');
+    const spCount = await arOptionSpeakers.count();
+    expect(spCount).toBeGreaterThanOrEqual(2);
+    for (let i = 0; i < spCount; i++) {
+      const box = await arOptionSpeakers.nth(i).boundingBox();
+      expect(box).not.toBeNull();
+      expect(box!.x).toBeGreaterThanOrEqual(0);
+      expect(box!.x + box!.width).toBeLessThanOrEqual(390);
+    }
   });
 });
 

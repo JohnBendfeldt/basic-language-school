@@ -10,21 +10,21 @@ export interface LanguageAudioPackMeta {
 }
 
 export const OFFLINE_AUDIO_PACK_INFO: Record<SupportedLanguageId, LanguageAudioPackMeta> = {
-  en: { fileCount: 1103, sizeMB: 13.2 },
-  es: { fileCount: 1110, sizeMB: 13.4 },
-  fr: { fileCount: 1115, sizeMB: 12.7 },
-  de: { fileCount: 884, sizeMB: 9.7 },
-  pt: { fileCount: 803, sizeMB: 8.9 },
-  ru: { fileCount: 1074, sizeMB: 13.4 },
-  id: { fileCount: 814, sizeMB: 9.2 },
-  tr: { fileCount: 838, sizeMB: 9.9 },
-  zh: { fileCount: 1297, sizeMB: 13.4 },
-  ja: { fileCount: 840, sizeMB: 9.1 },
-  ko: { fileCount: 797, sizeMB: 10.1 },
-  hi: { fileCount: 1275, sizeMB: 14.7 },
-  ar: { fileCount: 1243, sizeMB: 14.1 },
-  bn: { fileCount: 619, sizeMB: 6.4 },
-  ur: { fileCount: 594, sizeMB: 6.5 },
+  en: { fileCount: 1158, sizeMB: 13.8 },
+  es: { fileCount: 1149, sizeMB: 13.8 },
+  fr: { fileCount: 1162, sizeMB: 13.2 },
+  de: { fileCount: 919, sizeMB: 10.1 },
+  pt: { fileCount: 855, sizeMB: 9.4 },
+  ru: { fileCount: 1125, sizeMB: 14.0 },
+  id: { fileCount: 863, sizeMB: 9.8 },
+  tr: { fileCount: 900, sizeMB: 10.6 },
+  zh: { fileCount: 1332, sizeMB: 13.8 },
+  ja: { fileCount: 896, sizeMB: 9.7 },
+  ko: { fileCount: 848, sizeMB: 10.7 },
+  hi: { fileCount: 1324, sizeMB: 15.2 },
+  ar: { fileCount: 1309, sizeMB: 14.8 },
+  bn: { fileCount: 662, sizeMB: 6.9 },
+  ur: { fileCount: 640, sizeMB: 7.0 },
 };
 
 export interface LanguageManifestPayload {

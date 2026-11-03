@@ -72,6 +72,27 @@ export interface GrammarDescription {
   examples: { positive: string; comparative: string; superlative: string; meaning: string }[];
 }
 
+export interface GrammarRuleExplanationMeta {
+  kind:
+    | 'gender_article'
+    | 'gender_exception'
+    | 'gender_agreement'
+    | 'verb_conjugation'
+    | 'ser_estar'
+    | 'particle_marker'
+    | 'classifier'
+    | 'vowel_harmony'
+    | 'negation'
+    | 'preposition_case'
+    | 'comparison'
+    | 'sound_article';
+  targetWord: string;
+  answer: string;
+  fullPhrase?: string;
+  gender?: 'masculine' | 'feminine' | 'neuter' | 'plural';
+  clue?: string;
+}
+
 export interface GrammarFlashcard {
   id: string;
   type: 'gender' | 'verb' | 'description' | 'article';
@@ -87,6 +108,9 @@ export interface GrammarFlashcard {
   article?: string;
   icon?: string;
   audioWord?: string;
+  promptAudio?: string;
+  optionAudio?: Partial<Record<string, string>>;
+  ruleMeta?: GrammarRuleExplanationMeta;
 }
 
 export interface GrammarData {

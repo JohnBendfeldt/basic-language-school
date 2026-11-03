@@ -45,10 +45,10 @@ def clean_speech_text(text: str, lang: str = 'en') -> str:
 
     # If non-latin, extract the native script:
     if lang == 'zh':
-        m = re.findall(r'[\u4e00-\u9fa5]+', clean)
+        m = re.findall(r'[\u4e00-\u9fff]+', clean)
         if m: return ''.join(m)
     elif lang == 'ja':
-        m = re.findall(r'[\u3040-\u309f\u30a0-\u30ff\u4e00-\u9faf]+', clean)
+        m = re.findall(r'[\u3005\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fff]+', clean)
         if m: return ''.join(m)
     elif lang == 'ko':
         m = re.findall(r'[\uac00-\ud7af\u1100-\u11ff]+', clean)
@@ -95,10 +95,13 @@ async def synthesize_one(text_to_speak: str, lang: str, out_paths: list, semapho
                 print(f"[{lang}] Generated: {first_path.name} ({text_to_speak})")
                 return
             except Exception as e:
+                first_path = out_paths[0]
+                if first_path.exists() and first_path.stat().st_size == 0:
+                    first_path.unlink()
                 if attempt == 2:
                     print(f"[{lang}] FAILED after 3 attempts for '{text_to_speak}': {e}")
                 else:
-                    await asyncio.sleep(0.5)
+                    await asyncio.sleep(1.0)
 
 async def main():
     audit_file = ROOT / 'scripts' / 'grammar_targets.json'
@@ -120,12 +123,10 @@ async def main():
         if not text_spoken or not fn:
             continue
 
-        # Save to both grammar/ and words/ or phrases/
+        # Save cleanly to grammar/ without duplicating into words/ or phrases/
         grammar_path = PUBLIC_AUDIO / lang / 'grammar' / f"{fn}.mp3"
-        cat = 'phrases' if '_' in fn else 'words'
-        cat_path = PUBLIC_AUDIO / lang / cat / f"{fn}.mp3"
 
-        tasks.append(synthesize_one(text_spoken, lang, [grammar_path, cat_path], semaphore))
+        tasks.append(synthesize_one(text_spoken, lang, [grammar_path], semaphore))
 
     print(f"Synthesizing {len(tasks)} grammar audio files across {len(VOICES)} languages...")
     await asyncio.gather(*tasks)

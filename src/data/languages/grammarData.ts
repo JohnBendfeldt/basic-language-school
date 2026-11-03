@@ -1,5 +1,7 @@
 import { GrammarData } from '../../types';
 import { SupportedLanguageId } from './types';
+import { EXTRA_GRAMMAR_FLASHCARDS } from './grammarFlashcards';
+import { localizeFlashcardForBaseLanguage } from '../../utils/grammarRuleLocalizer';
 
 export const GERMAN_GRAMMAR: GrammarData = {
   genderRules: [
@@ -3980,18 +3982,22 @@ export const getGrammarForLanguage = (
     }
   }
 
+  const combinedRawCards = customGrammar
+    ? baseData.flashcards
+    : (() => {
+        const merged = [...(baseData.flashcards || []), ...(EXTRA_GRAMMAR_FLASHCARDS[lang] || [])];
+        const seen = new Set<string>();
+        return merged.filter((c) => {
+          if (seen.has(c.id)) return false;
+          seen.add(c.id);
+          return true;
+        });
+      })();
+
   // Localize flashcards for learner's baseLanguage
-  const localizedFlashcards = baseData.flashcards?.map(card => {
-    const prompt = card.prompts?.[baseLang] || card.prompt;
-    const explanation = card.explanations?.[baseLang] || card.explanation;
-    const translation = card.translations?.[baseLang] || card.translation;
-    return {
-      ...card,
-      prompt,
-      explanation,
-      translation,
-    };
-  });
+  const localizedFlashcards = combinedRawCards?.map((card) =>
+    localizeFlashcardForBaseLanguage(card, lang, baseLang)
+  );
 
   const overlay = LOCALIZED_GRAMMAR_OVERLAYS[lang]?.[baseLang];
 

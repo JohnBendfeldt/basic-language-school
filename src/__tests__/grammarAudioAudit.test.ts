@@ -1,9 +1,14 @@
 import fs from 'fs';
 import path from 'path';
-import { describe, it } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { getGrammarForLanguage } from '../data/languages/grammarData';
 import { getCandidateAudioPathsForText } from '../components/PronunciationButton';
-import { getSpokenGrammarWord } from '../components/Grammar';
+import {
+  getSpokenGrammarWord,
+  getFlashcardFullAudioText,
+  getFlashcardPromptStemAudioText,
+  getFlashcardOptionAudioText,
+} from '../components/Grammar';
 import { SupportedLanguageId } from '../data/languages/types';
 
 const PUBLIC_DIR = path.resolve(__dirname, '../../public');
@@ -12,7 +17,7 @@ function diskFileExistsForCandidates(candidateUrls: string[]): boolean {
   return candidateUrls.some((url) => {
     const decodedRelPath = decodeURIComponent(url).replace(/^\//, '');
     const fullPath = path.join(PUBLIC_DIR, decodedRelPath);
-    return fs.existsSync(fullPath);
+    return fs.existsSync(fullPath) && fs.statSync(fullPath).size > 256;
   });
 }
 
@@ -31,6 +36,38 @@ describe('Grammar Audio Audit Across All Languages', () => {
     const missingByLanguage: Record<string, string[]> = {};
     const targetsToGenerate: AudioTarget[] = [];
     const seen = new Set<string>();
+
+    const addGrammarPrimaryTarget = (lang: string, targetText: string, spokenText?: string) => {
+      if (!targetText || !targetText.trim()) return false;
+      const candidates = getCandidateAudioPathsForText(targetText, lang, 'grammar');
+      if (candidates.length === 0) return false;
+      // Check primary candidate (/audio/<lang>/grammar/<fn>.mp3) so hover & click never 404 or fall back to stripped stems
+      const primaryRel = decodeURIComponent(candidates[0]).replace(/^\//, '');
+      const primaryFull = path.join(PUBLIC_DIR, primaryRel);
+      if (!fs.existsSync(primaryFull) || fs.statSync(primaryFull).size <= 256) {
+        const match = candidates[0].match(/\/([^/]+)\.mp3$/);
+        if (match) {
+          const fn = decodeURIComponent(match[1]);
+          const key = `${lang}:${fn}`;
+          if (!seen.has(key)) {
+            seen.add(key);
+            targetsToGenerate.push({
+              lang,
+              filename: fn,
+              spoken: (spokenText || targetText)
+                .replace(/\s*\([^)]*\)\s*/g, ' ')
+                .replace(/\s*\[[^\]]*\]\s*/g, ' ')
+                .replace(/[«»"“”„‟`]/g, '')
+                .replace(/\s*—\s*.*/, '')
+                .replace(/\s+/g, ' ')
+                .trim(),
+            });
+          }
+        }
+        return true;
+      }
+      return false;
+    };
 
     const addTarget = (lang: string, targetText: string, spokenText?: string) => {
       const candidates = getCandidateAudioPathsForText(targetText, lang);
@@ -130,30 +167,24 @@ describe('Grammar Audio Audit Across All Languages', () => {
         }
       }
 
-      // 3. Flashcards
+      // 3. Flashcards (full completed phrase + non-spoiler prompt stem + every option)
       if (grammar.flashcards) {
         for (const card of grammar.flashcards) {
-          const promptParts = card.prompt.split(/\s*➔\s*/);
-          const heroWord = promptParts[0];
-          const taskPrompt = promptParts.length > 1 ? promptParts[1] : null;
-
-          let audioTextToPlay = card.audioWord;
-          if (!audioTextToPlay) {
-            if (card.article) {
-              audioTextToPlay = `${card.article} ${heroWord.replace(/^___\s*/, '').trim()}`;
-            } else if (taskPrompt && taskPrompt.includes('___')) {
-              audioTextToPlay = taskPrompt.replace('___', card.correctAnswer).replace(/\s+/g, ' ').trim();
-            } else if (heroWord.includes('___')) {
-              audioTextToPlay = heroWord.replace('___', card.correctAnswer).replace(/\s+/g, ' ').trim();
-            } else {
-              audioTextToPlay = card.correctAnswer;
-            }
+          const audioTextToPlay = getFlashcardFullAudioText(card, lang);
+          if (addGrammarPrimaryTarget(lang, audioTextToPlay, audioTextToPlay)) {
+            missing.push(`[flashcard ${card.id} full] "${audioTextToPlay}"`);
           }
 
-          const cardCandidates = getCandidateAudioPathsForText(audioTextToPlay, lang);
-          if (!diskFileExistsForCandidates(cardCandidates)) {
-            missing.push(`[flashcard ${card.id}] "${audioTextToPlay}"`);
-            addTarget(lang, audioTextToPlay, audioTextToPlay);
+          const promptStem = getFlashcardPromptStemAudioText(card, lang);
+          if (promptStem && addGrammarPrimaryTarget(lang, promptStem, promptStem)) {
+            missing.push(`[flashcard ${card.id} stem] "${promptStem}"`);
+          }
+
+          for (const opt of card.options) {
+            const spokenOpt = getFlashcardOptionAudioText(opt, lang, card);
+            if (spokenOpt && addGrammarPrimaryTarget(lang, spokenOpt, spokenOpt)) {
+              missing.push(`[flashcard ${card.id} opt:${opt}] "${spokenOpt}"`);
+            }
           }
         }
       }
@@ -184,8 +215,12 @@ describe('Grammar Audio Audit Across All Languages', () => {
       }
     }
 
-    const outPath = path.resolve(__dirname, '../../scripts/grammar_targets.json');
-    fs.writeFileSync(outPath, JSON.stringify(targetsToGenerate, null, 2));
-    console.log(`Exported ${targetsToGenerate.length} audio targets to ${outPath}`);
+    if (targetsToGenerate.length > 0) {
+      const outPath = path.resolve(__dirname, '../../scripts/grammar_targets.json');
+      fs.writeFileSync(outPath, JSON.stringify(targetsToGenerate, null, 2));
+      console.log(`Exported ${targetsToGenerate.length} audio targets to ${outPath}`);
+    }
+    expect(missingByLanguage).toEqual({});
+    expect(targetsToGenerate).toHaveLength(0);
   });
 });

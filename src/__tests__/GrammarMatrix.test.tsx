@@ -59,7 +59,7 @@ describe('Grammar - flashcard deck can be completed for every language', () => {
   it.each(targets)('target %s / base %s: plays the whole deck to the completion card', (target, base) => {
     const { container } = renderGrammar(target, base);
     const deckSize = (getGrammarForLanguage(target, base).flashcards || []).length;
-    expect(deckSize).toBeGreaterThan(0);
+    expect(deckSize).toBeGreaterThanOrEqual(15);
 
     for (let i = 0; i < deckSize; i++) {
       const options = container.querySelectorAll('.grammar-option-btn');
@@ -198,5 +198,102 @@ describe('Grammar - gender tab', () => {
     expect(container.querySelectorAll('.gender-rule-card').length).toBe(rules.length);
     const exampleCount = rules.reduce((n, r) => n + r.examples.length, 0);
     expect(container.querySelectorAll('.gender-example-item .example-mini-audio').length).toBe(exampleCount);
+  });
+});
+
+describe('Grammar - flashcard option & prompt speaker buttons and full 15-language localization', () => {
+  it('plays option audio without selecting the answer and keeps option audio clickable after answering', () => {
+    const { container } = renderGrammar('de', 'en');
+    const optionButtons = container.querySelectorAll('.grammar-option-btn');
+    const optionAudioButtons = container.querySelectorAll('.grammar-option-audio-btn');
+
+    expect(optionButtons.length).toBe(3);
+    expect(optionAudioButtons.length).toBe(3);
+
+    // Clicking option speaker button plays audio without submitting the card
+    fireEvent.click(optionAudioButtons[0] as HTMLElement);
+    expect(window.HTMLMediaElement.prototype.play).toHaveBeenCalled();
+    expect(container.querySelector('.grammar-feedback-box')).toBeNull();
+    optionButtons.forEach((btn) => {
+      expect(btn).not.toBeDisabled();
+    });
+
+    // Prompt speaker button speaks non-spoiler stem ("Tisch") before answering
+    const promptAudioBtnBefore = container.querySelector('.grammar-prompt-audio-btn') as HTMLElement;
+    expect(promptAudioBtnBefore).toBeTruthy();
+    expect(promptAudioBtnBefore.getAttribute('aria-label')).toBe('Pronounce Tisch');
+
+    // Selecting an option disables .grammar-option-btn, switches prompt audio to full phrase, and keeps option audio enabled
+    fireEvent.click(optionButtons[0] as HTMLElement);
+    expect(container.querySelector('.grammar-feedback-box')).toBeTruthy();
+    container.querySelectorAll('.grammar-option-btn').forEach((btn) => {
+      expect(btn).toBeDisabled();
+    });
+
+    const promptAudioBtnAfter = container.querySelector('.grammar-prompt-audio-btn') as HTMLElement;
+    expect(promptAudioBtnAfter.getAttribute('aria-label')).toBe('Pronounce der Tisch');
+
+    const postAnswerOptionAudio = container.querySelectorAll('.grammar-option-audio-btn');
+    expect(postAnswerOptionAudio[1]).not.toBeDisabled();
+  });
+
+  it('localizes all 226 flashcards across non-English base languages (zh, ur, ar, hi, ja, ko) without English leaks', () => {
+    const nonLatinBases: SupportedLanguageId[] = ['zh', 'ur', 'ar', 'hi', 'ja', 'ko'];
+    const englishLeakPattern = /\b(Plural of|Past tense of|Comparative degree|Which gender\?|is masculine|is feminine|takes the|correct verb form)\b/i;
+
+    for (const base of nonLatinBases) {
+      for (const target of ALL) {
+        if (target === base) continue;
+        const cards = getGrammarForLanguage(target, base).flashcards || [];
+        expect(cards.length).toBeGreaterThanOrEqual(15);
+        for (const card of cards) {
+          expect(card.prompt).toBeTruthy();
+          expect(card.explanation).toBeTruthy();
+          expect(card.prompt).not.toContain('undefined');
+          expect(card.explanation).not.toContain('undefined');
+          expect(card.prompt).not.toMatch(englishLeakPattern);
+          expect(card.explanation).not.toMatch(englishLeakPattern);
+        }
+      }
+    }
+  });
+
+  it('plays correct.mp3 chime on right answer, incorrect.mp3 chime on wrong answer, and no chime on option speaker click', () => {
+    const playedSources: string[] = [];
+    const playSpy = vi
+      .spyOn(window.HTMLMediaElement.prototype, 'play')
+      .mockImplementation(function (this: HTMLMediaElement) {
+        playedSources.push(this.src || '');
+        return Promise.resolve();
+      });
+
+    try {
+      const { container } = renderGrammar('de', 'en');
+      const optionButtons = Array.from(container.querySelectorAll('.grammar-option-btn')) as HTMLElement[];
+      const optionSpeakers = Array.from(container.querySelectorAll('.grammar-option-audio-btn')) as HTMLElement[];
+
+      // 1. Clicking an option speaker button plays word pronunciation only (no chime)
+      fireEvent.click(optionSpeakers[0]);
+      expect(playedSources.some((s) => s.includes('/audio/sounds/'))).toBe(false);
+
+      // 2. Clicking correct option ("der" for "___ Tisch") plays /audio/sounds/correct.mp3
+      playedSources.length = 0;
+      const derBtn = optionButtons.find((b) => b.textContent?.trim() === 'der')!;
+      fireEvent.click(derBtn);
+      expect(playedSources.some((s) => s.endsWith('/audio/sounds/correct.mp3'))).toBe(true);
+      expect(playedSources.some((s) => s.endsWith('/audio/sounds/incorrect.mp3'))).toBe(false);
+
+      // 3. Advance to card 2 ("___ Katze" -> correct is "die") and click wrong option ("der") -> plays /audio/sounds/incorrect.mp3
+      fireEvent.click(container.querySelector('.grammar-next-btn') as HTMLElement);
+      playedSources.length = 0;
+      const card2Options = Array.from(container.querySelectorAll('.grammar-option-btn')) as HTMLElement[];
+      const wrongBtn = card2Options.find((b) => b.textContent?.trim() === 'der')!;
+      fireEvent.click(wrongBtn);
+      expect(playedSources.some((s) => s.endsWith('/audio/sounds/incorrect.mp3'))).toBe(true);
+      expect(playedSources.some((s) => s.endsWith('/audio/sounds/correct.mp3'))).toBe(false);
+    } finally {
+      playSpy.mockRestore();
+      window.HTMLMediaElement.prototype.play = vi.fn().mockImplementation(() => Promise.resolve());
+    }
   });
 });

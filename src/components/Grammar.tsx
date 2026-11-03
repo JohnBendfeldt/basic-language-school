@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { FaCheckCircle, FaTimesCircle, FaRedo, FaBookOpen, FaBolt, FaListUl } from 'react-icons/fa';
 import PronunciationButton from './PronunciationButton';
 import WordIcon from './WordIcon';
@@ -7,6 +7,7 @@ import { GrammarData, GrammarFlashcard, GenderNounRule, VerbConjugation } from '
 import { getGrammarForLanguage } from '../data/languages/grammarData';
 import { resolveTranslation } from '../utils/translationResolver';
 import { SupportedLanguageId } from '../data/languages/types';
+import { warmUpAudioContext } from '../utils/audioWarmup';
 
 const localizeGrammarMeaning = (raw: string, baseLang: SupportedLanguageId): string => {
   if (!raw || baseLang === 'en' || !/^[a-zA-Z\s/,.'()-]+$/.test(raw)) {
@@ -71,6 +72,122 @@ export const getSpokenGrammarWord = (text: string, lang: string): string => {
   }
 
   return cleaned.split('/')[0].split(/\s*—\s*/)[0].trim();
+};
+
+export const getFlashcardFullAudioText = (card: GrammarFlashcard, lang: string): string => {
+  if (card.audioWord) {
+    const trimmedAudio = card.audioWord.trim();
+    if (
+      card.article &&
+      !trimmedAudio.toLowerCase().startsWith(`${card.article.toLowerCase()} `) &&
+      !(card.article.endsWith("'") && trimmedAudio.toLowerCase().startsWith(card.article.toLowerCase()))
+    ) {
+      return `${card.article} ${trimmedAudio}`.trim();
+    }
+    return trimmedAudio;
+  }
+  const canonicalPrompt = card.prompts?.en || card.prompt;
+  const promptParts = canonicalPrompt.split(/\s*➔\s*/);
+  const hero = promptParts[0].trim();
+  const task = promptParts.length > 1 ? promptParts[1].trim() : null;
+
+  if (card.article) {
+    return `${card.article} ${hero.replace(/^___\s*/, '').trim()}`.trim();
+  }
+  if (task && task.includes('___')) {
+    return task
+      .replace('___', card.correctAnswer)
+      .replace(/\s*\([^)]*\)\s*/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+  if (hero.includes('___')) {
+    return hero
+      .replace('___', card.correctAnswer)
+      .replace(/\s*\([^)]*\)\s*/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+  return getSpokenGrammarWord(card.correctAnswer, lang) || card.correctAnswer;
+};
+
+export const getFlashcardPromptStemAudioText = (card: GrammarFlashcard, lang: string): string => {
+  if (card.promptAudio) {
+    return card.promptAudio.trim();
+  }
+  const canonicalPrompt = card.prompts?.en || card.prompt;
+  const promptParts = canonicalPrompt.split(/\s*➔\s*/);
+  const hero = promptParts[0].trim();
+  const task = promptParts.length > 1 ? promptParts[1].trim() : null;
+
+  if (hero.includes('___')) {
+    const stripped = hero
+      .replace(/\s*\([^)]*\)\s*/g, ' ')
+      .replace(/\s*\[[^\]]*\]\s*/g, ' ')
+      .replace(/___/g, '')
+      .trim();
+    if (stripped && !/\s/.test(stripped)) {
+      return getSpokenGrammarWord(stripped, lang);
+    }
+    return '';
+  }
+
+  if (promptParts.length > 1) {
+    const parenVerb = hero.match(/^[^\s(]+\s*\(([^)]+)\)$/);
+    if (parenVerb) {
+      return getSpokenGrammarWord(parenVerb[1], lang);
+    }
+    const plusVerb = hero.match(/\+\s*(.+)$/);
+    if (plusVerb) {
+      return getSpokenGrammarWord(plusVerb[1], lang);
+    }
+    if (!/\s/.test(hero) && !/["«„]/.test(hero)) {
+      return getSpokenGrammarWord(hero, lang);
+    }
+    if (task && (/^___/.test(task) || /___[?？!！.。]*$/.test(task))) {
+      const strippedTask = task
+        .replace(/\s*\([^)]*\)\s*/g, ' ')
+        .replace(/___/g, '')
+        .replace(/[?？!！.。]/g, '')
+        .trim();
+      if (strippedTask && !/\s/.test(strippedTask)) {
+        return getSpokenGrammarWord(strippedTask, lang);
+      }
+    }
+    return '';
+  }
+
+  const quoted = hero.match(/"([^"_]+)"/);
+  if (quoted) {
+    return getSpokenGrammarWord(quoted[1], lang);
+  }
+  return '';
+};
+
+export const getFlashcardOptionAudioText = (
+  option: string,
+  lang: string,
+  card?: GrammarFlashcard
+): string => {
+  if (card?.optionAudio?.[option]) {
+    return card.optionAudio[option]!.trim();
+  }
+  const strippedAffix = option
+    .replace(/\s*\([^)]*\)\s*/g, ' ')
+    .replace(/\s*\[[^\]]*\]\s*/g, ' ')
+    .replace(/^-+|-+$/g, '')
+    .trim();
+
+  if (lang === 'ja') {
+    if (strippedAffix === 'は') return 'わ';
+    if (strippedAffix === 'へ') return 'え';
+  }
+  if (lang === 'bn') {
+    if (strippedAffix === 'ে') return 'এ';
+    if (strippedAffix === 'ের') return 'এর';
+  }
+
+  return getSpokenGrammarWord(strippedAffix, lang).replace(/^-+|-+$/g, '').trim();
 };
 
 const getVerbLanguageNotice = (
@@ -365,6 +482,38 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [cardScore, setCardScore] = useState(0);
   const [deckFinished, setDeckFinished] = useState(false);
+  const correctSoundRef = useRef<HTMLAudioElement | null>(null);
+  const incorrectSoundRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const correctAudio = new Audio('/audio/sounds/correct.mp3');
+    correctAudio.preload = 'auto';
+    const incorrectAudio = new Audio('/audio/sounds/incorrect.mp3');
+    incorrectAudio.preload = 'auto';
+    correctSoundRef.current = correctAudio;
+    incorrectSoundRef.current = incorrectAudio;
+
+    return () => {
+      if (correctSoundRef.current) correctSoundRef.current.pause();
+      if (incorrectSoundRef.current) incorrectSoundRef.current.pause();
+    };
+  }, []);
+
+  const playFeedbackChime = (audio: HTMLAudioElement | null, type: 'correct' | 'incorrect') => {
+    if (!audio) return;
+    try {
+      audio.pause();
+      audio.currentTime = 0;
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((e) => {
+          console.warn(`Could not play ${type} sound`, e);
+        });
+      }
+    } catch (e) {
+      console.warn(`Error playing ${type} sound`, e);
+    }
+  };
 
   // Verb Matrix State
   const verbsList: VerbConjugation[] = activeGrammar.verbs && activeGrammar.verbs.length > 0
@@ -401,9 +550,13 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
 
   const handleOptionClick = (option: string) => {
     if (selectedOption !== null) return;
+    warmUpAudioContext();
     setSelectedOption(option);
     if (option === currentCard.correctAnswer) {
       setCardScore(prev => prev + 1);
+      playFeedbackChime(correctSoundRef.current, 'correct');
+    } else {
+      playFeedbackChime(incorrectSoundRef.current, 'incorrect');
     }
   };
 
@@ -630,18 +783,9 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                 const hasComplexOptions = cardOptions.some(
                   (opt) => opt.includes('(') || opt.length > 7
                 );
-                let audioTextToPlay = currentCard.audioWord;
-                if (!audioTextToPlay) {
-                  if (currentCard.article) {
-                    audioTextToPlay = `${currentCard.article} ${heroWord.replace(/^___\s*/, '').trim()}`;
-                  } else if (taskPrompt && taskPrompt.includes('___')) {
-                    audioTextToPlay = taskPrompt.replace('___', currentCard.correctAnswer).replace(/\s+/g, ' ').trim();
-                  } else if (heroWord.includes('___')) {
-                    audioTextToPlay = heroWord.replace('___', currentCard.correctAnswer).replace(/\s+/g, ' ').trim();
-                  } else {
-                    audioTextToPlay = currentCard.correctAnswer;
-                  }
-                }
+                const audioTextToPlay = getFlashcardFullAudioText(currentCard, currentLanguage);
+                const promptStemAudio = getFlashcardPromptStemAudioText(currentCard, currentLanguage);
+                const activePromptAudio = selectedOption !== null ? audioTextToPlay : promptStemAudio;
 
                 const renderPromptWithBlank = (text: string) => {
                   if (!text || !text.includes('___')) return text;
@@ -684,7 +828,18 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                           />
                         </div>
                       )}
-                      <h3 className="grammar-card-prompt">{renderPromptWithBlank(heroWord)}</h3>
+                      <div className="grammar-prompt-heading-row">
+                        <h3 className="grammar-card-prompt">{renderPromptWithBlank(heroWord)}</h3>
+                        {activePromptAudio && (
+                          <PronunciationButton
+                            text={activePromptAudio}
+                            lang={currentLanguage}
+                            audioCategory="grammar"
+                            label={`Pronounce ${activePromptAudio}`}
+                            className="grammar-prompt-audio-btn"
+                          />
+                        )}
+                      </div>
                       {currentCard.translation && (
                         <p className="grammar-card-translation">
                           {currentCard.translations?.[baseLanguage] ||
@@ -708,7 +863,11 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                     </div>
 
                     {/* Option Buttons */}
-                    <div className={`grammar-options-grid ${hasComplexOptions ? 'options-stacked' : 'options-compact'}`}>
+                    <div
+                      className={`grammar-options-grid ${
+                        hasComplexOptions ? 'options-stacked' : `options-compact options-count-${cardOptions.length}`
+                      }`}
+                    >
                       {cardOptions.map((option) => {
                         const isSelected = selectedOption === option;
                         const isCorrect = option === currentCard.correctAnswer;
@@ -729,22 +888,33 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                         const parenMatch = option.match(/^(.+?)\s*\((.+?)\)$/);
                         const mainText = parenMatch ? parenMatch[1] : option;
                         const subText = parenMatch ? parenMatch[2] : null;
+                        const spokenOption = getFlashcardOptionAudioText(option, currentLanguage, currentCard);
 
                         return (
-                          <button
-                            key={option}
-                            type="button"
-                            className={`grammar-option-btn ${btnStateClass} ${genderColorClass}`}
-                            onClick={() => handleOptionClick(option)}
-                            disabled={selectedOption !== null}
-                          >
-                            <div className="grammar-option-content">
-                              <span className="grammar-option-main">{mainText}</span>
-                              {subText && <span className="grammar-option-sub">({subText})</span>}
-                            </div>
-                            {selectedOption !== null && isCorrect && <FaCheckCircle className="option-state-icon" />}
-                            {selectedOption !== null && isSelected && !isCorrect && <FaTimesCircle className="option-state-icon" />}
-                          </button>
+                          <div key={option} className="grammar-option-item">
+                            <button
+                              type="button"
+                              className={`grammar-option-btn ${btnStateClass} ${genderColorClass}`}
+                              onClick={() => handleOptionClick(option)}
+                              disabled={selectedOption !== null}
+                            >
+                              <div className="grammar-option-content">
+                                <span className="grammar-option-main">{mainText}</span>
+                                {subText && <span className="grammar-option-sub">({subText})</span>}
+                              </div>
+                              {selectedOption !== null && isCorrect && <FaCheckCircle className="option-state-icon" />}
+                              {selectedOption !== null && isSelected && !isCorrect && <FaTimesCircle className="option-state-icon" />}
+                            </button>
+                            {spokenOption && (
+                              <PronunciationButton
+                                text={spokenOption}
+                                lang={currentLanguage}
+                                audioCategory="grammar"
+                                label={`Pronounce ${mainText}`}
+                                className="grammar-option-audio-btn"
+                              />
+                            )}
+                          </div>
                         );
                       })}
                     </div>
@@ -761,6 +931,7 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                           <PronunciationButton
                             text={audioTextToPlay}
                             lang={currentLanguage}
+                            audioCategory="grammar"
                             label="Listen"
                             className="grammar-audio-btn"
                           />
