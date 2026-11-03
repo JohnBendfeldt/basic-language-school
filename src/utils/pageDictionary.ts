@@ -1757,6 +1757,265 @@ export const getEnglishTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
         ],
         footerHint: 'Tüm sayılar ve zaman ifadeleri stüdyo ses kaydına sahiptir!'
       };
+    case 'zh':
+      return {
+        headerTitle: '英语时间表达规则',
+        rules: [
+          {
+            ruleBadge: '规则 1',
+            title: "O'clock 与整点表达",
+            desc: '仅用于没有分钟的整点时间：',
+            items: [
+              { label: '2:00', text: "Two o'clock（两点整）" },
+              { label: '7:00', text: "Seven o'clock（七点整）" },
+              { label: '12:00', text: 'Noon（中午十二点）/ Midnight（午夜十二点）' }
+            ]
+          },
+          {
+            ruleBadge: '规则 2',
+            title: 'Past 与 To（半点与一刻钟）',
+            desc: 'Past 表示“过几分”（1–30分）；To 表示“差几分到下一小时”（31–59分）：',
+            items: [
+              { label: ':15', text: 'Quarter past（过一刻）：Quarter past two = 2:15' },
+              { label: ':30', text: 'Half past（半点）：Half past two = 2:30' },
+              { label: ':45', text: 'Quarter to（差一刻）：Quarter to three = 2:45' }
+            ]
+          },
+          {
+            ruleBadge: '规则 3',
+            title: 'AM 与 PM（12小时制）',
+            desc: '英语日常使用12小时制并区分上下午：',
+            items: [
+              { label: 'AM', text: '上午（午夜 00:00 至中午 11:59）' },
+              { label: 'PM', text: '下午与晚上（中午 12:00 至 23:59）' },
+              { label: '常用提问', text: '«What time is it?» — 现在几点了？' }
+            ]
+          }
+        ],
+        footerHint: '以下所有数字与时间表达均配有录音棚级美式英语母语音频！'
+      };
+    case 'ja':
+      return {
+        headerTitle: '英語の時刻表現ルール',
+        rules: [
+          {
+            ruleBadge: 'ルール 1',
+            title: "O'clock とちょうどの時刻",
+            desc: '分がつかない正時（00分）のときにのみ使います：',
+            items: [
+              { label: '2:00', text: "Two o'clock（2時ちょうど）" },
+              { label: '7:00', text: "Seven o'clock（7時ちょうど）" },
+              { label: '12:00', text: 'Noon（正午）/ Midnight（真夜中0時）' }
+            ]
+          },
+          {
+            ruleBadge: 'ルール 2',
+            title: 'Past と To（15分・30分）',
+            desc: 'Past＝〜時過ぎ（1〜30分）、To＝次の時刻まであと〜分（31〜59分）：',
+            items: [
+              { label: ':15', text: 'Quarter past（15分過ぎ）：Quarter past two = 2:15' },
+              { label: ':30', text: 'Half past（30分・半）：Half past two = 2:30' },
+              { label: ':45', text: 'Quarter to（15分前）：Quarter to three = 2:45' }
+            ]
+          },
+          {
+            ruleBadge: 'ルール 3',
+            title: 'AM と PM（12時間制）',
+            desc: '英語では午前・午後を区別する12時間制がよく使われます：',
+            items: [
+              { label: 'AM', text: '午前（深夜0時から11:59まで）' },
+              { label: 'PM', text: '午後・夜（正午12時から23:59まで）' },
+              { label: '質問', text: '«What time is it?» — 今何時ですか？' }
+            ]
+          }
+        ],
+        footerHint: 'すべての数字と時間表現にスタジオ品質のネイティブ英語音声が付いています！'
+      };
+    case 'ko':
+      return {
+        headerTitle: '영어 시간 표현 규칙',
+        rules: [
+          {
+            ruleBadge: '규칙 1',
+            title: "O'clock 및 정각 표현",
+            desc: '분이 없는 정각 시간에만 사용합니다:',
+            items: [
+              { label: '2:00', text: "Two o'clock (2시 정각)" },
+              { label: '7:00', text: "Seven o'clock (7시 정각)" },
+              { label: '12:00', text: 'Noon (정오) / Midnight (자정)' }
+            ]
+          },
+          {
+            ruleBadge: '규칙 2',
+            title: 'Past와 To (15분·30분 표현)',
+            desc: 'Past = ~시 지남(1~30분), To = 다음 시간까지 ~분 전(31~59분):',
+            items: [
+              { label: ':15', text: 'Quarter past (15분 지남): Quarter past two = 2:15' },
+              { label: ':30', text: 'Half past (30분·반): Half past two = 2:30' },
+              { label: ':45', text: 'Quarter to (15분 전): Quarter to three = 2:45' }
+            ]
+          },
+          {
+            ruleBadge: '규칙 3',
+            title: 'AM과 PM (12시간제)',
+            desc: '영어는 오전과 오후를 구분하는 12시간제를 사용합니다:',
+            items: [
+              { label: 'AM', text: '오전 (자정부터 낮 11:59까지)' },
+              { label: 'PM', text: '오후 및 밤 (정오부터 밤 11:59까지)' },
+              { label: '질문', text: '«What time is it?» — 지금 몇 시인가요?' }
+            ]
+          }
+        ],
+        footerHint: '모든 숫자와 시간 표현에 스튜디오 품질의 원어민 음성이 포함되어 있습니다!'
+      };
+    case 'hi':
+      return {
+        headerTitle: 'अंग्रेज़ी में समय बताने के नियम',
+        rules: [
+          {
+            ruleBadge: 'नियम 1',
+            title: "O'clock और पूरे घंटे",
+            desc: 'केवल पूरे घंटे (बिना मिनट) के लिए प्रयोग किया जाता है:',
+            items: [
+              { label: '2:00', text: "Two o'clock (ठीक दो बजे)" },
+              { label: '7:00', text: "Seven o'clock (ठीक सात बजे)" },
+              { label: '12:00', text: 'Noon (दोपहर 12) / Midnight (आधी रात 12)' }
+            ]
+          },
+          {
+            ruleBadge: 'नियम 2',
+            title: 'Past और To (सवा, साढ़े, पौने)',
+            desc: 'Past = बजकर (1–30 मिनट); To = बजने में बाकी (31–59 मिनट):',
+            items: [
+              { label: ':15', text: 'Quarter past (सवा): Quarter past two = 2:15' },
+              { label: ':30', text: 'Half past (साढ़े): Half past two = 2:30' },
+              { label: ':45', text: 'Quarter to (पौने): Quarter to three = 2:45' }
+            ]
+          },
+          {
+            ruleBadge: 'नियम 3',
+            title: 'AM बनाम PM (12-घंटे का प्रारूप)',
+            desc: 'अंग्रेज़ी में दिन के समय के साथ 12-घंटे का प्रारूप चलता है:',
+            items: [
+              { label: 'AM', text: 'सुबह (आधी रात से दोपहर 11:59 तक)' },
+              { label: 'PM', text: 'दोपहर और रात (दोपहर 12:00 से रात 11:59 तक)' },
+              { label: 'प्रश्न', text: '«What time is it?» — अभी क्या समय हुआ है?' }
+            ]
+          }
+        ],
+        footerHint: 'सभी संख्याओं और समय के वाक्यों में स्टूडियो गुणवत्ता की मूल अंग्रेज़ी ऑडियो है!'
+      };
+    case 'ar':
+      return {
+        headerTitle: 'قواعد قراءة الوقت في الإنجليزية',
+        rules: [
+          {
+            ruleBadge: 'القاعدة 1',
+            title: "O'clock والساعات التامة",
+            desc: 'تُستخدم فقط عند تمام الساعة دون دقائق:',
+            items: [
+              { label: '2:00', text: "Two o'clock (الثانية تماماً)" },
+              { label: '7:00', text: "Seven o'clock (السابعة تماماً)" },
+              { label: '12:00', text: 'Noon (الظهر) / Midnight (منتصف الليل)' }
+            ]
+          },
+          {
+            ruleBadge: 'القاعدة 2',
+            title: 'Past و To (الربع والنصف)',
+            desc: 'Past = بعد الساعة (1–30 د)؛ To = إلا ... للساعة التالية (31–59 د):',
+            items: [
+              { label: ':15', text: 'Quarter past (والربع): Quarter past two = 2:15' },
+              { label: ':30', text: 'Half past (والنصف): Half past two = 2:30' },
+              { label: ':45', text: 'Quarter to (إلا ربعاً): Quarter to three = 2:45' }
+            ]
+          },
+          {
+            ruleBadge: 'القاعدة 3',
+            title: 'AM مقابل PM (نظام 12 ساعة)',
+            desc: 'تستخدم الإنجليزية نظام 12 ساعة لتحديد الصباح والمساء:',
+            items: [
+              { label: 'AM', text: 'صباحاً (من منتصف الليل حتى 11:59 ظهراً)' },
+              { label: 'PM', text: 'مساءً (من 12:00 ظهراً حتى 11:59 ليلاً)' },
+              { label: 'سؤال', text: '«What time is it?» — كم الساعة؟' }
+            ]
+          }
+        ],
+        footerHint: 'جميع الأرقام وتعبيرات الوقت مسجّلة بصوت ناطق أصلي بجودة الاستوديو!'
+      };
+    case 'bn':
+      return {
+        headerTitle: 'ইংরেজিতে সময় বলার নিয়ম',
+        rules: [
+          {
+            ruleBadge: 'নিয়ম ১',
+            title: "O'clock ও পূর্ণ ঘণ্টা",
+            desc: 'কোনো মিনিট ছাড়া ঠিক পূর্ণ ঘণ্টা বোঝাতে ব্যবহৃত হয়:',
+            items: [
+              { label: '2:00', text: "Two o'clock (ঠিক দুটো)" },
+              { label: '7:00', text: "Seven o'clock (ঠিক সাতটা)" },
+              { label: '12:00', text: 'Noon (দুপুর ১২টা) / Midnight (মধ্যরাত ১২টা)' }
+            ]
+          },
+          {
+            ruleBadge: 'নিয়ম ২',
+            title: 'Past ও To (সোয়া, সাড়ে ও পৌনে)',
+            desc: 'Past = বেজে গেছে (১–৩০ মি.); To = পরবর্তী ঘণ্টা বাজতে বাকি (৩১–৫৯ মি.):',
+            items: [
+              { label: ':15', text: 'Quarter past (সোয়া): Quarter past two = 2:15' },
+              { label: ':30', text: 'Half past (সাড়ে): Half past two = 2:30' },
+              { label: ':45', text: 'Quarter to (পৌনে): Quarter to three = 2:45' }
+            ]
+          },
+          {
+            ruleBadge: 'নিয়ম ৩',
+            title: 'AM বনাম PM (১২ ঘণ্টার নিয়ম)',
+            desc: 'ইংরেজিতে সকাল ও বিকেল/রাত বোঝাতে ১২ ঘণ্টার পদ্ধতি ব্যবহৃত হয়:',
+            items: [
+              { label: 'AM', text: 'সকাল (মধ্যরাত থেকে বেলা ১১:৫৯ পর্যন্ত)' },
+              { label: 'PM', text: 'বিকেল ও রাত (দুপুর ১২:০০ থেকে রাত ১১:৫৯ পর্যন্ত)' },
+              { label: 'প্রশ্ন', text: '«What time is it?» — এখন কয়টা বাজে?' }
+            ]
+          }
+        ],
+        footerHint: 'সব সংখ্যা ও সময়ের বাক্যে স্টুডিও মানের নেটিভ ইংরেজি অডিও রয়েছে!'
+      };
+    case 'ur':
+      return {
+        headerTitle: 'انگریزی میں وقت بتانے کے اصول',
+        rules: [
+          {
+            ruleBadge: 'اصول 1',
+            title: "O'clock اور پورے گھنٹے",
+            desc: 'صرف پورے گھنٹے (بغیر منٹ) کے لیے استعمال ہوتا ہے:',
+            items: [
+              { label: '2:00', text: "Two o'clock (ٹھیک دو بجے)" },
+              { label: '7:00', text: "Seven o'clock (ٹھیک سات بجے)" },
+              { label: '12:00', text: 'Noon (دوپہر 12) / Midnight (آدھی رات 12)' }
+            ]
+          },
+          {
+            ruleBadge: 'اصول 2',
+            title: 'Past اور To (سوا، ساڑھے اور پونے)',
+            desc: 'Past = بج کر (1 تا 30 منٹ)؛ To = اگلے گھنٹے میں باقی (31 تا 59 منٹ):',
+            items: [
+              { label: ':15', text: 'Quarter past (سوا): Quarter past two = 2:15' },
+              { label: ':30', text: 'Half past (ساڑھے): Half past two = 2:30' },
+              { label: ':45', text: 'Quarter to (پونے): Quarter to three = 2:45' }
+            ]
+          },
+          {
+            ruleBadge: 'اصول 3',
+            title: 'AM بمقابلہ PM (12 گھنٹے کا نظام)',
+            desc: 'انگریزی میں صبح اور شام کے لیے 12 گھنٹے کا فارمیٹ استعمال ہوتا ہے:',
+            items: [
+              { label: 'AM', text: 'صبح (آدھی رات سے دوپہر 11:59 تک)' },
+              { label: 'PM', text: 'دوپہر اور رات (دوپہر 12:00 سے رات 11:59 تک)' },
+              { label: 'سوال', text: '«What time is it?» — ابھی کیا وقت ہوا ہے؟' }
+            ]
+          }
+        ],
+        footerHint: 'تمام اعداد اور وقت کے جملوں میں اسٹوڈیو معیار کی مستند انگریزی آڈیو شامل ہے!'
+      };
     case 'en':
     default:
       return {
@@ -2068,6 +2327,272 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
           }
         ],
         footerHint: 'Tüm ifadeler stüdyo kalitesinde Rusça nöral ses içerir!'
+      };
+    case 'zh':
+      return {
+        headerTitle: '俄语时间表达语法规则',
+        rules: [
+          {
+            ruleBadge: '规则 1',
+            title: '1 / 2–4 / 5+ 小时变格规则',
+            desc: '俄语中“小时”一词会根据前面的数字发生格变化：',
+            items: [
+              { label: '1', text: 'один час（单数第一格）' },
+              { label: '2, 3, 4', text: 'два, три, четыре часа（单数第二格）' },
+              { label: '5–12', text: 'пять ... двенадцать часов（复数第二格）' }
+            ]
+          },
+          {
+            ruleBadge: '规则 2',
+            title: '不用 AM/PM —— 使用时段词',
+            desc: '俄语通过说明一天中的具体时段来区分早晚：',
+            items: [
+              { label: 'утра', text: '8 часов утра（早上8点）' },
+              { label: 'дня', text: '2 часа дня（下午2点）' },
+              { label: 'вечера', text: '7 часов вечера（晚上7点）' },
+              { label: 'ночи', text: '2 часа ночи（凌晨2点）' }
+            ]
+          },
+          {
+            ruleBadge: '规则 3',
+            title: '如何用俄语询问时间',
+            desc: '最地道的时间提问方式：',
+            items: [
+              { label: 'Который час?', text: '“几点了？”（最常用）' },
+              { label: 'Сколько сейчас времени?', text: '“现在是什么时间？”' },
+              { label: 'Во сколько?', text: '“在几点钟？”' }
+            ]
+          }
+        ],
+        footerHint: '下方所有短语均配有俄语母语录音，点击任意卡片即可查看释义与发音！'
+      };
+    case 'ja':
+      return {
+        headerTitle: 'ロシア語の時刻表現ルール',
+        rules: [
+          {
+            ruleBadge: 'ルール 1',
+            title: '1 / 2〜4 / 5〜12 時間の語形変化',
+            desc: '「時間」を表す語は数字によって格変化します：',
+            items: [
+              { label: '1', text: 'один час（単数主格）' },
+              { label: '2, 3, 4', text: 'два, три, четыре часа（単数生格）' },
+              { label: '5–12', text: 'пять ... двенадцать часов（複数生格）' }
+            ]
+          },
+          {
+            ruleBadge: 'ルール 2',
+            title: 'AM/PM の代わりに時間帯を使う',
+            desc: 'ロシア語では朝・昼・夕方・夜を添えて区別します：',
+            items: [
+              { label: 'утра', text: '8 часов утра（午前8時・朝）' },
+              { label: 'дня', text: '2 часа дня（午後2時・昼）' },
+              { label: 'вечера', text: '7 часов вечера（午後7時・夕方）' },
+              { label: 'ночи', text: '2 часа ночи（午前2時・深夜）' }
+            ]
+          },
+          {
+            ruleBadge: 'ルール 3',
+            title: '時刻の尋ね方',
+            desc: '自然な時間の聞き方：',
+            items: [
+              { label: 'Который час?', text: '「何時ですか？」（最も一般的）' },
+              { label: 'Сколько сейчас времени?', text: '「今何時ですか？」' },
+              { label: 'Во сколько?', text: '「何時に？」' }
+            ]
+          }
+        ],
+        footerHint: 'すべてのフレーズにネイティブのロシア語音声が付いています！'
+      };
+    case 'ko':
+      return {
+        headerTitle: '러시아어 시간 문법 규칙',
+        rules: [
+          {
+            ruleBadge: '규칙 1',
+            title: '1 / 2–4 / 5+ 시간 격변화 규칙',
+            desc: '숫자에 따라 "시간"을 뜻하는 단어 형태가 바뀝니다:',
+            items: [
+              { label: '1', text: 'один час (단수 주격)' },
+              { label: '2, 3, 4', text: 'два, три, четыре часа (단수 생격)' },
+              { label: '5–12', text: 'пять ... двенадцать часов (복수 생격)' }
+            ]
+          },
+          {
+            ruleBadge: '규칙 2',
+            title: 'AM/PM 대신 하루의 시간대 사용',
+            desc: '러시아어는 아침·낮·저녁·밤을 붙여 시간을 구분합니다:',
+            items: [
+              { label: 'утра', text: '8 часов утра (아침 8시)' },
+              { label: 'дня', text: '2 часа дня (오후 2시)' },
+              { label: 'вечера', text: '7 часов вечера (저녁 7시)' },
+              { label: 'ночи', text: '2 часа ночи (새벽 2시)' }
+            ]
+          },
+          {
+            ruleBadge: '규칙 3',
+            title: '시간 물어보기',
+            desc: '자연스럽게 몇 시인지 묻는 표현:',
+            items: [
+              { label: 'Который час?', text: '«몇 시입니까?» (가장 흔함)' },
+              { label: 'Сколько сейчас времени?', text: '«지금 몇 시인가요?»' },
+              { label: 'Во сколько?', text: '«몇 시에?»' }
+            ]
+          }
+        ],
+        footerHint: '아래 모든 표현에 러시아어 원어민 음성이 포함되어 있습니다!'
+      };
+    case 'hi':
+      return {
+        headerTitle: 'रूसी समय व्याकरण नियम',
+        rules: [
+          {
+            ruleBadge: 'नियम 1',
+            title: '1 / 2–4 / 5+ घंटे का नियम',
+            desc: 'संख्या के अनुसार "घंटा" शब्द का रूप बदलता है:',
+            items: [
+              { label: '1', text: 'один час (एकवचन कर्ता कारक)' },
+              { label: '2, 3, 4', text: 'два, три, четыре часа (एकवचन संबंध कारक)' },
+              { label: '5–12', text: 'пять ... двенадцать часов (बहुवचन संबंध कारक)' }
+            ]
+          },
+          {
+            ruleBadge: 'नियम 2',
+            title: 'AM/PM नहीं — दिन के पहर का उपयोग',
+            desc: 'रूसी भाषा में AM/PM के बजाय सुबह, दोपहर, शाम या रात कहा जाता है:',
+            items: [
+              { label: 'утра', text: '8 часов утра (सुबह 8 बजे)' },
+              { label: 'дня', text: '2 часа дня (दोपहर 2 बजे)' },
+              { label: 'вечера', text: '7 часов вечера (शाम 7 बजे)' },
+              { label: 'ночи', text: '2 часа ночи (रात 2 बजे)' }
+            ]
+          },
+          {
+            ruleBadge: 'नियम 3',
+            title: 'समय पूछना',
+            desc: 'समय पूछने के स्वाभाविक तरीके:',
+            items: [
+              { label: 'Который час?', text: '«कितने बजे हैं?» (सबसे प्रचलित)' },
+              { label: 'Сколько сейчас времени?', text: '«अभी क्या समय हुआ है?»' },
+              { label: 'Во сколько?', text: '«कितने बजे?»' }
+            ]
+          }
+        ],
+        footerHint: 'सभी वाक्यांशों में मूल रूसी स्टूडियो ऑडियो शामिल है!'
+      };
+    case 'ar':
+      return {
+        headerTitle: 'قواعد التعبير عن الوقت في الروسية',
+        rules: [
+          {
+            ruleBadge: 'القاعدة 1',
+            title: 'قاعدة 1 / 2–4 / 5+ ساعات',
+            desc: 'تتغير كلمة «ساعة» في الروسية بحسب الرقم:',
+            items: [
+              { label: '1', text: 'один час (مفرد مرفوع)' },
+              { label: '2, 3, 4', text: 'два, три, четыре часа (مفرد مضاف)' },
+              { label: '5–12', text: 'пять ... двенадцать часов (جمع مضاف)' }
+            ]
+          },
+          {
+            ruleBadge: 'القاعدة 2',
+            title: 'لا يُستخدم AM/PM — بل فترات اليوم',
+            desc: 'تحدد الروسية فترة اليوم بدلاً من صباحاً ومساءً المختصرة:',
+            items: [
+              { label: 'утра', text: '8 часов утра (8 صباحاً)' },
+              { label: 'дня', text: '2 часа дня (2 ظهراً)' },
+              { label: 'вечера', text: '7 часов вечера (7 مساءً)' },
+              { label: 'ночи', text: '2 часа ночи (2 ليلاً)' }
+            ]
+          },
+          {
+            ruleBadge: 'القاعدة 3',
+            title: 'السؤال عن الوقت',
+            desc: 'طرق طبيعية للسؤال عن الساعة:',
+            items: [
+              { label: 'Который час?', text: '«كم الساعة؟» (الأكثر شيوعاً)' },
+              { label: 'Сколько сейчас времени?', text: '«كم الوقت الآن؟»' },
+              { label: 'Во сколько?', text: '«في أي ساعة؟»' }
+            ]
+          }
+        ],
+        footerHint: 'جميع العبارات أدناه تتضمن تسجيلاً صوتياً روسياً أصلياً!'
+      };
+    case 'bn':
+      return {
+        headerTitle: 'রুশ ভাষায় সময় বলার ব্যাকরণ নিয়ম',
+        rules: [
+          {
+            ruleBadge: 'নিয়ম ১',
+            title: '১ / ২–৪ / ৫+ ঘণ্টার নিয়ম',
+            desc: 'সংখ্যার ওপর ভিত্তি করে "ঘণ্টা" শব্দের রূপ পরিবর্তিত হয়:',
+            items: [
+              { label: '1', text: 'один час (একবচন কর্তৃকারক)' },
+              { label: '2, 3, 4', text: 'два, три, четыре часа (একবচন সম্বন্ধ পদ)' },
+              { label: '5–12', text: 'пять ... двенадцать часов (বহুবচন সম্বন্ধ পদ)' }
+            ]
+          },
+          {
+            ruleBadge: 'নিয়ম ২',
+            title: 'AM/PM নয় — দিনের সময়কাল ব্যবহার',
+            desc: 'রুশ ভাষায় সকাল, দুপুর, সন্ধ্যা বা রাত উল্লেখ করা হয়:',
+            items: [
+              { label: 'утра', text: '8 часов утра (সকাল ৮টা)' },
+              { label: 'дня', text: '2 часа дня (দুপুর ২টা)' },
+              { label: 'вечера', text: '7 часов вечера (সন্ধ্যা ৭টা)' },
+              { label: 'ночи', text: '2 часа ночи (রাত ২টা)' }
+            ]
+          },
+          {
+            ruleBadge: 'নিয়ম ৩',
+            title: 'সময় জিজ্ঞাসা করা',
+            desc: 'কয়টা বাজে তা জিজ্ঞেস করার স্বাভাবিক উপায়:',
+            items: [
+              { label: 'Который час?', text: '«কয়টা বাজে?» (সবচেয়ে প্রচলিত)' },
+              { label: 'Сколько сейчас времени?', text: '«এখন সময় কত?»' },
+              { label: 'Во сколько?', text: '«কয়টার সময়?»' }
+            ]
+          }
+        ],
+        footerHint: 'নিচের সব বাক্যাংশে স্টুডিও মানের নেটিভ রুশ অডিও রয়েছে!'
+      };
+    case 'ur':
+      return {
+        headerTitle: 'روسی زبان میں وقت بتانے کے قواعد',
+        rules: [
+          {
+            ruleBadge: 'اصول 1',
+            title: '1 / 2–4 / 5+ گھنٹوں کا اصول',
+            desc: 'عدد کے مطابق لفظ "گھنٹہ" کی شکل بدلتی ہے:',
+            items: [
+              { label: '1', text: 'один час (واحد فاعلی حالت)' },
+              { label: '2, 3, 4', text: 'два, три, четыре часа (واحد اضافی حالت)' },
+              { label: '5–12', text: 'пять ... двенадцать часов (جمع اضافی حالت)' }
+            ]
+          },
+          {
+            ruleBadge: 'اصول 2',
+            title: 'AM/PM کے بجائے دن کے اوقات',
+            desc: 'روسی زبان میں صبح، دوپہر، شام اور رات کے الفاظ بولے جاتے ہیں:',
+            items: [
+              { label: 'утра', text: '8 часов утра (صبح 8 بجے)' },
+              { label: 'дня', text: '2 часа дня (دوپہر 2 بجے)' },
+              { label: 'вечера', text: '7 часов вечера (شام 7 بجے)' },
+              { label: 'ночи', text: '2 часа ночи (رات 2 بجے)' }
+            ]
+          },
+          {
+            ruleBadge: 'اصول 3',
+            title: 'وقت پوچھنے کا طریقہ',
+            desc: 'وقت معلوم کرنے کے فطری جملے:',
+            items: [
+              { label: 'Который час?', text: '«کیا وقت ہوا ہے؟» (سب سے عام)' },
+              { label: 'Сколько сейчас времени?', text: '«ابھی کتنا وقت ہے؟»' },
+              { label: 'Во сколько?', text: '«کتنے بجے؟»' }
+            ]
+          }
+        ],
+        footerHint: 'تمام جملوں کے ساتھ مستند روسی اسٹوڈیو آڈیو موجود ہے!'
       };
     case 'en':
     default:
@@ -4197,7 +4722,7 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         installApp: 'アプリをインストール',
         installAppTitle: 'このデバイスにアプリをインストール',
         loadingLessons: 'レッスンを読み込み中...',
-        allRightsReserved: 'All Rights Reserved.',
+        allRightsReserved: '無断複写・転載を禁じます。',
         aboutContact: '概要・お問い合わせ',
         privacyPolicy: 'プライバシーポリシー',
         termsOfService: '利用規約',
@@ -4251,7 +4776,7 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         installApp: '앱 설치',
         installAppTitle: '이 기기에 앱 설치',
         loadingLessons: '레슨을 불러오는 중...',
-        allRightsReserved: 'All Rights Reserved.',
+        allRightsReserved: '모든 권리 보유.',
         aboutContact: '소개 및 문의',
         privacyPolicy: '개인정보 처리방침',
         termsOfService: '이용약관',

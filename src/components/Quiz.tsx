@@ -11,6 +11,10 @@ import {
   transliterateJapanese,
   appendKoreanJamo,
   stripPinyinTones,
+  convertSoundOutToken,
+  convertLastLatinWordOnSpace,
+  previewSoundOutToken,
+  getLocalizedPhoneticCheatsheet,
   PHONETIC_CHEATSHEETS,
   PhoneticScriptLang
 } from '../utils/phoneticTyping';
@@ -332,6 +336,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   const [showNext, setShowNext] = useState(false);
   const [showKeyboard, setShowKeyboard] = useState(false);
   const [showPhoneticGuide, setShowPhoneticGuide] = useState(false);
+  const rawLatinTypedRef = useRef<string>('');
   const correctSoundRef = useRef<HTMLAudioElement | null>(null);
   const incorrectSoundRef = useRef<HTMLAudioElement | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -476,6 +481,25 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
     // For numbers, resolve the appropriate language name (base lang if Target -> Base, target lang if Base -> Target)
     const digitPart = parts.find(p => /^\d+$/.test(p));
+    const formatOrDigit = (word: string, digit: string): string => {
+      switch (baseLanguage) {
+        case 'zh': return `${word}（或 ${digit}）`;
+        case 'ja': return `${word}（または ${digit}）`;
+        case 'ko': return `${word} (또는 ${digit})`;
+        case 'ru': return `${word} (или ${digit})`;
+        case 'es':
+        case 'pt': return `${word} (o ${digit})`;
+        case 'fr': return `${word} (ou ${digit})`;
+        case 'de': return `${word} (oder ${digit})`;
+        case 'id': return `${word} (atau ${digit})`;
+        case 'tr': return `${word} (veya ${digit})`;
+        case 'hi': return `${word} (या ${digit})`;
+        case 'ar': return `${word} (أو ${digit})`;
+        case 'bn': return `${word} (অথবা ${digit})`;
+        case 'ur': return `${word} (یا ${digit})`;
+        default: return `${word} (or ${digit})`;
+      }
+    };
     if (digitPart) {
       const digitNum = parseInt(digitPart, 10);
       if (NUMBER_TABLE[digitNum]) {
@@ -483,11 +507,11 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         const numWord = isTargetPrompt
           ? (numEntry[baseLanguage] || numEntry.en)
           : (numEntry[currentLanguage] || numEntry.en);
-        return `${numWord} (or ${digitPart})`;
+        return formatOrDigit(numWord, digitPart);
       }
       const wordPart = parts.find(p => !/^\d+$/.test(p) && !p.startsWith('/') && !p.startsWith('('));
       if (wordPart) {
-        return `${wordPart} (or ${digitPart})`;
+        return formatOrDigit(wordPart, digitPart);
       }
       return digitPart;
     }
@@ -972,18 +996,32 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         const character = (item.character || item.letter || '').toString();
         const pronunciation = item.pronunciation?.toString() || '';
 
+        const signQuestionHint = (ch: string): string => {
+          switch (baseLanguage) {
+            case 'ru': return `Какой это знак: «${ch}»?`;
+            case 'es': return `¿Qué tipo de signo es «${ch}»?`;
+            case 'fr': return `Quel type de signe est « ${ch} » ?`;
+            case 'de': return `Welche Art von Zeichen ist „${ch}“?`;
+            case 'pt': return `Que tipo de sinal é «${ch}»?`;
+            case 'id': return `Tanda apakah "${ch}"?`;
+            case 'tr': return `"${ch}" ne tür bir işarettir?`;
+            case 'zh': return `“${ch}”是什么符号（软音符号 / 硬音符号）？`;
+            case 'ja': return `「${ch}」はどの記号ですか（軟音記号 / 硬音記号）？`;
+            case 'ko': return `"${ch}"는 어떤 부호입니까 (연음부호 / 경음부호)?`;
+            case 'hi': return `"${ch}" किस प्रकार का चिह्न है?`;
+            case 'ar': return `ما نوع العلامة «${ch}»؟`;
+            case 'bn': return `"${ch}" কোন ধরনের চিহ্ন?`;
+            case 'ur': return `"${ch}" کس قسم کی علامت ہے؟`;
+            default: return `What type of sign is "${ch}"?`;
+          }
+        };
+
         if (isSoftSign(character)) {
           setCurrentQuestion({
             type: 'alphabet',
             prompt: character,
-            answer: 'soft sign/soft/мягкий знак/мягкий',
-            hint: baseLanguage === 'ru'
-              ? `Какой это знак: «${character}»?`
-              : baseLanguage === 'es'
-                ? `¿Qué tipo de signo es «${character}»?`
-                : baseLanguage === 'fr'
-                  ? `Quel type de signe est « ${character} » ?`
-                  : `What type of sign is "${character}"?`,
+            answer: 'soft sign/soft/мягкий знак/мягкий/软音符号/軟音記号/연음부호/ь',
+            hint: signQuestionHint(character),
             targetAudioWord: character,
             russian: character,
             isTargetPrompt: true,
@@ -995,14 +1033,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           setCurrentQuestion({
             type: 'alphabet',
             prompt: character,
-            answer: 'hard sign/hard/твёрдый знак/твердый знак/твёрдый/твердый',
-            hint: baseLanguage === 'ru'
-              ? `Какой это знак: «${character}»?`
-              : baseLanguage === 'es'
-                ? `¿Qué tipo de signo es «${character}»?`
-                : baseLanguage === 'fr'
-                  ? `Quel type de signe est « ${character} » ?`
-                  : `What type of sign is "${character}"?`,
+            answer: 'hard sign/hard/твёрдый знак/твердый знак/твёрдый/твердый/硬音符号/硬音記号/경음부호/ъ',
+            hint: signQuestionHint(character),
             targetAudioWord: character,
             russian: character,
             isTargetPrompt: true,
@@ -1382,12 +1414,20 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     };
   }, []);
 
+  useEffect(() => {
+    rawLatinTypedRef.current = '';
+  }, [currentQuestion]);
+
+  const isNonListeningAlphabet = Boolean(
+    currentQuestion?.type?.includes('alphabet') && !currentQuestion?.isListeningMode
+  );
+
   const needsRussianKeyboard = Boolean(
     currentQuestion &&
-    !currentQuestion.type.includes('alphabet') &&
+    !isNonListeningAlphabet &&
     (
       (currentLanguage === 'ru' && (!currentQuestion.isTargetPrompt || currentQuestion.isListeningMode)) ||
-      (baseLanguage === 'ru' && currentQuestion.isTargetPrompt) ||
+      (!currentQuestion.type.includes('alphabet') && baseLanguage === 'ru' && currentQuestion.isTargetPrompt) ||
       currentQuestion.hint.includes('Russian') ||
       currentQuestion.hint.includes('русском')
     )
@@ -1396,14 +1436,16 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   const expectedAnswerLanguage: SupportedLanguageId = useMemo(() => {
     if (!currentQuestion) return currentLanguage;
     if (needsRussianKeyboard) return 'ru';
-    if (currentQuestion.type.includes('alphabet')) return baseLanguage;
+    if (currentQuestion.type.includes('alphabet')) {
+      return currentQuestion.isListeningMode ? currentLanguage : baseLanguage;
+    }
     if (currentQuestion.isListeningMode) return currentLanguage;
     if (currentQuestion.isTargetPrompt) return baseLanguage;
     return currentLanguage;
   }, [currentQuestion, needsRussianKeyboard, baseLanguage, currentLanguage]);
 
   const activePhoneticLang: PhoneticScriptLang | null = useMemo(() => {
-    if (!currentQuestion || (currentQuestion.type && currentQuestion.type.includes('alphabet'))) {
+    if (!currentQuestion || isNonListeningAlphabet) {
       return null;
     }
     if (needsRussianKeyboard) return 'ru';
@@ -1411,15 +1453,25 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       return expectedAnswerLanguage;
     }
     return null;
-  }, [currentQuestion, needsRussianKeyboard, expectedAnswerLanguage]);
+  }, [currentQuestion, isNonListeningAlphabet, needsRussianKeyboard, expectedAnswerLanguage]);
 
   const needsPhoneticKeyboard = activePhoneticLang !== null;
+
+  const soundOutPreview = useMemo(() => {
+    if (!activePhoneticLang || showNext || !userAnswer) return null;
+    return previewSoundOutToken(userAnswer, activePhoneticLang);
+  }, [activePhoneticLang, showNext, userAnswer]);
 
   const activeSpecialChars = useMemo(() => {
     if (!currentQuestion || showNext) return [];
     if (currentQuestion.type && currentQuestion.type.includes('alphabet')) {
       const chars = new Set<string>();
-      if (currentQuestion.prompt && currentQuestion.prompt.length <= 4 && !/^[a-zA-Z0-9\s]+$/.test(currentQuestion.prompt)) {
+      if (
+        !currentQuestion.isListeningMode &&
+        currentQuestion.prompt &&
+        currentQuestion.prompt.length <= 4 &&
+        !/^[a-zA-Z0-9\s]+$/.test(currentQuestion.prompt)
+      ) {
         chars.add(currentQuestion.prompt);
       }
       (SPECIAL_CHAR_MAP[currentLanguage] || []).forEach(c => chars.add(c));
@@ -1436,7 +1488,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     const rawUserAnswer = userAnswer;
     let processedAnswer = userAnswer;
     if (needsRussianKeyboard && !containsCyrillic(processedAnswer)) {
-      processedAnswer = transliterate(processedAnswer);
+      const soundOutRu = convertSoundOutToken(processedAnswer, 'ru');
+      processedAnswer = soundOutRu || transliterate(processedAnswer);
       setUserAnswer(processedAnswer);
     }
 
@@ -1453,7 +1506,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       activePhoneticLang !== 'ru' &&
       !typedPromptDirectly &&
       !containsTargetScript(rawUserAnswer, activePhoneticLang)
-        ? transliterateForLanguage(rawUserAnswer, activePhoneticLang)
+        ? convertSoundOutToken(rawUserAnswer, activePhoneticLang) || transliterateForLanguage(rawUserAnswer, activePhoneticLang)
         : '';
     const phoneticNormalized = phoneticCandidate ? normalizeText(phoneticCandidate) : '';
 
@@ -1635,6 +1688,34 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           }
         }
       }
+
+      // If in Listening Mode the user typed a base-language translation (e.g. "thank you") whose spaces
+      // triggered live phonetic conversion, also validate their raw Latin keystrokes so both work seamlessly!
+      const rawLatinCandidate = rawLatinTypedRef.current.trim();
+      if (
+        !isAnswerCorrect &&
+        currentQuestion.isListeningMode &&
+        rawLatinCandidate &&
+        normalizeText(rawLatinCandidate) !== userAnswerNormalized
+      ) {
+        const rawNorm = normalizeText(rawLatinCandidate);
+        if (expandedTargets.some((t: string) => rawNorm === normalizeText(t))) {
+          isAnswerCorrect = true;
+          processedAnswer = rawLatinCandidate;
+          setUserAnswer(rawLatinCandidate);
+        } else {
+          const smartRaw = evaluateSmartAnswer(rawLatinCandidate, expandedTargets);
+          if (smartRaw.isMatch) {
+            isAnswerCorrect = true;
+            processedAnswer = rawLatinCandidate;
+            setUserAnswer(rawLatinCandidate);
+            if (smartRaw.isTypo) {
+              setIsTypoAccepted(true);
+              setTypoFeedback(smartRaw.feedbackNote || null);
+            }
+          }
+        }
+      }
     }
 
     setIsCorrect(isAnswerCorrect);
@@ -1762,17 +1843,22 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     const newValue = e.target.value;
     const selectionStart = e.target.selectionStart || 0;
 
+    if (!newValue) {
+      rawLatinTypedRef.current = '';
+    } else if (newValue.length > userAnswer.length && newValue.startsWith(userAnswer)) {
+      rawLatinTypedRef.current += newValue.slice(userAnswer.length);
+    } else {
+      rawLatinTypedRef.current = newValue;
+    }
+
     if (!needsRussianKeyboard) {
-      if (
-        activePhoneticLang &&
-        activePhoneticLang !== 'ru' &&
-        !currentQuestion?.isListeningMode &&
-        newValue.endsWith(' ')
-      ) {
-        const converted = transliterateForLanguage(newValue, activePhoneticLang);
-        setUserAnswer(converted);
-        setLastInput(converted);
-        return;
+      if (activePhoneticLang && activePhoneticLang !== 'ru' && newValue.endsWith(' ')) {
+        const { converted, didConvert } = convertLastLatinWordOnSpace(newValue, activePhoneticLang);
+        if (didConvert) {
+          setUserAnswer(converted);
+          setLastInput(converted);
+          return;
+        }
       }
       setUserAnswer(newValue);
       setLastInput(newValue);
@@ -1810,10 +1896,16 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     const hasInputType = 'inputType' in e.nativeEvent;
     const inputType = hasInputType ? (e.nativeEvent as any).inputType : undefined;
 
-    if (newValue.endsWith(' ') ||
+    if (newValue.endsWith(' ')) {
+      const { converted } = convertLastLatinWordOnSpace(newValue, 'ru');
+      const transliteratedValue = converted !== newValue ? converted : transliterate(newValue);
+      setUserAnswer(transliteratedValue);
+      setCursorPosition(selectionStart);
+    } else if (
       /[.,!?;:]/.test(newValue.charAt(selectionStart - 1)) ||
       inputType === 'insertLineBreak' ||
-      newValue.includes('\n')) {
+      newValue.includes('\n')
+    ) {
       const transliteratedValue = transliterate(newValue);
       setUserAnswer(transliteratedValue);
       setCursorPosition(selectionStart);
@@ -1876,14 +1968,17 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
       if (letter === ' ') {
         if (needsRussianKeyboard) {
-          newValue = transliterate(newValue);
-        } else if (activePhoneticLang && activePhoneticLang !== 'ru' && !currentQuestion?.isListeningMode) {
-          newValue = transliterateForLanguage(newValue, activePhoneticLang);
+          const { converted } = convertLastLatinWordOnSpace(newValue, 'ru');
+          newValue = converted !== newValue ? converted : transliterate(newValue);
+        } else if (activePhoneticLang && activePhoneticLang !== 'ru') {
+          const { converted } = convertLastLatinWordOnSpace(newValue, activePhoneticLang);
+          newValue = converted;
         }
         newCursorPos = newValue.length;
       }
     }
 
+    rawLatinTypedRef.current = newValue;
     setUserAnswer(newValue);
 
     // Keep cursor right after inserted character, preventing jumping to start
@@ -1924,12 +2019,22 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         default: return 'Type in Russian (or phonetically in English)...';
       }
     }
-    if (currentQuestion.type && currentQuestion.type.includes('alphabet')) {
+    if (currentQuestion.type && currentQuestion.type.includes('alphabet') && !currentQuestion.isListeningMode) {
       switch (baseLanguage) {
         case 'ru': return 'Введите произношение (или нажмите букву)...';
         case 'es': return 'Escribe la pronunciación (o toca la letra)...';
         case 'fr': return 'Tapez la prononciation (ou touchez la lettre)...';
         case 'de': return 'Tippe die Aussprache (oder tippe den Buchstaben)...';
+        case 'pt': return 'Digite a pronúncia (ou toque na letra)...';
+        case 'id': return 'Ketik pelafalan (atau ketuk huruf)...';
+        case 'tr': return 'Okunuşunu yazın (veya harfe dokunun)...';
+        case 'zh': return '输入发音（或点击字母）...';
+        case 'ja': return '発音を入力（または文字をタップ）...';
+        case 'ko': return '발음을 입력하세요 (또는 글자 탭)...';
+        case 'hi': return 'उच्चारण लिखें (या अक्षर चुनें)...';
+        case 'ar': return 'اكتب النطق (أو اضغط على الحرف)...';
+        case 'bn': return 'উচ্চারণ লিখুন (অথবা অক্ষরে ট্যাপ করুন)...';
+        case 'ur': return 'تلفظ لکھیں (یا حرف پر ٹیپ کریں)...';
         default: return 'Type pronunciation or tap the letter...';
       }
     }
@@ -1953,6 +2058,25 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       }
     }
     const targetNameInBase = LANGUAGE_NAMES_IN_BASE[baseLanguage]?.[currentLanguage] || currentMeta.name;
+    if (expectedAnswerLanguage === currentLanguage && activePhoneticLang && activePhoneticLang !== 'ru') {
+      switch (baseLanguage) {
+        case 'es': return `Escribe en ${targetNameInBase} (o fonéticamente + Espacio)...`;
+        case 'fr': return `Écrivez en ${targetNameInBase} (ou phonétiquement + Espace)...`;
+        case 'ru': return `Введите на ${targetNameInBase} (или латиницей + Пробел)...`;
+        case 'de': return `Tippe auf ${targetNameInBase} (oder phonetisch + Leertaste)...`;
+        case 'pt': return `Digite em ${targetNameInBase} (ou foneticamente + Espaço)...`;
+        case 'id': return `Ketik dalam ${targetNameInBase} (atau fonetik + Spasi)...`;
+        case 'tr': return `${targetNameInBase} yazın (veya fonetik + Boşluk)...`;
+        case 'ja': return `${targetNameInBase}で入力（または発音＋スペースで変換）...`;
+        case 'ko': return `${targetNameInBase}로 입력 (또는 발음대로 쓰고 스페이스)...`;
+        case 'zh': return `用${targetNameInBase}输入（或按读音输入+空格转换）...`;
+        case 'hi': return `${targetNameInBase} में लिखें (या उच्चारण + स्पेस)...`;
+        case 'ar': return `اكتب ب${targetNameInBase} (أو صوتياً + مسافة)...`;
+        case 'bn': return `${targetNameInBase}-এ লিখুন (অথবা উচ্চারণ + স্পেস)...`;
+        case 'ur': return `${targetNameInBase} میں لکھیں (یا تلفظ + اسپیس)...`;
+        default: return `Type in ${targetNameInBase} (or sound it out + Space)...`;
+      }
+    }
     if (expectedAnswerLanguage === currentLanguage) {
       switch (baseLanguage) {
         case 'es': return `Escribe en ${targetNameInBase}...`;
@@ -2016,6 +2140,26 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       });
     }
   }, [cursorPosition, userAnswer, needsRussianKeyboard]);
+
+  const formatQuestionCount = (count: number): string => {
+    switch (baseLanguage) {
+      case 'zh': return `${count} 题`;
+      case 'ja': return `${count}問`;
+      case 'ko': return `${count}문제`;
+      case 'ru': return `${count} вопр.`;
+      case 'es':
+      case 'pt': return `${count} preg.`;
+      case 'fr': return `${count} quest.`;
+      case 'de': return `${count} Fr.`;
+      case 'id': return `${count} soal`;
+      case 'tr': return `${count} soru`;
+      case 'hi': return `${count} प्रश्न`;
+      case 'ar': return `${count} أسئلة`;
+      case 'bn': return `${count}টি প্রশ্ন`;
+      case 'ur': return `${count} سوالات`;
+      default: return `${count} Qs`;
+    }
+  };
 
   // --- RENDER RECAP SCREEN WHEN SESSION IS COMPLETE ---
   if (isSessionComplete) {
@@ -2090,7 +2234,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             <div className="recap-stats-grid" role="group" aria-label="Session summary stats">
               <div className="recap-stat-card">
                 <span className="stat-label">🎯 {recapLabels.goal}</span>
-                <span className="stat-value">{sessionGoal} Qs</span>
+                <span className="stat-value">{formatQuestionCount(sessionGoal)}</span>
               </div>
               <div className="recap-stat-card correct">
                 <span className="stat-label">✅ {recapLabels.correct}</span>
@@ -2165,7 +2309,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                     }}
                     title={`Set next quiz to ${count} questions`}
                   >
-                    {count} Qs
+                    {formatQuestionCount(count)}
                   </button>
                 ))}
               </div>
@@ -2515,7 +2659,10 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           <div className="session-progress-counter">
             <span className="counter-label">{ui.questionOf}</span>
             <span className="counter-current">{sessionIndex}</span>
-            <span className="counter-total">{baseLanguage === 'ru' ? 'из' : baseLanguage === 'es' || baseLanguage === 'pt' ? 'de' : baseLanguage === 'fr' ? 'sur' : baseLanguage === 'de' ? 'von' : baseLanguage === 'id' ? 'dari' : baseLanguage === 'tr' ? '/' : 'of'} {sessionGoal}</span>
+            <span className="counter-total">{({
+              en: 'of', ru: 'из', es: 'de', pt: 'de', fr: 'sur', de: 'von', id: 'dari',
+              tr: '/', zh: '/', ja: '/', ko: '/', hi: '/', bn: '/', ar: 'من', ur: 'از'
+            }[baseLanguage] || 'of')} {sessionGoal}</span>
           </div>
 
           <div className="session-score-badge">
@@ -2524,7 +2671,11 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
           {comboStreak >= 2 && (
             <div className="session-streak-badge" aria-label={`Current streak: ${comboStreak}`}>
-              🔥 <strong>{comboStreak}</strong> in a row
+              🔥 <strong>{comboStreak}</strong> {({
+                en: 'in a row', ru: 'подряд', es: 'seguidas', pt: 'seguidas', fr: 'de suite',
+                de: 'in Folge', id: 'berturut-turut', tr: 'üst üste', zh: '连对', ja: '連続正解',
+                ko: '연속 정답', hi: 'लगातार सही', ar: 'على التوالي', bn: 'টানা সঠিক', ur: 'لگاتار درست'
+              }[baseLanguage] || 'in a row')}
             </div>
           )}
 
@@ -2537,7 +2688,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                 onClick={() => handleGoalChange(count)}
                 title={`Set quiz session to ${count} questions`}
               >
-                {count} Qs
+                {formatQuestionCount(count)}
               </button>
             ))}
           </div>
@@ -2602,7 +2753,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               {showNext && (currentQuestion.baseMeaning || currentQuestion.meaningHint) && (
                 <div className="quiz-prompt-meaning-badge">
                   <span className="meaning-label">
-                    {recapLabels.meaningLabel}:
+                    {currentQuestion.type === 'alphabet' ? ui.sound : recapLabels.meaningLabel}:
                   </span>{' '}
                   <strong>{currentQuestion.baseMeaning || currentQuestion.meaningHint}</strong>
                 </div>
@@ -2639,6 +2790,34 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             </button>
           )}
         </div>
+
+        {soundOutPreview && activePhoneticLang && !showNext && (
+          <div className="phonetic-live-preview-row">
+            <button
+              type="button"
+              className="phonetic-live-preview-pill"
+              onClick={() => {
+                const { converted } = convertLastLatinWordOnSpace(`${userAnswer} `, activePhoneticLang);
+                setUserAnswer(converted);
+                setLastInput(converted);
+                inputRef.current?.focus();
+              }}
+              aria-label={`Convert ${soundOutPreview.rawToken} to ${soundOutPreview.preview}`}
+            >
+              <span className="preview-sparkle" aria-hidden="true">✨</span>
+              <code className="preview-latin">{soundOutPreview.rawToken}</code>
+              <span className="preview-arrow" aria-hidden="true">→</span>
+              <strong className="preview-native">{soundOutPreview.preview}</strong>
+              <kbd className="preview-space-kbd">
+                ␣ {({
+                  en: 'Space', zh: '空格转换', ja: 'スペース', ko: '스페이스', ru: 'Пробел',
+                  es: 'Espacio', pt: 'Espaço', fr: 'Espace', de: 'Leertaste', id: 'Spasi',
+                  tr: 'Boşluk', hi: 'स्पेस', ar: 'مسافة', bn: 'স্পেস', ur: 'اسپیس'
+                }[baseLanguage] || 'Space')}
+              </kbd>
+            </button>
+          </div>
+        )}
 
         {isMobile && !showNext && expectedAnswerLanguage !== 'en' && !dismissedKbTips.includes(expectedAnswerLanguage) && (
           <div className="keyboard-tip-banner" role="note">
@@ -2684,6 +2863,15 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                 ))}
                 <button
                   type="button"
+                  className={`quick-char-btn kb-quick-toggle-btn ${showKeyboard ? 'active' : ''}`}
+                  onClick={toggleKeyboard}
+                  aria-expanded={showKeyboard}
+                  aria-label="Open virtual keyboard"
+                >
+                  ⌨️
+                </button>
+                <button
+                  type="button"
                   className={`quick-char-btn hint-toggle-btn ${showPhoneticGuide ? 'active' : ''}`}
                   onClick={() => setShowPhoneticGuide(prev => !prev)}
                   title="Phonetic typing guide"
@@ -2695,27 +2883,30 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               </div>
             </div>
 
-            {showPhoneticGuide && (
-              <div className="phonetic-guide-popover" role="region" aria-label="Phonetic typing guide">
-                <div className="popover-header">
-                  <span className="popover-title">{PHONETIC_CHEATSHEETS[activePhoneticLang].title}</span>
-                  <button
-                    type="button"
-                    className="close-popover-btn"
-                    onClick={() => setShowPhoneticGuide(false)}
-                    aria-label="Close guide"
-                  >
-                    ✕
-                  </button>
+            {showPhoneticGuide && (() => {
+              const sheet = getLocalizedPhoneticCheatsheet(activePhoneticLang, baseLanguage);
+              return (
+                <div className="phonetic-guide-popover" role="region" aria-label="Phonetic typing guide">
+                  <div className="popover-header">
+                    <span className="popover-title">{sheet.title}</span>
+                    <button
+                      type="button"
+                      className="close-popover-btn"
+                      onClick={() => setShowPhoneticGuide(false)}
+                      aria-label="Close guide"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                  <div className="phonetic-rules-grid">
+                    {sheet.rules.map((rule, idx) => (
+                      <div key={idx}><code>{rule.latin}</code> → <strong>{rule.script}</strong></div>
+                    ))}
+                  </div>
+                  <small className="phonetic-note">{sheet.note}</small>
                 </div>
-                <div className="phonetic-rules-grid">
-                  {PHONETIC_CHEATSHEETS[activePhoneticLang].rules.map((rule, idx) => (
-                    <div key={idx}><code>{rule.latin}</code> → <strong>{rule.script}</strong></div>
-                  ))}
-                </div>
-                <small className="phonetic-note">{PHONETIC_CHEATSHEETS[activePhoneticLang].note}</small>
-              </div>
-            )}
+              );
+            })()}
           </div>
         )}
 
@@ -2743,14 +2934,14 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         {needsPhoneticKeyboard && activePhoneticLang && showKeyboard && !showNext && (
           <div className="virtual-keyboard-container">
             <div className="virtual-keyboard-header">
-              <span>{PHONETIC_CHEATSHEETS[activePhoneticLang].keyboardTitle}</span>
+              <span>{getLocalizedPhoneticCheatsheet(activePhoneticLang, baseLanguage).keyboardTitle}</span>
               <button
                 type="button"
                 className="close-keyboard-btn"
                 onClick={toggleKeyboard}
                 aria-label="Close keyboard"
               >
-                ✕ Close
+                ✕ {baseLanguage === 'en' ? 'Close' : ui.closeLabel}
               </button>
             </div>
             {activePhoneticLang === 'ru' ? (
@@ -2796,13 +2987,43 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                   <span className="feedback-title">
                     {isCorrect
                       ? (isOverridden
-                        ? (baseLanguage === 'de' ? 'Richtig! (Akzeptiert)' : 'Correct! (Overridden)')
-                        : (isTypoAccepted ? (baseLanguage === 'de' ? 'Fast richtig! (Akzeptiert)' : 'Almost right! (Accepted)') : ui.correct))
+                        ? ({
+                          en: 'Correct! (Overridden)', de: 'Richtig! (Akzeptiert)', es: '¡Correcto! (Aceptado)',
+                          fr: 'Correct ! (Accepté)', ru: 'Верно! (Засчитано)', pt: 'Correto! (Aceito)',
+                          id: 'Benar! (Diterima)', tr: 'Doğru! (Kabul edildi)', zh: '答对了！（已更正）',
+                          ja: '正解！（自己採点）', ko: '정답! (인정됨)', hi: 'सही! (स्वीकृत)',
+                          ar: 'صحيح! (تم القبول)', bn: 'সঠিক! (গৃহীত)', ur: 'درست! (قبول شدہ)'
+                        }[baseLanguage] || 'Correct! (Overridden)')
+                        : (isTypoAccepted
+                          ? ({
+                            en: 'Almost right! (Accepted)', de: 'Fast richtig! (Akzeptiert)', es: '¡Casi perfecto! (Aceptado)',
+                            fr: 'Presque parfait ! (Accepté)', ru: 'Почти точно! (Засчитано)', pt: 'Quase lá! (Aceito)',
+                            id: 'Hampir tepat! (Diterima)', tr: 'Neredeyse tam! (Kabul edildi)', zh: '非常接近！（已算正确）',
+                            ja: 'ほぼ正解！（許容）', ko: '거의 정확해요! (인정됨)', hi: 'लगभग सही! (स्वीकृत)',
+                            ar: 'قريب جداً! (مقبول)', bn: 'প্রায় সঠিক! (গৃহীত)', ur: 'تقریباً درست! (قبول شدہ)'
+                          }[baseLanguage] || 'Almost right! (Accepted)')
+                          : ui.correct))
                       : ui.incorrect}
                   </span>
                   {isOverridden && (
                     <div className="feedback-overridden-note">
-                      🎉 {baseLanguage === 'de' ? 'Antwort als richtig akzeptiert! Serie gerettet.' : 'Answer accepted as correct! Streak preserved.'}
+                      🎉 {({
+                        en: 'Answer accepted as correct! Streak preserved.',
+                        de: 'Antwort als richtig akzeptiert! Serie gerettet.',
+                        es: '¡Respuesta aceptada como correcta! Racha conservada.',
+                        fr: 'Réponse acceptée comme correcte ! Série conservée.',
+                        ru: 'Ответ засчитан как верный! Серия сохранена.',
+                        pt: 'Resposta aceita como correta! Sequência mantida.',
+                        id: 'Jawaban diterima sebagai benar! Beruntun terjaga.',
+                        tr: 'Yanıt doğru olarak kabul edildi! Seri korundu.',
+                        zh: '已标记为正确！连对记录已保留。',
+                        ja: '正解として記録しました！連続正解をキープ。',
+                        ko: '정답으로 처리되었습니다! 연속 기록 유지.',
+                        hi: 'उत्तर सही माना गया! लगातार क्रम सुरक्षित।',
+                        ar: 'تم قبول الإجابة كصحيحة! تم الحفاظ على السلسلة.',
+                        bn: 'উত্তরটি সঠিক হিসেবে গৃহীত হয়েছে! ধারা বজায় রয়েছে।',
+                        ur: 'جواب درست تسلیم کر لیا گیا! تسلسل برقرار ہے۔'
+                      }[baseLanguage] || 'Answer accepted as correct! Streak preserved.')}
                     </div>
                   )}
                   {isTypoAccepted && typoFeedback && !isOverridden && (
@@ -2825,21 +3046,36 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                         extractDigit(currentQuestion.prompt) !== null ||
                         extractDigit(currentQuestion.answer) !== null) && (
                           <div className="feedback-number-tip">
-                            💡 {baseLanguage === 'es' ? 'Consejo: Puedes escribir la palabra o el número.'
-                              : baseLanguage === 'fr' ? 'Astuce : Vous pouvez taper le mot ou le chiffre.'
-                                : baseLanguage === 'de' ? 'Tipp: Du kannst entweder das Wort oder die Zahl tippen.'
-                                  : baseLanguage === 'ru' ? 'Подсказка: Вы можете ввести слово или цифру.'
-                                    : baseLanguage === 'pt' ? 'Dica: Você pode digitar a palavra ou o número.'
-                                      : baseLanguage === 'id' ? 'Tips: Anda dapat mengetik kata atau angkanya.'
-                                        : baseLanguage === 'tr' ? 'İpucu: Kelimeyi veya rakamı yazabilirsiniz.'
-                                          : 'Tip: You can type either the word or the digit.'}
+                            💡 {({
+                              en: 'Tip: You can type either the word or the digit.',
+                              es: 'Consejo: Puedes escribir la palabra o el número.',
+                              fr: 'Astuce : Vous pouvez taper le mot ou le chiffre.',
+                              de: 'Tipp: Du kannst entweder das Wort oder die Zahl tippen.',
+                              ru: 'Подсказка: Вы можете ввести слово или цифру.',
+                              pt: 'Dica: Você pode digitar a palavra ou o número.',
+                              id: 'Tips: Anda dapat mengetik kata atau angkanya.',
+                              tr: 'İpucu: Kelimeyi veya rakamı yazabilirsiniz.',
+                              zh: '提示：输入数字单词或阿拉伯数字均可。',
+                              ja: 'ヒント：単語でも数字（算用数字）でも入力できます。',
+                              ko: '팁: 단어나 숫자 중 아무것이나 입력할 수 있습니다.',
+                              hi: 'सुझाव: आप शब्द या अंक दोनों में से कोई भी लिख सकते हैं।',
+                              ar: 'نصيحة: يمكنك كتابة الكلمة أو الرقم.',
+                              bn: 'পরামর্শ: আপনি শব্দ বা সংখ্যা যেকোনোটি লিখতে পারেন।',
+                              ur: 'مشورہ: آپ لفظ یا ہندسہ دونوں لکھ سکتے ہیں۔'
+                            }[baseLanguage] || 'Tip: You can type either the word or the digit.')}
                           </div>
                         )}
                     </div>
                   )}
                   {isCorrect && spellingDiff && spellingDiff.length > 0 && (
                     <div className="spelling-note">
-                      Correct spelling:{' '}
+                      {({
+                        en: 'Correct spelling:', es: 'Ortografía exacta:', fr: 'Orthographe exacte :',
+                        de: 'Genaue Schreibweise:', ru: 'Точное написание:', pt: 'Grafia exata:',
+                        id: 'Ejaan tepat:', tr: 'Doğru yazılışı:', zh: '标准拼写：',
+                        ja: '正しい綴り：', ko: '정확한 철자:', hi: 'सही वर्तनी:',
+                        ar: 'الإملاء الصحيح:', bn: 'সঠিক বানান:', ur: 'درست املا:'
+                      }[baseLanguage] || 'Correct spelling:')}{' '}
                       <span>
                         {spellingDiff.map((item, idx) => (
                           item.isDiff ? (
@@ -2853,7 +3089,40 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                   )}
                   {isCorrect && isWordJustMastered && (
                     <div className="word-mastered-note">
-                      🏆 <strong>Word Mastered ({MASTERY_THRESHOLD}/{MASTERY_THRESHOLD})!</strong> Removed from upcoming questions.
+                      🏆 <strong>{({
+                        en: `Word Mastered (${MASTERY_THRESHOLD}/${MASTERY_THRESHOLD})!`,
+                        zh: `词汇已掌握 (${MASTERY_THRESHOLD}/${MASTERY_THRESHOLD})！`,
+                        ja: `習得完了 (${MASTERY_THRESHOLD}/${MASTERY_THRESHOLD})！`,
+                        ko: `단어 마스터 (${MASTERY_THRESHOLD}/${MASTERY_THRESHOLD})!`,
+                        ru: `Слово освоено (${MASTERY_THRESHOLD}/${MASTERY_THRESHOLD})!`,
+                        es: `¡Palabra dominada (${MASTERY_THRESHOLD}/${MASTERY_THRESHOLD})!`,
+                        fr: `Mot maîtrisé (${MASTERY_THRESHOLD}/${MASTERY_THRESHOLD}) !`,
+                        de: `Wort gemeistert (${MASTERY_THRESHOLD}/${MASTERY_THRESHOLD})!`,
+                        pt: `Palavra dominada (${MASTERY_THRESHOLD}/${MASTERY_THRESHOLD})!`,
+                        id: `Kata dikuasai (${MASTERY_THRESHOLD}/${MASTERY_THRESHOLD})!`,
+                        tr: `Kelime öğrenildi (${MASTERY_THRESHOLD}/${MASTERY_THRESHOLD})!`,
+                        hi: `शब्द में महारत (${MASTERY_THRESHOLD}/${MASTERY_THRESHOLD})!`,
+                        ar: `تم إتقان الكلمة (${MASTERY_THRESHOLD}/${MASTERY_THRESHOLD})!`,
+                        bn: `শব্দ আয়ত্ত হয়েছে (${MASTERY_THRESHOLD}/${MASTERY_THRESHOLD})!`,
+                        ur: `لفظ پر عبور (${MASTERY_THRESHOLD}/${MASTERY_THRESHOLD})!`
+                      }[baseLanguage] || `Word Mastered (${MASTERY_THRESHOLD}/${MASTERY_THRESHOLD})!`)}</strong>{' '}
+                      {({
+                        en: 'Removed from upcoming questions.',
+                        zh: '已从后续复习题库中移除。',
+                        ja: '今後の出題から除外されます。',
+                        ko: '다음 문제 목록에서 제외됩니다.',
+                        ru: 'Исключено из следующих вопросов.',
+                        es: 'Eliminada de las próximas preguntas.',
+                        fr: 'Retiré des prochaines questions.',
+                        de: 'Aus kommenden Fragen entfernt.',
+                        pt: 'Removida das próximas perguntas.',
+                        id: 'Dihapus dari pertanyaan berikutnya.',
+                        tr: 'Sonraki sorulardan çıkarıldı.',
+                        hi: 'आगामी प्रश्नों से हटा दिया गया।',
+                        ar: 'تمت إزالتها من الأسئلة القادمة.',
+                        bn: 'পরবর্তী প্রশ্ন থেকে সরানো হয়েছে।',
+                        ur: 'اگلے سوالات سے ہٹا دیا گیا۔'
+                      }[baseLanguage] || 'Removed from upcoming questions.')}
                     </div>
                   )}
                   {currentQuestion.alternateMeanings?.length > 1 && (
@@ -2864,7 +3133,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                   {(currentQuestion.baseMeaning || currentQuestion.meaningHint) && (
                     <div className="feedback-meaning-line">
                       <span className="feedback-meaning-tag">
-                        💡 {baseLanguage === 'es' ? 'Significado' : baseLanguage === 'ru' ? 'Значение' : baseLanguage === 'fr' ? 'Signification' : baseLanguage === 'de' ? 'Bedeutung' : baseLanguage === 'pt' ? 'Significado' : baseLanguage === 'id' ? 'Arti' : baseLanguage === 'tr' ? 'Anlamı' : 'Meaning'}:
+                        💡 {currentQuestion.type === 'alphabet' ? ui.sound : ui.meaning.replace(/[:：]\s*$/, '')}:
                       </span>{' '}
                       <strong>{currentQuestion.baseMeaning || currentQuestion.meaningHint}</strong>
                     </div>
@@ -2894,7 +3163,12 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                   aria-label="I was right"
                   title="Mark your answer as correct if your phrasing was valid"
                 >
-                  💡 {baseLanguage === 'de' ? 'Ich hatte recht' : baseLanguage === 'es' ? 'Tenía razón' : baseLanguage === 'fr' ? "J'avais raison" : baseLanguage === 'ru' ? 'Я был прав' : 'I was right'}
+                  💡 {({
+                    en: 'I was right', de: 'Ich hatte recht', es: 'Tenía razón', fr: "J'avais raison",
+                    ru: 'Я был прав', pt: 'Eu estava certo', id: 'Jawaban saya benar', tr: 'Doğru bildim',
+                    zh: '我答对了', ja: '正解にする', ko: '내 답이 맞았어요', hi: 'मेरा उत्तर सही था',
+                    ar: 'إجابتي كانت صحيحة', bn: 'আমার উত্তর সঠিক ছিল', ur: 'میرا جواب درست تھا'
+                  }[baseLanguage] || 'I was right')}
                 </button>
               )}
               {sessionAnswered < sessionGoal ? (
@@ -2920,7 +3194,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                     <FaCheckCircle className="btn-icon" /> {ui.completeQuiz} 🎉
                   </span>
                   <span className="btn-hint-badge">
-                    press ↵ Enter
+                    {ui.pressEnter}
                   </span>
                 </button>
               )}

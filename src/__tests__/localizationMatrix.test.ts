@@ -121,7 +121,9 @@ describe('Language request note', () => {
 });
 
 import { SUPPORTED_LANGUAGES } from '../data/languages';
-import { getPageContent } from '../utils/pageDictionary';
+import { ABOUT_LANGUAGES } from '../data/languages/aboutLanguageData';
+import { getLocalizedAboutProfile, getScriptEvolutionLabels } from '../data/languages/aboutTranslations';
+import { getPageContent, getEnglishTimeGuide, getRussianTimeGuide } from '../utils/pageDictionary';
 import { resolveTranslation } from '../utils/translationResolver';
 
 describe('Full 15-language category, page header & translation performance guarantees', () => {
@@ -188,5 +190,67 @@ describe('Full 15-language category, page header & translation performance guara
     expect(bnApple).not.toContain('Noun:');
     expect(/[\u0600-\u06FF]/.test(urApple)).toBe(true);
     expect(/[\u0980-\u09FF]/.test(bnApple)).toBe(true);
+  });
+
+  it('localizes all 15 About & History profiles across all 14 non-English base languages (210 pairs) with zero English leaks on non-Latin scripts', () => {
+    const nonEnBases = ALL.filter((l) => l !== 'en');
+    for (const baseLang of nonEnBases) {
+      const scriptEvo = getScriptEvolutionLabels(baseLang);
+      expect(scriptEvo.badge).not.toBe('1950s Literacy Revolution');
+      expect(scriptEvo.formatStrokes(10)).not.toBe('10 strokes');
+
+      for (const targetLang of ALL) {
+        const enProfile = ABOUT_LANGUAGES[targetLang];
+        const locProfile = getLocalizedAboutProfile(targetLang, baseLang);
+
+        expect(locProfile.title, `${baseLang}->${targetLang}.title`).not.toBe(enProfile.title);
+        expect(locProfile.tagline, `${baseLang}->${targetLang}.tagline`).not.toBe(enProfile.tagline);
+        expect(locProfile.culturalNote, `${baseLang}->${targetLang}.culturalNote`).not.toBe(enProfile.culturalNote);
+        expect(locProfile.facts.length).toBe(enProfile.facts.length);
+        expect(locProfile.historyTimeline.length).toBe(enProfile.historyTimeline.length);
+        expect(locProfile.linguisticTraits.length).toBe(enProfile.linguisticTraits.length);
+
+        if (NON_LATIN.includes(baseLang)) {
+          for (const fact of locProfile.facts) {
+            expect(fact.label, `${baseLang}->${targetLang} fact label "${fact.label}"`).not.toBe(
+              enProfile.facts.find((f) => f.label === fact.label)?.label ?? '__none__'
+            );
+          }
+          for (const m of locProfile.historyTimeline) {
+            expect(m.title, `${baseLang}->${targetLang} milestone "${m.title}"`).not.toBe(
+              enProfile.historyTimeline.find((h) => h.title === m.title)?.title ?? '__none__'
+            );
+          }
+        }
+      }
+    }
+  });
+
+  it.each(NON_LATIN)('%s: English curriculum (phrases, words, numbers) and Time guides have zero pure-English leaks', (baseLang) => {
+    const enGui = getEnglishTimeGuide(baseLang);
+    const ruGui = getRussianTimeGuide(baseLang);
+    expect(enGui.headerTitle).not.toBe(getEnglishTimeGuide('en').headerTitle);
+    expect(ruGui.headerTitle).not.toBe(getRussianTimeGuide('en').headerTitle);
+
+    const enData = SUPPORTED_LANGUAGES.en.data;
+    const leaks: string[] = [];
+    for (const section of ['basicPhrases', 'commonWords', 'numbers', 'time'] as const) {
+      for (const item of enData[section] || []) {
+        const resolved = resolveTranslation(item as any, 'en', baseLang);
+        // Digits like "0", "1" are script-neutral; check any item that only has ASCII letters
+        if (/^[a-zA-Z\s,.'?!/-]+$/.test(resolved) && !/^(OK|Wi-Fi|DNA|TV|ID)$/i.test(resolved.trim())) {
+          leaks.push(`[${section}] "${item.phrase}" -> "${resolved}"`);
+        }
+      }
+    }
+    expect(leaks).toEqual([]);
+  });
+
+  it.each(['tr', 'de', 'id', 'pt'] as const)('%s: time array contains only genuine time expressions (no leaked food/home vocabulary)', (lang) => {
+    const timeItems = SUPPORTED_LANGUAGES[lang].data.time || [];
+    expect(timeItems.length).toBeGreaterThan(5);
+    for (const item of timeItems) {
+      expect(item.category).not.toMatch(/Food|Home|Places|Travel|Nature|Health|People/i);
+    }
   });
 });

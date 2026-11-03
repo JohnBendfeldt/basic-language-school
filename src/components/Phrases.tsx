@@ -99,7 +99,7 @@ const PhraseCardComponent: React.FC<PhraseCardProps> = ({
     >
       <div className="phrase-card-top-row">
         {localizedCategory && (
-          <div className="phrase-meta-badge">
+          <div className="phrase-meta-badge" lang={baseLanguage}>
             <span className="meta-category">{localizedCategory}</span>
           </div>
         )}

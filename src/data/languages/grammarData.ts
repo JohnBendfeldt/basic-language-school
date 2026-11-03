@@ -3544,9 +3544,9 @@ const LOCALIZED_ENGLISH_GRAMMAR: Partial<Record<SupportedLanguageId, Partial<Gra
         title: '英語の形容詞の比較変化',
         explanation: '短い形容詞は語尾に -er / -est を付けます (fast ➔ faster ➔ fastest)。長い形容詞は more / most を前に置きます (important ➔ more important ➔ most important)。',
         examples: [
-          { positive: 'good (良い)', comparative: 'better (より良い)', superlative: 'best (最も良い)', meaning: 'good / better / best' },
-          { positive: 'bad (悪い)', comparative: 'worse (より悪い)', superlative: 'worst (最も悪い)', meaning: 'bad / worse / worst' },
-          { positive: 'big (大きい)', comparative: 'bigger (より大きい)', superlative: 'biggest (最も大きい)', meaning: 'big / bigger / biggest' },
+          { positive: 'good (良い)', comparative: 'better (より良い)', superlative: 'best (最も良い)', meaning: '良い / より良い / 最も良い' },
+          { positive: 'bad (悪い)', comparative: 'worse (より悪い)', superlative: 'worst (最も悪い)', meaning: '悪い / より悪い / 最も悪い' },
+          { positive: 'big (大きい)', comparative: 'bigger (より大きい)', superlative: 'biggest (最も大きい)', meaning: '大きい / より大きい / 最も大きい' },
         ],
       },
     ],
@@ -3604,9 +3604,9 @@ const LOCALIZED_ENGLISH_GRAMMAR: Partial<Record<SupportedLanguageId, Partial<Gra
         title: '영어 형용사 비교급과 최상급',
         explanation: '짧은 형용사는 -er / -est를 붙입니다 (fast ➔ faster ➔ fastest). 긴 형용사는 앞에 more / most를 붙입니다 (important ➔ more important ➔ most important).',
         examples: [
-          { positive: 'good (좋은)', comparative: 'better (더 좋은)', superlative: 'best (가장 좋은)', meaning: 'good / better / best' },
-          { positive: 'bad (나쁜)', comparative: 'worse (더 나쁜)', superlative: 'worst (가장 나쁜)', meaning: 'bad / worse / worst' },
-          { positive: 'big (큰)', comparative: 'bigger (더 큰)', superlative: 'biggest (가장 큰)', meaning: 'big / bigger / biggest' },
+          { positive: 'good (좋은)', comparative: 'better (더 좋은)', superlative: 'best (가장 좋은)', meaning: '좋은 / 더 좋은 / 가장 좋은' },
+          { positive: 'bad (나쁜)', comparative: 'worse (더 나쁜)', superlative: 'worst (가장 나쁜)', meaning: '나쁜 / 더 나쁜 / 가장 나쁜' },
+          { positive: 'big (큰)', comparative: 'bigger (더 큰)', superlative: 'biggest (가장 큰)', meaning: '큰 / 더 큰 / 가장 큰' },
         ],
       },
     ],
@@ -3787,6 +3787,126 @@ const LOCALIZED_ENGLISH_GRAMMAR: Partial<Record<SupportedLanguageId, Partial<Gra
           { positive: 'good (好)', comparative: 'better (更好)', superlative: 'best (最好)', meaning: '好 / 更好 / 最好' },
           { positive: 'bad (坏)', comparative: 'worse (更坏)', superlative: 'worst (最坏)', meaning: '坏 / 更坏 / 最坏' },
           { positive: 'big (大)', comparative: 'bigger (更大)', superlative: 'biggest (最大)', meaning: '大 / 更大 / 最大' },
+        ],
+      },
+    ],
+  },
+  bn: {
+    genderRules: [
+      {
+        article: 'a / an / the',
+        gender: 'neuter',
+        color: '#2563eb',
+        name: 'পদাশ্রিত নির্দেশক (Articles: A, An, The)',
+        description: 'ইংরেজি বিশেষ্য পদে ব্যাকরণগত লিঙ্গ নেই, তবে শব্দের শুরুর উচ্চারণ অনুযায়ী অনির্দিষ্ট (a / an) এবং নির্দিষ্ট (the) আর্টিকেল ব্যবহৃত হয়।',
+        rules: [
+          'ব্যঞ্জনধ্বনি (consonant sound) দিয়ে শুরু হওয়া শব্দের আগে "a" বসে: a book, a car, a university (/j/ ধ্বনি)',
+          'স্বরধ্বনি (vowel sound) দিয়ে শুরু হওয়া শব্দের আগে "an" বসে: an apple, an hour ("h" অনুচ্চারিত), an elephant',
+          'নির্দিষ্ট বা পূর্বপরিচিত বস্তুর আগে "the" বসে: the book on the table',
+        ],
+        examples: [
+          { word: 'apple', article: 'an', meaning: 'আপেল', icon: '🍎' },
+          { word: 'book', article: 'a', meaning: 'বই', icon: '📖' },
+          { word: 'car', article: 'a', meaning: 'গাড়ি', icon: '🚗' },
+          { word: 'hour', article: 'an', meaning: 'ঘণ্টা', icon: '⏱️' },
+        ],
+      },
+    ],
+    verbs: [
+      {
+        verb: 'to be',
+        meaning: 'হওয়া / থাকা',
+        tense: 'বর্তমান ও অতীত কাল',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I', form: 'am / was' },
+          { pronoun: 'you', form: 'are / were' },
+          { pronoun: 'he / she / it', form: 'is / was' },
+          { pronoun: 'we', form: 'are / were' },
+          { pronoun: 'they', form: 'are / were' },
+        ],
+        exampleSentence: { target: 'We are learning languages together.', translation: 'আমরা একসাথে ভাষা শিখছি।' },
+      },
+      {
+        verb: 'to have',
+        meaning: 'থাকা / অধিকারে থাকা',
+        tense: 'বর্তমান ও অতীত কাল',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I / you / we / they', form: 'have (had)' },
+          { pronoun: 'he / she / it', form: 'has (had)' },
+        ],
+        exampleSentence: { target: 'She has a meeting today.', translation: 'আজ তার একটি মিটিং আছে।' },
+      },
+    ],
+    descriptions: [
+      {
+        title: 'ইংরেজি বিশেষণের তুলনা (Degrees of Comparison)',
+        explanation: 'ছোট বিশেষণের শেষে -er / -est যুক্ত হয় (fast -> faster -> fastest)। বড় বিশেষণের আগে more / most বসে (important -> more important -> most important)।',
+        examples: [
+          { positive: 'good (ভালো)', comparative: 'better (আরও ভালো)', superlative: 'best (সবচেয়ে ভালো)', meaning: 'ভালো / আরও ভালো / সবচেয়ে ভালো' },
+          { positive: 'bad (খারাপ)', comparative: 'worse (আরও খারাপ)', superlative: 'worst (সবচেয়ে খারাপ)', meaning: 'খারাপ / আরও খারাপ / সবচেয়ে খারাপ' },
+          { positive: 'big (বড়)', comparative: 'bigger (আরও বড়)', superlative: 'biggest (সবচেয়ে বড়)', meaning: 'বড় / আরও বড় / সবচেয়ে বড়' },
+        ],
+      },
+    ],
+  },
+  ur: {
+    genderRules: [
+      {
+        article: 'a / an / the',
+        gender: 'neuter',
+        color: '#2563eb',
+        name: 'حروفِ تنکیر و تعریف (A, An, The)',
+        description: 'انگریزی اسموں میں گرامر کی تذکیر و تانیث نہیں ہوتی، البتہ لفظ کی ابتدائی آواز کے مطابق غیر معین (a / an) اور معین (the) حروف استعمال ہوتے ہیں۔',
+        rules: [
+          'صحیح آواز (consonant sound) سے شروع ہونے والے الفاظ سے پہلے "a" آتا ہے: a book, a car, a university',
+          'علت آواز (vowel sound) سے شروع ہونے والے الفاظ سے پہلے "an" آتا ہے: an apple, an hour ("h" خاموش ہے), an elephant',
+          'کسی خاص یا پہلے سے معلوم چیز کے لیے "the" استعمال ہوتا ہے: the book on the table',
+        ],
+        examples: [
+          { word: 'apple', article: 'an', meaning: 'سیب', icon: '🍎' },
+          { word: 'book', article: 'a', meaning: 'کتاب', icon: '📖' },
+          { word: 'car', article: 'a', meaning: 'گاڑی', icon: '🚗' },
+          { word: 'hour', article: 'an', meaning: 'گھنٹہ', icon: '⏱️' },
+        ],
+      },
+    ],
+    verbs: [
+      {
+        verb: 'to be',
+        meaning: 'ہونا',
+        tense: 'حال اور ماضی',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I', form: 'am / was' },
+          { pronoun: 'you', form: 'are / were' },
+          { pronoun: 'he / she / it', form: 'is / was' },
+          { pronoun: 'we', form: 'are / were' },
+          { pronoun: 'they', form: 'are / were' },
+        ],
+        exampleSentence: { target: 'We are learning languages together.', translation: 'ہم مل کر زبانیں سیکھ رہے ہیں۔' },
+      },
+      {
+        verb: 'to have',
+        meaning: 'رکھنا / پاس ہونا',
+        tense: 'حال اور ماضی',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I / you / we / they', form: 'have (had)' },
+          { pronoun: 'he / she / it', form: 'has (had)' },
+        ],
+        exampleSentence: { target: 'She has a meeting today.', translation: 'آج اس کی ایک میٹنگ ہے۔' },
+      },
+    ],
+    descriptions: [
+      {
+        title: 'انگریزی صفت کے درجات (Degrees of Comparison)',
+        explanation: 'چھوٹی صفات کے آخر میں -er / -est لگتا ہے (fast -> faster -> fastest)۔ لمبی صفات سے پہلے more / most آتا ہے (important -> more important -> most important)۔',
+        examples: [
+          { positive: 'good (اچھا)', comparative: 'better (بہتر)', superlative: 'best (بہترین)', meaning: 'اچھا / بہتر / بہترین' },
+          { positive: 'bad (برا)', comparative: 'worse (بدتر)', superlative: 'worst (بدترین)', meaning: 'برا / بدتر / بدترین' },
+          { positive: 'big (بڑا)', comparative: 'bigger (زیادہ بڑا)', superlative: 'biggest (سب سے بڑا)', meaning: 'بڑا / زیادہ بڑا / سب سے بڑا' },
         ],
       },
     ],

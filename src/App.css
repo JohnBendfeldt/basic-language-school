@@ -1469,9 +1469,18 @@ footer {
 
 .pronunciation-button-wrapper {
   position: absolute;
-  right: 30px; 
+  inset-inline-start: calc(100% + 12px);
+  right: auto;
   top: 50%;
-  transform: translateY(-70%);
+  transform: translateY(-50%);
+}
+
+.letter-pair .pronunciation-button {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  font-size: 0.85rem;
 }
 
 .alphabet-card .letter {
@@ -1546,9 +1555,9 @@ footer {
 
 .example-word-row {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 6px;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 7px;
   width: 100%;
 }
 
@@ -1558,7 +1567,7 @@ footer {
   gap: 4px;
   flex-wrap: wrap;
   min-width: 0;
-  flex: 1;
+  flex: 0 1 auto;
 }
 
 .example-word-row .example-label {
@@ -1591,7 +1600,7 @@ footer {
 .example-meaning-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 6px;
   min-height: 22px;
   min-width: 0;
@@ -1605,32 +1614,34 @@ footer {
   line-height: 1.35;
   word-break: normal;
   min-width: 0;
-  flex: 1;
+  flex: 0 1 auto;
 }
 
 .letter-pronunciation {
   margin-left: 0.5rem;
 }
 
-.example-pronunciation {
-  margin-left: auto;
-  width: 24px;
-  height: 24px;
-  min-width: 24px;
-  min-height: 24px;
-  font-size: 0.68rem;
+.example-pronunciation,
+.pronunciation-button.example-pronunciation {
+  margin-left: 0;
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  min-height: 26px;
+  font-size: 0.72rem;
   padding: 0;
   flex-shrink: 0;
 }
 
-.example-pronunciation.mini {
-  width: 20px;
-  height: 20px;
-  min-width: 20px;
-  min-height: 20px;
-  font-size: 0.6rem;
+.example-pronunciation.mini,
+.pronunciation-button.example-pronunciation.mini {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  min-height: 22px;
+  font-size: 0.64rem;
   padding: 0;
-  margin-left: auto;
+  margin-left: 0;
   flex-shrink: 0;
 }
 
@@ -5302,6 +5313,75 @@ footer {
 .hint-toggle-btn:hover {
   background: #fde047;
   border-color: #facc15;
+}
+
+.kb-quick-toggle-btn {
+  background: #eef2ff;
+  border-color: #c7d2fe;
+}
+
+.kb-quick-toggle-btn.active,
+.kb-quick-toggle-btn:hover {
+  background: #e0e7ff;
+  border-color: #6366f1;
+}
+
+.phonetic-live-preview-row {
+  display: flex;
+  justify-content: center;
+  margin: 0.45rem 0 0.25rem;
+}
+
+.phonetic-live-preview-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid #c7d2fe;
+  background: linear-gradient(135deg, #eef2ff 0%, #f8fafc 100%);
+  color: #1e293b;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.1);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.phonetic-live-preview-pill:hover {
+  transform: translateY(-1px);
+  border-color: #6366f1;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.16);
+}
+
+.phonetic-live-preview-pill .preview-latin {
+  background: #ffffff;
+  padding: 1px 6px;
+  border-radius: 5px;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  font-size: 0.84rem;
+}
+
+.phonetic-live-preview-pill .preview-arrow {
+  color: #6366f1;
+  font-weight: 700;
+}
+
+.phonetic-live-preview-pill .preview-native {
+  color: #312e81;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.phonetic-live-preview-pill .preview-space-kbd {
+  background: #4f46e5;
+  color: #ffffff;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 .hint-toggle-btn.active {

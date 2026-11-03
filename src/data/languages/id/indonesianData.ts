@@ -648,22 +648,8 @@ const time: PhraseItem[] = [
   { phrase: 'Sekarang jam empat lewat seperempat', translation: 'It is 4:15 (quarter past four)', pronunciation: 'seh-KAH-rahng jahm ehm-PAHT LEH-waht seh-per-ehm-PAHT', category: 'Minutes', icon: '🕓' },
   { phrase: 'Sekarang jam lima kurang seperempat', translation: 'It is 4:45 (quarter to five)', pronunciation: 'seh-KAH-rahng jahm LEE-mah KOO-rahng seh-per-ehm-PAHT', category: 'Minutes', icon: '🕟' },
   { phrase: 'Tengah hari', translation: 'Noon / Midday', pronunciation: 'teh-NGAH HAH-ree', category: 'Special', icon: '🕛' },
-  { phrase: 'Tengah malam', translation: 'Midnight', pronunciation: 'teh-NGAH MAH-lahm', category: 'Special', icon: '🌙' }
-,
-  { phrase: 'Stroberi', translation: 'Strawberry', pronunciation: '', category: 'Food & Drink', icon: '🍓' },
-  { phrase: 'Bawang putih', translation: 'Garlic', pronunciation: '', category: 'Food & Drink', icon: '🧄' },
-  { phrase: 'Kentang', translation: 'Potato', pronunciation: '', category: 'Food & Drink', icon: '🥔' },
-  { phrase: 'Bawang bombay', translation: 'Onion', pronunciation: '', category: 'Food & Drink', icon: '🧅' },
-  { phrase: 'Wortel', translation: 'Carrot', pronunciation: '', category: 'Food & Drink', icon: '🥕' },
-  { phrase: 'Sendok', translation: 'Spoon', pronunciation: '', category: 'Food & Drink', icon: '🥄' },
-  { phrase: 'Garpu', translation: 'Fork', pronunciation: '', category: 'Food & Drink', icon: '🍴' },
-  { phrase: 'Pisau', translation: 'Knife', pronunciation: '', category: 'Food & Drink', icon: '🔪' },
-  { phrase: 'Piring', translation: 'Plate', pronunciation: '', category: 'Food & Drink', icon: '🍽️' },
-  { phrase: 'Kereta bawah tanah', translation: 'Subway', pronunciation: '', category: 'Places', icon: '🚇' },
-  { phrase: 'Sepeda', translation: 'Bicycle', pronunciation: '', category: 'Places', icon: '🚲' },
-  { phrase: 'Koper', translation: 'Suitcase', pronunciation: '', category: 'Home', icon: '🧳' },
-  { phrase: 'Ransel', translation: 'Backpack', pronunciation: '', category: 'Home', icon: '🎒' },
-  { phrase: 'Dompet', translation: 'Wallet', pronunciation: '', category: 'Home', icon: '👛' }];
+  { phrase: 'Tengah malam', translation: 'Midnight', pronunciation: 'teh-NGAH MAH-lahm', category: 'Special', icon: '🌙' },
+];
 
 const indonesianData: AppData = {
   alphabet,
