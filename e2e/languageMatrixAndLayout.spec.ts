@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { test, expect } from '@playwright/test';
 
 test.describe('Playwright E2E: Layout, Modals, Alignment & Neural Audio Matrix', () => {
@@ -608,7 +610,13 @@ test.describe('Playwright E2E: Layout, Modals, Alignment & Neural Audio Matrix',
   }) => {
     await page.setViewportSize({ width: 1280, height: 800 });
 
-    // Serve compact manifests pointing to real studio MP3s on disk so real Cache Storage download completes in < 300ms
+    // Build a real 2-clip offline-pack.bin for Spanish from studio MP3s on disk to verify single-file binary pack unpacking in real Chromium Cache Storage
+    const esClipA = fs.readFileSync(path.resolve(process.cwd(), 'public/audio/es/alphabet/a.mp3'));
+    const esClipAmor = fs.readFileSync(path.resolve(process.cwd(), 'public/audio/es/examples/amor.mp3'));
+    const esPackBuffer = Buffer.concat([esClipA, esClipAmor]);
+    let esPackRequested = false;
+    let esIndividualMp3Requested = false;
+
     await page.route('**/audio/es/manifest.json', async (route) => {
       await route.fulfill({
         status: 200,
@@ -616,10 +624,28 @@ test.describe('Playwright E2E: Layout, Modals, Alignment & Neural Audio Matrix',
         body: JSON.stringify({
           lang: 'es',
           fileCount: 2,
-          totalBytes: 24576,
+          totalBytes: esPackBuffer.length,
+          packFile: 'offline-pack.bin',
           files: ['alphabet/a.mp3', 'examples/amor.mp3'],
+          sizes: [esClipA.length, esClipAmor.length],
         }),
       });
+    });
+
+    await page.route('**/audio/es/offline-pack.bin', async (route) => {
+      esPackRequested = true;
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/octet-stream',
+        body: esPackBuffer,
+      });
+    });
+
+    page.on('request', (req) => {
+      const u = req.url();
+      if (u.includes('/audio/es/alphabet/') || u.includes('/audio/es/examples/')) {
+        esIndividualMp3Requested = true;
+      }
     });
 
     await page.route('**/audio/en/manifest.json', async (route) => {
@@ -670,11 +696,13 @@ test.describe('Playwright E2E: Layout, Modals, Alignment & Neural Audio Matrix',
     await expect(page.getByTestId('offline-pack-en')).toHaveAttribute('aria-checked', 'true');
     await expect(page.getByTestId('offline-pack-fr')).toHaveAttribute('aria-checked', 'false');
 
-    // 3. Download active pair into real Chromium Cache Storage
+    // 3. Download active pair into real Chromium Cache Storage via single-file offline-pack.bin
     await offlineDialog.getByRole('button', { name: /Download Selected/i }).click();
     await expect(page.getByTestId('offline-pack-es')).toContainText('Offline Ready');
     await expect(page.getByTestId('offline-pack-en')).toContainText('Offline Ready');
     await expect(offlineHeaderBtn).toHaveClass(/offline-ready/);
+    expect(esPackRequested).toBe(true);
+    expect(esIndividualMp3Requested).toBe(false);
 
     await offlineDialog.getByRole('button', { name: 'Done' }).last().click();
     await expect(offlineDialog).toBeHidden();

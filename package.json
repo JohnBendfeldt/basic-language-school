@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && node scripts/build-offline-packs.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
@@ -25,7 +25,8 @@
     "generate-audio": "python3 scripts/generate-all-audio.py",
     "generate-audio:force": "python3 scripts/generate-all-audio.py --force",
     "generate-audio:time": "python3 scripts/generate-time-audio.py",
-    "generate-offline-manifests": "node scripts/generate-offline-manifests.mjs"
+    "generate-offline-manifests": "node scripts/generate-offline-manifests.mjs",
+    "build-offline-packs": "node scripts/build-offline-packs.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",
