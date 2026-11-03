@@ -1,8 +1,19 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { FaCheck, FaKeyboard, FaTrophy, FaRedo, FaCheckCircle, FaTimesCircle, FaStar, FaGraduationCap, FaChevronDown, FaExclamationTriangle } from 'react-icons/fa';
 import RussianKeyboard from './RussianKeyboard';
+import PhoneticKeyboard from './PhoneticKeyboard';
 import PronunciationButton from './PronunciationButton';
 import { transliterate, containsCyrillic } from '../utils/transliteration';
+import {
+  isPhoneticScriptLanguage,
+  containsTargetScript,
+  transliterateForLanguage,
+  transliterateJapanese,
+  appendKoreanJamo,
+  stripPinyinTones,
+  PHONETIC_CHEATSHEETS,
+  PhoneticScriptLang
+} from '../utils/phoneticTyping';
 import { evaluateSmartAnswer, isPlausiblePhraseTypo } from '../utils/fuzzyMatcher';
 import { ProgressService } from '../services/progressService';
 import { MASTERY_THRESHOLD } from '../types/progress';
@@ -218,13 +229,13 @@ export const SPECIAL_CHAR_MAP: Record<SupportedLanguageId, string[]> = {
   ru: ['я', 'ю', 'ё', 'ж', 'ш', 'щ', 'ч', 'ь', 'ъ', 'ы', 'э'],
   en: [],
   id: [],
-  ja: ['っ', 'ゃ', 'ゅ', 'ょ', 'ー'],
-  ko: ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ', 'ㅏ', 'ㅓ', 'ㅗ', 'ㅜ', 'ㅡ', 'ㅣ'],
-  zh: [],
-  hi: ['ा', 'ि', 'ी', 'ु', 'ू', 'े', 'ै', 'ो', 'ौ', 'ं', '्'],
-  ar: ['أ', 'إ', 'آ', 'ء', 'ة', 'ى', 'ئ', 'ؤ'],
-  bn: ['া', 'ি', 'ী', 'ু', 'ূ', 'ে', 'ৈ', 'ো', 'ৌ', 'ং', 'ঃ', 'ঁ', '্', 'ৎ', 'ড়', 'ঢ়', 'য়'],
-  ur: ['آ', 'ء', 'ؤ', 'ئ', 'ٹ', 'ڈ', 'ڑ', 'ں', 'ہ', 'ھ', 'ے']
+  ja: ['っ', 'ゃ', 'ゅ', 'ょ', 'ー', 'ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ', 'を', 'ん'],
+  ko: ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ', 'ㅏ', 'ㅓ', 'ㅗ', 'ㅜ', 'ㅡ', 'ㅣ', 'ㅐ', 'ㅔ'],
+  zh: ['ā', 'á', 'ǎ', 'à', 'ē', 'é', 'ě', 'è', 'ī', 'í', 'ǐ', 'ì', 'ō', 'ó', 'ǒ', 'ò', 'ū', 'ú', 'ǔ', 'ù', 'ǖ', 'ǘ', 'ǚ', 'ǜ'],
+  hi: ['ा', 'ि', 'ी', 'ु', 'ू', 'ृ', 'े', 'ै', 'ो', 'ौ', 'ं', 'ँ', 'ः', '्', '़', 'क्ष', 'त्र', 'ज्ञ'],
+  ar: ['أ', 'إ', 'آ', 'ء', 'ة', 'ى', 'ئ', 'ؤ', 'لا', 'ح', 'خ', 'ع', 'غ', 'ص', 'ض', 'ط', 'ظ', 'ث', 'ذ', 'ق'],
+  bn: ['া', 'ি', 'ী', 'ু', 'ূ', 'ৃ', 'ে', 'ৈ', 'ো', 'ৌ', 'ং', 'ঃ', 'ঁ', '্', 'ৎ', 'ড়', 'ঢ়', 'য়'],
+  ur: ['آ', 'ء', 'ؤ', 'ئ', 'ٹ', 'ڈ', 'ڑ', 'پ', 'چ', 'ژ', 'گ', 'ں', 'ہ', 'ھ', 'ے', 'ح', 'خ', 'ع', 'غ', 'ق', 'ص', 'ض', 'ط', 'ظ']
 };
 
 const getAudioCategory = (questionType: string): 'alphabet' | 'phrases' | 'numbers' | 'words' | 'time' | 'examples' => {
@@ -1039,6 +1050,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               prompt: targetWord,
               answer: combinedAnswer,
               hint: getListeningHeader(currentLanguage, baseLanguage, currentMeta.name),
+              pronunciation: item.pronunciation,
               meaningHint: baseNumWord,
               baseMeaning: baseNumWord,
               targetAudioWord: targetWord,
@@ -1057,6 +1069,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               prompt: promptText,
               answer: cleanBaseAnswer.toLowerCase(),
               hint: buildQuizQuestionHint(promptText, true, currentLanguage, baseLanguage),
+              pronunciation: item.pronunciation,
               targetAudioWord: promptText,
               promptAudioWord: promptText,
               russian: promptText,
@@ -1073,6 +1086,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               prompt: promptText,
               answer: cleanTargetAnswer.toLowerCase(),
               hint: buildQuizQuestionHint(promptText, false, currentLanguage, baseLanguage),
+              pronunciation: item.pronunciation,
               targetAudioWord: targetWord,
               promptAudioWord: baseNumWord,
               russian: targetWord,
@@ -1101,6 +1115,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               prompt: targetWord,
               answer: combinedAnswer,
               hint: getListeningHeader(currentLanguage, baseLanguage, currentMeta.name),
+              pronunciation: item.pronunciation,
               meaningHint: baseWord,
               baseMeaning: baseWord,
               alternateMeanings: homograph && homograph.distinctSenses.length > 1 ? homograph.distinctSenses : undefined,
@@ -1120,6 +1135,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               prompt: promptText,
               answer: targetWord.toLowerCase(),
               hint: buildQuizQuestionHint(promptText, false, currentLanguage, baseLanguage),
+              pronunciation: item.pronunciation,
               targetAudioWord: targetWord,
               promptAudioWord: promptText,
               russian: targetWord,
@@ -1139,6 +1155,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               answer: cleanAnswer,
               alternateMeanings: homograph && homograph.distinctSenses.length > 1 ? homograph.distinctSenses : undefined,
               hint: buildQuizQuestionHint(promptText, true, currentLanguage, baseLanguage),
+              pronunciation: item.pronunciation,
               targetAudioWord: promptText,
               promptAudioWord: promptText,
               russian: promptText,
@@ -1156,6 +1173,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
               prompt: promptText,
               answer: cleanAnswer,
               hint: buildQuizQuestionHint(promptText, false, currentLanguage, baseLanguage),
+              pronunciation: item.pronunciation,
               targetAudioWord: targetWord,
               promptAudioWord: promptText,
               russian: targetWord,
@@ -1364,10 +1382,58 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     };
   }, []);
 
+  const needsRussianKeyboard = Boolean(
+    currentQuestion &&
+    !currentQuestion.type.includes('alphabet') &&
+    (
+      (currentLanguage === 'ru' && (!currentQuestion.isTargetPrompt || currentQuestion.isListeningMode)) ||
+      (baseLanguage === 'ru' && currentQuestion.isTargetPrompt) ||
+      currentQuestion.hint.includes('Russian') ||
+      currentQuestion.hint.includes('русском')
+    )
+  );
+
+  const expectedAnswerLanguage: SupportedLanguageId = useMemo(() => {
+    if (!currentQuestion) return currentLanguage;
+    if (needsRussianKeyboard) return 'ru';
+    if (currentQuestion.type.includes('alphabet')) return baseLanguage;
+    if (currentQuestion.isListeningMode) return currentLanguage;
+    if (currentQuestion.isTargetPrompt) return baseLanguage;
+    return currentLanguage;
+  }, [currentQuestion, needsRussianKeyboard, baseLanguage, currentLanguage]);
+
+  const activePhoneticLang: PhoneticScriptLang | null = useMemo(() => {
+    if (!currentQuestion || (currentQuestion.type && currentQuestion.type.includes('alphabet'))) {
+      return null;
+    }
+    if (needsRussianKeyboard) return 'ru';
+    if (isPhoneticScriptLanguage(expectedAnswerLanguage)) {
+      return expectedAnswerLanguage;
+    }
+    return null;
+  }, [currentQuestion, needsRussianKeyboard, expectedAnswerLanguage]);
+
+  const needsPhoneticKeyboard = activePhoneticLang !== null;
+
+  const activeSpecialChars = useMemo(() => {
+    if (!currentQuestion || showNext) return [];
+    if (currentQuestion.type && currentQuestion.type.includes('alphabet')) {
+      const chars = new Set<string>();
+      if (currentQuestion.prompt && currentQuestion.prompt.length <= 4 && !/^[a-zA-Z0-9\s]+$/.test(currentQuestion.prompt)) {
+        chars.add(currentQuestion.prompt);
+      }
+      (SPECIAL_CHAR_MAP[currentLanguage] || []).forEach(c => chars.add(c));
+      (SPECIAL_CHAR_MAP[expectedAnswerLanguage] || []).forEach(c => chars.add(c));
+      return Array.from(chars);
+    }
+    return SPECIAL_CHAR_MAP[expectedAnswerLanguage] || [];
+  }, [currentQuestion, showNext, expectedAnswerLanguage, currentLanguage]);
+
   const checkAnswer = () => {
     if (!userAnswer.trim()) return;
     setSpellingDiff(null);
 
+    const rawUserAnswer = userAnswer;
     let processedAnswer = userAnswer;
     if (needsRussianKeyboard && !containsCyrillic(processedAnswer)) {
       processedAnswer = transliterate(processedAnswer);
@@ -1375,6 +1441,22 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     }
 
     const userAnswerNormalized = normalizeText(processedAnswer);
+    const typedPromptDirectly = Boolean(
+      currentQuestion &&
+      !currentQuestion.isTargetPrompt &&
+      !currentQuestion.isListeningMode &&
+      normalizeText(rawUserAnswer) === normalizeText(currentQuestion.prompt)
+    );
+
+    const phoneticCandidate =
+      activePhoneticLang &&
+      activePhoneticLang !== 'ru' &&
+      !typedPromptDirectly &&
+      !containsTargetScript(rawUserAnswer, activePhoneticLang)
+        ? transliterateForLanguage(rawUserAnswer, activePhoneticLang)
+        : '';
+    const phoneticNormalized = phoneticCandidate ? normalizeText(phoneticCandidate) : '';
+
     let isAnswerCorrect = false;
 
     if (isSoftSign(currentQuestion.prompt) && isSoftSignAnswer(userAnswerNormalized)) {
@@ -1400,8 +1482,48 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       });
 
       // An exact hit on ANY accepted answer wins before fuzzy matching runs against an earlier one
-      if (expandedTargets.some((t: string) => userAnswerNormalized === normalizeText(t))) {
+      if (!typedPromptDirectly && expandedTargets.some((t: string) => userAnswerNormalized === normalizeText(t))) {
         isAnswerCorrect = true;
+      }
+
+      // Phonetic conversion match for non-Latin scripts (ar, ur, hi, bn, ja, ko, zh)
+      if (!isAnswerCorrect && phoneticNormalized && expandedTargets.some((t: string) => phoneticNormalized === normalizeText(t))) {
+        isAnswerCorrect = true;
+        if (!currentQuestion.isListeningMode && activePhoneticLang !== 'zh') {
+          processedAnswer = phoneticCandidate;
+          setUserAnswer(phoneticCandidate);
+        }
+      }
+
+      // Japanese Hiragana / Romaji reading match when curriculum answer contains Kanji
+      if (!isAnswerCorrect && activePhoneticLang === 'ja' && currentQuestion.pronunciation && !typedPromptDirectly) {
+        const expectedJaKana = normalizeText(transliterateJapanese(currentQuestion.pronunciation.replace(/-/g, '')));
+        if (expectedJaKana && (userAnswerNormalized === expectedJaKana || phoneticNormalized === expectedJaKana)) {
+          isAnswerCorrect = true;
+          if (!currentQuestion.isListeningMode && phoneticCandidate && !containsTargetScript(rawUserAnswer, 'ja')) {
+            processedAnswer = phoneticCandidate;
+            setUserAnswer(phoneticCandidate);
+          }
+        }
+      }
+
+      // Mandarin Pinyin match (tone-marked, numeric e.g. ni3 hao3, or toneless pinyin)
+      if (!isAnswerCorrect && activePhoneticLang === 'zh' && currentQuestion.pronunciation && !typedPromptDirectly) {
+        const expectedPinyinNorm = normalizeText(currentQuestion.pronunciation);
+        const expectedPinyinPlain = stripPinyinTones(currentQuestion.pronunciation).replace(/\s+/g, '');
+        const userPinyinPlain = stripPinyinTones(rawUserAnswer).replace(/\s+/g, '');
+        if (
+          expectedPinyinPlain.length >= 2 &&
+          (userAnswerNormalized === expectedPinyinNorm ||
+            phoneticNormalized === expectedPinyinNorm ||
+            userPinyinPlain === expectedPinyinPlain)
+        ) {
+          isAnswerCorrect = true;
+          if (!currentQuestion.isListeningMode && phoneticCandidate && phoneticCandidate !== rawUserAnswer) {
+            processedAnswer = phoneticCandidate;
+            setUserAnswer(phoneticCandidate);
+          }
+        }
       }
 
       for (const target of expandedTargets) {
@@ -1641,6 +1763,17 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     const selectionStart = e.target.selectionStart || 0;
 
     if (!needsRussianKeyboard) {
+      if (
+        activePhoneticLang &&
+        activePhoneticLang !== 'ru' &&
+        !currentQuestion?.isListeningMode &&
+        newValue.endsWith(' ')
+      ) {
+        const converted = transliterateForLanguage(newValue, activePhoneticLang);
+        setUserAnswer(converted);
+        setLastInput(converted);
+        return;
+      }
       setUserAnswer(newValue);
       setLastInput(newValue);
       return;
@@ -1727,13 +1860,27 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     } else if (letter === 'clear') {
       newValue = '';
       newCursorPos = 0;
+    } else if (
+      expectedAnswerLanguage === 'ko' &&
+      letter !== ' ' &&
+      letter.length === 1 &&
+      start === end &&
+      start === userAnswer.length
+    ) {
+      newValue = appendKoreanJamo(userAnswer, letter);
+      newCursorPos = newValue.length;
     } else {
       const insertion = letter;
       newValue = userAnswer.slice(0, start) + insertion + userAnswer.slice(end);
       newCursorPos = start + insertion.length;
 
       if (letter === ' ') {
-        newValue = transliterate(newValue);
+        if (needsRussianKeyboard) {
+          newValue = transliterate(newValue);
+        } else if (activePhoneticLang && activePhoneticLang !== 'ru' && !currentQuestion?.isListeningMode) {
+          newValue = transliterateForLanguage(newValue, activePhoneticLang);
+        }
+        newCursorPos = newValue.length;
       }
     }
 
@@ -1755,40 +1902,6 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   const toggleKeyboard = () => {
     setShowKeyboard(prev => !prev);
   };
-
-  const needsRussianKeyboard = Boolean(
-    currentQuestion &&
-    !currentQuestion.type.includes('alphabet') &&
-    (
-      (currentLanguage === 'ru' && (!currentQuestion.isTargetPrompt || currentQuestion.isListeningMode)) ||
-      (baseLanguage === 'ru' && currentQuestion.isTargetPrompt) ||
-      currentQuestion.hint.includes('Russian') ||
-      currentQuestion.hint.includes('русском')
-    )
-  );
-
-  const expectedAnswerLanguage: SupportedLanguageId = useMemo(() => {
-    if (!currentQuestion) return currentLanguage;
-    if (needsRussianKeyboard) return 'ru';
-    if (currentQuestion.type.includes('alphabet')) return baseLanguage;
-    if (currentQuestion.isListeningMode) return currentLanguage;
-    if (currentQuestion.isTargetPrompt) return baseLanguage;
-    return currentLanguage;
-  }, [currentQuestion, needsRussianKeyboard, baseLanguage, currentLanguage]);
-
-  const activeSpecialChars = useMemo(() => {
-    if (!currentQuestion || showNext) return [];
-    if (currentQuestion.type && currentQuestion.type.includes('alphabet')) {
-      const chars = new Set<string>();
-      if (currentQuestion.prompt && currentQuestion.prompt.length <= 4 && !/^[a-zA-Z0-9\s]+$/.test(currentQuestion.prompt)) {
-        chars.add(currentQuestion.prompt);
-      }
-      (SPECIAL_CHAR_MAP[currentLanguage] || []).forEach(c => chars.add(c));
-      (SPECIAL_CHAR_MAP[expectedAnswerLanguage] || []).forEach(c => chars.add(c));
-      return Array.from(chars);
-    }
-    return SPECIAL_CHAR_MAP[expectedAnswerLanguage] || [];
-  }, [currentQuestion, showNext, expectedAnswerLanguage, currentLanguage]);
 
   const getDynamicPlaceholder = (): string => {
     if (!currentQuestion) return ui.yourAnswerHere;
@@ -2497,12 +2610,13 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             </>
           )}
         </div>
-        <div className="input-container">
+        <div className={`input-container ${expectedAnswerLanguage === 'ar' || expectedAnswerLanguage === 'ur' ? 'rtl-input' : ''}`}>
           <input
             ref={inputRef}
             type="text"
             className="quiz-input"
             lang={expectedAnswerLanguage}
+            dir={expectedAnswerLanguage === 'ar' || expectedAnswerLanguage === 'ur' ? 'rtl' : undefined}
             autoCapitalize="off"
             autoCorrect="off"
             autoComplete="off"
@@ -2513,11 +2627,13 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             placeholder={getDynamicPlaceholder()}
             disabled={showNext}
           />
-          {needsRussianKeyboard && !showNext && (
+          {needsPhoneticKeyboard && !showNext && activePhoneticLang && (
             <button
+              type="button"
               className={`keyboard-toggle-button ${showKeyboard ? 'active' : ''}`}
               onClick={toggleKeyboard}
-              title="Toggle Russian Keyboard"
+              title={activePhoneticLang === 'ru' ? 'Toggle Russian Keyboard' : `Toggle ${PHONETIC_CHEATSHEETS[activePhoneticLang].keyboardTitle}`}
+              aria-label={activePhoneticLang === 'ru' ? 'Toggle Russian Keyboard' : `Toggle ${PHONETIC_CHEATSHEETS[activePhoneticLang].keyboardTitle}`}
             >
               <FaKeyboard />
             </button>
@@ -2547,12 +2663,15 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           </div>
         )}
 
-        {needsRussianKeyboard && !showNext && (
+        {activePhoneticLang && !showNext && (
           <div className="special-char-panel cyrillic-helper-panel">
-            {/* Unified quick-tap Russian letters + guide icon toolbar */}
-            <div className="special-char-bar cyrillic-quick-bar" role="toolbar" aria-label="Special Russian characters">
+            <div
+              className="special-char-bar cyrillic-quick-bar"
+              role="toolbar"
+              aria-label={activePhoneticLang === 'ru' ? 'Special Russian characters' : `Special characters for ${expectedAnswerLanguage}`}
+            >
               <div className="quick-keys-scroll">
-                {SPECIAL_CHAR_MAP.ru.map(char => (
+                {(activePhoneticLang === 'ru' ? SPECIAL_CHAR_MAP.ru : activeSpecialChars).map(char => (
                   <button
                     key={char}
                     type="button"
@@ -2579,7 +2698,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             {showPhoneticGuide && (
               <div className="phonetic-guide-popover" role="region" aria-label="Phonetic typing guide">
                 <div className="popover-header">
-                  <span className="popover-title">💡 Phonetic Typing Cheatsheet</span>
+                  <span className="popover-title">{PHONETIC_CHEATSHEETS[activePhoneticLang].title}</span>
                   <button
                     type="button"
                     className="close-popover-btn"
@@ -2590,22 +2709,17 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                   </button>
                 </div>
                 <div className="phonetic-rules-grid">
-                  <div><code>ya</code> → <strong>я</strong></div>
-                  <div><code>yu</code> → <strong>ю</strong></div>
-                  <div><code>yo</code> → <strong>ё</strong></div>
-                  <div><code>zh</code> → <strong>ж</strong></div>
-                  <div><code>sh</code> → <strong>ш</strong></div>
-                  <div><code>ch</code> → <strong>ч</strong></div>
-                  <div><code>'</code> → <strong>ь</strong></div>
-                  <div><code>"</code> → <strong>ъ</strong></div>
+                  {PHONETIC_CHEATSHEETS[activePhoneticLang].rules.map((rule, idx) => (
+                    <div key={idx}><code>{rule.latin}</code> → <strong>{rule.script}</strong></div>
+                  ))}
                 </div>
-                <small className="phonetic-note">Type phonetically in English, then press Space to convert.</small>
+                <small className="phonetic-note">{PHONETIC_CHEATSHEETS[activePhoneticLang].note}</small>
               </div>
             )}
           </div>
         )}
 
-        {!needsRussianKeyboard && activeSpecialChars.length > 0 && !showNext && (
+        {!activePhoneticLang && activeSpecialChars.length > 0 && !showNext && (
           <div className="special-char-panel">
             <div className="special-char-bar" role="toolbar" aria-label={`Special characters for ${expectedAnswerLanguage}`}>
               <div className="quick-keys-scroll">
@@ -2626,10 +2740,10 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         )}
 
 
-        {needsRussianKeyboard && showKeyboard && !showNext && (
+        {needsPhoneticKeyboard && activePhoneticLang && showKeyboard && !showNext && (
           <div className="virtual-keyboard-container">
             <div className="virtual-keyboard-header">
-              <span>Full Russian Keyboard</span>
+              <span>{PHONETIC_CHEATSHEETS[activePhoneticLang].keyboardTitle}</span>
               <button
                 type="button"
                 className="close-keyboard-btn"
@@ -2639,7 +2753,11 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                 ✕ Close
               </button>
             </div>
-            <RussianKeyboard onLetterClick={handleKeyboardLetterClick} />
+            {activePhoneticLang === 'ru' ? (
+              <RussianKeyboard onLetterClick={handleKeyboardLetterClick} />
+            ) : (
+              <PhoneticKeyboard lang={activePhoneticLang} onLetterClick={handleKeyboardLetterClick} />
+            )}
           </div>
         )}
 

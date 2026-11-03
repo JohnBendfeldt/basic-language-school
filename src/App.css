@@ -292,12 +292,13 @@ footer {
 /* Segmented Control: Alphabet vs Grammar vs About Sub-tabs */
 .section-segmented-control {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 0.35rem;
   background: #f1f5f9;
-  padding: 4px 6px;
-  border-radius: 9999px;
+  padding: 5px 6px;
+  border-radius: 26px;
   width: fit-content;
   max-width: 100%;
   margin: 0 auto 1.5rem auto;
@@ -307,8 +308,9 @@ footer {
 }
 
 .segmented-tab-btn {
-  flex: 0 0 auto;
+  flex: 0 1 auto;
   min-width: 0;
+  max-width: 100%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -321,8 +323,10 @@ footer {
   font-size: 0.91rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.34, 1.4, 0.64, 1);
+  transition: background-color 0.16s ease, color 0.16s ease, box-shadow 0.16s ease;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .segmented-tab-btn .tab-icon {
@@ -333,6 +337,8 @@ footer {
 
 .segmented-tab-btn .tab-label-text {
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .segmented-tab-btn:hover {
@@ -348,19 +354,21 @@ footer {
 
 @media (max-width: 768px) {
   .section-segmented-control {
-    width: 100%;
-    max-width: 440px;
-    padding: 3px;
+    width: fit-content;
+    max-width: 100%;
+    padding: 4px;
     gap: 0.25rem;
+    border-radius: 20px;
     margin-bottom: 1.25rem;
   }
 
   .segmented-tab-btn {
-    flex: 1 1 0;
+    flex: 1 1 auto;
     min-width: 0;
-    padding: 0.5rem 0.5rem;
+    max-width: 100%;
+    padding: 0.45rem 0.72rem;
     font-size: 0.85rem;
-    gap: 0.25rem;
+    gap: 0.28rem;
   }
 
   .segmented-tab-btn .tab-icon {
@@ -1368,6 +1376,8 @@ footer {
   border: 1px solid rgba(0, 0, 0, 0.05);
   position: relative;
   min-height: 250px;
+  overflow: hidden;
+  min-width: 0;
 }
 
 .alphabet-card:hover {
@@ -2924,6 +2934,8 @@ footer {
   position: relative;
   overflow: hidden;
   perspective: 1000px;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 160px;
 }
 
 .phrase-card::before {
@@ -5662,9 +5674,9 @@ footer {
   100% { transform: scale(1); }
 }
 
-/* Add smooth scrolling to the whole document */
+/* Instant scroll on tab/route navigation for snappy UI response */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 /* Responsive Styles */
@@ -6121,9 +6133,9 @@ html {
   scroll-margin-top: 80px;
 }
 
-/* Add smooth scrolling to the whole document */
+/* Instant scroll on tab/route navigation for snappy UI response */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 /* ==========================================================================
@@ -10152,5 +10164,222 @@ html {
   .search-jump-btn {
     padding: 8px 10px;
     border-radius: 50%;
+  }
+}
+
+
+/* ==========================================================================
+   MULTI-SCRIPT PHONETIC KEYBOARDS, RTL QUIZ INPUT & ARABIC/URDU READABILITY
+   ========================================================================== */
+
+/* Keep alphabet card audio buttons inside card bounds on wide scripts */
+.example-word-row .pronunciation-button,
+.example-meaning-row .pronunciation-button {
+  flex-shrink: 0;
+}
+
+/* Reserve space for the keyboard toggle button inside Quiz input */
+.input-container .quiz-input {
+  padding-right: 2.75rem;
+}
+
+.input-container.rtl-input .quiz-input {
+  padding-right: 1rem;
+  padding-left: 2.75rem;
+  text-align: right;
+}
+
+.input-container.rtl-input .keyboard-toggle-button {
+  right: auto;
+  left: 10px;
+}
+
+/* Multi-script Phonetic Keyboard refinements */
+.phonetic-keyboard .keyboard-key {
+  min-width: 42px;
+  height: 52px;
+  padding: 4px 7px;
+  border-radius: 6px;
+}
+
+.phonetic-keyboard .key-script {
+  font-size: 1.2rem;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.phonetic-keyboard-ar .key-script,
+.phonetic-keyboard-ur .key-script {
+  font-size: 1.38rem;
+  line-height: 1.35;
+}
+
+.phonetic-keyboard-hi .key-script,
+.phonetic-keyboard-bn .key-script {
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+.phonetic-keyboard .keyboard-utility-row {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(0, 0, 0, 0.1);
+  gap: 4px;
+}
+
+/* Larger, clearer Arabic & Urdu typography across UI chrome (baseLanguage = ar | ur) */
+.app[data-base-lang="ar"],
+.app[data-base-lang="ur"] {
+  line-height: 1.75;
+}
+
+.app[data-base-lang="ar"] header h1,
+.app[data-base-lang="ur"] header h1 {
+  line-height: 1.45;
+  font-size: 2.3rem;
+}
+
+.app[data-base-lang="ar"] .navigation li,
+.app[data-base-lang="ur"] .navigation li {
+  font-size: 1.06rem;
+  line-height: 1.55;
+  padding: 0.52rem 1.3rem;
+}
+
+.app[data-base-lang="ar"] .segmented-tab-btn,
+.app[data-base-lang="ur"] .segmented-tab-btn,
+.app[data-base-lang="ar"] .grammar-tab-btn,
+.app[data-base-lang="ur"] .grammar-tab-btn,
+.app[data-base-lang="ar"] .zh-filter-chip,
+.app[data-base-lang="ur"] .zh-filter-chip,
+.app[data-base-lang="ar"] .mode-segmented-pill,
+.app[data-base-lang="ur"] .mode-segmented-pill {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.app[data-base-lang="ar"] .phrases-subtitle,
+.app[data-base-lang="ur"] .phrases-subtitle,
+.app[data-base-lang="ar"] .alphabet-subtitle,
+.app[data-base-lang="ur"] .alphabet-subtitle {
+  font-size: 1.12rem;
+  line-height: 1.8;
+}
+
+.app[data-base-lang="ar"] .topic-pack-pill,
+.app[data-base-lang="ur"] .topic-pack-pill,
+.app[data-base-lang="ar"] .recap-topic-pill,
+.app[data-base-lang="ur"] .recap-topic-pill {
+  font-size: 1.02rem;
+  line-height: 1.6;
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;
+}
+
+.app[data-base-lang="ar"] .meta-category,
+.app[data-base-lang="ur"] .meta-category,
+.app[data-base-lang="ar"] .grammar-category-badge,
+.app[data-base-lang="ur"] .grammar-category-badge {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  letter-spacing: 0;
+}
+
+.app[data-base-lang="ar"] .study-toggle-btn,
+.app[data-base-lang="ur"] .study-toggle-btn,
+.app[data-base-lang="ar"] .phrase-reveal-btn,
+.app[data-base-lang="ur"] .phrase-reveal-btn {
+  font-size: 1.08rem;
+  line-height: 1.65;
+}
+
+.app[data-base-lang="ar"] .phrase-card .english,
+.app[data-base-lang="ur"] .phrase-card .english {
+  font-size: 1.22rem;
+  line-height: 1.75;
+}
+
+.app[data-base-lang="ar"] .alphabet-card .pronunciation,
+.app[data-base-lang="ur"] .alphabet-card .pronunciation,
+.app[data-base-lang="ar"] .example-translation,
+.app[data-base-lang="ur"] .example-translation,
+.app[data-base-lang="ar"] .example-word-row .example-label,
+.app[data-base-lang="ur"] .example-word-row .example-label {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.app[data-base-lang="ar"] .quiz-question-hint,
+.app[data-base-lang="ur"] .quiz-question-hint,
+.app[data-base-lang="ar"] .dropdown-trigger-title,
+.app[data-base-lang="ur"] .dropdown-trigger-title,
+.app[data-base-lang="ar"] .quiz-dropdown-item-name,
+.app[data-base-lang="ur"] .quiz-dropdown-item-name {
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+/* Larger, clearer Arabic & Urdu typography when learning Arabic or Urdu (targetLanguage = ar | ur) */
+.app[data-target-lang="ar"] .letter-single,
+.app[data-target-lang="ur"] .letter-single,
+.app[data-target-lang="ar"] .alphabet-card .letter,
+.app[data-target-lang="ur"] .alphabet-card .letter {
+  font-size: 3.15rem;
+  line-height: 1.35;
+}
+
+.app[data-target-lang="ar"] .example-word,
+.app[data-target-lang="ur"] .example-word {
+  font-size: 1.22rem;
+  line-height: 1.65;
+}
+
+.app[data-target-lang="ar"] .phrase-text,
+.app[data-target-lang="ur"] .phrase-text,
+.app[data-target-lang="ar"] .phrase-card .russian,
+.app[data-target-lang="ur"] .phrase-card .russian {
+  font-size: 1.85rem;
+  line-height: 1.75;
+}
+
+.app[data-target-lang="ar"] .grammar-card-prompt,
+.app[data-target-lang="ur"] .grammar-card-prompt {
+  font-size: 1.7rem;
+  line-height: 1.75;
+}
+
+.app[data-target-lang="ar"] .quiz-prompt-text,
+.app[data-target-lang="ur"] .quiz-prompt-text {
+  font-size: 2.15rem;
+  line-height: 1.7;
+}
+
+/* Larger Arabic/Urdu input & special character buttons regardless of course direction */
+.quiz-input[lang="ar"],
+.quiz-input[lang="ur"] {
+  font-size: 1.35rem;
+  line-height: 1.7;
+}
+
+.special-char-bar[aria-label*=" for ar"] .quick-char-btn,
+.special-char-bar[aria-label*=" for ur"] .quick-char-btn {
+  min-width: 38px;
+  height: 38px;
+  font-size: 1.24rem;
+  line-height: 1.35;
+  padding: 0 8px;
+}
+
+@media (max-width: 768px) {
+  .app[data-base-lang="ar"] .segmented-tab-btn,
+  .app[data-base-lang="ur"] .segmented-tab-btn {
+    font-size: 0.96rem;
+    line-height: 1.5;
+  }
+
+  .app[data-target-lang="ar"] .phrase-text,
+  .app[data-target-lang="ur"] .phrase-text {
+    font-size: 1.62rem;
+    line-height: 1.7;
   }
 }

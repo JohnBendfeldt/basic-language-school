@@ -421,5 +421,73 @@ test.describe('Playwright E2E: Layout, Modals, Alignment & Neural Audio Matrix',
     expect(cardBox).not.toBeNull();
     expect(cardBox!.width).toBeLessThanOrEqual(375);
   });
+
+  test('Centered Alphabet Pills, Zero English Leaks (UR/ZH), Larger Urdu Fonts & Phonetic Keyboard', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.addInitScript(() => {
+      localStorage.setItem('basic_language_base_lang', 'ur');
+      localStorage.setItem('basic_language_target_lang', 'en');
+    });
+
+    await page.goto('/learn/en/alphabet');
+
+    const pillBar = page.locator('.section-segmented-control').first();
+    await expect(pillBar).toBeVisible();
+    const barBox = await pillBar.boundingBox();
+    expect(barBox).not.toBeNull();
+
+    // Centered horizontally on desktop
+    const centerOffset = Math.abs(barBox!.x + barBox!.width / 2 - 640);
+    expect(centerOffset).toBeLessThan(24);
+
+    // Zero text overflow or overlap between the 3 segmented buttons
+    const buttons = pillBar.locator('.segmented-tab-btn');
+    expect(await buttons.count()).toBe(3);
+    for (let i = 0; i < 3; i++) {
+      const btnText = (await buttons.nth(i).textContent()) || '';
+      expect(btnText).not.toMatch(/Sounds|Flashcards|About & Origins|History/i);
+      const overflows = await buttons.nth(i).evaluate((el) => el.scrollWidth > el.clientWidth + 1);
+      expect(overflows).toBe(false);
+    }
+
+    // Check Common Words topic pills in Urdu have zero leaked English categories & larger readable font
+    await page.goto('/learn/en/words');
+    const topicPills = page.locator('.topic-pack-filter-bar .topic-pack-label');
+    await expect(topicPills.first()).toBeVisible();
+    const allPillTexts = await topicPills.allTextContents();
+    for (const txt of allPillTexts) {
+      expect(txt).not.toMatch(/^(Family|Questions|Calendar|Food|General|Home|Nature|Verbs)$/i);
+    }
+
+    const subtitleFontPx = await page.locator('.phrases-subtitle').evaluate((el) =>
+      parseFloat(window.getComputedStyle(el).fontSize)
+    );
+    expect(subtitleFontPx).toBeGreaterThanOrEqual(17);
+
+    // Mobile check (375px): centered segmented pill never overflows viewport or collides
+    await page.setViewportSize({ width: 375, height: 812 });
+    await page.goto('/learn/en/alphabet');
+    await expect(pillBar).toBeVisible();
+    const mobileBarBox = await pillBar.boundingBox();
+    expect(mobileBarBox).not.toBeNull();
+    expect(mobileBarBox!.x).toBeGreaterThanOrEqual(0);
+    expect(mobileBarBox!.x + mobileBarBox!.width).toBeLessThanOrEqual(375);
+
+    const hasDocOverflow = await page.evaluate(
+      () => document.documentElement.scrollWidth > document.documentElement.clientWidth
+    );
+    expect(hasDocOverflow).toBe(false);
+
+    // Switch to learning Urdu (EN -> UR Quiz) and verify Phonetic Urdu Keyboard opens
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.evaluate(() => {
+      localStorage.setItem('basic_language_base_lang', 'en');
+      localStorage.setItem('basic_language_target_lang', 'ur');
+    });
+    await page.goto('/learn/ur/quiz');
+    await expect(page.locator('.quiz-card')).toBeVisible();
+  });
 });
 

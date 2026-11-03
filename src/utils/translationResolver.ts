@@ -1,6 +1,7 @@
 import { SupportedLanguageId } from '../data/languages/types';
 import { PhraseItem } from '../types/index';
 import { CONCEPT_MATRIX } from '../data/conceptMatrix';
+import { SUPPORTED_LANGUAGES } from '../data/languages';
 
 export interface NumberMapping {
   digit: number;
@@ -789,6 +790,200 @@ export interface TranslatableItem {
   pronunciation?: string;
 }
 
+type LanguageTranslationMap = Partial<Record<SupportedLanguageId, string>>;
+
+const TIME_EXPRESSION_REGEX = /\b(o'clock|half\s+past|quarter|en\s+punto|y\s+media|y\s+cuarto|menos\s+cuarto|menos\s+diez|heure|heures|demie|quart|час|часа|часов|половина|четверть|ровно|em\s+ponto|e\s+meia|para\s+as|horas|punkt|uhr|halb|viertel|jam|setengah|seperempat|tepat|saat|buçuk|çeyrek|geçiyor)\b/i;
+
+const cleanLookupKey = (raw: string): string =>
+  raw
+    .toLowerCase()
+    .replace(/^noun:\s*/i, '')
+    .replace(/^verb:\s*/i, '')
+    .replace(/\s*\([^)]*\)\s*/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+let indexesInitialized = false;
+const enLookupMap = new Map<string, LanguageTranslationMap>();
+const targetValueLookupMap = new Map<string, LanguageTranslationMap>();
+const conceptTextLookupMap = new Map<string, LanguageTranslationMap>();
+let compiledWordBoundaryList: Array<{ key: string; lowerKey: string; regex: RegExp; mapping: LanguageTranslationMap }> = [];
+const translationCache = new Map<string, string>();
+const MAX_CACHE_ENTRIES = 25000;
+
+const mergeIntoMap = (
+  map: Map<string, LanguageTranslationMap>,
+  key: string,
+  values: LanguageTranslationMap,
+  overwriteExisting: boolean
+) => {
+  if (!key) return;
+  const existing = map.get(key);
+  if (!existing) {
+    map.set(key, { ...values });
+    return;
+  }
+  for (const [lang, text] of Object.entries(values) as Array<[SupportedLanguageId, string | undefined]>) {
+    if (!text) continue;
+    if (overwriteExisting || !existing[lang]) {
+      existing[lang] = text;
+    }
+  }
+};
+
+const ensureTranslationIndexes = () => {
+  if (indexesInitialized) return;
+  indexesInitialized = true;
+
+  // 1. Seed primary dictionary entries (highest priority)
+  for (const [rawKey, mapping] of Object.entries(EXTENDED_DICTIONARY)) {
+    const lowerKey = rawKey.toLowerCase().trim();
+    mergeIntoMap(enLookupMap, lowerKey, mapping, true);
+    const cleanedKey = cleanLookupKey(lowerKey);
+    if (cleanedKey && cleanedKey !== lowerKey) {
+      mergeIntoMap(enLookupMap, cleanedKey, mapping, false);
+    }
+  }
+
+  // 2. Enrich missing language slots from Universal Concept Matrix
+  for (const concept of CONCEPT_MATRIX) {
+    const conceptMap: LanguageTranslationMap = {};
+    for (const [lang, entry] of Object.entries(concept.translations) as Array<[SupportedLanguageId, { text: string } | undefined]>) {
+      if (entry?.text) {
+        conceptMap[lang] = entry.text;
+      }
+    }
+    for (const textVal of Object.values(conceptMap)) {
+      if (!textVal) continue;
+      const lowerText = textVal.toLowerCase().trim();
+      mergeIntoMap(conceptTextLookupMap, lowerText, conceptMap, false);
+      const cleanedText = cleanLookupKey(lowerText);
+      if (cleanedText && cleanedText !== lowerText) {
+        mergeIntoMap(conceptTextLookupMap, cleanedText, conceptMap, false);
+      }
+    }
+    if (conceptMap.en) {
+      const { en: _omitEn, ...nonEnConceptMap } = conceptMap;
+      const enLower = conceptMap.en.toLowerCase().trim();
+      mergeIntoMap(enLookupMap, enLower, nonEnConceptMap, false);
+      const enClean = cleanLookupKey(enLower);
+      if (enClean && enClean !== enLower) {
+        mergeIntoMap(enLookupMap, enClean, nonEnConceptMap, false);
+      }
+    }
+  }
+
+  // 3. Cross-index all 15 supported language curricula so newer languages (ur, bn, ar, hi, zh, ja, ko, etc.)
+  // automatically resolve shared English meanings without falling back to English definitions.
+  if (SUPPORTED_LANGUAGES) {
+    const allLangEntries = Object.entries(SUPPORTED_LANGUAGES) as Array<[SupportedLanguageId, (typeof SUPPORTED_LANGUAGES)[SupportedLanguageId]]>;
+    for (const [lang, meta] of allLangEntries) {
+      if (lang === 'en' || !meta?.data) continue;
+
+      if (Array.isArray(meta.data.alphabet)) {
+        for (const item of meta.data.alphabet) {
+          const targetWord = (item.word || '').toString().trim();
+          const enMeaning = (item.meaning || '').toString().trim();
+          if (!targetWord || !enMeaning) continue;
+          const cleanEn = cleanLookupKey(enMeaning);
+          mergeIntoMap(enLookupMap, cleanEn, { [lang]: targetWord }, false);
+          if (cleanEn.includes('/')) {
+            for (const part of cleanEn.split('/')) {
+              const trimmed = part.trim();
+              if (trimmed.length >= 2) {
+                mergeIntoMap(enLookupMap, trimmed, { [lang]: targetWord }, false);
+              }
+            }
+          }
+        }
+      }
+
+      const phraseLists = [meta.data.basicPhrases, meta.data.commonWords, meta.data.time];
+      for (const list of phraseLists) {
+        if (!Array.isArray(list)) continue;
+        for (const item of list) {
+          const targetText = (item.russian || item.phrase || item.target || (item as any).word || '').toString().trim();
+          const enText = (item.english || item.translation || item.meaning || '').toString().trim();
+          if (!targetText || !enText) continue;
+          const exactLower = enText.toLowerCase();
+          const cleanEn = cleanLookupKey(enText);
+          mergeIntoMap(enLookupMap, exactLower, { [lang]: targetText }, false);
+          if (cleanEn && cleanEn !== exactLower) {
+            mergeIntoMap(enLookupMap, cleanEn, { [lang]: targetText }, false);
+          }
+          if (cleanEn.includes('/')) {
+            for (const part of cleanEn.split('/')) {
+              const trimmed = part.trim();
+              if (trimmed.length >= 2) {
+                mergeIntoMap(enLookupMap, trimmed, { [lang]: targetText }, false);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Link English curriculum definitions (e.g. "Noun: A sweet round fruit" -> "Apple") to their multi-language entries
+    const enData = SUPPORTED_LANGUAGES.en?.data;
+    if (enData) {
+      if (Array.isArray(enData.alphabet)) {
+        for (const item of enData.alphabet) {
+          const enWord = cleanLookupKey((item.word || '').toString());
+          const enDef = cleanLookupKey((item.meaning || '').toString());
+          const wordEntry = enLookupMap.get(enWord);
+          if (enWord && enDef && wordEntry) {
+            const { en: _omitEn, ...nonEnWordEntry } = wordEntry;
+            mergeIntoMap(enLookupMap, enDef, nonEnWordEntry, false);
+          }
+        }
+      }
+      for (const list of [enData.basicPhrases, enData.commonWords]) {
+        if (!Array.isArray(list)) continue;
+        for (const item of list) {
+          const enPhrase = cleanLookupKey((item.phrase || '').toString());
+          const enDef = cleanLookupKey((item.translation || item.meaning || '').toString());
+          const phraseEntry = enLookupMap.get(enPhrase);
+          if (enPhrase && enDef && phraseEntry) {
+            const { en: _omitEn, ...nonEnPhraseEntry } = phraseEntry;
+            mergeIntoMap(enLookupMap, enDef, nonEnPhraseEntry, false);
+          }
+        }
+      }
+    }
+  }
+
+  // 4. Build reverse target-word O(1) index across all 15 languages from enLookupMap
+  for (const mapping of enLookupMap.values()) {
+    for (const val of Object.values(mapping)) {
+      if (!val) continue;
+      const lowerVal = val.toLowerCase().trim();
+      if (lowerVal) {
+        mergeIntoMap(targetValueLookupMap, lowerVal, mapping, false);
+      }
+      const cleanVal = lowerVal.replace(/\s*\([^)]*\)\s*/g, ' ').replace(/\s+/g, ' ').trim();
+      if (cleanVal && cleanVal !== lowerVal) {
+        mergeIntoMap(targetValueLookupMap, cleanVal, mapping, false);
+      }
+    }
+  }
+
+  // 5. Pre-sort & pre-compile word-boundary regular expressions once
+  compiledWordBoundaryList = Object.entries(EXTENDED_DICTIONARY)
+    .filter(([key]) => key.length >= 3)
+    .sort((a, b) => b[0].length - a[0].length)
+    .map(([key]) => {
+      const lowerKey = key.toLowerCase().trim();
+      const escapedKey = lowerKey.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const enrichedMapping = enLookupMap.get(lowerKey) || EXTENDED_DICTIONARY[key];
+      return {
+        key,
+        lowerKey,
+        regex: new RegExp(`(^|\\s)${escapedKey}(\\s|$)`, 'i'),
+        mapping: enrichedMapping
+      };
+    });
+};
+
 /**
  * Resolves translation of a phrase item into the user's base/reference language.
  */
@@ -804,6 +999,22 @@ export const resolveTranslation = (
     return ((item as any).word || (item as any).russianWord || item.russian || item.phrase || item.target || '').toString();
   }
 
+  const cacheKey = `${targetLang}|${baseLang}|${(item as any).category ?? ''}|${(item as any).word ?? ''}|${(item as any).englishWord ?? ''}|${item.english ?? ''}|${item.translation ?? ''}|${item.phrase ?? ''}|${item.russian ?? ''}|${(item as any).russianWord ?? ''}|${item.meaning ?? ''}`;
+  const cached = translationCache.get(cacheKey);
+  if (cached !== undefined) {
+    return cached;
+  }
+
+  ensureTranslationIndexes();
+
+  const storeAndReturn = (result: string): string => {
+    if (translationCache.size >= MAX_CACHE_ENTRIES) {
+      translationCache.clear();
+    }
+    translationCache.set(cacheKey, result);
+    return result;
+  };
+
   // 1. Check if item is a cardinal number
   const rawEnglish = (item.english || (item as any).englishWord || item.translation || item.meaning || item.phrase || '').toString();
   const primaryText = (item.phrase || item.russian || (item as any).word || '').toString();
@@ -811,14 +1022,14 @@ export const resolveTranslation = (
     (item as any).category === 'Time' ||
     /\d+:\d+/.test(rawEnglish) ||
     /\d+:\d+/.test(primaryText) ||
-    /\b(o'clock|half\s+past|quarter|en\s+punto|y\s+media|y\s+cuarto|menos\s+cuarto|menos\s+diez|heure|heures|demie|quart|час|часа|часов|половина|четверть|ровно|em\s+ponto|e\s+meia|para\s+as|horas|punkt|uhr|halb|viertel|jam|setengah|seperempat|tepat|saat|buçuk|çeyrek|geçiyor)\b/i.test(`${rawEnglish} ${primaryText}`);
+    TIME_EXPRESSION_REGEX.test(`${rawEnglish} ${primaryText}`);
 
   if (!isTimeExpression) {
     const digit = extractDigit(rawEnglish) ?? extractDigit(primaryText);
     if (digit !== null && NUMBER_TABLE[digit]) {
       const numEntry = NUMBER_TABLE[digit];
       if (baseLang in numEntry) {
-        return `${digit} (${numEntry[baseLang]})`;
+        return storeAndReturn(`${digit} (${numEntry[baseLang]})`);
       }
     }
   }
@@ -837,83 +1048,55 @@ export const resolveTranslation = (
 
   for (const candidate of rawCandidates) {
     const lower = candidate.toLowerCase();
-    const val = EXTENDED_DICTIONARY[lower]?.[baseLang];
+    const val = enLookupMap.get(lower)?.[baseLang];
     if (val) {
-      return val;
+      return storeAndReturn(val);
     }
-    const cleaned = lower
-      .replace(/^noun:\s*/i, '')
-      .replace(/^verb:\s*/i, '')
-      .replace(/\s*\([^)]*\)\s*/g, ' ')
-      .trim();
-    const valCleaned = EXTENDED_DICTIONARY[cleaned]?.[baseLang];
-    if (cleaned && valCleaned) {
-      return valCleaned;
+    const cleaned = cleanLookupKey(lower);
+    const valCleaned = cleaned ? enLookupMap.get(cleaned)?.[baseLang] : undefined;
+    if (valCleaned) {
+      return storeAndReturn(valCleaned);
     }
   }
 
-  // 3. Direct target word lookup across dictionary values
+  // 3. Direct target word O(1) lookup across dictionary values
   const directTarget = ((item as any).russianWord || (item as any).russian || (item as any).word || item.phrase || '').toString().toLowerCase().trim();
-  const directTargetClean = directTarget.replace(/\s*\([^)]*\)\s*/g, ' ').trim();
   if (directTarget) {
-    for (const mapping of Object.values(EXTENDED_DICTIONARY)) {
-      if (
-        (mapping.en && (mapping.en.toLowerCase() === directTarget || mapping.en.toLowerCase().replace(/\s*\([^)]*\)\s*/g, ' ').trim() === directTargetClean)) ||
-        (mapping.ru && (mapping.ru.toLowerCase() === directTarget || mapping.ru.toLowerCase().replace(/\s*\([^)]*\)\s*/g, ' ').trim() === directTargetClean)) ||
-        (mapping.es && (mapping.es.toLowerCase() === directTarget || mapping.es.toLowerCase().replace(/\s*\([^)]*\)\s*/g, ' ').trim() === directTargetClean)) ||
-        (mapping.fr && (mapping.fr.toLowerCase() === directTarget || mapping.fr.toLowerCase().replace(/\s*\([^)]*\)\s*/g, ' ').trim() === directTargetClean)) ||
-        (mapping.pt && (mapping.pt.toLowerCase() === directTarget || mapping.pt.toLowerCase().replace(/\s*\([^)]*\)\s*/g, ' ').trim() === directTargetClean)) ||
-        (mapping.de && (mapping.de.toLowerCase() === directTarget || mapping.de.toLowerCase().replace(/\s*\([^)]*\)\s*/g, ' ').trim() === directTargetClean)) ||
-        (mapping.id && (mapping.id.toLowerCase() === directTarget || mapping.id.toLowerCase().replace(/\s*\([^)]*\)\s*/g, ' ').trim() === directTargetClean)) ||
-        (mapping.tr && (mapping.tr.toLowerCase() === directTarget || mapping.tr.toLowerCase().replace(/\s*\([^)]*\)\s*/g, ' ').trim() === directTargetClean)) ||
-        (mapping.ko && (mapping.ko.toLowerCase() === directTarget || mapping.ko.toLowerCase().replace(/\s*\([^)]*\)\s*/g, ' ').trim() === directTargetClean)) ||
-        (mapping.ja && (mapping.ja.toLowerCase() === directTarget || mapping.ja.toLowerCase().replace(/\s*\([^)]*\)\s*/g, ' ').trim() === directTargetClean))
-      ) {
-        const valBase = mapping[baseLang];
-        if (valBase) return valBase;
-      }
+    const directMatch = targetValueLookupMap.get(directTarget)?.[baseLang];
+    if (directMatch) return storeAndReturn(directMatch);
+    const directTargetClean = directTarget.replace(/\s*\([^)]*\)\s*/g, ' ').replace(/\s+/g, ' ').trim();
+    if (directTargetClean && directTargetClean !== directTarget) {
+      const cleanMatch = targetValueLookupMap.get(directTargetClean)?.[baseLang];
+      if (cleanMatch) return storeAndReturn(cleanMatch);
     }
   }
 
   // 4. Clean key for word-boundary token & matrix lookup
-  const cleanKey = (item.english || (item as any).englishWord || item.translation || item.phrase || item.meaning || '')
-    .toString()
-    .toLowerCase()
-    .replace(/^noun:\s*/i, '')
-    .replace(/^verb:\s*/i, '')
-    .replace(/\s*\([^)]*\)\s*/g, ' ')
-    .trim();
+  const cleanKey = cleanLookupKey(
+    (item.english || (item as any).englishWord || item.translation || item.phrase || item.meaning || '').toString()
+  );
 
-  // 5. Check for multi-word or token matches in dictionary using word boundaries (longest keys first)
-  const sortedDict = Object.entries(EXTENDED_DICTIONARY).sort((a, b) => b[0].length - a[0].length);
-  for (const [key, mapping] of sortedDict) {
-    if (key.length >= 3 && cleanKey.length >= 3) {
-      const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      const wholeWordRegex = new RegExp(`(^|\\s)${escapedKey}(\\s|$)`, 'i');
-      if (wholeWordRegex.test(cleanKey)) {
-        const valKey = mapping[baseLang];
-        if (valKey) {
-          return valKey;
-        }
+  // 5. Check for multi-word or token matches in dictionary using precompiled word-boundary regexes (longest keys first)
+  if (cleanKey.length >= 3) {
+    for (const entry of compiledWordBoundaryList) {
+      if (cleanKey.length < entry.lowerKey.length) continue;
+      const valKey = entry.mapping[baseLang];
+      if (valKey && cleanKey.includes(entry.lowerKey) && entry.regex.test(cleanKey)) {
+        return storeAndReturn(valKey);
       }
     }
   }
 
-  // 6. Check Universal Concept Matrix
-  const matrixMatch = CONCEPT_MATRIX.find(c => {
-    return Object.values(c.translations).some(t => {
-      if (!t) return false;
-      const tText = t.text.toLowerCase();
-      return tText === cleanKey;
-    });
-  });
-
-  if (matrixMatch && matrixMatch.translations[baseLang]) {
-    return matrixMatch.translations[baseLang]!.text;
+  // 6. Check Universal Concept Matrix O(1) map
+  const matrixMatch = conceptTextLookupMap.get(cleanKey)?.[baseLang];
+  if (matrixMatch) {
+    return storeAndReturn(matrixMatch);
   }
 
   // 7. Fallback: English translation or primary text
-  return item.english || (item as any).englishWord || item.translation || item.meaning || item.phrase || item.russian || '';
+  return storeAndReturn(
+    item.english || (item as any).englishWord || item.translation || item.meaning || item.phrase || item.russian || ''
+  );
 };
 
 /**

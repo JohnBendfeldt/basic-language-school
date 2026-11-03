@@ -340,7 +340,7 @@ const AppContent: React.FC = () => {
   const localizedAppName = getLocalizedAppName(currentLanguage, baseLanguage, currentMeta.appName);
 
   return (
-    <div className="app">
+    <div className="app" data-target-lang={currentLanguage} data-base-lang={baseLanguage}>
       <header>
         <div className="header-content">
           <h1 

@@ -22,7 +22,7 @@ export interface TimeGrammarGuideData {
  * Maps section titles and subtitles based on target language (learning course)
  * and base language (the user's native tongue).
  */
-export const getPageContent = (
+const getPageContentExplicit = (
   section: 'alphabet' | 'phrases' | 'words' | 'numbers' | 'time' | 'quiz',
   targetLang: SupportedLanguageId,
   baseLang: SupportedLanguageId
@@ -1214,6 +1214,205 @@ export const getPageContent = (
     title: 'Language School',
     subtitle: 'Free interactive language practice'
   };
+};
+
+const TARGET_LETTER_COUNTS: Record<SupportedLanguageId, number> = {
+  en: 26, es: 27, fr: 26, ru: 33, pt: 27, de: 30, id: 26, tr: 29,
+  zh: 29, ja: 46, ko: 24, hi: 46, ar: 28, bn: 50, ur: 39
+};
+
+const TARGET_ENGLISH_NAMES: Record<SupportedLanguageId, string> = {
+  en: 'English', es: 'Spanish', fr: 'French', ru: 'Russian', pt: 'Portuguese',
+  de: 'German', id: 'Indonesian', tr: 'Turkish', zh: 'Mandarin Chinese',
+  ja: 'Japanese', ko: 'Korean', hi: 'Hindi', ar: 'Arabic', bn: 'Bengali', ur: 'Urdu'
+};
+
+const buildDynamicPageContent = (
+  section: 'alphabet' | 'phrases' | 'words' | 'numbers' | 'time' | 'quiz',
+  targetLang: SupportedLanguageId,
+  baseLang: SupportedLanguageId
+): PageContent => {
+  const count = TARGET_LETTER_COUNTS[targetLang] || 26;
+  const enName = TARGET_ENGLISH_NAMES[targetLang] || targetLang;
+  const tName = getLocalizedLanguageName(targetLang, baseLang, enName);
+
+  if (baseLang === 'en') {
+    switch (section) {
+      case 'alphabet':
+        return {
+          title: `${enName} Alphabet`,
+          subtitle: `${count} letters with pronunciation guides, example vocabulary, and native studio audio`
+        };
+      case 'phrases':
+        return {
+          title: `Essential ${enName} Phrases & Greetings`,
+          subtitle: 'Tap any card to reveal its translation and pronunciation'
+        };
+      case 'words':
+        return {
+          title: `Common ${enName} Words & High-Frequency Vocabulary`,
+          subtitle: 'Tap any card to reveal its translation and pronunciation'
+        };
+      case 'numbers':
+        return {
+          title: `${enName} Numbers (0–1,000)`,
+          subtitle: 'Cardinal numbers from zero to one thousand with native pronunciation'
+        };
+      case 'time':
+        return {
+          title: `${enName} Telling Time & Expressions`,
+          subtitle: 'Learn hours, minutes, and essential daily time expressions'
+        };
+      case 'quiz':
+      default:
+        return {
+          title: `${enName} Practice Quiz`,
+          subtitle: 'Interactive vocabulary, alphabet, and listening practice'
+        };
+    }
+  }
+
+  const tapSubtitle: Record<SupportedLanguageId, string> = {
+    en: 'Tap any card to reveal its translation and pronunciation',
+    es: 'Toca cualquier tarjeta para ver su traducción y pronunciación',
+    fr: 'Appuyez sur une carte pour voir sa traduction et sa prononciation',
+    ru: 'Нажмите на любую карточку, чтобы увидеть перевод и произношение',
+    pt: 'Toque em qualquer cartão para ver sua tradução e pronúncia',
+    de: 'Tippe auf eine Karte, um Übersetzung und Aussprache anzuzeigen',
+    id: 'Ketuk kartu mana saja untuk melihat terjemahan dan pelafalannya',
+    tr: 'Çevirisini ve telaffuzunu görmek için herhangi bir karta dokunun',
+    ja: 'カードをタップして翻訳と発音を確認できます',
+    ko: '카드를 탭하여 번역과 발음을 확인하세요',
+    zh: '点击卡片查看释义与标准发音',
+    hi: 'अनुवाद और उच्चारण देखने के लिए किसी भी कार्ड पर टैप करें',
+    ar: 'انقر على أي بطاقة لعرض الترجمة والنطق',
+    bn: 'অনুবাদ এবং উচ্চারণ দেখতে যেকোনো কার্ডে ট্যাপ করুন',
+    ur: 'ترجمہ اور تلفظ دیکھنے کے لیے کسی بھی کارڈ پر ٹیپ کریں'
+  };
+
+  switch (baseLang) {
+    case 'es':
+      if (section === 'alphabet') return { title: `Alfabeto de ${tName}`, subtitle: `${count} letras con guías de pronunciación, ejemplos y audio nativo` };
+      if (section === 'phrases') return { title: `Frases básicas en ${tName}`, subtitle: tapSubtitle.es };
+      if (section === 'words') return { title: `Palabras comunes en ${tName}`, subtitle: tapSubtitle.es };
+      if (section === 'numbers') return { title: `Números en ${tName} (0–1.000)`, subtitle: 'Números cardinales de cero a mil con pronunciación nativa' };
+      if (section === 'time') return { title: `La hora en ${tName} y expresiones`, subtitle: 'Aprende horas, minutos y expresiones de tiempo cotidianas' };
+      return { title: `Cuestionario de práctica (${tName})`, subtitle: 'Práctica interactiva de vocabulario, escritura y escucha' };
+    case 'fr':
+      if (section === 'alphabet') return { title: `Alphabet (${tName})`, subtitle: `${count} lettres avec guides de prononciation, exemples et audio natif` };
+      if (section === 'phrases') return { title: `Phrases essentielles (${tName})`, subtitle: tapSubtitle.fr };
+      if (section === 'words') return { title: `Mots fréquents (${tName})`, subtitle: tapSubtitle.fr };
+      if (section === 'numbers') return { title: `Nombres (${tName}) (0–1 000)`, subtitle: 'Nombres cardinaux de zéro à mille avec prononciation native' };
+      if (section === 'time') return { title: `Dire l'heure (${tName})`, subtitle: 'Heures, minutes et expressions de temps quotidiennes' };
+      return { title: `Quiz d'entraînement (${tName})`, subtitle: 'Entraînement interactif de vocabulaire et d\'écoute' };
+    case 'ru':
+      if (section === 'alphabet') return { title: `Алфавит (${tName})`, subtitle: `${count} букв и знаков с правилами произношения, примерами и аудио` };
+      if (section === 'phrases') return { title: `Основные фразы (${tName})`, subtitle: tapSubtitle.ru };
+      if (section === 'words') return { title: `Популярные слова (${tName})`, subtitle: tapSubtitle.ru };
+      if (section === 'numbers') return { title: `Числа (${tName}) (0–1000)`, subtitle: 'Количественные числительные от нуля до тысячи с произношением' };
+      if (section === 'time') return { title: `Время и фразы (${tName})`, subtitle: 'Часы, минуты и повседневные выражения времени' };
+      return { title: `Практический тест (${tName})`, subtitle: 'Интерактивная тренировка слов, фраз и восприятия на слух' };
+    case 'pt':
+      if (section === 'alphabet') return { title: `Alfabeto (${tName})`, subtitle: `${count} letras com guias de pronúncia, vocabulário e áudio nativo` };
+      if (section === 'phrases') return { title: `Frases essenciais (${tName})`, subtitle: tapSubtitle.pt };
+      if (section === 'words') return { title: `Palavras comuns (${tName})`, subtitle: tapSubtitle.pt };
+      if (section === 'numbers') return { title: `Números (${tName}) (0–1.000)`, subtitle: 'Números cardinais de zero a mil com pronúncia nativa' };
+      if (section === 'time') return { title: `Horas e tempo (${tName})`, subtitle: 'Aprenda horas, minutos e expressões cotidianas de tempo' };
+      return { title: `Quiz prático (${tName})`, subtitle: 'Prática interativa de vocabulário, escrita e escuta' };
+    case 'de':
+      if (section === 'alphabet') return { title: `Alphabet (${tName})`, subtitle: `${count} Zeichen mit Aussprachehilfen, Beispielwörtern und Studio-Audio` };
+      if (section === 'phrases') return { title: `Wichtige Sätze (${tName})`, subtitle: tapSubtitle.de };
+      if (section === 'words') return { title: `Häufige Wörter (${tName})`, subtitle: tapSubtitle.de };
+      if (section === 'numbers') return { title: `Zahlen (${tName}) (0–1.000)`, subtitle: 'Grundzahlen von null bis tausend mit Studio-Audio' };
+      if (section === 'time') return { title: `Uhrzeit & Ausdrücke (${tName})`, subtitle: 'Stunden, Minuten und alltägliche Zeitausdrücke' };
+      return { title: `Übungsquiz (${tName})`, subtitle: 'Interaktives Vokabel-, Schreib- und Hörtraining' };
+    case 'id':
+      if (section === 'alphabet') return { title: `Alfabet ${tName}`, subtitle: `${count} huruf dengan panduan pelafalan, kosakata contoh, dan audio asli` };
+      if (section === 'phrases') return { title: `Frasa Dasar ${tName}`, subtitle: tapSubtitle.id };
+      if (section === 'words') return { title: `Kosakata Umum ${tName}`, subtitle: tapSubtitle.id };
+      if (section === 'numbers') return { title: `Angka ${tName} (0–1.000)`, subtitle: 'Angka kardinal dari nol hingga seribu dengan pelafalan asli' };
+      if (section === 'time') return { title: `Waktu & Jam ${tName}`, subtitle: 'Pelajari jam, menit, dan ungkapan waktu sehari-hari' };
+      return { title: `Kuis Latihan ${tName}`, subtitle: 'Latihan kosakata, penulisan, dan pendengaran interaktif' };
+    case 'tr':
+      if (section === 'alphabet') return { title: `${tName} Alfabesi`, subtitle: `Telaffuz rehberi, örnek kelimeler ve stüdyo sesiyle ${count} harf` };
+      if (section === 'phrases') return { title: `Temel ${tName} İfadeler`, subtitle: tapSubtitle.tr };
+      if (section === 'words') return { title: `Yaygın ${tName} Kelimeler`, subtitle: tapSubtitle.tr };
+      if (section === 'numbers') return { title: `${tName} Sayılar (0–1.000)`, subtitle: 'Sıfırdan bine kadar temel sayılar ve telaffuzları' };
+      if (section === 'time') return { title: `${tName} Saatler ve Zaman İfadeleri`, subtitle: 'Saatleri, dakikaları ve günlük zaman ifadelerini öğrenin' };
+      return { title: `${tName} Alıştırma Testi`, subtitle: 'Etkileşimli kelime, yazma ve dinleme pratiği' };
+    case 'zh':
+      if (section === 'alphabet') return { title: `${tName}字母与发音`, subtitle: `共 ${count} 个字母/核心发音，附发音指南、例词与母语录音` };
+      if (section === 'phrases') return { title: `${tName}常用短语与问候`, subtitle: tapSubtitle.zh };
+      if (section === 'words') return { title: `${tName}高频核心词汇`, subtitle: tapSubtitle.zh };
+      if (section === 'numbers') return { title: `${tName}数字 (0–1,000)`, subtitle: '从零到一千的基础基数词与标准母语发音' };
+      if (section === 'time') return { title: `${tName}时间表达与常用语`, subtitle: '学习整点、分钟及日常时间表达方式' };
+      return { title: `${tName}互动测验`, subtitle: '词汇、短语、拼写与听力综合练习' };
+    case 'ja':
+      if (section === 'alphabet') return { title: `${tName}の文字と発音`, subtitle: `${count}文字の発音ガイド、例文単語、ネイティブ音声付き` };
+      if (section === 'phrases') return { title: `${tName}の基本フレーズと挨拶`, subtitle: tapSubtitle.ja };
+      if (section === 'words') return { title: `${tName}の頻出単語・語彙`, subtitle: tapSubtitle.ja };
+      if (section === 'numbers') return { title: `${tName}の数字 (0–1,000)`, subtitle: '0から1,000までの基本数字とネイティブ発音' };
+      if (section === 'time') return { title: `${tName}の時刻と時間表現`, subtitle: '時・分と日常でよく使う時間表現を学ぶ' };
+      return { title: `${tName}練習クイズ`, subtitle: '単語・フレーズ・リスニングの対話型テスト' };
+    case 'ko':
+      if (section === 'alphabet') return { title: `${tName} 문자 및 발음`, subtitle: `발음 가이드, 예시 어휘 및 원어민 음성이 포함된 ${count}개 글자` };
+      if (section === 'phrases') return { title: `${tName} 필수 회화 및 인사말`, subtitle: tapSubtitle.ko };
+      if (section === 'words') return { title: `${tName} 핵심 빈출 단어`, subtitle: tapSubtitle.ko };
+      if (section === 'numbers') return { title: `${tName} 숫자 (0–1,000)`, subtitle: '0부터 1,000까지의 기본 숫자와 원어민 발음' };
+      if (section === 'time') return { title: `${tName} 시간 및 시각 표현`, subtitle: '시, 분 및 일상적인 시간 표현 배우기' };
+      return { title: `${tName} 실전 퀴즈`, subtitle: '어휘, 문장 및 듣기 맞춤형 연습' };
+    case 'hi':
+      if (section === 'alphabet') return { title: `${tName} वर्णमाला और ध्वनियाँ`, subtitle: `उच्चारण गाइड, उदाहरण शब्दों और मूल ऑडियो के साथ ${count} अक्षर` };
+      if (section === 'phrases') return { title: `${tName} के आवश्यक वाक्यांश और अभिवादन`, subtitle: tapSubtitle.hi };
+      if (section === 'words') return { title: `${tName} के सामान्य शब्द और शब्दावली`, subtitle: tapSubtitle.hi };
+      if (section === 'numbers') return { title: `${tName} संख्याएँ (0–1,000)`, subtitle: 'शून्य से एक हज़ार तक की संख्याएँ और शुद्ध उच्चारण' };
+      if (section === 'time') return { title: `${tName} में समय बताना और समय के वाक्य`, subtitle: 'घंटे, मिनट और रोज़मर्रा के समय से जुड़े भाव सीखें' };
+      return { title: `${tName} अभ्यास प्रश्नोत्तरी`, subtitle: 'शब्दावली, लेखन और श्रवण का इंटरैक्टिव अभ्यास' };
+    case 'ar':
+      if (section === 'alphabet') return { title: `أبجدية وأصوات ${tName}`, subtitle: `${count} حرفاً مع دليل النطق وكلمات أمثلة وتسجيل صوتي أصلي` };
+      if (section === 'phrases') return { title: `العبارات والتحيات الأساسية في ${tName}`, subtitle: tapSubtitle.ar };
+      if (section === 'words') return { title: `الكلمات والمفردات الشائعة في ${tName}`, subtitle: tapSubtitle.ar };
+      if (section === 'numbers') return { title: `الأرقام في ${tName} (0–1,000)`, subtitle: 'الأعداد الأساسية من الصفر إلى الألف مع النطق الصحيح' };
+      if (section === 'time') return { title: `الوقت والساعة في ${tName}`, subtitle: 'تعلّم الساعات والدقائق وتعبيرات الوقت اليومية' };
+      return { title: `اختبار تدريب ${tName}`, subtitle: 'تدريب تفاعلي على المفردات والكتابة والاستماع' };
+    case 'bn':
+      if (section === 'alphabet') return { title: `${tName} বর্ণমালা ও ধ্বনি`, subtitle: `উচ্চারণ নির্দেশিকা, উদাহরণ শব্দ ও স্টুডিও অডিওসহ ${count}টি বর্ণ` };
+      if (section === 'phrases') return { title: `${tName} প্রয়োজনীয় বাক্যাংশ ও অভিবাদন`, subtitle: tapSubtitle.bn };
+      if (section === 'words') return { title: `${tName} সাধারণ শব্দ ও শব্দভাণ্ডার`, subtitle: tapSubtitle.bn };
+      if (section === 'numbers') return { title: `${tName} সংখ্যা (০–১,০০০)`, subtitle: 'শূন্য থেকে এক হাজার পর্যন্ত সংখ্যা ও সঠিক উচ্চারণ' };
+      if (section === 'time') return { title: `${tName} সময় বলা ও সময়ের বাক্য`, subtitle: 'ঘণ্টা, মিনিট এবং দৈনন্দিন সময়ের প্রকাশ শিখুন' };
+      return { title: `${tName} অনুশীলন কুইজ`, subtitle: 'শব্দভাণ্ডার, লেখা এবং শোনার ইন্টারেক্টিভ অনুশীলন' };
+    case 'ur':
+      if (section === 'alphabet') return { title: `${tName} حروفِ تہجی اور آوازیں`, subtitle: `تلفظ کی رہنمائی، مثالی الفاظ اور مستند آڈیو کے ساتھ ${count} حروف` };
+      if (section === 'phrases') return { title: `${tName} کے بنیادی جملے اور سلام`, subtitle: tapSubtitle.ur };
+      if (section === 'words') return { title: `${tName} کے عام الفاظ اور ذخیرۂ الفاظ`, subtitle: tapSubtitle.ur };
+      if (section === 'numbers') return { title: `${tName} اعداد (0–1,000)`, subtitle: 'صفر سے ایک ہزار تک گنتی اور مستند تلفظ' };
+      if (section === 'time') return { title: `${tName} میں وقت بتانا اور وقت کے جملے`, subtitle: 'گھنٹے، منٹ اور روزمرہ وقت کے اہم جملے سیکھیں' };
+      return { title: `${tName} مشقی کوئز`, subtitle: 'ذخیرۂ الفاظ، لکھنے اور سننے کی انٹرایکٹو مشق' };
+    default:
+      return {
+        title: `${enName} Practice`,
+        subtitle: tapSubtitle.en
+      };
+  }
+};
+
+export const getPageContent = (
+  section: 'alphabet' | 'phrases' | 'words' | 'numbers' | 'time' | 'quiz',
+  targetLang: SupportedLanguageId,
+  baseLang: SupportedLanguageId
+): PageContent => {
+  const explicit = getPageContentExplicit(section, targetLang, baseLang);
+  if (explicit.title === 'Language School') {
+    return buildDynamicPageContent(section, targetLang, baseLang);
+  }
+  if (baseLang !== 'en') {
+    const enDefault = getPageContentExplicit(section, targetLang, 'en');
+    if (explicit.title === enDefault.title) {
+      return buildDynamicPageContent(section, targetLang, baseLang);
+    }
+  }
+  return explicit;
 };
 
 /**
@@ -2485,12 +2684,12 @@ export const localizeCategoryBadge = (
       ja: 'フレーズ', ko: '문구', zh: '短语', hi: 'वाक्यांश', ar: 'عبارات', bn: 'বাক্যাংশ', ur: 'جملے'
     },
     'commonwords': {
-      en: 'Common Words', es: 'Palabras Comunes', fr: 'Mots Fréquents', ru: 'Популярные слова', pt: 'Palabras Comuns', de: 'Häufige Wörter', id: 'Kata Umum', tr: 'Yaygın Kelimeler',
+      en: 'Common Words', es: 'Palabras Comunes', fr: 'Mots Fréquents', ru: 'Популярные слова', pt: 'Palavras Comuns', de: 'Häufige Wörter', id: 'Kata Umum', tr: 'Yaygın Kelimeler',
       ja: 'よく使う単語', ko: '자주 쓰는 단어', zh: '常用单词', hi: 'सामान्य शब्द', ar: 'كلمات شائعة', bn: 'সাধারণ শব্দ', ur: 'عام الفاظ'
     },
     'common words': {
-      en: 'Common Words', es: 'Palabras Comunes', fr: 'Mots Fréquents', ru: 'Популярные слова', pt: 'Palabras Comuns', de: 'Häufige Wörter', id: 'Kata Umum', tr: 'Yaygın Kelimeler',
-      ja: 'よく使う単語', ko: '자주 쓰는 단어', zh: '常用单词', hi: 'सामान्य शब्द', ar: 'كلمات شائعة', bn: 'সাধারণ शब्द', ur: 'عام الفاظ'
+      en: 'Common Words', es: 'Palabras Comunes', fr: 'Mots Fréquents', ru: 'Популярные слова', pt: 'Palavras Comuns', de: 'Häufige Wörter', id: 'Kata Umum', tr: 'Yaygın Kelimeler',
+      ja: 'よく使う単語', ko: '자주 쓰는 단어', zh: '常用单词', hi: 'सामान्य शब्द', ar: 'كلمات شائعة', bn: 'সাধারণ শব্দ', ur: 'عام الفاظ'
     },
     'words': {
       en: 'Words', es: 'Palabras', fr: 'Mots', ru: 'Слова', pt: 'Palavras', de: 'Wörter', id: 'Kata-kata', tr: 'Kelimeler',
@@ -2546,7 +2745,7 @@ export const localizeCategoryBadge = (
     'farewells': { en: 'Farewells', es: 'Despedidas', fr: 'Au revoir', ru: 'Прощание', pt: 'Despedidas', de: 'Abschied', id: 'Perpisahan', tr: 'Vedalaşma', ja: '別れの言葉', ko: '작별', zh: '告别', hi: 'विदाई', ar: 'الوداع', bn: 'বিদায়', ur: 'الوداع' },
     'politeness': { en: 'Politeness', es: 'Cortesía', fr: 'Politesse', ru: 'Вежливость', pt: 'Cortesia', de: 'Höflichkeit', id: 'Kesopanan', tr: 'Nezaket', ja: '丁寧な表現', ko: '예절', zh: '礼貌', hi: 'विनम्रता', ar: 'اللباقة', bn: 'ভদ্রতা', ur: 'شائستگی' },
     'responses': { en: 'Responses', es: 'Respuestas', fr: 'Réponses', ru: 'Ответы', pt: 'Respostas', de: 'Antworten', id: 'Tanggapan', tr: 'Yanıtlar', ja: '返答', ko: '응답', zh: '回应', hi: 'उत्तर', ar: 'الردود', bn: 'উত্তর', ur: 'جوابات' },
-    'communication': { en: 'Communication', es: 'Comunicación', fr: 'Communication', ru: 'Общение', pt: 'Comunicação', de: 'Kommunikation', id: 'Komunikasi', tr: 'İletişim', ja: 'コミュニケーション', ko: '의사소通', zh: '交流', hi: 'संचार', ar: 'التواصل', bn: 'যোগাযোগ', ur: 'رابطہ' },
+    'communication': { en: 'Communication', es: 'Comunicación', fr: 'Communication', ru: 'Общение', pt: 'Comunicação', de: 'Kommunikation', id: 'Komunikasi', tr: 'İletişim', ja: 'コミュニケーション', ko: '의사소통', zh: '交流', hi: 'संचार', ar: 'التواصل', bn: 'যোগাযোগ', ur: 'رابطہ' },
     'food & drink': { en: 'Food & Drink', es: 'Comida y Bebida', fr: 'Nourriture et Boissons', ru: 'Еда и напитки', pt: 'Comida e Bebida', de: 'Essen & Trinken', id: 'Makanan & Minuman', tr: 'Yiyecek ve İçecek', ja: '飲食', ko: '음식과 음료', zh: '饮食', hi: 'भोजन और पेय', ar: 'الطعام والشراب', bn: 'খাবার ও পানীয়', ur: 'کھانا اور پینا' },
     'emergency': { en: 'Emergency', es: 'Emergencia', fr: 'Urgence', ru: 'Экстренные случаи', pt: 'Emergência', de: 'Notfall', id: 'Darurat', tr: 'Acil Durum', ja: '緊急時', ko: '비상 상황', zh: '紧急情况', hi: 'आपातकाल', ar: 'الطوارئ', bn: 'জরুরি অবস্থা', ur: 'ہنگامی صورتحال' },
     'people & family': { en: 'People & Family', es: 'Gente y Familia', fr: 'Personnes et Famille', ru: 'Люди и семья', pt: 'Pessoas e Família', de: 'Menschen & Familie', id: 'Orang & Keluarga', tr: 'İnsanlar ve Aile', ja: '人と家族', ko: '사람과 가족', zh: '人与家庭', hi: 'लोग और परिवार', ar: 'الناس والأسرة', bn: 'মানুষ ও পরিবার', ur: 'لوگ اور خاندان' },
@@ -2562,24 +2761,138 @@ export const localizeCategoryBadge = (
     'descriptions': { en: 'Descriptions', es: 'Descripciones', fr: 'Descriptions', ru: 'Описания', pt: 'Descrições', de: 'Beschreibungen', id: 'Deskripsi', tr: 'Tanımlar', ja: '描写', ko: '설명', zh: '描述', hi: 'विवरण', ar: 'الأوصاف', bn: 'বিবরণ', ur: 'اوصاف' },
     'common verbs': { en: 'Common Verbs', es: 'Verbos Comunes', fr: 'Verbes Courants', ru: 'Основные глаголы', pt: 'Verbos Comuns', de: 'Häufige Verben', id: 'Kata Kerja Umum', tr: 'Yaygın Fiiller', ja: '基本動詞', ko: '자주 쓰이는 동사', zh: '常用动词', hi: 'सामान्य क्रियाएँ', ar: 'أفعال شائعة', bn: 'সাধারণ ক্রিয়া', ur: 'عام افعال' },
     'core actions': { en: 'Core Actions', es: 'Acciones Básicas', fr: 'Actions de Base', ru: 'Основные действия', pt: 'Ações Básicas', de: 'Grundverben', id: 'Tindakan Dasar', tr: 'Temel Eylemler', ja: '基本動作', ko: '기본 동작', zh: '核心行动', hi: 'मुख्य क्रियाएँ', ar: 'الإجراءات الأساسية', bn: 'প্রধান পদক্ষেপ', ur: 'بنیادی اعمال' },
-    'numbers 0-10': { en: 'Numbers 0-10', es: 'Números 0-10', fr: 'Nombres 0-10', ru: 'Числа 0–10', pt: 'Números 0–10', de: 'Zahlen 0–10', id: 'Angka 0–10', tr: 'Sayılar 0–10' },
-    'numbers 11-20': { en: 'Numbers 11-20', es: 'Números 11-20', fr: 'Nombres 11-20', ru: 'Числа 11–20', pt: 'Números 11–20', de: 'Zahlen 11–20', id: 'Angka 11–20', tr: 'Sayılar 11–20' },
-    'tens': { en: 'Tens', es: 'Decenas', fr: 'Dizaines', ru: 'Десятки', pt: 'Dezenas', de: 'Zehner', id: 'Puluhan', tr: 'Onluklar' },
-    'hundreds': { en: 'Hundreds', es: 'Centenas', fr: 'Centaines', ru: 'Сотни', pt: 'Centenas', de: 'Hunderter', id: 'Ratusan', tr: 'Yüzlükler' },
-    'thousands': { en: 'Thousands', es: 'Miles', fr: 'Milliers', ru: 'Тысячи', pt: 'Milhares', de: 'Tausender', id: 'Ribuan', tr: 'Binlikler' },
-    'questions': { en: 'Questions', es: 'Preguntas', fr: 'Questions', ru: 'Вопросы', pt: 'Perguntas', de: 'Fragen', id: 'Pertanyaan', tr: 'Sorular' },
-    'hour': { en: 'Hour', es: 'Horas', fr: 'Heures', ru: 'Часы', pt: 'Horas', de: 'Stunden', id: 'Jam', tr: 'Saat' },
-    'minutes': { en: 'Minutes', es: 'Minutos', fr: 'Minutes', ru: 'Минуты', pt: 'Minutos', de: 'Minuten', id: 'Menit', tr: 'Dakika' },
-    'special': { en: 'Special', es: 'Especial', fr: 'Spécial', ru: 'Особое', pt: 'Especial', de: 'Spezial', id: 'Khusus', tr: 'Özel' },
-    'mixed': { en: 'Mixed', es: 'Mixto', fr: 'Mixte', ru: 'Смешанный', pt: 'Misto', de: 'Gemischt', id: 'Campuran', tr: 'Karışık' },
-    'verbs': { en: 'Verbs', es: 'Verbos', fr: 'Verbes', ru: 'Глаголы', pt: 'Verbos', de: 'Verben', id: 'Kata Kerja', tr: 'Fiiller' },
-    'calendar': { en: 'Calendar', es: 'Calendario', fr: 'Calendrier', ru: 'Календарь', pt: 'Calendário', de: 'Kalender', id: 'Kalender', tr: 'Takvim' },
-    'family': { en: 'Family', es: 'Familia', fr: 'Famille', ru: 'Семья', pt: 'Família', de: 'Familie', id: 'Keluarga', tr: 'Aile' },
-    'food': { en: 'Food', es: 'Comida', fr: 'Nourriture', ru: 'Еда', pt: 'Comida', de: 'Essen', id: 'Makanan', tr: 'Yiyecek' },
-    'general': { en: 'General', es: 'General', fr: 'Général', ru: 'Общее', pt: 'Geral', de: 'Allgemein', id: 'Umum', tr: 'Genel' },
-    'home': { en: 'Home', es: 'Hogar', fr: 'Maison', ru: 'Дом', pt: 'Casa', de: 'Zuhause', id: 'Rumah', tr: 'Ev' },
-    'nature': { en: 'Nature', es: 'Naturaleza', fr: 'Nature', ru: 'Природа', pt: 'Natureza', de: 'Natur', id: 'Alam', tr: 'Doğa' },
-    'question': { en: 'Questions', es: 'Preguntas', fr: 'Questions', ru: 'Вопросы', pt: 'Perguntas', de: 'Fragen', id: 'Pertanyaan', tr: 'Sorular' }
+    'numbers 0-10': {
+      en: 'Numbers 0-10', es: 'Números 0-10', fr: 'Nombres 0-10', ru: 'Числа 0–10', pt: 'Números 0–10', de: 'Zahlen 0–10', id: 'Angka 0–10', tr: 'Sayılar 0–10',
+      ja: '数字 0〜10', ko: '숫자 0–10', zh: '数字 0–10', hi: 'संख्याएँ 0–10', ar: 'الأرقام 0–10', bn: 'সংখ্যা ০–১০', ur: 'اعداد 0–10'
+    },
+    'numbers 11-20': {
+      en: 'Numbers 11-20', es: 'Números 11-20', fr: 'Nombres 11-20', ru: 'Числа 11–20', pt: 'Números 11–20', de: 'Zahlen 11–20', id: 'Angka 11–20', tr: 'Sayılar 11–20',
+      ja: '数字 11〜20', ko: '숫자 11–20', zh: '数字 11–20', hi: 'संख्याएँ 11–20', ar: 'الأرقام 11–20', bn: 'সংখ্যা ১১–২০', ur: 'اعداد 11–20'
+    },
+    'tens': {
+      en: 'Tens', es: 'Decenas', fr: 'Dizaines', ru: 'Десятки', pt: 'Dezenas', de: 'Zehner', id: 'Puluhan', tr: 'Onluklar',
+      ja: '10の位', ko: '십 단위', zh: '整十数', hi: 'दहाई', ar: 'العشرات', bn: 'দশক', ur: 'دہائیاں'
+    },
+    'hundreds': {
+      en: 'Hundreds', es: 'Centenas', fr: 'Centaines', ru: 'Сотни', pt: 'Centenas', de: 'Hunderter', id: 'Ratusan', tr: 'Yüzlükler',
+      ja: '100の位', ko: '백 단위', zh: '整百数', hi: 'सैकड़ा', ar: 'المئات', bn: 'শতক', ur: 'سینکڑے'
+    },
+    'thousands': {
+      en: 'Thousands', es: 'Miles', fr: 'Milliers', ru: 'Тысячи', pt: 'Milhares', de: 'Tausender', id: 'Ribuan', tr: 'Binlikler',
+      ja: '1000の位', ko: '천 단위', zh: '整千数', hi: 'हज़ार', ar: 'الآلاف', bn: 'হাজার', ur: 'ہزار'
+    },
+    'questions': {
+      en: 'Questions', es: 'Preguntas', fr: 'Questions', ru: 'Вопросы', pt: 'Perguntas', de: 'Fragen', id: 'Pertanyaan', tr: 'Sorular',
+      ja: '質問', ko: '질문', zh: '疑问词与提问', hi: 'प्रश्न', ar: 'الأسئلة', bn: 'প্রশ্ন', ur: 'سوالات'
+    },
+    'question': {
+      en: 'Questions', es: 'Preguntas', fr: 'Questions', ru: 'Вопросы', pt: 'Perguntas', de: 'Fragen', id: 'Pertanyaan', tr: 'Sorular',
+      ja: '質問', ko: '질문', zh: '提问', hi: 'प्रश्न', ar: 'الأسئلة', bn: 'প্রশ্ন', ur: 'سوالات'
+    },
+    'hour': {
+      en: 'Hour', es: 'Horas', fr: 'Heures', ru: 'Часы', pt: 'Horas', de: 'Stunden', id: 'Jam', tr: 'Saat',
+      ja: '時', ko: '시', zh: '整点', hi: 'घंटा', ar: 'الساعة', bn: 'ঘণ্টা', ur: 'گھنٹہ'
+    },
+    'hours': {
+      en: 'Hours', es: 'Horas', fr: 'Heures', ru: 'Часы', pt: 'Horas', de: 'Stunden', id: 'Jam', tr: 'Saatler',
+      ja: '時間・正時', ko: '정각·시간', zh: '小时', hi: 'घंटे', ar: 'الساعات', bn: 'ঘণ্টা', ur: 'گھنٹے'
+    },
+    'exact hours': {
+      en: 'Exact Hours', es: 'Horas en punto', fr: 'Heures piles', ru: 'Точные часы', pt: 'Horas exatas', de: 'Volle Stunden', id: 'Jam Tepat', tr: 'Tam Saatler',
+      ja: 'ちょうどの時刻', ko: '정각 표현', zh: '整点表达', hi: 'ठीक घंटे', ar: 'الساعات التامة', bn: 'পূর্ণ ঘণ্টা', ur: 'پورا گھنٹہ'
+    },
+    'half hours': {
+      en: 'Half Hours', es: 'Medias horas', fr: 'Demi-heures', ru: 'Половина часа', pt: 'Meias horas', de: 'Halbe Stunden', id: 'Setengah Jam', tr: 'Yarım Saatler',
+      ja: '30分・半', ko: '30분 표현', zh: '半点表达', hi: 'साढ़े / आधा घंटा', ar: 'نصف الساعة', bn: 'আধা ঘণ্টা', ur: 'آدھا گھنٹہ'
+    },
+    'quarter hours': {
+      en: 'Quarter Hours', es: 'Cuartos de hora', fr: 'Quarts d\'heure', ru: 'Четверти часа', pt: 'Quartos de hora', de: 'Viertelstunden', id: 'Seperempat Jam', tr: 'Çeyrek Saatler',
+      ja: '15分・45分', ko: '15분·45분 표현', zh: '一刻钟表达', hi: 'सवा / पौने', ar: 'ربع الساعة', bn: 'সোয়া ও পৌনে', ur: 'سوا اور پونے'
+    },
+    'minutes': {
+      en: 'Minutes', es: 'Minutos', fr: 'Minutes', ru: 'Минуты', pt: 'Minutos', de: 'Minuten', id: 'Menit', tr: 'Dakika',
+      ja: '分', ko: '분', zh: '分钟', hi: 'मिनट', ar: 'الدقائق', bn: 'মিনিট', ur: 'منٹ'
+    },
+    'time asking': {
+      en: 'Time Asking', es: 'Preguntar la hora', fr: 'Demander l\'heure', ru: 'Вопросы о времени', pt: 'Perguntar as horas', de: 'Nach der Zeit fragen', id: 'Menanyakan Waktu', tr: 'Saati Sorma',
+      ja: '時刻を尋ねる', ko: '시간 묻기', zh: '询问时间', hi: 'समय पूछना', ar: 'السؤال عن الوقت', bn: 'সময় জিজ্ঞাসা', ur: 'وقت پوچھنا'
+    },
+    'time of day': {
+      en: 'Time of Day', es: 'Momentos del día', fr: 'Moments de la journée', ru: 'Время суток', pt: 'Períodos do dia', de: 'Tageszeiten', id: 'Waktu Hari', tr: 'Günün Vakitleri',
+      ja: '時間帯', ko: '하루의 시간대', zh: '一天中的时段', hi: 'दिन का समय', ar: 'أوقات اليوم', bn: 'দিনের সময়', ur: 'دن کے اوقات'
+    },
+    'special': {
+      en: 'Special', es: 'Especial', fr: 'Spécial', ru: 'Особое', pt: 'Especial', de: 'Spezial', id: 'Khusus', tr: 'Özel',
+      ja: '特別表現', ko: '특별 표현', zh: '特殊表达', hi: 'विशेष', ar: 'خاص', bn: 'বিশেষ', ur: 'خاص'
+    },
+    'mixed': {
+      en: 'Mixed', es: 'Mixto', fr: 'Mixte', ru: 'Смешанный', pt: 'Misto', de: 'Gemischt', id: 'Campuran', tr: 'Karışık',
+      ja: 'ミックス', ko: '혼합', zh: '综合', hi: 'मिश्रित', ar: 'مختلط', bn: 'মিশ্র', ur: 'ملا جلا'
+    },
+    'verbs': {
+      en: 'Verbs', es: 'Verbos', fr: 'Verbes', ru: 'Глаголы', pt: 'Verbos', de: 'Verben', id: 'Kata Kerja', tr: 'Fiiller',
+      ja: '動詞', ko: '동사', zh: '动词', hi: 'क्रियाएँ', ar: 'الأفعال', bn: 'ক্রিয়া', ur: 'افعال'
+    },
+    'calendar': {
+      en: 'Calendar', es: 'Calendario', fr: 'Calendrier', ru: 'Календарь', pt: 'Calendário', de: 'Kalender', id: 'Kalender', tr: 'Takvim',
+      ja: 'カレンダー・暦', ko: '달력·날짜', zh: '日历与日期', hi: 'कैलेंडर', ar: 'التقويم', bn: 'ক্যালেন্ডার', ur: 'کیلنڈر'
+    },
+    'family': {
+      en: 'Family', es: 'Familia', fr: 'Famille', ru: 'Семья', pt: 'Família', de: 'Familie', id: 'Keluarga', tr: 'Aile',
+      ja: '家族', ko: '가족', zh: '家庭', hi: 'परिवार', ar: 'الأسرة', bn: 'পরিবার', ur: 'خاندان'
+    },
+    'food': {
+      en: 'Food', es: 'Comida', fr: 'Nourriture', ru: 'Еда', pt: 'Comida', de: 'Essen', id: 'Makanan', tr: 'Yiyecek',
+      ja: '食べ物', ko: '음식', zh: '食物', hi: 'भोजन', ar: 'الطعام', bn: 'খাবার', ur: 'کھانا'
+    },
+    'general': {
+      en: 'General', es: 'General', fr: 'Général', ru: 'Общее', pt: 'Geral', de: 'Allgemein', id: 'Umum', tr: 'Genel',
+      ja: '一般', ko: '일반', zh: '通用词汇', hi: 'सामान्य', ar: 'عام', bn: 'সাধারণ', ur: 'عمومی'
+    },
+    'home': {
+      en: 'Home', es: 'Hogar', fr: 'Maison', ru: 'Дом', pt: 'Casa', de: 'Zuhause', id: 'Rumah', tr: 'Ev',
+      ja: '家・住まい', ko: '집·가정', zh: '家居', hi: 'घर', ar: 'المنزل', bn: 'বাড়ি', ur: 'گھر'
+    },
+    'nature': {
+      en: 'Nature', es: 'Naturaleza', fr: 'Nature', ru: 'Природа', pt: 'Natureza', de: 'Natur', id: 'Alam', tr: 'Doğa',
+      ja: '自然', ko: '자연', zh: '自然', hi: 'प्रकृति', ar: 'الطبيعة', bn: 'প্রকৃতি', ur: 'فطرت'
+    },
+    'adjectives': {
+      en: 'Adjectives', es: 'Adjetivos', fr: 'Adjectifs', ru: 'Прилагательные', pt: 'Adjetivos', de: 'Adjektive', id: 'Kata Sifat', tr: 'Sıfatlar',
+      ja: '形容詞', ko: '형용사', zh: '形容词', hi: 'विशेषण', ar: 'الصفات', bn: 'বিশেষণ', ur: 'صفتیں'
+    },
+    'animals': {
+      en: 'Animals', es: 'Animales', fr: 'Animaux', ru: 'Животные', pt: 'Animais', de: 'Tiere', id: 'Hewan', tr: 'Hayvanlar',
+      ja: '動物', ko: '동물', zh: '动物', hi: 'पशु-पक्षी', ar: 'الحيوانات', bn: 'প্রাণী', ur: 'جانور'
+    },
+    'clothing': {
+      en: 'Clothing', es: 'Ropa', fr: 'Vêtements', ru: 'Одежда', pt: 'Roupas', de: 'Kleidung', id: 'Pakaian', tr: 'Giyim',
+      ja: '衣類・服', ko: '의류·옷', zh: '服饰', hi: 'कपड़े', ar: 'الملابس', bn: 'পোশাক', ur: 'لباس'
+    },
+    'courtesy': {
+      en: 'Courtesy', es: 'Cortesía', fr: 'Courtoisie', ru: 'Вежливость', pt: 'Cortesia', de: 'Höflichkeit', id: 'Sopan Santun', tr: 'Nezaket',
+      ja: '礼儀・丁寧表現', ko: '예의·정중한 표현', zh: '礼貌用语', hi: 'शिष्टाचार', ar: 'المجاملة واللباقة', bn: 'সৌজন্য', ur: 'شائستگی'
+    },
+    'polite': {
+      en: 'Polite', es: 'Cortesía', fr: 'Politesse', ru: 'Вежливость', pt: 'Cortesia', de: 'Höflich', id: 'Sopan', tr: 'Kibar İfadeler',
+      ja: '丁寧表現', ko: '정중한 표현', zh: '礼貌表达', hi: 'विनम्र', ar: 'مهذب', bn: 'ভদ্রতা', ur: 'شائستہ'
+    },
+    'expressions': {
+      en: 'Expressions', es: 'Expresiones', fr: 'Expressions', ru: 'Выражения', pt: 'Expressões', de: 'Ausdrücke', id: 'Ungkapan', tr: 'İfadeler',
+      ja: '表現', ko: '관용·일상 표현', zh: '常用表达', hi: 'अभिव्यक्तियाँ', ar: 'تعبيرات', bn: 'অভিব্যক্তি', ur: 'تاثرات و محاورے'
+    },
+    'object': {
+      en: 'Objects', es: 'Objetos', fr: 'Objets', ru: 'Предметы', pt: 'Objetos', de: 'Gegenstände', id: 'Benda', tr: 'Nesneler',
+      ja: '物・アイテム', ko: '사물', zh: '物品', hi: 'वस्तुएँ', ar: 'الأشياء', bn: 'বস্তু', ur: 'اشیاء'
+    },
+    'place': {
+      en: 'Places', es: 'Lugares', fr: 'Lieux', ru: 'Места', pt: 'Lugares', de: 'Orte', id: 'Tempat', tr: 'Yerler',
+      ja: '場所', ko: '장소', zh: '地点', hi: 'स्थान', ar: 'الأماكن', bn: 'স্থান', ur: 'مقامات'
+    },
+    'reply': {
+      en: 'Replies', es: 'Respuestas', fr: 'Réponses', ru: 'Ответы', pt: 'Respostas', de: 'Antworten', id: 'Balasan', tr: 'Yanıtlar',
+      ja: '返答', ko: '응답', zh: '回答', hi: 'उत्तर', ar: 'الردود', bn: 'উত্তর', ur: 'جوابات'
+    }
   };
 
   return map[key]?.[baseLang] || category;
@@ -2595,7 +2908,14 @@ export const localizeLevelBadge = (level: 'all' | 1 | 2 | 3, baseLang: Supported
       pt: 'Todos os níveis',
       de: 'Alle Stufen',
       id: 'Semua Tingkat',
-      tr: 'Tüm Seviyeler'
+      tr: 'Tüm Seviyeler',
+      ja: '全レベル',
+      ko: '모든 레벨',
+      zh: '全部等级',
+      hi: 'सभी स्तर',
+      ar: 'جميع المستويات',
+      bn: 'সব স্তর',
+      ur: 'تمام درجات'
     },
     '1': {
       en: 'Level 1: Foundations',
@@ -2605,7 +2925,14 @@ export const localizeLevelBadge = (level: 'all' | 1 | 2 | 3, baseLang: Supported
       pt: 'Nível 1: Fundamentos',
       de: 'Stufe 1: Grundlagen',
       id: 'Tingkat 1: Dasar',
-      tr: 'Seviye 1: Temel'
+      tr: 'Seviye 1: Temel',
+      ja: 'レベル1：基礎',
+      ko: '레벨 1: 기초',
+      zh: '第1级：基础入门',
+      hi: 'स्तर 1: बुनियादी',
+      ar: 'المستوى 1: الأساسيات',
+      bn: 'স্তর ১: ভিত্তি',
+      ur: 'درجہ 1: بنیادی'
     },
     '2': {
       en: 'Level 2: Workplace',
@@ -2615,7 +2942,14 @@ export const localizeLevelBadge = (level: 'all' | 1 | 2 | 3, baseLang: Supported
       pt: 'Nível 2: Trabalho',
       de: 'Stufe 2: Arbeitswelt',
       id: 'Tingkat 2: Tempat Kerja',
-      tr: 'Seviye 2: İş Yeri'
+      tr: 'Seviye 2: İş Yeri',
+      ja: 'レベル2：実務・職場',
+      ko: '레벨 2: 실무·직장',
+      zh: '第2级：职场应用',
+      hi: 'स्तर 2: कार्यस्थल',
+      ar: 'المستوى 2: بيئة العمل',
+      bn: 'স্তর ২: কর্মক্ষেত্র',
+      ur: 'درجہ 2: عملی و دفتری'
     },
     '3': {
       en: 'Level 3: Professional',
@@ -2625,7 +2959,14 @@ export const localizeLevelBadge = (level: 'all' | 1 | 2 | 3, baseLang: Supported
       pt: 'Nível 3: Profissional',
       de: 'Stufe 3: Fachkompetenz',
       id: 'Tingkat 3: Mahir',
-      tr: 'Seviye 3: İleri'
+      tr: 'Seviye 3: İleri',
+      ja: 'レベル3：上級・専門',
+      ko: '레벨 3: 고급·전문',
+      zh: '第3级：专业精通',
+      hi: 'स्तर 3: व्यावसायिक',
+      ar: 'المستوى 3: متقدم واحترافي',
+      bn: 'স্তর ৩: পেশাদার',
+      ur: 'درجہ 3: ماہرانہ'
     }
   };
   return map[String(level)]?.[baseLang] || `Level ${level}`;

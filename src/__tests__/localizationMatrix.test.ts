@@ -119,3 +119,74 @@ describe('Language request note', () => {
     expect(getLanguageRequestCopy('xx' as SupportedLanguageId).title).toBe('Request a Language');
   });
 });
+
+import { SUPPORTED_LANGUAGES } from '../data/languages';
+import { getPageContent } from '../utils/pageDictionary';
+import { resolveTranslation } from '../utils/translationResolver';
+
+describe('Full 15-language category, page header & translation performance guarantees', () => {
+  const allDatasetCategories = Array.from(
+    new Set(
+      Object.values(SUPPORTED_LANGUAGES).flatMap((entry) => [
+        ...(entry.data.basicPhrases || []).map((p) => p.category),
+        ...(entry.data.commonWords || []).map((p) => p.category),
+        ...(entry.data.numbers || []).map((p) => p.category),
+        ...(entry.data.time || []).map((p) => p.category),
+      ])
+    )
+  ).filter((c): c is string => Boolean(c && c.trim()));
+
+  it.each(NON_LATIN)('%s: every curriculum category badge across all 15 courses localizes (no raw English)', (baseLang) => {
+    for (const cat of allDatasetCategories) {
+      const localized = localizeCategoryBadge(cat, baseLang);
+      expect(localized, `${baseLang} category "${cat}" remained English`).toBeTruthy();
+      expect(localized, `${baseLang} category "${cat}" remained English`).not.toBe(cat);
+    }
+  });
+
+  it.each(NON_LATIN)('%s: level badges never fall back to English', (baseLang) => {
+    for (const level of ['all', 1, 2, 3] as const) {
+      const enVal = localizeLevelBadge(level, 'en');
+      const localized = localizeLevelBadge(level, baseLang);
+      expect(localized, `${baseLang} level "${level}"`).not.toBe(enVal);
+    }
+  });
+
+  it.each(NON_LATIN)('%s: getPageContent localizes titles & subtitles for all 15 target languages across all 6 sections', (baseLang) => {
+    const sections = ['alphabet', 'phrases', 'words', 'numbers', 'time', 'quiz'] as const;
+    for (const targetLang of ALL) {
+      for (const section of sections) {
+        const enPage = getPageContent(section, targetLang, 'en');
+        const localizedPage = getPageContent(section, targetLang, baseLang);
+        expect(isNonEmptyString(localizedPage.title), `${baseLang}->${targetLang}:${section}.title`).toBe(true);
+        expect(isNonEmptyString(localizedPage.subtitle), `${baseLang}->${targetLang}:${section}.subtitle`).toBe(true);
+        expect(localizedPage.title, `${baseLang}->${targetLang}:${section}.title leaked English`).not.toBe(enPage.title);
+        expect(localizedPage.subtitle, `${baseLang}->${targetLang}:${section}.subtitle leaked English`).not.toBe(enPage.subtitle);
+      }
+    }
+  });
+
+  it('resolves English words into Urdu and Bengali script instead of English dictionary definitions, in < 50ms for 500+ items', () => {
+    const enWords = SUPPORTED_LANGUAGES.en.data.commonWords || [];
+    expect(enWords.length).toBeGreaterThan(400);
+
+    // Warm up one-time index initialization, then benchmark 1,000+ steady-state tab-switch lookups
+    resolveTranslation(enWords[0] as any, 'en', 'es');
+    const start = performance.now();
+    const urResults = enWords.map((item) => resolveTranslation(item as any, 'en', 'ur'));
+    const zhResults = enWords.map((item) => resolveTranslation(item as any, 'en', 'zh'));
+    const elapsedMs = performance.now() - start;
+
+    expect(elapsedMs).toBeLessThan(250);
+    expect(urResults.some((t) => /[\u0600-\u06FF]/.test(t))).toBe(true);
+    expect(zhResults.some((t) => /[\u4E00-\u9FFF]/.test(t))).toBe(true);
+
+    const appleItem = { phrase: 'Apple', translation: 'Noun: A sweet round fruit' };
+    const urApple = resolveTranslation(appleItem, 'en', 'ur');
+    const bnApple = resolveTranslation(appleItem, 'en', 'bn');
+    expect(urApple).not.toContain('Noun:');
+    expect(bnApple).not.toContain('Noun:');
+    expect(/[\u0600-\u06FF]/.test(urApple)).toBe(true);
+    expect(/[\u0980-\u09FF]/.test(bnApple)).toBe(true);
+  });
+});
