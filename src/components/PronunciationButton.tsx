@@ -179,7 +179,7 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
   useEffect(() => {
     // Reset playing state immediately when text/category changes so the button
     // doesn't stay stuck in the "playing" / disabled state on the new page
-    setIsPlaying(false);
+    setIsPlaying(prev => (prev ? false : prev));
     fallbackAttemptedRef.current = false;
 
     return () => {
@@ -372,4 +372,4 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
   );
 };
 
-export default PronunciationButton;
+export default React.memo(PronunciationButton);

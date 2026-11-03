@@ -89,7 +89,6 @@ const AppContent: React.FC = () => {
   const parsed = parsePath();
   const [activeSection, setActiveSection] = useState<string>(() => parsed.section);
   const [installPrompt, setInstallPrompt] = useState<any>(null);
-  const [speechInitialized, setSpeechInitialized] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [alphabetSubTab, setAlphabetSubTab] = useState<'alphabet' | 'grammar'>(() => parsed.subTab || 'alphabet');
@@ -205,18 +204,11 @@ const AppContent: React.FC = () => {
     };
   }, []);
 
-  // Initialize Speech Synthesis
+  // Initialize Speech Synthesis fallback voices asynchronously without blocking UI render
   useEffect(() => {
-    const initSpeech = async () => {
-      try {
-        await initVoices();
-        setSpeechInitialized(true);
-      } catch (err) {
-        console.error('Failed to initialize speech:', err);
-        setSpeechInitialized(true);
-      }
-    };
-    initSpeech();
+    initVoices().catch((err) => {
+      console.error('Failed to initialize speech:', err);
+    });
   }, []);
 
   const handleInstallClick = () => {
@@ -252,16 +244,6 @@ const AppContent: React.FC = () => {
   };
 
   const renderActiveSection = () => {
-    if (!speechInitialized) {
-      return (
-        <div className="section loading-section">
-          <h2>Loading Speech Engine</h2>
-          <p className="loading-message">Initializing voice capabilities. This may take a moment...</p>
-          <div className="loading-spinner"></div>
-        </div>
-      );
-    }
-
     const getSectionTitle = (sectionType: 'phrases' | 'words' | 'numbers' | 'time') => {
       if (baseLanguage === 'en') {
         if (sectionType === 'phrases') return `${currentMeta.name} Essential Phrases`;
@@ -416,6 +398,7 @@ const AppContent: React.FC = () => {
           isOpen={isDrawerOpen}
           onClose={() => setIsDrawerOpen(false)}
           onNavigate={handleSectionChange}
+          onLanguageChange={handleLanguageChange}
           onOpenSearch={() => setIsSearchOpen(true)}
           installPrompt={installPrompt}
           onInstallClick={handleInstallClick}

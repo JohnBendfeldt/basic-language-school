@@ -299,12 +299,24 @@ export const normalizeEnglishPhrase = (text: string): string => {
 };
 
 /**
+ * Language-neutral phrase normalizer (strips parentheticals and punctuation without English synonym/contraction rules)
+ */
+export const normalizeGenericPhrase = (text: string): string => {
+  return text
+    .toLowerCase()
+    .replace(/\s*\([^)]*\)\s*/g, ' ')
+    .replace(/[.,/#!$%^&*;:{}=\-_`~()?'""¡¿،؛؟।॥、。！？（）]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+};
+
+/**
  * Tokenize a phrase into lowercase words, skipping whitespace
  */
 export const tokenize = (text: string): string[] => {
   return text
     .toLowerCase()
-    .replace(/[.,/#!$%^&*;:{}=\-_`~()?'"]/g, ' ')
+    .replace(/[.,/#!$%^&*;:{}=\-_`~()?'""¡¿،؛؟।॥、。！？（）]/g, ' ')
     .split(/\s+/)
     .filter(Boolean);
 };
@@ -313,7 +325,8 @@ export const tokenize = (text: string): string[] => {
  * Words that carry no meaning on their own; missing one of these never makes an answer wrong.
  */
 const STOP_WORDS = ['are', 'we', 'let', 'us', 'is', 'the', 'a', 'an', 'shall', 'do', 'i', 'you'];
-const isStopWord = (w: string): boolean => STOP_WORDS.includes(w);
+const isStopWord = (w: string, allowEnglishRules: boolean = true): boolean =>
+  allowEnglishRules && STOP_WORDS.includes(w);
 
 /**
  * Like isPlausibleTypo, but for whole phrases: every word that differs must itself be a
@@ -334,22 +347,23 @@ export const isPlausiblePhraseTypo = (user: string, target: string): boolean => 
 
 /**
  * Evaluate smart fuzzy match between user input and target answers.
- * Supports token-level typo tolerance (e.g. 'wer' -> 'we'), contraction expansion,
- * and conversational synonyms.
+ * Supports token-level typo tolerance (e.g. 'wer' -> 'we'), and when allowEnglishRules is true,
+ * English contraction expansion and conversational synonyms.
  */
 export const evaluateSmartAnswer = (
   userAnswer: string,
-  rawTargets: string[]
+  rawTargets: string[],
+  allowEnglishRules: boolean = true
 ): FuzzyMatchResult => {
   const cleanUser = userAnswer.trim();
   if (!cleanUser) {
     return { isMatch: false, isTypo: false, similarity: 0 };
   }
 
-  const userNorm = normalizeEnglishPhrase(cleanUser);
-  const userNoArticles = stripArticles(userNorm);
+  const userNorm = allowEnglishRules ? normalizeEnglishPhrase(cleanUser) : normalizeGenericPhrase(cleanUser);
+  const userNoArticles = allowEnglishRules ? stripArticles(userNorm) : userNorm;
   const userTokens = tokenize(userNoArticles);
-  const userCanonTokens = userTokens.map(canonicalizeWord);
+  const userCanonTokens = allowEnglishRules ? userTokens.map(canonicalizeWord) : userTokens;
 
   let bestResult: FuzzyMatchResult = {
     isMatch: false,
@@ -361,8 +375,8 @@ export const evaluateSmartAnswer = (
     const cleanTarget = target.trim();
     if (!cleanTarget) continue;
 
-    const targetNorm = normalizeEnglishPhrase(cleanTarget);
-    const targetNoArticles = stripArticles(targetNorm);
+    const targetNorm = allowEnglishRules ? normalizeEnglishPhrase(cleanTarget) : normalizeGenericPhrase(cleanTarget);
+    const targetNoArticles = allowEnglishRules ? stripArticles(targetNorm) : targetNorm;
 
     // 1. Direct exact or normalized match
     if (cleanUser.toLowerCase() === cleanTarget.toLowerCase() || userNorm === targetNorm) {
@@ -375,7 +389,7 @@ export const evaluateSmartAnswer = (
     }
 
     // 2. Article-stripped exact match
-    if (userNoArticles && userNoArticles === targetNoArticles) {
+    if (allowEnglishRules && userNoArticles && userNoArticles === targetNoArticles) {
       return {
         isMatch: true,
         isTypo: false,
@@ -421,7 +435,7 @@ export const evaluateSmartAnswer = (
 
     // 4. Token-by-token fuzzy matching
     const targetTokens = tokenize(targetNoArticles);
-    const targetCanonTokens = targetTokens.map(canonicalizeWord);
+    const targetCanonTokens = allowEnglishRules ? targetTokens.map(canonicalizeWord) : targetTokens;
 
     if (targetTokens.length > 0 && userTokens.length > 0) {
       let matchedCount = 0;
@@ -460,7 +474,7 @@ export const evaluateSmartAnswer = (
           matchedCount += 1;
           typoDetected = true;
           lastTypo = { user: matchedUserToken, target: tToken };
-        } else if (!isStopWord(tToken)) {
+        } else if (!isStopWord(tToken, allowEnglishRules)) {
           unmatchedMeaningful += 1;
         }
       });
@@ -489,24 +503,26 @@ export const evaluateSmartAnswer = (
       }
 
       // Also check content words overlap (ignoring modal/auxiliary verbs like are, we, let, us)
-      const targetContent = targetCanonTokens.filter(w => !isStopWord(w));
-      const userContent = userCanonTokens.filter(w => !isStopWord(w));
+      if (allowEnglishRules) {
+        const targetContent = targetCanonTokens.filter(w => !isStopWord(w, true));
+        const userContent = userCanonTokens.filter(w => !isStopWord(w, true));
 
-      if (targetContent.length > 0 && userContent.length > 0) {
-        const contentOverlap = targetContent.filter(w => userContent.includes(w)).length;
-        if (contentOverlap === targetContent.length && targetContent.length >= 2) {
-          const candidate: FuzzyMatchResult = {
-            isMatch: true,
-            isTypo: typoDetected,
-            similarity: 0.85,
-            matchedTarget: cleanTarget,
-            typoWord: lastTypo,
-            feedbackNote: typoDetected && lastTypo
-              ? `Typo detected: "${lastTypo.user}" ➔ "${lastTypo.target}"`
-              : undefined,
-          };
-          if (!bestResult.isMatch) {
-            bestResult = candidate;
+        if (targetContent.length > 0 && userContent.length > 0) {
+          const contentOverlap = targetContent.filter(w => userContent.includes(w)).length;
+          if (contentOverlap === targetContent.length && targetContent.length >= 2) {
+            const candidate: FuzzyMatchResult = {
+              isMatch: true,
+              isTypo: typoDetected,
+              similarity: 0.85,
+              matchedTarget: cleanTarget,
+              typoWord: lastTypo,
+              feedbackNote: typoDetected && lastTypo
+                ? `Typo detected: "${lastTypo.user}" ➔ "${lastTypo.target}"`
+                : undefined,
+            };
+            if (!bestResult.isMatch) {
+              bestResult = candidate;
+            }
           }
         }
       }

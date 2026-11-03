@@ -652,41 +652,91 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     return s.replace(/\s+/g, ' ').trim();
   };
 
+  const getNumberWordsForLangs = (
+    mapping: (typeof NUMBER_TABLE)[number],
+    langs: SupportedLanguageId[]
+  ): string[] => {
+    const words = new Set<string>([String(mapping.digit)]);
+    for (const lang of langs) {
+      const val = mapping[lang];
+      if (typeof val === 'string' && val.trim()) {
+        const norm = normalizeText(val);
+        if (norm) words.add(norm);
+        words.add(val.toLowerCase().trim());
+      }
+      if (lang === 'en') {
+        if (mapping.digit === 100) ['hundred', 'one hundred', 'a hundred'].forEach(w => words.add(w));
+        if (mapping.digit === 1000) ['thousand', 'one thousand', 'a thousand'].forEach(w => words.add(w));
+      } else if (lang === 'es') {
+        if (mapping.digit === 1) ['uno', 'una', 'un'].forEach(w => words.add(w));
+        if (mapping.digit === 100) ['cien', 'ciento'].forEach(w => words.add(w));
+      } else if (lang === 'fr') {
+        if (mapping.digit === 1) ['un', 'une'].forEach(w => words.add(w));
+        if (mapping.digit === 80) ['quatre-vingts', 'quatre-vingt', 'quatre vingts', 'quatre vingt'].forEach(w => words.add(w));
+      } else if (lang === 'pt') {
+        if (mapping.digit === 1) ['um', 'uma'].forEach(w => words.add(w));
+        if (mapping.digit === 2) ['dois', 'duas'].forEach(w => words.add(w));
+      } else if (lang === 'ru') {
+        if (mapping.digit === 0) ['ноль', 'нуль'].forEach(w => words.add(w));
+        if (mapping.digit === 1) ['один', 'одна', 'одно'].forEach(w => words.add(w));
+        if (mapping.digit === 2) ['два', 'две'].forEach(w => words.add(w));
+      } else if (lang === 'de') {
+        if (mapping.digit === 1) ['eins', 'ein', 'eine'].forEach(w => words.add(w));
+        if (mapping.digit === 100) ['hundert', 'einhundert'].forEach(w => words.add(w));
+        if (mapping.digit === 1000) ['tausend', 'eintausend'].forEach(w => words.add(w));
+      } else if (lang === 'zh') {
+        if (mapping.digit === 2) ['二', '两'].forEach(w => words.add(w));
+      } else if (lang === 'ar') {
+        if (mapping.digit === 100) ['مئة', 'مائة'].forEach(w => words.add(w));
+      }
+    }
+    return Array.from(words);
+  };
+
   const checkNumberEquivalence = (userAnswer: string, correctAnswer: string): boolean => {
-    // Strip punctuation, accents, and extra spaces
     const cleanUser = userAnswer.toLowerCase().replace(/[,.]/g, '').replace(/\s+/g, ' ').trim();
     const cleanTarget = correctAnswer.toLowerCase().replace(/[,.]/g, '').replace(/\s+/g, ' ').trim();
+    if (!cleanUser || !cleanTarget) return false;
     if (cleanUser === cleanTarget) return true;
+
+    const allowedUserLangs: SupportedLanguageId[] = currentQuestion?.isListeningMode
+      ? Array.from(new Set([currentLanguage, baseLanguage]))
+      : currentQuestion?.isTargetPrompt
+        ? [baseLanguage]
+        : [currentLanguage];
+    const allowedTargetLangs: SupportedLanguageId[] = Array.from(new Set([currentLanguage, baseLanguage]));
 
     const userDigit = extractDigit(cleanUser);
     const targetDigit = extractDigit(cleanTarget);
+    const isPureUserDigit = /^\d+$/.test(cleanUser);
 
-    // 1. Both contain numbers and match (e.g. user typed "1" and target is "1 - single unit" or "1 (One)")
-    if (userDigit !== null && targetDigit !== null && userDigit === targetDigit) {
+    // 1. User typed pure digits matching the target digit (e.g. "15" for "15 (十五)" or "15")
+    if (isPureUserDigit && userDigit !== null && targetDigit !== null && userDigit === targetDigit) {
       return true;
     }
 
-    // 2. User typed a digit (e.g. "1" or "15") and target is a word form (e.g. "quince", "one")
-    if (userDigit !== null && NUMBER_TABLE[userDigit]) {
-      const allowed = NUMBER_TABLE[userDigit].allWords;
-      if (allowed.some(w => cleanTarget === w || cleanTarget.includes(w))) {
+    // 2. User typed pure digits (e.g. "15") and target is a word form in the course's languages (e.g. "quince" or "十五")
+    if (isPureUserDigit && userDigit !== null && NUMBER_TABLE[userDigit]) {
+      const allowedTargets = getNumberWordsForLangs(NUMBER_TABLE[userDigit], allowedTargetLangs);
+      if (allowedTargets.includes(cleanTarget)) {
         return true;
       }
     }
 
-    // 3. Target contains a digit (e.g. "15 (Fifteen)" or "1 - single unit") and user typed a word form
+    // 3. Target contains a digit and user typed a valid word form in the expected answer language
     if (targetDigit !== null && NUMBER_TABLE[targetDigit]) {
-      const allowed = NUMBER_TABLE[targetDigit].allWords;
-      if (allowed.some(w => cleanUser === w || cleanUser.includes(w))) {
+      const allowedUsers = getNumberWordsForLangs(NUMBER_TABLE[targetDigit], allowedUserLangs);
+      if (allowedUsers.includes(cleanUser)) {
         return true;
       }
     }
 
-    // 4. Word-to-word cross-language number matching (e.g. user typed "quince" and target is "fifteen")
+    // 4. Word-to-word number matching restricted strictly to the active course languages (never unrelated English!)
     for (const mapping of Object.values(NUMBER_TABLE)) {
-      const userMatches = mapping.allWords.some(w => cleanUser === w || cleanUser.includes(w));
-      const targetMatches = mapping.allWords.some(w => cleanTarget === w || cleanTarget.includes(w));
-      if (userMatches && targetMatches) {
+      const allowedUsers = getNumberWordsForLangs(mapping, allowedUserLangs);
+      if (!allowedUsers.includes(cleanUser)) continue;
+      const allowedTargets = getNumberWordsForLangs(mapping, allowedTargetLangs);
+      if (allowedTargets.includes(cleanTarget)) {
         return true;
       }
     }
@@ -1017,10 +1067,13 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         };
 
         if (isSoftSign(character)) {
+          const softVariants = baseLanguage === 'en'
+            ? 'soft sign/soft/мягкий знак/мягкий/ь'
+            : 'мягкий знак/мягкий/软音符号/軟音記号/연음부호/signo suave/signe mou/weiches zeichen/ь';
           setCurrentQuestion({
             type: 'alphabet',
             prompt: character,
-            answer: 'soft sign/soft/мягкий знак/мягкий/软音符号/軟音記号/연음부호/ь',
+            answer: softVariants,
             hint: signQuestionHint(character),
             targetAudioWord: character,
             russian: character,
@@ -1030,10 +1083,13 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             wordId: selected.wordId || selected.id
           });
         } else if (isHardSign(character)) {
+          const hardVariants = baseLanguage === 'en'
+            ? 'hard sign/hard/твёрдый знак/твердый знак/твёрдый/твердый/ъ'
+            : 'твёрдый знак/твердый знак/твёрдый/твердый/硬音符号/硬音記号/경음부호/signo duro/signe dur/hartes zeichen/ъ';
           setCurrentQuestion({
             type: 'alphabet',
             prompt: character,
-            answer: 'hard sign/hard/твёрдый знак/твердый знак/твёрдый/твердый/硬音符号/硬音記号/경음부호/ъ',
+            answer: hardVariants,
             hint: signQuestionHint(character),
             targetAudioWord: character,
             russian: character,
@@ -1043,7 +1099,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             wordId: selected.wordId || selected.id
           });
         } else {
-          const acceptedAnswers = getAlphabetAcceptedAnswers(character, pronunciation, currentLanguage);
+          const acceptedAnswers = getAlphabetAcceptedAnswers(character, pronunciation, currentLanguage, baseLanguage);
           setCurrentQuestion({
             type: 'alphabet',
             prompt: character,
@@ -1512,9 +1568,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
     let isAnswerCorrect = false;
 
-    if (isSoftSign(currentQuestion.prompt) && isSoftSignAnswer(userAnswerNormalized)) {
+    if (baseLanguage === 'en' && isSoftSign(currentQuestion.prompt) && isSoftSignAnswer(userAnswerNormalized)) {
       isAnswerCorrect = true;
-    } else if (isHardSign(currentQuestion.prompt) && isHardSignAnswer(userAnswerNormalized)) {
+    } else if (baseLanguage === 'en' && isHardSign(currentQuestion.prompt) && isHardSignAnswer(userAnswerNormalized)) {
       isAnswerCorrect = true;
     } else if (currentQuestion.type === 'alphabet' && userAnswerNormalized === normalizeText(currentQuestion.prompt)) {
       isAnswerCorrect = true;
@@ -1627,8 +1683,12 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             }
           }
         } else {
-          // 4. Smart fuzzy matching with token-level typo tolerance, synonyms, and contractions
-          const smartResult = evaluateSmartAnswer(userAnswer, expandedTargets);
+          const allowEnglishRules =
+            expectedAnswerLanguage === 'en' ||
+            (Boolean(currentQuestion.isListeningMode) && baseLanguage === 'en');
+
+          // 4. Smart fuzzy matching (English synonyms/contractions only when English is an expected language)
+          const smartResult = evaluateSmartAnswer(userAnswer, expandedTargets, allowEnglishRules);
           if (smartResult.isMatch) {
             isAnswerCorrect = true;
             if (smartResult.isTypo) {
@@ -1638,49 +1698,67 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
             break;
           }
 
-          // Fallback English phrase matching with contraction expansion, synonyms, and article tolerance
-          const userEnglishNorm = normalizeEnglishPhrase(userAnswer);
-          const targetEnglishNorm = normalizeEnglishPhrase(target);
+          if (allowEnglishRules) {
+            // Fallback English phrase matching with contraction expansion, synonyms, and article tolerance
+            const userEnglishNorm = normalizeEnglishPhrase(userAnswer);
+            const targetEnglishNorm = normalizeEnglishPhrase(target);
 
-          if (userEnglishNorm === targetEnglishNorm) {
-            isAnswerCorrect = true;
-            break;
-          }
-
-          // Article tolerance ("where is restroom" === "where is the bathroom")
-          const stripArticles = (s: string) => s.replace(/\b(the|a|an)\b/gi, '').replace(/\s+/g, ' ').trim();
-          if (stripArticles(userEnglishNorm) === stripArticles(targetEnglishNorm)) {
-            isAnswerCorrect = true;
-            break;
-          }
-
-          // Substring inclusion with high length overlap (only for multi-word phrases of length >= 4, never digits or alphabet)
-          if (
-            !/\d/.test(userEnglishNorm) &&
-            !/\d/.test(targetEnglishNorm) &&
-            currentQuestion.type !== 'alphabet' &&
-            (userEnglishNorm.includes(targetEnglishNorm) || targetEnglishNorm.includes(userEnglishNorm))
-          ) {
-            const minLen = Math.min(userEnglishNorm.length, targetEnglishNorm.length);
-            const maxLen = Math.max(userEnglishNorm.length, targetEnglishNorm.length);
-            if (minLen >= 4 && minLen / maxLen >= 0.6) {
+            if (userEnglishNorm === targetEnglishNorm) {
               isAnswerCorrect = true;
               break;
             }
-          }
 
-          // English Levenshtein typo tolerance (for words/phrases of length >= 3, NEVER for alphabet or digits)
-          if (
-            !/\d/.test(userEnglishNorm) &&
-            !/\d/.test(targetEnglishNorm) &&
-            currentQuestion.type !== 'alphabet' &&
-            targetEnglishNorm.length >= 3
-          ) {
-            const engMaxErrors = targetEnglishNorm.length >= 7 ? 2 : 1;
-            const engDistance = levenshteinDistance(userEnglishNorm, targetEnglishNorm);
-            if (engDistance <= engMaxErrors && isPlausiblePhraseTypo(userEnglishNorm, targetEnglishNorm)) {
+            // Article tolerance ("where is restroom" === "where is the bathroom")
+            const stripArticles = (s: string) => s.replace(/\b(the|a|an)\b/gi, '').replace(/\s+/g, ' ').trim();
+            if (stripArticles(userEnglishNorm) === stripArticles(targetEnglishNorm)) {
               isAnswerCorrect = true;
-              if (engDistance > 0) {
+              break;
+            }
+
+            // Substring inclusion with high length overlap (only for multi-word phrases of length >= 4, never digits or alphabet)
+            if (
+              !/\d/.test(userEnglishNorm) &&
+              !/\d/.test(targetEnglishNorm) &&
+              currentQuestion.type !== 'alphabet' &&
+              (userEnglishNorm.includes(targetEnglishNorm) || targetEnglishNorm.includes(userEnglishNorm))
+            ) {
+              const minLen = Math.min(userEnglishNorm.length, targetEnglishNorm.length);
+              const maxLen = Math.max(userEnglishNorm.length, targetEnglishNorm.length);
+              if (minLen >= 4 && minLen / maxLen >= 0.6) {
+                isAnswerCorrect = true;
+                break;
+              }
+            }
+
+            // English Levenshtein typo tolerance (for words/phrases of length >= 3, NEVER for alphabet or digits)
+            if (
+              !/\d/.test(userEnglishNorm) &&
+              !/\d/.test(targetEnglishNorm) &&
+              currentQuestion.type !== 'alphabet' &&
+              targetEnglishNorm.length >= 3
+            ) {
+              const engMaxErrors = targetEnglishNorm.length >= 7 ? 2 : 1;
+              const engDistance = levenshteinDistance(userEnglishNorm, targetEnglishNorm);
+              if (engDistance <= engMaxErrors && isPlausiblePhraseTypo(userEnglishNorm, targetEnglishNorm)) {
+                isAnswerCorrect = true;
+                if (engDistance > 0) {
+                  setSpellingDiff(getSpellingDifferences(userAnswer.trim(), target));
+                }
+                break;
+              }
+            }
+          } else if (
+            !/\d/.test(userAnswerNormalized) &&
+            !/\d/.test(targetNormalized) &&
+            currentQuestion.type !== 'alphabet' &&
+            targetNormalized.length >= 5
+          ) {
+            // Language-neutral Levenshtein typo tolerance (no English synonyms/articles)
+            const genericMaxErrors = targetNormalized.length >= 8 ? 2 : 1;
+            const genericDistance = levenshteinDistance(userAnswerNormalized, targetNormalized);
+            if (genericDistance <= genericMaxErrors && isPlausiblePhraseTypo(userAnswerNormalized, targetNormalized)) {
+              isAnswerCorrect = true;
+              if (genericDistance > 0) {
                 setSpellingDiff(getSpellingDifferences(userAnswer.trim(), target));
               }
               break;
@@ -1704,7 +1782,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
           processedAnswer = rawLatinCandidate;
           setUserAnswer(rawLatinCandidate);
         } else {
-          const smartRaw = evaluateSmartAnswer(rawLatinCandidate, expandedTargets);
+          const allowRawEnglishRules = baseLanguage === 'en' || currentLanguage === 'en';
+          const smartRaw = evaluateSmartAnswer(rawLatinCandidate, expandedTargets, allowRawEnglishRules);
           if (smartRaw.isMatch) {
             isAnswerCorrect = true;
             processedAnswer = rawLatinCandidate;
