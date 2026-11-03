@@ -9,7 +9,9 @@ import {
   appendKoreanJamo,
   transliterateForLanguage,
   convertNumericPinyin,
-  stripPinyinTones
+  stripPinyinTones,
+  convertLastLatinWordOnSpace,
+  previewSoundOutToken
 } from '../utils/phoneticTyping';
 import { SUPPORTED_LANGUAGES } from '../data/languages';
 
@@ -192,4 +194,69 @@ describe('Multi-Script Phonetic Typing, Keyboards & Pill Localization', () => {
       unmount();
     }
   );
+
+  it('converts Pinyin-style sound-it-out + Spacebar across all 8 non-Latin scripts (including multi-word phrases & previews)', () => {
+    expect(convertLastLatinWordOnSpace('nihao ', 'zh').converted).toBe('你好 ');
+    expect(convertLastLatinWordOnSpace('ni hao ', 'zh').converted).toBe('你好 ');
+    expect(convertLastLatinWordOnSpace('xiexie ', 'zh').converted).toBe('谢谢 ');
+    expect(convertLastLatinWordOnSpace('gamsahamnida ', 'ko').converted).toBe('감사합니다 ');
+    expect(convertLastLatinWordOnSpace('annyeonghaseyo ', 'ko').converted).toBe('안녕하세요 ');
+    expect(convertLastLatinWordOnSpace('arigatou ', 'ja').converted).toBe('ありがとう ');
+    expect(convertLastLatinWordOnSpace('konnichiwa ', 'ja').converted).toBe('こんにちは ');
+    expect(convertLastLatinWordOnSpace('shukran ', 'ar').converted).toBe('شكرا ');
+    expect(convertLastLatinWordOnSpace('shukriya ', 'ur').converted).toBe('شکریہ ');
+    expect(convertLastLatinWordOnSpace('namaste ', 'hi').converted).toBe('नमस्ते ');
+    expect(convertLastLatinWordOnSpace('dhonnobad ', 'bn').converted).toBe('ধন্যবাদ ');
+    expect(convertLastLatinWordOnSpace('privet ', 'ru').converted).toBe('привет ');
+    expect(convertLastLatinWordOnSpace('preevyet ', 'ru').converted).toBe('привет ');
+
+    expect(previewSoundOutToken('nihao', 'zh')).toEqual({ rawToken: 'nihao', preview: '你好' });
+    expect(previewSoundOutToken('privet', 'ru')).toEqual({ rawToken: 'privet', preview: 'привет' });
+  });
+
+  it('restores Russian keyboard & Spacebar conversion in Alphabet Listening mode and localizes Chinese Quiz feedback', async () => {
+    localStorage.setItem('basic_language_base_lang', 'zh');
+    localStorage.setItem('basic_quiz_mode', 'listening');
+    localStorage.setItem('basic_quiz_mode_ru', 'listening');
+    window.history.pushState({}, '', '/learn/ru/quiz');
+
+    await renderSettled(
+      <LanguageProvider>
+        <Quiz
+          data={{
+            alphabet: [{ letter: 'у', pronunciation: 'oo', example: 'as in boot', word: 'утро' }],
+            basicPhrases: [],
+            numbers: [],
+            commonWords: [],
+            time: []
+          }}
+        />
+      </LanguageProvider>
+    );
+
+    // Counter should be localized ("4 / 5" style, never "of")
+    expect(document.querySelector('.counter-total')?.textContent).not.toContain('of');
+
+    // Russian keyboard toggle is restored on Alphabet Listening questions!
+    expect(screen.getByTitle('Toggle Russian Keyboard')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Open virtual keyboard' })).toBeInTheDocument();
+
+    const input = screen.getByRole('textbox') as HTMLInputElement;
+    // Typing 'u' shows live preview pill "u → у", and pressing Space converts to Cyrillic "у "
+    fireEvent.change(input, { target: { value: 'u', selectionStart: 1 } });
+    expect(screen.getByRole('button', { name: 'Convert u to у' })).toBeInTheDocument();
+
+    fireEvent.change(input, { target: { value: 'u ', selectionStart: 2 } });
+    expect(input.value).toBe('у ');
+
+    // Also verify wrong-answer feedback in Chinese has localized 发音: (never Meaning:) and 我答对了 (never I was right)
+    fireEvent.change(input, { target: { value: 'ж', selectionStart: 1 } });
+    fireEvent.click(screen.getByRole('button', { name: '检查答案' }));
+    await settle();
+
+    const drawerText = document.querySelector('.quiz-feedback-drawer')?.textContent || '';
+    expect(drawerText).not.toContain('Meaning:');
+    expect(drawerText).not.toContain('I was right');
+    expect(drawerText).toContain('我答对了');
+  });
 });

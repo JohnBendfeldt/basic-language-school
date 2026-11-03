@@ -433,7 +433,17 @@ const Alphabet: React.FC<AlphabetProps> = ({
                 <div className="alphabet-card" key={index}>
                   <div className="letter-container">
                     {currentLanguage === 'zh' && (
-                      <span className="pinyin-badge">拼音 Pinyin</span>
+                      <span className="pinyin-badge">
+                        {baseLanguage === 'zh' ? '汉语拼音'
+                          : baseLanguage === 'ja' ? 'ピンイン (拼音)'
+                          : baseLanguage === 'ko' ? '한어병음 (拼音)'
+                          : baseLanguage === 'ru' ? 'Пиньинь (拼音)'
+                          : baseLanguage === 'hi' ? 'पिनयिन (拼音)'
+                          : baseLanguage === 'ar' ? 'بينيين (拼音)'
+                          : baseLanguage === 'bn' ? 'পিনইন (拼音)'
+                          : baseLanguage === 'ur' ? 'پِن یِن (拼音)'
+                          : '拼音 Pinyin'}
+                      </span>
                     )}
                     <div className="letter-header">
                       <div className="letter-pair">
@@ -445,19 +455,18 @@ const Alphabet: React.FC<AlphabetProps> = ({
                         ) : (
                           <span className="letter-single">{item.letter}</span>
                         )}
+                        <div className="pronunciation-button-wrapper">
+                          <PronunciationButton 
+                            text={lowerLetter} 
+                            audioCategory="alphabet"
+                            useLocalAudio={true}
+                            label={`Pronounce letter ${item.letter}`}
+                          />
+                        </div>
                       </div>
                     </div>
                     
                     <div className="letter-underline"></div>
-                    
-                    <div className="pronunciation-button-wrapper">
-                      <PronunciationButton 
-                        text={lowerLetter} 
-                        audioCategory="alphabet"
-                        useLocalAudio={true}
-                        label={`Pronounce letter ${item.letter}`}
-                      />
-                    </div>
                   </div>
                   
                   <div className="pronunciation">

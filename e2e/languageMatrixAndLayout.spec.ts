@@ -489,5 +489,68 @@ test.describe('Playwright E2E: Layout, Modals, Alignment & Neural Audio Matrix',
     await page.goto('/learn/ur/quiz');
     await expect(page.locator('.quiz-card')).toBeVisible();
   });
+
+  test('Snug Alphabet Audio Buttons, 100% Localized Chinese About Pages, Clean Time Tab & Live Phonetic Spacebar Conversion', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto('/');
+    await page.evaluate(() => {
+      localStorage.setItem('basic_language_base_lang', 'en');
+      localStorage.setItem('basic_language_target_lang', 'zh');
+    });
+
+    // 1. Alphabet card audio buttons sit close to example word & meaning (not pushed far right)
+    await page.goto('/learn/zh/alphabet');
+    const firstCard = page.locator('.alphabet-card').first();
+    await expect(firstCard).toBeVisible();
+
+    const meaningSpanBox = await firstCard.locator('.example-translation').boundingBox();
+    const miniBtnBox = await firstCard.locator('.example-meaning-row .example-pronunciation').boundingBox();
+    expect(meaningSpanBox).not.toBeNull();
+    expect(miniBtnBox).not.toBeNull();
+    const gapPx = miniBtnBox!.x - (meaningSpanBox!.x + meaningSpanBox!.width);
+    expect(gapPx).toBeGreaterThanOrEqual(0);
+    expect(gapPx).toBeLessThanOrEqual(20);
+
+    // 2. Mandarin speaker viewing English & Spanish About tabs sees 100% Chinese Quick Facts & History
+    await page.evaluate(() => {
+      localStorage.setItem('basic_language_base_lang', 'zh');
+      localStorage.setItem('basic_language_target_lang', 'en');
+    });
+    await page.goto('/learn/en/alphabet');
+    await page.locator('.segmented-tab-btn').nth(2).click();
+    await expect(page.locator('.language-about-container')).toBeVisible();
+    const aboutTextEn = (await page.locator('.language-about-container').textContent()) || '';
+    expect(aboutTextEn).not.toContain('The Global Lingua Franca');
+    expect(aboutTextEn).not.toContain('GLOBAL STATUS');
+    expect(aboutTextEn).toContain('全球通用语');
+
+    // 3. Turkish Time tab has only Time expressions (no leaked food items like Sarımsak)
+    await page.evaluate(() => {
+      localStorage.setItem('basic_language_base_lang', 'en');
+      localStorage.setItem('basic_language_target_lang', 'tr');
+    });
+    await page.goto('/learn/tr/time');
+    await expect(page.locator('h3.phrase-text').first()).toBeVisible();
+    const trTimeBody = (await page.locator('.phrases-container').textContent()) || '';
+    expect(trTimeBody).not.toContain('Sarımsak');
+    expect(trTimeBody).not.toContain('FOOD & DRİNK');
+
+    // 4. Live Pinyin-style Sound-It-Out + Spacebar conversion in Quiz
+    await page.evaluate(() => {
+      localStorage.setItem('basic_language_base_lang', 'en');
+      localStorage.setItem('basic_language_target_lang', 'zh');
+      localStorage.setItem('basic_quiz_mode', 'listening');
+      localStorage.setItem('basic_quiz_mode_zh', 'listening');
+    });
+    await page.goto('/learn/zh/quiz');
+    const quizInput = page.locator('input.quiz-input');
+    await expect(quizInput).toBeVisible();
+    await quizInput.fill('nihao');
+    await expect(page.locator('.phonetic-live-preview-pill')).toContainText('你好');
+    await quizInput.type(' ');
+    await expect(quizInput).toHaveValue('你好 ');
+  });
 });
 

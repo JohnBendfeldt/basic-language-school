@@ -655,23 +655,8 @@ const time: PhraseItem[] = [
   { phrase: 'Es ist Viertel nach vier', translation: 'It is 4:15 (quarter past four)', pronunciation: 'es ist FEER-tel nahkh feer', category: 'Minutes', icon: '🕓' },
   { phrase: 'Es ist Viertel vor fünf', translation: 'It is 4:45 (quarter to five)', pronunciation: 'es ist FEER-tel for fünf', category: 'Minutes', icon: '🕟' },
   { phrase: 'Mittag', translation: 'Noon / Midday', pronunciation: 'MIT-tahk', category: 'Special', icon: '🕛' },
-  { phrase: 'Mitternacht', translation: 'Midnight', pronunciation: 'MIT-ter-nahkht', category: 'Special', icon: '🌙' }
-,
-  { phrase: 'Erdbeere', translation: 'Strawberry', pronunciation: '', category: 'Food & Drink', icon: '🍓' },
-  { phrase: 'Weintraube', translation: 'Grape', pronunciation: '', category: 'Food & Drink', icon: '🍇' },
-  { phrase: 'Knoblauch', translation: 'Garlic', pronunciation: '', category: 'Food & Drink', icon: '🧄' },
-  { phrase: 'Kartoffel', translation: 'Potato', pronunciation: '', category: 'Food & Drink', icon: '🥔' },
-  { phrase: 'Zwiebel', translation: 'Onion', pronunciation: '', category: 'Food & Drink', icon: '🧅' },
-  { phrase: 'Karotte', translation: 'Carrot', pronunciation: '', category: 'Food & Drink', icon: '🥕' },
-  { phrase: 'Löffel', translation: 'Spoon', pronunciation: '', category: 'Food & Drink', icon: '🥄' },
-  { phrase: 'Gabel', translation: 'Fork', pronunciation: '', category: 'Food & Drink', icon: '🍴' },
-  { phrase: 'Messer', translation: 'Knife', pronunciation: '', category: 'Food & Drink', icon: '🔪' },
-  { phrase: 'Teller', translation: 'Plate', pronunciation: '', category: 'Food & Drink', icon: '🍽️' },
-  { phrase: 'Fahrrad', translation: 'Bicycle', pronunciation: '', category: 'Places', icon: '🚲' },
-  { phrase: 'Koffer', translation: 'Suitcase', pronunciation: '', category: 'Home', icon: '🧳' },
-  { phrase: 'Rucksack', translation: 'Backpack', pronunciation: '', category: 'Home', icon: '🎒' },
-  { phrase: 'Geldbörse', translation: 'Wallet', pronunciation: '', category: 'Home', icon: '👛' },
-  { phrase: 'Fahrkarte', translation: 'Ticket', pronunciation: '', category: 'Travel', icon: '🎫' }];
+  { phrase: 'Mitternacht', translation: 'Midnight', pronunciation: 'MIT-ter-nahkht', category: 'Special', icon: '🌙' },
+];
 
 const germanData: AppData = {
   alphabet,

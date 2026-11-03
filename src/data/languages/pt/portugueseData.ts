@@ -654,22 +654,8 @@ const time: PhraseItem[] = [
   { phrase: 'São quatro e quinze', translation: 'It is 4:15 (quarter past four)', pronunciation: 'sown KWAH-troo ee KEEN-zee', category: 'Minutes', icon: '🕓' },
   { phrase: 'São quinze para as cinco', translation: 'It is 4:45 (quarter to five)', pronunciation: 'sown KEEN-zee PAH-rah ahs SEEN-koo', category: 'Minutes', icon: '🕟' },
   { phrase: 'Meio-dia', translation: 'Noon / Midday', pronunciation: 'MAY-oo JEE-ah', category: 'Special', icon: '🕛' },
-  { phrase: 'Meia-noite', translation: 'Midnight', pronunciation: 'MAY-ah NOY-chee', category: 'Special', icon: '🌙' }
-,
-  { phrase: 'Morango', translation: 'Strawberry', pronunciation: '', category: 'Food & Drink', icon: '🍓' },
-  { phrase: 'Alho', translation: 'Garlic', pronunciation: '', category: 'Food & Drink', icon: '🧄' },
-  { phrase: 'Batata', translation: 'Potato', pronunciation: '', category: 'Food & Drink', icon: '🥔' },
-  { phrase: 'Cebola', translation: 'Onion', pronunciation: '', category: 'Food & Drink', icon: '🧅' },
-  { phrase: 'Cenoura', translation: 'Carrot', pronunciation: '', category: 'Food & Drink', icon: '🥕' },
-  { phrase: 'Colher', translation: 'Spoon', pronunciation: '', category: 'Food & Drink', icon: '🥄' },
-  { phrase: 'Garfo', translation: 'Fork', pronunciation: '', category: 'Food & Drink', icon: '🍴' },
-  { phrase: 'Faca', translation: 'Knife', pronunciation: '', category: 'Food & Drink', icon: '🔪' },
-  { phrase: 'Prato', translation: 'Plate', pronunciation: '', category: 'Food & Drink', icon: '🍽️' },
-  { phrase: 'Bicicleta', translation: 'Bicycle', pronunciation: '', category: 'Places', icon: '🚲' },
-  { phrase: 'Mala', translation: 'Suitcase', pronunciation: '', category: 'Home', icon: '🧳' },
-  { phrase: 'Mochila', translation: 'Backpack', pronunciation: '', category: 'Home', icon: '🎒' },
-  { phrase: 'Carteira', translation: 'Wallet', pronunciation: '', category: 'Home', icon: '👛' },
-  { phrase: 'Bilhete', translation: 'Ticket', pronunciation: '', category: 'Travel', icon: '🎫' }];
+  { phrase: 'Meia-noite', translation: 'Midnight', pronunciation: 'MAY-ah NOY-chee', category: 'Special', icon: '🌙' },
+];
 
 const portugueseData: AppData = {
   alphabet,

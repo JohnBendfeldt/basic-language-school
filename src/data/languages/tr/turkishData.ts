@@ -648,21 +648,8 @@ const time: PhraseItem[] = [
   { phrase: 'Saat dördü çeyrek geçiyor', translation: 'It is 4:15 (quarter past four)', pronunciation: 'sah-AHT dör-DÜ chey-REK geh-chee-YOR', category: 'Minutes', icon: '🕓' },
   { phrase: 'Saat beşe çeyrek var', translation: 'It is 4:45 (quarter to five)', pronunciation: 'sah-AHT beh-SHEH chey-REK vahr', category: 'Minutes', icon: '🕟' },
   { phrase: 'Öğle', translation: 'Noon / Midday', pronunciation: 'ö-LEH', category: 'Special', icon: '🕛' },
-  { phrase: 'Gece yarısı', translation: 'Midnight', pronunciation: 'geh-JEH yah-ruh-SUH', category: 'Special', icon: '🌙' }
-,
-  { phrase: 'Çilek', translation: 'Strawberry', pronunciation: '', category: 'Food & Drink', icon: '🍓' },
-  { phrase: 'Sarımsak', translation: 'Garlic', pronunciation: '', category: 'Food & Drink', icon: '🧄' },
-  { phrase: 'Patates', translation: 'Potato', pronunciation: '', category: 'Food & Drink', icon: '🥔' },
-  { phrase: 'Soğan', translation: 'Onion', pronunciation: '', category: 'Food & Drink', icon: '🧅' },
-  { phrase: 'Havuç', translation: 'Carrot', pronunciation: '', category: 'Food & Drink', icon: '🥕' },
-  { phrase: 'Kaşık', translation: 'Spoon', pronunciation: '', category: 'Food & Drink', icon: '🥄' },
-  { phrase: 'Çatal', translation: 'Fork', pronunciation: '', category: 'Food & Drink', icon: '🍴' },
-  { phrase: 'Bıçak', translation: 'Knife', pronunciation: '', category: 'Food & Drink', icon: '🔪' },
-  { phrase: 'Tabak', translation: 'Plate', pronunciation: '', category: 'Food & Drink', icon: '🍽️' },
-  { phrase: 'Bisiklet', translation: 'Bicycle', pronunciation: '', category: 'Places', icon: '🚲' },
-  { phrase: 'Bavul', translation: 'Suitcase', pronunciation: '', category: 'Home', icon: '🧳' },
-  { phrase: 'Sırt çantası', translation: 'Backpack', pronunciation: '', category: 'Home', icon: '🎒' },
-  { phrase: 'Cüzdan', translation: 'Wallet', pronunciation: '', category: 'Home', icon: '👛' }];
+  { phrase: 'Gece yarısı', translation: 'Midnight', pronunciation: 'geh-JEH yah-ruh-SUH', category: 'Special', icon: '🌙' },
+];
 
 const turkishData: AppData = {
   alphabet,

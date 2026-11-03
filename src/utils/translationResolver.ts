@@ -2,6 +2,7 @@ import { SupportedLanguageId } from '../data/languages/types';
 import { PhraseItem } from '../types/index';
 import { CONCEPT_MATRIX } from '../data/conceptMatrix';
 import { SUPPORTED_LANGUAGES } from '../data/languages';
+import { SUPPLEMENTAL_DICTIONARY } from '../data/dictionaryExtensions';
 
 export interface NumberMapping {
   digit: number;
@@ -76,7 +77,7 @@ export const EXTENDED_DICTIONARY: Record<string, Partial<Record<SupportedLanguag
   'teacher': { en: 'Teacher', es: 'Profesor / Maestro', fr: 'Enseignant', ru: 'Учитель', pt: 'Professor', de: 'Lehrer', id: 'Guru', tr: 'Öğretmen', ko: '선생님', ja: '先生', zh: '老师', hi: 'शिक्षक / अध्यापक', ar: 'معلم / أستاذ' },
   'student': { en: 'Student', es: 'Estudiante / Alumno', fr: 'Étudiant', ru: 'Студент', pt: 'Estudante', de: 'Student', id: 'Pelajar', tr: 'Öğrenci', ko: '학생', ja: '学生', zh: '学生', hi: 'छात्र / विद्यार्थी', ar: 'طالب' },
   'doctor': { en: 'Doctor', es: 'Médico / Doctor', fr: 'Médecin / Docteur', ru: 'Врач / Доктор', pt: 'Médico', de: 'Arzt', id: 'Dokter', tr: 'Doktor', ko: '의사', ja: '医者', zh: '医生', hi: 'डॉक्टर / चिकित्सक', ar: 'طبيب / دكتور' },
-  'we': { en: 'We', es: 'Nosotros', fr: 'Nous', ru: 'Мы', pt: 'Nós', de: 'Wir', id: 'Kami', tr: 'Biz', ko: '우리', ja: '私たち', zh: '我们', hi: 'हम', ar: 'نحن' },
+  'we': { en: 'We', es: 'Nosotros', fr: 'Nous', ru: 'Мы', pt: 'Nós', de: 'Wir', id: 'Kami', tr: 'Biz', ko: '우리', ja: '私たち', zh: '我们', hi: 'हम', ar: 'نحن', bn: 'আমরা', ur: 'ہم' },
 
   // Food & Drink
   'water': { en: 'Water', es: 'Agua', fr: 'Eau', ru: 'Вода', pt: 'Água', de: 'Wasser', id: 'Air', tr: 'Su', ko: '물', ja: '水', zh: '水', hi: 'पानी', ar: 'ماء' },
@@ -286,7 +287,7 @@ export const EXTENDED_DICTIONARY: Record<string, Partial<Record<SupportedLanguag
   'cup': { en: 'Cup', es: 'Taza', fr: 'Tasse', ru: 'Чашка', pt: 'Xícara', de: 'Tasse', id: 'Cangkir', tr: 'Fincan', ko: '컵', ja: 'カップ', zh: '杯子', hi: 'कप / प्याला', ar: 'كوب / فنجان' },
   'source': { en: 'Source', es: 'Fuente', fr: 'Source', ru: 'Источник', pt: 'Fonte', de: 'Quelle', id: 'Sumber', tr: 'Kaynak', ko: '원천 / 소스', ja: '源', zh: '来源', hi: 'स्रोत', ar: 'مصدر' },
   'oil': { en: 'Oil', es: 'Aceite', fr: 'Huile', ru: 'Масло', pt: 'Óleo', de: 'Öl', id: 'Minyak', tr: 'Yağ', ko: '기름 / 오일', ja: '油', zh: '油', hi: 'तेल', ar: 'زيت' },
-  'or': { en: 'Or', es: 'O', fr: 'Ou', ru: 'Или', pt: 'Ou', de: 'Oder', id: 'Atau', tr: 'Veya', ko: '또는 / 혹은', ja: 'または', zh: '或者', hi: 'या / अथवा', ar: 'أو' },
+  'or': { en: 'Or', es: 'O', fr: 'Ou', ru: 'Или', pt: 'Ou', de: 'Oder', id: 'Atau', tr: 'Veya', ko: '또는 / 혹은', ja: 'または', zh: '或者', hi: 'या / अथवा', ar: 'أو', bn: 'অথবা / বা', ur: 'یا' },
   'this': { en: 'This', es: 'Esto', fr: 'Ceci', ru: 'Это', pt: 'Isto', de: 'Dies', id: 'Ini', tr: 'Bu', ko: '이것', ja: 'これ', zh: '这 / 这个', hi: 'यह / इस', ar: 'هذا' },
   'i eat': { en: 'I eat', es: 'Como', fr: 'Je mange', ru: 'Ем', pt: 'Eu como', de: 'Ich esse', id: 'Saya makan', tr: 'Yiyorum', ko: '나는 먹는다', ja: '私は食べます', zh: '我吃', hi: 'मैं खाता हूँ', ar: 'آكل' },
   'yes': { en: 'Yes', es: 'Sí', fr: 'Oui', ru: 'Да', pt: 'Sim', de: 'Ja', id: 'Ya', tr: 'Evet', ko: '네', ja: 'はい', zh: '是', hi: 'हाँ', ar: 'نعم' },
@@ -799,6 +800,8 @@ const cleanLookupKey = (raw: string): string =>
     .toLowerCase()
     .replace(/^noun:\s*/i, '')
     .replace(/^verb:\s*/i, '')
+    .replace(/^adjective:\s*/i, '')
+    .replace(/^adverb:\s*/i, '')
     .replace(/\s*\([^)]*\)\s*/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
@@ -839,6 +842,14 @@ const ensureTranslationIndexes = () => {
   for (const [rawKey, mapping] of Object.entries(EXTENDED_DICTIONARY)) {
     const lowerKey = rawKey.toLowerCase().trim();
     mergeIntoMap(enLookupMap, lowerKey, mapping, true);
+    const cleanedKey = cleanLookupKey(lowerKey);
+    if (cleanedKey && cleanedKey !== lowerKey) {
+      mergeIntoMap(enLookupMap, cleanedKey, mapping, false);
+    }
+  }
+  for (const [rawKey, mapping] of Object.entries(SUPPLEMENTAL_DICTIONARY)) {
+    const lowerKey = rawKey.toLowerCase().trim();
+    mergeIntoMap(enLookupMap, lowerKey, mapping, false);
     const cleanedKey = cleanLookupKey(lowerKey);
     if (cleanedKey && cleanedKey !== lowerKey) {
       mergeIntoMap(enLookupMap, cleanedKey, mapping, false);

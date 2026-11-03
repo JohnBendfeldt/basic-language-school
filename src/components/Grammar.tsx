@@ -6,6 +6,31 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { GrammarData, GrammarFlashcard, GenderNounRule, VerbConjugation } from '../types';
 import { getGrammarForLanguage } from '../data/languages/grammarData';
 import { resolveTranslation } from '../utils/translationResolver';
+import { SupportedLanguageId } from '../data/languages/types';
+
+const localizeGrammarMeaning = (raw: string, baseLang: SupportedLanguageId): string => {
+  if (!raw || baseLang === 'en' || !/^[a-zA-Z\s/,.'()-]+$/.test(raw)) {
+    return raw;
+  }
+  const parts = raw.split(/\s*\/\s*/);
+  const translated = parts.map((part) => {
+    const clean = part.replace(/\s*\([^)]*\)\s*/g, '').trim();
+    if (!clean) return part;
+    const direct = resolveTranslation({ phrase: clean, english: clean }, 'en', baseLang);
+    if (direct && direct.toLowerCase() !== clean.toLowerCase()) {
+      return direct;
+    }
+    if (/^to\s+/i.test(clean)) {
+      const bare = clean.replace(/^to\s+/i, '').trim();
+      const bareResolved = resolveTranslation({ phrase: bare, english: bare }, 'en', baseLang);
+      if (bareResolved && bareResolved.toLowerCase() !== bare.toLowerCase()) {
+        return bareResolved;
+      }
+    }
+    return part;
+  });
+  return translated.join(' / ');
+};
 
 interface GrammarProps {
   grammarData?: GrammarData;
@@ -53,124 +78,260 @@ const getVerbLanguageNotice = (
   baseLang: string
 ): { title: string; text: string } | null => {
   if (lang === 'zh') {
-    if (baseLang === 'ru') {
-      return {
+    const zhNotices: Record<string, { title: string; text: string }> = {
+      ru: {
         title: 'В китайском языке глаголы НЕ спрягаются!',
         text: 'Форма глагола не меняется по лицам (я, ты, он, мы, они). Время, вид и направленность действия выражаются частицами: 在 (длительное), 了 (завершённое), 过 (опыт в прошлом), 要/会 (будущее/намерение) и отрицаниями 不 / 没.',
-      };
-    }
-    if (baseLang === 'de') {
-      return {
+      },
+      de: {
         title: 'Im Chinesischen gibt es keine Konjugation!',
         text: 'Die Verbform bleibt für alle Personen (ich, du, er, wir, sie) exakt gleich. Zeiten und Aspekte werden durch funktionale Partikeln wie 在 (Verlauf), 了 (abgeschlossen), 过 (Erfahrung) und 要 (Zukunft) ausgedrückt.',
-      };
-    }
-    if (baseLang === 'es') {
-      return {
+      },
+      es: {
         title: '¡El chino mandarín no tiene conjugación verbal!',
         text: 'La forma verbal es idéntica para todas las personas (yo, tú, él, nosotros). El tiempo y aspecto se expresan con partículas como 在 (en progreso), 了 (completado), 过 (experiencia) y 要 (futuro).',
-      };
-    }
-    if (baseLang === 'fr') {
-      return {
+      },
+      fr: {
         title: 'Le chinois mandarin ne se conjugue pas !',
         text: 'La forme du verbe reste identique pour toutes les personnes (je, tu, il, nous). Le temps et l\'aspect s\'expriment par des particules comme 在 (en cours), 了 (accompli), 过 (expérience passée) et 要 (futur).',
-      };
-    }
-    return {
+      },
+      pt: {
+        title: 'O chinês mandarim NÃO conjuga verbos!',
+        text: 'A forma do verbo nunca muda por pessoa. O tempo e o aspecto são expressos com partículas como 在 (em andamento), 了 (concluído), 过 (experiência passada) e 要 (futuro).',
+      },
+      id: {
+        title: 'Bahasa Mandarin TIDAK memiliki konjugasi kata kerja!',
+        text: 'Bentuk kata kerja selalu sama untuk semua subjek. Waktu dan aspek dinyatakan dengan partikel seperti 在 (sedang), 了 (sudah selesai), 过 (pernah), dan 要 (akan).',
+      },
+      tr: {
+        title: 'Mandarin Çincesinde fiil çekimi YOKTUR!',
+        text: 'Fiiller şahıslara göre hiç değişmez. Zaman ve görünüş 在 (devam eden), 了 (tamamlanmış), 过 (geçmiş deneyim) ve 要 (gelecek) gibi edatlarla ifade edilir.',
+      },
+      zh: {
+        title: '汉语动词没有词形变化！',
+        text: '无论主语是“我、你、他、我们”，动词形式完全一致，通过助词表达体貌与时间：在（进行）、了（完成）、过（经历）、要/会（将来）。',
+      },
+      ja: {
+        title: '中国語の動詞は人称変化しません！',
+        text: '主語が誰であっても動詞の形は同じです。時制やアスペクトは助詞で表します：在（進行）、了（完了）、过（経験）、要（未来）。',
+      },
+      ko: {
+        title: '중국어 동사는 인칭에 따라 변하지 않습니다!',
+        text: '주어가 누구든 동사 형태가 동일하며, 시제와 상은 조사로 표현합니다: 在(진행), 了(완료), 过(경험), 要(미래).',
+      },
+      hi: {
+        title: 'मंदारिन चीनी में क्रिया का रूप नहीं बदलता!',
+        text: 'सभी कर्ताओं के लिए क्रिया एक समान रहती है। काल और अवस्था निपातों से व्यक्त होते हैं: 在 (जारी), 了 (पूर्ण), 过 (अनुभव), और 要 (भविष्य)।',
+      },
+      ar: {
+        title: 'الأفعال في الصينية المندرينية لا تتصرّف حسب الضمائر!',
+        text: 'يبقى الفعل ثابتاً مع جميع الضمائر، ويُعبَّر عن الزمن بالأدوات الوظيفية مثل 在 (مستمر) و了 (مكتمل) و过 (تجربة سابقة) و要 (مستقبل).',
+      },
+      bn: {
+        title: 'মান্দারিন চীনা ভাষায় ক্রিয়ার রূপ পরিবর্তন হয় না!',
+        text: 'সর্বনাম যাই হোক না কেন ক্রিয়া একই থাকে। কাল ও ভাব প্রকাশ পায় অব্যয় দিয়ে: 在 (চলমান), 了 (সম্পন্ন), 过 (অভিজ্ঞতা), এবং 要 (ভবিষ্যৎ)।',
+      },
+      ur: {
+        title: 'مینڈارن چینی میں فعل کی گردان نہیں ہوتی!',
+        text: 'ہر ضمیر کے ساتھ فعل ایک جیسا رہتا ہے۔ زمانہ حروف سے ظاہر کیا جاتا ہے: 在 (جاری)، 了 (مکمل)، 过 (تجربہ)، اور 要 (مستقبل)۔',
+      },
+    };
+    return zhNotices[baseLang] || {
       title: 'Mandarin Chinese has NO verb conjugations!',
       text: 'Verbs never change by person (I, you, he, we, they all use the exact same base word). Time and aspect are expressed using functional particles like 在 (ongoing), 了 (completed), 过 (past experience), and 要 (future intention).',
     };
   }
 
   if (lang === 'id') {
-    if (baseLang === 'ru') {
-      return {
+    const idNotices: Record<string, { title: string; text: string }> = {
+      ru: {
         title: 'В индонезийском языке нет спряжения глаголов!',
         text: 'Глагол не меняется по лицам и числам. Время и модальность выражаются служебными словами: sedang (сейчас), sudah (уже), akan (будет) и belum (ещё не).',
-      };
-    }
-    if (baseLang === 'de') {
-      return {
+      },
+      de: {
         title: 'Im Indonesischen gibt es keine Konjugation!',
         text: 'Verben verändern sich weder nach Person noch nach Zahl. Zeiten werden durch Zeitmarken wie sedang (gerade), sudah (bereits) und akan (wird) angezeigt.',
-      };
-    }
-    if (baseLang === 'es') {
-      return {
+      },
+      es: {
         title: '¡El indonesio no tiene conjugaciones verbales!',
         text: 'El verbo no cambia según la persona. Los tiempos se indican mediante marcadores: sedang (actualmente), sudah (ya), akan (futuro) y belum (aún no).',
-      };
-    }
-    if (baseLang === 'fr') {
-      return {
+      },
+      fr: {
         title: 'L\'indonésien ne conjugue pas les verbes !',
         text: 'Le verbe ne varie ni en personne ni en nombre. Le temps est indiqué par des marqueurs temporels : sedang (en cours), sudah (déjà), akan (futur) et belum (pas encore).',
-      };
-    }
-    return {
+      },
+      pt: {
+        title: 'Os verbos em indonésio NÃO são conjugados!',
+        text: 'Os verbos nunca mudam de forma por pessoa. O tempo é indicado por marcadores auxiliares: sedang (agora), sudah (já), akan (futuro) e belum (ainda não).',
+      },
+      id: {
+        title: 'Kata kerja bahasa Indonesia TIDAK mengalami konjugasi!',
+        text: 'Kata kerja tidak berubah menurut subjek. Waktu dinyatakan dengan penanda: sedang, sudah, akan, dan belum.',
+      },
+      tr: {
+        title: 'Endonezcede fiiller çekimlenmez!',
+        text: 'Fiiller şahıslara göre değişmez. Zaman sedang (şu anda), sudah (zaten), akan (gelecek) ve belum (henüz değil) belirteçleriyle gösterilir.',
+      },
+      zh: {
+        title: '印尼语动词没有变位！',
+        text: '动词不会随人称变化，时态通过时间助词表达：sedang（正在）、sudah（已经）、akan（将要）和 belum（尚未）。',
+      },
+      ja: {
+        title: 'インドネシア語の動詞は活用しません！',
+        text: '人称によって動詞の形は変わらず、時制は助詞で表します：sedang（進行）、sudah（完了）、akan（未来）、belum（未完了）。',
+      },
+      ko: {
+        title: '인도네시아어 동사는 활용하지 않습니다!',
+        text: '인칭에 따라 동사 형태가 변하지 않으며 시제는 표지어로 나타냅니다: sedang(진행), sudah(완료), akan(미래), belum(아직).',
+      },
+      hi: {
+        title: 'इंडोनेशियाई क्रियाओं का रूप नहीं बदलता!',
+        text: 'कर्ता के अनुसार क्रिया नहीं बदलती। काल सहायक शब्दों से दर्शाया जाता है: sedang (अभी), sudah (पहले ही), akan (भविष्य), और belum (अभी नहीं)।',
+      },
+      ar: {
+        title: 'الأفعال في الإندونيسية لا تتصرّف!',
+        text: 'لا يتغير شكل الفعل حسب الضمير، بل يُحدَّد الزمن بكلمات مساعدة: sedang (الآن)، sudah (قد)، akan (سوف)، وbelum (ليس بعد).',
+      },
+      bn: {
+        title: 'ইন্দোনেশীয় ভাষায় ক্রিয়ার রূপ পরিবর্তন হয় না!',
+        text: 'পুরুষভেদে ক্রিয়া বদলায় না। সময় বোঝাতে সহায়ক শব্দ ব্যবহৃত হয়: sedang (চলমান), sudah (ইতিমধ্যে), akan (ভবিষ্যৎ), এবং belum (এখনও না)।',
+      },
+      ur: {
+        title: 'انڈونیشیائی زبان میں فعل کی گردان نہیں ہوتی!',
+        text: 'ضمیر کے مطابق فعل تبدیل نہیں ہوتا۔ زمانہ معاون الفاظ سے ظاہر ہوتا ہے: sedang (جاری)، sudah (مکمل)، akan (مستقبل)، اور belum (ابھی نہیں)۔',
+      },
+    };
+    return idNotices[baseLang] || {
       title: 'Indonesian verbs do NOT conjugate!',
       text: 'Verbs never change form for person (I, you, they). Time is indicated using auxiliary marker words: sedang (currently), sudah (already), akan (will), and belum (not yet).',
     };
   }
 
   if (lang === 'ja') {
-    if (baseLang === 'ru') {
-      return {
+    const jaNotices: Record<string, { title: string; text: string }> = {
+      ru: {
         title: 'Японские глаголы НЕ изменяются по лицам!',
         text: 'Форма одинакова для «я», «ты», «они». Глаголы спрягаются по уровню вежливости (вежливая 〜ます / словарная), времени (прошедшее 〜ました) и утверждению/отрицанию (〜ません).',
-      };
-    }
-    if (baseLang === 'de') {
-      return {
+      },
+      de: {
         title: 'Japanische Verben konjugieren NICHT nach Person!',
         text: 'Die Form ist für „ich“, „du“, „sie“ identisch. Verben ändern sich nach Höflichkeitsform (〜ます), Zeitform (Vergangenheit 〜ました) und Verneinung (〜ません).',
-      };
-    }
-    if (baseLang === 'es') {
-      return {
+      },
+      es: {
         title: '¡Los verbos japoneses NO conjugan por persona!',
         text: 'La forma es idéntica para "yo", "tú", "ellos". Los verbos cambian por nivel de cortesía (〜ます), tiempo (pasado 〜ました) y polaridad negativa (〜ません).',
-      };
-    }
-    if (baseLang === 'fr') {
-      return {
+      },
+      fr: {
         title: 'Les verbes japonais ne varient PAS selon la personne !',
         text: 'La forme est identique pour « je », « tu », « ils ». Les verbes se déclinent selon la politesse (〜ます), le temps (passé 〜ました) et la polarité (négation 〜ません).',
-      };
-    }
-    return {
+      },
+      pt: {
+        title: 'Os verbos japoneses NÃO variam por pessoa!',
+        text: 'A forma é idêntica para "eu", "você" ou "eles". Os verbos mudam conforme a cortesia (〜ます), o tempo (passado 〜ました) e a negação (〜ません).',
+      },
+      id: {
+        title: 'Kata kerja bahasa Jepang TIDAK berubah menurut subjek!',
+        text: 'Bentuk kata kerja sama untuk semua orang, tetapi berubah menurut tingkat kesopanan (〜ます), waktu lampau (〜ました), dan bentuk negatif (〜ません).',
+      },
+      tr: {
+        title: 'Japonca fiiller şahsa göre çekimlenmez!',
+        text: 'Özne kim olursa olsun fiil aynıdır; bunun yerine nezaket düzeyi (〜ます), geçmiş zaman (〜ました) ve olumsuzluk (〜ません) için çekimlenir.',
+      },
+      zh: {
+        title: '日语动词不随人称变化！',
+        text: '无论主语是“我、你、他们”，动词形式相同；日语动词根据礼貌体（〜ます）、过去时（〜ました）和否定式（〜ません）进行活用。',
+      },
+      ja: {
+        title: '日本語の動詞は人称による変化がありません！',
+        text: '丁寧体（〜ます）と普通体、過去形（〜ました）、否定形（〜ません）によって活用します。',
+      },
+      ko: {
+        title: '일본어 동사는 인칭에 따라 변하지 않습니다!',
+        text: '주어와 관계없이 형태가 같으며, 정중체(〜ます), 과거형(〜ました), 부정형(〜ません)에 따라 활용합니다.',
+      },
+      hi: {
+        title: 'जापानी क्रियाएँ पुरुष (कर्ता) के अनुसार नहीं बदलतीं!',
+        text: 'सभी कर्ताओं के लिए रूप समान रहता है; क्रियाएँ शिष्टाचार स्तर (〜ます), भूतकाल (〜ました) और नकारात्मक रूप (〜ません) के लिए बदलती हैं।',
+      },
+      ar: {
+        title: 'الأفعال اليابانية لا تتغير حسب الفاعل!',
+        text: 'يبقى الفعل متطابقاً مع جميع الضمائر، ويتصرف بدلاً من ذلك حسب درجة الاحترام (〜ます) والزمن الماضي (〜ました) والنفي (〜ません).',
+      },
+      bn: {
+        title: 'জাপানি ক্রিয়া পুরুষভেদে পরিবর্তিত হয় না!',
+        text: 'সর্বনাম নির্বিশেষে ক্রিয়ার রূপ একই থাকে; সৌজন্য (〜ます), অতীত কাল (〜ました) এবং না-বোধক (〜ません) অর্থে রূপ বদলায়।',
+      },
+      ur: {
+        title: 'جاپانی افعال فاعل کے لحاظ سے تبدیل نہیں ہوتے!',
+        text: 'ہر ضمیر کے ساتھ فعل یکساں رہتا ہے، البتہ احترام (〜ます)، ماضی (〜ました) اور منفی صورت (〜ません) کے لیے بدلتا ہے۔',
+      },
+    };
+    return jaNotices[baseLang] || {
       title: 'Japanese verbs do NOT conjugate by person!',
       text: 'Whether saying "I", "you", or "they", the verb form is identical. Japanese verbs conjugate instead for politeness (polite 〜ます vs plain), tense (past 〜ました), and negative polarity (〜ません).',
     };
   }
 
   if (lang === 'ko') {
-    if (baseLang === 'ru') {
-      return {
+    const koNotices: Record<string, { title: string; text: string }> = {
+      ru: {
         title: 'Корейские глаголы НЕ изменяются по лицам!',
         text: 'Форма не зависит от лица (я, ты, мы). Глаголы изменяются по уровням вежливости (вежливый 해요체 / официальный 습니다), времени (прошедшее 았/었어요, будущее ㄹ 거예요) и отрицанию.',
-      };
-    }
-    if (baseLang === 'de') {
-      return {
+      },
+      de: {
         title: 'Koreanische Verben konjugieren NICHT nach Person!',
         text: 'Die Form ist unabhängig von der Person (ich, du, wir). Verben verändern sich nach Höflichkeitsstufen (해요체 / 습니다), Zeitformen (Vergangenheit 았/었어요, Zukunft ㄹ 거예요) und Verneinung.',
-      };
-    }
-    if (baseLang === 'es') {
-      return {
+      },
+      es: {
         title: '¡Los verbos coreanos NO conjugan por persona!',
         text: 'La forma no depende de la persona (yo, tú, nosotros). Los verbos cambian según el nivel de cortesía (해요체 / 습니다), el tiempo (pasado 았/었어요, futuro ㄹ 거예요) y la negación.',
-      };
-    }
-    if (baseLang === 'fr') {
-      return {
+      },
+      fr: {
         title: 'Les verbes coréens ne varient PAS selon la personne !',
         text: 'La forme ne dépend pas de la personne (je, tu, nous). Les verbes se conjuguent selon le niveau de politesse (해요체 / 습니다), le temps (passé 았/었어요, futur ㄹ 거예요) et la négation.',
-      };
-    }
-    return {
+      },
+      pt: {
+        title: 'Os verbos coreanos NÃO variam por pessoa!',
+        text: 'Os verbos permanecem iguais para qualquer sujeito, mudando por nível de cortesia (해요 / 습니다) e tempo verbal (았/었어요, ㄹ 거예요).',
+      },
+      id: {
+        title: 'Kata kerja bahasa Korea TIDAK berubah menurut subjek!',
+        text: 'Kata kerja tetap sama untuk semua subjek, tetapi berubah menurut tingkat kesopanan (해요 / 습니다) dan kala waktu (았/었어요, ㄹ 거예요).',
+      },
+      tr: {
+        title: 'Korece fiiller şahsa göre çekimlenmez!',
+        text: 'Özne kim olursa olsun fiil aynı kalır; nezaket düzeylerine (해요 / 습니다) ve zamanlara (았/었어요, ㄹ 거예요) göre çekimlenir.',
+      },
+      zh: {
+        title: '韩语动词不随人称变化！',
+        text: '无论主语是谁，动词形式保持一致，而是根据敬语等级（非格式体敬语 해요、格式体 습니다）和时态（过去 았/었어요、将来 ㄹ 거예요）变化。',
+      },
+      ja: {
+        title: '韓国語の動詞は人称変化しません！',
+        text: '主語に関係なく形は同じで、敬語レベル（해요体／습니다体）や時制（過去 았/었어요、未来 ㄹ 거예요）によって活用します。',
+      },
+      ko: {
+        title: '한국어 동사는 인칭에 따라 변하지 않습니다!',
+        text: '높임법(해요체 / 합쇼체)과 시제(과거 았/었어요, 미래 ㄹ 거예요)에 따라 어미가 활용됩니다.',
+      },
+      hi: {
+        title: 'कोरियाई क्रियाएँ कर्ता के अनुसार नहीं बदलतीं!',
+        text: 'सभी कर्ताओं के लिए रूप समान रहता है, पर शिष्टाचार स्तर (해요 / 습니다) और काल (भूतकाल 았/었어요, भविष्य ㄹ 거예요) के अनुसार बदलता है।',
+      },
+      ar: {
+        title: 'الأفعال الكورية لا تتغير حسب الضمير!',
+        text: 'تبقى صيغة الفعل واحدة مع جميع الضمائر، وتتصرف حسب مستويات الاحترام (해요 / 습니다) والأزمنة (الماضي 았/었어요 والمستقبل ㄹ 거예요).',
+      },
+      bn: {
+        title: 'কোরীয় ক্রিয়া পুরুষভেদে পরিবর্তিত হয় না!',
+        text: 'সর্বনাম নির্বিশেষে ক্রিয়া একই থাকে, তবে সৌজন্য স্তর (해요 / 습니다) ও কাল (অতীত 았/었어요, ভবিষ্যৎ ㄹ 거예요) অনুসারে পরিবর্তিত হয়।',
+      },
+      ur: {
+        title: 'کوریائی افعال ضمیر کے مطابق نہیں بدلتے!',
+        text: 'ہر فاعل کے ساتھ فعل یکساں رہتا ہے، البتہ احترام کے درجات (해요 / 습니다) اور زمانے (ماضی 았/었어요، مستقبل ㄹ 거예요) کے مطابق بدلتا ہے۔',
+      },
+    };
+    return koNotices[baseLang] || {
       title: 'Korean verbs do NOT conjugate by person!',
       text: 'Korean verbs remain the same regardless of who the subject is (I, you, he, we). Instead, verbs conjugate for politeness levels (informal polite 해요, formal 습니다) and tenses (past 았/었어요, future ㄹ 거예요).',
     };
@@ -632,6 +793,26 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                   <>Vous avez obtenu <strong>{cardScore}</strong> sur <strong>{flashcardDeck.length}</strong> !</>
                 ) : baseLanguage === 'de' ? (
                   <>Du hast <strong>{cardScore}</strong> von <strong>{flashcardDeck.length}</strong> richtig!</>
+                ) : baseLanguage === 'pt' ? (
+                  <>Você acertou <strong>{cardScore}</strong> de <strong>{flashcardDeck.length}</strong>!</>
+                ) : baseLanguage === 'id' ? (
+                  <>Anda menjawab benar <strong>{cardScore}</strong> dari <strong>{flashcardDeck.length}</strong>!</>
+                ) : baseLanguage === 'tr' ? (
+                  <><strong>{flashcardDeck.length}</strong> sorudan <strong>{cardScore}</strong> doğru yaptınız!</>
+                ) : baseLanguage === 'zh' ? (
+                  <>答对 <strong>{cardScore}</strong> / <strong>{flashcardDeck.length}</strong> 题！</>
+                ) : baseLanguage === 'ja' ? (
+                  <><strong>{flashcardDeck.length}</strong>問中<strong>{cardScore}</strong>問正解！</>
+                ) : baseLanguage === 'ko' ? (
+                  <><strong>{flashcardDeck.length}</strong>문제 중 <strong>{cardScore}</strong>문제 정답!</>
+                ) : baseLanguage === 'hi' ? (
+                  <>आपने <strong>{flashcardDeck.length}</strong> में से <strong>{cardScore}</strong> सही उत्तर दिए!</>
+                ) : baseLanguage === 'ar' ? (
+                  <>أجبت بشكل صحيح على <strong>{cardScore}</strong> من أصل <strong>{flashcardDeck.length}</strong>!</>
+                ) : baseLanguage === 'bn' ? (
+                  <>আপনি <strong>{flashcardDeck.length}</strong>টির মধ্যে <strong>{cardScore}</strong>টি সঠিক উত্তর দিয়েছেন!</>
+                ) : baseLanguage === 'ur' ? (
+                  <>آپ نے <strong>{flashcardDeck.length}</strong> میں سے <strong>{cardScore}</strong> درست جواب دیے!</>
                 ) : (
                   <>You got <strong>{cardScore}</strong> out of <strong>{flashcardDeck.length}</strong> correct!</>
                 )}
@@ -694,7 +875,7 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                           <strong className="example-target" style={{ color: rule.color }}>
                             {displayTarget}
                           </strong>
-                          <span className="example-meaning">{ex.meaning}</span>
+                          <span className="example-meaning">{localizeGrammarMeaning(ex.meaning, baseLanguage)}</span>
                         </div>
                         <PronunciationButton
                           text={displayTarget}
@@ -738,7 +919,7 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                 onClick={() => setActiveVerbIndex(idx)}
               >
                 <strong>{v.verb}</strong>
-                <span className="verb-pill-meaning">({v.meaning})</span>
+                <span className="verb-pill-meaning">({localizeGrammarMeaning(v.meaning, baseLanguage)})</span>
               </button>
             ))}
           </div>
@@ -749,7 +930,7 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                 <div>
                   <h3>
                     <span className="verb-name">{verbsList[activeVerbIndex].verb}</span>
-                    <span className="verb-meaning-tag">— {verbsList[activeVerbIndex].meaning}</span>
+                    <span className="verb-meaning-tag">— {localizeGrammarMeaning(verbsList[activeVerbIndex].meaning, baseLanguage)}</span>
                   </h3>
                   <span className="verb-tense-badge">{verbsList[activeVerbIndex].tense}</span>
                 </div>
@@ -824,10 +1005,26 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
 
               <div className="comparison-table">
                 <div className="comparison-header-row">
-                  <span>{desc.headers?.[0] || (baseLanguage === 'ru' ? 'Исходная форма' : baseLanguage === 'es' ? 'Positivo' : baseLanguage === 'fr' ? 'Positif' : baseLanguage === 'de' ? 'Grundform' : 'Base (Positive)')}</span>
-                  <span>{desc.headers?.[1] || (baseLanguage === 'ru' ? 'Сравнительная' : baseLanguage === 'es' ? 'Comparativo' : baseLanguage === 'fr' ? 'Comparatif' : baseLanguage === 'de' ? 'Komparativ' : 'Comparative')}</span>
-                  <span>{desc.headers?.[2] || (baseLanguage === 'ru' ? 'Превосходная' : baseLanguage === 'es' ? 'Superlativo' : baseLanguage === 'fr' ? 'Superlatif' : baseLanguage === 'de' ? 'Superlativ' : 'Superlative')}</span>
-                  <span>{desc.headers?.[3] || (baseLanguage === 'ru' ? 'Значение' : baseLanguage === 'es' ? 'Significado' : baseLanguage === 'fr' ? 'Sens' : baseLanguage === 'de' ? 'Bedeutung' : 'Meaning')}</span>
+                  <span>{desc.headers?.[0] || ({
+                    en: 'Base (Positive)', ru: 'Исходная форма', es: 'Positivo', fr: 'Positif', de: 'Grundform',
+                    pt: 'Positivo', id: 'Bentuk Dasar', tr: 'Yalın Hal', zh: '原级', ja: '原級',
+                    ko: '원급', hi: 'मूल रूप', ar: 'الصيغة الأساسية', bn: 'মূল রূপ', ur: 'مطلق صفت'
+                  }[baseLanguage] || 'Base (Positive)')}</span>
+                  <span>{desc.headers?.[1] || ({
+                    en: 'Comparative', ru: 'Сравнительная', es: 'Comparativo', fr: 'Comparatif', de: 'Komparativ',
+                    pt: 'Comparativo', id: 'Komparatif', tr: 'Karşılaştırma', zh: '比较级', ja: '比較級',
+                    ko: '비교급', hi: 'उत्तरावस्था', ar: 'المقارنة', bn: 'তরতম্য', ur: 'تفصیلِ بعض'
+                  }[baseLanguage] || 'Comparative')}</span>
+                  <span>{desc.headers?.[2] || ({
+                    en: 'Superlative', ru: 'Превосходная', es: 'Superlativo', fr: 'Superlatif', de: 'Superlativ',
+                    pt: 'Superlativo', id: 'Superlatif', tr: 'Üstünlük', zh: '最高级', ja: '最上級',
+                    ko: '최상급', hi: 'उत्तमावस्था', ar: 'التفضيل', bn: 'অতিশায়ন', ur: 'تفصیلِ کل'
+                  }[baseLanguage] || 'Superlative')}</span>
+                  <span>{desc.headers?.[3] || ({
+                    en: 'Meaning', ru: 'Значение', es: 'Significado', fr: 'Sens', de: 'Bedeutung',
+                    pt: 'Significado', id: 'Arti', tr: 'Anlam', zh: '释义', ja: '意味',
+                    ko: '의미', hi: 'अर्थ', ar: 'المعنى', bn: 'অর্থ', ur: 'معنی'
+                  }[baseLanguage] || 'Meaning')}</span>
                 </div>
                 {desc.examples.map((item, rowIdx) => {
                   const spokenPos = getSpokenGrammarWord(item.positive, currentLanguage);
@@ -872,7 +1069,7 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                           />
                         )}
                       </div>
-                      <span className="comp-meaning">{item.meaning}</span>
+                      <span className="comp-meaning">{localizeGrammarMeaning(item.meaning, baseLanguage)}</span>
                     </div>
                   );
                 })}

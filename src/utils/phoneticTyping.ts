@@ -1,4 +1,5 @@
 import { SupportedLanguageId } from '../data/languages/types';
+import { SUPPORTED_LANGUAGES } from '../data/languages';
 import { transliterate } from './transliteration';
 
 export type PhoneticScriptLang = 'ru' | 'ar' | 'ur' | 'hi' | 'bn' | 'ja' | 'ko' | 'zh';
@@ -789,9 +790,388 @@ export const PHONETIC_CHEATSHEETS: Record<PhoneticScriptLang, PhoneticCheatsheet
     rules: [
       { latin: 'ma1', script: 'mā (1st)' }, { latin: 'ma2', script: 'má (2nd)' },
       { latin: 'ma3', script: 'mǎ (3rd)' }, { latin: 'ma4', script: 'mà (4th)' },
-      { latin: 'ni3 hao3', script: 'nǐ hǎo' }, { latin: 'nv3 / u:', script: 'nǚ / ü' },
-      { latin: 'Hanzi', script: '你好' }, { latin: 'Pinyin', script: 'nǐ hǎo' }
+      { latin: 'nihao + Space', script: '你好' }, { latin: 'nv3 / u:', script: 'nǚ / ü' },
+      { latin: 'xiexie + Space', script: '谢谢' }, { latin: 'ni3 hao3', script: 'nǐ hǎo' }
     ],
-    note: 'Type Chinese characters (汉字) or Pinyin (e.g. ni3 hao3 → nǐ hǎo).'
+    note: 'Sound out Pinyin and press Space to convert to Chinese characters (e.g. nihao → 你好), or type numeric tones (ni3 hao3 → nǐ hǎo).'
   }
+};
+
+// ============================================================================
+// 6. PINYIN-STYLE "SOUND IT OUT + SPACEBAR" LEXICON & CONVERTER (ALL 8 SCRIPTS)
+// ============================================================================
+
+const MANDARIN_SYLLABLE_HANZI: Record<string, string> = {
+  ma1: '妈', ma2: '麻', ma3: '马', ma4: '骂', ma5: '吗', ma: '吗',
+  ni3: '你', ni: '你', nin: '您', wo3: '我', wo: '我', ta1: '他', ta: '他',
+  hao3: '好', hao: '好', shi4: '是', shi: '是', bu4: '不', bu: '不',
+  xie4: '谢', xie: '谢', zai4: '再', zai: '在', jian4: '见', jian: '见',
+  shui3: '水', shui: '水', cha2: '茶', cha: '茶', fan4: '饭', fan: '饭',
+  ren2: '人', ren: '人', da4: '大', da: '大', xiao3: '小', xiao: '小',
+  zhong1: '中', zhong: '中', guo2: '国', guo: '国', ai4: '爱', ai: '爱',
+  chi1: '吃', chi: '吃', he1: '喝', he: '喝', qu4: '去', qu: '去',
+  lai2: '来', lai: '来', yao4: '要', yao: '要', you3: '有', you: '有',
+  mei2: '没', mei: '没', de: '的', le: '了', men: '们',
+  yi1: '一', yi: '一', er4: '二', er: '二', san1: '三', san: '三',
+  si4: '四', si: '四', wu3: '五', wu: '五', liu4: '六', liu: '六',
+  qi1: '七', qi: '七', ba1: '八', ba: '八', jiu3: '九', jiu: '九',
+  shi2: '十', bai3: '百', bai: '百', qian1: '千', qian: '千',
+  mao1: '猫', mao: '猫', gou3: '狗', gou: '狗', shu1: '书', shu: '书',
+  che1: '车', che: '车', jia1: '家', jia: '家', qian2: '钱',
+  ming2: '明', ming: '明', tian1: '天', tian: '天', jin1: '今', jin: '今',
+  nian2: '年', nian: '年', yue4: '月', yue: '月', ri4: '日', ri: '日',
+};
+
+const soundOutLexiconCache = new Map<PhoneticScriptLang, Map<string, string>>();
+
+const cleanNativeScriptTarget = (raw: string, lang: PhoneticScriptLang): string => {
+  let cleaned = raw
+    .split('/')[0]
+    .replace(/\s*\([^)]*\)\s*/g, ' ')
+    .replace(/[؟?!.,،।？！。，¡¿«»"“”]/g, '')
+    .trim();
+  if (lang === 'ar' || lang === 'ur') {
+    cleaned = cleaned.replace(/[\u064B-\u065F\u0670]/g, '');
+  }
+  return cleaned.trim();
+};
+
+const toCompactSoundKey = (pron: string): string =>
+  pron
+    .replace(/\/[^/]*\//g, ' ')
+    .replace(/\([^)]*\)/g, ' ')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/ü/gi, 'v')
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, '');
+
+const toNumericPinyinKey = (pron: string): string => {
+  const toneCharMap: Record<string, string> = {
+    ā: 'a1', á: 'a2', ǎ: 'a3', à: 'a4',
+    ē: 'e1', é: 'e2', ě: 'e3', è: 'e4',
+    ī: 'i1', í: 'i2', ǐ: 'i3', ì: 'i4',
+    ō: 'o1', ó: 'o2', ǒ: 'o3', ò: 'o4',
+    ū: 'u1', ú: 'u2', ǔ: 'u3', ù: 'u4',
+    ǖ: 'v1', ǘ: 'v2', ǚ: 'v3', ǜ: 'v4',
+  };
+  let out = pron.toLowerCase();
+  for (const [marked, rep] of Object.entries(toneCharMap)) {
+    out = out.split(marked).join(rep);
+  }
+  return out
+    .replace(/([a-zv]+)([1-4])([a-z]*)/g, '$1$3$2')
+    .replace(/[^a-z0-9]/g, '');
+};
+
+export const getSoundOutLexicon = (lang: PhoneticScriptLang): Map<string, string> => {
+  const cached = soundOutLexiconCache.get(lang);
+  if (cached) return cached;
+
+  const map = new Map<string, string>();
+  const entry = SUPPORTED_LANGUAGES[lang];
+  if (entry?.data) {
+    const d = entry.data;
+    const rows = [
+      ...(d.basicPhrases || []),
+      ...(d.commonWords || []),
+      ...(d.numbers || []),
+      ...(d.time || []),
+    ];
+
+    for (const item of rows) {
+      const rawTarget = (item.phrase || item.russian || item.target || '').toString().trim();
+      const rawPron = (item.pronunciation || '').toString().trim();
+      if (!rawTarget || !rawPron) continue;
+
+      const target = cleanNativeScriptTarget(rawTarget, lang);
+      if (!target || !containsTargetScript(target, lang)) continue;
+
+      const compact = toCompactSoundKey(rawPron);
+      if (compact.length >= (lang === 'ru' ? 4 : 2) && !map.has(compact)) {
+        map.set(compact, target);
+      }
+      if (lang === 'zh' && /ü/i.test(rawPron)) {
+        const uVariant = compact.replace(/v/g, 'u');
+        if (uVariant.length >= 2 && !map.has(uVariant)) {
+          map.set(uVariant, target);
+        }
+      }
+      if (lang === 'zh') {
+        const numericKey = toNumericPinyinKey(rawPron);
+        if (numericKey && numericKey !== compact && !map.has(numericKey)) {
+          map.set(numericKey, target);
+        }
+      }
+    }
+
+    for (const a of d.alphabet || []) {
+      const exWord = (a.word || a.russianWord || '').toString().trim();
+      const exPron = (a.wordPronunciation || '').toString().trim();
+      if (exWord && exPron) {
+        const cleanWord = cleanNativeScriptTarget(exWord, lang);
+        const key = toCompactSoundKey(exPron);
+        if (cleanWord && key.length >= (lang === 'ru' ? 4 : 2) && !map.has(key)) {
+          map.set(key, cleanWord);
+        }
+      }
+      if (lang !== 'ru' && lang !== 'zh') {
+        const letter = cleanNativeScriptTarget(((a as { character?: string }).character || a.letter || '').toString(), lang);
+        const parenMatch = (a.pronunciation || '').match(/\(([a-zA-Z]{1,4})\)/);
+        const primary = parenMatch ? parenMatch[1].toLowerCase() : toCompactSoundKey((a.pronunciation || '').split(/as in|\/|,/i)[0]);
+        if (letter && primary && primary.length >= 1 && primary.length <= 4 && !map.has(primary)) {
+          map.set(primary, letter);
+        }
+      }
+    }
+  }
+
+  if (lang === 'zh') {
+    for (const [k, v] of Object.entries(MANDARIN_SYLLABLE_HANZI)) {
+      if (!map.has(k)) {
+        map.set(k, v);
+      }
+    }
+  }
+
+  const curatedAliases: Partial<Record<PhoneticScriptLang, Record<string, string>>> = {
+    ru: {
+      privet: 'привет', preevyet: 'привет', spasibo: 'спасибо', spaseeba: 'спасибо',
+      pozhaluysta: 'пожалуйста', pazhalusta: 'пожалуйста', horosho: 'хорошо', kharasho: 'хорошо',
+      zdravstvuyte: 'здравствуйте', zdrastvuyte: 'здравствуйте', poka: 'пока',
+    },
+    ko: {
+      annyeong: '안녕', annyeonghaseyo: '안녕하세요', gamsahamnida: '감사합니다',
+      kamsahamnida: '감사합니다', gomawo: '고마워', gomawoyo: '고마워요',
+      mianhae: '미안해', mianhamnida: '미안합니다', juseyo: '주세요', saranghae: '사랑해',
+    },
+    ja: {
+      konnichiwa: 'こんにちは', konbanwa: 'こんばんは', arigatou: 'ありがとう',
+      arigato: 'ありがとう', ohayou: 'おはよう', ohayo: 'おはよう',
+      sayounara: 'さようなら', sumimasen: 'すみません', hai: 'はい', iie: 'いいえ',
+    },
+    ar: {
+      marhaban: 'مرحبا', marhaba: 'مرحبا', shukran: 'شكرا', afwan: 'عفوا',
+      naam: 'نعم', ahlan: 'أهلا', salam: 'سلام', kitab: 'كتاب', maa: 'ماء',
+    },
+    ur: {
+      shukriya: 'شکریہ', salam: 'سلام', assalamualaikum: 'السلام علیکم',
+      paani: 'پانی', pani: 'پانی', haan: 'ہاں', nahin: 'نہیں', dost: 'دوست',
+    },
+    hi: {
+      namaste: 'नमस्ते', dhanyavad: 'धन्यवाद', dhanyavaad: 'धन्यवाद',
+      kripaya: 'कृपया', paani: 'पानी', pani: 'पानी', haan: 'हाँ', nahin: 'नहीं',
+    },
+    bn: {
+      nomoshkar: 'নমস্কার', namaskar: 'নমস্কার', dhonnobad: 'ধন্যবাদ',
+      dhanyabad: 'ধন্যবাদ', jol: 'জল', bhalo: 'ভালো', ami: 'আমি', tumi: 'তুমি',
+    },
+    zh: {
+      nihao: '你好', ni3hao3: '你好', xiexie: '谢谢', xie4xie: '谢谢', xie4xie4: '谢谢',
+      zaijian: '再见', zai4jian4: '再见', duibuqi: '对不起', dui4bu4qi3: '对不起',
+      zaoshanghao: '早上好', wanshanghao: '晚上好', bukeqi: '不客气', meiguanxi: '没关系',
+    },
+  };
+
+  const aliases = curatedAliases[lang];
+  if (aliases) {
+    for (const [k, v] of Object.entries(aliases)) {
+      map.set(k, v);
+    }
+  }
+
+  soundOutLexiconCache.set(lang, map);
+  return map;
+};
+
+const segmentMandarinPinyinToHanzi = (compactLower: string, lexicon: Map<string, string>): string | null => {
+  if (!compactLower || !/^[a-z1-5]+$/.test(compactLower)) return null;
+  if (lexicon.has(compactLower)) return lexicon.get(compactLower)!;
+
+  const n = compactLower.length;
+  const dp: Array<string | null> = new Array(n + 1).fill(null);
+  dp[n] = '';
+  for (let i = n - 1; i >= 0; i--) {
+    const maxLen = Math.min(12, n - i);
+    for (let len = maxLen; len >= 1; len--) {
+      const sub = compactLower.slice(i, i + len);
+      const hit = lexicon.get(sub);
+      if (hit && dp[i + len] !== null) {
+        dp[i] = hit + dp[i + len]!;
+        break;
+      }
+    }
+  }
+  return dp[0];
+};
+
+export const convertSoundOutToken = (token: string, lang: PhoneticScriptLang): string => {
+  const trimmed = token.trim();
+  if (!trimmed) return token;
+
+  const lexicon = getSoundOutLexicon(lang);
+  const compact = trimmed.toLowerCase().replace(/u:/g, 'v').replace(/ü/g, 'v').replace(/[^a-z0-9]/g, '');
+
+  if (compact && lexicon.has(compact)) {
+    return lexicon.get(compact)!;
+  }
+
+  if (lang === 'zh') {
+    const segmented = segmentMandarinPinyinToHanzi(compact, lexicon);
+    if (segmented) return segmented;
+    const toned = convertNumericPinyin(trimmed);
+    if (toned !== trimmed) return toned;
+    return token;
+  }
+
+  if (lang === 'ru') {
+    return transliterate(token);
+  }
+
+  return transliterateForLanguage(token, lang);
+};
+
+export const convertLastLatinWordOnSpace = (
+  inputWithSpace: string,
+  lang: PhoneticScriptLang
+): { converted: string; didConvert: boolean } => {
+  if (!inputWithSpace.endsWith(' ')) {
+    return { converted: inputWithSpace, didConvert: false };
+  }
+
+  const withoutTrailingSpaces = inputWithSpace.replace(/\s+$/, '');
+  const trailingSpaces = inputWithSpace.slice(withoutTrailingSpaces.length);
+  if (!withoutTrailingSpaces) {
+    return { converted: inputWithSpace, didConvert: false };
+  }
+
+  const lexicon = getSoundOutLexicon(lang);
+
+  const multiWordMatch = withoutTrailingSpaces.match(/^(.*?)([a-zA-Z0-9'":`]+(?:\s+[a-zA-Z0-9'":`]+)+)$/);
+  if (multiWordMatch) {
+    const [, prefix, latinChunk] = multiWordMatch;
+    const compactChunk = latinChunk.toLowerCase().replace(/u:/g, 'v').replace(/ü/g, 'v').replace(/[^a-z0-9]/g, '');
+    if (compactChunk && lexicon.has(compactChunk)) {
+      const phraseScript = lexicon.get(compactChunk)!;
+      const mergedPrefix =
+        (lang === 'zh' || lang === 'ja') && /[\u3040-\u30FF\u4E00-\u9FFF]\s+$/.test(prefix)
+          ? prefix.replace(/\s+$/, '')
+          : prefix;
+      return { converted: `${mergedPrefix}${phraseScript}${trailingSpaces}`, didConvert: true };
+    }
+    if (lang === 'zh') {
+      const seg = segmentMandarinPinyinToHanzi(compactChunk, lexicon);
+      if (seg) {
+        const mergedPrefix = /[\u4E00-\u9FFF]\s+$/.test(prefix) ? prefix.replace(/\s+$/, '') : prefix;
+        return { converted: `${mergedPrefix}${seg}${trailingSpaces}`, didConvert: true };
+      }
+    }
+  }
+
+  const lastWordMatch = withoutTrailingSpaces.match(/^(.*?)([a-zA-Z0-9'":`-]+)$/);
+  if (!lastWordMatch) {
+    return { converted: inputWithSpace, didConvert: false };
+  }
+  const [, prefix, rawWord] = lastWordMatch;
+  if (/^\d+$/.test(rawWord)) {
+    return { converted: inputWithSpace, didConvert: false };
+  }
+
+  const convertedWord = convertSoundOutToken(rawWord, lang);
+  if (!convertedWord || convertedWord === rawWord) {
+    return { converted: inputWithSpace, didConvert: false };
+  }
+
+  const cleanPrefix =
+    (lang === 'zh' || lang === 'ja') &&
+    /[\u3040-\u30FF\u4E00-\u9FFF]\s+$/.test(prefix) &&
+    containsTargetScript(convertedWord, lang)
+      ? prefix.replace(/\s+$/, '')
+      : prefix;
+
+  return {
+    converted: `${cleanPrefix}${convertedWord}${trailingSpaces}`,
+    didConvert: true,
+  };
+};
+
+export const previewSoundOutToken = (
+  input: string,
+  lang: PhoneticScriptLang
+): { rawToken: string; preview: string } | null => {
+  if (!input || /\s$/.test(input)) return null;
+
+  const lexicon = getSoundOutLexicon(lang);
+  const multiMatch = input.match(/([a-zA-Z0-9'":`]+(?:\s+[a-zA-Z0-9'":`]+)+)$/);
+  if (multiMatch) {
+    const chunk = multiMatch[1];
+    const compact = chunk.toLowerCase().replace(/u:/g, 'v').replace(/ü/g, 'v').replace(/[^a-z0-9]/g, '');
+    if (compact && lexicon.has(compact)) {
+      return { rawToken: chunk, preview: lexicon.get(compact)! };
+    }
+    if (lang === 'zh') {
+      const seg = segmentMandarinPinyinToHanzi(compact, lexicon);
+      if (seg) return { rawToken: chunk, preview: seg };
+    }
+  }
+
+  const singleMatch = input.match(/([a-zA-Z0-9'":`-]+)$/);
+  if (!singleMatch) return null;
+  const rawToken = singleMatch[1];
+  if (/^\d+$/.test(rawToken)) return null;
+
+  const converted = convertSoundOutToken(rawToken, lang);
+  if (!converted || converted === rawToken) return null;
+
+  return { rawToken, preview: converted };
+};
+
+export const getLocalizedPhoneticCheatsheet = (
+  lang: PhoneticScriptLang,
+  baseLang: SupportedLanguageId = 'en'
+): PhoneticCheatsheet => {
+  const base = PHONETIC_CHEATSHEETS[lang];
+  if (baseLang === 'en') return base;
+
+  const localizedNotes: Partial<Record<SupportedLanguageId, string>> = {
+    zh: '用拉丁字母拼出读音，然后按空格键即可转换为目标文字！',
+    ja: 'ラテン文字で発音を入力し、スペースキーを押すと文字に変換されます！',
+    ko: '알파벳으로 발음을 입력한 뒤 스페이스바를 누르면 문자로 변환됩니다!',
+    ru: 'Введите слово фонетически латиницей и нажмите Пробел для конвертации!',
+    es: 'Escribe cómo suena en letras latinas y pulsa Espacio para convertir.',
+    fr: 'Écrivez phonétiquement en lettres latines puis appuyez sur Espace pour convertir.',
+    de: 'Tippe die Aussprache mit lateinischen Buchstaben und drücke die Leertaste zum Umwandeln.',
+    pt: 'Digite foneticamente com letras latinas e pressione Espaço para converter.',
+    id: 'Ketik bunyinya dengan huruf Latin lalu tekan Spasi untuk mengubah aksara.',
+    tr: 'Latin harfleriyle okunuşunu yazıp dönüştürmek için Boşluk tuşuna basın.',
+    hi: 'लैटिन अक्षरों में उच्चारण लिखें और बदलने के लिए स्पेसबार दबाएँ।',
+    ar: 'اكتب النطق بالأحرف اللاتينية ثم اضغط مفتاح المسافة للتحويل.',
+    bn: 'ল্যাটিন অক্ষরে উচ্চারণ লিখে রূপান্তর করতে স্পেসবার চাপুন।',
+    ur: 'لاطینی حروف میں تلفظ لکھیں اور تبدیلی کے لیے اسپیس بار دبائیں۔',
+  };
+
+  const localizedTitles: Partial<Record<SupportedLanguageId, { title: string; kb: string }>> = {
+    zh: { title: '💡 拼音式拼读输入指南', kb: '音标虚拟键盘' },
+    ja: { title: '💡 ローマ字・発音入力ガイド', kb: '音声キーボード' },
+    ko: { title: '💡 발음 입력 가이드', kb: '발음 가상 키보드' },
+    ru: { title: '💡 Фонетический ввод', kb: 'Виртуальная клавиатура' },
+    es: { title: '💡 Guía de escritura fonética', kb: 'Teclado fonético virtual' },
+    fr: { title: '💡 Guide de saisie phonétique', kb: 'Clavier phonétique virtuel' },
+    de: { title: '💡 Phonetische Tipp-Hilfe', kb: 'Virtuelle phonetische Tastatur' },
+    pt: { title: '💡 Guia de digitação fonética', kb: 'Teclado fonético virtual' },
+    id: { title: '💡 Panduan Ketik Fonetik', kb: 'Papan Ketik Fonetik' },
+    tr: { title: '💡 Fonetik Yazım Rehberi', kb: 'Sanal Fonetik Klavye' },
+    hi: { title: '💡 ध्वन्यात्मक टाइपिंग गाइड', kb: 'ध्वन्यात्मक कीबोर्ड' },
+    ar: { title: '💡 دليل الكتابة الصوتية', kb: 'لوحة المفاتيح الصوتية' },
+    bn: { title: '💡 ধ্বনিভিত্তিক টাইপিং নির্দেশিকা', kb: 'ধ্বনিভিত্তিক কিবোর্ড' },
+    ur: { title: '💡 صوتی ٹائپنگ گائیڈ', kb: 'صوتی کی بورڈ' },
+  };
+
+  const t = localizedTitles[baseLang];
+  return {
+    ...base,
+    title: t ? t.title : base.title,
+    keyboardTitle: t ? t.kb : base.keyboardTitle,
+    note: localizedNotes[baseLang] || base.note,
+  };
 };

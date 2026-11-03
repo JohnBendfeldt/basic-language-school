@@ -1,6 +1,7 @@
 import React from 'react';
 import { SupportedLanguageId } from '../data/languages/types';
-import { ABOUT_LANGUAGES, LanguageProfile } from '../data/languages/aboutLanguageData';
+import { LanguageProfile } from '../data/languages/aboutLanguageData';
+import { getLocalizedAboutProfile, getScriptEvolutionLabels } from '../data/languages/aboutTranslations';
 import PronunciationButton from './PronunciationButton';
 import { FaHistory, FaLightbulb, FaBookOpen, FaGlobeAmericas, FaArrowRight } from 'react-icons/fa';
 
@@ -190,8 +191,9 @@ const ABOUT_CHROME_MAP: Record<SupportedLanguageId, AboutChromeCopy> = {
 };
 
 export const LanguageAbout: React.FC<LanguageAboutProps> = ({ currentLanguage, baseLanguage }) => {
-  const profile: LanguageProfile = ABOUT_LANGUAGES[currentLanguage] || ABOUT_LANGUAGES.en;
+  const profile: LanguageProfile = getLocalizedAboutProfile(currentLanguage, baseLanguage);
   const copy = ABOUT_CHROME_MAP[baseLanguage] || ABOUT_CHROME_MAP.en;
+  const scriptLabels = getScriptEvolutionLabels(baseLanguage);
 
   return (
     <div className="language-about-container">
@@ -243,12 +245,12 @@ export const LanguageAbout: React.FC<LanguageAboutProps> = ({ currentLanguage, b
       {profile.scriptComparison && profile.scriptComparison.length > 0 && (
         <div className="about-section-wrap script-evolution-wrap">
           <div className="script-evolution-header">
-            <span className="script-badge">1950s Literacy Revolution</span>
+            <span className="script-badge">{scriptLabels.badge}</span>
             <h3 className="about-section-heading">
-              <FaBookOpen className="heading-icon" /> Traditional vs. Simplified Characters (繁简对比)
+              <FaBookOpen className="heading-icon" /> {scriptLabels.heading}
             </h3>
             <p className="script-evolution-desc">
-              In 1949, over 80% of China’s population could not read or write because Traditional characters averaged 15 to 30 strokes each. In 1956, the government systematically streamlined characters into Simplified forms to bring universal literacy to working people:
+              {scriptLabels.description}
             </p>
           </div>
 
@@ -258,24 +260,24 @@ export const LanguageAbout: React.FC<LanguageAboutProps> = ({ currentLanguage, b
                 <div className="compare-top-row">
                   {/* Traditional */}
                   <div className="compare-character-side traditional">
-                    <span className="char-badge">Traditional (繁体)</span>
+                    <span className="char-badge">{scriptLabels.traditionalBadge}</span>
                     <span className="compare-char">{item.traditional}</span>
-                    <span className="stroke-pill">{item.traditionalStrokes} strokes</span>
+                    <span className="stroke-pill">{scriptLabels.formatStrokes(item.traditionalStrokes)}</span>
                   </div>
 
                   {/* Transition Arrow */}
                   <div className="compare-arrow-wrap">
                     <FaArrowRight className="compare-arrow" />
                     <span className="reduced-badge">
-                      -{item.traditionalStrokes - item.simplifiedStrokes} strokes
+                      {scriptLabels.formatReducedStrokes(item.traditionalStrokes - item.simplifiedStrokes)}
                     </span>
                   </div>
 
                   {/* Simplified */}
                   <div className="compare-character-side simplified">
-                    <span className="char-badge active">Simplified (简体)</span>
+                    <span className="char-badge active">{scriptLabels.simplifiedBadge}</span>
                     <span className="compare-char">{item.simplified}</span>
-                    <span className="stroke-pill success">{item.simplifiedStrokes} strokes</span>
+                    <span className="stroke-pill success">{scriptLabels.formatStrokes(item.simplifiedStrokes)}</span>
                   </div>
                 </div>
 
