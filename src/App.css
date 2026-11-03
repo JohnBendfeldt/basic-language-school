@@ -10463,3 +10463,11 @@ html {
     line-height: 1.7;
   }
 }
+
+/* Defer layout/paint of off-screen vocabulary cards beyond the first 59 items
+   so switching tabs or languages on large lists (e.g. 539 Common Words) stays instant */
+.phrases-container .phrase-card:nth-child(n+60) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 168px;
+}
+

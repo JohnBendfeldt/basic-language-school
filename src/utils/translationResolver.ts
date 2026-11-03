@@ -978,14 +978,24 @@ const ensureTranslationIndexes = () => {
     }
   }
 
-  // 5. Pre-sort & pre-compile word-boundary regular expressions once
-  compiledWordBoundaryList = Object.entries(EXTENDED_DICTIONARY)
-    .filter(([key]) => key.length >= 3)
-    .sort((a, b) => b[0].length - a[0].length)
-    .map(([key]) => {
+  // 5. Pre-sort & pre-compile word-boundary regular expressions once (combining primary & supplemental dictionaries)
+  const combinedWordKeys = Array.from(
+    new Set([
+      ...Object.keys(EXTENDED_DICTIONARY),
+      ...Object.keys(SUPPLEMENTAL_DICTIONARY),
+    ])
+  );
+  compiledWordBoundaryList = combinedWordKeys
+    .filter((key) => key.length >= 3)
+    .sort((a, b) => b.length - a.length)
+    .map((key) => {
       const lowerKey = key.toLowerCase().trim();
       const escapedKey = lowerKey.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      const enrichedMapping = enLookupMap.get(lowerKey) || EXTENDED_DICTIONARY[key];
+      const enrichedMapping =
+        enLookupMap.get(lowerKey) ||
+        EXTENDED_DICTIONARY[key] ||
+        SUPPLEMENTAL_DICTIONARY[key] ||
+        {};
       return {
         key,
         lowerKey,

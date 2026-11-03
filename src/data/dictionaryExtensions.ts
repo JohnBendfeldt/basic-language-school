@@ -680,4 +680,166 @@ export const SUPPLEMENTAL_DICTIONARY: Record<string, Partial<Record<SupportedLan
   'how?': { bn: 'কীভাবে?', ur: 'کیسے؟' },
   'how much': { bn: 'কত', ur: 'کتنا' },
   'how much / how many': { bn: 'কত / কয়টি', ur: 'کتنا / کتنے' },
+
+  // Cross-course 15-language parity entries (so every course pair resolves into native script)
+  'pain': {
+    en: 'Pain', es: 'Dolor', fr: 'Douleur', de: 'Schmerz', pt: 'Dor', ru: 'Боль', id: 'Rasa sakit', tr: 'Ağrı',
+    zh: '疼痛', ja: '痛み', ko: '통증 / 아픔', hi: 'दर्द / पीड़ा', ar: 'ألم', bn: 'ব্যথা / যন্ত্রণা', ur: 'درد / تکلیف'
+  },
+  'bedroom': {
+    en: 'Bedroom', es: 'Dormitorio / Habitación', fr: 'Chambre', de: 'Schlafzimmer', pt: 'Quarto', ru: 'Спальня', id: 'Kamar tidur', tr: 'Yatak odası',
+    zh: '卧室', ja: '寝室', ko: '침실', hi: 'शयनकक्ष / बेडरूम', ar: 'غرفة نوم', bn: 'শোবার ঘর', ur: 'سونے کا کمرہ'
+  },
+  'closet': {
+    en: 'Closet', es: 'Armario / Guardarropa', fr: 'Placard / Armoire', de: 'Kleiderschrank', pt: 'Guarda-roupa / Armário', ru: 'Шкаф', id: 'Lemari pakaian', tr: 'Gardırop / Dolap',
+    zh: '衣柜', ja: 'クローゼット / 押し入れ', ko: '옷장', hi: 'अलमारी', ar: 'خزانة ملابس', bn: 'আলমারি', ur: 'الماری'
+  },
+  'glasses': {
+    en: 'Glasses', es: 'Gafas / Lentes', fr: 'Lunettes', de: 'Brille', pt: 'Óculos', ru: 'Очки', id: 'Kacamata', tr: 'Gözlük',
+    zh: '眼镜', ja: '眼鏡', ko: '안경', hi: 'चश्मा', ar: 'نظارات', bn: 'চশমা', ur: 'عینک / چشمہ'
+  },
+  'notebook': {
+    en: 'Notebook', es: 'Cuaderno', fr: 'Cahier', de: 'Notizbuch / Heft', pt: 'Caderno', ru: 'Тетрадь / Блокнот', id: 'Buku catatan', tr: 'Defter',
+    zh: '笔记本', ja: 'ノート', ko: '공책 / 노트', hi: 'नोटबुक / कॉपी', ar: 'دفتر', bn: 'খাতা / নোটবুক', ur: 'کاپی / نوٹ بک'
+  },
+  'pencil': {
+    en: 'Pencil', es: 'Lápiz', fr: 'Crayon', de: 'Bleistift', pt: 'Lápis', ru: 'Карандаш', id: 'Pensil', tr: 'Kurşun kalem',
+    zh: '铅笔', ja: '鉛筆', ko: '연필', hi: 'पेंसिल', ar: 'قلم رصاص', bn: 'পেন্সিল', ur: 'پینسل'
+  },
+  'wi-fi / wlan': {
+    en: 'Wi-Fi / WLAN', es: 'Wi-Fi', fr: 'Wi-Fi', de: 'WLAN', pt: 'Wi-Fi', ru: 'Вай-фай (Wi-Fi)', id: 'Wi-Fi', tr: 'Wi-Fi / Kablosuz ağ',
+    zh: '无线网络 (Wi-Fi)', ja: 'Wi-Fi（ワイファイ）', ko: '와이파이 (Wi-Fi)', hi: 'वाई-फ़ाई (Wi-Fi)', ar: 'واي فاي (Wi-Fi)', bn: 'ওয়াই-ফাই (Wi-Fi)', ur: 'وائی فائی (Wi-Fi)'
+  },
+  'okay / all right': {
+    en: 'Okay / All right', es: 'Vale / Está bien', fr: "D'accord", de: 'Okay / In Ordnung', pt: 'Tudo bem / Certo', ru: 'Хорошо / Ладно', id: 'Baiklah / Oke', tr: 'Tamam / Peki',
+    zh: '好的 / 没问题', ja: 'わかりました / 大丈夫です', ko: '알겠습니다 / 괜찮아요', hi: 'ठीक है', ar: 'حسناً / تمام', bn: 'ঠিক আছে', ur: 'ٹھیک ہے'
+  },
+  'okay / alright': {
+    en: 'Okay / Alright', es: 'Vale / Está bien', fr: "D'accord", de: 'Okay / In Ordnung', pt: 'Tudo bem / Certo', ru: 'Хорошо / Ладно', id: 'Baiklah / Oke', tr: 'Tamam / Peki',
+    zh: '好的 / 没问题', ja: 'わかりました / 大丈夫です', ko: '알겠습니다 / 괜찮아요', hi: 'ठीक है', ar: 'حسناً / تمام', bn: 'ঠিক আছে', ur: 'ٹھیک ہے'
+  },
+  'i am fine': {
+    en: 'I am fine', es: 'Estoy bien', fr: 'Je vais bien', de: 'Mir geht es gut', pt: 'Estou bem', ru: 'У меня всё хорошо', id: 'Saya baik-baik saja', tr: 'İyiyim',
+    zh: '我很好', ja: '元気です', ko: '저는 잘 지내요', hi: 'मैं ठीक हूँ', ar: 'أنا بخير', bn: 'আমি ভালো আছি', ur: 'میں ٹھیک ہوں'
+  },
+  'i am doing well': {
+    en: 'I am doing well', es: 'Estoy muy bien', fr: 'Je vais bien', de: 'Mir geht es gut', pt: 'Estou indo bem', ru: 'У меня всё хорошо', id: 'Kabar saya baik', tr: 'İyiyim',
+    zh: '我过得很好', ja: '元気です', ko: '잘 지내고 있어요', hi: 'मैं ठीक हूँ', ar: 'أنا بخير', bn: 'আমি ভালো আছি', ur: 'میں ٹھیک ہوں'
+  },
+  'cheers': {
+    en: 'Cheers', es: '¡Salud!', fr: 'Santé !', de: 'Prost!', pt: 'Saúde!', ru: 'За здоровье!', id: 'Bersulang!', tr: 'Şerefe!',
+    zh: '干杯！', ja: '乾杯！', ko: '건배!', hi: 'चियर्स / स्वास्थ्य के नाम!', ar: 'في صحتك!', bn: 'চিয়ার্স / আনন্দ হোক!', ur: 'خوشی کے نام!'
+  },
+  'welcome': {
+    en: 'Welcome', es: 'Bienvenido', fr: 'Bienvenue', de: 'Willkommen', pt: 'Bem-vindo', ru: 'Добро пожаловать', id: 'Selamat datang', tr: 'Hoş geldiniz',
+    zh: '欢迎', ja: 'ようこそ', ko: '환영합니다', hi: 'स्वागत है', ar: 'أهلاً وسهلاً', bn: 'স্বাগতম', ur: 'خوش آمدید'
+  },
+  'praise be to god / doing well': {
+    en: 'Praise be to God / Doing well', es: 'Gracias a Dios / Muy bien', fr: 'Dieu merci / Ça va bien', de: 'Gott sei Dank / Es geht mir gut', pt: 'Graças a Deus / Tudo bem', ru: 'Слава Богу / Всё хорошо', id: 'Alhamdulillah / Baik', tr: 'Elhamdülillah / Çok şükür iyiyim',
+    zh: '感谢真主 / 一切都好', ja: 'おかげさまで元気です（アルハムドゥリッラー）', ko: '덕분에 잘 지냅니다 (알함둘릴라)', hi: 'ईश्वर की कृपा से सब ठीक है', ar: 'الحمد لله', bn: 'আলহামদুলিল্লাহ / ভালো আছি', ur: 'الحمد للہ / اللہ کا شکر ہے'
+  },
+  'i speak a little japanese': {
+    en: 'I speak a little Japanese', es: 'Hablo un poco de japonés', fr: 'Je parle un peu japonais', de: 'Ich spreche ein bisschen Japanisch', pt: 'Falo um pouco de japonês', ru: 'Я немного говорю по-японски', id: 'Saya berbicara sedikit bahasa Jepang', tr: 'Biraz Japonca konuşuyorum',
+    zh: '我会说一点日语', ja: '日本語が少し話せます', ko: '일본어를 조금 할 줄 알아요', hi: 'मैं थोड़ी जापानी बोलता हूँ', ar: 'أتحدث القليل من اليابانية', bn: 'আমি অল্প জাপানি বলতে পারি', ur: 'میں تھوڑی جاپانی بول لیتا ہوں'
+  },
+  'i speak a little korean': {
+    en: 'I speak a little Korean', es: 'Hablo un poco de coreano', fr: 'Je parle un peu coréen', de: 'Ich spreche ein bisschen Koreanisch', pt: 'Falo um pouco de coreano', ru: 'Я немного говорю по-корейски', id: 'Saya berbicara sedikit bahasa Korea', tr: 'Biraz Korece konuşuyorum',
+    zh: '我会说一点韩语', ja: '韓国語が少し話せます', ko: '한국어 조금 해요', hi: 'मैं थोड़ी कोरियाई बोलता हूँ', ar: 'أتحدث القليل من الكورية', bn: 'আমি অল্প কোরীয় বলতে পারি', ur: 'میں تھوڑی کوریائی بول لیتا ہوں'
+  },
+  'noon / daytime': {
+    en: 'Noon / Daytime', es: 'Mediodía / De día', fr: 'Midi / Journée', de: 'Mittag / Tagsüber', pt: 'Meio-dia / Durante o dia', ru: 'Полдень / Дневное время', id: 'Siang hari', tr: 'Öğle / Gündüz',
+    zh: '中午 / 白天', ja: '昼', ko: '낮 / 정오', hi: 'दोपहर / दिन का समय', ar: 'الظهر / النهار', bn: 'দুপুর / দিনের বেলা', ur: 'دوپہر / دن کا وقت'
+  },
+  "i don't know": {
+    en: "I don't know", es: 'No sé', fr: 'Je ne sais pas', de: 'Ich weiß nicht', pt: 'Não sei', ru: 'Я не знаю', id: 'Saya tidak tahu', tr: 'Bilmiyorum',
+    zh: '我不知道', ja: 'わかりません / 知りません', ko: '잘 모르겠어요', hi: 'मुझे नहीं पता', ar: 'لا أعرف', bn: 'আমি জানি না', ur: 'مجھے معلوم نہیں'
+  },
+  'i do not know': {
+    en: 'I do not know', es: 'No sé', fr: 'Je ne sais pas', de: 'Ich weiß nicht', pt: 'Não sei', ru: 'Я не знаю', id: 'Saya tidak tahu', tr: 'Bilmiyorum',
+    zh: '我不知道', ja: 'わかりません / 知りません', ko: '잘 모르겠어요', hi: 'मुझे नहीं पता', ar: 'لا أعرف', bn: 'আমি জানি না', ur: 'مجھے معلوم نہیں'
+  },
+  'could you speak more slowly?': {
+    en: 'Could you speak more slowly?', es: '¿Podría hablar más despacio?', fr: 'Pourriez-vous parler plus lentement ?', de: 'Könnten Sie langsamer sprechen?', pt: 'Poderia falar mais devagar?', ru: 'Не могли бы вы говорить помедленнее?', id: 'Bisakah Anda berbicara lebih pelan?', tr: 'Daha yavaş konuşabilir misiniz?',
+    zh: '您能说慢一点吗？', ja: 'もう少しゆっくり話していただけますか？', ko: '조금 더 천천히 말씀해 주시겠어요?', hi: 'क्या आप थोड़ा धीरे बोल सकते हैं?', ar: 'هل يمكنك التحدث ببطء أكثر؟', bn: 'আরেকটু আস্তে বলবেন?', ur: 'کیا آپ تھوڑا آہستہ بول سکتے ہیں؟'
+  },
+  'can i see the menu?': {
+    en: 'Can I see the menu?', es: '¿Puedo ver el menú?', fr: 'Puis-je voir le menu ?', de: 'Kann ich die Speisekarte sehen?', pt: 'Posso ver o cardápio?', ru: 'Можно посмотреть меню?', id: 'Boleh saya lihat menunya?', tr: 'Menüyü görebilir miyim?',
+    zh: '我可以看一下菜单吗？', ja: 'メニューを見せていただけますか？', ko: '메뉴판 좀 볼 수 있을까요?', hi: 'क्या मैं मेन्यू देख सकता हूँ?', ar: 'هل يمكنني رؤية القائمة؟', bn: 'মেনু দেখতে পারি?', ur: 'کیا میں مینو دیکھ سکتا ہوں؟'
+  },
+  'i feel sick': {
+    en: 'I feel sick', es: 'Me siento enfermo', fr: 'Je me sens malade', de: 'Mir ist schlecht / Ich fühle mich krank', pt: 'Estou passando mal', ru: 'Мне плохо / Я чувствую себя больным', id: 'Saya merasa sakit', tr: 'Kendimi hasta hissediyorum',
+    zh: '我觉得不舒服 / 我生病了', ja: '気分が悪いです', ko: '몸이 안 좋아요 / 아파요', hi: 'मेरी तबीयत खराब लग रही है', ar: 'أشعر بالمرض / لست على ما يرام', bn: 'আমার শরীর খারাপ লাগছে', ur: 'میری طبیعت خراب ہے'
+  },
+  'i feel unwell / sick': {
+    en: 'I feel unwell / sick', es: 'Me siento mal / enfermo', fr: 'Je ne me sens pas bien', de: 'Ich fühle mich unwohl / krank', pt: 'Não estou me sentindo bem', ru: 'Мне нездоровится', id: 'Saya merasa kurang enak badan', tr: 'Kendimi iyi hissetmiyorum',
+    zh: '我觉得身体不适', ja: '体調が悪いです', ko: '몸이 좋지 않아요', hi: 'मेरी तबीयत ठीक नहीं है', ar: 'أشعر بتوعك / بالمرض', bn: 'আমার শরীর খারাপ লাগছে', ur: 'میری طبیعت خراب ہے'
+  },
+  'bed': {
+    en: 'Bed', es: 'Cama', fr: 'Lit', de: 'Bett', pt: 'Cama', ru: 'Кровать', id: 'Tempat tidur', tr: 'Yatak',
+    zh: '床', ja: 'ベッド / 布団', ko: '침대', hi: 'बिस्तर', ar: 'سرير', bn: 'বিছানা', ur: 'بستر'
+  },
+  'mango': {
+    en: 'Mango', es: 'Mango', fr: 'Mangue', de: 'Mango', pt: 'Manga', ru: 'Манго', id: 'Mangga', tr: 'Mango',
+    zh: '芒果', ja: 'マンゴー', ko: '망고', hi: 'आम', ar: 'مانجو', bn: 'আম', ur: 'آم'
+  },
+  'sweet': {
+    en: 'Sweet', es: 'Dulce', fr: 'Sucré / Doux', de: 'Süß', pt: 'Doce', ru: 'Сладкий', id: 'Manis', tr: 'Tatlı',
+    zh: '甜 / 甜食', ja: '甘い / お菓子', ko: '달콤한 / 단것', hi: 'मीठा / मिठाई', ar: 'حلو / حلوى', bn: 'মিষ্টি', ur: 'مٹھائی / میٹھا'
+  },
+  'sugar': {
+    en: 'Sugar', es: 'Azúcar', fr: 'Sucre', de: 'Zucker', pt: 'Açúcar', ru: 'Сахар', id: 'Gula', tr: 'Şeker',
+    zh: '糖', ja: '砂糖', ko: '설탕', hi: 'चीनी / शक्कर', ar: 'سكر', bn: 'চিনি', ur: 'چینی'
+  },
+  'person / human': {
+    en: 'Person / Human', es: 'Persona / Ser humano', fr: 'Personne / Être humain', de: 'Person / Mensch', pt: 'Pessoa / Ser humano', ru: 'Человек', id: 'Orang / Manusia', tr: 'Kişi / İnsan',
+    zh: '人 / 人类', ja: '人 / 人間', ko: '사람 / 인간', hi: 'व्यक्ति / इंसान', ar: 'شخص / إنسان', bn: 'মানুষ / ব্যক্তি', ur: 'انسان / شخص'
+  },
+  'cow': {
+    en: 'Cow', es: 'Vaca', fr: 'Vache', de: 'Kuh', pt: 'Vaca', ru: 'Корова', id: 'Sapi', tr: 'İnek',
+    zh: '牛 / 奶牛', ja: '牛（うし）', ko: '소', hi: 'गाय', ar: 'بقرة', bn: 'গরু', ur: 'گائے'
+  },
+  'tiger': {
+    en: 'Tiger', es: 'Tigre', fr: 'Tigre', de: 'Tiger', pt: 'Tigre', ru: 'Тигр', id: 'Harimau', tr: 'Kaplan',
+    zh: '老虎', ja: '虎（とら）', ko: '호랑이', hi: 'बाघ', ar: 'نمر', bn: 'বাঘ', ur: 'شیر / باگھ'
+  },
+  'lion / tiger': {
+    en: 'Lion / Tiger', es: 'León / Tigre', fr: 'Lion / Tigre', de: 'Löwe / Tiger', pt: 'Leão / Tigre', ru: 'Лев / Тигр', id: 'Singa / Harimau', tr: 'Aslan / Kaplan',
+    zh: '狮子 / 老虎', ja: 'ライオン / 虎', ko: '사자 / 호랑이', hi: 'शेर / बाघ', ar: 'أسد / نمر', bn: 'সিংহ / বাঘ', ur: 'شیر'
+  },
+  'elephant': {
+    en: 'Elephant', es: 'Elefante', fr: 'Éléphant', de: 'Elefant', pt: 'Elefante', ru: 'Слон', id: 'Gajah', tr: 'Fil',
+    zh: '大象', ja: '象（ぞう）', ko: '코끼리', hi: 'हाथी', ar: 'فيل', bn: 'হাতি', ur: 'ہاتھی'
+  },
+  'sky': {
+    en: 'Sky', es: 'Cielo', fr: 'Ciel', de: 'Himmel', pt: 'Céu', ru: 'Небо', id: 'Langit', tr: 'Gökyüzü',
+    zh: '天空', ja: '空（そら）', ko: '하늘', hi: 'आकाश / आसमान', ar: 'سماء', bn: 'আকাশ', ur: 'آسمان'
+  },
+  'village': {
+    en: 'Village', es: 'Pueblo / Aldea', fr: 'Village', de: 'Dorf', pt: 'Aldeia / Vila', ru: 'Деревня / Село', id: 'Desa', tr: 'Köy',
+    zh: '村庄 / 乡村', ja: '村（むら）', ko: '마을 / 시골', hi: 'गाँव', ar: 'قرية', bn: 'গ্রাম', ur: 'گاؤں'
+  },
+  'market': {
+    en: 'Market', es: 'Mercado', fr: 'Marché', de: 'Markt', pt: 'Mercado', ru: 'Рынок / Базар', id: 'Pasar', tr: 'Pazar / Çarşı',
+    zh: '市场 / 集市', ja: '市場（いちば）', ko: '시장', hi: 'बाज़ार', ar: 'سوق', bn: 'বাজার', ur: 'بازار'
+  },
+  'beautiful': {
+    en: 'Beautiful', es: 'Hermoso / Bonito', fr: 'Beau / Belle', de: 'Schön', pt: 'Bonito / Lindo', ru: 'Красивый', id: 'Indah / Cantik', tr: 'Güzel',
+    zh: '美丽 / 漂亮', ja: '美しい / きれい', ko: '아름다운 / 예쁜', hi: 'सुंदर / खूबसूरत', ar: 'جميل', bn: 'সুন্দর', ur: 'خوبصورت'
+  },
+  'easy': {
+    en: 'Easy', es: 'Fácil', fr: 'Facile', de: 'Einfach / Leicht', pt: 'Fácil', ru: 'Лёгкий / Простой', id: 'Mudah', tr: 'Kolay',
+    zh: '容易 / 简单', ja: '簡単 / やさしい', ko: '쉬운', hi: 'आसान / सरल', ar: 'سهل', bn: 'সহজ', ur: 'آسان'
+  },
+  'difficult': {
+    en: 'Difficult', es: 'Difícil', fr: 'Difficile', de: 'Schwierig / Schwer', pt: 'Difícil', ru: 'Трудный / Сложный', id: 'Sulit / Susah', tr: 'Zor',
+    zh: '困难 / 难', ja: '難しい', ko: '어려운', hi: 'कठिन / मुश्किल', ar: 'صعب', bn: 'কঠিন', ur: 'مشکل'
+  },
+  'clean': {
+    en: 'Clean', es: 'Limpio', fr: 'Propre', de: 'Sauber', pt: 'Limpo', ru: 'Чистый', id: 'Bersih', tr: 'Temiz',
+    zh: '干净', ja: '清潔 / きれい', ko: '깨끗한', hi: 'साफ़ / स्वच्छ', ar: 'نظيف', bn: 'পরিষ্কার', ur: 'صاف'
+  },
+  'later': {
+    en: 'Later', es: 'Más tarde / Luego', fr: 'Plus tard', de: 'Später', pt: 'Mais tarde / Depois', ru: 'Позже / Потом', id: 'Nanti', tr: 'Sonra / Daha sonra',
+    zh: '以后 / 稍后', ja: 'あとで / 後ほど', ko: '나중에', hi: 'बाद में', ar: 'لاحقاً / بعدين', bn: 'পরে', ur: 'بعد میں'
+  },
 };

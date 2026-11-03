@@ -326,7 +326,7 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
     linguisticTraits: [
       {
         title: 'Mobile Word Stress',
-        description: 'Stress in Russian is unpredictable and can change the word’s meaning (за́мок = castle vs замо́к = padlock). Unstressed "o" naturally reduces to an "ah" sound (молоко́ $\\rightarrow$ malakó).',
+        description: 'Stress in Russian is unpredictable and can change the word’s meaning (за́мок = castle vs замо́к = padlock). Unstressed "o" naturally reduces to an "ah" sound (молоко́ → malakó).',
         icon: '🎯',
         example: 'за́мок (castle) vs замо́к (padlock)'
       },
@@ -376,7 +376,7 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
         title: 'Agglutinative Suffix Chains',
         description: 'Words are constructed by snapping suffixes onto a root like Lego blocks. A single word can express what takes a whole English sentence!',
         icon: '🧱',
-        example: 'Ev (house) $\\rightarrow$ evler (houses) $\\rightarrow$ evlerimde (in my houses)'
+        example: 'Ev (house) → evler (houses) → evlerimde (in my houses)'
       },
       {
         title: 'Vowel Harmony (Ünlü Uyumu)',
@@ -430,7 +430,7 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
         title: '3-Letter Root Machine (الجذر · Al-Jidhr)',
         description: 'Nearly every Arabic word springs from a 3-letter root carrying an abstract meaning. For example, K-T-B (ك-ت-ب) relating to writing yields kitāb (book), kātib (writer), maktab (office), and maktūb (destined).',
         icon: '🌱',
-        example: 'ك-ت-ب $\\rightarrow$ كتاب (Book) · مكتبة (Library) · كاتب (Author)'
+        example: 'ك-ت-ب → كتاب (Book) · مكتبة (Library) · كاتب (Author)'
       },
       {
         title: 'Cursive Ligatures',
@@ -640,13 +640,13 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
         title: 'Reduplication for Plurals',
         description: 'To make something plural in Indonesian, you simply repeat the word! Anak is child, so anak-anak is children. Buku is book, so buku-buku is books.',
         icon: '🔁',
-        example: 'Orang (person) $\\rightarrow$ orang-orang (people)'
+        example: 'Orang (person) → orang-orang (people)'
       },
       {
         title: 'Affix System (Me-, Di-, Ber-, Pe-)',
         description: 'While Indonesian has no verb tenses, rich prefixes and suffixes transform root words into active verbs, passive verbs, and abstract nouns.',
         icon: '🧩',
-        example: 'Tulis (write) $\\rightarrow$ menulis (to write) $\\rightarrow$ ditulis (is written)'
+        example: 'Tulis (write) → menulis (to write) → ditulis (is written)'
       }
     ],
     culturalNote: 'Indonesian is widely considered by linguists to be one of the easiest languages in the world for beginners to start speaking from Day 1.'
@@ -746,7 +746,7 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
     linguisticTraits: [
       {
         title: 'Liaison & Flowing Euphony',
-        description: 'French places supreme value on vocal flow (euphony). Normally silent ending consonants wake up and link to the next vowel sound (les amis $\\rightarrow$ lay-zah-mee).',
+        description: 'French places supreme value on vocal flow (euphony). Normally silent ending consonants wake up and link to the next vowel sound (les amis → lay-zah-mee).',
         icon: '🎶',
         example: 'C’est un ami (Pronounced: Seh-tuhn-ah-mee)'
       },
@@ -781,7 +781,7 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
       {
         era: '6th – 8th Century',
         title: 'The High German Consonant Shift',
-        description: 'A major phonetic sound shift separated German from its Germanic cousins (English/Dutch), changing "t" to "z/ss" (water $\\rightarrow$ Wasser, two $\\rightarrow$ zwei).',
+        description: 'A major phonetic sound shift separated German from its Germanic cousins (English/Dutch), changing "t" to "z/ss" (water → Wasser, two → zwei).',
         highlight: 'Divergence from Proto-Germanic'
       },
       {

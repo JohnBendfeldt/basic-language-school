@@ -552,5 +552,54 @@ test.describe('Playwright E2E: Layout, Modals, Alignment & Neural Audio Matrix',
     await quizInput.type(' ');
     await expect(quizInput).toHaveValue('你好 ');
   });
+
+  test('Both Language Pickers, French Liaison Unicode Arrow & Non-Anglo-Centric Quiz Grading (zh -> es)', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto('/');
+    await page.evaluate(() => {
+      localStorage.setItem('basic_language_base_lang', 'en');
+      localStorage.setItem('basic_language_target_lang', 'fr');
+    });
+
+    // 1. French About page Liaison example renders clean Unicode → (never raw LaTeX $\rightarrow$)
+    await page.goto('/learn/fr/alphabet');
+    await page.locator('.segmented-tab-btn').nth(2).click();
+    await expect(page.locator('.language-about-container')).toBeVisible();
+    const frAboutText = (await page.locator('.language-about-container').textContent()) || '';
+    expect(frAboutText).not.toContain('$\\rightarrow$');
+    expect(frAboutText).toContain('les amis → lay-zah-mee');
+
+    // 2. Interactive test of BOTH language pickers ("I speak" -> Mandarin, "I want to learn" -> Spanish)
+    await page.getByRole('button', { name: /Current language pair/i }).first().click();
+    const modal = page.getByRole('dialog', { name: 'Language selection modal' });
+    await expect(modal).toBeVisible();
+
+    // Switch base language ("I speak") to Mandarin Chinese
+    await modal.locator('.pair-box.base-box').click();
+    await modal.getByRole('menuitem', { name: /Mandarin Chinese/i }).click();
+
+    // Switch target language ("I want to learn" -> 想学语言) to Spanish (西班牙语)
+    await modal.locator('.pair-box.target-box').click();
+    await modal.getByRole('menuitem', { name: /西班牙语/i }).click();
+    await expect(modal).toBeHidden();
+    await expect(page).toHaveURL(/\/learn\/es\//);
+
+    // Verify Spanish Origins & History for Mandarin speakers is 100% localized in Chinese
+    await page.locator('.segmented-tab-btn').nth(2).click();
+    await expect(page.locator('.language-about-container')).toBeVisible();
+    const esZhAbout = (await page.locator('.language-about-container').textContent()) || '';
+    expect(esZhAbout).not.toContain('From Castile to the Americas');
+    expect(esZhAbout).not.toContain('NATIVE SPEAKERS');
+
+    // 3. Navigate to Quiz in zh -> es and verify English answer ("Hello") is rejected
+    await page.goto('/learn/es/quiz');
+    const quizInput = page.locator('input.quiz-input');
+    await expect(quizInput).toBeVisible();
+    await quizInput.fill('Hello');
+    await page.locator('button.check-button').click();
+    await expect(page.locator('.quiz-feedback-drawer.feedback-incorrect')).toBeVisible();
+  });
 });
 

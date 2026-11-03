@@ -374,22 +374,43 @@ function normalizeIpaToAscii(ipa: string): string[] {
   return variants;
 }
 
+const SILENT_LETTER_TRANSLATIONS: Record<string, string[]> = {
+  en: ['silent'],
+  es: ['muda', 'silenciosa'],
+  fr: ['muet', 'muette'],
+  de: ['stumm'],
+  pt: ['muda', 'mudo'],
+  ru: ['немая', 'немой', 'без звука'],
+  id: ['bisu', 'senyap'],
+  tr: ['sessiz'],
+  ja: ['無音', '発音しない'],
+  ko: ['묵음'],
+  zh: ['不发音', '静音'],
+  hi: ['मूक', 'मौन'],
+  ar: ['صامت', 'صامتة'],
+  bn: ['নীরব', 'অনুচ্চারিত'],
+  ur: ['خاموش', 'ساکت'],
+};
+
 /**
  * Returns an exhaustive list of accepted user answers for any alphabet question.
  *
  * @param character The letter symbol (e.g. 'C', 'H', 'Ñ', 'Б', 'ঠ')
  * @param pronunciation The raw pronunciation string from the dataset (e.g. '/se/ or /k/', '/ʈʰɔ/ (tho)')
  * @param language The language code ('es', 'fr', 'en', 'ru', 'bn', 'hi', 'ur', 'ar')
+ * @param baseLanguage The learner's native/reference language code (defaults to 'en')
  * @returns Array of lowercase valid answer strings
  */
 export function getAlphabetAcceptedAnswers(
   character: string,
   pronunciation: string = '',
-  language: string = 'ru'
+  language: string = 'ru',
+  baseLanguage: string = 'en'
 ): string[] {
   const accepted = new Set<string>();
   const charUpper = character.toUpperCase().trim();
   const charLower = character.toLowerCase().trim();
+  const involvesEnglish = language === 'en' || baseLanguage === 'en';
 
   // 1. Language-specific dictionary lookup (phonetic pronunciations prioritized first)
   let dict: Record<string, string[]> | undefined;
@@ -407,30 +428,36 @@ export function getAlphabetAcceptedAnswers(
     foundInDict.forEach(ans => accepted.add(ans.toLowerCase().trim()));
   }
 
-  // Cross-lookup in other dictionaries if not matched by language parameter
-  if (BENGALI_LETTER_ANSWERS[character]) {
-    BENGALI_LETTER_ANSWERS[character].forEach(ans => accepted.add(ans.toLowerCase().trim()));
-  }
-  if (HINDI_LETTER_ANSWERS[character]) {
-    HINDI_LETTER_ANSWERS[character].forEach(ans => accepted.add(ans.toLowerCase().trim()));
-  }
-  if (URDU_LETTER_ANSWERS[character]) {
-    URDU_LETTER_ANSWERS[character].forEach(ans => accepted.add(ans.toLowerCase().trim()));
-  }
-  if (ARABIC_LETTER_ANSWERS[character]) {
-    ARABIC_LETTER_ANSWERS[character].forEach(ans => accepted.add(ans.toLowerCase().trim()));
-  }
-  if (SPANISH_LETTER_ANSWERS[charUpper]) {
-    SPANISH_LETTER_ANSWERS[charUpper].forEach(ans => accepted.add(ans.toLowerCase().trim()));
-  }
-  if (FRENCH_LETTER_ANSWERS[charUpper]) {
-    FRENCH_LETTER_ANSWERS[charUpper].forEach(ans => accepted.add(ans.toLowerCase().trim()));
-  }
-  if (ENGLISH_LETTER_ANSWERS[charUpper]) {
-    ENGLISH_LETTER_ANSWERS[charUpper].forEach(ans => accepted.add(ans.toLowerCase().trim()));
-  }
-  if (RUSSIAN_LETTER_ANSWERS[charUpper]) {
-    RUSSIAN_LETTER_ANSWERS[charUpper].forEach(ans => accepted.add(ans.toLowerCase().trim()));
+  // Cross-lookup in non-colliding script dictionaries only when not matched by language parameter
+  if (!foundInDict) {
+    if (BENGALI_LETTER_ANSWERS[character]) {
+      BENGALI_LETTER_ANSWERS[character].forEach(ans => accepted.add(ans.toLowerCase().trim()));
+    }
+    if (HINDI_LETTER_ANSWERS[character]) {
+      HINDI_LETTER_ANSWERS[character].forEach(ans => accepted.add(ans.toLowerCase().trim()));
+    }
+    if (URDU_LETTER_ANSWERS[character]) {
+      URDU_LETTER_ANSWERS[character].forEach(ans => accepted.add(ans.toLowerCase().trim()));
+    }
+    if (ARABIC_LETTER_ANSWERS[character]) {
+      ARABIC_LETTER_ANSWERS[character].forEach(ans => accepted.add(ans.toLowerCase().trim()));
+    }
+    if (RUSSIAN_LETTER_ANSWERS[charUpper]) {
+      RUSSIAN_LETTER_ANSWERS[charUpper].forEach(ans => accepted.add(ans.toLowerCase().trim()));
+    }
+    // Only cross-lookup non-ASCII Latin letters (e.g. Ñ) or English when course involves English
+    if (!/^[A-Z]$/.test(charUpper)) {
+      if (SPANISH_LETTER_ANSWERS[charUpper]) {
+        SPANISH_LETTER_ANSWERS[charUpper].forEach(ans => accepted.add(ans.toLowerCase().trim()));
+      }
+      if (FRENCH_LETTER_ANSWERS[charUpper]) {
+        FRENCH_LETTER_ANSWERS[charUpper].forEach(ans => accepted.add(ans.toLowerCase().trim()));
+      }
+    } else if (language === 'en') {
+      if (ENGLISH_LETTER_ANSWERS[charUpper]) {
+        ENGLISH_LETTER_ANSWERS[charUpper].forEach(ans => accepted.add(ans.toLowerCase().trim()));
+      }
+    }
   }
 
   // 2. The letter itself is acceptable (e.g. user typed 'c' for prompt 'C', or 'ঠ' for 'ঠ')
@@ -441,15 +468,19 @@ export function getAlphabetAcceptedAnswers(
   // 3. Dynamic parsing from the dataset pronunciation string
   if (pronunciation) {
     const rawLower = pronunciation.toLowerCase();
-    accepted.add(rawLower);
+    if (involvesEnglish) {
+      accepted.add(rawLower);
+    }
 
     // Strip slashes
     const noSlashes = rawLower.replace(/[/]/g, ' ').replace(/\s+/g, ' ').trim();
-    if (noSlashes) accepted.add(noSlashes);
+    if (noSlashes && involvesEnglish) accepted.add(noSlashes);
 
     // Strip parenthesized text (e.g. 'silent /atʃe/' or '/aʃ/ (muet)')
     const noParens = noSlashes.replace(/\([^)]*\)/g, ' ').replace(/\s+/g, ' ').trim();
-    if (noParens) accepted.add(noParens);
+    if (noParens && (involvesEnglish || !/\b(?:silent|or|and|as in|short|long|hard|soft)\b/i.test(noParens))) {
+      accepted.add(noParens);
+    }
 
     // Tokenize by ' or ', ' and ', ' & ', ',', '/'
     const tokens = rawLower
@@ -463,20 +494,38 @@ export function getAlphabetAcceptedAnswers(
       const cleaned = token
         .replace(/^(?:silent|muet|sound|like\s+english\s+h|as\s+in|trilled|guttural)\s+/gi, '')
         .trim();
-      if (cleaned) {
+      if (cleaned && (involvesEnglish || !/\b(?:silent|as in|sound|like english)\b/i.test(cleaned))) {
         accepted.add(cleaned);
         // Expand IPA approximations
         normalizeIpaToAscii(cleaned).forEach(v => accepted.add(v));
       }
     }
 
-    // Special keywords: if 'silent' or 'muet' was in pronunciation, accept them
-    if (rawLower.includes('silent')) {
-      accepted.add('silent');
+    // Special keywords: if 'silent' or 'muet' was in pronunciation, accept localized silent terms
+    if (rawLower.includes('silent') || rawLower.includes('muet')) {
+      if (rawLower.includes('muet')) {
+        accepted.add('muet');
+      }
+      if (involvesEnglish) {
+        accepted.add('silent');
+      }
+      (SILENT_LETTER_TRANSLATIONS[baseLanguage] || []).forEach(w => accepted.add(w.toLowerCase()));
+      (SILENT_LETTER_TRANSLATIONS[language] || []).forEach(w => accepted.add(w.toLowerCase()));
     }
-    if (rawLower.includes('muet')) {
-      accepted.add('muet');
-      accepted.add('silent');
+  }
+
+  if (!involvesEnglish) {
+    for (const entry of Array.from(accepted)) {
+      if (
+        entry === 'silent' ||
+        entry === 'soft sign' ||
+        entry === 'hard sign' ||
+        entry === 'soft' ||
+        entry === 'hard' ||
+        /\b(?:or|as in|short a|short e|short i)\b/i.test(entry)
+      ) {
+        accepted.delete(entry);
+      }
     }
   }
 

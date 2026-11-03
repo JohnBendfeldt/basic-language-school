@@ -16,6 +16,7 @@ import {
   FaSearch
 } from 'react-icons/fa';
 import { useLanguage, SpeechSpeed } from '../contexts/LanguageContext';
+import { SupportedLanguageId } from '../data/languages/types';
 import { FlagIcon } from './FlagIcon';
 import AuthModal from './AuthModal';
 import ProgressModal from './ProgressModal';
@@ -26,24 +27,142 @@ interface MobileDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   onNavigate: (section: string) => void;
+  onLanguageChange?: (langId: SupportedLanguageId) => void;
   onOpenSearch?: () => void;
   installPrompt?: any;
   onInstallClick?: () => void;
 }
 
-const SPEEDS: { value: SpeechSpeed; label: string; desc: string }[] = [
-  { value: 0.5, label: '0.50×', desc: 'Slow' },
-  { value: 0.75, label: '0.75×', desc: 'Learner' },
-  { value: 0.9, label: '0.90×', desc: 'Relaxed' },
-  { value: 1.0, label: '1.0×', desc: 'Standard' },
-  { value: 1.1, label: '1.10×', desc: 'Brisk' },
-  { value: 1.25, label: '1.25×', desc: 'Fast' },
+const SPEEDS: { value: SpeechSpeed; label: string; key: 'slow' | 'learner' | 'relaxed' | 'standard' | 'brisk' | 'fast' }[] = [
+  { value: 0.5, label: '0.50×', key: 'slow' },
+  { value: 0.75, label: '0.75×', key: 'learner' },
+  { value: 0.9, label: '0.90×', key: 'relaxed' },
+  { value: 1.0, label: '1.0×', key: 'standard' },
+  { value: 1.1, label: '1.10×', key: 'brisk' },
+  { value: 1.25, label: '1.25×', key: 'fast' },
 ];
+
+interface DrawerCopy {
+  searchTitle: string;
+  searchSubtitle: string;
+  speedSubtitle: string;
+  cloudSynced: string;
+  speeds: Record<'slow' | 'learner' | 'relaxed' | 'standard' | 'brisk' | 'fast', string>;
+}
+
+const DRAWER_COPY: Record<SupportedLanguageId, DrawerCopy> = {
+  en: {
+    searchTitle: 'Search Concepts & Words',
+    searchSubtitle: 'Instant lookup across phrases & grammar',
+    speedSubtitle: 'Adjust neural pronunciation pacing for clear listening',
+    cloudSynced: 'Cloud Synced',
+    speeds: { slow: 'Slow', learner: 'Learner', relaxed: 'Relaxed', standard: 'Standard', brisk: 'Brisk', fast: 'Fast' },
+  },
+  es: {
+    searchTitle: 'Buscar palabras y conceptos',
+    searchSubtitle: 'Búsqueda instantánea en frases y gramática',
+    speedSubtitle: 'Ajusta el ritmo de pronunciación para escuchar con claridad',
+    cloudSynced: 'Sincronizado en la nube',
+    speeds: { slow: 'Lento', learner: 'Aprendiz', relaxed: 'Pausado', standard: 'Normal', brisk: 'Ágil', fast: 'Rápido' },
+  },
+  fr: {
+    searchTitle: 'Rechercher mots et concepts',
+    searchSubtitle: 'Recherche instantanée dans les phrases et la grammaire',
+    speedSubtitle: 'Ajustez le rythme de prononciation pour une écoute claire',
+    cloudSynced: 'Synchronisé dans le cloud',
+    speeds: { slow: 'Lent', learner: 'Apprenant', relaxed: 'Posé', standard: 'Normal', brisk: 'Vif', fast: 'Rapide' },
+  },
+  de: {
+    searchTitle: 'Wörter & Konzepte suchen',
+    searchSubtitle: 'Sofortsuche in Sätzen und Grammatik',
+    speedSubtitle: 'Sprechtempo für klares Hörverständnis anpassen',
+    cloudSynced: 'In der Cloud synchronisiert',
+    speeds: { slow: 'Langsam', learner: 'Lernend', relaxed: 'Ruhig', standard: 'Standard', brisk: 'Flott', fast: 'Schnell' },
+  },
+  pt: {
+    searchTitle: 'Pesquisar palavras e conceitos',
+    searchSubtitle: 'Busca instantânea em frases e gramática',
+    speedSubtitle: 'Ajuste o ritmo da pronúncia para ouvir com clareza',
+    cloudSynced: 'Sincronizado na nuvem',
+    speeds: { slow: 'Lento', learner: 'Iniciante', relaxed: 'Calmo', standard: 'Padrão', brisk: 'Ágil', fast: 'Rápido' },
+  },
+  ru: {
+    searchTitle: 'Поиск слов и понятий',
+    searchSubtitle: 'Мгновенный поиск по фразам и грамматике',
+    speedSubtitle: 'Настройте темп произношения для чёткого восприятия',
+    cloudSynced: 'Синхронизировано в облаке',
+    speeds: { slow: 'Медленно', learner: 'Учебный', relaxed: 'Спокойно', standard: 'Обычно', brisk: 'Бодро', fast: 'Быстро' },
+  },
+  id: {
+    searchTitle: 'Cari Konsep & Kata',
+    searchSubtitle: 'Pencarian instan di frasa & tata bahasa',
+    speedSubtitle: 'Atur kecepatan pelafalan agar terdengar jelas',
+    cloudSynced: 'Tersinkron di Cloud',
+    speeds: { slow: 'Lambat', learner: 'Pelajar', relaxed: 'Santai', standard: 'Standar', brisk: 'Gesit', fast: 'Cepat' },
+  },
+  tr: {
+    searchTitle: 'Kavram ve Kelime Ara',
+    searchSubtitle: 'İfadeler ve dilbilgisinde anında arama',
+    speedSubtitle: 'Net dinleme için telaffuz hızını ayarlayın',
+    cloudSynced: 'Bulutla Eşitlendi',
+    speeds: { slow: 'Yavaş', learner: 'Öğrenci', relaxed: 'Rahat', standard: 'Standart', brisk: 'Canlı', fast: 'Hızlı' },
+  },
+  ja: {
+    searchTitle: '単語と概念を検索',
+    searchSubtitle: 'フレーズと文法を瞬時に検索',
+    speedSubtitle: '聞き取りやすい発音スピードに調整',
+    cloudSynced: 'クラウド同期済み',
+    speeds: { slow: 'ゆっくり', learner: '学習用', relaxed: 'やや遅め', standard: '標準', brisk: 'やや速め', fast: '速い' },
+  },
+  ko: {
+    searchTitle: '개념 및 단어 검색',
+    searchSubtitle: '회화 및 문법에서 즉시 검색',
+    speedSubtitle: '명확한 청취를 위해 발음 속도를 조절하세요',
+    cloudSynced: '클라우드 동기화됨',
+    speeds: { slow: '느리게', learner: '학습자용', relaxed: '여유롭게', standard: '표준', brisk: '조금 빠르게', fast: '빠르게' },
+  },
+  zh: {
+    searchTitle: '搜索词汇与概念',
+    searchSubtitle: '在短语与语法中即时查找',
+    speedSubtitle: '调节语音语速，清晰跟读与听力练习',
+    cloudSynced: '已云端同步',
+    speeds: { slow: '慢速', learner: '学习', relaxed: '舒缓', standard: '标准', brisk: '轻快', fast: '快速' },
+  },
+  hi: {
+    searchTitle: 'शब्द और अवधारणाएँ खोजें',
+    searchSubtitle: 'वाक्यांशों और व्याकरण में तुरंत खोज',
+    speedSubtitle: 'स्पष्ट सुनने के लिए उच्चारण की गति समायोजित करें',
+    cloudSynced: 'क्लाउड से सिंक',
+    speeds: { slow: 'धीमा', learner: 'सीखने योग्य', relaxed: 'सहज', standard: 'सामान्य', brisk: 'तेज़', fast: 'द्रुत' },
+  },
+  ar: {
+    searchTitle: 'البحث عن الكلمات والمفاهيم',
+    searchSubtitle: 'بحث فوري في العبارات والقواعد',
+    speedSubtitle: 'اضبط سرعة النطق للاستماع بوضوح',
+    cloudSynced: 'متزامن سحابياً',
+    speeds: { slow: 'بطيء', learner: 'للمتعلم', relaxed: 'هادئ', standard: 'قياسي', brisk: 'نشط', fast: 'سريع' },
+  },
+  bn: {
+    searchTitle: 'শব্দ ও ধারণা খুঁজুন',
+    searchSubtitle: 'বাক্যাংশ ও ব্যাকরণে তাৎক্ষণিক অনুসন্ধান',
+    speedSubtitle: 'স্পষ্ট শোনার জন্য উচ্চারণের গতি সামঞ্জস্য করুন',
+    cloudSynced: 'ক্লাউডে সিঙ্ক করা',
+    speeds: { slow: 'ধীর', learner: 'শিক্ষার্থী', relaxed: 'সহজ', standard: 'স্বাভাবিক', brisk: 'চটপটে', fast: 'দ্রুত' },
+  },
+  ur: {
+    searchTitle: 'الفاظ اور تصورات تلاش کریں',
+    searchSubtitle: 'جملوں اور گرامر میں فوری تلاش',
+    speedSubtitle: 'واضح سننے کے لیے تلفظ کی رفتار ایڈجسٹ کریں',
+    cloudSynced: 'کلاؤڈ سے ہم آہنگ',
+    speeds: { slow: 'آہستہ', learner: 'سیکھنے والا', relaxed: 'پرسکون', standard: 'معیاری', brisk: 'تیز تر', fast: 'تیز' },
+  },
+};
 
 export const MobileDrawer: React.FC<MobileDrawerProps> = ({
   isOpen,
   onClose,
   onNavigate,
+  onLanguageChange,
   onOpenSearch,
   installPrompt,
   onInstallClick
@@ -63,22 +182,24 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [progressModalOpen, setProgressModalOpen] = useState(false);
 
-  // Sync Supabase user
+  // Sync Supabase user only when needed and guard against unmounted updates
   useEffect(() => {
-    if (!supabase) return;
+    if (!supabase || !isOpen) return;
+    let active = true;
 
     supabase.auth.getUser().then(({ data: { user } }) => {
-      setCurrentUser(user);
-    });
+      if (active) setCurrentUser(user);
+    }).catch(() => {});
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setCurrentUser(session?.user ?? null);
+      if (active) setCurrentUser(session?.user ?? null);
     });
 
     return () => {
+      active = false;
       subscription.unsubscribe();
     };
-  }, []);
+  }, [isOpen]);
 
   // Lock background body scroll when drawer is open
   useEffect(() => {
@@ -120,9 +241,16 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
   };
 
   const chrome = getComponentChrome(baseLanguage);
+  const drawerCopy = DRAWER_COPY[baseLanguage] || DRAWER_COPY.en;
   const localizedAppName = getLocalizedAppName(targetLanguage, baseLanguage, targetMeta.appName || 'Language School');
   const localizedBaseName = getLocalizedLanguageName(baseLanguage, baseLanguage, baseMeta.name);
   const localizedTargetName = getLocalizedLanguageName(targetLanguage, baseLanguage, targetMeta.name);
+
+  const handleDrawerSwap = () => {
+    const newTargetLang = baseLanguage;
+    swapLanguages();
+    onLanguageChange?.(newTargetLang);
+  };
 
   return (
     <>
@@ -173,8 +301,8 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                     <FaSearch />
                   </div>
                   <div className="drawer-action-text">
-                    <h3>Search Concepts & Words</h3>
-                    <p>Instant lookup across phrases & grammar</p>
+                    <h3>{drawerCopy.searchTitle}</h3>
+                    <p>{drawerCopy.searchSubtitle}</p>
                   </div>
                 </div>
                 <span className="drawer-action-arrow">›</span>
@@ -199,7 +327,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                 <button
                   type="button"
                   className="drawer-swap-btn"
-                  onClick={swapLanguages}
+                  onClick={handleDrawerSwap}
                   title="Swap languages"
                   aria-label="Swap language pair"
                 >
@@ -223,7 +351,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                 <span>{chrome.audioPlaybackSpeed}</span>
               </div>
               <p className="drawer-card-desc">
-                Adjust neural pronunciation pacing for clear listening
+                {drawerCopy.speedSubtitle}
               </p>
               <div className="drawer-speed-grid">
                 {SPEEDS.map((item) => {
@@ -236,7 +364,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                       onClick={() => setSpeechSpeed(item.value)}
                     >
                       <span className="drawer-speed-val">{item.label}</span>
-                      <span className="drawer-speed-desc">{item.desc}</span>
+                      <span className="drawer-speed-desc">{drawerCopy.speeds[item.key]}</span>
                       {isSelected && <FaCheck className="drawer-speed-check" />}
                     </button>
                   );
@@ -268,7 +396,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                 <div className="drawer-user-info">
                   <div className="drawer-user-details">
                     <span className="drawer-user-email">{currentUser.email}</span>
-                    <span className="drawer-user-badge">Cloud Synced</span>
+                    <span className="drawer-user-badge">{drawerCopy.cloudSynced}</span>
                   </div>
                   <button
                     type="button"
