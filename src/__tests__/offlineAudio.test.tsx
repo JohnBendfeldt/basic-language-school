@@ -128,7 +128,7 @@ describe('Offline Audio Service, Manifests, Airplane Mode Playback & PWA Install
     }
   });
 
-  it('keeps all 15 public/audio/<lang>/manifest.json files in sync with OFFLINE_AUDIO_PACK_INFO', () => {
+  it('keeps all 15 public/audio/<lang>/manifest.json files and byte-size indices in sync with OFFLINE_AUDIO_PACK_INFO', async () => {
     const allLangs = Object.keys(SUPPORTED_LANGUAGES) as SupportedLanguageId[];
     expect(allLangs).toHaveLength(15);
 
@@ -137,11 +137,133 @@ describe('Offline Audio Service, Manifests, Airplane Mode Playback & PWA Install
       expect(fs.existsSync(manifestPath)).toBe(true);
       const parsed = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
       expect(parsed.lang).toBe(lang);
+      expect(parsed.packFile).toBe('offline-pack.bin');
       expect(Array.isArray(parsed.files)).toBe(true);
+      expect(Array.isArray(parsed.sizes)).toBe(true);
       expect(parsed.files.length).toBeGreaterThan(500);
       expect(parsed.fileCount).toBe(OFFLINE_AUDIO_PACK_INFO[lang].fileCount);
+      expect(parsed.sizes).toHaveLength(parsed.fileCount);
       expect(parsed.files.every((f: string) => f.endsWith('.mp3'))).toBe(true);
+      const sumSizes = (parsed.sizes as number[]).reduce((acc, s) => acc + s, 0);
+      expect(sumSizes).toBe(parsed.totalBytes);
     }
+
+    // Verify real disk binary pack builder produces exact expected totalBytes
+    const { buildLanguagePackBuffer } = await import('../../scripts/build-offline-packs.mjs');
+    const urManifest = JSON.parse(
+      fs.readFileSync(path.resolve(process.cwd(), 'public', 'audio', 'ur', 'manifest.json'), 'utf8')
+    );
+    const urBuffer = buildLanguagePackBuffer(path.resolve(process.cwd(), 'public', 'audio'), 'ur');
+    expect(urBuffer.length).toBe(urManifest.totalBytes);
+  });
+
+  it('streams a single offline-pack.bin per language and unpacks exact MP3 byte slices without individual MP3 requests', async () => {
+    const clipCasa = new Uint8Array([0xff, 0xfb, 0x10, 0x20]);
+    const clipDias = new Uint8Array([0x49, 0x44, 0x33, 0x01, 0x02, 0x03]);
+    const combinedPack = new Uint8Array(clipCasa.length + clipDias.length);
+    combinedPack.set(clipCasa, 0);
+    combinedPack.set(clipDias, clipCasa.length);
+
+    const requestedUrls: string[] = [];
+    const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
+      const url = typeof input === 'string' ? input : input.toString();
+      requestedUrls.push(url);
+      if (url === '/audio/pt/manifest.json') {
+        return new Response(
+          JSON.stringify({
+            lang: 'pt',
+            fileCount: 2,
+            totalBytes: combinedPack.byteLength,
+            packFile: 'offline-pack.bin',
+            files: ['words/casa.mp3', 'phrases/bom_dia.mp3'],
+            sizes: [clipCasa.byteLength, clipDias.byteLength],
+          }),
+          { status: 200, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+      if (url === '/audio/pt/offline-pack.bin') {
+        return new Response(combinedPack, {
+          status: 200,
+          headers: { 'Content-Type': 'application/octet-stream' },
+        });
+      }
+      if (url.startsWith('/audio/sounds/')) {
+        return new Response(new Uint8Array([0xff, 0xfb]), {
+          status: 200,
+          headers: { 'Content-Type': 'audio/mpeg' },
+        });
+      }
+      throw new Error(`Unexpected individual MP3 network request: ${url}`);
+    });
+    vi.stubGlobal('fetch', fetchMock);
+
+    const progressUpdates: number[] = [];
+    const result = await downloadOfflineLanguages(['pt'], (p) => progressUpdates.push(p.percent));
+
+    expect(result.downloaded).toEqual(['pt']);
+    expect(result.failedFiles).toBe(0);
+    expect(progressUpdates.at(-1)).toBe(100);
+
+    // Zero individual MP3 fetches — only manifest.json + offline-pack.bin (+ 2 shared SFX)
+    expect(requestedUrls).toContain('/audio/pt/manifest.json');
+    expect(requestedUrls).toContain('/audio/pt/offline-pack.bin');
+    expect(requestedUrls.some((u) => u.startsWith('/audio/pt/words/') || u.startsWith('/audio/pt/phrases/'))).toBe(
+      false
+    );
+
+    const audioCache = mockCaches.stores.get(OFFLINE_AUDIO_CACHE_NAME)!;
+    const cachedCasa = new Uint8Array(await audioCache.entries.get('/audio/pt/words/casa.mp3')!.clone().arrayBuffer());
+    const cachedDias = new Uint8Array(
+      await audioCache.entries.get('/audio/pt/phrases/bom_dia.mp3')!.clone().arrayBuffer()
+    );
+    expect(Array.from(cachedCasa)).toEqual(Array.from(clipCasa));
+    expect(Array.from(cachedDias)).toEqual(Array.from(clipDias));
+  });
+
+  it('falls back cleanly from SPA HTML or missing .bin and retries transient 429 rate limits', async () => {
+    let mp3Attempts = 0;
+    const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
+      const url = typeof input === 'string' ? input : input.toString();
+      if (url === '/audio/it/manifest.json' || url === '/audio/id/manifest.json') {
+        return new Response(
+          JSON.stringify({
+            lang: 'id',
+            fileCount: 1,
+            totalBytes: 4,
+            packFile: 'offline-pack.bin',
+            files: ['words/rumah.mp3'],
+            sizes: [4],
+          }),
+          { status: 200, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
+      if (url === '/audio/id/offline-pack.bin') {
+        // Simulate Netlify SPA fallback returning index.html when .bin is missing
+        return new Response('<!doctype html><html></html>', {
+          status: 200,
+          headers: { 'Content-Type': 'text/html' },
+        });
+      }
+      if (url === '/audio/id/words/rumah.mp3') {
+        mp3Attempts += 1;
+        if (mp3Attempts === 1) {
+          return new Response('Too Many Requests', { status: 429 });
+        }
+        return new Response(new Uint8Array([0xff, 0xfb, 0x90, 0x64]), {
+          status: 200,
+          headers: { 'Content-Type': 'audio/mpeg' },
+        });
+      }
+      return new Response(new Uint8Array([0xff, 0xfb]), { status: 200 });
+    });
+    vi.stubGlobal('fetch', fetchMock);
+
+    const result = await downloadOfflineLanguages(['id']);
+    expect(result.downloaded).toEqual(['id']);
+    expect(result.failedFiles).toBe(0);
+    expect(mp3Attempts).toBe(2);
+    const audioCache = mockCaches.stores.get(OFFLINE_AUDIO_CACHE_NAME)!;
+    expect(audioCache.entries.has('/audio/id/words/rumah.mp3')).toBe(true);
   });
 
   it('encodes manifest paths identically to PronunciationButton.getCandidateAudioPathsForText across scripts', () => {

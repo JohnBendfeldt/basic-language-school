@@ -20,7 +20,7 @@ for (const lang of LANGUAGES) {
     continue;
   }
 
-  const files = [];
+  const entriesList = [];
   let totalBytes = 0;
 
   const subdirs = fs.readdirSync(langDir).sort();
@@ -28,22 +28,34 @@ for (const lang of LANGUAGES) {
     const subPath = path.join(langDir, sub);
     if (!fs.statSync(subPath).isDirectory()) continue;
 
-    const entries = fs.readdirSync(subPath).sort();
-    for (const entry of entries) {
-      if (!entry.toLowerCase().endsWith('.mp3')) continue;
-      const fullPath = path.join(subPath, entry);
+    const rawEntries = fs.readdirSync(subPath);
+    // Sort by NFC-normalized relative path so order is 100% deterministic across macOS (NFD) and Linux (NFC)
+    const normalizedEntries = rawEntries
+      .filter((entry) => entry.toLowerCase().endsWith('.mp3'))
+      .map((entry) => ({
+        rawEntry: entry,
+        relPath: `${sub}/${entry.normalize('NFC')}`,
+      }))
+      .sort((a, b) => (a.relPath < b.relPath ? -1 : a.relPath > b.relPath ? 1 : 0));
+
+    for (const { rawEntry, relPath } of normalizedEntries) {
+      const fullPath = path.join(subPath, rawEntry);
       const stat = fs.statSync(fullPath);
-      const normalizedEntry = entry.normalize('NFC');
-      files.push(`${sub}/${normalizedEntry}`);
+      entriesList.push({ relPath, size: stat.size });
       totalBytes += stat.size;
     }
   }
+
+  const files = entriesList.map((e) => e.relPath);
+  const sizes = entriesList.map((e) => e.size);
 
   const manifest = {
     lang,
     fileCount: files.length,
     totalBytes,
+    packFile: 'offline-pack.bin',
     files,
+    sizes,
   };
 
   const outPath = path.join(langDir, 'manifest.json');
@@ -58,4 +70,3 @@ for (const lang of LANGUAGES) {
 console.log(
   `Done: ${grandTotalFiles} MP3s (${(grandTotalBytes / (1024 * 1024)).toFixed(1)} MB) indexed across ${LANGUAGES.length} languages.`
 );
-

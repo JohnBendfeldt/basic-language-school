@@ -1,11 +1,65 @@
 /// <reference types="vitest" />
+import fs from 'node:fs';
+import path from 'node:path';
+import type { Plugin } from 'vite';
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
+const offlinePackDevPlugin = (): Plugin => ({
+  name: 'offline-pack-dev-middleware',
+  configureServer(server) {
+    server.middlewares.use((req, res, next) => {
+      const urlPath = req.url?.split('?')[0] || '';
+      const match = urlPath.match(/^\/audio\/([a-z]{2})\/offline-pack\.bin$/i);
+      if (!match || req.method !== 'GET') {
+        next();
+        return;
+      }
+
+      const lang = match[1].toLowerCase();
+      const langDir = path.resolve(process.cwd(), 'public', 'audio', lang);
+      const manifestPath = path.join(langDir, 'manifest.json');
+      if (!fs.existsSync(manifestPath)) {
+        next();
+        return;
+      }
+
+      try {
+        const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8')) as {
+          files: string[];
+          totalBytes: number;
+        };
+        const diskLookup = new Map<string, string>();
+        for (const sub of fs.readdirSync(langDir)) {
+          const subPath = path.join(langDir, sub);
+          if (!fs.statSync(subPath).isDirectory()) continue;
+          for (const entry of fs.readdirSync(subPath)) {
+            if (!entry.toLowerCase().endsWith('.mp3')) continue;
+            diskLookup.set(`${sub}/${entry.normalize('NFC')}`, path.join(subPath, entry));
+          }
+        }
+
+        const chunks = manifest.files.map((rel) => {
+          const diskPath = diskLookup.get(rel.normalize('NFC')) || path.join(langDir, rel);
+          return fs.readFileSync(diskPath);
+        });
+        const packBuf = Buffer.concat(chunks);
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/octet-stream');
+        res.setHeader('Content-Length', String(packBuf.length));
+        res.end(packBuf);
+      } catch {
+        next();
+      }
+    });
+  },
+});
+
 export default defineConfig({
   plugins: [
     react(),
+    offlinePackDevPlugin(),
     VitePWA({
       registerType: 'autoUpdate',
       // Use existing public/manifest.json instead of generating one
@@ -17,8 +71,13 @@ export default defineConfig({
         clientsClaim: true,
         skipWaiting: true,
         navigateFallback: null,
-        // Exclude index.html and audio manifests from initial precache so HTML is fresh & install stays fast
-        globIgnores: ['**/audio/index.json', '**/audio/*/manifest.json', '**/index.html'],
+        // Exclude index.html, audio manifests, and binary audio packs from initial precache
+        globIgnores: [
+          '**/audio/index.json',
+          '**/audio/*/manifest.json',
+          '**/audio/*/offline-pack.bin',
+          '**/index.html',
+        ],
         runtimeCaching: [
           {
             urlPattern: ({ request }: { request: Request }) => request.mode === 'navigate',

@@ -31,7 +31,9 @@ export interface LanguageManifestPayload {
   lang: SupportedLanguageId;
   fileCount: number;
   totalBytes: number;
+  packFile?: string;
   files: string[];
+  sizes?: number[];
 }
 
 export interface OfflineDownloadProgress {
@@ -230,15 +232,205 @@ const fetchLanguageManifest = async (
   return (await resp.json()) as LanguageManifestPayload;
 };
 
+const sleepWithAbort = (ms: number, signal?: AbortSignal): Promise<void> =>
+  new Promise((resolve, reject) => {
+    if (signal?.aborted) {
+      reject(new DOMException('Aborted', 'AbortError'));
+      return;
+    }
+    const timer = setTimeout(() => {
+      signal?.removeEventListener('abort', onAbort);
+      resolve();
+    }, ms);
+    const onAbort = () => {
+      clearTimeout(timer);
+      reject(new DOMException('Aborted', 'AbortError'));
+    };
+    signal?.addEventListener('abort', onAbort, { once: true });
+  });
+
+const fetchWithRetry = async (
+  url: string,
+  signal?: AbortSignal,
+  maxRetries: number = 3
+): Promise<Response> => {
+  const backoffMs = [250, 750, 1800];
+  let lastResp: Response | null = null;
+
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    if (signal?.aborted) throw new DOMException('Aborted', 'AbortError');
+    try {
+      const resp = await fetch(url, { signal });
+      if (resp.status !== 429 && resp.status < 500) {
+        return resp;
+      }
+      lastResp = resp;
+      // Drain/cancel body stream on throttled response before retrying
+      try {
+        await resp.body?.cancel();
+      } catch {
+        // ignore
+      }
+    } catch (err: any) {
+      if (signal?.aborted || err?.name === 'AbortError') throw err;
+      if (attempt === maxRetries) throw err;
+    }
+    if (attempt < maxRetries) {
+      await sleepWithAbort(backoffMs[Math.min(attempt, backoffMs.length - 1)], signal);
+    }
+  }
+
+  return lastResp || new Response(null, { status: 503 });
+};
+
+/**
+ * Streams `/audio/<lang>/offline-pack.bin` in a single HTTP request and slices each MP3
+ * directly into Cache Storage ('bls-offline-audio-v1') using byte lengths from manifest.json.
+ * Returns true if the binary pack succeeded, or false if unavailable so caller can fall back.
+ */
+const tryDownloadLanguageViaBinaryPack = async (
+  lang: SupportedLanguageId,
+  manifest: LanguageManifestPayload,
+  urls: string[],
+  cache: Cache,
+  cachedPathSet: Set<string>,
+  onVirtualDelta: (deltaCompleted: number, force?: boolean) => void,
+  signal?: AbortSignal
+): Promise<boolean> => {
+  if (
+    !Array.isArray(manifest.sizes) ||
+    manifest.sizes.length !== urls.length ||
+    typeof manifest.totalBytes !== 'number' ||
+    manifest.totalBytes <= 0
+  ) {
+    return false;
+  }
+
+  const packUrl = `/audio/${lang}/${manifest.packFile || 'offline-pack.bin'}`;
+  let resp: Response;
+  try {
+    resp = await fetchWithRetry(packUrl, signal, 2);
+  } catch (err: any) {
+    if (signal?.aborted || err?.name === 'AbortError') throw err;
+    return false;
+  }
+
+  const contentType = (resp.headers.get('content-type') || '').toLowerCase();
+  if (!resp.ok || resp.status !== 200 || contentType.includes('text/html')) {
+    try {
+      await resp.body?.cancel();
+    } catch {
+      // ignore
+    }
+    return false;
+  }
+
+  const missingCount = urls.reduce((acc, u) => acc + (cachedPathSet.has(u) ? 0 : 1), 0);
+  const expectedBytes = manifest.totalBytes;
+  let packBytes: Uint8Array;
+
+  if (resp.body && typeof resp.body.getReader === 'function') {
+    const reader = resp.body.getReader();
+    packBytes = new Uint8Array(expectedBytes);
+    let received = 0;
+
+    try {
+      while (true) {
+        if (signal?.aborted) {
+          await reader.cancel().catch(() => {});
+          throw new DOMException('Aborted', 'AbortError');
+        }
+        const { done, value } = await reader.read();
+        if (done) break;
+        if (value && value.byteLength > 0) {
+          if (received + value.byteLength > expectedBytes) {
+            await reader.cancel().catch(() => {});
+            return false;
+          }
+          packBytes.set(value, received);
+          received += value.byteLength;
+          // Map network download phase smoothly across 0% -> 80% of missing files
+          const streamProgressFiles = Math.floor(missingCount * 0.8 * (received / expectedBytes));
+          onVirtualDelta(streamProgressFiles, false);
+        }
+      }
+    } catch (err: any) {
+      if (signal?.aborted || err?.name === 'AbortError') throw err;
+      return false;
+    }
+
+    if (received !== expectedBytes) {
+      return false;
+    }
+  } else {
+    const ab = await resp.arrayBuffer();
+    if (ab.byteLength !== expectedBytes) {
+      return false;
+    }
+    packBytes = new Uint8Array(ab);
+    onVirtualDelta(Math.floor(missingCount * 0.8), false);
+  }
+
+  // Unpack slices into Cache Storage in batches of 40 so UI stays responsive and GC frees packBytes
+  const BATCH_SIZE = 40;
+  let batch: Array<{ url: string; response: Response }> = [];
+  let offset = 0;
+  let unpackedMissing = 0;
+
+  const flushBatch = async () => {
+    if (batch.length === 0) return;
+    if (signal?.aborted) throw new DOMException('Aborted', 'AbortError');
+    const currentBatch = batch;
+    batch = [];
+    await Promise.all(
+      currentBatch.map(async ({ url, response }) => {
+        await cache.put(url, response);
+        cachedPathSet.add(url);
+      })
+    );
+    unpackedMissing += currentBatch.length;
+    const unpackProgress = Math.floor(
+      missingCount * (0.8 + 0.2 * (unpackedMissing / Math.max(1, missingCount)))
+    );
+    onVirtualDelta(unpackProgress, false);
+  };
+
+  for (let i = 0; i < urls.length; i++) {
+    const size = manifest.sizes[i];
+    const url = urls[i];
+    if (!cachedPathSet.has(url)) {
+      const sliceBuffer = packBytes.slice(offset, offset + size);
+      const response = new Response(sliceBuffer, {
+        status: 200,
+        headers: {
+          'Content-Type': 'audio/mpeg',
+          'Content-Length': String(size),
+        },
+      });
+      batch.push({ url, response });
+      if (batch.length >= BATCH_SIZE) {
+        await flushBatch();
+      }
+    }
+    offset += size;
+  }
+
+  await flushBatch();
+  onVirtualDelta(missingCount, true);
+  return true;
+};
+
 /**
  * Downloads all studio neural MP3 clips for the selected languages into Cache Storage
  * ('bls-offline-audio-v1') so both Service Worker CacheFirst and direct Blob fallback work in Airplane Mode.
+ * Uses a single `/audio/<lang>/offline-pack.bin` stream per language (1 HTTP request/language, immune to CDN
+ * rate limits) with automatic fallback to paced, retry-backed individual fetches.
  */
 export const downloadOfflineLanguages = async (
   langs: SupportedLanguageId[],
   onProgress?: (progress: OfflineDownloadProgress) => void,
   signal?: AbortSignal,
-  concurrency: number = 8
+  concurrency: number = 4
 ): Promise<{ downloaded: SupportedLanguageId[]; failedFiles: number }> => {
   const uniqueLangs = Array.from(new Set(langs));
   if (uniqueLangs.length === 0 || !isCacheStorageSupported()) {
@@ -254,13 +446,13 @@ export const downloadOfflineLanguages = async (
   const existingKeys = await cache.keys();
   const cachedPathSet = new Set<string>(existingKeys.map((r) => normalizePathname(r.url)));
 
-  // Ensure quiz sound effects are cached too
+  // Ensure quiz sound effects are cached too (pass resp directly to cache.put without leaking clone streams)
   for (const sfx of ['/audio/sounds/correct.mp3', '/audio/sounds/incorrect.mp3']) {
     if (!cachedPathSet.has(sfx)) {
       try {
         const sfxResp = await fetch(sfx, { signal });
         if (sfxResp.ok) {
-          await cache.put(sfx, sfxResp.clone());
+          await cache.put(sfx, sfxResp);
           cachedPathSet.add(sfx);
         }
       } catch {
@@ -270,14 +462,18 @@ export const downloadOfflineLanguages = async (
   }
 
   // Load manifests for all requested languages first so total progress bar is 100% accurate
-  const manifests: Array<{ lang: SupportedLanguageId; urls: string[] }> = [];
+  const manifests: Array<{
+    lang: SupportedLanguageId;
+    manifest: LanguageManifestPayload;
+    urls: string[];
+  }> = [];
   let totalFiles = 0;
 
   for (const lang of uniqueLangs) {
     if (signal?.aborted) throw new DOMException('Aborted', 'AbortError');
     const manifest = await fetchLanguageManifest(lang, signal);
     const urls = manifest.files.map((rel) => manifestEntryToAudioUrl(lang, rel));
-    manifests.push({ lang, urls });
+    manifests.push({ lang, manifest, urls });
     totalFiles += urls.length;
   }
 
@@ -288,25 +484,31 @@ export const downloadOfflineLanguages = async (
   const newlyCompletedLangs: SupportedLanguageId[] = [];
   const storedSet = new Set<SupportedLanguageId>(readStoredDownloadedLanguages());
 
-  const report = (currentLang: SupportedLanguageId, force: boolean = false) => {
+  const reportWithCount = (
+    currentLang: SupportedLanguageId,
+    effectiveCompleted: number,
+    force: boolean = false
+  ) => {
     if (!onProgress) return;
     const now = typeof performance !== 'undefined' ? performance.now() : Date.now();
-    const isComplete = totalFiles > 0 && completedFiles >= totalFiles;
+    const isComplete = totalFiles > 0 && effectiveCompleted >= totalFiles;
     if (!force && !isComplete && now - lastProgressEmitMs < PROGRESS_THROTTLE_MS) {
       return;
     }
     lastProgressEmitMs = now;
-    const percent = totalFiles > 0 ? Math.min(100, Math.round((completedFiles / totalFiles) * 100)) : 100;
+    const clampedCompleted = Math.min(totalFiles, effectiveCompleted);
+    const percent =
+      totalFiles > 0 ? Math.min(100, Math.round((clampedCompleted / totalFiles) * 100)) : 100;
     onProgress({
       currentLang,
-      completedFiles,
+      completedFiles: clampedCompleted,
       totalFiles,
       percent,
       failedFiles,
     });
   };
 
-  for (const { lang, urls } of manifests) {
+  for (const { lang, manifest, urls } of manifests) {
     let langFailures = 0;
     const missingUrls: string[] = [];
 
@@ -317,43 +519,73 @@ export const downloadOfflineLanguages = async (
         missingUrls.push(url);
       }
     }
-    report(lang, true);
+    const baseCompletedBeforeMissing = completedFiles;
+    reportWithCount(lang, completedFiles, true);
 
-    let cursor = 0;
-    const workerCount = Math.min(Math.max(1, concurrency), missingUrls.length || 1);
-
-    const runWorker = async () => {
-      while (cursor < missingUrls.length) {
-        if (signal?.aborted) throw new DOMException('Aborted', 'AbortError');
-        const idx = cursor++;
-        const url = missingUrls[idx];
-        try {
-          const resp = await fetch(url, { signal });
-          if (resp.ok && resp.status === 200) {
-            await cache.put(url, resp.clone());
-            cachedPathSet.add(url);
-          } else {
-            failedFiles += 1;
-            langFailures += 1;
-          }
-        } catch (err: any) {
-          if (signal?.aborted || err?.name === 'AbortError') {
-            throw err;
-          }
-          failedFiles += 1;
-          langFailures += 1;
-        } finally {
-          completedFiles += 1;
-          report(lang);
-        }
-      }
-    };
-
+    let unpackedViaBin = false;
     if (missingUrls.length > 0) {
-      await Promise.all(Array.from({ length: workerCount }, () => runWorker()));
+      unpackedViaBin = await tryDownloadLanguageViaBinaryPack(
+        lang,
+        manifest,
+        urls,
+        cache,
+        cachedPathSet,
+        (deltaCompleted, force = false) => {
+          reportWithCount(lang, baseCompletedBeforeMissing + deltaCompleted, force);
+        },
+        signal
+      );
+      if (unpackedViaBin) {
+        completedFiles = baseCompletedBeforeMissing + missingUrls.length;
+      }
     }
 
-    report(lang, true);
+    if (!unpackedViaBin && missingUrls.length > 0) {
+      // Recompute remaining missing URLs in case partial work occurred
+      const remainingUrls = missingUrls.filter((u) => {
+        if (cachedPathSet.has(u)) {
+          completedFiles += 1;
+          return false;
+        }
+        return true;
+      });
+
+      let cursor = 0;
+      const workerCount = Math.min(Math.max(1, concurrency), 4, remainingUrls.length || 1);
+
+      const runWorker = async () => {
+        while (cursor < remainingUrls.length) {
+          if (signal?.aborted) throw new DOMException('Aborted', 'AbortError');
+          const idx = cursor++;
+          const url = remainingUrls[idx];
+          try {
+            const resp = await fetchWithRetry(url, signal, 3);
+            if (resp.ok && resp.status === 200) {
+              await cache.put(url, resp);
+              cachedPathSet.add(url);
+            } else {
+              failedFiles += 1;
+              langFailures += 1;
+            }
+          } catch (err: any) {
+            if (signal?.aborted || err?.name === 'AbortError') {
+              throw err;
+            }
+            failedFiles += 1;
+            langFailures += 1;
+          } finally {
+            completedFiles += 1;
+            reportWithCount(lang, completedFiles, false);
+          }
+        }
+      };
+
+      if (remainingUrls.length > 0) {
+        await Promise.all(Array.from({ length: workerCount }, () => runWorker()));
+      }
+    }
+
+    reportWithCount(lang, completedFiles, true);
 
     // Mark language offline-ready if at least 95% of clips succeeded
     if (urls.length === 0 || langFailures / urls.length <= 0.05) {
