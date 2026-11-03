@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { PhraseItem } from '../types/index';
 import PronunciationButton from './PronunciationButton';
 import { NumberBadge } from './NumberBadge';
@@ -51,30 +51,33 @@ const CATEGORY_ICONS: Record<string, string> = {
 };
 
 interface PhraseCardProps {
+  cardIndex: number;
   targetText: string;
   translatedText: string;
   pronunciation: string;
   isRevealed: boolean;
-  onToggleReveal: () => void;
-  animationKey: number;
+  onToggleIndex: (index: number) => void;
   contentType?: 'phrases' | 'words' | 'numbers' | 'time';
   category?: string;
   icon?: string;
 }
 
-const PhraseCard: React.FC<PhraseCardProps> = ({ 
+const PhraseCardComponent: React.FC<PhraseCardProps> = ({ 
+  cardIndex,
   targetText, 
   translatedText, 
   pronunciation, 
   isRevealed, 
-  onToggleReveal,
-  animationKey,
+  onToggleIndex,
   contentType = 'phrases',
   category,
   icon
 }) => {
   const { currentLanguage, baseLanguage, ui } = useLanguage();
   const localizedCategory = localizeCategoryBadge(category, baseLanguage);
+  const handleToggle = useCallback(() => {
+    onToggleIndex(cardIndex);
+  }, [onToggleIndex, cardIndex]);
 
   // Extract numeric digits from translatedText/targetText if this is numbers mode
   let numericValue: string | null = null;
@@ -92,8 +95,7 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
 
   return (
     <div 
-      className={`phrase-card ${contentType === 'numbers' ? 'phrase-card-number' : ''} ${isRevealed ? 'phrase-revealed' : 'phrase-hidden'}`} 
-      key={`card-${animationKey}`}
+      className={`phrase-card ${contentType === 'numbers' ? 'phrase-card-number' : ''} ${isRevealed ? 'phrase-revealed' : 'phrase-hidden'}`}
     >
       <div className="phrase-card-top-row">
         {localizedCategory && (
@@ -133,11 +135,11 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
             tabIndex={0}
             aria-expanded={true}
             aria-label={`Hide translation for ${targetText}`}
-            onClick={onToggleReveal}
+            onClick={handleToggle}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                onToggleReveal();
+                handleToggle();
               }
             }}
           >
@@ -169,7 +171,7 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
             className="phrase-reveal-btn" 
             aria-expanded={false}
             aria-label={`Reveal translation for ${targetText}`}
-            onClick={onToggleReveal}
+            onClick={handleToggle}
           >
             <FaSyncAlt className="cue-icon" aria-hidden="true" />
             <span>{ui.tapToReveal}</span>
@@ -179,6 +181,8 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
     </div>
   );
 };
+
+const PhraseCard = React.memo(PhraseCardComponent);
 
 interface PhrasesProps {
   data: PhraseItem[];
@@ -196,10 +200,9 @@ const Phrases: React.FC<PhrasesProps> = ({
   const [sheetOpen, setSheetOpen] = useState(false);
   const isMobile = useIsMobile();
   const activeCategory = selectedCategories.size === 0 ? 'all' : Array.from(selectedCategories).join('|');
-  const [revealedCards, setRevealedCards] = useState<boolean[]>(
-    new Array(data.length).fill(false)
-  );
-  const [lastToggledCard, setLastToggledCard] = useState<number | null>(null);
+  const [revealedSet, setRevealedSet] = useState<Set<number>>(() => new Set());
+  const isInitialCategoriesRender = React.useRef(true);
+  const isInitialRevealedRender = React.useRef(true);
 
   // Build available category pills with counts
   const categoryPills = useMemo(() => {
@@ -237,8 +240,12 @@ const Phrases: React.FC<PhrasesProps> = ({
   }, [data, selectedCategories]);
 
   useEffect(() => {
-    setSelectedCategories(new Set());
-    setSheetOpen(false);
+    if (isInitialCategoriesRender.current) {
+      isInitialCategoriesRender.current = false;
+      return;
+    }
+    setSelectedCategories(prev => (prev.size === 0 ? prev : new Set()));
+    setSheetOpen(prev => (prev ? false : prev));
   }, [data, title, currentLanguage]);
 
   // Close the topic sheet with Escape and lock background scroll while it is open
@@ -268,23 +275,47 @@ const Phrases: React.FC<PhrasesProps> = ({
   };
 
   useEffect(() => {
-    setRevealedCards(new Array(filteredData.length).fill(false));
-    setLastToggledCard(null);
+    if (isInitialRevealedRender.current) {
+      isInitialRevealedRender.current = false;
+      return;
+    }
+    setRevealedSet(prev => (prev.size === 0 ? prev : new Set()));
   }, [filteredData, title, baseLanguage, activeCategory]);
 
-  const toggleReveal = (index: number) => {
-    const newRevealedCards = [...revealedCards];
-    newRevealedCards[index] = !newRevealedCards[index];
-    setRevealedCards(newRevealedCards);
-    setLastToggledCard(index);
-  };
+  const toggleReveal = useCallback((index: number) => {
+    setRevealedSet(prev => {
+      const next = new Set(prev);
+      if (next.has(index)) {
+        next.delete(index);
+      } else {
+        next.add(index);
+      }
+      return next;
+    });
+  }, []);
 
-  const allRevealed = revealedCards.length > 0 && revealedCards.every(Boolean);
+  const allRevealed = filteredData.length > 0 && revealedSet.size === filteredData.length;
 
-  const toggleAll = () => {
-    const nextState = !allRevealed;
-    setRevealedCards(new Array(filteredData.length).fill(nextState));
-  };
+  const toggleAll = useCallback(() => {
+    setRevealedSet(prev => {
+      if (filteredData.length > 0 && prev.size === filteredData.length) {
+        return new Set();
+      }
+      const all = new Set<number>();
+      for (let i = 0; i < filteredData.length; i++) {
+        all.add(i);
+      }
+      return all;
+    });
+  }, [filteredData.length]);
+
+  const resolvedCards = useMemo(() => {
+    return filteredData.map(item => ({
+      item,
+      targetText: (item.russian || item.phrase || item.target || '').toString(),
+      translatedText: resolveTranslation(item, currentLanguage, baseLanguage)
+    }));
+  }, [filteredData, currentLanguage, baseLanguage]);
 
   const allLabel = localizeCategoryBadge('all', baseLanguage) || 'All';
 
@@ -461,25 +492,20 @@ const Phrases: React.FC<PhrasesProps> = ({
       )}
 
       <div className="phrases-container">
-        {filteredData.map((item, index) => {
-          const targetText = (item.russian || item.phrase || item.target || '').toString();
-          const translatedText = resolveTranslation(item, currentLanguage, baseLanguage);
-
-          return (
-            <PhraseCard 
-              key={`${activeCategory}-${index}`}
-              targetText={targetText}
-              translatedText={translatedText}
-              pronunciation={item.pronunciation || ''}
-              isRevealed={revealedCards[index]}
-              onToggleReveal={() => toggleReveal(index)}
-              animationKey={lastToggledCard === index ? Date.now() : index}
-              contentType={contentType}
-              category={item.category}
-              icon={item.icon}
-            />
-          );
-        })}
+        {resolvedCards.map(({ item, targetText, translatedText }, index) => (
+          <PhraseCard 
+            key={`${activeCategory}-${index}`}
+            cardIndex={index}
+            targetText={targetText}
+            translatedText={translatedText}
+            pronunciation={item.pronunciation || ''}
+            isRevealed={revealedSet.has(index)}
+            onToggleIndex={toggleReveal}
+            contentType={contentType}
+            category={item.category}
+            icon={item.icon}
+          />
+        ))}
       </div>
     </div>
   );

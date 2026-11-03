@@ -546,14 +546,14 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     listeningPromptHint: 'Sesi dinleyin ve duyduğunuzu yazın:'
   },
   ko: {
-    alphabet: '한글',
-    alphabetAndGrammar: '한글 & 문법',
+    alphabet: '문자',
+    alphabetAndGrammar: '문자 및 문법',
     grammar: '문법',
-    basicPhrases: '기본 회화 & 표현',
+    basicPhrases: '기본 회화 및 표현',
     commonWords: '필수 어휘',
-    numbersAndTime: '숫자 & 시간',
+    numbersAndTime: '숫자 및 시간',
     numbers: '숫자',
-    time: '시간 & 요일',
+    time: '시간 및 요일',
     quiz: '퀴즈',
 
     iSpeak: '모국어',
@@ -606,14 +606,14 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     listeningPromptHint: '들은 내용을 입력하세요'
   },
   ja: {
-    alphabet: 'かな',
-    alphabetAndGrammar: 'かな & 文法',
+    alphabet: '文字',
+    alphabetAndGrammar: '文字と文法',
     grammar: '文法',
-    basicPhrases: '基本フレーズ & 挨拶',
+    basicPhrases: '基本フレーズと挨拶',
     commonWords: '必須単語',
-    numbersAndTime: '数字 & 時間',
+    numbersAndTime: '数字と時間',
     numbers: '数字',
-    time: '時間 & 曜日',
+    time: '時間と曜日',
     quiz: 'クイズ',
 
     iSpeak: '母国語',
@@ -666,14 +666,14 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     listeningPromptHint: '聞こえた言葉を入力してください'
   },
   zh: {
-    alphabet: '拼音',
-    alphabetAndGrammar: '拼音 & 语法',
+    alphabet: '字母',
+    alphabetAndGrammar: '字母与语法',
     grammar: '语法',
-    basicPhrases: '基础短语 & 问候',
+    basicPhrases: '基础短语与问候',
     commonWords: '核心词汇',
-    numbersAndTime: '数字 & 时间',
+    numbersAndTime: '数字与时间',
     numbers: '数字',
-    time: '时间 & 日期',
+    time: '时间与日期',
     quiz: '练习测验',
 
     iSpeak: '母语',
@@ -727,7 +727,7 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
   },
   hi: {
     alphabet: 'वर्णमाला',
-    alphabetAndGrammar: 'वर्णमाला & व्याकरण',
+    alphabetAndGrammar: 'वर्णमाला और व्याकरण',
     grammar: 'व्याकरण',
     basicPhrases: 'मूलभूत वाक्यांश',
     commonWords: 'सामान्य शब्द',

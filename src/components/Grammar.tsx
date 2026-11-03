@@ -262,37 +262,124 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
     setDeckFinished(false);
   };
 
-  const localizedLabels = {
-    flashcards: baseLanguage === 'de' ? 'Karteikarten' : baseLanguage === 'es' ? 'Tarjetas' : baseLanguage === 'fr' ? 'Flashcards' : baseLanguage === 'ru' ? 'Карточки' : 'Flashcards',
-    gender: baseLanguage === 'de' ? 'Artikel & Geschlecht' : baseLanguage === 'es' ? 'Artículos y Género' : baseLanguage === 'fr' ? 'Articles & Genres' : baseLanguage === 'ru' ? 'Артикли и род' : 'Noun Genders',
-    verbs: (() => {
-      if (currentLanguage === 'zh') return baseLanguage === 'ru' ? 'Глаголы и частицы' : baseLanguage === 'de' ? 'Verben & Partikeln' : baseLanguage === 'es' ? 'Verbos y partículas' : baseLanguage === 'fr' ? 'Verbes et particules' : 'Verbs & Particles';
-      if (currentLanguage === 'id') return baseLanguage === 'ru' ? 'Глаголы и маркеры' : baseLanguage === 'de' ? 'Verben & Zeitmarker' : baseLanguage === 'es' ? 'Verbos y marcadores' : baseLanguage === 'fr' ? 'Verbes et marqueurs' : 'Verb Markers';
-      if (currentLanguage === 'ja' || currentLanguage === 'ko') return baseLanguage === 'ru' ? 'Формы вежливости' : baseLanguage === 'de' ? 'Höflichkeitsformen' : baseLanguage === 'es' ? 'Formas y Cortesía' : baseLanguage === 'fr' ? 'Formes de politesse' : 'Verb Forms & Politeness';
-      return baseLanguage === 'de' ? 'Verben & Konjugation' : baseLanguage === 'es' ? 'Verbos y Tiempos' : baseLanguage === 'fr' ? 'Verbes & Temps' : baseLanguage === 'ru' ? 'Глаголы и времена' : 'Verb Tenses';
-    })(),
-    descriptions: (() => {
-      const isPatternLang = ['tr', 'zh', 'ja', 'ko', 'hi', 'ar', 'id'].includes(currentLanguage);
-      if (isPatternLang) {
-        if (baseLanguage === 'de') return 'Regeln & Muster';
-        if (baseLanguage === 'es') return 'Reglas y Patrones';
-        if (baseLanguage === 'fr') return 'Règles et Modèles';
-        if (baseLanguage === 'ru') return 'Правила и модели';
-        return 'Rules & Patterns';
-      }
-      return baseLanguage === 'de' ? 'Beschreibungen & Adjektive' : baseLanguage === 'es' ? 'Descripciones' : baseLanguage === 'fr' ? 'Descriptions' : baseLanguage === 'ru' ? 'Описания' : 'Descriptions';
-    })(),
-    next: baseLanguage === 'de' ? 'Nächste Karte' : baseLanguage === 'es' ? 'Siguiente' : baseLanguage === 'fr' ? 'Suivant' : baseLanguage === 'ru' ? 'Далее' : 'Next Card',
-    restart: baseLanguage === 'de' ? 'Neustart' : baseLanguage === 'es' ? 'Reiniciar' : baseLanguage === 'fr' ? 'Recommencer' : baseLanguage === 'ru' ? 'Заново' : 'Practice Again',
-    badgeArticles: baseLanguage === 'ru' ? '🏷️ Артикли (a / an)' : baseLanguage === 'es' ? '🏷️ Artículos (a / an)' : baseLanguage === 'fr' ? '🏷️ Articles (a / an)' : baseLanguage === 'de' ? '🏷️ Artikel (a / an)' : '🏷️ Articles (a / an)',
-    badgeGender: baseLanguage === 'ru' ? '🏷️ Род существительных' : baseLanguage === 'es' ? '🏷️ Género gramatical' : baseLanguage === 'fr' ? '🏷️ Genre des noms' : baseLanguage === 'de' ? '🏷️ Geschlecht' : '🏷️ Noun Gender',
-    badgeVerb: baseLanguage === 'ru' ? '🔄 Время глагола' : baseLanguage === 'es' ? '🔄 Tiempo verbal' : baseLanguage === 'fr' ? '🔄 Temps du verbe' : baseLanguage === 'de' ? '🔄 Zeitform' : '🔄 Verb Tense',
-    badgeDescription: baseLanguage === 'ru' ? '📐 Описание' : baseLanguage === 'es' ? '📐 Descripción' : baseLanguage === 'fr' ? '📐 Description' : baseLanguage === 'de' ? '📐 Beschreibung' : '📐 Description',
-    howToRecognize: baseLanguage === 'ru' ? 'Как распознать:' : baseLanguage === 'es' ? 'Cómo reconocerlo:' : baseLanguage === 'fr' ? 'Comment reconnaître :' : baseLanguage === 'de' ? 'Erkennungsmerkmale:' : 'How to recognize:',
-    highFrequencyExamples: baseLanguage === 'ru' ? 'Частые примеры:' : baseLanguage === 'es' ? 'Ejemplos frecuentes:' : baseLanguage === 'fr' ? 'Exemples fréquents :' : baseLanguage === 'de' ? 'Häufige Beispiele:' : 'High-frequency examples:',
-    exampleInContext: baseLanguage === 'ru' ? 'Пример в контексте:' : baseLanguage === 'es' ? 'Ejemplo en contexto:' : baseLanguage === 'fr' ? 'Exemple en contexte :' : baseLanguage === 'de' ? 'Beispiel im Kontext:' : 'Example in context:',
-    deckCompleted: baseLanguage === 'ru' ? 'Колода пройдена!' : baseLanguage === 'es' ? '¡Baraja completada!' : baseLanguage === 'fr' ? 'Paquet terminé !' : baseLanguage === 'de' ? 'Stapel abgeschlossen!' : 'Deck Completed!',
-  };
+  const localizedLabels = (() => {
+    const flashcardsMap: Record<string, string> = {
+      en: 'Flashcards', de: 'Karteikarten', es: 'Tarjetas', fr: 'Flashcards', ru: 'Карточки',
+      pt: 'Cartões', id: 'Kartu Kilat', tr: 'Bilgi Kartları', zh: '语法闪卡', ja: '暗記カード',
+      ko: '플래시카드', hi: 'फ़्लैशकार्ड', ar: 'بطاقات تعليمية', bn: 'ফ্ল্যাশকার্ড', ur: 'فلیش کارڈز'
+    };
+    const genderMap: Record<string, string> = {
+      en: 'Noun Genders', de: 'Artikel & Geschlecht', es: 'Artículos y Género', fr: 'Articles & Genres', ru: 'Артикли и род',
+      pt: 'Artigos e Gênero', id: 'Kata Sandang & Gender', tr: 'Tanımlıklar ve Cinsiyet', zh: '冠词与词性', ja: '冠詞と名詞の性',
+      ko: '관사 및 명사 성', hi: 'लिंग और उपपद', ar: 'التذكير والتأنيث', bn: 'লিঙ্গ ও পদাশ্রিত নির্দেশক', ur: 'تذکیر و تانیث'
+    };
+    const verbsParticlesMap: Record<string, string> = {
+      en: 'Verbs & Particles', de: 'Verben & Partikeln', es: 'Verbos y partículas', fr: 'Verbes et particules', ru: 'Глаголы и частицы',
+      pt: 'Verbos e partículas', id: 'Kata Kerja & Partikel', tr: 'Fiiller ve Edatlar', zh: '动词与助词', ja: '動詞と助詞',
+      ko: '동사 및 조사', hi: 'क्रियाएँ और निपात', ar: 'الأفعال والأدوات', bn: 'ক্রিয়া ও অব্যয়', ur: 'افعال اور حروف'
+    };
+    const verbsMarkersMap: Record<string, string> = {
+      en: 'Verb Markers', de: 'Verben & Zeitmarker', es: 'Verbos y marcadores', fr: 'Verbes et marqueurs', ru: 'Глаголы и маркеры',
+      pt: 'Marcadores verbais', id: 'Penanda Waktu', tr: 'Zaman Belirteçleri', zh: '动词时态标记', ja: '時制マーカー',
+      ko: '동사 시제 표지', hi: 'काल संकेतक', ar: 'علامات الزمن', bn: 'কাল নির্দেশক', ur: 'زمانے کی علامات'
+    };
+    const verbsPoliteMap: Record<string, string> = {
+      en: 'Verb Forms & Politeness', de: 'Höflichkeitsformen', es: 'Formas y Cortesía', fr: 'Formes de politesse', ru: 'Формы вежливости',
+      pt: 'Formas de cortesia', id: 'Bentuk Kesopanan', tr: 'Nezaket Biçimleri', zh: '动词与敬语形式', ja: '動詞の活用と敬語',
+      ko: '동사 활용 및 높임법', hi: 'क्रिया रूप और शिष्टाचार', ar: 'صيغ الأفعال والاحترام', bn: 'ক্রিয়ার রূপ ও সৌজন্য', ur: 'افعال اور آداب'
+    };
+    const verbsTensesMap: Record<string, string> = {
+      en: 'Verb Tenses', de: 'Verben & Konjugation', es: 'Verbos y Tiempos', fr: 'Verbes & Temps', ru: 'Глаголы и времена',
+      pt: 'Verbos e Tempos', id: 'Kata Kerja & Kala', tr: 'Fiil Zamanları', zh: '动词与时态', ja: '動詞と時制',
+      ko: '동사 및 시제', hi: 'क्रिया और काल', ar: 'الأفعال والأزمنة', bn: 'ক্রিয়া ও কাল', ur: 'افعال اور زمانے'
+    };
+    const rulesPatternsMap: Record<string, string> = {
+      en: 'Rules & Patterns', de: 'Regeln & Muster', es: 'Reglas y Patrones', fr: 'Règles et Modèles', ru: 'Правила и модели',
+      pt: 'Regras e Padrões', id: 'Aturan & Pola', tr: 'Kurallar ve Kalıplar', zh: '语法规则与句型', ja: '文法ルールと文型',
+      ko: '문법 규칙 및 패턴', hi: 'नियम और पैटर्न', ar: 'القواعد والأنماط', bn: 'নিয়ম ও গঠন', ur: 'اصول اور تراکیب'
+    };
+    const descriptionsMap: Record<string, string> = {
+      en: 'Descriptions', de: 'Beschreibungen & Adjektive', es: 'Descripciones', fr: 'Descriptions', ru: 'Описания',
+      pt: 'Descrições', id: 'Kata Sifat & Deskripsi', tr: 'Sıfatlar ve Tanımlar', zh: '形容词与描述', ja: '形容詞と描写',
+      ko: '형용사 및 묘사', hi: 'विशेषण और विवरण', ar: 'الصفات والوصف', bn: 'বিশেষণ ও বিবরণ', ur: 'صفتیں اور اوصاف'
+    };
+    const nextMap: Record<string, string> = {
+      en: 'Next Card', de: 'Nächste Karte', es: 'Siguiente', fr: 'Suivant', ru: 'Далее',
+      pt: 'Próximo', id: 'Kartu Berikutnya', tr: 'Sonraki Kart', zh: '下一张', ja: '次のカード',
+      ko: '다음 카드', hi: 'अगला कार्ड', ar: 'البطاقة التالية', bn: 'পরবর্তী কার্ড', ur: 'اگلا کارڈ'
+    };
+    const restartMap: Record<string, string> = {
+      en: 'Practice Again', de: 'Neustart', es: 'Reiniciar', fr: 'Recommencer', ru: 'Заново',
+      pt: 'Praticar Novamente', id: 'Ulangi Latihan', tr: 'Tekrar Çalış', zh: '重新练习', ja: 'もう一度練習',
+      ko: '다시 연습하기', hi: 'फिर से अभ्यास करें', ar: 'التدرب مجدداً', bn: 'আবার অনুশীলন করুন', ur: 'دوبارہ مشق کریں'
+    };
+    const badgeArticlesMap: Record<string, string> = {
+      en: '🏷️ Articles (a / an)', ru: '🏷️ Артикли (a / an)', es: '🏷️ Artículos (a / an)', fr: '🏷️ Articles (a / an)', de: '🏷️ Artikel (a / an)',
+      pt: '🏷️ Artigos (a / an)', id: '🏷️ Kata Sandang (a / an)', tr: '🏷️ Tanımlıklar (a / an)', zh: '🏷️ 冠词 (a / an)', ja: '🏷️ 冠詞 (a / an)',
+      ko: '🏷️ 관사 (a / an)', hi: '🏷️ आर्टिकल (a / an)', ar: '🏷️ أدوات التعريف والتنكير', bn: '🏷️ আর্টিকেল (a / an)', ur: '🏷️ حروفِ تنکیر (a / an)'
+    };
+    const badgeGenderMap: Record<string, string> = {
+      en: '🏷️ Noun Gender', ru: '🏷️ Род существительных', es: '🏷️ Género gramatical', fr: '🏷️ Genre des noms', de: '🏷️ Geschlecht',
+      pt: '🏷️ Gênero gramatical', id: '🏷️ Gender Kata Benda', tr: '🏷️ İsim Cinsiyeti', zh: '🏷️ 名词词性', ja: '🏷️ 名詞の性',
+      ko: '🏷️ 명사의 성', hi: '🏷️ संज्ञा लिंग', ar: '🏷️ جنس الاسم', bn: '🏷️ বিশেষ্যের লিঙ্গ', ur: '🏷️ اسم کی جنس'
+    };
+    const badgeVerbMap: Record<string, string> = {
+      en: '🔄 Verb Tense', ru: '🔄 Время глагола', es: '🔄 Tiempo verbal', fr: '🔄 Temps du verbe', de: '🔄 Zeitform',
+      pt: '🔄 Tempo verbal', id: '🔄 Kala Kata Kerja', tr: '🔄 Fiil Zamanı', zh: '🔄 动词时态', ja: '🔄 動詞の時制',
+      ko: '🔄 동사 시제', hi: '🔄 क्रिया काल', ar: '🔄 زمن الفعل', bn: '🔄 ক্রিয়ার কাল', ur: '🔄 فعل کا زمانہ'
+    };
+    const badgeDescriptionMap: Record<string, string> = {
+      en: '📐 Description', ru: '📐 Описание', es: '📐 Descripción', fr: '📐 Description', de: '📐 Beschreibung',
+      pt: '📐 Descrição', id: '📐 Deskripsi', tr: '📐 Tanımlama', zh: '📐 语法描述', ja: '📐 文法パターン',
+      ko: '📐 문법 설명', hi: '📐 व्याकरण विवरण', ar: '📐 الوصف والقواعد', bn: '📐 ব্যাকরণ বিবরণ', ur: '📐 قواعد کی وضاحت'
+    };
+    const howToRecognizeMap: Record<string, string> = {
+      en: 'How to recognize:', ru: 'Как распознать:', es: 'Cómo reconocerlo:', fr: 'Comment reconnaître :', de: 'Erkennungsmerkmale:',
+      pt: 'Como reconhecer:', id: 'Cara mengenali:', tr: 'Nasıl tanınır:', zh: '识别方法：', ja: '見分け方：',
+      ko: '구별 방법:', hi: 'कैसे पहचानें:', ar: 'كيفية التمييز:', bn: 'চেনার উপায়:', ur: 'پہچان کا طریقہ:'
+    };
+    const highFreqMap: Record<string, string> = {
+      en: 'High-frequency examples:', ru: 'Частые примеры:', es: 'Ejemplos frecuentes:', fr: 'Exemples fréquents :', de: 'Häufige Beispiele:',
+      pt: 'Exemplos frequentes:', id: 'Contoh umum:', tr: 'Sık kullanılan örnekler:', zh: '高频例词：', ja: 'よく使う例：',
+      ko: '자주 쓰이는 예시:', hi: 'प्रमुख उदाहरण:', ar: 'أمثلة شائعة:', bn: 'প্রচলিত উদাহরণ:', ur: 'عام مثالیں:'
+    };
+    const contextMap: Record<string, string> = {
+      en: 'Example in context:', ru: 'Пример в контексте:', es: 'Ejemplo en contexto:', fr: 'Exemple en contexte :', de: 'Beispiel im Kontext:',
+      pt: 'Exemplo em contexto:', id: 'Contoh dalam kalimat:', tr: 'Bağlam içinde örnek:', zh: '语境例句：', ja: '文脈での例文：',
+      ko: '문맥 속 예문:', hi: 'संदर्भ में उदाहरण:', ar: 'مثال في السياق:', bn: 'বাক্যে উদাহরণ:', ur: 'جملے میں مثال:'
+    };
+    const deckDoneMap: Record<string, string> = {
+      en: 'Deck Completed!', ru: 'Колода пройдена!', es: '¡Baraja completada!', fr: 'Paquet terminé !', de: 'Stapel abgeschlossen!',
+      pt: 'Baralho concluído!', id: 'Dek Selesai!', tr: 'Deste Tamamlandı!', zh: '闪卡练习已完成！', ja: 'デッキ完了！',
+      ko: '카드 학습 완료!', hi: 'अभ्यास पूरा हुआ!', ar: 'اكتملت البطاقات!', bn: 'ফ্ল্যাশকার্ড সম্পন্ন!', ur: 'کارڈز کی مشق مکمل!'
+    };
+
+    const isPatternLang = ['tr', 'zh', 'ja', 'ko', 'hi', 'ar', 'bn', 'ur', 'id'].includes(currentLanguage);
+
+    return {
+      flashcards: flashcardsMap[baseLanguage] || flashcardsMap.en,
+      gender: genderMap[baseLanguage] || genderMap.en,
+      verbs: (() => {
+        if (currentLanguage === 'zh') return verbsParticlesMap[baseLanguage] || verbsParticlesMap.en;
+        if (currentLanguage === 'id') return verbsMarkersMap[baseLanguage] || verbsMarkersMap.en;
+        if (currentLanguage === 'ja' || currentLanguage === 'ko') return verbsPoliteMap[baseLanguage] || verbsPoliteMap.en;
+        return verbsTensesMap[baseLanguage] || verbsTensesMap.en;
+      })(),
+      descriptions: isPatternLang
+        ? (rulesPatternsMap[baseLanguage] || rulesPatternsMap.en)
+        : (descriptionsMap[baseLanguage] || descriptionsMap.en),
+      next: nextMap[baseLanguage] || nextMap.en,
+      restart: restartMap[baseLanguage] || restartMap.en,
+      badgeArticles: badgeArticlesMap[baseLanguage] || badgeArticlesMap.en,
+      badgeGender: badgeGenderMap[baseLanguage] || badgeGenderMap.en,
+      badgeVerb: badgeVerbMap[baseLanguage] || badgeVerbMap.en,
+      badgeDescription: badgeDescriptionMap[baseLanguage] || badgeDescriptionMap.en,
+      howToRecognize: howToRecognizeMap[baseLanguage] || howToRecognizeMap.en,
+      highFrequencyExamples: highFreqMap[baseLanguage] || highFreqMap.en,
+      exampleInContext: contextMap[baseLanguage] || contextMap.en,
+      deckCompleted: deckDoneMap[baseLanguage] || deckDoneMap.en,
+    };
+  })();
 
   return (
     <div className="grammar-section" data-testid="grammar-component">

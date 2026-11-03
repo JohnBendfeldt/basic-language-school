@@ -186,17 +186,35 @@ const TEACHER_KEYWORDS = [
   '教師',
 ];
 
+interface CompiledKeywordMatcher {
+  exactSet: Set<string>;
+  regexes: RegExp[];
+}
+
+const compileKeywordMatcher = (keywords: string[]): CompiledKeywordMatcher => {
+  const exactSet = new Set<string>();
+  const regexes: RegExp[] = [];
+  for (const kw of keywords) {
+    const kwLower = kw.toLowerCase();
+    exactSet.add(kwLower);
+    const escaped = kwLower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    regexes.push(new RegExp(`(^|[^\\p{L}\\p{N}])${escaped}([^\\p{L}\\p{N}]|$)`, 'u'));
+  }
+  return { exactSet, regexes };
+};
+
+const CHAIR_MATCHER = compileKeywordMatcher(CHAIR_KEYWORDS);
+const TABLE_MATCHER = compileKeywordMatcher(TABLE_KEYWORDS);
+const MEETING_MATCHER = compileKeywordMatcher(MEETING_KEYWORDS);
+const TEACHER_MATCHER = compileKeywordMatcher(TEACHER_KEYWORDS);
+
 /**
  * Robust token and word-boundary matching across multiple alphabets and punctuation
  */
-const matchKeywordInText = (text: string, keywords: string[]): boolean => {
-  if (!text) return false;
-  const lower = text.toLowerCase();
-  for (const kw of keywords) {
-    const kwLower = kw.toLowerCase();
-    if (lower === kwLower) return true;
-    const escaped = kwLower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const regex = new RegExp(`(^|[^\\p{L}\\p{N}])${escaped}([^\\p{L}\\p{N}]|$)`, 'u');
+const matchCompiledKeywords = (lower: string, matcher: CompiledKeywordMatcher): boolean => {
+  if (!lower) return false;
+  if (matcher.exactSet.has(lower)) return true;
+  for (const regex of matcher.regexes) {
     if (regex.test(lower)) {
       return true;
     }
@@ -208,7 +226,7 @@ const matchKeywordInText = (text: string, keywords: string[]): boolean => {
  * Smart WordIcon: Renders custom vector SVGs when Unicode emojis are inaccurate or missing,
  * falling back gracefully to standard emojis.
  */
-export const WordIcon: React.FC<WordIconProps> = ({
+const WordIconComponent: React.FC<WordIconProps> = ({
   icon,
   word,
   meaning,
@@ -230,29 +248,27 @@ export const WordIcon: React.FC<WordIconProps> = ({
     return <TeacherSVG size={size} className={className} />;
   }
 
-  // Check if concept is explicitly a chair (so we never falsely replace chairs)
-  const isChair = matchKeywordInText(normWord, CHAIR_KEYWORDS) || matchKeywordInText(normMeaning, CHAIR_KEYWORDS);
-
-  // 2. Automatic emoji gap overrides:
-  // E.g. If the word or meaning is "Table" but the icon was given a chair 🪑
-  if (
-    !isChair &&
-    (matchKeywordInText(normWord, TABLE_KEYWORDS) || matchKeywordInText(normMeaning, TABLE_KEYWORDS)) &&
-    (icon === '🪑' || !icon)
-  ) {
-    return <TableSVG size={size} className={className} />;
+  // 2. Automatic emoji gap overrides (only evaluate heavy regexes when icon is a candidate for replacement)
+  if (icon === '🪑' || !icon) {
+    const isChair = matchCompiledKeywords(normWord, CHAIR_MATCHER) || matchCompiledKeywords(normMeaning, CHAIR_MATCHER);
+    if (
+      !isChair &&
+      (matchCompiledKeywords(normWord, TABLE_MATCHER) || matchCompiledKeywords(normMeaning, TABLE_MATCHER))
+    ) {
+      return <TableSVG size={size} className={className} />;
+    }
   }
 
   // Meeting / Planning
-  if (matchKeywordInText(normWord, MEETING_KEYWORDS) || matchKeywordInText(normMeaning, MEETING_KEYWORDS)) {
-    if (icon === '📅' || icon === '👥' || !icon) {
+  if (icon === '📅' || icon === '👥' || !icon) {
+    if (matchCompiledKeywords(normWord, MEETING_MATCHER) || matchCompiledKeywords(normMeaning, MEETING_MATCHER)) {
       return <MeetingBoardSVG size={size} className={className} />;
     }
   }
 
   // Teacher / Instructor
-  if (matchKeywordInText(normWord, TEACHER_KEYWORDS) || matchKeywordInText(normMeaning, TEACHER_KEYWORDS)) {
-    if (icon === '🏫' || !icon) {
+  if (icon === '🏫' || !icon) {
+    if (matchCompiledKeywords(normWord, TEACHER_MATCHER) || matchCompiledKeywords(normMeaning, TEACHER_MATCHER)) {
       return <TeacherSVG size={size} className={className} />;
     }
   }
@@ -266,6 +282,8 @@ export const WordIcon: React.FC<WordIconProps> = ({
     </span>
   );
 };
+
+export const WordIcon = React.memo(WordIconComponent);
 
 export default WordIcon;
 

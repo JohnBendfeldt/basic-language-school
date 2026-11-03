@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo, ReactNode } from 'react';
 import { SupportedLanguageId, LanguageMeta } from '../data/languages/types';
 import { SUPPORTED_LANGUAGES, DEFAULT_LANGUAGE, getLanguageMeta } from '../data/languages';
 import { ProgressService } from '../services/progressService';
@@ -54,6 +54,9 @@ export const ALL_PLATFORM_LANGUAGES = [
   { id: 'ja', name: 'Japanese', nativeName: '日本語', flag: '🇯🇵', available: true },
 ];
 
+const SUPPORTED_LANGUAGE_LIST = Object.values(SUPPORTED_LANGUAGES);
+const isRtlLanguage = (langId: SupportedLanguageId): boolean => langId === 'ar' || langId === 'ur';
+
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [targetLanguage, setTargetLanguageState] = useState<SupportedLanguageId>(() => {
     return detectInitialLanguagePair().targetLanguage;
@@ -94,7 +97,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
 
   const targetMeta = getLanguageMeta(targetLanguage);
   const baseMeta = getLanguageMeta(baseLanguage);
-  const supportedLanguages = Object.values(SUPPORTED_LANGUAGES);
+  const supportedLanguages = SUPPORTED_LANGUAGE_LIST;
   const ui = UI_TRANSLATIONS[baseLanguage] || UI_TRANSLATIONS.en;
 
   // Set target language (the language being learned)
@@ -109,11 +112,13 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     setTargetLanguageState(langId);
 
     // If new target matches base, swap base to previous target (never hardcode Spanish unless identical)
+    let effectiveBase = baseLanguage;
     if (langId === baseLanguage) {
       const fallbackBase: SupportedLanguageId =
         targetLanguage !== langId
           ? targetLanguage
           : (langId === 'en' ? 'es' : 'en');
+      effectiveBase = fallbackBase;
       setBaseLanguageState(fallbackBase);
       try {
         localStorage.setItem('basic_language_base_lang', fallbackBase);
@@ -129,7 +134,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
 
     if (typeof document !== 'undefined') {
       document.documentElement.lang = langId;
-      document.documentElement.dir = baseLanguage === 'ar' ? 'rtl' : 'ltr';
+      document.documentElement.dir = isRtlLanguage(effectiveBase) ? 'rtl' : 'ltr';
     }
   }, [baseLanguage, targetLanguage]);
 
@@ -161,7 +166,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     } catch { /* ignore */ }
 
     if (typeof document !== 'undefined') {
-      document.documentElement.dir = langId === 'ar' ? 'rtl' : 'ltr';
+      document.documentElement.dir = isRtlLanguage(langId) ? 'rtl' : 'ltr';
     }
   }, [targetLanguage, baseLanguage]);
 
@@ -183,43 +188,58 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     ProgressService.setActiveLanguage(oldBase);
     if (typeof document !== 'undefined') {
       document.documentElement.lang = oldBase;
+      document.documentElement.dir = isRtlLanguage(oldTarget) ? 'rtl' : 'ltr';
     }
   }, [targetLanguage, baseLanguage]);
 
-  // Sync html lang tag on initial mount & updates
+  // Sync html lang and dir tags on initial mount & updates
   useEffect(() => {
     if (typeof document !== 'undefined') {
       document.documentElement.lang = targetLanguage;
+      document.documentElement.dir = isRtlLanguage(baseLanguage) ? 'rtl' : 'ltr';
     }
-  }, [targetLanguage]);
+  }, [targetLanguage, baseLanguage]);
+
+  const contextValue = useMemo<LanguageContextType>(() => ({
+    // Target / active language
+    currentLanguage: targetLanguage,
+    targetLanguage,
+    currentMeta: targetMeta,
+    targetMeta,
+    setLanguage,
+    setTargetLanguage,
+
+    // Native / reference language
+    baseLanguage,
+    baseMeta,
+    setBaseLanguage,
+    swapLanguages,
+
+    // Localized UI strings
+    ui,
+
+    // Platform metadata
+    supportedLanguages,
+    availableLanguages: ALL_PLATFORM_LANGUAGES,
+    speechSpeed,
+    setSpeechSpeed
+  }), [
+    targetLanguage,
+    targetMeta,
+    setLanguage,
+    setTargetLanguage,
+    baseLanguage,
+    baseMeta,
+    setBaseLanguage,
+    swapLanguages,
+    ui,
+    supportedLanguages,
+    speechSpeed,
+    setSpeechSpeed
+  ]);
 
   return (
-    <LanguageContext.Provider
-      value={{
-        // Target / active language
-        currentLanguage: targetLanguage,
-        targetLanguage,
-        currentMeta: targetMeta,
-        targetMeta,
-        setLanguage,
-        setTargetLanguage,
-
-        // Native / reference language
-        baseLanguage,
-        baseMeta,
-        setBaseLanguage,
-        swapLanguages,
-
-        // Localized UI strings
-        ui,
-
-        // Platform metadata
-        supportedLanguages,
-        availableLanguages: ALL_PLATFORM_LANGUAGES,
-        speechSpeed,
-        setSpeechSpeed
-      }}
-    >
+    <LanguageContext.Provider value={contextValue}>
       {children}
     </LanguageContext.Provider>
   );
