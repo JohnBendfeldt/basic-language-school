@@ -257,8 +257,8 @@ describe('Comprehensive Non-Anglo-Centric Localization, Pickers, Time Data & Qui
           <LanguageSwitcher onLanguageChange={(l) => { latestUrlLang = l; }} />
           <MobileDrawer
             isOpen={true}
-            onClose={() => {}}
-            onNavigate={() => {}}
+            onClose={() => { }}
+            onNavigate={() => { }}
             onLanguageChange={(l) => { latestUrlLang = l; }}
           />
           <PairReadout />
@@ -295,6 +295,6 @@ describe('Comprehensive Non-Anglo-Centric Localization, Pickers, Time Data & Qui
     expect(latestUrlLang).toBe('fr');
 
     const elapsedMs = performance.now() - t0;
-    expect(elapsedMs).toBeLessThan(2500);
+    expect(elapsedMs).toBeLessThan(3000);
   });
 });

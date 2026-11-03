@@ -4,6 +4,11 @@ import { speak, initVoices } from '../utils/speech';
 import { containsCyrillic } from '../utils/transliteration';
 import { useLanguage } from '../contexts/LanguageContext';
 import { warmUpAudioContext } from '../utils/audioWarmup';
+import {
+  getSyncCachedBlobUrl,
+  resolveCachedAudioBlobUrl,
+  warmCachedBlobUrls,
+} from '../services/offlineAudioService';
 
 interface PronunciationButtonProps {
   text: string;
@@ -200,15 +205,22 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
   const handlePointerEnter = () => {
     warmUpAudioContext();
 
-    // Pre-buffer audio file into memory on hover/touch so first click triggers with zero delay
-    if (!audioRef.current && text && text.trim()) {
+    // Pre-buffer audio file (and warm offline Cache Storage blob if present) on hover/touch
+    if (text && text.trim()) {
       const candidatePaths = getCandidateAudioPaths();
-      if (candidatePaths.length > 0) {
+      warmCachedBlobUrls(candidatePaths);
+      if (!audioRef.current && candidatePaths.length > 0) {
         try {
-          const pre = new Audio(candidatePaths[0]);
-          pre.preload = 'auto';
-          audioRef.current = pre;
-          audioPathRef.current = candidatePaths[0];
+          const isOffline = typeof navigator !== 'undefined' && navigator.onLine === false;
+          const initialSrc = isOffline
+            ? getSyncCachedBlobUrl(candidatePaths)
+            : candidatePaths[0];
+          if (initialSrc) {
+            const pre = new Audio(initialSrc);
+            pre.preload = 'auto';
+            audioRef.current = pre;
+            audioPathRef.current = initialSrc;
+          }
         } catch {
           // Ignore pre-buffering errors
         }
@@ -251,36 +263,27 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
     if (candidatePaths.length > 0) {
       setIsPlaying(true);
 
-      const tryPlayCandidate = (index: number) => {
+      const playAudioSource = (srcUrl: string, onFail: () => void) => {
         if (!isMounted.current) return;
-        if (index >= candidatePaths.length) {
-          if (!fallbackAttemptedRef.current) {
-            fallbackAttemptedRef.current = true;
-            playSpeechSynthesis();
-          }
-          return;
-        }
-
-        const audioPath = candidatePaths[index];
         let audio = audioRef.current;
-        if (!audio || audioPathRef.current !== audioPath) {
+        if (!audio || audioPathRef.current !== srcUrl) {
           if (audio) {
             audio.onended = null;
             audio.onerror = null;
             audio.pause();
             audio.src = '';
           }
-          audio = new Audio(audioPath);
+          audio = new Audio(srcUrl);
           audio.preload = 'auto';
           audioRef.current = audio;
-          audioPathRef.current = audioPath;
+          audioPathRef.current = srcUrl;
         }
 
-        let advanced = false;
-        const advanceToNext = () => {
-          if (advanced || !isMounted.current) return;
-          advanced = true;
-          tryPlayCandidate(index + 1);
+        let failed = false;
+        const triggerFail = () => {
+          if (failed || !isMounted.current) return;
+          failed = true;
+          onFail();
         };
 
         audio.onended = () => {
@@ -288,12 +291,58 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
             setIsPlaying(false);
           }
         };
-
-        audio.onerror = advanceToNext;
-
+        audio.onerror = triggerFail;
         audio.playbackRate = speechSpeed;
-        audio.play().catch(advanceToNext);
+        audio.play().catch(triggerFail);
       };
+
+      const triggerFinalFallback = () => {
+        if (!isMounted.current || fallbackAttemptedRef.current) return;
+        fallbackAttemptedRef.current = true;
+        resolveCachedAudioBlobUrl(candidatePaths)
+          .then((cachedBlobUrl) => {
+            if (!isMounted.current) return;
+            if (cachedBlobUrl) {
+              playAudioSource(cachedBlobUrl, () => playSpeechSynthesis());
+            } else {
+              playSpeechSynthesis();
+            }
+          })
+          .catch(() => {
+            if (isMounted.current) playSpeechSynthesis();
+          });
+      };
+
+      const tryPlayCandidate = (index: number) => {
+        if (!isMounted.current) return;
+        if (index >= candidatePaths.length) {
+          triggerFinalFallback();
+          return;
+        }
+        playAudioSource(candidatePaths[index], () => tryPlayCandidate(index + 1));
+      };
+
+      const isOffline = typeof navigator !== 'undefined' && navigator.onLine === false;
+      if (isOffline) {
+        const syncOfflineBlob = getSyncCachedBlobUrl(candidatePaths);
+        if (syncOfflineBlob) {
+          playAudioSource(syncOfflineBlob, () => tryPlayCandidate(0));
+          return;
+        }
+        resolveCachedAudioBlobUrl(candidatePaths)
+          .then((cachedBlobUrl) => {
+            if (!isMounted.current) return;
+            if (cachedBlobUrl) {
+              playAudioSource(cachedBlobUrl, () => tryPlayCandidate(0));
+            } else {
+              tryPlayCandidate(0);
+            }
+          })
+          .catch(() => {
+            if (isMounted.current) tryPlayCandidate(0);
+          });
+        return;
+      }
 
       tryPlayCandidate(0);
       return;

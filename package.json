@@ -24,7 +24,8 @@
     "dev": "vite",
     "generate-audio": "python3 scripts/generate-all-audio.py",
     "generate-audio:force": "python3 scripts/generate-all-audio.py --force",
-    "generate-audio:time": "python3 scripts/generate-time-audio.py"
+    "generate-audio:time": "python3 scripts/generate-time-audio.py",
+    "generate-offline-manifests": "node scripts/generate-offline-manifests.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",

@@ -15,9 +15,15 @@ import About from './components/About';
 import MobileDrawer from './components/MobileDrawer';
 import AppEmblem from './components/AppEmblem';
 import SearchModal from './components/SearchModal';
+import OfflineAudioModal from './components/OfflineAudioModal';
 import { SearchResultItem } from './utils/searchEngine';
-import { FaBars, FaSearch } from 'react-icons/fa';
+import { FaBars, FaCheckCircle, FaCloudDownloadAlt, FaSearch } from 'react-icons/fa';
 import { initVoices, cancelAllSpeech } from './utils/speech';
+import {
+  getVerifiedOfflineLanguages,
+  readStoredDownloadedLanguages,
+  subscribeOfflineAudioChanges,
+} from './services/offlineAudioService';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import { SupportedLanguageId } from './data/languages/types';
 import { SUPPORTED_LANGUAGES } from './data/languages';
@@ -84,6 +90,24 @@ const parsePath = (): { langId?: SupportedLanguageId; section: string; subTab?: 
   return { langId, section, subTab };
 };
 
+const OFFLINE_BTN_TITLES: Record<SupportedLanguageId, { download: string; ready: string }> = {
+  en: { download: 'Download Offline Audio Courses', ready: 'Offline Audio Ready — Manage Courses' },
+  es: { download: 'Descargar cursos de audio sin conexión', ready: 'Audio sin conexión listo — Gestionar' },
+  fr: { download: 'Télécharger les cours audio hors ligne', ready: 'Audio hors ligne prêt — Gérer' },
+  de: { download: 'Offline-Audiokurse herunterladen', ready: 'Offline-Audio bereit — Verwalten' },
+  pt: { download: 'Baixar cursos de áudio offline', ready: 'Áudio offline pronto — Gerenciar' },
+  ru: { download: 'Скачать офлайн-аудиокурсы', ready: 'Офлайн-аудио готово — Управление' },
+  id: { download: 'Unduh Kursus Audio Offline', ready: 'Audio Offline Siap — Kelola' },
+  tr: { download: 'Çevrimdışı Ses Kurslarını İndir', ready: 'Çevrimdışı Ses Hazır — Yönet' },
+  zh: { download: '下载离线语音课程', ready: '离线语音已就绪 — 管理课程' },
+  ja: { download: 'オフライン音声コースをダウンロード', ready: 'オフライン音声準備完了 — 管理' },
+  ko: { download: '오프라인 오디오 코스 다운로드', ready: '오프라인 오디오 준비됨 — 관리' },
+  hi: { download: 'ऑफ़लाइन ऑडियो कोर्स डाउनलोड करें', ready: 'ऑफ़लाइन ऑडियो तैयार — प्रबंधित करें' },
+  ar: { download: 'تنزيل دورات الصوت دون اتصال', ready: 'الصوت دون اتصال جاهز — إدارة' },
+  bn: { download: 'অফলাইন অডিও কোর্স ডাউনলোড করুন', ready: 'অফলাইন অডিও প্রস্তুত — পরিচালনা' },
+  ur: { download: 'آف لائن آڈیو کورسز ڈاؤن لوڈ کریں', ready: 'آف لائن آڈیو تیار — انتظام کریں' },
+};
+
 const AppContent: React.FC = () => {
   const { currentLanguage, currentMeta, setLanguage, baseLanguage } = useLanguage();
   const parsed = parsePath();
@@ -91,6 +115,11 @@ const AppContent: React.FC = () => {
   const [installPrompt, setInstallPrompt] = useState<any>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isOfflineModalOpen, setIsOfflineModalOpen] = useState(false);
+  const [offlineModalFromInstall, setOfflineModalFromInstall] = useState(false);
+  const [downloadedOfflineLangs, setDownloadedOfflineLangs] = useState<Set<SupportedLanguageId>>(
+    () => new Set(readStoredDownloadedLanguages())
+  );
   const [alphabetSubTab, setAlphabetSubTab] = useState<'alphabet' | 'grammar'>(() => parsed.subTab || 'alphabet');
   const [grammarInitialTab, setGrammarInitialTab] = useState<'flashcards' | 'gender' | 'verbs' | 'descriptions'>('flashcards');
 
@@ -184,6 +213,27 @@ const AppContent: React.FC = () => {
     return () => window.removeEventListener('popstate', onPopState);
   }, [currentLanguage, setLanguage, activeSection, updateMeta]);
 
+  // Keep downloaded offline audio status synchronized across modals & header
+  useEffect(() => {
+    let active = true;
+    getVerifiedOfflineLanguages()
+      .then((verified) => {
+        if (active) setDownloadedOfflineLangs(verified);
+      })
+      .catch(() => {});
+
+    const unsubscribe = subscribeOfflineAudioChanges(() => {
+      if (active) {
+        setDownloadedOfflineLangs(new Set(readStoredDownloadedLanguages()));
+      }
+    });
+
+    return () => {
+      active = false;
+      unsubscribe();
+    };
+  }, []);
+
   // Handle PWA installation prompt
   useEffect(() => {
     const handleBeforeInstallPrompt = (e: Event) => {
@@ -193,6 +243,8 @@ const AppContent: React.FC = () => {
 
     const handleAppInstalled = () => {
       setInstallPrompt(null);
+      setOfflineModalFromInstall(true);
+      setIsOfflineModalOpen(true);
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt as any);
@@ -212,11 +264,24 @@ const AppContent: React.FC = () => {
   }, []);
 
   const handleInstallClick = () => {
-    if (!installPrompt) return;
+    setIsDrawerOpen(false);
+    if (!installPrompt) {
+      setOfflineModalFromInstall(true);
+      setIsOfflineModalOpen(true);
+      return;
+    }
     (installPrompt as any).prompt();
-    (installPrompt as any).userChoice.then(() => {
-      setInstallPrompt(null);
-    });
+    Promise.resolve((installPrompt as any).userChoice)
+      .then((choice: any) => {
+        setInstallPrompt(null);
+        if (!choice || choice.outcome !== 'dismissed') {
+          setOfflineModalFromInstall(true);
+          setIsOfflineModalOpen(true);
+        }
+      })
+      .catch(() => {
+        setInstallPrompt(null);
+      });
   };
 
   const handleSectionChange = (section: string) => {
@@ -320,6 +385,10 @@ const AppContent: React.FC = () => {
 
   const chrome = getComponentChrome(baseLanguage);
   const localizedAppName = getLocalizedAppName(currentLanguage, baseLanguage, currentMeta.appName);
+  const isActivePairOfflineReady =
+    downloadedOfflineLangs.has(currentLanguage) && downloadedOfflineLangs.has(baseLanguage);
+  const offlineBtnCopy = OFFLINE_BTN_TITLES[baseLanguage] || OFFLINE_BTN_TITLES.en;
+  const offlineBtnLabel = isActivePairOfflineReady ? offlineBtnCopy.ready : offlineBtnCopy.download;
 
   return (
     <div className="app" data-target-lang={currentLanguage} data-base-lang={baseLanguage}>
@@ -354,6 +423,21 @@ const AppContent: React.FC = () => {
 
             {/* Duolingo-style language switcher */}
             <LanguageSwitcher onLanguageChange={handleLanguageChange} />
+
+            {/* Offline Audio Course Downloader */}
+            <button
+              type="button"
+              data-testid="header-offline-btn"
+              className={`header-offline-btn ${isActivePairOfflineReady ? 'offline-ready' : ''}`}
+              onClick={() => {
+                setOfflineModalFromInstall(false);
+                setIsOfflineModalOpen(true);
+              }}
+              aria-label={offlineBtnLabel}
+              title={offlineBtnLabel}
+            >
+              {isActivePairOfflineReady ? <FaCheckCircle /> : <FaCloudDownloadAlt />}
+            </button>
 
             {installPrompt && (
               <button onClick={handleInstallClick} className="install-button">
@@ -400,6 +484,10 @@ const AppContent: React.FC = () => {
           onNavigate={handleSectionChange}
           onLanguageChange={handleLanguageChange}
           onOpenSearch={() => setIsSearchOpen(true)}
+          onOpenOfflineAudio={() => {
+            setOfflineModalFromInstall(false);
+            setIsOfflineModalOpen(true);
+          }}
           installPrompt={installPrompt}
           onInstallClick={handleInstallClick}
         />
@@ -420,6 +508,13 @@ const AppContent: React.FC = () => {
         onClose={() => setIsSearchOpen(false)}
         onSelectResult={handleSearchResultSelect}
         appData={currentMeta.data}
+      />
+
+      {/* Offline Audio Course Downloader Modal */}
+      <OfflineAudioModal
+        isOpen={isOfflineModalOpen}
+        onClose={() => setIsOfflineModalOpen(false)}
+        openedFromInstall={offlineModalFromInstall}
       />
       
       <footer>
