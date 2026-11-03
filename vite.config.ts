@@ -10,14 +10,15 @@ export default defineConfig({
       registerType: 'autoUpdate',
       // Use existing public/manifest.json instead of generating one
       manifest: false,
+      includeAssets: ['audio/sounds/correct.mp3', 'audio/sounds/incorrect.mp3'],
       workbox: {
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5 MiB to accommodate offline bundle
         cleanupOutdatedCaches: true,
         clientsClaim: true,
         skipWaiting: true,
         navigateFallback: null,
-        // Exclude index.html and audio index from precache so HTML is always fetched fresh
-        globIgnores: ['**/audio/index.json', '**/index.html'],
+        // Exclude index.html and audio manifests from initial precache so HTML is fresh & install stays fast
+        globIgnores: ['**/audio/index.json', '**/audio/*/manifest.json', '**/index.html'],
         runtimeCaching: [
           {
             urlPattern: ({ request }: { request: Request }) => request.mode === 'navigate',
@@ -32,13 +33,28 @@ export default defineConfig({
             },
           },
           {
-            urlPattern: /\.(?:mp3|wav|mp4)$/i,
+            urlPattern: /\/audio\/[a-z]{2}\/manifest\.json$/i,
             handler: 'StaleWhileRevalidate',
             options: {
-              cacheName: 'russian-media',
+              cacheName: 'bls-audio-manifests-v1',
               expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+                maxEntries: 25,
+                maxAgeSeconds: 30 * 24 * 60 * 60,
+              },
+            },
+          },
+          {
+            urlPattern: /\.(?:mp3|wav|mp4)$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'bls-offline-audio-v1',
+              rangeRequests: true,
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+              expiration: {
+                maxEntries: 20000,
+                maxAgeSeconds: 365 * 24 * 60 * 60, // 1 Year
               },
             },
           },

@@ -601,5 +601,122 @@ test.describe('Playwright E2E: Layout, Modals, Alignment & Neural Audio Matrix',
     await page.locator('button.check-button').click();
     await expect(page.locator('.quiz-feedback-drawer.feedback-incorrect')).toBeVisible();
   });
+
+  test('Offline Audio Course Picker & Airplane Mode Playback: downloads active pair into Cache Storage and plays cached MP3s with context.setOffline(true)', async ({
+    page,
+    context,
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+
+    // Serve compact manifests pointing to real studio MP3s on disk so real Cache Storage download completes in < 300ms
+    await page.route('**/audio/es/manifest.json', async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          lang: 'es',
+          fileCount: 2,
+          totalBytes: 24576,
+          files: ['alphabet/a.mp3', 'examples/amor.mp3'],
+        }),
+      });
+    });
+
+    await page.route('**/audio/en/manifest.json', async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          lang: 'en',
+          fileCount: 1,
+          totalBytes: 12288,
+          files: ['words/love.mp3'],
+        }),
+      });
+    });
+
+    await page.addInitScript(() => {
+      localStorage.setItem('basic_language_base_lang', 'en');
+      localStorage.setItem('basic_language_target_lang', 'es');
+      (window as any).__ttsCalls = 0;
+      if (window.speechSynthesis) {
+        const origSpeak = window.speechSynthesis.speak.bind(window.speechSynthesis);
+        window.speechSynthesis.speak = (u: SpeechSynthesisUtterance) => {
+          (window as any).__ttsCalls += 1;
+          return origSpeak(u);
+        };
+      }
+    });
+
+    await page.goto('/learn/es/alphabet');
+
+    // 1. Verify Desktop header has zero horizontal overflow with the new offline course button
+    const scrollW = await page.evaluate(() => document.documentElement.scrollWidth);
+    expect(scrollW).toBeLessThanOrEqual(1280);
+
+    // 2. Open Offline Audio Course Picker from header and verify active pair (es + en) is pre-selected
+    const offlineHeaderBtn = page.getByTestId('header-offline-btn');
+    await expect(offlineHeaderBtn).toBeVisible();
+    await offlineHeaderBtn.click();
+
+    const offlineDialog = page.getByRole('dialog', { name: 'Offline Audio Courses' });
+    await expect(offlineDialog).toBeVisible();
+    const dialogBox = await offlineDialog.boundingBox();
+    expect(dialogBox).not.toBeNull();
+    expect(dialogBox!.x).toBeGreaterThanOrEqual(0);
+    expect(dialogBox!.x + dialogBox!.width).toBeLessThanOrEqual(1280);
+
+    await expect(page.getByTestId('offline-pack-es')).toHaveAttribute('aria-checked', 'true');
+    await expect(page.getByTestId('offline-pack-en')).toHaveAttribute('aria-checked', 'true');
+    await expect(page.getByTestId('offline-pack-fr')).toHaveAttribute('aria-checked', 'false');
+
+    // 3. Download active pair into real Chromium Cache Storage
+    await offlineDialog.getByRole('button', { name: /Download Selected/i }).click();
+    await expect(page.getByTestId('offline-pack-es')).toContainText('Offline Ready');
+    await expect(page.getByTestId('offline-pack-en')).toContainText('Offline Ready');
+    await expect(offlineHeaderBtn).toHaveClass(/offline-ready/);
+
+    await offlineDialog.getByRole('button', { name: 'Done' }).last().click();
+    await expect(offlineDialog).toBeHidden();
+
+    // 4. Switch Chromium to Airplane Mode (context.setOffline(true)) and verify pronunciation plays from cache with zero network errors
+    const offlineFailedAudioRequests: string[] = [];
+    page.on('requestfailed', (req) => {
+      if (req.url().includes('/audio/')) {
+        offlineFailedAudioRequests.push(req.url());
+      }
+    });
+
+    await context.setOffline(true);
+    try {
+      const firstCardAudioBtn = page.locator('.alphabet-card .letter-header .pronunciation-button').first();
+      await expect(firstCardAudioBtn).toBeVisible();
+      await firstCardAudioBtn.click();
+
+      // Wait briefly for offline blob playback lifecycle and verify zero network errors & zero TTS fallback
+      await page.waitForTimeout(350);
+      expect(offlineFailedAudioRequests).toEqual([]);
+      const ttsCalls = await page.evaluate(() => (window as any).__ttsCalls || 0);
+      expect(ttsCalls).toBe(0);
+    } finally {
+      await context.setOffline(false);
+    }
+
+    // 5. Verify Mobile (390x844) drawer Offline Audio card & responsive modal fit
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.getByRole('button', { name: /Open settings and menu/i }).click();
+    const drawer = page.getByRole('dialog', { name: /Settings and options menu/i });
+    await expect(drawer).toBeVisible();
+
+    const drawerOfflineCard = drawer.getByTestId('drawer-offline-audio-card');
+    await expect(drawerOfflineCard).toBeVisible();
+    await drawerOfflineCard.click();
+
+    await expect(offlineDialog).toBeVisible();
+    const mobileBox = await offlineDialog.boundingBox();
+    expect(mobileBox).not.toBeNull();
+    expect(mobileBox!.x).toBeGreaterThanOrEqual(0);
+    expect(mobileBox!.x + mobileBox!.width).toBeLessThanOrEqual(390);
+  });
 });
 

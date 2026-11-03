@@ -11,6 +11,7 @@ import {
   FaFileContract,
   FaInfoCircle,
   FaDownload,
+  FaCloudDownloadAlt,
   FaCheck,
   FaGlobe,
   FaSearch
@@ -29,6 +30,7 @@ interface MobileDrawerProps {
   onNavigate: (section: string) => void;
   onLanguageChange?: (langId: SupportedLanguageId) => void;
   onOpenSearch?: () => void;
+  onOpenOfflineAudio?: () => void;
   installPrompt?: any;
   onInstallClick?: () => void;
 }
@@ -45,6 +47,8 @@ const SPEEDS: { value: SpeechSpeed; label: string; key: 'slow' | 'learner' | 're
 interface DrawerCopy {
   searchTitle: string;
   searchSubtitle: string;
+  offlineTitle: string;
+  offlineSubtitle: string;
   speedSubtitle: string;
   cloudSynced: string;
   speeds: Record<'slow' | 'learner' | 'relaxed' | 'standard' | 'brisk' | 'fast', string>;
@@ -54,6 +58,8 @@ const DRAWER_COPY: Record<SupportedLanguageId, DrawerCopy> = {
   en: {
     searchTitle: 'Search Concepts & Words',
     searchSubtitle: 'Instant lookup across phrases & grammar',
+    offlineTitle: 'Offline Audio Courses',
+    offlineSubtitle: 'Download courses for Airplane Mode playback',
     speedSubtitle: 'Adjust neural pronunciation pacing for clear listening',
     cloudSynced: 'Cloud Synced',
     speeds: { slow: 'Slow', learner: 'Learner', relaxed: 'Relaxed', standard: 'Standard', brisk: 'Brisk', fast: 'Fast' },
@@ -61,6 +67,8 @@ const DRAWER_COPY: Record<SupportedLanguageId, DrawerCopy> = {
   es: {
     searchTitle: 'Buscar palabras y conceptos',
     searchSubtitle: 'Búsqueda instantánea en frases y gramática',
+    offlineTitle: 'Cursos de audio sin conexión',
+    offlineSubtitle: 'Descarga paquetes para escuchar en modo avión',
     speedSubtitle: 'Ajusta el ritmo de pronunciación para escuchar con claridad',
     cloudSynced: 'Sincronizado en la nube',
     speeds: { slow: 'Lento', learner: 'Aprendiz', relaxed: 'Pausado', standard: 'Normal', brisk: 'Ágil', fast: 'Rápido' },
@@ -68,6 +76,8 @@ const DRAWER_COPY: Record<SupportedLanguageId, DrawerCopy> = {
   fr: {
     searchTitle: 'Rechercher mots et concepts',
     searchSubtitle: 'Recherche instantanée dans les phrases et la grammaire',
+    offlineTitle: 'Cours audio hors ligne',
+    offlineSubtitle: 'Téléchargez les voix pour le mode avion',
     speedSubtitle: 'Ajustez le rythme de prononciation pour une écoute claire',
     cloudSynced: 'Synchronisé dans le cloud',
     speeds: { slow: 'Lent', learner: 'Apprenant', relaxed: 'Posé', standard: 'Normal', brisk: 'Vif', fast: 'Rapide' },
@@ -75,6 +85,8 @@ const DRAWER_COPY: Record<SupportedLanguageId, DrawerCopy> = {
   de: {
     searchTitle: 'Wörter & Konzepte suchen',
     searchSubtitle: 'Sofortsuche in Sätzen und Grammatik',
+    offlineTitle: 'Offline-Audiokurse',
+    offlineSubtitle: 'Sprachpakete für den Flugmodus herunterladen',
     speedSubtitle: 'Sprechtempo für klares Hörverständnis anpassen',
     cloudSynced: 'In der Cloud synchronisiert',
     speeds: { slow: 'Langsam', learner: 'Lernend', relaxed: 'Ruhig', standard: 'Standard', brisk: 'Flott', fast: 'Schnell' },
@@ -82,6 +94,8 @@ const DRAWER_COPY: Record<SupportedLanguageId, DrawerCopy> = {
   pt: {
     searchTitle: 'Pesquisar palavras e conceitos',
     searchSubtitle: 'Busca instantânea em frases e gramática',
+    offlineTitle: 'Cursos de áudio offline',
+    offlineSubtitle: 'Baixe pacotes para ouvir no modo avião',
     speedSubtitle: 'Ajuste o ritmo da pronúncia para ouvir com clareza',
     cloudSynced: 'Sincronizado na nuvem',
     speeds: { slow: 'Lento', learner: 'Iniciante', relaxed: 'Calmo', standard: 'Padrão', brisk: 'Ágil', fast: 'Rápido' },
@@ -89,6 +103,8 @@ const DRAWER_COPY: Record<SupportedLanguageId, DrawerCopy> = {
   ru: {
     searchTitle: 'Поиск слов и понятий',
     searchSubtitle: 'Мгновенный поиск по фразам и грамматике',
+    offlineTitle: 'Офлайн-аудиокурсы',
+    offlineSubtitle: 'Скачайте озвучку для работы в авиарежиме',
     speedSubtitle: 'Настройте темп произношения для чёткого восприятия',
     cloudSynced: 'Синхронизировано в облаке',
     speeds: { slow: 'Медленно', learner: 'Учебный', relaxed: 'Спокойно', standard: 'Обычно', brisk: 'Бодро', fast: 'Быстро' },
@@ -96,6 +112,8 @@ const DRAWER_COPY: Record<SupportedLanguageId, DrawerCopy> = {
   id: {
     searchTitle: 'Cari Konsep & Kata',
     searchSubtitle: 'Pencarian instan di frasa & tata bahasa',
+    offlineTitle: 'Kursus Audio Offline',
+    offlineSubtitle: 'Unduh paket suara untuk Mode Pesawat',
     speedSubtitle: 'Atur kecepatan pelafalan agar terdengar jelas',
     cloudSynced: 'Tersinkron di Cloud',
     speeds: { slow: 'Lambat', learner: 'Pelajar', relaxed: 'Santai', standard: 'Standar', brisk: 'Gesit', fast: 'Cepat' },
@@ -103,6 +121,8 @@ const DRAWER_COPY: Record<SupportedLanguageId, DrawerCopy> = {
   tr: {
     searchTitle: 'Kavram ve Kelime Ara',
     searchSubtitle: 'İfadeler ve dilbilgisinde anında arama',
+    offlineTitle: 'Çevrimdışı Ses Kursları',
+    offlineSubtitle: 'Uçak modunda dinlemek için paketleri indirin',
     speedSubtitle: 'Net dinleme için telaffuz hızını ayarlayın',
     cloudSynced: 'Bulutla Eşitlendi',
     speeds: { slow: 'Yavaş', learner: 'Öğrenci', relaxed: 'Rahat', standard: 'Standart', brisk: 'Canlı', fast: 'Hızlı' },
@@ -110,6 +130,8 @@ const DRAWER_COPY: Record<SupportedLanguageId, DrawerCopy> = {
   ja: {
     searchTitle: '単語と概念を検索',
     searchSubtitle: 'フレーズと文法を瞬時に検索',
+    offlineTitle: 'オフライン音声コース',
+    offlineSubtitle: '機内モード用に発音パックをダウンロード',
     speedSubtitle: '聞き取りやすい発音スピードに調整',
     cloudSynced: 'クラウド同期済み',
     speeds: { slow: 'ゆっくり', learner: '学習用', relaxed: 'やや遅め', standard: '標準', brisk: 'やや速め', fast: '速い' },
@@ -117,6 +139,8 @@ const DRAWER_COPY: Record<SupportedLanguageId, DrawerCopy> = {
   ko: {
     searchTitle: '개념 및 단어 검색',
     searchSubtitle: '회화 및 문법에서 즉시 검색',
+    offlineTitle: '오프라인 오디오 코스',
+    offlineSubtitle: '비행기 모드용 발음 팩 다운로드',
     speedSubtitle: '명확한 청취를 위해 발음 속도를 조절하세요',
     cloudSynced: '클라우드 동기화됨',
     speeds: { slow: '느리게', learner: '학습자용', relaxed: '여유롭게', standard: '표준', brisk: '조금 빠르게', fast: '빠르게' },
@@ -124,6 +148,8 @@ const DRAWER_COPY: Record<SupportedLanguageId, DrawerCopy> = {
   zh: {
     searchTitle: '搜索词汇与概念',
     searchSubtitle: '在短语与语法中即时查找',
+    offlineTitle: '离线语音课程',
+    offlineSubtitle: '下载发音包，飞行模式下也能畅听练习',
     speedSubtitle: '调节语音语速，清晰跟读与听力练习',
     cloudSynced: '已云端同步',
     speeds: { slow: '慢速', learner: '学习', relaxed: '舒缓', standard: '标准', brisk: '轻快', fast: '快速' },
@@ -131,6 +157,8 @@ const DRAWER_COPY: Record<SupportedLanguageId, DrawerCopy> = {
   hi: {
     searchTitle: 'शब्द और अवधारणाएँ खोजें',
     searchSubtitle: 'वाक्यांशों और व्याकरण में तुरंत खोज',
+    offlineTitle: 'ऑफ़लाइन ऑडियो कोर्स',
+    offlineSubtitle: 'एयरप्लेन मोड के लिए उच्चारण पैक डाउनलोड करें',
     speedSubtitle: 'स्पष्ट सुनने के लिए उच्चारण की गति समायोजित करें',
     cloudSynced: 'क्लाउड से सिंक',
     speeds: { slow: 'धीमा', learner: 'सीखने योग्य', relaxed: 'सहज', standard: 'सामान्य', brisk: 'तेज़', fast: 'द्रुत' },
@@ -138,6 +166,8 @@ const DRAWER_COPY: Record<SupportedLanguageId, DrawerCopy> = {
   ar: {
     searchTitle: 'البحث عن الكلمات والمفاهيم',
     searchSubtitle: 'بحث فوري في العبارات والقواعد',
+    offlineTitle: 'دورات الصوت دون اتصال',
+    offlineSubtitle: 'نزّل حزم النطق للعمل في وضع الطيران',
     speedSubtitle: 'اضبط سرعة النطق للاستماع بوضوح',
     cloudSynced: 'متزامن سحابياً',
     speeds: { slow: 'بطيء', learner: 'للمتعلم', relaxed: 'هادئ', standard: 'قياسي', brisk: 'نشط', fast: 'سريع' },
@@ -145,6 +175,8 @@ const DRAWER_COPY: Record<SupportedLanguageId, DrawerCopy> = {
   bn: {
     searchTitle: 'শব্দ ও ধারণা খুঁজুন',
     searchSubtitle: 'বাক্যাংশ ও ব্যাকরণে তাৎক্ষণিক অনুসন্ধান',
+    offlineTitle: 'অফলাইন অডিও কোর্স',
+    offlineSubtitle: 'এয়ারপ্লেন মোডে শোনার জন্য অডিও ডাউনলোড করুন',
     speedSubtitle: 'স্পষ্ট শোনার জন্য উচ্চারণের গতি সামঞ্জস্য করুন',
     cloudSynced: 'ক্লাউডে সিঙ্ক করা',
     speeds: { slow: 'ধীর', learner: 'শিক্ষার্থী', relaxed: 'সহজ', standard: 'স্বাভাবিক', brisk: 'চটপটে', fast: 'দ্রুত' },
@@ -152,6 +184,8 @@ const DRAWER_COPY: Record<SupportedLanguageId, DrawerCopy> = {
   ur: {
     searchTitle: 'الفاظ اور تصورات تلاش کریں',
     searchSubtitle: 'جملوں اور گرامر میں فوری تلاش',
+    offlineTitle: 'آف لائن آڈیو کورسز',
+    offlineSubtitle: 'ایئر پلین موڈ کے لیے آڈیو پیک ڈاؤن لوڈ کریں',
     speedSubtitle: 'واضح سننے کے لیے تلفظ کی رفتار ایڈجسٹ کریں',
     cloudSynced: 'کلاؤڈ سے ہم آہنگ',
     speeds: { slow: 'آہستہ', learner: 'سیکھنے والا', relaxed: 'پرسکون', standard: 'معیاری', brisk: 'تیز تر', fast: 'تیز' },
@@ -164,6 +198,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
   onNavigate,
   onLanguageChange,
   onOpenSearch,
+  onOpenOfflineAudio,
   installPrompt,
   onInstallClick
 }) => {
@@ -385,6 +420,38 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
               </div>
               <span className="drawer-action-arrow">›</span>
             </div>
+
+            {/* Section 3b: Offline Audio Courses (Airplane Mode) */}
+            {onOpenOfflineAudio && (
+              <div
+                className="drawer-card drawer-offline-card"
+                data-testid="drawer-offline-audio-card"
+                onClick={() => {
+                  onClose();
+                  onOpenOfflineAudio();
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    onClose();
+                    onOpenOfflineAudio();
+                  }
+                }}
+                role="button"
+                tabIndex={0}
+              >
+                <div className="drawer-action-content">
+                  <div className="drawer-action-icon offline-icon">
+                    <FaCloudDownloadAlt />
+                  </div>
+                  <div className="drawer-action-text">
+                    <h3>{drawerCopy.offlineTitle}</h3>
+                    <p>{drawerCopy.offlineSubtitle}</p>
+                  </div>
+                </div>
+                <span className="drawer-action-arrow">›</span>
+              </div>
+            )}
 
             {/* Section 4: Cloud Sync & Account */}
             <div className="drawer-card">
