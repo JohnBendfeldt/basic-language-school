@@ -205,13 +205,16 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
   const handlePointerEnter = () => {
     warmUpAudioContext();
 
-    // Pre-buffer audio file (and warm offline Cache Storage blob if present) on hover/touch
+    // Pre-buffer audio file on hover/touch; only query Cache Storage directly when offline
+    // (when online, the Service Worker's CacheFirst route serves cached MP3s with zero JS IPC)
     if (text && text.trim()) {
       const candidatePaths = getCandidateAudioPaths();
-      warmCachedBlobUrls(candidatePaths);
+      const isOffline = typeof navigator !== 'undefined' && navigator.onLine === false;
+      if (isOffline) {
+        warmCachedBlobUrls(candidatePaths);
+      }
       if (!audioRef.current && candidatePaths.length > 0) {
         try {
-          const isOffline = typeof navigator !== 'undefined' && navigator.onLine === false;
           const initialSrc = isOffline
             ? getSyncCachedBlobUrl(candidatePaths)
             : candidatePaths[0];

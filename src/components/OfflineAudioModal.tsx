@@ -38,7 +38,7 @@ interface OfflineModalCopy {
   activePairHeading: string;
   allCoursesHeading: string;
   selectActivePair: string;
-  selectAll: string;
+  selectAll?: string;
   offlineReady: string;
   clipsUnit: string;
   downloadSelected: string;
@@ -436,15 +436,6 @@ export const OfflineAudioModal: React.FC<OfflineAudioModalProps> = ({
     setSelectedLangs(next);
   };
 
-  const handleSelectAllMissing = () => {
-    if (isDownloading) return;
-    const next = new Set<SupportedLanguageId>();
-    for (const id of ALL_LANGUAGE_IDS) {
-      if (!downloadedLangs.has(id)) next.add(id);
-    }
-    setSelectedLangs(next);
-  };
-
   const pendingToDownload = Array.from(selectedLangs).filter((id) => !downloadedLangs.has(id));
   const selectedSizeMB = pendingToDownload.reduce(
     (sum, id) => sum + (OFFLINE_AUDIO_PACK_INFO[id]?.sizeMB || 0),
@@ -633,10 +624,6 @@ export const OfflineAudioModal: React.FC<OfflineAudioModalProps> = ({
             <div className="offline-quick-links">
               <button type="button" className="offline-text-btn" onClick={handleSelectActivePairOnly}>
                 {copy.selectActivePair}
-              </button>
-              <span aria-hidden="true">·</span>
-              <button type="button" className="offline-text-btn" onClick={handleSelectAllMissing}>
-                {copy.selectAll}
               </button>
             </div>
           </div>

@@ -389,5 +389,41 @@ describe('Offline Audio Service, Manifests, Airplane Mode Playback & PWA Install
     expect(jaCard).toHaveAttribute('aria-checked', 'false');
     expect(screen.getByTestId('offline-pack-fr')).toHaveAttribute('aria-checked', 'true');
     expect(screen.getByTestId('offline-pack-en')).toHaveAttribute('aria-checked', 'true');
+
+    // Bulk "Select All" button is intentionally omitted to protect bandwidth
+    expect(screen.queryByRole('button', { name: /Select All/i })).not.toBeInTheDocument();
+  });
+
+  it('throttles download progress updates and skips Cache Storage hover lookups when online', async () => {
+    const fortyFiles = Array.from({ length: 40 }, (_, i) => `words/item_${i}.mp3`);
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (input: RequestInfo | URL) => {
+        const url = typeof input === 'string' ? input : input.toString();
+        if (url === '/audio/de/manifest.json') {
+          return new Response(
+            JSON.stringify({ lang: 'de', fileCount: 40, totalBytes: 40000, files: fortyFiles }),
+            { status: 200 }
+          );
+        }
+        return new Response(new Uint8Array([0xff, 0xfb, 0x90, 0x64]), { status: 200 });
+      })
+    );
+
+    const progressEvents: number[] = [];
+    await downloadOfflineLanguages(['de'], (p) => progressEvents.push(p.percent));
+    expect(progressEvents.at(-1)).toBe(100);
+    // Throttled to 100ms: rapid 40-file burst emits far fewer than 40 state updates
+    expect(progressEvents.length).toBeLessThan(15);
+
+    // Online pointer hover should NOT query Cache Storage (Service Worker handles online CacheFirst)
+    mockCaches.open.mockClear();
+    render(
+      <LanguageProvider>
+        <PronunciationButton text="Haus" lang="de" />
+      </LanguageProvider>
+    );
+    fireEvent.pointerEnter(screen.getByRole('button', { name: 'Pronounce' }));
+    expect(mockCaches.open).not.toHaveBeenCalled();
   });
 });

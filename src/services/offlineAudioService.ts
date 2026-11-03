@@ -143,8 +143,12 @@ const normalizePathname = (inputUrl: string): string => {
   }
 };
 
+const getOfflineReadyMarkerPath = (lang: SupportedLanguageId): string =>
+  `/audio/${lang}/__offline_ready__`;
+
 /**
  * Returns verified offline-downloaded language IDs (reconciling localStorage against Cache Storage).
+ * Checks lightweight O(1) per-language markers first before falling back to scanning cache.keys().
  */
 export const getVerifiedOfflineLanguages = async (): Promise<Set<SupportedLanguageId>> => {
   const stored = new Set<SupportedLanguageId>(readStoredDownloadedLanguages());
@@ -153,6 +157,19 @@ export const getVerifiedOfflineLanguages = async (): Promise<Set<SupportedLangua
   }
   try {
     const cache = await window.caches.open(OFFLINE_AUDIO_CACHE_NAME);
+    const unverified: SupportedLanguageId[] = [];
+    await Promise.all(
+      Array.from(stored).map(async (lang) => {
+        const marker = await cache.match(getOfflineReadyMarkerPath(lang));
+        if (!marker) {
+          unverified.push(lang);
+        }
+      })
+    );
+    if (unverified.length === 0) {
+      return stored;
+    }
+
     const keys = await cache.keys();
     const prefixesFound = new Set<string>();
     for (const req of keys) {
@@ -163,7 +180,7 @@ export const getVerifiedOfflineLanguages = async (): Promise<Set<SupportedLangua
       }
     }
     let changed = false;
-    for (const lang of Array.from(stored)) {
+    for (const lang of unverified) {
       if (!prefixesFound.has(lang)) {
         stored.delete(lang);
         changed = true;
@@ -266,11 +283,19 @@ export const downloadOfflineLanguages = async (
 
   let completedFiles = 0;
   let failedFiles = 0;
+  let lastProgressEmitMs = 0;
+  const PROGRESS_THROTTLE_MS = 100;
   const newlyCompletedLangs: SupportedLanguageId[] = [];
   const storedSet = new Set<SupportedLanguageId>(readStoredDownloadedLanguages());
 
-  const report = (currentLang: SupportedLanguageId) => {
+  const report = (currentLang: SupportedLanguageId, force: boolean = false) => {
     if (!onProgress) return;
+    const now = typeof performance !== 'undefined' ? performance.now() : Date.now();
+    const isComplete = totalFiles > 0 && completedFiles >= totalFiles;
+    if (!force && !isComplete && now - lastProgressEmitMs < PROGRESS_THROTTLE_MS) {
+      return;
+    }
+    lastProgressEmitMs = now;
     const percent = totalFiles > 0 ? Math.min(100, Math.round((completedFiles / totalFiles) * 100)) : 100;
     onProgress({
       currentLang,
@@ -292,7 +317,7 @@ export const downloadOfflineLanguages = async (
         missingUrls.push(url);
       }
     }
-    report(lang);
+    report(lang, true);
 
     let cursor = 0;
     const workerCount = Math.min(Math.max(1, concurrency), missingUrls.length || 1);
@@ -328,8 +353,16 @@ export const downloadOfflineLanguages = async (
       await Promise.all(Array.from({ length: workerCount }, () => runWorker()));
     }
 
+    report(lang, true);
+
     // Mark language offline-ready if at least 95% of clips succeeded
     if (urls.length === 0 || langFailures / urls.length <= 0.05) {
+      await cache
+        .put(
+          getOfflineReadyMarkerPath(lang),
+          new Response('ready', { status: 200, headers: { 'Content-Type': 'text/plain' } })
+        )
+        .catch(() => {});
       storedSet.add(lang);
       newlyCompletedLangs.push(lang);
       writeStoredDownloadedLanguages(storedSet);
