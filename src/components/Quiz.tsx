@@ -1543,9 +1543,13 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
 
     const rawUserAnswer = userAnswer;
     let processedAnswer = userAnswer;
-    if (needsRussianKeyboard && !containsCyrillic(processedAnswer)) {
-      const soundOutRu = convertSoundOutToken(processedAnswer, 'ru');
-      processedAnswer = soundOutRu || transliterate(processedAnswer);
+    if (needsRussianKeyboard && /[a-zA-Z'`"]/.test(processedAnswer)) {
+      if (!containsCyrillic(processedAnswer)) {
+        const soundOutRu = convertSoundOutToken(processedAnswer, 'ru');
+        processedAnswer = soundOutRu || transliterate(processedAnswer);
+      } else {
+        processedAnswer = transliterate(processedAnswer);
+      }
       setUserAnswer(processedAnswer);
     }
 
@@ -1965,8 +1969,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       if (combinationStarters.includes(prevChar) &&
         combinationFollowers[prevChar as keyof typeof combinationFollowers]?.includes(currChar)) {
         const transliteratedValue = transliterate(newValue);
+        const newCursorPos = transliterate(newValue.slice(0, selectionStart)).length;
         setUserAnswer(transliteratedValue);
-        setCursorPosition(selectionStart);
+        setCursorPosition(newCursorPos);
         setLastInput(newValue);
         return;
       }
@@ -1978,16 +1983,21 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     if (newValue.endsWith(' ')) {
       const { converted } = convertLastLatinWordOnSpace(newValue, 'ru');
       const transliteratedValue = converted !== newValue ? converted : transliterate(newValue);
+      const newCursorPos =
+        selectionStart === newValue.length
+          ? transliteratedValue.length
+          : transliterate(newValue.slice(0, selectionStart)).length;
       setUserAnswer(transliteratedValue);
-      setCursorPosition(selectionStart);
+      setCursorPosition(newCursorPos);
     } else if (
       /[.,!?;:]/.test(newValue.charAt(selectionStart - 1)) ||
       inputType === 'insertLineBreak' ||
       newValue.includes('\n')
     ) {
       const transliteratedValue = transliterate(newValue);
+      const newCursorPos = transliterate(newValue.slice(0, selectionStart)).length;
       setUserAnswer(transliteratedValue);
-      setCursorPosition(selectionStart);
+      setCursorPosition(newCursorPos);
     } else {
       setCursorPosition(selectionStart);
     }
@@ -1996,8 +2006,10 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   };
 
   const handleCheckAnswer = () => {
-    if (needsRussianKeyboard && userAnswer && !containsCyrillic(userAnswer)) {
-      const transliteratedValue = transliterate(userAnswer);
+    if (needsRussianKeyboard && userAnswer && /[a-zA-Z'`"]/.test(userAnswer)) {
+      const transliteratedValue = !containsCyrillic(userAnswer)
+        ? (convertSoundOutToken(userAnswer, 'ru') || transliterate(userAnswer))
+        : transliterate(userAnswer);
       setUserAnswer(transliteratedValue);
     }
     checkAnswer();
@@ -2194,10 +2206,14 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     }
   };
 
-  const combinationStarters = ['y', 'Y', 'z', 'Z', 's', 'S', 'c', 'C', 't', 'T', 'k', 'K'];
+  const combinationStarters = ['y', 'Y', 'i', 'I', 'e', 'E', 'z', 'Z', 's', 'S', 'c', 'C', 't', 'T', 'k', 'K'];
   const combinationFollowers = {
     'y': ['a', 'A', 'u', 'U', 'o', 'O', 'e', 'E'],
     'Y': ['a', 'A', 'u', 'U', 'o', 'O', 'e', 'E'],
+    'i': ['h', 'H'],
+    'I': ['h', 'H'],
+    'e': ['h', 'H'],
+    'E': ['h', 'H'],
     'z': ['h', 'H'],
     'Z': ['h', 'H'],
     's': ['h', 'H'],

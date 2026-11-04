@@ -712,8 +712,10 @@ export const PHONETIC_CHEATSHEETS: Record<PhoneticScriptLang, PhoneticCheatsheet
     keyboardTitle: 'Full Russian Keyboard',
     rules: [
       { latin: 'ya', script: 'я' }, { latin: 'yu', script: 'ю' },
-      { latin: 'yo', script: 'ё' }, { latin: 'zh', script: 'ж' },
+      { latin: 'yo', script: 'ё' }, { latin: 'ih', script: 'ы' },
+      { latin: 'eh', script: 'э' }, { latin: 'zh', script: 'ж' },
       { latin: 'sh', script: 'ш' }, { latin: 'ch', script: 'ч' },
+      { latin: 'shch', script: 'щ' }, { latin: 'ts', script: 'ц' },
       { latin: "'", script: 'ь' }, { latin: '"', script: 'ъ' }
     ],
     note: 'Type phonetically in English, then press Space to convert.'
@@ -1068,6 +1070,24 @@ export const convertLastLatinWordOnSpace = (
     }
   }
 
+  if (lang === 'ru') {
+    const mixedRuMatch = withoutTrailingSpaces.match(/^(.*?)([\u0400-\u04FFa-zA-Z0-9'":`-]+)$/);
+    if (
+      mixedRuMatch &&
+      /[\u0400-\u04FF]/.test(mixedRuMatch[2]) &&
+      /[a-zA-Z'":`]/.test(mixedRuMatch[2])
+    ) {
+      const [, mixedPrefix, mixedToken] = mixedRuMatch;
+      const convertedMixed = transliterate(mixedToken);
+      if (convertedMixed && convertedMixed !== mixedToken) {
+        return {
+          converted: `${mixedPrefix}${convertedMixed}${trailingSpaces}`,
+          didConvert: true,
+        };
+      }
+    }
+  }
+
   const lastWordMatch = withoutTrailingSpaces.match(/^(.*?)([a-zA-Z0-9'":`-]+)$/);
   if (!lastWordMatch) {
     return { converted: inputWithSpace, didConvert: false };
@@ -1112,6 +1132,21 @@ export const previewSoundOutToken = (
     if (lang === 'zh') {
       const seg = segmentMandarinPinyinToHanzi(compact, lexicon);
       if (seg) return { rawToken: chunk, preview: seg };
+    }
+  }
+
+  if (lang === 'ru') {
+    const mixedRuSingle = input.match(/([\u0400-\u04FFa-zA-Z0-9'":`-]+)$/);
+    if (
+      mixedRuSingle &&
+      /[\u0400-\u04FF]/.test(mixedRuSingle[1]) &&
+      /[a-zA-Z'":`]/.test(mixedRuSingle[1])
+    ) {
+      const mixedToken = mixedRuSingle[1];
+      const convertedMixed = transliterate(mixedToken);
+      if (convertedMixed && convertedMixed !== mixedToken) {
+        return { rawToken: mixedToken, preview: convertedMixed };
+      }
     }
   }
 

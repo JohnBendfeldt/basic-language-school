@@ -1,7 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { renderSettled, settle } from './testUtils';
 import Quiz from '../components/Quiz';
+import RussianKeyboard from '../components/RussianKeyboard';
+import { transliterate } from '../utils/transliteration';
+import { convertLastLatinWordOnSpace, previewSoundOutToken } from '../utils/phoneticTyping';
 import { ProgressService } from '../services/progressService';
 import { LanguageProvider } from '../contexts/LanguageContext';
 import { getLocalizedRegionName, getComponentChrome } from '../utils/pageDictionary';
@@ -567,6 +570,123 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
     expect(getLocalizedRegionName('middle-eastern', 'ru')).toBe('Ближневосточные');
 
     expect(getComponentChrome('ru').search).toBe('Поиск');
+  });
+
+  it('aligns RussianKeyboard keys with phonetic transliteration (W/V -> в, Y/J -> й, special Ы, EH -> э)', () => {
+    const clicked: string[] = [];
+    render(<RussianKeyboard onLetterClick={(letter) => clicked.push(letter)} />);
+
+    // Both W and V keys insert 'в'
+    const vButtons = screen.getAllByRole('button', { name: 'Insert letter в' });
+    expect(vButtons).toHaveLength(2);
+    expect(vButtons.map(btn => btn.querySelector('.key-en')?.textContent)).toEqual(['W', 'V']);
+    fireEvent.click(vButtons[0]);
+    fireEvent.click(vButtons[1]);
+
+    // Row 1 Y and Row 2 J insert 'й', while special row keeps 'Ы'
+    const shortIButtons = screen.getAllByRole('button', { name: 'Insert letter й' });
+    expect(shortIButtons).toHaveLength(2);
+    expect(shortIButtons.map(btn => btn.querySelector('.key-en')?.textContent)).toEqual(['Y', 'J']);
+    fireEvent.click(shortIButtons[0]);
+
+    const hardIButton = screen.getByRole('button', { name: 'Insert letter Ы' });
+    expect(hardIButton.querySelector('.key-en')?.textContent).toBe('IH');
+    fireEvent.click(hardIButton);
+
+    // Special row Э uses distinct 'EH' combo label
+    const ehButton = screen.getByRole('button', { name: 'Insert letter Э' });
+    expect(ehButton.querySelector('.key-en')?.textContent).toBe('EH');
+    fireEvent.click(ehButton);
+
+    expect(clicked).toEqual(['в', 'в', 'й', 'ы', 'э']);
+
+    // Direct transliterate checks (including ih -> ы, context-aware y, and chai -> чаи)
+    expect(transliterate('woda')).toBe('вода');
+    expect(transliterate('taxi')).toBe('такси');
+    expect(transliterate('qeka')).toBe('щека');
+    expect(transliterate('moy')).toBe('мой');
+    expect(transliterate('moya')).toBe('моя');
+    expect(transliterate('muzey')).toBe('музей');
+    expect(transliterate('chai')).toBe('чаи');
+    expect(transliterate('rihba')).toBe('рыба');
+    expect(transliterate('dobrihy')).toBe('добрый');
+    expect(transliterate('my')).toBe('мы');
+    expect(transliterate('dobryy')).toBe('добрый');
+    expect(transliterate('ehto')).toBe('это');
+
+    // Mixed mid-word Cyrillic + Latin spacebar & preview conversions preserve vowel context for 'y'
+    expect(convertLastLatinWordOnSpace('добрыy ', 'ru')).toEqual({ converted: 'добрый ', didConvert: true });
+    expect(convertLastLatinWordOnSpace('музеy ', 'ru')).toEqual({ converted: 'музей ', didConvert: true });
+    expect(previewSoundOutToken('эto', 'ru')).toEqual({ rawToken: 'эto', preview: 'это' });
+  });
+
+  it('supports live keystroke-by-keystroke shch -> щ, eh -> э, and w -> в without requiring trailing space', async () => {
+    const randSpy = vi.spyOn(Math, 'random').mockReturnValue(0.99);
+    try {
+      await renderSettled(<Quiz data={{
+        commonWords: [
+          { english: 'vegetables', russian: 'овощи', pronunciation: 'oh-vah-shee' }
+        ]
+      }} />);
+
+      const input = await screen.findByRole('textbox') as HTMLInputElement;
+
+      // Simulate typing o-v-o-s-h-c-h-i one character at a time
+      for (const ch of 'ovoshchi') {
+        const nextVal = input.value + ch;
+        fireEvent.change(input, {
+          target: { value: nextVal, selectionStart: nextVal.length }
+        });
+      }
+
+      // 'sh' then 'ch' should have collapsed into 'щ' rather than 'шч'
+      expect(input.value).toBe('овощi');
+
+      // Submitting without pressing Space converts remaining trailing Latin characters
+      fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+      await settle();
+      expect(screen.getByText(/Correct|Great|Awesome|Nice|Spot on|Perfect/i)).toBeInTheDocument();
+    } finally {
+      randSpy.mockRestore();
+    }
+  });
+
+  it('converts live eh -> э and w -> в accurately in quiz answers', async () => {
+    const randSpy = vi.spyOn(Math, 'random').mockReturnValue(0.99);
+    try {
+      const { unmount } = await renderSettled(<Quiz data={{
+        commonWords: [
+          { english: 'this', russian: 'это', pronunciation: 'eh-tuh' }
+        ]
+      }} />);
+
+      const input = await screen.findByRole('textbox') as HTMLInputElement;
+      for (const ch of 'ehto') {
+        const nextVal = input.value + ch;
+        fireEvent.change(input, {
+          target: { value: nextVal, selectionStart: nextVal.length }
+        });
+      }
+      expect(input.value).toBe('эto');
+      fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+      await settle();
+      expect(screen.getByText(/Correct|Great|Awesome|Nice|Spot on|Perfect/i)).toBeInTheDocument();
+
+      unmount();
+
+      await renderSettled(<Quiz data={{
+        commonWords: [
+          { english: 'water', russian: 'вода', pronunciation: 'vah-dah' }
+        ]
+      }} />);
+      const waterInput = await screen.findByRole('textbox') as HTMLInputElement;
+      fireEvent.change(waterInput, { target: { value: 'woda', selectionStart: 4 } });
+      fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
+      await settle();
+      expect(screen.getByText(/Correct|Great|Awesome|Nice|Spot on|Perfect/i)).toBeInTheDocument();
+    } finally {
+      randSpy.mockRestore();
+    }
   });
 });
 
