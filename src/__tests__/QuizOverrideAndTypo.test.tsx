@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { screen, fireEvent } from '@testing-library/react';
 import { renderSettled, settle } from './testUtils';
 import Quiz from '../components/Quiz';
+import { ProgressService } from '../services/progressService';
 
 // Mock Audio
 window.HTMLMediaElement.prototype.play = vi.fn().mockImplementation(() => Promise.resolve());
@@ -81,5 +82,19 @@ describe('Quiz - Smart Fuzzy Matching, Typo Acceptance & "I Was Right" Override'
     expect(screen.getByText(/Answer accepted as correct/i)).toBeInTheDocument();
     const scoreBadge = document.querySelector('.session-score-badge');
     expect(scoreBadge?.textContent).toContain('1 / 1');
+
+    // Persisted word progress reflects the override (timesCorrect: 1, timesIncorrect: 0, masteryLevel: 1)
+    const stats = await ProgressService.getUserStats('ru');
+    expect(stats.wordsLearningCount).toBe(1);
+    expect(stats.wordsToReview).toHaveLength(0);
+
+    const wordsKey = Object.keys(localStorage).find(k => k.includes('word'));
+    expect(wordsKey).toBeDefined();
+    const savedWords = JSON.parse(localStorage.getItem(wordsKey!) || '{}');
+    const savedEntry = Object.values(savedWords)[0] as { timesCorrect: number; timesIncorrect: number; masteryLevel: number };
+    expect(savedEntry).toBeDefined();
+    expect(savedEntry.timesCorrect).toBe(1);
+    expect(savedEntry.timesIncorrect).toBe(0);
+    expect(savedEntry.masteryLevel).toBe(1);
   });
 });

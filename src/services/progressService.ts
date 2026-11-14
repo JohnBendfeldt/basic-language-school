@@ -74,6 +74,40 @@ const saveLocalWordProgress = (words: Record<string, WordProgress>, lang: string
 // ==========================================
 
 export class ProgressService {
+  private static previousMasteryMap = new Map<string, number>();
+
+  private static resolveWordProgressSnapshot(params: {
+    cacheKey: string;
+    isOverride: boolean;
+    isCorrect: boolean;
+    existingCorrect: number;
+    existingIncorrect: number;
+    existingMastery: number;
+  }): { timesCorrect: number; timesIncorrect: number; masteryLevel: number } {
+    const { cacheKey, isOverride, isCorrect, existingCorrect, existingIncorrect, existingMastery } = params;
+    if (isOverride) {
+      const prevMastery = this.previousMasteryMap.get(cacheKey);
+      this.previousMasteryMap.delete(cacheKey);
+      const baseMastery = prevMastery !== undefined ? prevMastery : existingMastery;
+      return {
+        timesCorrect: existingCorrect + 1,
+        timesIncorrect: Math.max(0, existingIncorrect - 1),
+        masteryLevel: Math.max(0, Math.min(MASTERY_THRESHOLD, baseMastery + 1)),
+      };
+    }
+
+    if (isCorrect) {
+      this.previousMasteryMap.delete(cacheKey);
+    } else {
+      this.previousMasteryMap.set(cacheKey, existingMastery);
+    }
+    return {
+      timesCorrect: existingCorrect + (isCorrect ? 1 : 0),
+      timesIncorrect: existingIncorrect + (isCorrect ? 0 : 1),
+      masteryLevel: Math.max(0, Math.min(MASTERY_THRESHOLD, existingMastery + (isCorrect ? 1 : -1))),
+    };
+  }
+
   /**
    * Get the active language (cached in localStorage or default 'ru')
    */
@@ -127,8 +161,39 @@ export class ProgressService {
     targetWord?: string;
     meaningWord?: string;
   }): Promise<WordProgress> {
-    const { category, wordId, prompt, answer, isCorrect, languageId = 'ru', targetWord, meaningWord } = params;
+    return this.saveWordProgressAttempt({ ...params, isOverride: false });
+  }
+
+  /**
+   * Override a previous incorrect attempt on a word ("I was right"), reversing the incorrect
+   * count and applying a positive mastery delta relative to before the incorrect attempt.
+   */
+  static async overrideWordAttempt(params: {
+    category: string;
+    wordId: string;
+    prompt: string;
+    answer: string;
+    languageId?: string;
+    targetWord?: string;
+    meaningWord?: string;
+  }): Promise<WordProgress> {
+    return this.saveWordProgressAttempt({ ...params, isCorrect: true, isOverride: true });
+  }
+
+  private static async saveWordProgressAttempt(params: {
+    category: string;
+    wordId: string;
+    prompt: string;
+    answer: string;
+    isCorrect: boolean;
+    isOverride: boolean;
+    languageId?: string;
+    targetWord?: string;
+    meaningWord?: string;
+  }): Promise<WordProgress> {
+    const { category, wordId, prompt, answer, isCorrect, isOverride, languageId = 'ru', targetWord, meaningWord } = params;
     const now = new Date().toISOString();
+    const cacheKey = `${languageId}:${wordId}`;
 
     // 1. Try Supabase if authenticated
     if (supabase) {
@@ -144,10 +209,14 @@ export class ProgressService {
             .eq('word_id', wordId)
             .maybeSingle();
 
-          const timesCorrect = (existing?.times_correct || 0) + (isCorrect ? 1 : 0);
-          const timesIncorrect = (existing?.times_incorrect || 0) + (isCorrect ? 0 : 1);
-          const currentMastery = existing?.mastery_level || 0;
-          const masteryLevel = Math.max(0, Math.min(MASTERY_THRESHOLD, currentMastery + (isCorrect ? 1 : -1)));
+          const { timesCorrect, timesIncorrect, masteryLevel } = this.resolveWordProgressSnapshot({
+            cacheKey,
+            isOverride,
+            isCorrect,
+            existingCorrect: existing?.times_correct || 0,
+            existingIncorrect: existing?.times_incorrect || 0,
+            existingMastery: existing?.mastery_level || 0
+          });
 
           const upsertPayload: any = {
             user_id: user.id,
@@ -208,9 +277,14 @@ export class ProgressService {
       masteryLevel: 0
     };
 
-    const timesCorrect = existing.timesCorrect + (isCorrect ? 1 : 0);
-    const timesIncorrect = existing.timesIncorrect + (isCorrect ? 0 : 1);
-    const masteryLevel = Math.max(0, Math.min(MASTERY_THRESHOLD, existing.masteryLevel + (isCorrect ? 1 : -1)));
+    const { timesCorrect, timesIncorrect, masteryLevel } = this.resolveWordProgressSnapshot({
+      cacheKey,
+      isOverride,
+      isCorrect,
+      existingCorrect: existing.timesCorrect,
+      existingIncorrect: existing.timesIncorrect,
+      existingMastery: existing.masteryLevel
+    });
 
     const updated: WordProgress = {
       ...existing,

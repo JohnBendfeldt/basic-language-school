@@ -405,6 +405,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     category: 'mixed',
     isSaved: false
   });
+  const lastWordAttemptPromiseRef = useRef<Promise<any> | null>(null);
+  const [questionNonce, setQuestionNonce] = useState(0);
 
   // Load mastered words on mount and when language changes
   useEffect(() => {
@@ -978,6 +980,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   }, [allCurriculumQuestions, masteredWordIds, isQuestionMastered]);
 
   const getRandomQuestion = useCallback((overrideMastered?: Set<string>, categoryOverride?: QuizCategoryFilter, modeOverride?: QuizMode, levelOverride?: QuizLevelFilter) => {
+    setQuestionNonce(prev => prev + 1);
     setUserAnswer('');
     setIsCorrect(null);
     setIsTypoAccepted(false);
@@ -1839,12 +1842,12 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
       isSaved: false
     };
 
-    // Record word attempt in background and check if it reached mastery (level 5)
+    // Record word attempt in background and check if it reached mastery
     if (currentQuestion) {
       const targetWord = currentQuestion.targetAudioWord || currentQuestion.russian || (currentQuestion.isTargetPrompt ? currentQuestion.prompt : currentQuestion.answer.split('/')[0]);
       const meaningWord = currentQuestion.isTargetPrompt ? currentQuestion.answer.split('/')[0] : currentQuestion.prompt;
 
-      ProgressService.recordWordAttempt({
+      const attemptPromise = ProgressService.recordWordAttempt({
         category: currentQuestion.type || 'alphabet',
         wordId: currentQuestion.wordId || currentQuestion.id || `${currentQuestion.type}-${currentQuestion.prompt}`,
         prompt: currentQuestion.prompt || '',
@@ -1853,7 +1856,9 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         meaningWord,
         isCorrect: isAnswerCorrect,
         languageId: currentLanguage
-      }).then(updatedWord => {
+      });
+      lastWordAttemptPromiseRef.current = attemptPromise;
+      attemptPromise.then(updatedWord => {
         if (updatedWord && updatedWord.masteryLevel >= MASTERY_THRESHOLD) {
           setIsWordJustMastered(true);
           masteredWordIdsRef.current.add(updatedWord.wordId);
@@ -1891,7 +1896,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     }
   };
 
-  const handleOverrideAnswer = () => {
+  const handleOverrideAnswer = async () => {
     if (isCorrect) return;
     setIsCorrect(true);
     setIsOverridden(true);
@@ -1899,6 +1904,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     setTypoFeedback(null);
     const newSessionScore = sessionScore + 1;
     setSessionScore(newSessionScore);
+    sessionStatsRef.current.score = newSessionScore;
     setComboStreak(prev => {
       const next = prev + 1;
       setMaxComboStreak(m => Math.max(m, next));
@@ -1906,6 +1912,47 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
     });
     setMissedInSession(prev => prev.filter(m => m.prompt !== currentQuestion?.prompt));
     playSound(correctSoundRef.current, "correct");
+
+    if (currentQuestion) {
+      const questionSnapshot = currentQuestion;
+      try {
+        if (lastWordAttemptPromiseRef.current) {
+          await lastWordAttemptPromiseRef.current;
+        }
+        const targetWord = questionSnapshot.targetAudioWord || questionSnapshot.russian || (questionSnapshot.isTargetPrompt ? questionSnapshot.prompt : questionSnapshot.answer.split('/')[0]);
+        const meaningWord = questionSnapshot.isTargetPrompt ? questionSnapshot.answer.split('/')[0] : questionSnapshot.prompt;
+        const updatedWord = await ProgressService.overrideWordAttempt({
+          category: questionSnapshot.type || 'alphabet',
+          wordId: questionSnapshot.wordId || questionSnapshot.id || `${questionSnapshot.type}-${questionSnapshot.prompt}`,
+          prompt: questionSnapshot.prompt || '',
+          answer: questionSnapshot.answer || '',
+          targetWord,
+          meaningWord,
+          languageId: currentLanguage
+        });
+        if (updatedWord && updatedWord.masteryLevel >= MASTERY_THRESHOLD) {
+          masteredWordIdsRef.current.add(updatedWord.wordId);
+          if (questionSnapshot.id) {
+            masteredWordIdsRef.current.add(questionSnapshot.id);
+          }
+          if (questionSnapshot.wordId) {
+            masteredWordIdsRef.current.add(questionSnapshot.wordId);
+          }
+          setMasteredWordIds(prev => {
+            const next = new Set(prev);
+            next.add(updatedWord.wordId);
+            if (questionSnapshot.id) next.add(questionSnapshot.id);
+            if (questionSnapshot.wordId) next.add(questionSnapshot.wordId);
+            return next;
+          });
+          if (currentQuestion?.id === questionSnapshot.id) {
+            setIsWordJustMastered(true);
+          }
+        }
+      } catch (err) {
+        console.warn('Error overriding word attempt:', err);
+      }
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -2813,6 +2860,7 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
                   lang={currentLanguage}
                   className="quiz-listening-audio-btn"
                   audioCategory={getAudioCategory(currentQuestion.type)}
+                  autoPlayKey={`${questionNonce}-${currentQuestion.id || currentQuestion.prompt}`}
                 />
                 <span className="listening-replay-hint">{recapLabels.replayAudio}</span>
               </div>

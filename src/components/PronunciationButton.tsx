@@ -18,6 +18,7 @@ interface PronunciationButtonProps {
   useLocalAudio?: boolean;
   isAlphabet?: boolean;
   audioCategory?: 'alphabet' | 'words' | 'phrases' | 'numbers' | 'examples' | 'basicPhrases' | 'commonWords' | 'time' | 'grammar';
+  autoPlayKey?: string | number;
 }
 
 export const getCandidateAudioPathsForText = (
@@ -97,7 +98,8 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
   lang,
   label,
   className,
-  audioCategory
+  audioCategory,
+  autoPlayKey
 }) => {
   const { currentLanguage, speechSpeed } = useLanguage();
   const effectiveLangId = (lang && lang.toLowerCase().startsWith('en'))
@@ -136,6 +138,7 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioPathRef = useRef<string>('');
   const fallbackAttemptedRef = useRef<boolean>(false);
+  const lastAutoPlayKeyRef = useRef<string | number | undefined>(undefined);
   
   // Create a unique ID for each button instance
   const buttonId = useRef(`btn-${Math.random().toString(36).substring(2, 9)}`);
@@ -200,6 +203,22 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
     };
   }, [text, audioCategory]);
 
+  // Automatically play pronunciation when autoPlayKey changes (e.g., new Listening question)
+  useEffect(() => {
+    if (autoPlayKey === undefined || autoPlayKey === lastAutoPlayKeyRef.current) {
+      return;
+    }
+    const timer = window.setTimeout(() => {
+      if (!isMounted.current) return;
+      lastAutoPlayKeyRef.current = autoPlayKey;
+      handleSpeak();
+    }, 80);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [autoPlayKey]);
+
   const getCandidateAudioPaths = (): string[] =>
     getCandidateAudioPathsForText(text, effectiveLangId, audioCategory);
 
@@ -232,8 +251,8 @@ const PronunciationButton: React.FC<PronunciationButtonProps> = ({
     }
   };
 
-  const handleSpeak = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
+  function handleSpeak(e?: React.MouseEvent<HTMLButtonElement>) {
+    e?.stopPropagation();
     
     // Warm up audio subsystem on click (unlocks Web Audio & AudioContext immediately)
     warmUpAudioContext();
