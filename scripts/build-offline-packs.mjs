@@ -37,9 +37,17 @@ export function buildLanguagePackBuffer(audioRoot, lang) {
   const chunks = [];
   let actualTotalBytes = 0;
 
+  const resolvedLangDir = path.resolve(langDir);
   for (let i = 0; i < manifest.files.length; i++) {
     const relPath = manifest.files[i];
-    const diskPath = diskLookup.get(relPath.normalize('NFC')) || path.join(langDir, relPath);
+    let diskPath = diskLookup.get(relPath.normalize('NFC'));
+    if (!diskPath) {
+      const candidate = path.resolve(resolvedLangDir, relPath);
+      if (!candidate.startsWith(resolvedLangDir + path.sep)) {
+        throw new Error(`Unsafe offline pack entry path for ${lang}: ${relPath}`);
+      }
+      diskPath = candidate;
+    }
     const buf = fs.readFileSync(diskPath);
     if (Array.isArray(manifest.sizes) && manifest.sizes[i] !== buf.length) {
       throw new Error(

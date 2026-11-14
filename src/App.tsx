@@ -26,7 +26,7 @@ import {
 } from './services/offlineAudioService';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import { SupportedLanguageId } from './data/languages/types';
-import { SUPPORTED_LANGUAGES } from './data/languages';
+import { SUPPORTED_LANGUAGES, isSupportedLanguageId } from './data/languages';
 import { getPageContent, getLocalizedAppName, getComponentChrome } from './utils/pageDictionary';
 
 // Map path segments to section IDs
@@ -60,29 +60,32 @@ const parsePath = (): { langId?: SupportedLanguageId; section: string; subTab?: 
     return { section: 'alphabet' };
   }
 
+  const hasOwn = (obj: object, key: string): boolean =>
+    Object.prototype.hasOwnProperty.call(obj, key);
+
   // Handle /learn/:lang/:section or /learn/:lang
   if (segments[0] === 'learn') {
-    if (segments[1] && segments[1] in SUPPORTED_LANGUAGES) {
-      langId = segments[1] as SupportedLanguageId;
+    if (isSupportedLanguageId(segments[1])) {
+      langId = segments[1];
       if (segments[2] === 'grammar') {
         section = 'alphabet';
         subTab = 'grammar';
       } else {
-        section = segments[2] && PATH_TO_SECTION[segments[2]] ? PATH_TO_SECTION[segments[2]] : 'alphabet';
+        section = segments[2] && hasOwn(PATH_TO_SECTION, segments[2]) ? PATH_TO_SECTION[segments[2]] : 'alphabet';
       }
-    } else if (segments[1] && PATH_TO_SECTION[segments[1]]) {
+    } else if (segments[1] && hasOwn(PATH_TO_SECTION, segments[1])) {
       section = PATH_TO_SECTION[segments[1]];
     }
-  } else if (segments[0] in SUPPORTED_LANGUAGES) {
+  } else if (isSupportedLanguageId(segments[0])) {
     // Handle /:lang/:section or /:lang
-    langId = segments[0] as SupportedLanguageId;
+    langId = segments[0];
     if (segments[1] === 'grammar') {
       section = 'alphabet';
       subTab = 'grammar';
     } else {
-      section = segments[1] && PATH_TO_SECTION[segments[1]] ? PATH_TO_SECTION[segments[1]] : 'alphabet';
+      section = segments[1] && hasOwn(PATH_TO_SECTION, segments[1]) ? PATH_TO_SECTION[segments[1]] : 'alphabet';
     }
-  } else if (PATH_TO_SECTION[segments[0]]) {
+  } else if (hasOwn(PATH_TO_SECTION, segments[0])) {
     // Handle root /:section (e.g. /alphabet, /quiz)
     section = PATH_TO_SECTION[segments[0]];
   }
@@ -172,7 +175,8 @@ const AppContent: React.FC = () => {
 
   // Update SEO Title & Meta tags dynamically per language and section
   const updateMeta = useCallback((section: string) => {
-    const seoInfo = currentMeta.seo[section] || currentMeta.seo.alphabet;
+    const safeSection = Object.prototype.hasOwnProperty.call(currentMeta.seo, section) ? section : 'alphabet';
+    const seoInfo = currentMeta.seo[safeSection] || currentMeta.seo.alphabet;
     if (seoInfo) {
       document.title = seoInfo.title;
 
@@ -187,7 +191,7 @@ const AppContent: React.FC = () => {
 
       const canonical = document.querySelector('link[rel="canonical"]');
       if (canonical) {
-        canonical.setAttribute('href', `https://basiclanguage.school/learn/${currentLanguage}/${section}`);
+        canonical.setAttribute('href', `https://basiclanguage.school/learn/${currentLanguage}/${safeSection}`);
       }
     }
   }, [currentLanguage, currentMeta]);

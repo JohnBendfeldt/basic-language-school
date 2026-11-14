@@ -2,6 +2,52 @@ import { SupportedLanguageId } from '../data/languages/types';
 import { SUPPORTED_LANGUAGES } from '../data/languages';
 import { transliterate } from './transliteration';
 
+const hasOwn = (obj: object, key: string): boolean =>
+  Object.prototype.hasOwnProperty.call(obj, key);
+
+const MAX_PHONETIC_INPUT_LEN = 300;
+
+const isLatinSoundOutChar = (ch: string): boolean =>
+  (ch >= 'a' && ch <= 'z') ||
+  (ch >= 'A' && ch <= 'Z') ||
+  (ch >= '0' && ch <= '9') ||
+  ch === "'" ||
+  ch === '"' ||
+  ch === ':' ||
+  ch === '`';
+
+const extractTrailingLatinPhrase = (
+  str: string
+): { prefix: string; chunk: string } | null => {
+  let i = str.length - 1;
+  let wordCount = 0;
+  let phraseStart = str.length;
+
+  while (i >= 0) {
+    const wordEnd = i;
+    while (i >= 0 && isLatinSoundOutChar(str[i])) {
+      i--;
+    }
+    if (i === wordEnd) break;
+    wordCount++;
+    phraseStart = i + 1;
+
+    const wsEnd = i;
+    while (i >= 0 && /\s/.test(str[i])) {
+      i--;
+    }
+    if (i === wsEnd || i < 0 || !isLatinSoundOutChar(str[i])) {
+      break;
+    }
+  }
+
+  if (wordCount < 2) return null;
+  return {
+    prefix: str.slice(0, phraseStart),
+    chunk: str.slice(phraseStart),
+  };
+};
+
 export type PhoneticScriptLang = 'ru' | 'ar' | 'ur' | 'hi' | 'bn' | 'ja' | 'ko' | 'zh';
 
 export const PHONETIC_SCRIPT_LANGUAGES = new Set<SupportedLanguageId>([
@@ -268,7 +314,7 @@ export const transliterateJapanese = (input: string): string => {
         sayounara: 'さようなら',
         sumimasen: 'すみません'
       };
-      if (exactJa[cleanLower]) return exactJa[cleanLower];
+      if (hasOwn(exactJa, cleanLower)) return exactJa[cleanLower];
 
       const lower = cleanLower;
       let i = 0;
@@ -343,7 +389,7 @@ export const transliterateArabic = (input: string): string => {
         sabahalkhayr: 'صباح الخير', masaalkhayr: 'مساء الخير', ahlan: 'أهلا',
         kitab: 'كتاب', maa: 'ماء', bayt: 'بيت', madrasah: 'مدرسة', madrasa: 'مدرسة'
       };
-      if (exactArabicWords[lower]) return exactArabicWords[lower];
+      if (hasOwn(exactArabicWords, lower)) return exactArabicWords[lower];
 
       let out = '';
       let i = 0;
@@ -382,7 +428,7 @@ export const transliterateArabic = (input: string): string => {
           f: 'ف', v: 'ف', q: 'ق', k: 'ك', c: 'ك', g: 'غ', l: 'ل', m: 'م',
           n: 'ن', h: 'ه', w: 'و', y: 'ي', x: 'خ'
         };
-        out += ch in single ? single[ch] : (ch.toLowerCase() in single ? single[ch.toLowerCase()] : ch);
+        out += hasOwn(single, ch) ? single[ch] : (hasOwn(single, ch.toLowerCase()) ? single[ch.toLowerCase()] : ch);
         i += 1;
       }
       return out || word;
@@ -402,7 +448,7 @@ export const transliterateUrdu = (input: string): string => {
         kitab: 'کتاب', kitaab: 'کتاب', ghar: 'گھر', dost: 'دوست', chai: 'چائے', chaye: 'چائے',
         seb: 'سیب', billi: 'بلی', kutta: 'کتا', acha: 'اچھا', theek: 'ٹھیک'
       };
-      if (exactUrduWords[lower]) return exactUrduWords[lower];
+      if (hasOwn(exactUrduWords, lower)) return exactUrduWords[lower];
 
       let out = '';
       let i = 0;
@@ -447,7 +493,7 @@ export const transliterateUrdu = (input: string): string => {
           s: 'س', x: 'ش', f: 'ف', q: 'ق', k: 'ک', g: 'گ', l: 'ل', m: 'م',
           n: 'ن', w: 'و', v: 'و', h: 'ہ', y: 'ی'
         };
-        out += ch in single ? single[ch] : (ch.toLowerCase() in single ? single[ch.toLowerCase()] : ch);
+        out += hasOwn(single, ch) ? single[ch] : (hasOwn(single, ch.toLowerCase()) ? single[ch.toLowerCase()] : ch);
         i += 1;
       }
       return out || word;
@@ -489,7 +535,7 @@ export const transliterateHindi = (input: string): string => {
         namaste: 'नमस्ते', dhanyavad: 'धन्यवाद', dhanyavaad: 'धन्यवाद', shukriya: 'शुक्रिया',
         haan: 'हाँ', nahin: 'नहीं', nahi: 'नहीं', kripaya: 'कृपया', paani: 'पानी', pani: 'पानी'
       };
-      if (exactHindi[lower]) return exactHindi[lower];
+      if (hasOwn(exactHindi, lower)) return exactHindi[lower];
 
       let out = '';
       let i = 0;
@@ -566,7 +612,7 @@ export const transliterateBengali = (input: string): string => {
         hya: 'হ্যাঁ', haan: 'হ্যাঁ', na: 'না', bhalo: 'ভালো', jol: 'জল', pani: 'পানি',
         ami: 'আমি', tumi: 'তুমি', boi: 'বই', ghor: 'ঘর'
       };
-      if (exactBengali[lower]) return exactBengali[lower];
+      if (hasOwn(exactBengali, lower)) return exactBengali[lower];
 
       let out = '';
       let i = 0;
@@ -655,7 +701,7 @@ export const convertNumericPinyin = (input: string): string => {
     }
     if (idx === -1) return syllable;
     const ch = lower[idx];
-    const table = PINYIN_TONE_VOWELS[ch];
+    const table = hasOwn(PINYIN_TONE_VOWELS, ch) ? PINYIN_TONE_VOWELS[ch] : undefined;
     if (!table) return syllable;
     const marked = table[tone - 1];
     return syllable.slice(0, idx) + marked + syllable.slice(idx + 1);
@@ -987,7 +1033,7 @@ export const getSoundOutLexicon = (lang: PhoneticScriptLang): Map<string, string
 };
 
 const segmentMandarinPinyinToHanzi = (compactLower: string, lexicon: Map<string, string>): string | null => {
-  if (!compactLower || !/^[a-z1-5]+$/.test(compactLower)) return null;
+  if (!compactLower || compactLower.length > 80 || !/^[a-z1-5]+$/.test(compactLower)) return null;
   if (lexicon.has(compactLower)) return lexicon.get(compactLower)!;
 
   const n = compactLower.length;
@@ -1009,7 +1055,7 @@ const segmentMandarinPinyinToHanzi = (compactLower: string, lexicon: Map<string,
 
 export const convertSoundOutToken = (token: string, lang: PhoneticScriptLang): string => {
   const trimmed = token.trim();
-  if (!trimmed) return token;
+  if (!trimmed || trimmed.length > 120) return token;
 
   const lexicon = getSoundOutLexicon(lang);
   const compact = trimmed.toLowerCase().replace(/u:/g, 'v').replace(/ü/g, 'v').replace(/[^a-z0-9]/g, '');
@@ -1037,8 +1083,11 @@ export const convertLastLatinWordOnSpace = (
   inputWithSpace: string,
   lang: PhoneticScriptLang
 ): { converted: string; didConvert: boolean } => {
-  if (!inputWithSpace.endsWith(' ')) {
-    return { converted: inputWithSpace, didConvert: false };
+  if (!inputWithSpace || inputWithSpace.length > MAX_PHONETIC_INPUT_LEN || !inputWithSpace.endsWith(' ')) {
+    return {
+      converted: inputWithSpace ? inputWithSpace.slice(0, MAX_PHONETIC_INPUT_LEN) : inputWithSpace,
+      didConvert: false,
+    };
   }
 
   const withoutTrailingSpaces = inputWithSpace.replace(/\s+$/, '');
@@ -1049,9 +1098,9 @@ export const convertLastLatinWordOnSpace = (
 
   const lexicon = getSoundOutLexicon(lang);
 
-  const multiWordMatch = withoutTrailingSpaces.match(/^(.*?)([a-zA-Z0-9'":`]+(?:\s+[a-zA-Z0-9'":`]+)+)$/);
+  const multiWordMatch = extractTrailingLatinPhrase(withoutTrailingSpaces);
   if (multiWordMatch) {
-    const [, prefix, latinChunk] = multiWordMatch;
+    const { prefix, chunk: latinChunk } = multiWordMatch;
     const compactChunk = latinChunk.toLowerCase().replace(/u:/g, 'v').replace(/ü/g, 'v').replace(/[^a-z0-9]/g, '');
     if (compactChunk && lexicon.has(compactChunk)) {
       const phraseScript = lexicon.get(compactChunk)!;
@@ -1119,12 +1168,12 @@ export const previewSoundOutToken = (
   input: string,
   lang: PhoneticScriptLang
 ): { rawToken: string; preview: string } | null => {
-  if (!input || /\s$/.test(input)) return null;
+  if (!input || input.length > MAX_PHONETIC_INPUT_LEN || /\s$/.test(input)) return null;
 
   const lexicon = getSoundOutLexicon(lang);
-  const multiMatch = input.match(/([a-zA-Z0-9'":`]+(?:\s+[a-zA-Z0-9'":`]+)+)$/);
+  const multiMatch = extractTrailingLatinPhrase(input);
   if (multiMatch) {
-    const chunk = multiMatch[1];
+    const chunk = multiMatch.chunk;
     const compact = chunk.toLowerCase().replace(/u:/g, 'v').replace(/ü/g, 'v').replace(/[^a-z0-9]/g, '');
     if (compact && lexicon.has(compact)) {
       return { rawToken: chunk, preview: lexicon.get(compact)! };
@@ -1202,11 +1251,11 @@ export const getLocalizedPhoneticCheatsheet = (
     ur: { title: '💡 صوتی ٹائپنگ گائیڈ', kb: 'صوتی کی بورڈ' },
   };
 
-  const t = localizedTitles[baseLang];
+  const t = hasOwn(localizedTitles, baseLang) ? localizedTitles[baseLang] : undefined;
   return {
     ...base,
     title: t ? t.title : base.title,
     keyboardTitle: t ? t.kb : base.keyboardTitle,
-    note: localizedNotes[baseLang] || base.note,
+    note: (hasOwn(localizedNotes, baseLang) ? localizedNotes[baseLang] : undefined) ?? base.note,
   };
 };

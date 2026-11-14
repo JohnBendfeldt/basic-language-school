@@ -1,5 +1,5 @@
 import { SupportedLanguageId } from '../data/languages/types';
-import { SUPPORTED_LANGUAGES } from '../data/languages';
+import { SUPPORTED_LANGUAGES, isSupportedLanguageId } from '../data/languages';
 
 export interface LanguagePair {
   targetLanguage: SupportedLanguageId; // Language the user is learning
@@ -30,8 +30,8 @@ export const detectDeviceLanguage = (): SupportedLanguageId => {
     const primary = normalized.split('-')[0];
     // Map legacy ISO 639-1 'in' (Android/Java) to Indonesian ('id')
     const code = primary === 'in' ? 'id' : primary;
-    if (code in SUPPORTED_LANGUAGES) {
-      return code as SupportedLanguageId;
+    if (isSupportedLanguageId(code)) {
+      return code;
     }
   }
 
@@ -60,8 +60,8 @@ export const detectInitialLanguagePair = (): LanguagePair => {
   if (typeof window !== 'undefined') {
     const pathParts = window.location.pathname.toLowerCase().split('/').filter(Boolean);
     for (const part of pathParts) {
-      if (part in SUPPORTED_LANGUAGES) {
-        targetLanguage = part as SupportedLanguageId;
+      if (isSupportedLanguageId(part)) {
+        targetLanguage = part;
         hasUrlTarget = true;
         break;
       }
@@ -72,8 +72,8 @@ export const detectInitialLanguagePair = (): LanguagePair => {
   if (typeof window !== 'undefined') {
     try {
       const savedBase = localStorage.getItem('basic_language_base_lang');
-      if (savedBase && savedBase in SUPPORTED_LANGUAGES) {
-        baseLanguage = savedBase as SupportedLanguageId;
+      if (isSupportedLanguageId(savedBase)) {
+        baseLanguage = savedBase;
       } else {
         baseLanguage = deviceLang;
       }
@@ -81,8 +81,8 @@ export const detectInitialLanguagePair = (): LanguagePair => {
       const rawSavedTarget =
         localStorage.getItem('basic_language_target_lang') ||
         localStorage.getItem('basic_language_active_lang');
-      if (rawSavedTarget && rawSavedTarget in SUPPORTED_LANGUAGES) {
-        savedTarget = rawSavedTarget as SupportedLanguageId;
+      if (isSupportedLanguageId(rawSavedTarget)) {
+        savedTarget = rawSavedTarget;
       }
 
       if (!targetLanguage && savedTarget) {

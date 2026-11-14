@@ -103,7 +103,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             className="search-input-field"
             placeholder={`Search ${currentMeta.name} or English words, phrases, concepts...`}
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            maxLength={120}
+            onChange={(e) => setQuery(e.target.value.slice(0, 120))}
             aria-label="Search concepts"
           />
           {query.length > 0 && (

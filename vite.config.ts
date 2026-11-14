@@ -40,8 +40,16 @@ const offlinePackDevPlugin = (): Plugin => ({
           }
         }
 
+        const resolvedLangDir = path.resolve(langDir);
         const chunks = manifest.files.map((rel) => {
-          const diskPath = diskLookup.get(rel.normalize('NFC')) || path.join(langDir, rel);
+          let diskPath = diskLookup.get(rel.normalize('NFC'));
+          if (!diskPath) {
+            const candidate = path.resolve(resolvedLangDir, rel);
+            if (!candidate.startsWith(resolvedLangDir + path.sep)) {
+              throw new Error('Unsafe manifest file path');
+            }
+            diskPath = candidate;
+          }
           return fs.readFileSync(diskPath);
         });
         const packBuf = Buffer.concat(chunks);

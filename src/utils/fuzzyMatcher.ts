@@ -16,26 +16,25 @@ export interface FuzzyMatchResult {
 /**
  * Standard Levenshtein distance calculation
  */
-export const levenshteinDistance = (a: string, b: string): number => {
-  const matrix: number[][] = Array(a.length + 1)
-    .fill(null)
-    .map(() => Array(b.length + 1).fill(0));
+const MAX_LEVENSHTEIN_LEN = 250;
 
-  for (let i = 0; i <= a.length; i++) matrix[i][0] = i;
-  for (let j = 0; j <= b.length; j++) matrix[0][j] = j;
+export const levenshteinDistance = (rawA: string, rawB: string): number => {
+  const a = rawA.length > MAX_LEVENSHTEIN_LEN ? rawA.slice(0, MAX_LEVENSHTEIN_LEN) : rawA;
+  const b = rawB.length > MAX_LEVENSHTEIN_LEN ? rawB.slice(0, MAX_LEVENSHTEIN_LEN) : rawB;
+  if (a.length < b.length) return levenshteinDistance(b, a);
+  if (b.length === 0) return a.length;
 
+  let prev = Array.from({ length: b.length + 1 }, (_, i) => i);
   for (let i = 1; i <= a.length; i++) {
+    const curr = new Array<number>(b.length + 1);
+    curr[0] = i;
     for (let j = 1; j <= b.length; j++) {
       const cost = a[i - 1] === b[j - 1] ? 0 : 1;
-      matrix[i][j] = Math.min(
-        matrix[i - 1][j] + 1,
-        matrix[i][j - 1] + 1,
-        matrix[i - 1][j - 1] + cost
-      );
+      curr[j] = Math.min(curr[j - 1] + 1, prev[j] + 1, prev[j - 1] + cost);
     }
+    prev = curr;
   }
-
-  return matrix[a.length][b.length];
+  return prev[b.length];
 };
 
 // Keyboard rows (QWERTY and Russian ЙЦУКЕН) used to tell a slipped finger from a different word.
@@ -214,7 +213,10 @@ const WORD_SYNONYMS: Record<string, string> = {
 
 export const canonicalizeWord = (w: string): string => {
   const stem = stemWord(w);
-  return WORD_SYNONYMS[stem] || WORD_SYNONYMS[w.toLowerCase()] || stem;
+  if (Object.prototype.hasOwnProperty.call(WORD_SYNONYMS, stem)) return WORD_SYNONYMS[stem];
+  const lower = w.toLowerCase();
+  if (Object.prototype.hasOwnProperty.call(WORD_SYNONYMS, lower)) return WORD_SYNONYMS[lower];
+  return stem;
 };
 
 /**
@@ -355,7 +357,7 @@ export const evaluateSmartAnswer = (
   rawTargets: string[],
   allowEnglishRules: boolean = true
 ): FuzzyMatchResult => {
-  const cleanUser = userAnswer.trim();
+  const cleanUser = userAnswer.trim().slice(0, 250);
   if (!cleanUser) {
     return { isMatch: false, isTypo: false, similarity: 0 };
   }
@@ -372,7 +374,7 @@ export const evaluateSmartAnswer = (
   };
 
   for (const target of rawTargets) {
-    const cleanTarget = target.trim();
+    const cleanTarget = target.trim().slice(0, 250);
     if (!cleanTarget) continue;
 
     const targetNorm = allowEnglishRules ? normalizeEnglishPhrase(cleanTarget) : normalizeGenericPhrase(cleanTarget);

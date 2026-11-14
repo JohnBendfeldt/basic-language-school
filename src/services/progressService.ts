@@ -3,13 +3,26 @@ import { supabase } from './supabaseClient';
 
 const getGuestUserId = (): string => 'guest_user';
 
+const UNSAFE_KEYS = new Set(['__proto__', 'constructor', 'prototype', 'toString', 'valueOf', 'hasOwnProperty']);
+
+const isSafeWordId = (id: unknown): id is string =>
+  typeof id === 'string' && id.length > 0 && id.length <= 150 && !UNSAFE_KEYS.has(id);
+
+const sanitizeLanguageId = (lang?: string | null): string =>
+  typeof lang === 'string' && /^[a-z]{2,5}$/.test(lang) && !UNSAFE_KEYS.has(lang) ? lang : 'ru';
+
+const clampInt = (val: number, min: number, max: number): number =>
+  Math.min(max, Math.max(min, Math.trunc(Number.isFinite(val) ? val : min)));
+
 // Helper to get language-scoped localStorage keys
 const getSessionsStorageKey = (lang: string = 'ru'): string => {
-  return lang === 'ru' ? 'russian_quiz_sessions' : `${lang}_quiz_sessions`;
+  const safeLang = sanitizeLanguageId(lang);
+  return safeLang === 'ru' ? 'russian_quiz_sessions' : `${safeLang}_quiz_sessions`;
 };
 
 const getWordsStorageKey = (lang: string = 'ru'): string => {
-  return lang === 'ru' ? 'russian_word_progress' : `${lang}_word_progress`;
+  const safeLang = sanitizeLanguageId(lang);
+  return safeLang === 'ru' ? 'russian_word_progress' : `${safeLang}_word_progress`;
 };
 
 const ACTIVE_LANG_STORAGE_KEY = 'basic_language_active_lang';
@@ -18,14 +31,30 @@ const ACTIVE_LANG_STORAGE_KEY = 'basic_language_active_lang';
 // LOCAL STORAGE HELPERS
 // ==========================================
 
-const UNSAFE_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
-
 const getLocalSessions = (lang: string = 'ru'): QuizSession[] => {
   try {
     const raw = localStorage.getItem(getSessionsStorageKey(lang));
     if (!raw) return [];
     const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
+    if (!Array.isArray(parsed)) return [];
+    const safeSessions: QuizSession[] = [];
+    for (const rawItem of parsed) {
+      if (!rawItem || typeof rawItem !== 'object' || Array.isArray(rawItem)) continue;
+      const item: any = { ...rawItem };
+      if (typeof item.category === 'string') item.category = item.category.slice(0, 100);
+      if (typeof item.totalQuestions === 'number') {
+        item.totalQuestions = clampInt(item.totalQuestions, 0, 500);
+      }
+      if (typeof item.score === 'number') {
+        const maxScore = typeof item.totalQuestions === 'number' ? item.totalQuestions : 500;
+        item.score = clampInt(item.score, 0, maxScore);
+      }
+      if (typeof item.percentage === 'number') {
+        item.percentage = clampInt(item.percentage, 0, 100);
+      }
+      safeSessions.push(item as QuizSession);
+    }
+    return safeSessions;
   } catch (err) {
     console.warn(`Failed to parse local quiz sessions for ${lang}:`, err);
     return [];
@@ -50,9 +79,17 @@ const getLocalWordProgress = (lang: string = 'ru'): Record<string, WordProgress>
     }
     const safeRecord: Record<string, WordProgress> = {};
     for (const [key, val] of Object.entries(parsed)) {
-      if (!UNSAFE_KEYS.has(key) && val && typeof val === 'object' && !Array.isArray(val)) {
-        safeRecord[key] = val as WordProgress;
-      }
+      if (!isSafeWordId(key) || !val || typeof val !== 'object' || Array.isArray(val)) continue;
+      const item: any = { ...val };
+      if (typeof item.category === 'string') item.category = item.category.slice(0, 100);
+      if (typeof item.prompt === 'string') item.prompt = item.prompt.slice(0, 500);
+      if (typeof item.answer === 'string') item.answer = item.answer.slice(0, 500);
+      if (typeof item.targetWord === 'string') item.targetWord = item.targetWord.slice(0, 500);
+      if (typeof item.meaningWord === 'string') item.meaningWord = item.meaningWord.slice(0, 500);
+      if (typeof item.timesCorrect === 'number') item.timesCorrect = clampInt(item.timesCorrect, 0, 100000);
+      if (typeof item.timesIncorrect === 'number') item.timesIncorrect = clampInt(item.timesIncorrect, 0, 100000);
+      if (typeof item.masteryLevel === 'number') item.masteryLevel = clampInt(item.masteryLevel, 0, MASTERY_THRESHOLD);
+      safeRecord[key] = item as WordProgress;
     }
     return safeRecord;
   } catch (err) {
@@ -113,7 +150,7 @@ export class ProgressService {
    */
   static getActiveLanguage(): string {
     try {
-      return localStorage.getItem(ACTIVE_LANG_STORAGE_KEY) || 'ru';
+      return sanitizeLanguageId(localStorage.getItem(ACTIVE_LANG_STORAGE_KEY));
     } catch {
       return 'ru';
     }
@@ -123,6 +160,9 @@ export class ProgressService {
    * Set and persist active language locally and in Supabase profile
    */
   static async setActiveLanguage(langId: string): Promise<void> {
+    if (!langId || !/^[a-z]{2,5}$/.test(langId) || UNSAFE_KEYS.has(langId)) {
+      return;
+    }
     try {
       localStorage.setItem(ACTIVE_LANG_STORAGE_KEY, langId);
     } catch (err) {
@@ -193,7 +233,29 @@ export class ProgressService {
   }): Promise<WordProgress> {
     const { category, wordId, prompt, answer, isCorrect, isOverride, languageId = 'ru', targetWord, meaningWord } = params;
     const now = new Date().toISOString();
-    const cacheKey = `${languageId}:${wordId}`;
+    const safeLang = sanitizeLanguageId(languageId);
+    const safeCategory = (category || '').slice(0, 100);
+    const safePrompt = (prompt || '').slice(0, 500);
+    const safeAnswer = (answer || '').slice(0, 500);
+    const safeTargetWord = typeof targetWord === 'string' ? targetWord.slice(0, 500) : undefined;
+    const safeMeaningWord = typeof meaningWord === 'string' ? meaningWord.slice(0, 500) : undefined;
+
+    if (!isSafeWordId(wordId)) {
+      return {
+        userId: getGuestUserId(),
+        languageId: safeLang,
+        category: safeCategory,
+        wordId: '',
+        prompt: safePrompt,
+        answer: safeAnswer,
+        timesCorrect: 0,
+        timesIncorrect: 0,
+        lastTestedAt: now,
+        masteryLevel: 0,
+      };
+    }
+
+    const cacheKey = `${safeLang}:${wordId}`;
 
     // 1. Try Supabase if authenticated
     if (supabase) {
@@ -205,7 +267,7 @@ export class ProgressService {
             .from('word_progress')
             .select('*')
             .eq('user_id', user.id)
-            .eq('language_id', languageId)
+            .eq('language_id', safeLang)
             .eq('word_id', wordId)
             .maybeSingle();
 
@@ -220,15 +282,15 @@ export class ProgressService {
 
           const upsertPayload: any = {
             user_id: user.id,
-            category,
+            category: safeCategory,
             word_id: wordId,
-            prompt,
-            answer,
+            prompt: safePrompt,
+            answer: safeAnswer,
             times_correct: timesCorrect,
             times_incorrect: timesIncorrect,
             last_tested_at: now,
             mastery_level: masteryLevel,
-            language_id: languageId
+            language_id: safeLang
           };
 
           const { data, error } = await supabase
@@ -241,13 +303,13 @@ export class ProgressService {
             return {
               id: data.id,
               userId: data.user_id,
-              languageId: data.language_id || languageId,
+              languageId: data.language_id || safeLang,
               category: data.category,
               wordId: data.word_id,
               prompt: data.prompt,
               answer: data.answer,
-              targetWord: targetWord || existing?.targetWord,
-              meaningWord: meaningWord || existing?.meaningWord,
+              targetWord: safeTargetWord || existing?.targetWord,
+              meaningWord: safeMeaningWord || existing?.meaningWord,
               timesCorrect: data.times_correct,
               timesIncorrect: data.times_incorrect,
               lastTestedAt: data.last_tested_at,
@@ -261,16 +323,16 @@ export class ProgressService {
     }
 
     // 2. Fallback to LocalStorage (Guest Mode)
-    const localWords = getLocalWordProgress(languageId);
-    const existing = localWords[wordId] || {
+    const localWords = getLocalWordProgress(safeLang);
+    const existing = (Object.prototype.hasOwnProperty.call(localWords, wordId) && localWords[wordId]) || {
       userId: getGuestUserId(),
-      languageId,
-      category,
+      languageId: safeLang,
+      category: safeCategory,
       wordId,
-      prompt,
-      answer,
-      targetWord,
-      meaningWord,
+      prompt: safePrompt,
+      answer: safeAnswer,
+      targetWord: safeTargetWord,
+      meaningWord: safeMeaningWord,
       timesCorrect: 0,
       timesIncorrect: 0,
       lastTestedAt: now,
@@ -288,11 +350,11 @@ export class ProgressService {
 
     const updated: WordProgress = {
       ...existing,
-      languageId,
-      prompt,
-      answer,
-      targetWord: targetWord || existing.targetWord,
-      meaningWord: meaningWord || existing.meaningWord,
+      languageId: safeLang,
+      prompt: safePrompt,
+      answer: safeAnswer,
+      targetWord: safeTargetWord || existing.targetWord,
+      meaningWord: safeMeaningWord || existing.meaningWord,
       timesCorrect,
       timesIncorrect,
       lastTestedAt: now,
@@ -300,7 +362,7 @@ export class ProgressService {
     };
 
     localWords[wordId] = updated;
-    saveLocalWordProgress(localWords, languageId);
+    saveLocalWordProgress(localWords, safeLang);
     return updated;
   }
 
@@ -352,22 +414,26 @@ export class ProgressService {
     languageId?: string;
   }): Promise<QuizSession> {
     const { category, score, totalQuestions, languageId = 'ru' } = params;
+    const safeLang = sanitizeLanguageId(languageId);
+    const cleanCategory = (category || '').slice(0, 100);
+    const cleanTotal = clampInt(totalQuestions, 0, 500);
+    const cleanScore = clampInt(score, 0, cleanTotal);
     const now = new Date().toISOString();
-    const percentage = totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0;
+    const percentage = cleanTotal > 0 ? Math.round((cleanScore / cleanTotal) * 100) : 0;
     const id = `session_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
 
-    // 1. Try Supabase if authenticated
-    if (supabase) {
+    // 1. Try Supabase if authenticated (only insert non-empty sessions matching DB CHECK constraints)
+    if (supabase && cleanTotal >= 1) {
       try {
         const { data: { user } } = await supabase.auth.getUser();
         if (user) {
           const insertPayload: any = {
             user_id: user.id,
-            category,
-            score,
-            total_questions: totalQuestions,
+            category: cleanCategory,
+            score: cleanScore,
+            total_questions: cleanTotal,
             completed_at: now,
-            language_id: languageId
+            language_id: safeLang
           };
 
           const { data, error } = await supabase
@@ -380,7 +446,7 @@ export class ProgressService {
             return {
               id: data.id,
               userId: data.user_id,
-              languageId: data.language_id || languageId,
+              languageId: data.language_id || safeLang,
               category: data.category,
               score: data.score,
               totalQuestions: data.total_questions,
@@ -398,17 +464,17 @@ export class ProgressService {
     const session: QuizSession = {
       id,
       userId: getGuestUserId(),
-      languageId,
-      category,
-      score,
-      totalQuestions,
+      languageId: safeLang,
+      category: cleanCategory,
+      score: cleanScore,
+      totalQuestions: cleanTotal,
       percentage,
       completedAt: now
     };
 
-    const sessions = getLocalSessions(languageId);
+    const sessions = getLocalSessions(safeLang);
     sessions.unshift(session);
-    saveLocalSessions(sessions.slice(0, 100), languageId);
+    saveLocalSessions(sessions.slice(0, 100), safeLang);
     return session;
   }
 
@@ -527,8 +593,9 @@ export class ProgressService {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) return;
 
-      const localSessions = getLocalSessions(languageId);
-      const localWords = Object.values(getLocalWordProgress(languageId));
+      const safeLang = sanitizeLanguageId(languageId);
+      const localSessions = getLocalSessions(safeLang);
+      const localWords = Object.values(getLocalWordProgress(safeLang));
 
       if (localSessions.length === 0 && localWords.length === 0) return;
 
@@ -536,18 +603,19 @@ export class ProgressService {
       let sessionsSynced = true;
 
       // Sync word progress
-      if (localWords.length > 0) {
-        const payload = localWords.map(w => ({
+      const validWords = localWords.filter(w => w && isSafeWordId(w.wordId));
+      if (validWords.length > 0) {
+        const payload = validWords.map(w => ({
           user_id: user.id,
-          category: w.category,
+          category: (w.category || 'general').slice(0, 100),
           word_id: w.wordId,
-          prompt: w.prompt,
-          answer: w.answer,
-          times_correct: w.timesCorrect,
-          times_incorrect: w.timesIncorrect,
-          last_tested_at: w.lastTestedAt,
-          mastery_level: w.masteryLevel,
-          language_id: languageId
+          prompt: (w.prompt || '').slice(0, 500),
+          answer: (w.answer || '').slice(0, 500),
+          times_correct: clampInt(w.timesCorrect ?? 0, 0, 100000),
+          times_incorrect: clampInt(w.timesIncorrect ?? 0, 0, 100000),
+          last_tested_at: w.lastTestedAt || new Date().toISOString(),
+          mastery_level: clampInt(w.masteryLevel ?? 0, 0, MASTERY_THRESHOLD),
+          language_id: safeLang
         }));
 
         const { error } = await supabase
@@ -556,17 +624,24 @@ export class ProgressService {
         if (error) wordsSynced = false;
       }
 
-      // Sync quiz sessions
-      if (localSessions.length > 0) {
-        const sessionPayload = localSessions.slice(0, 20).map(s => ({
-          user_id: user.id,
-          category: s.category,
-          score: s.score,
-          total_questions: s.totalQuestions,
-          completed_at: s.completedAt,
-          language_id: languageId
-        }));
+      // Sync quiz sessions (respect DB CHECK constraints: total_questions > 0, 0 <= score <= total_questions)
+      const sessionPayload = localSessions
+        .slice(0, 20)
+        .map(s => {
+          const cleanTotal = clampInt(s.totalQuestions ?? 0, 0, 500);
+          const cleanScore = clampInt(s.score ?? 0, 0, cleanTotal);
+          return {
+            user_id: user.id,
+            category: (s.category || 'general').slice(0, 100),
+            score: cleanScore,
+            total_questions: cleanTotal,
+            completed_at: s.completedAt || new Date().toISOString(),
+            language_id: safeLang
+          };
+        })
+        .filter(s => s.total_questions >= 1 && s.score >= 0 && s.score <= s.total_questions);
 
+      if (sessionPayload.length > 0) {
         const { error } = await supabase
           .from('quiz_sessions')
           .insert(sessionPayload);

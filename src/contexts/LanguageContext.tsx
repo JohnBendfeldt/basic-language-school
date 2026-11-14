@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, useMemo, useRef, ReactNode } from 'react';
 import { SupportedLanguageId, LanguageMeta } from '../data/languages/types';
-import { SUPPORTED_LANGUAGES, DEFAULT_LANGUAGE, getLanguageMeta } from '../data/languages';
+import { SUPPORTED_LANGUAGES, DEFAULT_LANGUAGE, getLanguageMeta, isSupportedLanguageId } from '../data/languages';
 import { ProgressService } from '../services/progressService';
 import { cancelAllSpeech } from '../utils/speech';
 import { detectInitialLanguagePair, LanguagePair } from '../utils/localeDetection';
@@ -72,7 +72,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     const handleUrlSync = () => {
       if (typeof window === 'undefined') return;
       const pathParts = window.location.pathname.toLowerCase().split('/').filter(Boolean);
-      const hasUrlLang = pathParts.some(p => p in SUPPORTED_LANGUAGES);
+      const hasUrlLang = pathParts.some(p => isSupportedLanguageId(p));
       if (!hasUrlLang) return;
 
       const pair = detectInitialLanguagePair();
@@ -122,7 +122,9 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   const targetMeta = getLanguageMeta(targetLanguage);
   const baseMeta = getLanguageMeta(baseLanguage);
   const supportedLanguages = SUPPORTED_LANGUAGE_LIST;
-  const ui = UI_TRANSLATIONS[baseLanguage] || UI_TRANSLATIONS.en;
+  const ui = Object.prototype.hasOwnProperty.call(UI_TRANSLATIONS, baseLanguage)
+    ? UI_TRANSLATIONS[baseLanguage]
+    : UI_TRANSLATIONS.en;
 
   // Commit a resolved (baseLanguage, targetLanguage) pair atomically using synchronous ref tracking
   const applyLanguagePair = useCallback((
@@ -130,7 +132,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     requestedTarget: SupportedLanguageId,
     options: { stopSpeech?: boolean } = {}
   ) => {
-    if (!(requestedBase in SUPPORTED_LANGUAGES) || !(requestedTarget in SUPPORTED_LANGUAGES)) return;
+    if (!isSupportedLanguageId(requestedBase) || !isSupportedLanguageId(requestedTarget)) return;
 
     const prev = pairRef.current;
     let resolvedBase = requestedBase;

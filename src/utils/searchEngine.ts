@@ -48,7 +48,7 @@ export const searchLanguageConcepts = (
   baseLanguage: SupportedLanguageId,
   limitPerCategory: number = 10
 ): SearchResultsGrouped => {
-  const query = normalizeSearchQuery(rawQuery);
+  const query = normalizeSearchQuery((rawQuery || '').slice(0, 120));
   if (!query || query.length === 0) {
     return { words: [], phrases: [], grammar: [], totalCount: 0 };
   }

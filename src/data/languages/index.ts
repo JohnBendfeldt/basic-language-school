@@ -621,9 +621,12 @@ export const SUPPORTED_LANGUAGES: Record<SupportedLanguageId, LanguageMeta> = {
 
 export const DEFAULT_LANGUAGE: SupportedLanguageId = 'ru';
 
+export const isSupportedLanguageId = (langId?: string | null): langId is SupportedLanguageId =>
+  Boolean(langId && Object.prototype.hasOwnProperty.call(SUPPORTED_LANGUAGES, langId));
+
 export const getLanguageMeta = (langId?: string | null): LanguageMeta => {
-  if (langId && langId in SUPPORTED_LANGUAGES) {
-    return SUPPORTED_LANGUAGES[langId as SupportedLanguageId];
+  if (isSupportedLanguageId(langId)) {
+    return SUPPORTED_LANGUAGES[langId];
   }
   return SUPPORTED_LANGUAGES[DEFAULT_LANGUAGE];
 };
