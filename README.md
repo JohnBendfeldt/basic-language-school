@@ -5,7 +5,7 @@ An interactive, high-performance multi-language learning platform offering **15 
 [![React](https://img.shields.io/badge/React-19.3-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Vitest](https://img.shields.io/badge/Vitest-1%2C522_Passing-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)](https://vitest.dev/)
+[![Vitest](https://img.shields.io/badge/Vitest-1%2C565_Passing-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)](https://vitest.dev/)
 [![Playwright](https://img.shields.io/badge/Playwright-21_E2E_Passing-2EAD33?style=for-the-badge&logo=playwright&logoColor=white)](https://playwright.dev/)
 [![Supabase](https://img.shields.io/badge/Supabase-Auth%20%26%20Postgres-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
 [![Edge TTS](https://img.shields.io/badge/Audio-Edge%20Neural%20TTS-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)](https://github.com/rany2/edge-tts)
@@ -72,7 +72,7 @@ An interactive, high-performance multi-language learning platform offering **15 
 * **Routing**: Universal multi-language dual routing (`/learn/:lang/:section`, `/:lang/:section`, and root routes) with dynamic SEO metadata
 * **Build System & PWA**: Vite 6, `@vitejs/plugin-react` v5, `vite-plugin-pwa` v2 (Workbox), custom offline audio pack bundler (`scripts/build-offline-packs.mjs`)
 * **Testing**:
-  * **Unit & Integration**: Vitest 5, React Testing Library 16, JSDOM (**1,517 tests across 55 suites**)
+  * **Unit & Integration**: Vitest 5, React Testing Library 16, JSDOM (**1,565 tests across 58 suites**)
   * **End-to-End**: Playwright Chromium (**21 E2E browser specs** covering desktop, 390px mobile, RTL, Pinyin, phonetic typing, offline Airplane Mode, and neural audio)
 * **Backend & Auth**: Supabase PostgreSQL, Row Level Security (RLS), OAuth 2.0 / OIDC (Google, Microsoft Entra ID, GitHub)
 * **Audio Pipeline**: Python `edge-tts` studio batch synthesis (`scripts/generate-all-audio.py`) + Web Speech API fallback
@@ -84,7 +84,8 @@ An interactive, high-performance multi-language learning platform offering **15 
 
 ```text
 basic-language-school/
-├── ACTION_PLAN.md              # Architecture notes & milestone roadmap
+├── CONTRIBUTING.md             # Contribution guidelines & curriculum PR workflow
+├── SECURITY.md                 # Security policy & vulnerability reporting
 ├── docs/
 │   ├── BACKEND_PLAN.md         # Cloud sync & OAuth integration architecture
 │   └── schema.sql              # Supabase PostgreSQL schema with RLS policies
@@ -171,7 +172,7 @@ npm run dev
 
 ### 4. Run Automated Tests
 ```bash
-# Unit & integration suite (55 suites, 1,517 tests)
+# Unit & integration suite (58 suites, 1,565 tests)
 npm test
 
 # Strict TypeScript check
@@ -217,6 +218,13 @@ npm run build-offline-packs
 
 ---
 
+## 🤝 Contributing & Security
+
+* **Contributing**: Translation fixes, native-speaker refinements, accessibility improvements, and bug fixes with tests are welcome — please read [`CONTRIBUTING.md`](CONTRIBUTING.md) before opening a pull request.
+* **Security**: Please report suspected vulnerabilities privately rather than opening a public issue; see [`SECURITY.md`](SECURITY.md) for disclosure instructions.
+
+---
+
 ## 👤 Author
 
 **John Bendfeldt**  
@@ -227,4 +235,6 @@ npm run build-offline-packs
 ---
 
 ## 📄 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project's source code is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+> **Branding Note**: While the source code is open source under MIT, the **Basic Language School** name, domain branding (`basiclanguage.school`), and custom academic emblems are reserved for the official platform.
