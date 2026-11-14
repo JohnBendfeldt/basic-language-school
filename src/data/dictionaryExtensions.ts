@@ -842,4 +842,412 @@ export const SUPPLEMENTAL_DICTIONARY: Record<string, Partial<Record<SupportedLan
     en: 'Later', es: 'Más tarde / Luego', fr: 'Plus tard', de: 'Später', pt: 'Mais tarde / Depois', ru: 'Позже / Потом', id: 'Nanti', tr: 'Sonra / Daha sonra',
     zh: '以后 / 稍后', ja: 'あとで / 後ほど', ko: '나중에', hi: 'बाद में', ar: 'لاحقاً / بعدين', bn: 'পরে', ur: 'بعد میں'
   },
+
+  // Missing alphabet example nouns & telling-time expressions (full 15-language coverage)
+  'alligator': {
+    en: 'Alligator', es: 'Caimán', fr: 'Alligator', de: 'Alligator', pt: 'Jacaré', ru: 'Аллигатор', id: 'Aligator', tr: 'Timsah',
+    zh: '短吻鳄', ja: 'ワニ', ko: '악어', hi: 'मगरमच्छ', ar: 'تمساح', bn: 'কুমির', ur: 'مگرمچھ'
+  },
+  'antelope': {
+    en: 'Antelope', es: 'Antílope', fr: 'Antilope', de: 'Antilope', pt: 'Antílope', ru: 'Антилопа', id: 'Antelop', tr: 'Antilop',
+    zh: '羚羊', ja: 'レイヨウ', ko: '영양', hi: 'हिरण', ar: 'ظبي', bn: 'হরিণ', ur: 'ہرن'
+  },
+  'aunt': {
+    en: 'Aunt', es: 'Tía', fr: 'Tante', de: 'Tante', pt: 'Tia', ru: 'Тётя', id: 'Bibi / Tante', tr: 'Teyze / Hala',
+    zh: '阿姨 / 姑妈', ja: 'おば', ko: '이모 / 고모', hi: 'चाची / मौसी', ar: 'عمة / خالة', bn: 'খালা / পিসি', ur: 'خالہ / پھوپھی'
+  },
+  'away': {
+    en: 'Away / Absent', es: 'Ausente / Lejos', fr: 'Absent / Loin', de: 'Abwesend / Weg', pt: 'Ausente / Longe', ru: 'В отъезде / Отсутствует', id: 'Pergi / Tidak di rumah', tr: 'Uzakta / Evde yok',
+    zh: '不在家 / 离开', ja: '留守 / 離れて', ko: '부재 / 멀리', hi: 'बाहर / दूर', ar: 'غائب / بعيد', bn: 'বাইরে / অনুপস্থিত', ur: 'غیر حاضر / دور'
+  },
+  'balloon': {
+    en: 'Balloon', es: 'Globo', fr: 'Ballon', de: 'Luftballon', pt: 'Balão', ru: 'Воздушный шар', id: 'Balon', tr: 'Balon',
+    zh: '气球', ja: '風船', ko: '풍선', hi: 'गुब्बारा', ar: 'بالون', bn: 'বেলুন', ur: 'غبارہ'
+  },
+  'baseball': {
+    en: 'Baseball', es: 'Béisbol', fr: 'Baseball', de: 'Baseball', pt: 'Beisebol', ru: 'Бейсбол', id: 'Bisbol', tr: 'Beyzbol',
+    zh: '棒球', ja: '野球', ko: '야구', hi: 'बेसबॉल', ar: 'بيسبول', bn: 'বেসবল', ur: 'بیس بال'
+  },
+  'bear': {
+    en: 'Bear', es: 'Oso', fr: 'Ours', de: 'Bär', pt: 'Urso', ru: 'Медведь', id: 'Beruang', tr: 'Ayı',
+    zh: '熊', ja: '熊（くま）', ko: '곰', hi: 'भालू', ar: 'دب', bn: 'ভাল্লুক', ur: 'ریچھ'
+  },
+  'bow': {
+    en: 'Bow', es: 'Arco', fr: 'Arc', de: 'Bogen', pt: 'Arco', ru: 'Лук (оружие)', id: 'Busur', tr: 'Yay',
+    zh: '弓', ja: '弓（ゆみ）', ko: '활', hi: 'धनुष', ar: 'قوس', bn: 'ধনুক', ur: 'کمان'
+  },
+  'boys': {
+    en: 'Boys', es: 'Niños / Chicos', fr: 'Garçons', de: 'Jungen', pt: 'Meninos', ru: 'Мальчики', id: 'Anak laki-laki', tr: 'Erkek çocuklar',
+    zh: '男孩们', ja: '男の子たち', ko: '소년들', hi: 'लड़के', ar: 'أولاد', bn: 'ছেলেরা', ur: 'لڑکے'
+  },
+  'bull': {
+    en: 'Bull', es: 'Toro', fr: 'Taureau', de: 'Stier', pt: 'Touro', ru: 'Бык', id: 'Banteng', tr: 'Boğa',
+    zh: '公牛', ja: '雄牛', ko: '황소', hi: 'साँड़ / बैल', ar: 'ثور', bn: 'ষাঁড়', ur: 'سانڈ'
+  },
+  'camel': {
+    en: 'Camel', es: 'Camello', fr: 'Chameau', de: 'Kamel', pt: 'Camelo', ru: 'Верблюд', id: 'Unta', tr: 'Deve',
+    zh: '骆驼', ja: 'ラクダ', ko: '낙타', hi: 'ऊँट', ar: 'جمل', bn: 'উট', ur: 'اونٹ'
+  },
+  'candle': {
+    en: 'Candle', es: 'Vela', fr: 'Bougie', de: 'Kerze', pt: 'Vela', ru: 'Свеча', id: 'Lilin', tr: 'Mum',
+    zh: '蜡烛', ja: 'ろうそく', ko: '양초', hi: 'मोमबत्ती', ar: 'شمعة', bn: 'মোমবাতি', ur: 'موم بتی'
+  },
+  'cap': {
+    en: 'Cap', es: 'Gorra', fr: 'Casquette', de: 'Mütze / Kappe', pt: 'Boné', ru: 'Кепка / Шапка', id: 'Topi', tr: 'Şapka / Kep',
+    zh: '帽子', ja: '帽子（キャップ）', ko: '모자', hi: 'टोपी', ar: 'قبعة', bn: 'টুপি', ur: 'ٹوپی'
+  },
+  'chariot': {
+    en: 'Chariot', es: 'Carroza / Carro', fr: 'Char', de: 'Streitwagen', pt: 'Carruagem', ru: 'Колесница', id: 'Kereta kuda', tr: 'Savaş arabası',
+    zh: '战车', ja: '戦車 / 馬車', ko: '전차 / 마차', hi: 'रथ', ar: 'عربة حربية', bn: 'রথ', ur: 'رتھ'
+  },
+  'china': {
+    en: 'China', es: 'China', fr: 'Chine', de: 'China', pt: 'China', ru: 'Китай', id: 'Tiongkok / Cina', tr: 'Çin',
+    zh: '中国', ja: '中国', ko: '중국', hi: 'चीन', ar: 'الصين', bn: 'চীন', ur: 'چین'
+  },
+  'cooking': {
+    en: 'Cooking', es: 'Cocina / Cocinar', fr: 'Cuisine', de: 'Kochen', pt: 'Cozinhar', ru: 'Готовка / Кулинария', id: 'Memasak', tr: 'Yemek pişirme',
+    zh: '烹饪 / 做饭', ja: '料理', ko: '요리', hi: 'खाना पकाना', ar: 'الطبخ', bn: 'রান্না', ur: 'کھانا پکانا'
+  },
+  'crane': {
+    en: 'Crane', es: 'Grulla', fr: 'Grue (oiseau)', de: 'Kranich', pt: 'Grou', ru: 'Журавль', id: 'Bangau', tr: 'Turna',
+    zh: '仙鹤', ja: '鶴（つる）', ko: '학 / 두루미', hi: 'सारस / बगुला', ar: 'طائر الكركي', bn: 'সারস / বক', ur: 'بگلا / سارس'
+  },
+  'cucumber': {
+    en: 'Cucumber', es: 'Pepino', fr: 'Concombre', de: 'Gurke', pt: 'Pepino', ru: 'Огурец', id: 'Timun', tr: 'Salatalık',
+    zh: '黄瓜', ja: 'きゅうり', ko: '오이', hi: 'खीरा', ar: 'خيار', bn: 'শসা', ur: 'کھیرا'
+  },
+  'dawn': {
+    en: 'Dawn', es: 'Amanecer / Alba', fr: 'Aube', de: 'Morgengrauen', pt: 'Amanhecer', ru: 'Рассвет', id: 'Fajar', tr: 'Şafak',
+    zh: '黎明', ja: '夜明け', ko: '새벽', hi: 'भोर / सवेरा', ar: 'فجر', bn: 'ভোর', ur: 'سحر / فجر'
+  },
+  'deer': {
+    en: 'Deer', es: 'Ciervo / Venado', fr: 'Cerf', de: 'Hirsch', pt: 'Veado / Cervo', ru: 'Олень', id: 'Rusa', tr: 'Geyik',
+    zh: '鹿', ja: '鹿（しか）', ko: '사슴', hi: 'हिरण', ar: 'غزال', bn: 'হরিণ', ur: 'ہرن'
+  },
+  'dragon': {
+    en: 'Dragon', es: 'Dragón', fr: 'Dragon', de: 'Drache', pt: 'Dragão', ru: 'Дракон', id: 'Naga', tr: 'Ejderha',
+    zh: '龙', ja: '龍（りゅう）', ko: '용', hi: 'अजगर / ड्रैगन', ar: 'تنين', bn: 'ড্রাগন', ur: 'اژدہا / ڈریگن'
+  },
+  'drink': {
+    en: 'Drink', es: 'Bebida / Beber', fr: 'Boisson / Boire', de: 'Getränk / Trinken', pt: 'Bebida / Beber', ru: 'Напиток / Пить', id: 'Minuman', tr: 'İçecek',
+    zh: '饮料 / 喝', ja: '飲み物', ko: '음료 / 마시다', hi: 'पेय / पीना', ar: 'مشروب', bn: 'পানীয়', ur: 'مشروب / پینا'
+  },
+  'drum': {
+    en: 'Drum', es: 'Tambor', fr: 'Tambour', de: 'Trommel', pt: 'Tambor', ru: 'Барабан', id: 'Drum / Gendang', tr: 'Davul',
+    zh: '鼓', ja: '太鼓（たいこ）', ko: '북 / 드럼', hi: 'डमरू / ढोल', ar: 'طبلة', bn: 'ঢাক / ঢোল', ur: 'ڈھول'
+  },
+  'duck': {
+    en: 'Duck', es: 'Pato', fr: 'Canard', de: 'Ente', pt: 'Pato', ru: 'Утка', id: 'Bebek', tr: 'Ördek',
+    zh: '鸭子', ja: 'アヒル', ko: '오리', hi: 'बत्तख़', ar: 'بطة', bn: 'হাঁস', ur: 'بطخ'
+  },
+  'eagle': {
+    en: 'Eagle', es: 'Águila', fr: 'Aigle', de: 'Adler', pt: 'Águia', ru: 'Орёл', id: 'Elang', tr: 'Kartal',
+    zh: '鹰', ja: '鷲（わし）', ko: '독수리', hi: 'गरुड़ / चील', ar: 'نسر', bn: 'ঈগল', ur: 'عقاب'
+  },
+  'earth': {
+    en: 'Earth / Land', es: 'Tierra', fr: 'Terre', de: 'Erde', pt: 'Terra', ru: 'Земля', id: 'Bumi / Tanah', tr: 'Toprak / Dünya',
+    zh: '地球 / 土地', ja: '地球 / 土地', ko: '지구 / 땅', hi: 'पृथ्वी / धरती', ar: 'الأرض', bn: 'পৃথিবী / মাটি', ur: 'زمین'
+  },
+  'festival': {
+    en: 'Festival', es: 'Festival / Fiesta', fr: 'Festival / Fête', de: 'Fest / Festival', pt: 'Festival', ru: 'Праздник / Фестиваль', id: 'Festival / Perayaan', tr: 'Bayram / Festival',
+    zh: '节日', ja: '祭り（まつり）', ko: '축제', hi: 'त्योहार / उत्सव', ar: 'مهرجان / عيد', bn: 'উৎসব', ur: 'تہوار / جشن'
+  },
+  'flag': {
+    en: 'Flag', es: 'Bandera', fr: 'Drapeau', de: 'Flagge / Fahne', pt: 'Bandeira', ru: 'Флаг', id: 'Bendera', tr: 'Bayrak',
+    zh: '旗帜', ja: '旗（はた）', ko: '깃발 / 국기', hi: 'झंडा', ar: 'علم / راية', bn: 'পতাকা', ur: 'جھنڈا'
+  },
+  'flowerpot': {
+    en: 'Flowerpot', es: 'Maceta', fr: 'Pot de fleurs', de: 'Blumentopf', pt: 'Vaso de flores', ru: 'Цветочный горшок', id: 'Pot bunga', tr: 'Saksı',
+    zh: '花盆', ja: '植木鉢', ko: '화분', hi: 'गमला', ar: 'أصيص زهور', bn: 'ফুলের টব', ur: 'گملہ'
+  },
+  'forest': {
+    en: 'Forest', es: 'Bosque', fr: 'Forêt', de: 'Wald', pt: 'Floresta', ru: 'Лес', id: 'Hutan', tr: 'Orman',
+    zh: '森林', ja: '森（もり）', ko: '숲', hi: 'जंगल / वन', ar: 'غابة', bn: 'বন / জঙ্গল', ur: 'جنگل'
+  },
+  'fox': {
+    en: 'Fox', es: 'Zorro', fr: 'Renard', de: 'Fuchs', pt: 'Raposa', ru: 'Лиса', id: 'Rubah', tr: 'Tilki',
+    zh: '狐狸', ja: '狐（きつね）', ko: '여우', hi: 'लोमड़ी', ar: 'ثعلب', bn: 'শিয়াল', ur: 'لومڑی'
+  },
+  'fridge': {
+    en: 'Fridge', es: 'Nevera / Refrigerador', fr: 'Réfrigérateur / Frigo', de: 'Kühlschrank', pt: 'Geladeira', ru: 'Холодильник', id: 'Kulkas', tr: 'Buzdolabı',
+    zh: '冰箱', ja: '冷蔵庫', ko: '냉장고', hi: 'फ्रिज', ar: 'ثلاجة', bn: 'ফ্রিজ', ur: 'فریج'
+  },
+  'frog': {
+    en: 'Frog', es: 'Rana', fr: 'Grenouille', de: 'Frosch', pt: 'Sapo', ru: 'Лягушка', id: 'Katak', tr: 'Kurbağa',
+    zh: '青蛙', ja: 'カエル', ko: '개구리', hi: 'मेंढक', ar: 'ضفدع', bn: 'ব্যাঙ', ur: 'مینڈک'
+  },
+  'goose': {
+    en: 'Goose', es: 'Ganso', fr: 'Oie', de: 'Gans', pt: 'Ganso', ru: 'Гусь', id: 'Angsa', tr: 'Kaz',
+    zh: '鹅', ja: 'ガチョウ', ko: '거위', hi: 'हंस', ar: 'أوزة', bn: 'রাজহাঁস', ur: 'ہنس'
+  },
+  'hailstorm': {
+    en: 'Hailstorm', es: 'Granizada', fr: 'Tempête de grêle', de: 'Hagelsturm', pt: 'Tempestade de granizo', ru: 'Град', id: 'Hujan es', tr: 'Dolu fırtınası',
+    zh: '冰雹', ja: '雹（ひょう）', ko: '우박', hi: 'ओलावृष्टि', ar: 'عاصفة برد', bn: 'শিলাবৃষ্টি', ur: 'ژالہ باری'
+  },
+  'halwa': {
+    en: 'Halwa (Sweet dessert)', es: 'Halva (postre dulce)', fr: 'Halva (dessert)', de: 'Halva (Süßspeise)', pt: 'Halva (doce)', ru: 'Халва', id: 'Halwa (manisan)', tr: 'Helva',
+    zh: '哈尔瓦甜点', ja: 'ハルヴァ（甘い菓子）', ko: '할와 (달콤한 디저트)', hi: 'हलवा', ar: 'حلوى', bn: 'হালুয়া', ur: 'حلوہ'
+  },
+  'hand': {
+    en: 'Hand', es: 'Mano', fr: 'Main', de: 'Hand', pt: 'Mão', ru: 'Рука (кисть)', id: 'Tangan', tr: 'El',
+    zh: '手', ja: '手（て）', ko: '손', hi: 'हाथ', ar: 'يد', bn: 'হাত', ur: 'ہاتھ'
+  },
+  'hat': {
+    en: 'Hat', es: 'Sombrero', fr: 'Chapeau', de: 'Hut', pt: 'Chapéu', ru: 'Шляпа', id: 'Topi', tr: 'Şapka',
+    zh: '帽子', ja: '帽子（ぼうし）', ko: '모자', hi: 'टोपी', ar: 'قبعة', bn: 'টুপি', ur: 'ٹوپی'
+  },
+  'hexagon': {
+    en: 'Hexagon', es: 'Hexágono', fr: 'Hexagone', de: 'Sechseck', pt: 'Hexágono', ru: 'Шестиугольник', id: 'Segi enam', tr: 'Altıgen',
+    zh: '六边形', ja: '六角形', ko: '육각형', hi: 'षट्कोण', ar: 'سداسي الأضلاع', bn: 'ষড়ভুজ', ur: 'مسدس'
+  },
+  'horse': {
+    en: 'Horse', es: 'Caballo', fr: 'Cheval', de: 'Pferd', pt: 'Cavalo', ru: 'Лошадь / Конь', id: 'Kuda', tr: 'At',
+    zh: '马', ja: '馬（うま）', ko: '말', hi: 'घोड़ा', ar: 'حصان', bn: 'ঘোড়া', ur: 'گھوڑا'
+  },
+  'i / me': {
+    en: 'I / Me', es: 'Yo', fr: 'Je / Moi', de: 'Ich', pt: 'Eu', ru: 'Я', id: 'Saya / Aku', tr: 'Ben',
+    zh: '我', ja: '私（わたし）', ko: '나 / 저', hi: 'मैं', ar: 'أنا', bn: 'আমি', ur: 'میں'
+  },
+  'inkpot': {
+    en: 'Inkpot', es: 'Tintero', fr: 'Encrier', de: 'Tintenfass', pt: 'Tinteiro', ru: 'Чернильница', id: 'Botol tinta', tr: 'Mürekkep hokkası',
+    zh: '墨水瓶', ja: 'インク壺', ko: '잉크병', hi: 'दवात', ar: 'محبرة', bn: 'দোয়াত / কালির পাত্র', ur: 'دوات'
+  },
+  'insect': {
+    en: 'Insect', es: 'Insecto', fr: 'Insecte', de: 'Insekt', pt: 'Inseto', ru: 'Насекомое', id: 'Serangga', tr: 'Böcek',
+    zh: '昆虫', ja: '虫（むし）', ko: '곤충 / 벌레', hi: 'कीड़ा', ar: 'حشرة', bn: 'পোকা', ur: 'کیڑا'
+  },
+  'japan': {
+    en: 'Japan', es: 'Japón', fr: 'Japon', de: 'Japan', pt: 'Japão', ru: 'Япония', id: 'Jepang', tr: 'Japonya',
+    zh: '日本', ja: '日本', ko: '일본', hi: 'जापान', ar: 'اليابان', bn: 'জাপান', ur: 'جاپان'
+  },
+  'kite': {
+    en: 'Kite', es: 'Cometa', fr: 'Cerf-volant', de: 'Drachen (Spielzeug)', pt: 'Pipa', ru: 'Воздушный змей', id: 'Layang-layang', tr: 'Uçurtma',
+    zh: '风筝', ja: '凧（たこ）', ko: '연', hi: 'पतंग', ar: 'طائرة ورقية', bn: 'ঘুড়ি', ur: 'پتنگ'
+  },
+  'letter': {
+    en: 'Letter', es: 'Carta', fr: 'Lettre', de: 'Brief', pt: 'Carta', ru: 'Письмо', id: 'Surat', tr: 'Mektup',
+    zh: '信件', ja: '手紙', ko: '편지', hi: 'पत्र / चिट्ठी', ar: 'رسالة', bn: 'চিঠি', ur: 'خط'
+  },
+  'lid': {
+    en: 'Lid / Cover', es: 'Tapa', fr: 'Couvercle', de: 'Deckel', pt: 'Tampa', ru: 'Крышка', id: 'Tutup', tr: 'Kapak',
+    zh: '盖子', ja: '蓋（ふた）', ko: '뚜껑', hi: 'ढक्कन', ar: 'غطاء', bn: 'ঢাকনা', ur: 'ڈھکن'
+  },
+  'lion': {
+    en: 'Lion', es: 'León', fr: 'Lion', de: 'Löwe', pt: 'Leão', ru: 'Лев', id: 'Singa', tr: 'Aslan',
+    zh: '狮子', ja: 'ライオン', ko: '사자', hi: 'शेर / सिंह', ar: 'أسد', bn: 'সিংহ', ur: 'شیر'
+  },
+  'lip': {
+    en: 'Lip', es: 'Labio', fr: 'Lèvre', de: 'Lippe', pt: 'Lábio', ru: 'Губа', id: 'Bibir', tr: 'Dudak',
+    zh: '嘴唇', ja: '唇（くちびる）', ko: '입술', hi: 'होंठ', ar: 'شفة', bn: 'ঠোঁট', ur: 'ہونٹ'
+  },
+  'lotus': {
+    en: 'Lotus', es: 'Loto', fr: 'Lotus', de: 'Lotusblume', pt: 'Lótus', ru: 'Лотос', id: 'Teratai', tr: 'Nilüfer / Lotus',
+    zh: '莲花', ja: '蓮（はす）', ko: '연꽃', hi: 'कमल', ar: 'زهرة اللوتس', bn: 'পদ্মফুল', ur: 'کنول'
+  },
+  'mirror': {
+    en: 'Mirror', es: 'Espejo', fr: 'Miroir', de: 'Spiegel', pt: 'Espelho', ru: 'Зеркало', id: 'Cermin', tr: 'Ayna',
+    zh: '镜子', ja: '鏡（かがみ）', ko: '거울', hi: 'आईना / दर्पण', ar: 'مرآة', bn: 'আয়না', ur: 'آئینہ'
+  },
+  'mister': {
+    en: 'Mister / Sir', es: 'Señor', fr: 'Monsieur', de: 'Herr', pt: 'Senhor', ru: 'Господин / Мистер', id: 'Tuan / Bapak', tr: 'Bay',
+    zh: '先生', ja: '氏 / さん', ko: '씨 / 선생님', hi: 'श्रीमान', ar: 'سيد', bn: 'জনাব', ur: 'جناب'
+  },
+  'mortar': {
+    en: 'Mortar (Grinding bowl)', es: 'Mortero', fr: 'Mortier', de: 'Mörser', pt: 'Pilão / Almofariz', ru: 'Ступка', id: 'Lesung / Cobek', tr: 'Havan',
+    zh: '研钵 / 臼', ja: 'すり鉢 / 臼', ko: '절구', hi: 'ओखली', ar: 'هاون', bn: 'হামানদিস্তা', ur: 'اوکھلی'
+  },
+  'owl': {
+    en: 'Owl', es: 'Búho / Lechuza', fr: 'Hibou', de: 'Eule', pt: 'Coruja', ru: 'Сова', id: 'Burung hantu', tr: 'Baykuş',
+    zh: '猫头鹰', ja: 'フクロウ', ko: '부엉이 / 올빼미', hi: 'उल्लू', ar: 'بومة', bn: 'পেঁচা', ur: 'الو'
+  },
+  'paddy': {
+    en: 'Paddy (Rice crop)', es: 'Arrozal', fr: 'Rizière / Riz paddy', de: 'Reispflanze', pt: 'Arroz com casca', ru: 'Рис-сырец', id: 'Padi', tr: 'Çeltik',
+    zh: '稻谷', ja: '稲（いね）', ko: '벼', hi: 'धान', ar: 'أرز غير مقشور', bn: 'ধান', ur: 'دھان'
+  },
+  'parrot': {
+    en: 'Parrot', es: 'Loro', fr: 'Perroquet', de: 'Papagei', pt: 'Papagaio', ru: 'Попугай', id: 'Burung beo', tr: 'Papağan',
+    zh: '鹦鹉', ja: 'オウム / インコ', ko: '앵무새', hi: 'तोता', ar: 'ببغاء', bn: 'তোতা পাখি', ur: 'طوطا'
+  },
+  'piano': {
+    en: 'Piano', es: 'Piano', fr: 'Piano', de: 'Klavier', pt: 'Piano', ru: 'Пианино / Фортепиано', id: 'Piano', tr: 'Piyano',
+    zh: '钢琴', ja: 'ピアノ', ko: '피아노', hi: 'पियानो', ar: 'بيانو', bn: 'পিয়ানো', ur: 'پیانو'
+  },
+  'plushie': {
+    en: 'Plushie / Stuffed toy', es: 'Peluche', fr: 'Peluche', de: 'Stofftier', pt: 'Pelúcia', ru: 'Плюшевая игрушка', id: 'Boneka', tr: 'Peluş oyuncak',
+    zh: '毛绒玩具', ja: 'ぬいぐるみ', ko: '봉제 인형', hi: 'खिलौना / टेडी', ar: 'دمية محشوة', bn: 'পুতুল', ur: 'کھلونا گڑیا'
+  },
+  'pomegranate': {
+    en: 'Pomegranate', es: 'Granada', fr: 'Grenade (fruit)', de: 'Granatapfel', pt: 'Romã', ru: 'Гранат (фрукт)', id: 'Delima', tr: 'Nar',
+    zh: '石榴', ja: 'ザクロ', ko: '석류', hi: 'अनार', ar: 'رمان', bn: 'ডালিম / বেদানা', ur: 'انار'
+  },
+  'python': {
+    en: 'Python', es: 'Pitón', fr: 'Python', de: 'Python', pt: 'Píton', ru: 'Питон', id: 'Ular piton', tr: 'Piton',
+    zh: '蟒蛇', ja: 'ニシキヘビ', ko: '비단뱀', hi: 'अजगर', ar: 'ثعبان الأصلة', bn: 'অজগর', ur: 'اژدہا'
+  },
+  'rabbit': {
+    en: 'Rabbit', es: 'Conejo', fr: 'Lapin', de: 'Kaninchen', pt: 'Coelho', ru: 'Кролик', id: 'Kelinci', tr: 'Tavşan',
+    zh: '兔子', ja: 'うさぎ', ko: '토끼', hi: 'खरगोश', ar: 'أرنب', bn: 'খরগোশ', ur: 'خرگوش'
+  },
+  'rose': {
+    en: 'Rose', es: 'Rosa', fr: 'Rose', de: 'Rose', pt: 'Rosa', ru: 'Роза', id: 'Mawar', tr: 'Gül',
+    zh: '玫瑰', ja: 'バラ', ko: '장미', hi: 'गुलाब', ar: 'وردة', bn: 'গোলাপ', ur: 'گلاب'
+  },
+  'sacred fire': {
+    en: 'Sacred fire', es: 'Fuego sagrado', fr: 'Feu sacré', de: 'Heiliges Feuer', pt: 'Fogo sagrado', ru: 'Священный огонь', id: 'Api suci', tr: 'Kutsal ateş',
+    zh: '圣火', ja: '聖火', ko: '성화', hi: 'यज्ञ', ar: 'نار مقدسة', bn: 'যজ্ঞের আগুন', ur: 'مقدس آگ'
+  },
+  'sadness': {
+    en: 'Sadness', es: 'Tristeza', fr: 'Tristesse', de: 'Traurigkeit', pt: 'Tristeza', ru: 'Грусть / Печаль', id: 'Kesedihan', tr: 'Üzüntü',
+    zh: '悲伤', ja: '悲しみ', ko: '슬픔', hi: 'उदासी / दुख', ar: 'حزن', bn: 'দুঃখ', ur: 'اداسی'
+  },
+  'sage': {
+    en: 'Sage (Wise person)', es: 'Sabio', fr: 'Sage', de: 'Weiser', pt: 'Sábio', ru: 'Мудрец', id: 'Orang bijak / Resi', tr: 'Bilge',
+    zh: '圣贤', ja: '賢者', ko: '현자', hi: 'ऋषि', ar: 'حكيم', bn: 'ঋষি / জ্ঞানী', ur: 'دانا / حکیم'
+  },
+  'season': {
+    en: 'Season', es: 'Estación / Temporada', fr: 'Saison', de: 'Jahreszeit', pt: 'Estação', ru: 'Сезон / Время года', id: 'Musim', tr: 'Mevsim',
+    zh: '季节', ja: '季節', ko: '계절', hi: 'ऋतु / मौसम', ar: 'فصل / موسم', bn: 'ঋতু', ur: 'موسم'
+  },
+  'ship': {
+    en: 'Ship', es: 'Barco / Buque', fr: 'Navire / Bateau', de: 'Schiff', pt: 'Navio', ru: 'Корабль', id: 'Kapal', tr: 'Gemi',
+    zh: '船 / 轮船', ja: '船（ふね）', ko: '배 / 선박', hi: 'जहाज़', ar: 'سفينة', bn: 'জাহাজ', ur: 'بحری جہاز'
+  },
+  'soap': {
+    en: 'Soap', es: 'Jabón', fr: 'Savon', de: 'Seife', pt: 'Sabão / Sabonete', ru: 'Мыло', id: 'Sabun', tr: 'Sabun',
+    zh: '肥皂', ja: '石鹸', ko: '비누', hi: 'साबुन', ar: 'صابون', bn: 'সাবান', ur: 'صابن'
+  },
+  'spectacles': {
+    en: 'Spectacles / Glasses', es: 'Gafas / Lentes', fr: 'Lunettes', de: 'Brille', pt: 'Óculos', ru: 'Очки', id: 'Kacamata', tr: 'Gözlük',
+    zh: '眼镜', ja: '眼鏡（めがね）', ko: '안경', hi: 'ऐनक / चश्मा', ar: 'نظارة', bn: 'চশমা', ur: 'عینک'
+  },
+  'spinning top': {
+    en: 'Spinning top', es: 'Trompo / Peonza', fr: 'Toupie', de: 'Kreisel', pt: 'Pião', ru: 'Волчок', id: 'Gasing', tr: 'Topaç',
+    zh: '陀螺', ja: '独楽（こま）', ko: '팽이', hi: 'लट्टू', ar: 'بلبل (لعبة)', bn: 'লাটিম', ur: 'لٹو'
+  },
+  'stamp': {
+    en: 'Stamp / Seal', es: 'Sello', fr: 'Timbre / Tampon', de: 'Stempel', pt: 'Carimbo / Selo', ru: 'Печать / Штамп', id: 'Stempel / Cap', tr: 'Damga / Mühür',
+    zh: '印章', ja: 'ハンコ / 切手', ko: '도장 / 우표', hi: 'ठप्पा / मोहर', ar: 'ختم', bn: 'সিলমোহর / ডাকটিকিট', ur: 'مہر'
+  },
+  'sugarcane': {
+    en: 'Sugarcane', es: 'Caña de azúcar', fr: 'Canne à sucre', de: 'Zuckerrohr', pt: 'Cana-de-açúcar', ru: 'Сахарный тростник', id: 'Tebu', tr: 'Şeker kamışı',
+    zh: '甘蔗', ja: 'サトウキビ', ko: '사탕수수', hi: 'ईख / गन्ना', ar: 'قصب السكر', bn: 'আখ', ur: 'گنا'
+  },
+  'summer': {
+    en: 'Summer', es: 'Verano', fr: 'Été', de: 'Sommer', pt: 'Verão', ru: 'Лето', id: 'Musim panas', tr: 'Yaz',
+    zh: '夏天', ja: '夏（なつ）', ko: '여름', hi: 'गर्मी का मौसम', ar: 'الصيف', bn: 'গ্রীষ্মকাল', ur: 'گرمیوں کا موسم'
+  },
+  'sushi': {
+    en: 'Sushi', es: 'Sushi', fr: 'Sushi', de: 'Sushi', pt: 'Sushi', ru: 'Суши', id: 'Sushi', tr: 'Suşi',
+    zh: '寿司', ja: '寿司（すし）', ko: '초밥 / 스시', hi: 'सुशी', ar: 'سوشي', bn: 'সুশি', ur: 'سوشی'
+  },
+  'tamarind': {
+    en: 'Tamarind', es: 'Tamarindo', fr: 'Tamarin', de: 'Tamarinde', pt: 'Tamarindo', ru: 'Тамаринд', id: 'Asam jawa', tr: 'Demirhindi',
+    zh: '罗望子', ja: 'タマリンド', ko: '타마린드', hi: 'इमली', ar: 'تمر هندي', bn: 'তেঁতুল', ur: 'املی'
+  },
+  'tap': {
+    en: 'Tap / Faucet', es: 'Grifo / Llave', fr: 'Robinet', de: 'Wasserhahn', pt: 'Torneira', ru: 'Кран (водопроводный)', id: 'Keran air', tr: 'Musluk',
+    zh: '水龙头', ja: '蛇口', ko: '수도꼭지', hi: 'नल', ar: 'صنبور', bn: 'কল', ur: 'نلکا'
+  },
+  'tomato': {
+    en: 'Tomato', es: 'Tomate', fr: 'Tomate', de: 'Tomate', pt: 'Tomate', ru: 'Помидор / Томат', id: 'Tomat', tr: 'Domates',
+    zh: '西红柿 / 番茄', ja: 'トマト', ko: '토마토', hi: 'टमाटर', ar: 'طماطم', bn: 'টমেটো', ur: 'ٹماٹر'
+  },
+  'treasure': {
+    en: 'Treasure', es: 'Tesoro', fr: 'Trésor', de: 'Schatz', pt: 'Tesouro', ru: 'Сокровище / Клад', id: 'Harta karun', tr: 'Hazine',
+    zh: '宝藏 / 财宝', ja: '宝（たから）', ko: '보물', hi: 'ख़ज़ाना', ar: 'كنز', bn: 'গুপ্তধন / ধন', ur: 'خزانہ'
+  },
+  'turnip': {
+    en: 'Turnip', es: 'Nabo', fr: 'Navet', de: 'Steckrübe / Rübe', pt: 'Nabo', ru: 'Репа', id: 'Lobak putih', tr: 'Şalgam',
+    zh: '芜菁 / 萝卜', ja: 'カブ', ko: '순무', hi: 'शलगम', ar: 'لفت', bn: 'শালগম', ur: 'شلجم'
+  },
+  'vehicle': {
+    en: 'Vehicle', es: 'Vehículo', fr: 'Véhicule', de: 'Fahrzeug', pt: 'Veículo', ru: 'Транспорт / Машина', id: 'Kendaraan', tr: 'Araç / Taşıt',
+    zh: '车辆', ja: '乗り物', ko: '차량 / 탈것', hi: 'वाहन', ar: 'مركبة', bn: 'বাহন / গাড়ি', ur: 'گاڑی / سواری'
+  },
+  'vessel': {
+    en: 'Vessel / Container', es: 'Vasija / Recipiente', fr: 'Récipient / Vase', de: 'Gefäß', pt: 'Vasilha / Recipiente', ru: 'Сосуд', id: 'Wadah / Bejana', tr: 'Kap',
+    zh: '器皿 / 容器', ja: '容器（ようき）', ko: '그릇 / 용기', hi: 'बर्तन / पात्र', ar: 'إناء / وعاء', bn: 'পাত্র', ur: 'برتن / ظرف'
+  },
+  'watermelon': {
+    en: 'Watermelon', es: 'Sandía', fr: 'Pastèque', de: 'Wassermelone', pt: 'Melancia', ru: 'Арбуз', id: 'Semangka', tr: 'Karpuz',
+    zh: '西瓜', ja: 'スイカ', ko: '수박', hi: 'तरबूज़', ar: 'بطيخ', bn: 'তরমুজ', ur: 'تربوز'
+  },
+  'wolf': {
+    en: 'Wolf', es: 'Lobo', fr: 'Loup', de: 'Wolf', pt: 'Lobo', ru: 'Волк', id: 'Serigala', tr: 'Kurt',
+    zh: '狼', ja: '狼（おおかみ）', ko: '늑대', hi: 'भेड़िया', ar: 'ذئب', bn: 'নেকড়ে', ur: 'بھیڑیا'
+  },
+  'wool': {
+    en: 'Wool', es: 'Lana', fr: 'Laine', de: 'Wolle', pt: 'Lã', ru: 'Шерсть', id: 'Wol', tr: 'Yün',
+    zh: '羊毛', ja: '羊毛（ウール）', ko: '양모 / 울', hi: 'ऊन', ar: 'صوف', bn: 'উল / পশম', ur: 'اون'
+  },
+  'yam': {
+    en: 'Yam', es: 'Ñame', fr: 'Igname', de: 'Yamswurzel', pt: 'Inhame', ru: 'Ямс / Батат', id: 'Ubi / Talas', tr: 'Yer elması',
+    zh: '山药', ja: 'ヤムイモ', ko: '참마 / 얌', hi: 'रतालू', ar: 'يام (بطاطا)', bn: 'কচু / মিষ্টি আলু', ur: 'رتالو'
+  },
+
+  // Missing Time expressions (all 15 languages)
+  "it is 1:00 (one o'clock)": {
+    en: "It is 1:00 (One o'clock)", es: 'Es la 1:00 (la una)', fr: 'Il est 1h00 (une heure)', de: 'Es ist 1:00 Uhr', pt: 'É 1:00 (uma hora)', ru: 'Сейчас 1:00 (час дня)', id: 'Sekarang jam 1:00 (satu)', tr: 'Saat 1:00 (bir)',
+    zh: '现在一点 (1:00)', ja: '1時です (1:00)', ko: '한 시입니다 (1:00)', hi: 'एक बजा है (1:00)', ar: 'الساعة الواحدة (1:00)', bn: 'এখন একটা বাজে (১:০০)', ur: 'ایک بجا ہے (1:00)'
+  },
+  "it is 2:00 (two o'clock)": {
+    en: "It is 2:00 (Two o'clock)", es: 'Son las 2:00 (dos)', fr: 'Il est 2h00 (deux heures)', de: 'Es ist 2:00 Uhr', pt: 'São 2:00 (duas horas)', ru: 'Сейчас 2:00 (два часа)', id: 'Sekarang jam 2:00 (dua)', tr: 'Saat 2:00 (iki)',
+    zh: '现在两点 (2:00)', ja: '2時です (2:00)', ko: '두 시입니다 (2:00)', hi: 'दो बजे हैं (2:00)', ar: 'الساعة الثانية (2:00)', bn: 'এখন দুইটা বাজে (২:০০)', ur: 'دو بجے ہیں (2:00)'
+  },
+  "it is 3:00 (three o'clock)": {
+    en: "It is 3:00 (Three o'clock)", es: 'Son las 3:00 (tres)', fr: 'Il est 3h00 (trois heures)', de: 'Es ist 3:00 Uhr', pt: 'São 3:00 (três horas)', ru: 'Сейчас 3:00 (три часа)', id: 'Sekarang jam 3:00 (tiga)', tr: 'Saat 3:00 (üç)',
+    zh: '现在三点 (3:00)', ja: '3時です (3:00)', ko: '세 시입니다 (3:00)', hi: 'तीन बजे हैं (3:00)', ar: 'الساعة الثالثة (3:00)', bn: 'এখন তিনটা বাজে (৩:০০)', ur: 'تین بجے ہیں (3:00)'
+  },
+  '1:30 (half past one)': {
+    en: '1:30 (Half past one)', es: 'La 1:30 (una y media)', fr: '1h30 (une heure et demie)', de: '1:30 Uhr (halb zwei)', pt: '1:30 (uma e meia)', ru: '1:30 (половина второго)', id: '1:30 (setengah dua)', tr: 'Saat 1:30 (bir buçuk)',
+    zh: '一点半 (1:30)', ja: '1時半 (1:30)', ko: '1시 30분 (1시 반)', hi: 'डेढ़ बजा है (1:30)', ar: 'الواحدة والنصف (1:30)', bn: 'দেড়টা (১:৩০)', ur: 'ڈیڑھ بجا ہے (1:30)'
+  },
+  '2:30 (half past two)': {
+    en: '2:30 (Half past two)', es: 'Las 2:30 (dos y media)', fr: '2h30 (deux heures et demie)', de: '2:30 Uhr (halb drei)', pt: '2:30 (duas e meia)', ru: '2:30 (половина третьего)', id: '2:30 (setengah tiga)', tr: 'Saat 2:30 (iki buçuk)',
+    zh: '两点半 (2:30)', ja: '2時半 (2:30)', ko: '2시 30분 (2시 반)', hi: 'ढाई बजे हैं (2:30)', ar: 'الثانية والنصف (2:30)', bn: 'আড়াইটা (২:৩০)', ur: 'ڈھائی بجے ہیں (2:30)'
+  },
+  '4:30 (half past four)': {
+    en: '4:30 (Half past four)', es: 'Las 4:30 (cuatro y media)', fr: '4h30 (quatre heures et demie)', de: '4:30 Uhr (halb fünf)', pt: '4:30 (quatro e meia)', ru: '4:30 (половина пятого)', id: '4:30 (setengah lima)', tr: 'Saat 4:30 (dört buçuk)',
+    zh: '四点半 (4:30)', ja: '4時半 (4:30)', ko: '4시 30분 (4시 반)', hi: 'साढ़े चार (4:30)', ar: 'الرابعة والنصف (4:30)', bn: 'সাড়ে চারটা (৪:৩০)', ur: 'ساڑھے چار بجے ہیں (4:30)'
+  },
+  '8:00 am (morning)': {
+    en: '8:00 AM (Morning)', es: '8:00 AM (Mañana)', fr: '8h00 (Matin)', de: '8:00 Uhr (Morgens)', pt: '8:00 (Manhã)', ru: '8:00 утра', id: 'Jam 8:00 pagi', tr: 'Sabah 8:00',
+    zh: '早上八点 (8:00)', ja: '午前8時 (8:00)', ko: '오전 8시 (아침)', hi: 'सुबह 8:00 बजे', ar: 'الثامنة صباحاً (8:00)', bn: 'সকাল আটটা (৮:০০)', ur: 'صبح کے آٹھ بجے (8:00)'
+  },
+  '12:00 pm (noon)': {
+    en: '12:00 PM (Noon)', es: '12:00 PM (Mediodía)', fr: '12h00 (Midi)', de: '12:00 Uhr (Mittag)', pt: '12:00 (Meio-dia)', ru: '12:00 (Полдень)', id: 'Jam 12:00 siang', tr: 'Öğlen 12:00',
+    zh: '中午十二点 (12:00)', ja: '正午12時 (12:00)', ko: '정오 12시 (낮)', hi: 'दोपहर 12:00 बजे', ar: 'الثانية عشرة ظهراً (12:00)', bn: 'দুপুর বারোটা (১২:০০)', ur: 'دوپہر کے بارہ بجے (12:00)'
+  },
+  '7:00 pm (evening)': {
+    en: '7:00 PM (Evening)', es: '7:00 PM (Tarde / Noche)', fr: '19h00 (Soir)', de: '19:00 Uhr (Abends)', pt: '19:00 (Noite)', ru: '19:00 (Вечер)', id: 'Jam 7:00 malam', tr: 'Akşam 7:00',
+    zh: '晚上七点 (7:00)', ja: '午後7時 (夕方・夜)', ko: '오후 7시 (저녁)', hi: 'शाम 7:00 बजे', ar: 'السابعة مساءً (7:00)', bn: 'সন্ধ্যা সাতটা (৭:০০)', ur: 'شام کے سات بجے (7:00)'
+  },
+  '10:00 pm (night)': {
+    en: '10:00 PM (Night)', es: '10:00 PM (Noche)', fr: '22h00 (Nuit)', de: '22:00 Uhr (Nachts)', pt: '22:00 (Noite)', ru: '22:00 (Ночь)', id: 'Jam 10:00 malam', tr: 'Gece 10:00',
+    zh: '晚上十点 (10:00)', ja: '午後10時 (夜)', ko: '밤 10시', hi: 'रात 10:00 बजे', ar: 'العاشرة ليلاً (10:00)', bn: 'রাত দশটা (১০:০০)', ur: 'رات کے دس بجے (10:00)'
+  },
+  'at noon (12:00 pm)': {
+    en: 'At noon (12:00 PM)', es: 'Al mediodía (12:00 PM)', fr: 'À midi (12h00)', de: 'Mittags (12:00 Uhr)', pt: 'Ao meio-dia (12:00)', ru: 'В полдень (12:00)', id: 'Pada siang hari (12:00)', tr: 'Öğlen (12:00)',
+    zh: '在中午 (12:00)', ja: '正午に (12:00)', ko: '정오에 (12:00)', hi: 'दोपहर में (12:00)', ar: 'ظهراً (12:00)', bn: 'দুপুরবেলা (১২:০০)', ur: 'دوپہر کے وقت (12:00)'
+  },
+  'half past (:30)': {
+    en: 'Half past (:30)', es: 'Y media (:30)', fr: 'Et demie (:30)', de: 'Halb (:30)', pt: 'E meia (:30)', ru: 'Половина (:30)', id: 'Setengah (:30)', tr: 'Buçuk (:30)',
+    zh: '半 (:30)', ja: '半 (:30)', ko: '반 (:30)', hi: 'साढ़े (:30)', ar: 'والنصف (:30)', bn: 'সাড়ে (:৩০)', ur: 'ساڑھے (:30)'
+  },
+  'quarter past (:15)': {
+    en: 'Quarter past (:15)', es: 'Y cuarto (:15)', fr: 'Et quart (:15)', de: 'Viertel nach (:15)', pt: 'E quinze (:15)', ru: 'Четверть (:15)', id: 'Lewat seperempat (:15)', tr: 'Çeyrek geçe (:15)',
+    zh: '一刻 (:15)', ja: '15分過ぎ (:15)', ko: '15분 (사분 지남)', hi: 'सवा (:15)', ar: 'والربع (:15)', bn: 'সওয়া (:১৫)', ur: 'سوا (:15)'
+  },
+  'quarter to (:45)': {
+    en: 'Quarter to (:45)', es: 'Menos cuarto (:45)', fr: 'Moins le quart (:45)', de: 'Viertel vor (:45)', pt: 'Quinze para (:45)', ru: 'Без четверти (:45)', id: 'Kurang seperempat (:45)', tr: 'Çeyrek kala (:45)',
+    zh: '差一刻 (:45)', ja: '15分前 (:45)', ko: '15분 전 (:45)', hi: 'पौने (:45)', ar: 'إلا ربعاً (:45)', bn: 'পৌনে (:৪৫)', ur: 'پونے (:45)'
+  },
+  'am (morning)': {
+    en: 'AM (Morning)', es: 'AM (Mañana)', fr: 'Matin (AM)', de: 'Vormittag (AM)', pt: 'Manhã (AM)', ru: 'Утра (AM)', id: 'Pagi (AM)', tr: 'Sabah (AM)',
+    zh: '上午 (AM)', ja: '午前 (AM)', ko: '오전 (AM)', hi: 'सुबह (AM)', ar: 'صباحاً (AM)', bn: 'সকাল (AM)', ur: 'صبح (AM)'
+  },
+  'pm (afternoon)': {
+    en: 'PM (Afternoon)', es: 'PM (Tarde)', fr: 'Après-midi (PM)', de: 'Nachmittag (PM)', pt: 'Tarde (PM)', ru: 'Дня / Вечера (PM)', id: 'Siang / Sore (PM)', tr: 'Öğleden sonra (PM)',
+    zh: '下午 (PM)', ja: '午後 (PM)', ko: '오후 (PM)', hi: 'दोपहर (PM)', ar: 'مساءً (PM)', bn: 'দুপুর / বিকেল (PM)', ur: 'دوپہر / شام (PM)'
+  },
 };

@@ -1,9 +1,9 @@
-import React, { createContext, useContext, useState, useEffect, useCallback, useMemo, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useMemo, useRef, ReactNode } from 'react';
 import { SupportedLanguageId, LanguageMeta } from '../data/languages/types';
 import { SUPPORTED_LANGUAGES, DEFAULT_LANGUAGE, getLanguageMeta } from '../data/languages';
 import { ProgressService } from '../services/progressService';
 import { cancelAllSpeech } from '../utils/speech';
-import { detectInitialLanguagePair } from '../utils/localeDetection';
+import { detectInitialLanguagePair, LanguagePair } from '../utils/localeDetection';
 import { UI_TRANSLATIONS, UIStrings } from '../data/translations';
 
 export type SpeechSpeed = 0.5 | 0.75 | 0.9 | 1.0 | 1.1 | 1.25;
@@ -21,6 +21,7 @@ interface LanguageContextType {
   baseLanguage: SupportedLanguageId;
   baseMeta: LanguageMeta;
   setBaseLanguage: (langId: SupportedLanguageId) => void;
+  setLanguagePair: (baseLangId: SupportedLanguageId, targetLangId: SupportedLanguageId) => void;
   swapLanguages: () => void;
 
   // Localized UI strings for buttons, titles, actions
@@ -58,18 +59,41 @@ const SUPPORTED_LANGUAGE_LIST = Object.values(SUPPORTED_LANGUAGES);
 const isRtlLanguage = (langId: SupportedLanguageId): boolean => langId === 'ar' || langId === 'ur';
 
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [targetLanguage, setTargetLanguageState] = useState<SupportedLanguageId>(() => {
-    return detectInitialLanguagePair().targetLanguage;
-  });
-  const [baseLanguage, setBaseLanguageState] = useState<SupportedLanguageId>(() => {
-    return detectInitialLanguagePair().baseLanguage;
+  const [initialPair] = useState<LanguagePair>(() => detectInitialLanguagePair());
+  const [targetLanguage, setTargetLanguageState] = useState<SupportedLanguageId>(initialPair.targetLanguage);
+  const [baseLanguage, setBaseLanguageState] = useState<SupportedLanguageId>(initialPair.baseLanguage);
+  const pairRef = useRef<LanguagePair>({
+    baseLanguage: initialPair.baseLanguage,
+    targetLanguage: initialPair.targetLanguage,
   });
 
-  // Listen to popstate in LanguageProvider as well so context stays synced with URL changes
+  // Listen to popstate in LanguageProvider so both base and target stay synced with URL changes
   useEffect(() => {
     const handleUrlSync = () => {
+      if (typeof window === 'undefined') return;
+      const pathParts = window.location.pathname.toLowerCase().split('/').filter(Boolean);
+      const hasUrlLang = pathParts.some(p => p in SUPPORTED_LANGUAGES);
+      if (!hasUrlLang) return;
+
       const pair = detectInitialLanguagePair();
-      setTargetLanguageState(prev => prev !== pair.targetLanguage ? pair.targetLanguage : prev);
+      const prev = pairRef.current;
+      const nextTarget = pair.targetLanguage;
+      const nextBase: SupportedLanguageId =
+        nextTarget === prev.baseLanguage
+          ? (prev.targetLanguage !== nextTarget ? prev.targetLanguage : pair.baseLanguage)
+          : prev.baseLanguage;
+
+      if (nextBase !== prev.baseLanguage || nextTarget !== prev.targetLanguage) {
+        pairRef.current = { baseLanguage: nextBase, targetLanguage: nextTarget };
+        setBaseLanguageState(nextBase);
+        setTargetLanguageState(nextTarget);
+        try {
+          localStorage.setItem('basic_language_base_lang', nextBase);
+          localStorage.setItem('basic_language_target_lang', nextTarget);
+          localStorage.setItem('basic_language_active_lang', nextTarget);
+        } catch { /* ignore */ }
+        ProgressService.setActiveLanguage(nextTarget);
+      }
     };
     window.addEventListener('popstate', handleUrlSync);
     return () => window.removeEventListener('popstate', handleUrlSync);
@@ -100,43 +124,63 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   const supportedLanguages = SUPPORTED_LANGUAGE_LIST;
   const ui = UI_TRANSLATIONS[baseLanguage] || UI_TRANSLATIONS.en;
 
+  // Commit a resolved (baseLanguage, targetLanguage) pair atomically using synchronous ref tracking
+  const applyLanguagePair = useCallback((
+    requestedBase: SupportedLanguageId,
+    requestedTarget: SupportedLanguageId,
+    options: { stopSpeech?: boolean } = {}
+  ) => {
+    if (!(requestedBase in SUPPORTED_LANGUAGES) || !(requestedTarget in SUPPORTED_LANGUAGES)) return;
+
+    const prev = pairRef.current;
+    let resolvedBase = requestedBase;
+    const resolvedTarget = requestedTarget;
+
+    if (resolvedBase === resolvedTarget) {
+      resolvedBase =
+        prev.targetLanguage !== resolvedTarget
+          ? prev.targetLanguage
+          : (resolvedTarget === 'en' ? 'es' : 'en');
+    }
+
+    if (options.stopSpeech && resolvedTarget !== prev.targetLanguage) {
+      cancelAllSpeech();
+      if (typeof document !== 'undefined') {
+        document.querySelectorAll('audio').forEach(a => {
+          try { a.pause(); } catch { /* ignore */ }
+        });
+      }
+    }
+
+    pairRef.current = { baseLanguage: resolvedBase, targetLanguage: resolvedTarget };
+    setBaseLanguageState(resolvedBase);
+    setTargetLanguageState(resolvedTarget);
+
+    try {
+      localStorage.setItem('basic_language_base_lang', resolvedBase);
+      localStorage.setItem('basic_language_target_lang', resolvedTarget);
+      localStorage.setItem('basic_language_active_lang', resolvedTarget);
+    } catch { /* ignore */ }
+
+    ProgressService.setActiveLanguage(resolvedTarget);
+
+    if (typeof document !== 'undefined') {
+      document.documentElement.lang = resolvedTarget;
+      document.documentElement.dir = isRtlLanguage(resolvedBase) ? 'rtl' : 'ltr';
+    }
+  }, []);
+
   // Set target language (the language being learned)
   const setTargetLanguage = useCallback((langId: SupportedLanguageId) => {
     if (!(langId in SUPPORTED_LANGUAGES)) return;
-
-    cancelAllSpeech();
-    document.querySelectorAll('audio').forEach(a => {
-      try { a.pause(); } catch { /* ignore */ }
-    });
-
-    setTargetLanguageState(langId);
-
-    // If new target matches base, swap base to previous target (never hardcode Spanish unless identical)
-    let effectiveBase = baseLanguage;
-    if (langId === baseLanguage) {
-      const fallbackBase: SupportedLanguageId =
-        targetLanguage !== langId
-          ? targetLanguage
-          : (langId === 'en' ? 'es' : 'en');
-      effectiveBase = fallbackBase;
-      setBaseLanguageState(fallbackBase);
-      try {
-        localStorage.setItem('basic_language_base_lang', fallbackBase);
-      } catch { /* ignore */ }
-    }
-
-    try {
-      localStorage.setItem('basic_language_target_lang', langId);
-      localStorage.setItem('basic_language_active_lang', langId);
-    } catch { /* ignore */ }
-
-    ProgressService.setActiveLanguage(langId);
-
-    if (typeof document !== 'undefined') {
-      document.documentElement.lang = langId;
-      document.documentElement.dir = isRtlLanguage(effectiveBase) ? 'rtl' : 'ltr';
-    }
-  }, [baseLanguage, targetLanguage]);
+    const prev = pairRef.current;
+    if (prev.targetLanguage === langId && prev.baseLanguage !== langId) return;
+    const nextBase: SupportedLanguageId =
+      langId === prev.baseLanguage
+        ? (prev.targetLanguage !== langId ? prev.targetLanguage : (langId === 'en' ? 'es' : 'en'))
+        : prev.baseLanguage;
+    applyLanguagePair(nextBase, langId, { stopSpeech: true });
+  }, [applyLanguagePair]);
 
   // Backward compatibility alias for setLanguage
   const setLanguage = setTargetLanguage;
@@ -144,53 +188,24 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   // Set base language (user's native language)
   const setBaseLanguage = useCallback((langId: SupportedLanguageId) => {
     if (!(langId in SUPPORTED_LANGUAGES)) return;
+    const prev = pairRef.current;
+    const nextTarget: SupportedLanguageId =
+      langId === prev.targetLanguage
+        ? (prev.baseLanguage !== langId ? prev.baseLanguage : (langId === 'en' ? 'es' : 'en'))
+        : prev.targetLanguage;
+    applyLanguagePair(langId, nextTarget, { stopSpeech: nextTarget !== prev.targetLanguage });
+  }, [applyLanguagePair]);
 
-    setBaseLanguageState(langId);
-
-    // If new base matches target, swap target to previous base (never hardcode Spanish unless identical)
-    if (langId === targetLanguage) {
-      const fallbackTarget: SupportedLanguageId =
-        baseLanguage !== langId
-          ? baseLanguage
-          : (langId === 'en' ? 'es' : 'en');
-      setTargetLanguageState(fallbackTarget);
-      try {
-        localStorage.setItem('basic_language_target_lang', fallbackTarget);
-        localStorage.setItem('basic_language_active_lang', fallbackTarget);
-      } catch { /* ignore */ }
-      ProgressService.setActiveLanguage(fallbackTarget);
-    }
-
-    try {
-      localStorage.setItem('basic_language_base_lang', langId);
-    } catch { /* ignore */ }
-
-    if (typeof document !== 'undefined') {
-      document.documentElement.dir = isRtlLanguage(langId) ? 'rtl' : 'ltr';
-    }
-  }, [targetLanguage, baseLanguage]);
+  // Atomically set both base and target languages without stale-closure clobbering
+  const setLanguagePair = useCallback((baseLangId: SupportedLanguageId, targetLangId: SupportedLanguageId) => {
+    applyLanguagePair(baseLangId, targetLangId, { stopSpeech: true });
+  }, [applyLanguagePair]);
 
   // Quick swap pair (e.g. Spanish -> English becomes English -> Spanish)
   const swapLanguages = useCallback(() => {
-    cancelAllSpeech();
-    const oldTarget = targetLanguage;
-    const oldBase = baseLanguage;
-
-    setTargetLanguageState(oldBase);
-    setBaseLanguageState(oldTarget);
-
-    try {
-      localStorage.setItem('basic_language_target_lang', oldBase);
-      localStorage.setItem('basic_language_active_lang', oldBase);
-      localStorage.setItem('basic_language_base_lang', oldTarget);
-    } catch { /* ignore */ }
-
-    ProgressService.setActiveLanguage(oldBase);
-    if (typeof document !== 'undefined') {
-      document.documentElement.lang = oldBase;
-      document.documentElement.dir = isRtlLanguage(oldTarget) ? 'rtl' : 'ltr';
-    }
-  }, [targetLanguage, baseLanguage]);
+    const prev = pairRef.current;
+    applyLanguagePair(prev.targetLanguage, prev.baseLanguage, { stopSpeech: true });
+  }, [applyLanguagePair]);
 
   // Sync html lang and dir tags on initial mount & updates
   useEffect(() => {
@@ -213,6 +228,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     baseLanguage,
     baseMeta,
     setBaseLanguage,
+    setLanguagePair,
     swapLanguages,
 
     // Localized UI strings
@@ -231,6 +247,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     baseLanguage,
     baseMeta,
     setBaseLanguage,
+    setLanguagePair,
     swapLanguages,
     ui,
     supportedLanguages,
@@ -258,6 +275,7 @@ export const useLanguage = (): LanguageContextType => {
       baseLanguage: 'en',
       baseMeta: SUPPORTED_LANGUAGES.en,
       setBaseLanguage: () => {},
+      setLanguagePair: () => {},
       swapLanguages: () => {},
       ui: UI_TRANSLATIONS.en,
       supportedLanguages: Object.values(SUPPORTED_LANGUAGES),

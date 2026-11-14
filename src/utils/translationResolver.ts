@@ -130,7 +130,7 @@ export const EXTENDED_DICTIONARY: Record<string, Partial<Record<SupportedLanguag
   'city': { en: 'City', es: 'Ciudad', fr: 'Ville', ru: 'Город', pt: 'Cidade', de: 'Stadt', id: 'Kota', tr: 'Şehir', ko: '도시', ja: '都市 / 町', zh: '城市', hi: 'शहर', ar: 'مدينة' },
   'country': { en: 'Country', es: 'País', fr: 'Pays', ru: 'Страна', pt: 'País', de: 'Land', id: 'Negara', tr: 'Ülke', ko: '나라 / 국가', ja: '国', zh: '国家', hi: 'देश', ar: 'بلد / دولة' },
   'house': { en: 'House / Home', es: 'Casa', fr: 'Maison', ru: 'Дом', pt: 'Casa', de: 'Haus', id: 'Rumah', tr: 'Ev', ko: '집', ja: '家', zh: '房子', hi: 'घर / मकान', ar: 'بيت' },
-  'home': { en: 'Home / House', es: 'Casa', fr: 'Maison', ru: 'Дом', pt: 'Casa', de: 'Haus', id: 'Rumah', tr: 'Ev', ko: '집 / 가정', ja: '我が家', zh: '家', hi: 'घर / मकान', ar: 'بيت / منزل' },
+  'home': { en: 'Home / House', es: 'Casa', fr: 'Maison', ru: 'Дом', pt: 'Casa', de: 'Haus', id: 'Rumah', tr: 'Ev', ko: '집 / 가정', ja: '我が家', zh: '家', hi: 'घर / मकान', ar: 'بيت / منزل', bn: 'বাড়ি', ur: 'گھر' },
   'car': { en: 'Car', es: 'Carro / Coche', fr: 'Voiture', ru: 'Машина', pt: 'Carro', de: 'Auto', id: 'Mobil', tr: 'Araba', ko: '자동차 / 차', ja: '車 / 自動車', zh: '汽车', hi: 'गाड़ी / कार', ar: 'سيارة' },
   'train': { en: 'Train', es: 'Tren', fr: 'Train', ru: 'Поезд', pt: 'Trem', de: 'Zug', id: 'Kereta', tr: 'Tren', ko: '기차 / 열차', ja: '電車 / 列車', zh: '火车', hi: 'ट्रेन / रेलगाड़ी', ar: 'قطار' },
   'bus': { en: 'Bus', es: 'Autobús', fr: 'Bus', ru: 'Автобус', pt: 'Ônibus', de: 'Bus', id: 'Bus', tr: 'Otobüs', ko: '버스', ja: 'バス', zh: '公交车', hi: 'बस', ar: 'حافلة / باص' },
@@ -437,7 +437,7 @@ export const EXTENDED_DICTIONARY: Record<string, Partial<Record<SupportedLanguag
   '4:15 (quarter past four)': { en: '4:15 (quarter past four)', es: 'Son las cuatro y cuarto', fr: 'Il est quatre heures et quart', ru: 'Четверть пятого (4:15)', pt: 'São quatro e quinze', de: 'Es ist Viertel nach vier', id: 'Sekarang jam empat lewat seperempat', tr: 'Saat dördü çeyrek geçiyor', zh: '四点十五分', hi: 'सवा चार (4:15)' },
   '4:45 (quarter to five)': { en: '4:45 (quarter to five)', es: 'Son las cinco menos cuarto', fr: 'Il est cinq heures moins le quart', ru: 'Без четверти пять (4:45)', pt: 'São quinze para as cinco', de: 'Es ist Viertel vor fünf', id: 'Sekarang jam lima kurang seperempat', tr: 'Saat beşe çeyrek var', zh: '四点四十五分', hi: 'पौने पाँच (4:45)' },
   'it is 1:00 sharp': { en: 'It is 1:00 sharp', es: 'Es la una en punto', fr: 'Il est une heure pile', ru: 'Ровно один час', pt: 'É uma hora em ponto', de: 'Es ist Punkt ein Uhr', id: 'Sekarang jam satu tepat', tr: 'Saat tam bir', zh: '正好一点整', hi: 'ठीक एक बजा है' },
-  'it is 2:00': { en: 'It is 2:00', es: 'Son las dos', fr: 'Il est deux heures', ru: 'Два часа', pt: 'São duas horas', de: 'Es ist zwei Uhr', id: 'Sekarang jam dua', tr: 'Saat iki', zh: '两点整', hi: 'दो बजे हैं' },
+  'it is 2:00': { en: 'It is 2:00', es: 'Son las dos', fr: 'Il est deux heures', ru: 'Два часа', pt: 'São duas horas', de: 'Es ist zwei Uhr', id: 'Sekarang jam dua', tr: 'Saat iki', zh: '两点整', hi: 'दो बजे हैं', ar: 'الساعة الثانية', ko: '두 시입니다', ja: '2時です', bn: 'এখন দুইটা বাজে', ur: 'دو بجے ہیں' },
   'hi / bye': { en: 'Hi / Bye', es: 'Hola', fr: 'Salut', ru: 'Привет', pt: 'Olá', de: 'Hallo', id: 'Halo', tr: 'Merhaba', ko: '안녕', ja: 'やあ', zh: '嗨 / 拜拜', hi: 'नमस्ते / अलविदा', ar: 'مرحباً / وداعاً' },
   'es ist elf uhr': { en: 'Eleven o\'clock (11:00)', es: 'Son las once', fr: 'Il est onze heures', ru: 'Одиннадцать часов (11:00)', pt: 'São onze horas', de: 'Es ist elf Uhr', id: 'Jam sebelas', tr: 'Saat on bir' },
   'son las cuatro y cuarto': { en: '4:15 (quarter past four)', es: 'Son las cuatro y cuarto', fr: 'Il est quatre heures et quart', ru: 'Четверть пятого (4:15)', pt: 'São quatro e quinze', de: 'Es ist Viertel nach vier', id: 'Sekarang jam empat lewat seperempat', tr: 'Saat dördü çeyrek geçiyor', zh: '四点十五分', hi: 'सवा चार (4:15)' },
@@ -809,10 +809,38 @@ const cleanLookupKey = (raw: string): string =>
 let indexesInitialized = false;
 const enLookupMap = new Map<string, LanguageTranslationMap>();
 const targetValueLookupMap = new Map<string, LanguageTranslationMap>();
+const targetValueByLangMap = new Map<SupportedLanguageId, Map<string, LanguageTranslationMap>>();
 const conceptTextLookupMap = new Map<string, LanguageTranslationMap>();
 let compiledWordBoundaryList: Array<{ key: string; lowerKey: string; regex: RegExp; mapping: LanguageTranslationMap }> = [];
 const translationCache = new Map<string, string>();
 const MAX_CACHE_ENTRIES = 25000;
+
+const ENGLISH_NUMBER_WORDS = new Set([
+  ...Object.values(NUMBER_TABLE).map(entry => entry.en.toLowerCase()),
+  'a hundred',
+  'a thousand',
+]);
+
+const isExplicitNumberText = (text: string, isNumberCategory: boolean): boolean => {
+  if (!text) return false;
+  if (isNumberCategory || /\d/.test(text)) return true;
+  return ENGLISH_NUMBER_WORDS.has(cleanLookupKey(text));
+};
+
+const mergeIntoLangTargetMap = (
+  lang: SupportedLanguageId,
+  key: string,
+  values: LanguageTranslationMap,
+  overwriteExisting: boolean
+) => {
+  if (!key) return;
+  let langMap = targetValueByLangMap.get(lang);
+  if (!langMap) {
+    langMap = new Map<string, LanguageTranslationMap>();
+    targetValueByLangMap.set(lang, langMap);
+  }
+  mergeIntoMap(langMap, key, values, overwriteExisting);
+};
 
 const mergeIntoMap = (
   map: Map<string, LanguageTranslationMap>,
@@ -864,12 +892,14 @@ const ensureTranslationIndexes = () => {
         conceptMap[lang] = entry.text;
       }
     }
-    for (const textVal of Object.values(conceptMap)) {
+    for (const [lang, textVal] of Object.entries(conceptMap) as Array<[SupportedLanguageId, string | undefined]>) {
       if (!textVal) continue;
       const lowerText = textVal.toLowerCase().trim();
+      mergeIntoLangTargetMap(lang, lowerText, conceptMap, false);
       mergeIntoMap(conceptTextLookupMap, lowerText, conceptMap, false);
       const cleanedText = cleanLookupKey(lowerText);
       if (cleanedText && cleanedText !== lowerText) {
+        mergeIntoLangTargetMap(lang, cleanedText, conceptMap, false);
         mergeIntoMap(conceptTextLookupMap, cleanedText, conceptMap, false);
       }
     }
@@ -963,16 +993,18 @@ const ensureTranslationIndexes = () => {
     }
   }
 
-  // 4. Build reverse target-word O(1) index across all 15 languages from enLookupMap
+  // 4. Build reverse target-word O(1) index (scoped by target language + language-agnostic fallback) across all 15 languages
   for (const mapping of enLookupMap.values()) {
-    for (const val of Object.values(mapping)) {
+    for (const [lang, val] of Object.entries(mapping) as Array<[SupportedLanguageId, string | undefined]>) {
       if (!val) continue;
       const lowerVal = val.toLowerCase().trim();
       if (lowerVal) {
+        mergeIntoLangTargetMap(lang, lowerVal, mapping, false);
         mergeIntoMap(targetValueLookupMap, lowerVal, mapping, false);
       }
       const cleanVal = lowerVal.replace(/\s*\([^)]*\)\s*/g, ' ').replace(/\s+/g, ' ').trim();
       if (cleanVal && cleanVal !== lowerVal) {
+        mergeIntoLangTargetMap(lang, cleanVal, mapping, false);
         mergeIntoMap(targetValueLookupMap, cleanVal, mapping, false);
       }
     }
@@ -1037,8 +1069,20 @@ export const resolveTranslation = (
   };
 
   // 1. Check if item is a cardinal number
-  const rawEnglish = (item.english || (item as any).englishWord || item.translation || item.meaning || item.phrase || '').toString();
+  const explicitEnglish = (
+    item.english ||
+    (item as any).englishWord ||
+    item.translation ||
+    item.meaning ||
+    ''
+  ).toString().trim();
+  const rawEnglish = (
+    targetLang === 'en'
+      ? (item.phrase || (item as any).word || explicitEnglish)
+      : explicitEnglish
+  ).toString().trim();
   const primaryText = (item.phrase || item.russian || (item as any).word || '').toString();
+  const isNumberCategory = /number/i.test(((item as any).category || '').toString());
   const isTimeExpression =
     (item as any).category === 'Time' ||
     /\d+:\d+/.test(rawEnglish) ||
@@ -1046,7 +1090,12 @@ export const resolveTranslation = (
     TIME_EXPRESSION_REGEX.test(`${rawEnglish} ${primaryText}`);
 
   if (!isTimeExpression) {
-    const digit = extractDigit(rawEnglish) ?? extractDigit(primaryText);
+    let digit: number | null = null;
+    if (isExplicitNumberText(rawEnglish, isNumberCategory)) {
+      digit = extractDigit(rawEnglish);
+    } else if (targetLang !== 'en' && !explicitEnglish) {
+      digit = extractDigit(primaryText);
+    }
     if (digit !== null && NUMBER_TABLE[digit]) {
       const numEntry = NUMBER_TABLE[digit];
       if (baseLang in numEntry) {
@@ -1055,15 +1104,24 @@ export const resolveTranslation = (
     }
   }
 
-  // 2. Direct candidate key lookup in priority order (word, englishWord, english, translation, phrase, meaning)
-  const rawCandidates = [
-    (item as any).word,
-    (item as any).englishWord,
-    item.english,
-    item.translation,
-    item.phrase,
-    item.meaning
-  ]
+  // 2. Direct candidate key lookup in priority order (never treat non-English target word/phrase as an English lookup key)
+  const rawCandidates = (
+    targetLang === 'en'
+      ? [
+          (item as any).word,
+          item.phrase,
+          (item as any).englishWord,
+          item.english,
+          item.translation,
+          item.meaning,
+        ]
+      : [
+          (item as any).englishWord,
+          item.english,
+          item.translation,
+          item.meaning,
+        ]
+  )
     .filter(Boolean)
     .map(val => String(val).trim());
 
@@ -1080,14 +1138,19 @@ export const resolveTranslation = (
     }
   }
 
-  // 3. Direct target word O(1) lookup across dictionary values
+  // 3. Direct target word O(1) lookup scoped to targetLang first, falling back globally only when no explicit English gloss exists
   const directTarget = ((item as any).russianWord || (item as any).russian || (item as any).word || item.phrase || '').toString().toLowerCase().trim();
   if (directTarget) {
-    const directMatch = targetValueLookupMap.get(directTarget)?.[baseLang];
+    const langScopedMap = targetValueByLangMap.get(targetLang);
+    const directMatch =
+      langScopedMap?.get(directTarget)?.[baseLang] ??
+      (!explicitEnglish ? targetValueLookupMap.get(directTarget)?.[baseLang] : undefined);
     if (directMatch) return storeAndReturn(directMatch);
     const directTargetClean = directTarget.replace(/\s*\([^)]*\)\s*/g, ' ').replace(/\s+/g, ' ').trim();
     if (directTargetClean && directTargetClean !== directTarget) {
-      const cleanMatch = targetValueLookupMap.get(directTargetClean)?.[baseLang];
+      const cleanMatch =
+        langScopedMap?.get(directTargetClean)?.[baseLang] ??
+        (!explicitEnglish ? targetValueLookupMap.get(directTargetClean)?.[baseLang] : undefined);
       if (cleanMatch) return storeAndReturn(cleanMatch);
     }
   }

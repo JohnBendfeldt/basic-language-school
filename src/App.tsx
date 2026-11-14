@@ -302,9 +302,13 @@ const AppContent: React.FC = () => {
   };
 
   const handleLanguageChange = (newLangId: SupportedLanguageId) => {
-    setLanguage(newLangId);
+    if (newLangId !== currentLanguage) {
+      setLanguage(newLangId);
+    }
     const newPath = `/learn/${newLangId}/${activeSection}`;
-    window.history.pushState({ section: activeSection, lang: newLangId }, '', newPath);
+    if (window.location.pathname !== newPath) {
+      window.history.pushState({ section: activeSection, lang: newLangId }, '', newPath);
+    }
     window.scrollTo(0, 0);
   };
 

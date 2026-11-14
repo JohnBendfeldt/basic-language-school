@@ -24,16 +24,15 @@ export const detectDeviceLanguage = (): SupportedLanguageId => {
     locales.push((navigator as any).userLanguage);
   }
 
-  for (const loc of locales) {
-    const code = loc.toLowerCase().split('-')[0];
-    if (code === 'es') return 'es';
-    if (code === 'fr') return 'fr';
-    if (code === 'ru') return 'ru';
-    if (code === 'pt') return 'pt';
-    if (code === 'de') return 'de';
-    if (code === 'id') return 'id';
-    if (code === 'tr') return 'tr';
-    if (code === 'en') return 'en';
+  for (const rawLoc of locales) {
+    if (!rawLoc || typeof rawLoc !== 'string') continue;
+    const normalized = rawLoc.toLowerCase().trim().replace(/_/g, '-');
+    const primary = normalized.split('-')[0];
+    // Map legacy ISO 639-1 'in' (Android/Java) to Indonesian ('id')
+    const code = primary === 'in' ? 'id' : primary;
+    if (code in SUPPORTED_LANGUAGES) {
+      return code as SupportedLanguageId;
+    }
   }
 
   return 'en';
@@ -46,16 +45,16 @@ export const detectDeviceLanguage = (): SupportedLanguageId => {
  * 3. Detected device/browser language
  *
  * Rule: Native language and Target language cannot be the same.
- * If user device is Spanish ('es'), target defaults to English ('en').
- * If user device is French ('fr'), target defaults to English ('en').
- * If user device is Russian ('ru'), target defaults to English ('en').
- * If user device is English ('en'), target defaults to Spanish ('es').
+ * Explicit URL targets take precedence: if the URL target matches the
+ * resolved base language, adjust baseLanguage so the requested course opens.
  */
 export const detectInitialLanguagePair = (): LanguagePair => {
   const deviceLang = detectDeviceLanguage();
 
   let targetLanguage: SupportedLanguageId | undefined;
+  let hasUrlTarget = false;
   let baseLanguage: SupportedLanguageId = 'en';
+  let savedTarget: SupportedLanguageId | undefined;
 
   // 1. Check URL path for explicit target language (highest precedence)
   if (typeof window !== 'undefined') {
@@ -63,6 +62,7 @@ export const detectInitialLanguagePair = (): LanguagePair => {
     for (const part of pathParts) {
       if (part in SUPPORTED_LANGUAGES) {
         targetLanguage = part as SupportedLanguageId;
+        hasUrlTarget = true;
         break;
       }
     }
@@ -78,12 +78,15 @@ export const detectInitialLanguagePair = (): LanguagePair => {
         baseLanguage = deviceLang;
       }
 
-      if (!targetLanguage) {
-        const savedTarget = localStorage.getItem('basic_language_target_lang') 
-          || localStorage.getItem('basic_language_active_lang');
-        if (savedTarget && savedTarget in SUPPORTED_LANGUAGES) {
-          targetLanguage = savedTarget as SupportedLanguageId;
-        }
+      const rawSavedTarget =
+        localStorage.getItem('basic_language_target_lang') ||
+        localStorage.getItem('basic_language_active_lang');
+      if (rawSavedTarget && rawSavedTarget in SUPPORTED_LANGUAGES) {
+        savedTarget = rawSavedTarget as SupportedLanguageId;
+      }
+
+      if (!targetLanguage && savedTarget) {
+        targetLanguage = savedTarget;
       }
     } catch {
       // ignore
@@ -94,19 +97,21 @@ export const detectInitialLanguagePair = (): LanguagePair => {
 
   // 3. Fallback based on device locale if not set from URL or localStorage
   if (!targetLanguage) {
-    if (deviceLang === 'es' || deviceLang === 'fr' || deviceLang === 'ru') {
-      targetLanguage = 'en';
-    } else {
-      targetLanguage = 'ru';
-    }
+    targetLanguage = deviceLang === 'en' ? 'ru' : 'en';
   }
 
-  // Ensure target and base are not identical
+  // 4. Ensure target and base are not identical
   if (targetLanguage === baseLanguage) {
-    if (baseLanguage === 'es') targetLanguage = 'en';
-    else if (baseLanguage === 'fr') targetLanguage = 'en';
-    else if (baseLanguage === 'ru') targetLanguage = 'en';
-    else targetLanguage = 'es';
+    if (hasUrlTarget) {
+      baseLanguage =
+        savedTarget && savedTarget !== targetLanguage
+          ? savedTarget
+          : (targetLanguage === 'en' ? 'es' : 'en');
+    } else if (baseLanguage === 'en') {
+      targetLanguage = 'es';
+    } else {
+      targetLanguage = 'en';
+    }
   }
 
   return { targetLanguage, baseLanguage };

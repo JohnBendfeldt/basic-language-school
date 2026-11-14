@@ -33,7 +33,7 @@ export const LANGUAGE_REGION_MAP: Record<string, LanguageRegion> = {
 };
 
 const HIGH_AFFINITY_CORRIDORS: Record<string, SupportedLanguageId[]> = {
-  en: ['es', 'ar', 'hi', 'zh', 'fr', 'ja', 'ko', 'de', 'ru', 'pt', 'tr', 'bn', 'ur'],
+  en: ['es', 'ar', 'hi', 'zh', 'fr', 'ja', 'ko', 'de', 'ru', 'pt', 'tr', 'id', 'bn', 'ur'],
   es: ['pt', 'en', 'fr', 'zh', 'ja', 'de', 'ru', 'ar'],
   pt: ['es', 'en', 'fr', 'zh', 'ja', 'de'],
   fr: ['en', 'ar', 'es', 'zh', 'ja', 'de', 'pt', 'ru'],
@@ -111,8 +111,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
     baseLanguage,
     baseMeta,
     availableLanguages,
-    setTargetLanguage,
-    setBaseLanguage,
+    setLanguagePair,
     swapLanguages,
     ui
   } = useLanguage();
@@ -140,6 +139,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
   });
 
   const recordRecentPair = (base: SupportedLanguageId, target: SupportedLanguageId) => {
+    if (!base || !target || base === target) return;
     setRecentPairs(prev => {
       const filtered = prev.filter(p => !(p.base === base && p.target === target));
       const updated = [{ base, target }, ...filtered].slice(0, 4);
@@ -178,8 +178,12 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
   const handleSelectTarget = (langId: string, available: boolean) => {
     if (!available) return;
     const nextTarget = langId as SupportedLanguageId;
-    setTargetLanguage(nextTarget);
-    recordRecentPair(baseLanguage, nextTarget);
+    const effectiveBase: SupportedLanguageId =
+      nextTarget === baseLanguage
+        ? (targetLanguage !== nextTarget ? targetLanguage : (nextTarget === 'en' ? 'es' : 'en'))
+        : baseLanguage;
+    setLanguagePair(effectiveBase, nextTarget);
+    recordRecentPair(effectiveBase, nextTarget);
     if (onLanguageChange) {
       onLanguageChange(nextTarget);
     }
@@ -191,10 +195,9 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
     const nextBase = langId as SupportedLanguageId;
     if (nextBase === targetLanguage) {
       // Swapping case: learner sets native language to the current target (e.g. learning French, sets native to French).
-      // Swap target language to previous base language so target and base are never identical.
+      // Swap target language to previous base language atomically so target and base are never identical.
       const newTarget = baseLanguage !== nextBase ? baseLanguage : (nextBase === 'en' ? 'es' : 'en');
-      setBaseLanguage(nextBase);
-      setTargetLanguage(newTarget);
+      setLanguagePair(nextBase, newTarget);
       recordRecentPair(nextBase, newTarget);
       if (onLanguageChange) {
         onLanguageChange(newTarget);
@@ -202,14 +205,14 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
     } else {
       // Normal case: learner is learning French, and changes native language from Russian to Indonesian.
       // Target MUST stay French! Base becomes Indonesian!
-      setBaseLanguage(nextBase);
+      setLanguagePair(nextBase, targetLanguage);
       recordRecentPair(nextBase, targetLanguage);
     }
   };
 
   const handleQuickPair = (base: SupportedLanguageId, target: SupportedLanguageId) => {
-    setBaseLanguage(base);
-    setTargetLanguage(target);
+    if (base === target) return;
+    setLanguagePair(base, target);
     recordRecentPair(base, target);
     if (onLanguageChange) {
       onLanguageChange(target);
@@ -219,10 +222,12 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
 
   const handleSwapClick = (e: React.MouseEvent) => {
     e.stopPropagation();
+    const nextBase = targetLanguage;
+    const nextTarget = baseLanguage;
     swapLanguages();
-    recordRecentPair(targetLanguage, baseLanguage);
+    recordRecentPair(nextBase, nextTarget);
     if (onLanguageChange) {
-      onLanguageChange(baseLanguage);
+      onLanguageChange(nextTarget);
     }
   };
 
