@@ -1,15 +1,24 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
+const GOOGLE_CLIENT_ID = '905048514453-nvuv8q589bhkv121o1lugquu19u2dgsc.apps.googleusercontent.com';
+
 const makeAuthMock = () => ({
   signInWithOAuth: vi.fn().mockResolvedValue({ error: null }),
+  signInWithIdToken: vi.fn().mockResolvedValue({ error: null }),
   signOut: vi.fn().mockResolvedValue({ error: null }),
   getUser: vi.fn().mockResolvedValue({ data: { user: { id: 'u1', email: 'a@b.c' } } }),
 });
 
-const loadModule = async (env: { url?: string; key?: string }, auth = makeAuthMock()) => {
+const loadModule = async (
+  env: { url?: string; key?: string; googleClientId?: string },
+  auth = makeAuthMock()
+) => {
   vi.resetModules();
   vi.stubEnv('VITE_SUPABASE_URL', env.url ?? '');
   vi.stubEnv('VITE_SUPABASE_ANON_KEY', env.key ?? '');
+  if (env.googleClientId !== undefined) {
+    vi.stubEnv('VITE_GOOGLE_CLIENT_ID', env.googleClientId);
+  }
   const createClient = vi.fn().mockReturnValue({ auth });
   vi.doMock('@supabase/supabase-js', () => ({ createClient }));
   const mod = await import('../services/supabaseClient');
@@ -73,10 +82,20 @@ describe('supabaseClient - not configured (guest mode)', () => {
 
 describe('supabaseClient - configured', () => {
   const env = { url: 'https://abc.supabase.co', key: 'anon-key' };
+  let assignMock: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
+    sessionStorage.clear();
+    assignMock = vi.fn();
     Object.defineProperty(window, 'location', {
-      value: { ...window.location, origin: 'https://basiclanguage.school' },
+      value: {
+        ...window.location,
+        origin: 'https://basiclanguage.school',
+        pathname: '/',
+        search: '',
+        hash: '',
+        assign: assignMock,
+      },
       writable: true,
     });
   });
@@ -90,10 +109,42 @@ describe('supabaseClient - configured', () => {
     });
   });
 
-  it('signs in with Google and redirects back to the site origin', async () => {
+  it('signs in directly with Google OIDC using the site origin and exchanges hash id_token with Supabase', async () => {
     const { mod, auth } = await loadModule(env);
     const result = await mod.signInWithGoogle();
     expect(result.error).toBeNull();
+    expect(auth.signInWithOAuth).not.toHaveBeenCalled();
+    expect(assignMock).toHaveBeenCalledTimes(1);
+
+    const authUrl = new URL(assignMock.mock.calls[0][0]);
+    expect(`${authUrl.origin}${authUrl.pathname}`).toBe('https://accounts.google.com/o/oauth2/v2/auth');
+    expect(authUrl.searchParams.get('client_id')).toBe(GOOGLE_CLIENT_ID);
+    expect(authUrl.searchParams.get('redirect_uri')).toBe('https://basiclanguage.school');
+    expect(authUrl.searchParams.get('response_type')).toBe('id_token');
+    expect(authUrl.searchParams.get('scope')).toBe('openid email profile');
+    expect(authUrl.searchParams.get('nonce')).toMatch(/^[a-f0-9]{64}$/);
+    const storedNonce = sessionStorage.getItem(mod.GOOGLE_NONCE_STORAGE_KEY);
+    expect(storedNonce).toBeTruthy();
+
+    const replaceStateSpy = vi.spyOn(window.history, 'replaceState').mockImplementation(() => {});
+    window.location.hash = '#id_token=google.jwt.token&authuser=0';
+    await mod.consumeGoogleIdTokenFromHash();
+
+    expect(auth.signInWithIdToken).toHaveBeenCalledWith({
+      provider: 'google',
+      token: 'google.jwt.token',
+      nonce: storedNonce,
+    });
+    expect(sessionStorage.getItem(mod.GOOGLE_NONCE_STORAGE_KEY)).toBeNull();
+    expect(replaceStateSpy).toHaveBeenCalledTimes(1);
+    replaceStateSpy.mockRestore();
+  });
+
+  it('falls back to Supabase OAuth for Google when VITE_GOOGLE_CLIENT_ID is empty', async () => {
+    const { mod, auth } = await loadModule({ ...env, googleClientId: '' });
+    const result = await mod.signInWithGoogle();
+    expect(result.error).toBeNull();
+    expect(assignMock).not.toHaveBeenCalled();
     expect(auth.signInWithOAuth).toHaveBeenCalledWith({
       provider: 'google',
       options: { redirectTo: 'https://basiclanguage.school' },
@@ -122,7 +173,7 @@ describe('supabaseClient - configured', () => {
     const auth = makeAuthMock();
     const boom = new Error('provider disabled');
     auth.signInWithOAuth.mockResolvedValue({ error: boom });
-    const { mod } = await loadModule(env, auth);
+    const { mod } = await loadModule({ ...env, googleClientId: '' }, auth);
     expect((await mod.signInWithGoogle()).error).toBe(boom);
     expect((await mod.signInWithGithub()).error).toBe(boom);
     expect((await mod.signInWithEntra()).error).toBe(boom);

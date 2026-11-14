@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaUser, FaSignOutAlt, FaChartLine, FaSignInAlt, FaGoogle, FaMicrosoft, FaGithub, FaShieldAlt, FaFileContract, FaInfoCircle } from 'react-icons/fa';
-import { supabase, signOutUser, isSafeHttpsUrl } from '../services/supabaseClient';
+import { supabase, signOutUser, isSafeHttpsUrl, consumeGoogleIdTokenFromHash } from '../services/supabaseClient';
 import { ProgressService } from '../services/progressService';
 import { useLanguage } from '../contexts/LanguageContext';
 import AuthModal from './AuthModal';
@@ -24,12 +24,17 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
   useEffect(() => {
     if (!supabase) return;
 
-    // Check existing session
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      setCurrentUser(user);
-      if (user) {
-        ProgressService.syncGuestDataToCloud(currentLanguage);
-      }
+    // Exchange any direct Google OIDC ID token in the URL hash before checking the session
+    (typeof consumeGoogleIdTokenFromHash === 'function'
+      ? consumeGoogleIdTokenFromHash()
+      : Promise.resolve()
+    ).finally(() => {
+      supabase!.auth.getUser().then(({ data: { user } }) => {
+        setCurrentUser(user);
+        if (user) {
+          ProgressService.syncGuestDataToCloud(currentLanguage);
+        }
+      });
     });
 
     // Subscribe to auth state changes (login, logout, token refresh)
