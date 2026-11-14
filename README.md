@@ -1,14 +1,15 @@
 # 🌐 Basic Language School
 
-An interactive, high-performance multi-language learning platform featuring studio-quality neural audio pronunciation, adaptive spaced-repetition quizzes, dynamic language switching, an on-screen Cyrillic keyboard for Russian, and Progressive Web App (PWA) offline support.
+An interactive, high-performance multi-language learning platform offering **15 world languages** across **210 bidirectional language pairs**, featuring **14,500+ studio-quality neural audio recordings**, adaptive spaced-repetition quizzes, interactive grammar & flashcards, **8 non-Latin phonetic virtual keyboards**, single-file offline audio binary packs, and Progressive Web App (PWA) support.
 
-[![React](https://img.shields.io/badge/React%2018-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite%206-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Vitest](https://img.shields.io/badge/Vitest-44%20Passing-22c55e?style=for-the-badge&logo=vitest&logoColor=white)](https://vitest.dev/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Vitest](https://img.shields.io/badge/Vitest-1%2C512_Passing-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)](https://vitest.dev/)
+[![Playwright](https://img.shields.io/badge/Playwright-21_E2E_Passing-2EAD33?style=for-the-badge&logo=playwright&logoColor=white)](https://playwright.dev/)
 [![Supabase](https://img.shields.io/badge/Supabase-Auth%20%26%20Postgres-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
 [![Edge TTS](https://img.shields.io/badge/Audio-Edge%20Neural%20TTS-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)](https://github.com/rany2/edge-tts)
-[![PWA](https://img.shields.io/badge/PWA-Ready-f59e0b?style=for-the-badge&logo=pwa&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)
+[![PWA](https://img.shields.io/badge/PWA-Offline%20Ready-f59e0b?style=for-the-badge&logo=pwa&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)
 [![Hosted on Netlify](https://img.shields.io/badge/Hosted%20on-Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://basiclanguage.school)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
@@ -16,46 +17,55 @@ An interactive, high-performance multi-language learning platform featuring stud
 
 ## 🌟 Overview
 
-**Basic Language School** (`basiclanguage.school`) unifies world language education into a single streamlined web application. Instead of fragmenting learning across costly individual domains, it provides a centralized platform for mastering multiple languages with shared authentication, unified progress tracking, and zero-latency neural audio.
+**Basic Language School** (`basiclanguage.school`) unifies foundational world language education into a single streamlined, ad-free web application. Learn any of **15 major world languages** directly from any of the 15 supported base interface languages (**210 bidirectional learning directions**) with zero paywalls, shared authentication, cross-course progress tracking, and zero-latency studio neural audio.
 
-### 📚 Supported & Upcoming Languages
+### 📚 Supported Languages (All 15 Live · 210 Bidirectional Pairs)
 
-| Flag | Language | Status | Primary Focus Areas | Voice Model |
-| :---: | :--- | :---: | :--- | :--- |
-| 🇷🇺 | **Russian** | **Live** | 33 Cyrillic letters, survival phrases, numbers & time grammar, on-screen keyboard | `ru-RU-SvetlanaNeural` |
-| 🇬🇧 | **English** | **Live** | 26 A–Z phonics cards, survival phrases, Oxford 3000 high-frequency vocab, time rules | `en-US-JennyNeural` |
-| 🇪🇸 | **Spanish** | *In Progress* | Castilian & Latin American phonetics, essential conversational phrases, numbers | `es-ES-ElviraNeural` |
-| 🇫🇷 | **French** | *In Progress* | French phonetics, nasal vowels, liaisons, daily phrases, numbers | `fr-FR-DeniseNeural` |
+| Code | Language | Native Script | Curriculum Scope | Neural Voice Model |
+| :---: | :--- | :--- | :--- | :--- |
+| `en` | **English** | Latin | Phonics A–Z, phrases, numbers & time, 500+ words, grammar & quiz | `en-US-JennyNeural` |
+| `es` | **Spanish** | Latin | Alphabet (`ñ`), phrases, numbers & time, 500+ words, grammar & quiz | `es-MX-JorgeNeural` |
+| `fr` | **French** | Latin | Alphabet, liaisons & nasal vowels, phrases, numbers, 500+ words, grammar | `fr-FR-HenriNeural` |
+| `de` | **German** | Latin | Alphabet (`ä, ö, ü, ß`), cases & genders, phrases, numbers, 500+ words | `de-DE-ConradNeural` |
+| `pt` | **Portuguese** | Latin | Alphabet (`ç`, accents), phrases, numbers & time, 500+ words, grammar | `pt-BR-AntonioNeural` |
+| `id` | **Indonesian** | Latin | Alphabet phonetics, phrases, numbers & time, 500+ words, grammar | `id-ID-ArdiNeural` |
+| `tr` | **Turkish** | Latin | Alphabet (`ç, ğ, ı, i, ö, ş, ü`), phrases, numbers, 500+ words, grammar | `tr-TR-AhmetNeural` |
+| `ru` | **Russian** | Cyrillic | 33 Cyrillic letters, phonetic keyboard, phrases, numbers, 500+ words, grammar | `ru-RU-SvetlanaNeural` |
+| `zh` | **Mandarin Chinese** | Hanzi & Pinyin | Pinyin & 4-tone guide, Hanzi basics, phonetic IME, phrases, 500+ words | `zh-CN-XiaoxiaoNeural` |
+| `ja` | **Japanese** | Hiragana / Katakana | Kana charts, phonetic keyboard, phrases, numbers, 500+ words, grammar | `ja-JP-NanamiNeural` |
+| `ko` | **Korean** | Hangul | Jamo syllable blocks, phonetic keyboard, phrases, numbers, 500+ words | `ko-KR-InJoonNeural` |
+| `hi` | **Hindi** | Devanagari | Vowels & consonants, phonetic keyboard, phrases, numbers, 500+ words | `hi-IN-SwaraNeural` |
+| `ar` | **Arabic** | Arabic (RTL) | 28 letters & forms, RTL layout, phonetic keyboard, phrases, 500+ words | `ar-SA-ZariyahNeural` |
+| `bn` | **Bengali** | Bengali–Assamese | Sworoborno & Byanjonborno, phonetic keyboard, phrases, 500+ words | `bn-BD-NabanitaNeural` |
+| `ur` | **Urdu** | Nastaliq (RTL) | Arabic–Persian script, RTL layout, phonetic keyboard, phrases, 500+ words | `ur-PK-UzmaNeural` |
 
 ---
 
 ## 🚀 Key Features
 
-* **🌍 Duolingo-Style Instant Language Switcher**: Switch courses on the fly (`/learn/ru` ⇄ `/learn/en`) with automatic audio halting, scoped progress tracking, and dynamic course emblems.
-* **🎙️ Studio-Quality Neural Audio**: High-fidelity native speech generated via Microsoft Edge Neural TTS (`ru-RU-SvetlanaNeural`, `en-US-JennyNeural`), stored as pre-rendered MP3 assets for instant, zero-latency playback with offline PWA caching.
-* **🎯 Adaptive Quiz Engine with Fuzzy Matching**:
-  * Employs Levenshtein-distance string matching to forgive minor spelling mistakes while reinforcing correct orthography.
-  * Dual testing modes (Source-to-Target & Target-to-Source) with immediate audio reinforcement.
-  * Spaced repetition tracking recording mastery levels and error frequency per word.
-* **⌨️ Integrated Cyrillic Keyboard & Transliteration**: Full on-screen Russian keyboard with click-to-type input and phonetic transliteration mapping for users without physical Russian keyboards.
-* **🔤 English Phonics & Essential Vocabulary**: Visual A–Z phonics tiles with curated vocabulary, example sentences, and American English audio.
-* **☁️ Cloud Sync & Identity (Supabase)**:
-  * Google OAuth sign-in with seamless guest mode fallback.
-  * Cross-device progress synchronization across multiple languages in isolated PostgreSQL records.
-  * Dedicated vanity domain (`auth.basiclanguage.school`) for branded authentication.
-* **📱 Progressive Web App (PWA)**: Installable on iOS, Android, macOS, and Windows with offline caching powered by Vite PWA and Workbox.
+* **🌍 210 Bidirectional Language Pairs (15 Languages)**: Set your native interface language ("I speak") and target course ("I want to learn") independently across all 15 languages with automatic audio halting, RTL layout adaptation (`ar`, `ur`), localized grammar explanations, and dedicated SVG academic emblems (`AppEmblem.tsx`).
+* **📘 Interactive Grammar, Verb Tables & Gender/Rule Flashcards**: Interactive noun-gender tabs, verb conjugation tables, grammar descriptions with neural audio speakers, and expanded **16-card rule/gender flashcards** with clickable option neural audio and crisp Web Audio API sound chimes (`correct` / `incorrect`).
+* **🏮 Mandarin Pinyin & Tones Guide (`PinyinGuide.tsx`)**: Dedicated multi-tab Pinyin companion covering the 4 Mandarin tones, syllable anatomy (Initials/Finals), phonetic IME typing workflows, and interactive sound filters.
+* **🏛️ Cultural & Script Origins (`LanguageAbout.tsx`)**: Localized deep dives into each language's history, writing system evolution (such as Simplified vs. Traditional Chinese comparisons), timelines, and structural traits.
+* **⌨️ 8 Non-Latin Phonetic Virtual Keyboards + Live Sound-Out Spacebar Conversion**: Integrated clickable phonetic keyboards and live sound-it-out + Spacebar conversion in quiz input mode across all 8 non-Latin scripts (`ru`, `ar`, `ur`, `hi`, `bn`, `ja`, `ko`, `zh`).
+* **🎙️ 14,500+ Studio Neural Audio Recordings & Speed Controls**: Pre-rendered native MP3 pronunciations generated via Microsoft Edge Neural TTS with variable speed control (`0.5×` to `1.25×`), word/example playback inside revealed cards, and clean browser TTS fallback.
+* **📦 Instant Single-File Offline Audio Binary Packs (`offline-pack.bin`)**: Each language bundles all its MP3 clips into a single contiguous binary archive (`public/audio/<lang>/offline-pack.bin`) with byte-offset manifests (`manifest.json`), enabling rapid one-click offline downloads into browser Cache Storage for full Airplane Mode playback (`OfflineAudioModal.tsx`).
+* **🎯 Adaptive Quiz Engine with Fuzzy Typo Tolerance**: Supports Source-to-Target, Target-to-Source, Listening Mode, smart script normalization, and Levenshtein typo detection that accepts harmless slips while rejecting near-miss real words.
+* **☁️ Cloud Sync & Privacy-First Guest Mode (Supabase)**: Local progress persistence by default with optional Google, GitHub, and Microsoft OAuth 2.0 cloud synchronization (`progressService.ts`) backed by PostgreSQL Row Level Security (RLS).
 
 ---
 
 ## 🛠️ Tech Stack
 
-* **Frontend**: React 18, TypeScript, Vanilla CSS (CSS Variables, Modern Flexbox/Grid, Glassmorphism)
-* **Routing**: Universal multi-language dual routing (`/learn/:lang/:section` with direct fallback routes)
-* **Build System**: Vite 6, `@vitejs/plugin-react`, `vite-plugin-pwa`
-* **Testing**: Vitest, React Testing Library, JSDOM (44 automated unit & integration tests)
-* **Backend & Auth**: Supabase PostgreSQL, Row Level Security (RLS), Google OAuth 2.0
-* **Audio Engine**: Python `edge-tts` batch generation pipeline with Web Speech API browser fallback
-* **Hosting & CDN**: Netlify with custom security headers and SPA rewrite rules
+* **Frontend**: React 19, TypeScript 5.8, Vanilla CSS (CSS Variables, Flexbox/Grid, RTL support, Glassmorphism)
+* **Routing**: Universal multi-language dual routing (`/learn/:lang/:section`, `/:lang/:section`, and root routes) with dynamic SEO metadata
+* **Build System**: Vite 6, `@vitejs/plugin-react`, `vite-plugin-pwa`, custom offline audio pack bundler (`scripts/build-offline-packs.mjs`)
+* **Testing**:
+  * **Unit & Integration**: Vitest, React Testing Library, JSDOM (**1,512 tests across 55 suites**)
+  * **End-to-End**: Playwright Chromium (**21 E2E browser specs** covering desktop, 390px mobile, RTL, Pinyin, phonetic typing, offline Airplane Mode, and neural audio)
+* **Backend & Auth**: Supabase PostgreSQL, Row Level Security (RLS), OAuth 2.0 (Google, GitHub, Microsoft)
+* **Audio Pipeline**: Python `edge-tts` studio batch synthesis (`scripts/generate-all-audio.py`) + Web Speech API fallback
+* **Hosting & CDN**: Netlify with security headers and SPA fallback rules
 
 ---
 
@@ -63,43 +73,60 @@ An interactive, high-performance multi-language learning platform featuring stud
 
 ```text
 basic-language-school/
-├── ACTION_PLAN.md            # Comprehensive architecture and milestone roadmap
+├── ACTION_PLAN.md              # Architecture notes & milestone roadmap
 ├── docs/
-│   └── schema.sql            # Supabase PostgreSQL schema with multi-language RLS
+│   ├── BACKEND_PLAN.md         # Cloud sync & OAuth integration architecture
+│   └── schema.sql              # Supabase PostgreSQL schema with RLS policies
+├── e2e/
+│   ├── chinesePinyinAboutAndTypoQuiz.spec.ts
+│   └── languageMatrixAndLayout.spec.ts
 ├── scripts/
-│   ├── generate-all-audio.py # Python batch neural speech generator (ru, en, es, fr)
-│   └── generate-speech.py    # Single-phrase audio generator
+│   ├── build-offline-packs.mjs # Packages each language's MP3s into offline-pack.bin
+│   ├── generate-offline-manifests.mjs
+│   ├── generate-all-audio.py   # Microsoft Edge Neural TTS batch generator
+│   └── render-og-image.js      # Renders public/og-image.svg -> public/og-image.png
 ├── public/
-│   ├── audio/
-│   │   ├── ru/               # Russian pre-rendered audio (alphabet, phrases, numbers, words)
-│   │   ├── en/               # English pre-rendered audio (alphabet, phrases, numbers, words)
-│   │   └── sounds/           # UI feedback audio (correct.mp3, incorrect.mp3)
-│   ├── manifest.json         # PWA Web App Manifest
+│   ├── audio/                  # Pre-rendered neural MP3s & offline-pack.bin per language
+│   ├── privacy/index.html      # Static Privacy Policy page
+│   ├── terms/index.html        # Static Terms of Service page
+│   ├── app-icon.svg            # Universal app crest vector source
+│   ├── manifest.json           # PWA Web App Manifest
+│   ├── og-image.svg / .png     # 15-language OpenGraph social preview banner
+│   ├── robots.txt & sitemap.xml
 │   └── favicon.ico
 └── src/
-    ├── App.tsx               # Main application shell with dual routing & dynamic headers
+    ├── App.tsx                 # Main application shell, routing & dynamic SEO metadata
     ├── contexts/
-    │   └── LanguageContext.tsx # Global language state, routing sync & audio control
+    │   └── LanguageContext.tsx # Base/target language state, routing sync & audio halt
     ├── components/
-    │   ├── Alphabet.tsx      # Multi-language alphabet & phonics renderer
-    │   ├── LanguageSwitcher.tsx # Duolingo-style capsule dropdown
-    │   ├── NumbersAndTime.tsx # Dynamic numbers and time grammar guides
-    │   ├── Phrases.tsx       # Essential conversational phrases with audio
-    │   ├── PronunciationButton.tsx # Audio button with path resolution & fallback
-    │   ├── Quiz.tsx          # Adaptive quiz engine with Cyrillic keyboard integration
-    │   ├── RussianKeyboard.tsx # On-screen Cyrillic keyboard for Russian mode
-    │   ├── UserMenu.tsx      # User profile, cloud sync status & language indicator
-    │   ├── AuthModal.tsx     # Google OAuth & guest sign-in modal
-    │   └── ProgressModal.tsx # Cross-language learning statistics and word mastery
+    │   ├── Alphabet.tsx        # Alphabet, script, Grammar & Cultural About host
+    │   ├── AppEmblem.tsx       # Custom SVG graduation-cap emblems for all 15 languages
+    │   ├── FlagIcon.tsx        # Cross-platform vector SVG flags for all 15 languages
+    │   ├── Grammar.tsx         # Noun genders, verbs, descriptions & audio flashcards
+    │   ├── LanguageAbout.tsx   # Localized cultural, historical & script origins tabs
+    │   ├── LanguageSwitcher.tsx# Base & target language picker modals
+    │   ├── NumbersAndTime.tsx  # Number reference & telling-time grammar guides
+    │   ├── OfflineAudioModal.tsx # Offline pack selector & Cache Storage progress UI
+    │   ├── PhoneticKeyboard.tsx# Virtual phonetic keyboards (ar, ur, hi, bn, ja, ko, zh)
+    │   ├── Phrases.tsx         # Categorized phrases & 500+ topic vocabulary packs
+    │   ├── PinyinGuide.tsx     # Mandarin tones, initials/finals & phonetic IME guide
+    │   ├── PronunciationButton.tsx # Offline CacheFirst MP3 & Web Speech fallback button
+    │   ├── Quiz.tsx            # Adaptive quiz engine with phonetic typing & feedback
+    │   ├── RussianKeyboard.tsx # On-screen Cyrillic keyboard with live phonetic mapping
+    │   └── ProgressModal.tsx   # Cross-language accuracy & spaced-repetition dashboard
     ├── data/
-    │   └── languages/
-    │       ├── types.ts      # Multi-language curriculum contracts
-    │       ├── index.ts      # Registry for available courses
-    │       ├── ru/           # Russian vocabulary and curriculum data
-    │       └── en/           # English vocabulary and phonics data
-    └── services/
-        ├── supabaseClient.ts # Supabase client initialization
-        └── progressService.ts# Scoped cross-language progress sync
+    │   ├── aboutTranslations.ts# App About & Contact translations
+    │   ├── legalTranslations.ts# Localized Privacy Policy & Terms of Service
+    │   └── languages/          # 15 course datasets, grammar flashcards & cultural guides
+    ├── services/
+    │   ├── offlineAudioService.ts # Binary .bin unpacker & Cache Storage manager
+    │   ├── progressService.ts  # Local & Supabase cloud quiz progress sync
+    │   └── supabaseClient.ts   # Supabase client setup
+    └── utils/
+        ├── fuzzyMatcher.ts     # Typo-tolerant quiz grading across scripts
+        ├── phoneticTyping.ts   # Sound-out + Spacebar IME conversion for 8 scripts
+        ├── speech.ts           # Audio playback queue & Web Speech API fallback
+        └── translationResolver.ts # Matrix UI localization across 15x15 pairs
 ```
 
 ---
@@ -107,9 +134,9 @@ basic-language-school/
 ## 💻 Local Development
 
 ### Prerequisites
-* **Node.js**: `v20.x` or `v22.x` (Active LTS)
+* **Node.js**: `v22.x` or later (see `engines` in `package.json`)
 * **npm**: `v10.x` or later
-* **Python**: `v3.10+` with `edge-tts` (optional, for regenerating neural audio)
+* **Python**: `v3.10+` with `edge-tts` (optional, only for regenerating studio MP3 audio)
 
 ### 1. Clone & Install
 ```bash
@@ -119,7 +146,7 @@ npm install
 ```
 
 ### 2. Environment Variables
-Create a `.env.local` file in the project root:
+Create a `.env.local` file in the project root (optional; Guest Mode works without environment variables):
 ```env
 VITE_SUPABASE_URL=https://<your-project-ref>.supabase.co
 VITE_SUPABASE_ANON_KEY=<your-anon-key>
@@ -127,42 +154,43 @@ VITE_SUPABASE_ANON_KEY=<your-anon-key>
 
 ### 3. Run Development Server
 ```bash
-npm start
-# Server starts at http://localhost:3000
+npm run dev
+# Vite dev server starts at http://localhost:5173
 ```
 
 ### 4. Run Automated Tests
 ```bash
+# Unit & integration suite (55 suites, 1,512 tests)
 npm test
-# Runs 44 unit and integration tests across 6 test suites with Vitest
+
+# Strict TypeScript check
+npx tsc --noEmit --noUnusedLocals --noUnusedParameters
+
+# Playwright end-to-end suite (21 browser tests)
+npx playwright test
 ```
 
 ### 5. Build for Production
 ```bash
 npm run build
-# Compiles TypeScript and builds optimized production bundle to dist/
+# Compiles TypeScript, builds Vite bundle to dist/, and packages offline-pack.bin archives
 npm run preview
 # Preview the production build locally
 ```
 
 ---
 
-## 🎙️ Neural Audio Generation
+## 🎙️ Studio Audio & Offline Binary Packs
 
-To generate or refresh audio files using Microsoft Edge Neural TTS:
+To regenerate neural audio files (`edge-tts`) or rebuild the single-file offline binary packs (`offline-pack.bin` + `manifest.json`):
 
 ```bash
-# Install Python dependency
-pip install edge-tts
-
-# Generate all audio for English
-python3 scripts/generate-all-audio.py --lang en
-
-# Generate all audio for Russian
-python3 scripts/generate-all-audio.py --lang ru
-
-# Generate both languages
+# Generate studio neural MP3s (all 15 languages)
+pip3 install edge-tts
 python3 scripts/generate-all-audio.py --all
+
+# Rebuild single-file offline binary packs & manifests for all 15 languages
+npm run build-offline-packs
 ```
 
 ---

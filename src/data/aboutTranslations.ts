@@ -42,8 +42,8 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     features: [
       {
         icon: '🌐',
-        title: '8 Languages & 56 Directions',
-        desc: 'Learn Spanish, French, German, Russian, Portuguese, Indonesian, Turkish, or English — studying directly from any of these 8 base languages.'
+        title: '15 Languages & 210 Directions',
+        desc: 'Learn English, Spanish, French, German, Portuguese, Indonesian, Turkish, Russian, Mandarin Chinese, Japanese, Korean, Hindi, Arabic, Bengali, or Urdu — studying directly from any of these 15 base languages.'
       },
       {
         icon: '🎧',
@@ -99,8 +99,8 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     features: [
       {
         icon: '🌐',
-        title: '8 Idiomas y 56 Direcciones',
-        desc: 'Aprende español, inglés, francés, alemán, ruso, portugués, indonesio o turco, estudiando desde cualquiera de estas 8 lenguas maternas.'
+        title: '15 Idiomas y 210 Direcciones',
+        desc: 'Aprende español, inglés, francés, alemán, portugués, indonesio, turco, ruso, chino mandarín, japonés, coreano, hindi, árabe, bengalí o urdu, estudiando desde cualquiera de estas 15 lenguas maternas.'
       },
       {
         icon: '🎧',
@@ -156,8 +156,8 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     features: [
       {
         icon: '🌐',
-        title: '8 языков и 56 языковых пар',
-        desc: 'Изучайте английский, испанский, французский, немецкий, русский, португальский, индонезийский или турецкий язык в любом направлении.'
+        title: '15 языков и 210 языковых пар',
+        desc: 'Изучайте английский, испанский, французский, немецкий, португальский, индонезийский, турецкий, русский, китайский, японский, корейский, хинди, арабский, бенгальский или урду в любом из 210 направлений.'
       },
       {
         icon: '🎧',
@@ -213,8 +213,8 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     features: [
       {
         icon: '🌐',
-        title: '8 Langues & 56 Paires',
-        desc: 'Apprenez l\'anglais, l\'espagnol, l\'allemand, le russe, le portugais, l\'indonésien, le turc ou le français depuis votre langue maternelle.'
+        title: '15 Langues & 210 Paires',
+        desc: 'Apprenez l\'anglais, l\'espagnol, le français, l\'allemand, le portugais, l\'indonésien, le turc, le russe, le chinois mandarin, le japonais, le coréen, le hindi, l\'arabe, le bengali ou l\'ourdou depuis votre langue maternelle.'
       },
       {
         icon: '🎧',
@@ -270,8 +270,8 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     features: [
       {
         icon: '🌐',
-        title: '8 Idiomas e 56 Direções',
-        desc: 'Aprenda inglês, espanhol, francês, alemão, russo, português, indonésio ou turco estudando diretamente do seu idioma nativo.'
+        title: '15 Idiomas e 210 Direções',
+        desc: 'Aprenda inglês, espanhol, francês, alemão, português, indonésio, turco, russo, chinês mandarim, japonês, coreano, hindi, árabe, bengali ou urdu estudando diretamente do seu idioma nativo.'
       },
       {
         icon: '🎧',
@@ -327,8 +327,8 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     features: [
       {
         icon: '🌐',
-        title: '8 Sprachen & 56 Sprachkombinationen',
-        desc: 'Lernen Sie Englisch, Spanisch, Französisch, Deutsch, Russisch, Portugiesisch, Indonesisch oder Türkisch aus jeder beliebigen Ausgangssprache.'
+        title: '15 Sprachen & 210 Sprachkombinationen',
+        desc: 'Lernen Sie Englisch, Spanisch, Französisch, Deutsch, Portugiesisch, Indonesisch, Türkisch, Russisch, Mandarin-Chinesisch, Japanisch, Koreanisch, Hindi, Arabisch, Bengalisch oder Urdu aus jeder dieser 15 Ausgangssprachen.'
       },
       {
         icon: '🎧',
@@ -384,8 +384,8 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     features: [
       {
         icon: '🌐',
-        title: '8 Bahasa & 56 Pasangan Arah',
-        desc: 'Pelajari Bahasa Inggris, Spanyol, Prancis, Jerman, Rusia, Portugis, Indonesia, atau Turki langsung dari bahasa ibu Anda.'
+        title: '15 Bahasa & 210 Pasangan Arah',
+        desc: 'Pelajari Bahasa Inggris, Spanyol, Prancis, Jerman, Portugis, Indonesia, Turki, Rusia, Mandarin, Jepang, Korea, Hindi, Arab, Bengali, atau Urdu langsung dari bahasa ibu Anda.'
       },
       {
         icon: '🎧',
@@ -441,8 +441,8 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     features: [
       {
         icon: '🌐',
-        title: '8 Dil ve 56 Yön',
-        desc: 'İngilizce, İspanyolca, Fransızca, Almanca, Rusça, Portekizce, Endonezce veya Türkçe dillerini ana dilinizden öğrenin.'
+        title: '15 Dil ve 210 Yön',
+        desc: 'İngilizce, İspanyolca, Fransızca, Almanca, Portekizce, Endonezce, Türkçe, Rusça, Çince (Mandarin), Japonca, Korece, Hintçe, Arapça, Bengalce veya Urduca dillerini ana dilinizden öğrenin.'
       },
       {
         icon: '🎧',
@@ -554,8 +554,8 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     features: [
       {
         icon: '🌐',
-        title: '覆盖全球核心语言',
-        desc: '支持英语、西班牙语、法语、德语、俄语、葡萄牙语、印尼语、土耳其语、日语、韩语以及中文的双向自主学习。'
+        title: '覆盖全球 15 种核心语言与 210 个学习方向',
+        desc: '支持英语、西班牙语、法语、德语、葡萄牙语、印尼语、土耳其语、俄语、中文、日语、韩语、印地语、阿拉伯语、孟加拉语及乌尔都语的双向自主学习。'
       },
       {
         icon: '🎧',
@@ -599,8 +599,8 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     features: [
       {
         icon: '🌐',
-        title: 'विश्व की प्रमुख भाषाएँ',
-        desc: 'अंग्रेज़ी, स्पैनिश, फ़्रेंच, जर्मन, रूसी, पुर्तगाली, इंडोनेशियाई, तुर्की, जापानी, कोरियाई, चीनी और हिन्दी में द्विदिशीय अध्ययन।'
+        title: 'विश्व की 15 प्रमुख भाषाएँ और 210 दिशाएँ',
+        desc: 'अंग्रेज़ी, स्पैनिश, फ़्रेंच, जर्मन, पुर्तगाली, इंडोनेशियाई, तुर्की, रूसी, मंदारिन चीनी, जापानी, कोरियाई, हिन्दी, अरबी, बंगाली और उर्दू में द्विदिशीय अध्ययन।'
       },
       {
         icon: '🎧',

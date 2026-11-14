@@ -105,8 +105,8 @@ describe('Alphabet & Grammar Section Integration', () => {
     expect(screen.getByText(/Planen wir ein Meeting/i)).toBeInTheDocument();
   });
 
-  it('supports grammar curriculum across all 8 supported languages', () => {
-    const supportedLangs = ['de', 'ru', 'es', 'fr', 'pt', 'en', 'tr', 'id'] as const;
+  it('supports grammar curriculum across all 15 supported languages', () => {
+    const supportedLangs = ['de', 'ru', 'es', 'fr', 'pt', 'en', 'tr', 'id', 'ja', 'ko', 'zh', 'hi', 'ar', 'bn', 'ur'] as const;
     supportedLangs.forEach(lang => {
       const grammar = getGrammarForLanguage(lang);
       expect(grammar).toBeDefined();

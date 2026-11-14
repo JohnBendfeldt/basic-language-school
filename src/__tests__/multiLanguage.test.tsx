@@ -211,7 +211,7 @@ describe('Multi-Language Core Architecture', () => {
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 
-  it('renders unique emblems with correct aria-labels for all 8 supported languages', async () => {
+  it('renders unique emblems with correct aria-labels for all 15 supported languages', async () => {
     const { AppEmblem } = await import('../components/AppEmblem');
     const { getAlphabetQuizHint } = await import('../utils/translationResolver');
 
@@ -223,6 +223,13 @@ describe('Multi-Language Core Architecture', () => {
       pt: 'Basic Portuguese emblem',
       id: 'Basic Indonesian emblem',
       tr: 'Basic Turkish emblem',
+      ja: 'Basic Japanese emblem',
+      ko: 'Basic Korean emblem',
+      zh: 'Basic Chinese emblem',
+      hi: 'Basic Hindi emblem',
+      ar: 'Basic Arabic emblem',
+      bn: 'Basic Bengali emblem',
+      ur: 'Basic Urdu emblem',
       en: 'Basic English emblem'
     };
 

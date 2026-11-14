@@ -467,9 +467,11 @@ describe('Offline Audio Service, Manifests, Airplane Mode Playback & PWA Install
     const zhCard = screen.getByTestId('offline-pack-zh');
     const frCard = screen.getByTestId('offline-pack-fr');
 
-    expect(esCard).toHaveAttribute('aria-checked', 'true');
-    expect(zhCard).toHaveAttribute('aria-checked', 'true');
-    expect(frCard).toHaveAttribute('aria-checked', 'false');
+    await waitFor(() => {
+      expect(esCard).toHaveAttribute('aria-checked', 'true');
+      expect(zhCard).toHaveAttribute('aria-checked', 'true');
+      expect(frCard).toHaveAttribute('aria-checked', 'false');
+    });
 
     // Download the pre-selected pair
     const downloadBtn = screen.getByRole('button', { name: /下载所选语音包/ });

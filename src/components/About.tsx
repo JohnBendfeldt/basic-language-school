@@ -39,7 +39,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
           <div className="about-philosophy-text">
             <strong>No bulk. No fluff. No patronizing. Just learning.</strong>
             <p>
-              We believe foundational language education should be open to all: genuinely free, ad-free bidirectional learning across 8 languages. Built to get straight to real language practice without paywalls, subscription timers, distracting ads, or artificial energy limits.
+              We believe foundational language education should be open to all: genuinely free, ad-free bidirectional learning across 15 languages. Built to get straight to real language practice without paywalls, subscription timers, distracting ads, or artificial energy limits.
             </p>
           </div>
         </div>

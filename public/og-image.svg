@@ -9,7 +9,7 @@
 
     <!-- Glowing Background Ambient Lighting -->
     <radialGradient id="indigoAmbient" cx="15%" cy="30%" r="55%">
-      <stop offset="0%" style="stop-color:#4f46e5;stop-opacity:0.25"/>
+      <stop offset="0%" style="stop-color:#4f46e5;stop-opacity:0.26"/>
       <stop offset="100%" style="stop-color:#4f46e5;stop-opacity:0"/>
     </radialGradient>
     <radialGradient id="amberAmbient" cx="85%" cy="80%" r="50%">
@@ -41,12 +41,12 @@
     <!-- Glass Fill Gradient for Right Window -->
     <linearGradient id="glassWindow" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#1e293b;stop-opacity:0.92"/>
-      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:0.94"/>
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:0.95"/>
     </linearGradient>
 
-    <!-- Glass Fill Gradient for Course Rows -->
+    <!-- Glass Fill Gradient for Course Cards -->
     <linearGradient id="rowGlass" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.07"/>
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.075"/>
       <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.03"/>
     </linearGradient>
 
@@ -55,180 +55,170 @@
       <circle cx="18" cy="18" r="1.2" fill="#ffffff" fill-opacity="0.08"/>
     </pattern>
 
-    <!-- ================= VECTOR FLAGS (32x22 for Grid Cards) ================= -->
-    <!-- Spanish Flag -->
-    <g id="flag-es">
-      <clipPath id="es-clip"><rect width="32" height="22" rx="4"/></clipPath>
-      <g clip-path="url(#es-clip)">
-        <rect width="32" height="5.5" fill="#aa151b"/>
-        <rect y="5.5" width="32" height="11" fill="#f1bf00"/>
-        <rect y="16.5" width="32" height="5.5" fill="#aa151b"/>
+    <!-- ================= 15 VECTOR FLAG SYMBOLS (640x480) ================= -->
+    <symbol id="flag-en" viewBox="0 0 640 480">
+      <clipPath id="c-en"><rect width="640" height="480" rx="80"/></clipPath>
+      <g clip-path="url(#c-en)">
+        <rect width="640" height="480" fill="#012169"/>
+        <path d="M0,0 L640,480 M640,0 L0,480" stroke="#ffffff" stroke-width="80"/>
+        <path d="M0,0 L640,480 M640,0 L0,480" stroke="#c8102e" stroke-width="44"/>
+        <path d="M320,0 v480 M0,240 h640" stroke="#ffffff" stroke-width="128"/>
+        <path d="M320,0 v480 M0,240 h640" stroke="#c8102e" stroke-width="76"/>
       </g>
-      <rect width="32" height="22" rx="4" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
-    </g>
+      <rect width="640" height="480" rx="80" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="18"/>
+    </symbol>
 
-    <!-- French Flag -->
-    <g id="flag-fr">
-      <clipPath id="fr-clip"><rect width="32" height="22" rx="4"/></clipPath>
-      <g clip-path="url(#fr-clip)">
-        <rect width="10.6" height="22" fill="#002654"/>
-        <rect x="10.6" width="10.8" height="22" fill="#ffffff"/>
-        <rect x="21.4" width="10.6" height="22" fill="#ce1126"/>
+    <symbol id="flag-es" viewBox="0 0 640 480">
+      <clipPath id="c-es"><rect width="640" height="480" rx="80"/></clipPath>
+      <g clip-path="url(#c-es)">
+        <rect width="640" height="120" fill="#aa151b"/>
+        <rect y="120" width="640" height="240" fill="#f1bf00"/>
+        <rect y="360" width="640" height="120" fill="#aa151b"/>
       </g>
-      <rect width="32" height="22" rx="4" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
-    </g>
+      <rect width="640" height="480" rx="80" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="18"/>
+    </symbol>
 
-    <!-- German Flag -->
-    <g id="flag-de">
-      <clipPath id="de-clip"><rect width="32" height="22" rx="4"/></clipPath>
-      <g clip-path="url(#de-clip)">
-        <rect width="32" height="7.33" fill="#000000"/>
-        <rect y="7.33" width="32" height="7.34" fill="#dd0000"/>
-        <rect y="14.67" width="32" height="7.33" fill="#ffce00"/>
+    <symbol id="flag-fr" viewBox="0 0 640 480">
+      <clipPath id="c-fr"><rect width="640" height="480" rx="80"/></clipPath>
+      <g clip-path="url(#c-fr)">
+        <rect width="213.3" height="480" fill="#002654"/>
+        <rect x="213.3" width="213.4" height="480" fill="#ffffff"/>
+        <rect x="426.7" width="213.3" height="480" fill="#ce1126"/>
       </g>
-      <rect width="32" height="22" rx="4" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
-    </g>
+      <rect width="640" height="480" rx="80" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="18"/>
+    </symbol>
 
-    <!-- Russian Flag -->
-    <g id="flag-ru">
-      <clipPath id="ru-clip"><rect width="32" height="22" rx="4"/></clipPath>
-      <g clip-path="url(#ru-clip)">
-        <rect width="32" height="7.33" fill="#ffffff"/>
-        <rect y="7.33" width="32" height="7.34" fill="#0039a6"/>
-        <rect y="14.67" width="32" height="7.33" fill="#d52b1e"/>
+    <symbol id="flag-de" viewBox="0 0 640 480">
+      <clipPath id="c-de"><rect width="640" height="480" rx="80"/></clipPath>
+      <g clip-path="url(#c-de)">
+        <rect width="640" height="160" fill="#000000"/>
+        <rect y="160" width="640" height="160" fill="#dd0000"/>
+        <rect y="320" width="640" height="160" fill="#ffce00"/>
       </g>
-      <rect width="32" height="22" rx="4" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
-    </g>
+      <rect width="640" height="480" rx="80" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="18"/>
+    </symbol>
 
-    <!-- Portuguese Flag -->
-    <g id="flag-pt">
-      <clipPath id="pt-clip"><rect width="32" height="22" rx="4"/></clipPath>
-      <g clip-path="url(#pt-clip)">
-        <rect width="12.8" height="22" fill="#046a38"/>
-        <rect x="12.8" width="19.2" height="22" fill="#da291c"/>
-        <circle cx="12.8" cy="11" r="4.2" fill="#ffd700" stroke="#da291c" stroke-width="0.6"/>
-        <circle cx="12.8" cy="11" r="2.4" fill="#ffffff" stroke="#002b7f" stroke-width="0.5"/>
+    <symbol id="flag-pt" viewBox="0 0 640 480">
+      <clipPath id="c-pt"><rect width="640" height="480" rx="80"/></clipPath>
+      <g clip-path="url(#c-pt)">
+        <rect width="640" height="480" fill="#009b3a"/>
+        <polygon points="320,60 580,240 320,420 60,240" fill="#fedf00"/>
+        <circle cx="320" cy="240" r="105" fill="#002776"/>
+        <path d="M220,225 Q320,185 420,255" stroke="#ffffff" stroke-width="18" fill="none"/>
       </g>
-      <rect width="32" height="22" rx="4" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
-    </g>
+      <rect width="640" height="480" rx="80" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="18"/>
+    </symbol>
 
-    <!-- Indonesian Flag -->
-    <g id="flag-id">
-      <clipPath id="id-clip"><rect width="32" height="22" rx="4"/></clipPath>
-      <g clip-path="url(#id-clip)">
-        <rect width="32" height="11" fill="#e70011"/>
-        <rect y="11" width="32" height="11" fill="#ffffff"/>
+    <symbol id="flag-id" viewBox="0 0 640 480">
+      <clipPath id="c-id"><rect width="640" height="480" rx="80"/></clipPath>
+      <g clip-path="url(#c-id)">
+        <rect width="640" height="240" fill="#ce1126"/>
+        <rect y="240" width="640" height="240" fill="#ffffff"/>
       </g>
-      <rect width="32" height="22" rx="4" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
-    </g>
+      <rect width="640" height="480" rx="80" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="18"/>
+    </symbol>
 
-    <!-- Turkish Flag -->
-    <g id="flag-tr">
-      <clipPath id="tr-clip"><rect width="32" height="22" rx="4"/></clipPath>
-      <g clip-path="url(#tr-clip)">
-        <rect width="32" height="22" fill="#e30a17"/>
-        <circle cx="12" cy="11" r="5.6" fill="#ffffff"/>
-        <circle cx="13.5" cy="11" r="4.4" fill="#e30a17"/>
-        <polygon points="17,11 19,11.6 18.2,9.8 19,8 17,8.6 15.8,7 15.8,9 14.6,10.2 16.2,10.6 15.8,12.5" fill="#ffffff" transform="scale(0.8) translate(3.5, 2)"/>
+    <symbol id="flag-tr" viewBox="0 0 640 480">
+      <clipPath id="c-tr"><rect width="640" height="480" rx="80"/></clipPath>
+      <g clip-path="url(#c-tr)">
+        <rect width="640" height="480" fill="#e30a17"/>
+        <circle cx="240" cy="240" r="120" fill="#ffffff"/>
+        <circle cx="270" cy="240" r="96" fill="#e30a17"/>
+        <polygon points="385,240 442,258 406,209 406,271 442,222" fill="#ffffff"/>
       </g>
-      <rect width="32" height="22" rx="4" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
-    </g>
+      <rect width="640" height="480" rx="80" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="18"/>
+    </symbol>
 
-    <!-- British Union Jack Flag -->
-    <g id="flag-en">
-      <clipPath id="en-clip"><rect width="32" height="22" rx="4"/></clipPath>
-      <g clip-path="url(#en-clip)">
-        <rect width="32" height="22" fill="#012169"/>
-        <path d="M0,0 L32,22 M32,0 L0,22" stroke="#ffffff" stroke-width="4"/>
-        <path d="M0,0 L32,22 M32,0 L0,22" stroke="#c8102e" stroke-width="2"/>
-        <path d="M16,0 v22 M0,11 h32" stroke="#ffffff" stroke-width="6.4"/>
-        <path d="M16,0 v22 M0,11 h32" stroke="#c8102e" stroke-width="3.8"/>
+    <symbol id="flag-ru" viewBox="0 0 640 480">
+      <clipPath id="c-ru"><rect width="640" height="480" rx="80"/></clipPath>
+      <g clip-path="url(#c-ru)">
+        <rect width="640" height="160" fill="#ffffff"/>
+        <rect y="160" width="640" height="160" fill="#0039a6"/>
+        <rect y="320" width="640" height="160" fill="#d52b1e"/>
       </g>
-      <rect width="32" height="22" rx="4" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
-    </g>
+      <rect width="640" height="480" rx="80" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="18"/>
+    </symbol>
 
-    <!-- ================= MINI FLAGS (22x15 for Top Header Pill) ================= -->
-    <g id="mini-flag-es">
-      <clipPath id="m-es-clip"><rect width="22" height="15" rx="3"/></clipPath>
-      <g clip-path="url(#m-es-clip)">
-        <rect width="22" height="3.75" fill="#aa151b"/>
-        <rect y="3.75" width="22" height="7.5" fill="#f1bf00"/>
-        <rect y="11.25" width="22" height="3.75" fill="#aa151b"/>
+    <symbol id="flag-zh" viewBox="0 0 640 480">
+      <clipPath id="c-zh"><rect width="640" height="480" rx="80"/></clipPath>
+      <g clip-path="url(#c-zh)">
+        <rect width="640" height="480" fill="#de2910"/>
+        <polygon points="144,72 166,138 236,138 180,178 202,244 144,203 86,244 108,178 52,138 122,138" fill="#ffde00"/>
+        <circle cx="272" cy="84" r="18" fill="#ffde00"/>
+        <circle cx="316" cy="134" r="18" fill="#ffde00"/>
+        <circle cx="316" cy="202" r="18" fill="#ffde00"/>
+        <circle cx="272" cy="252" r="18" fill="#ffde00"/>
       </g>
-      <rect width="22" height="15" rx="3" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.7"/>
-    </g>
+      <rect width="640" height="480" rx="80" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="18"/>
+    </symbol>
 
-    <g id="mini-flag-fr">
-      <clipPath id="m-fr-clip"><rect width="22" height="15" rx="3"/></clipPath>
-      <g clip-path="url(#m-fr-clip)">
-        <rect width="7.3" height="15" fill="#002654"/>
-        <rect x="7.3" width="7.4" height="15" fill="#ffffff"/>
-        <rect x="14.7" width="7.3" height="15" fill="#ce1126"/>
+    <symbol id="flag-ja" viewBox="0 0 640 480">
+      <clipPath id="c-ja"><rect width="640" height="480" rx="80"/></clipPath>
+      <g clip-path="url(#c-ja)">
+        <rect width="640" height="480" fill="#ffffff"/>
+        <circle cx="320" cy="240" r="140" fill="#bc002d"/>
       </g>
-      <rect width="22" height="15" rx="3" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.7"/>
-    </g>
+      <rect width="640" height="480" rx="80" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="18"/>
+    </symbol>
 
-    <g id="mini-flag-de">
-      <clipPath id="m-de-clip"><rect width="22" height="15" rx="3"/></clipPath>
-      <g clip-path="url(#m-de-clip)">
-        <rect width="22" height="5" fill="#000000"/>
-        <rect y="5" width="22" height="5" fill="#dd0000"/>
-        <rect y="10" width="22" height="5" fill="#ffce00"/>
+    <symbol id="flag-ko" viewBox="0 0 640 480">
+      <clipPath id="c-ko"><rect width="640" height="480" rx="80"/></clipPath>
+      <g clip-path="url(#c-ko)">
+        <rect width="640" height="480" fill="#ffffff"/>
+        <circle cx="320" cy="240" r="118" fill="#cd2e3a"/>
+        <path d="M202 240C202 305.2 254.8 358 320 358C385.2 358 438 305.2 438 240H202Z" fill="#0047a0"/>
+        <circle cx="261" cy="240" r="59" fill="#cd2e3a"/>
+        <circle cx="379" cy="240" r="59" fill="#0047a0"/>
+        <rect x="115" y="102" width="60" height="16" rx="4" fill="#111827" transform="rotate(35 145 110)"/>
+        <rect x="465" y="362" width="60" height="16" rx="4" fill="#111827" transform="rotate(35 495 370)"/>
       </g>
-      <rect width="22" height="15" rx="3" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.7"/>
-    </g>
+      <rect width="640" height="480" rx="80" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="18"/>
+    </symbol>
 
-    <g id="mini-flag-ru">
-      <clipPath id="m-ru-clip"><rect width="22" height="15" rx="3"/></clipPath>
-      <g clip-path="url(#m-ru-clip)">
-        <rect width="22" height="5" fill="#ffffff"/>
-        <rect y="5" width="22" height="5" fill="#0039a6"/>
-        <rect y="10" width="22" height="5" fill="#d52b1e"/>
+    <symbol id="flag-hi" viewBox="0 0 640 480">
+      <clipPath id="c-hi"><rect width="640" height="480" rx="80"/></clipPath>
+      <g clip-path="url(#c-hi)">
+        <rect width="640" height="160" fill="#ff9933"/>
+        <rect y="160" width="640" height="160" fill="#ffffff"/>
+        <rect y="320" width="640" height="160" fill="#138808"/>
+        <circle cx="320" cy="240" r="58" fill="none" stroke="#000080" stroke-width="14"/>
+        <circle cx="320" cy="240" r="16" fill="#000080"/>
       </g>
-      <rect width="22" height="15" rx="3" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.7"/>
-    </g>
+      <rect width="640" height="480" rx="80" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="18"/>
+    </symbol>
 
-    <g id="mini-flag-pt">
-      <clipPath id="m-pt-clip"><rect width="22" height="15" rx="3"/></clipPath>
-      <g clip-path="url(#m-pt-clip)">
-        <rect width="8.8" height="15" fill="#046a38"/>
-        <rect x="8.8" width="13.2" height="15" fill="#da291c"/>
-        <circle cx="8.8" cy="7.5" r="2.8" fill="#ffd700"/>
+    <symbol id="flag-ar" viewBox="0 0 640 480">
+      <clipPath id="c-ar"><rect width="640" height="480" rx="80"/></clipPath>
+      <g clip-path="url(#c-ar)">
+        <rect width="640" height="480" fill="#165d31"/>
+        <path d="M160 320h320v20H160z M450 308l44 22-44 22z" fill="#ffffff"/>
+        <path d="M180 215 Q240 165 305 215 T445 205" stroke="#ffffff" stroke-width="26" stroke-linecap="round" fill="none"/>
+        <circle cx="245" cy="145" r="16" fill="#ffffff"/>
+        <circle cx="385" cy="145" r="16" fill="#ffffff"/>
       </g>
-      <rect width="22" height="15" rx="3" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.7"/>
-    </g>
+      <rect width="640" height="480" rx="80" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="18"/>
+    </symbol>
 
-    <g id="mini-flag-id">
-      <clipPath id="m-id-clip"><rect width="22" height="15" rx="3"/></clipPath>
-      <g clip-path="url(#m-id-clip)">
-        <rect width="22" height="7.5" fill="#e70011"/>
-        <rect y="7.5" width="22" height="7.5" fill="#ffffff"/>
+    <symbol id="flag-bn" viewBox="0 0 640 480">
+      <clipPath id="c-bn"><rect width="640" height="480" rx="80"/></clipPath>
+      <g clip-path="url(#c-bn)">
+        <rect width="640" height="480" fill="#006a4e"/>
+        <circle cx="288" cy="240" r="140" fill="#f42a41"/>
       </g>
-      <rect width="22" height="15" rx="3" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.7"/>
-    </g>
+      <rect width="640" height="480" rx="80" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="18"/>
+    </symbol>
 
-    <g id="mini-flag-tr">
-      <clipPath id="m-tr-clip"><rect width="22" height="15" rx="3"/></clipPath>
-      <g clip-path="url(#m-tr-clip)">
-        <rect width="22" height="15" fill="#e30a17"/>
-        <circle cx="8.5" cy="7.5" r="3.6" fill="#ffffff"/>
-        <circle cx="9.6" cy="7.5" r="2.9" fill="#e30a17"/>
-        <circle cx="12.5" cy="7.5" r="1.1" fill="#ffffff"/>
+    <symbol id="flag-ur" viewBox="0 0 640 480">
+      <clipPath id="c-ur"><rect width="640" height="480" rx="80"/></clipPath>
+      <g clip-path="url(#c-ur)">
+        <rect width="640" height="480" fill="#01411c"/>
+        <rect width="160" height="480" fill="#ffffff"/>
+        <circle cx="410" cy="240" r="110" fill="#ffffff"/>
+        <circle cx="438" cy="218" r="95" fill="#01411c"/>
+        <polygon points="462,174 472,198 498,198 477,214 485,238 462,223 439,238 447,214 426,198 452,198" fill="#ffffff"/>
       </g>
-      <rect width="22" height="15" rx="3" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.7"/>
-    </g>
-
-    <g id="mini-flag-en">
-      <clipPath id="m-en-clip"><rect width="22" height="15" rx="3"/></clipPath>
-      <g clip-path="url(#m-en-clip)">
-        <rect width="22" height="15" fill="#012169"/>
-        <path d="M0,0 L22,15 M22,0 L0,15" stroke="#ffffff" stroke-width="2.6"/>
-        <path d="M0,0 L22,15 M22,0 L0,15" stroke="#c8102e" stroke-width="1.3"/>
-        <path d="M11,0 v15 M0,7.5 h22" stroke="#ffffff" stroke-width="4.4"/>
-        <path d="M11,0 v15 M0,7.5 h22" stroke="#c8102e" stroke-width="2.6"/>
-      </g>
-      <rect width="22" height="15" rx="3" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.7"/>
-    </g>
+      <rect width="640" height="480" rx="80" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="18"/>
+    </symbol>
   </defs>
 
   <!-- Background Base -->
@@ -246,90 +236,79 @@
 
   <!-- ================= LEFT COLUMN: CONTENT ================= -->
 
-  <!-- Top Bar: School Icon + Domain Pill + 8 Vector Flags -->
-  <g transform="translate(68, 54)">
+  <!-- Top Bar: School Icon + Domain Pill + Scale Badge -->
+  <g transform="translate(60, 52)">
     <!-- School Crest Emblem (52x52) -->
     <g>
       <rect x="0" y="0" width="52" height="52" rx="16" fill="#4338ca" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
-      <!-- Graduation Cap -->
       <path d="M26 14 L11 22 L26 30 L41 22 Z" fill="url(#goldGrad)"/>
       <path d="M17 26.5 V35.5 C17 38.5 21 41 26 41 C31 41 35 38.5 35 35.5 V26.5" stroke="#ffffff" stroke-width="2.4" fill="none" stroke-linecap="round"/>
       <path d="M41 23 V33" stroke="url(#goldGrad)" stroke-width="2.4" stroke-linecap="round"/>
     </g>
 
     <!-- Domain Pill -->
-    <rect x="64" y="7" width="220" height="38" rx="19" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
-    <text x="174" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="700" fill="#fde047" text-anchor="middle" letter-spacing="0.4">basiclanguage.school</text>
+    <rect x="64" y="7" width="214" height="38" rx="19" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+    <text x="171" y="31.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14.5" font-weight="700" fill="#fde047" text-anchor="middle" letter-spacing="0.4">basiclanguage.school</text>
 
-    <!-- 8 Vector Flags Mini Badge -->
-    <g transform="translate(296, 7)">
-      <rect x="0" y="0" width="254" height="38" rx="19" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
-      <use href="#mini-flag-es" x="11" y="11.5"/>
-      <use href="#mini-flag-fr" x="41" y="11.5"/>
-      <use href="#mini-flag-de" x="71" y="11.5"/>
-      <use href="#mini-flag-ru" x="101" y="11.5"/>
-      <use href="#mini-flag-pt" x="131" y="11.5"/>
-      <use href="#mini-flag-id" x="161" y="11.5"/>
-      <use href="#mini-flag-tr" x="191" y="11.5"/>
-      <use href="#mini-flag-en" x="221" y="11.5"/>
-    </g>
+    <!-- 15 Languages & 210 Pairs Pill -->
+    <rect x="290" y="7" width="224" height="38" rx="19" fill="rgba(99, 102, 241, 0.16)" stroke="rgba(129, 140, 248, 0.35)" stroke-width="1"/>
+    <text x="402" y="31.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="700" fill="#e0e7ff" text-anchor="middle">15 Languages · 210 Pairs</text>
   </g>
 
   <!-- Main Headline -->
-  <text x="68" y="168" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif" font-size="44" font-weight="900" fill="#ffffff" letter-spacing="-0.5">
+  <text x="60" y="164" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif" font-size="42" font-weight="900" fill="#ffffff" letter-spacing="-0.5">
     Basic Language School
   </text>
 
   <!-- Tagline -->
-  <text x="69" y="210" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="600" fill="#cbd5e1" letter-spacing="0.2">
+  <text x="61" y="205" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="19.5" font-weight="600" fill="#cbd5e1" letter-spacing="0.15">
     Practical Language Learning for Real Careers &amp; Life
   </text>
 
   <!-- Underline Accent Bar -->
-  <rect x="69" y="232" width="480" height="4" rx="2" fill="url(#spectrum)"/>
+  <rect x="61" y="227" width="468" height="4" rx="2" fill="url(#spectrum)"/>
 
-  <!-- Subtitle Paragraph Covering All 8 Languages -->
-  <text x="69" y="268" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15.5" fill="#94a3b8" font-weight="400">
-    Master Spanish, French, German, Russian, Portuguese, Indonesian,
+  <!-- Subtitle Paragraph Covering All 15 Languages -->
+  <text x="61" y="264" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15.5" fill="#94a3b8" font-weight="400">
+    Master 15 world languages: Spanish, French, German, Russian,
   </text>
-  <text x="69" y="294" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15.5" fill="#94a3b8" font-weight="400">
-    Turkish, and English with studio neural audio, spaced repetition,
+  <text x="61" y="290" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15.5" fill="#94a3b8" font-weight="400">
+    Mandarin, Japanese, Korean, Arabic, Hindi, Portuguese, Bengali,
   </text>
-  <text x="69" y="320" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15.5" fill="#94a3b8" font-weight="400">
-    adaptive flashcard quizzes, and career-focused workplace fluency.
+  <text x="61" y="316" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15.5" fill="#94a3b8" font-weight="400">
+    Urdu, Indonesian, Turkish &amp; English — free, ad-free &amp; offline-ready.
   </text>
 
   <!-- Feature Value Pills -->
-  <g transform="translate(68, 356)">
-    <!-- Pill 1: 8 Languages -->
+  <g transform="translate(60, 356)">
+    <!-- Pill 1: 15 Languages -->
     <g transform="translate(0, 0)">
-      <rect width="168" height="42" rx="21" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-      <circle cx="28" cy="21" r="10" fill="none" stroke="#60a5fa" stroke-width="1.8"/>
-      <ellipse cx="28" cy="21" rx="4.5" ry="10" fill="none" stroke="#60a5fa" stroke-width="1.4"/>
-      <line x1="18" y1="21" x2="38" y2="21" stroke="#60a5fa" stroke-width="1.4"/>
-      <text x="47" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14.5" font-weight="700" fill="#f1f5f9">8 Languages</text>
+      <rect width="166" height="42" rx="21" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+      <circle cx="26" cy="21" r="10" fill="none" stroke="#60a5fa" stroke-width="1.8"/>
+      <ellipse cx="26" cy="21" rx="4.5" ry="10" fill="none" stroke="#60a5fa" stroke-width="1.4"/>
+      <line x1="16" y1="21" x2="36" y2="21" stroke="#60a5fa" stroke-width="1.4"/>
+      <text x="45" y="26.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#f1f5f9">15 Languages</text>
     </g>
 
-    <!-- Pill 2: Studio Neural Audio -->
-    <g transform="translate(180, 0)">
-      <rect width="186" height="42" rx="21" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-      <path d="M22 17 L26 14 L30 14 L35 10 V32 L30 28 L26 28 L22 25 Z" fill="#fde047"/>
-      <path d="M37 17 C38.5 19 39.5 21 39.5 23 C39.5 25 38.5 27 37 29" stroke="#fde047" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <path d="M40 14 C42.5 16.5 44 19.5 44 23 C44 26.5 42.5 29.5 40 32" stroke="#fde047" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-      <text x="50" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14.5" font-weight="600" fill="#f1f5f9">Studio Audio</text>
+    <!-- Pill 2: 14,500+ Studio MP3s -->
+    <g transform="translate(178, 0)">
+      <rect width="194" height="42" rx="21" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+      <path d="M20 17 L24 14 L28 14 L33 10 V32 L28 28 L24 28 L20 25 Z" fill="#fde047"/>
+      <path d="M35 17 C36.5 19 37.5 21 37.5 23 C37.5 25 36.5 27 35 29" stroke="#fde047" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <text x="47" y="26.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#f1f5f9">14,500+ MP3s</text>
     </g>
 
-    <!-- Pill 3: Spaced Repetition -->
-    <g transform="translate(378, 0)">
-      <rect width="184" height="42" rx="21" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-      <path d="M22 21 A6 6 0 1 1 34 21 A6 6 0 1 1 22 21" fill="none" stroke="#f472b6" stroke-width="1.8"/>
-      <path d="M25 18 C25 24 31 24 31 18" stroke="#f472b6" stroke-width="1.4" fill="none"/>
-      <text x="44" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14.5" font-weight="600" fill="#f1f5f9">Spaced Repetition</text>
+    <!-- Pill 3: 8 Script Keyboards -->
+    <g transform="translate(384, 0)">
+      <rect width="150" height="42" rx="21" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+      <rect x="16" y="13" width="18" height="15" rx="3" fill="none" stroke="#f472b6" stroke-width="1.7"/>
+      <line x1="20" y1="23" x2="30" y2="23" stroke="#f472b6" stroke-width="1.7" stroke-linecap="round"/>
+      <text x="43" y="26.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" fill="#f1f5f9">8 Keyboards</text>
     </g>
   </g>
 
   <!-- Trust / Guarantee Footer Row -->
-  <g transform="translate(69, 442)">
+  <g transform="translate(61, 434)">
     <!-- Free Forever Badge -->
     <g transform="translate(0, 0)">
       <rect width="134" height="34" rx="8" fill="rgba(16, 185, 129, 0.12)" stroke="rgba(16, 185, 129, 0.3)" stroke-width="1"/>
@@ -344,145 +323,197 @@
       <text x="27" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#c7d2fe">Ad-Free &amp; Open</text>
     </g>
 
-    <!-- 56 Matrix Pairs Badge -->
+    <!-- 210 Language Pairs Badge -->
     <g transform="translate(312, 0)">
-      <rect width="168" height="34" rx="8" fill="rgba(245, 158, 11, 0.12)" stroke="rgba(245, 158, 11, 0.3)" stroke-width="1"/>
+      <rect width="176" height="34" rx="8" fill="rgba(245, 158, 11, 0.12)" stroke="rgba(245, 158, 11, 0.3)" stroke-width="1"/>
       <circle cx="16" cy="17" r="4.5" fill="#f59e0b"/>
-      <text x="27" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#fde68a">56 Language Pairs</text>
+      <text x="27" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#fde68a">210 Language Pairs</text>
     </g>
   </g>
 
+  <!-- Secondary Curriculum Highlights Line -->
+  <text x="61" y="510" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="600" fill="#64748b">
+    Grammar Flashcards · Mandarin Pinyin Guide · Single-File Offline Packs
+  </text>
 
-  <!-- ================= RIGHT COLUMN: 8-LANGUAGE MATRIX PREVIEW ================= -->
-  <g transform="translate(684, 58)">
+  <!-- ================= RIGHT COLUMN: 15-LANGUAGE MATRIX PREVIEW ================= -->
+  <g transform="translate(626, 44)">
     <!-- Window Outer Drop Shadow Box -->
-    <rect x="-8" y="-8" width="462" height="518" rx="26" fill="rgba(0,0,0,0.4)"/>
+    <rect x="-8" y="-8" width="538" height="558" rx="26" fill="rgba(0,0,0,0.42)"/>
 
     <!-- Window Main Frame -->
-    <rect x="0" y="0" width="446" height="502" rx="20" fill="url(#glassWindow)" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
+    <rect x="0" y="0" width="522" height="542" rx="20" fill="url(#glassWindow)" stroke="rgba(255,255,255,0.18)" stroke-width="1.5"/>
 
     <!-- Window Title Bar -->
-    <rect x="0" y="0" width="446" height="48" rx="20" fill="rgba(255,255,255,0.04)"/>
-    <line x1="0" y1="48" x2="446" y2="48" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <rect x="0" y="0" width="522" height="44" rx="20" fill="rgba(255,255,255,0.04)"/>
+    <line x1="0" y1="44" x2="522" y2="44" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
 
-    <!-- macOS Window Controls (Traffic Lights) -->
-    <circle cx="26" cy="24" r="5.5" fill="#ef4444"/>
-    <circle cx="44" cy="24" r="5.5" fill="#f59e0b"/>
-    <circle cx="62" cy="24" r="5.5" fill="#10b981"/>
+    <!-- macOS Window Controls -->
+    <circle cx="24" cy="22" r="5" fill="#ef4444"/>
+    <circle cx="40" cy="22" r="5" fill="#f59e0b"/>
+    <circle cx="56" cy="22" r="5" fill="#10b981"/>
 
     <!-- Window Header Title -->
-    <text x="236" y="30" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="700" fill="#94a3b8" text-anchor="middle" letter-spacing="0.3">
-      Curriculum &amp; Audio Matrix · 8 Languages
+    <text x="261" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#cbd5e1" text-anchor="middle" letter-spacing="0.2">
+      Curriculum &amp; Audio Matrix · 15 Languages
     </text>
 
     <!-- Audio Speed Pill in Header -->
-    <rect x="364" y="12" width="68" height="24" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-    <path d="M372 21 L375 19 L378 19 L381 16 V28 L378 25 L375 25 L372 23 Z" fill="#fde047"/>
-    <path d="M383 20 C384 21 384 23 383 24" stroke="#fde047" stroke-width="1.2" fill="none"/>
-    <text x="404" y="28.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#fde047" text-anchor="middle">0.75×</text>
+    <rect x="444" y="10" width="64" height="24" rx="12" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+    <text x="476" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#fde047" text-anchor="middle">0.75×</text>
 
-    <!-- ================= 8 COURSE CARDS (2 COLUMNS x 4 ROWS) ================= -->
+    <!-- ================= 15 COURSE CARDS (3 COLUMNS x 5 ROWS) ================= -->
+    <!-- Card size: 158w x 74h | Columns x: 14, 182, 350 | Rows y: 56, 138, 220, 302, 384 -->
 
-    <!-- ROW 1 (y=58): Spanish & French -->
-    <!-- Spanish Card -->
-    <g transform="translate(14, 58)">
-      <rect width="202" height="74" rx="12" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-      <use href="#flag-es" x="12" y="14"/>
-      <text x="52" y="29" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="#ffffff">Spanish</text>
-      <text x="52" y="46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#94a3b8">Jorge · 526 Words</text>
-      <rect x="52" y="52" width="46" height="15" rx="7.5" fill="rgba(99, 102, 241, 0.25)"/>
-      <text x="75" y="63" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="700" fill="#c7d2fe" text-anchor="middle">Neural</text>
+    <!-- ROW 1: English, Spanish, French -->
+    <g transform="translate(14, 56)">
+      <rect width="158" height="74" rx="11" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <use href="#flag-en" x="10" y="13" width="28" height="21"/>
+      <text x="46" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" fill="#ffffff">English</text>
+      <text x="46" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#94a3b8">Phonics &amp; 500+</text>
+      <rect x="46" y="51" width="46" height="14" rx="7" fill="rgba(245, 158, 11, 0.24)"/>
+      <text x="69" y="61" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#fde68a" text-anchor="middle">Neural</text>
     </g>
 
-    <!-- French Card -->
-    <g transform="translate(230, 58)">
-      <rect width="202" height="74" rx="12" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-      <use href="#flag-fr" x="12" y="14"/>
-      <text x="52" y="29" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="#ffffff">French</text>
-      <text x="52" y="46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#94a3b8">Henri · 532 Words</text>
-      <rect x="52" y="52" width="46" height="15" rx="7.5" fill="rgba(56, 189, 248, 0.25)"/>
-      <text x="75" y="63" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="700" fill="#bae6fd" text-anchor="middle">Neural</text>
+    <g transform="translate(182, 56)">
+      <rect width="158" height="74" rx="11" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <use href="#flag-es" x="10" y="13" width="28" height="21"/>
+      <text x="46" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" fill="#ffffff">Spanish</text>
+      <text x="46" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#94a3b8">Español · Jorge</text>
+      <rect x="46" y="51" width="46" height="14" rx="7" fill="rgba(99, 102, 241, 0.25)"/>
+      <text x="69" y="61" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#c7d2fe" text-anchor="middle">Neural</text>
     </g>
 
-    <!-- ROW 2 (y=140): German & Russian -->
-    <!-- German Card -->
-    <g transform="translate(14, 140)">
-      <rect width="202" height="74" rx="12" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-      <use href="#flag-de" x="12" y="14"/>
-      <text x="52" y="29" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="#ffffff">German</text>
-      <text x="52" y="46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#94a3b8">Conrad · 511 Words</text>
-      <rect x="52" y="52" width="46" height="15" rx="7.5" fill="rgba(245, 158, 11, 0.25)"/>
-      <text x="75" y="63" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="700" fill="#fde68a" text-anchor="middle">Neural</text>
+    <g transform="translate(350, 56)">
+      <rect width="158" height="74" rx="11" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <use href="#flag-fr" x="10" y="13" width="28" height="21"/>
+      <text x="46" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" fill="#ffffff">French</text>
+      <text x="46" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#94a3b8">Français · Henri</text>
+      <rect x="46" y="51" width="46" height="14" rx="7" fill="rgba(56, 189, 248, 0.25)"/>
+      <text x="69" y="61" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#bae6fd" text-anchor="middle">Neural</text>
     </g>
 
-    <!-- Russian Card -->
-    <g transform="translate(230, 140)">
-      <rect width="202" height="74" rx="12" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-      <use href="#flag-ru" x="12" y="14"/>
-      <text x="52" y="29" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="#ffffff">Russian</text>
-      <text x="52" y="46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#94a3b8">Svetlana · 572 Words</text>
-      <rect x="52" y="52" width="46" height="15" rx="7.5" fill="rgba(16, 185, 129, 0.25)"/>
-      <text x="75" y="63" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="700" fill="#a7f3d0" text-anchor="middle">Neural</text>
+    <!-- ROW 2: German, Portuguese, Indonesian -->
+    <g transform="translate(14, 138)">
+      <rect width="158" height="74" rx="11" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <use href="#flag-de" x="10" y="13" width="28" height="21"/>
+      <text x="46" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" fill="#ffffff">German</text>
+      <text x="46" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#94a3b8">Deutsch · Conrad</text>
+      <rect x="46" y="51" width="46" height="14" rx="7" fill="rgba(245, 158, 11, 0.24)"/>
+      <text x="69" y="61" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#fde68a" text-anchor="middle">Neural</text>
     </g>
 
-    <!-- ROW 3 (y=222): Portuguese & Indonesian -->
-    <!-- Portuguese Card -->
-    <g transform="translate(14, 222)">
-      <rect width="202" height="74" rx="12" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-      <use href="#flag-pt" x="12" y="14"/>
-      <text x="52" y="29" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="#ffffff">Portuguese</text>
-      <text x="52" y="46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#94a3b8">Duarte · 510 Words</text>
-      <rect x="52" y="52" width="46" height="15" rx="7.5" fill="rgba(168, 85, 247, 0.25)"/>
-      <text x="75" y="63" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="700" fill="#e9d5ff" text-anchor="middle">Neural</text>
+    <g transform="translate(182, 138)">
+      <rect width="158" height="74" rx="11" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <use href="#flag-pt" x="10" y="13" width="28" height="21"/>
+      <text x="46" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" fill="#ffffff">Portuguese</text>
+      <text x="46" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#94a3b8">Português</text>
+      <rect x="46" y="51" width="46" height="14" rx="7" fill="rgba(168, 85, 247, 0.25)"/>
+      <text x="69" y="61" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#e9d5ff" text-anchor="middle">Neural</text>
     </g>
 
-    <!-- Indonesian Card -->
-    <g transform="translate(230, 222)">
-      <rect width="202" height="74" rx="12" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-      <use href="#flag-id" x="12" y="14"/>
-      <text x="52" y="29" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="#ffffff">Indonesian</text>
-      <text x="52" y="46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#94a3b8">Gadis · 507 Words</text>
-      <rect x="52" y="52" width="46" height="15" rx="7.5" fill="rgba(239, 68, 68, 0.25)"/>
-      <text x="75" y="63" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="700" fill="#fecaca" text-anchor="middle">Neural</text>
+    <g transform="translate(350, 138)">
+      <rect width="158" height="74" rx="11" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <use href="#flag-id" x="10" y="13" width="28" height="21"/>
+      <text x="46" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" fill="#ffffff">Indonesian</text>
+      <text x="46" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#94a3b8">Bahasa · Ardi</text>
+      <rect x="46" y="51" width="46" height="14" rx="7" fill="rgba(239, 68, 68, 0.24)"/>
+      <text x="69" y="61" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#fecaca" text-anchor="middle">Neural</text>
     </g>
 
-    <!-- ROW 4 (y=304): Turkish & English -->
-    <!-- Turkish Card -->
-    <g transform="translate(14, 304)">
-      <rect width="202" height="74" rx="12" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-      <use href="#flag-tr" x="12" y="14"/>
-      <text x="52" y="29" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="#ffffff">Turkish</text>
-      <text x="52" y="46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#94a3b8">Ahmet · 516 Words</text>
-      <rect x="52" y="52" width="46" height="15" rx="7.5" fill="rgba(20, 184, 166, 0.25)"/>
-      <text x="75" y="63" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="700" fill="#99f6e4" text-anchor="middle">Neural</text>
+    <!-- ROW 3: Turkish, Russian, Mandarin -->
+    <g transform="translate(14, 220)">
+      <rect width="158" height="74" rx="11" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <use href="#flag-tr" x="10" y="13" width="28" height="21"/>
+      <text x="46" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" fill="#ffffff">Turkish</text>
+      <text x="46" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#94a3b8">Türkçe · Ahmet</text>
+      <rect x="46" y="51" width="46" height="14" rx="7" fill="rgba(20, 184, 166, 0.25)"/>
+      <text x="69" y="61" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#99f6e4" text-anchor="middle">Neural</text>
     </g>
 
-    <!-- English Card -->
-    <g transform="translate(230, 304)">
-      <rect width="202" height="74" rx="12" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-      <use href="#flag-en" x="12" y="14"/>
-      <text x="52" y="29" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="#ffffff">English</text>
-      <text x="52" y="46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" fill="#94a3b8">Jenny · 525 Words</text>
-      <rect x="52" y="52" width="46" height="15" rx="7.5" fill="rgba(245, 158, 11, 0.25)"/>
-      <text x="75" y="63" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="700" fill="#fde68a" text-anchor="middle">Neural</text>
+    <g transform="translate(182, 220)">
+      <rect width="158" height="74" rx="11" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <use href="#flag-ru" x="10" y="13" width="28" height="21"/>
+      <text x="46" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" fill="#ffffff">Russian</text>
+      <text x="46" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#94a3b8">Русский · Cyrillic</text>
+      <rect x="46" y="51" width="60" height="14" rx="7" fill="rgba(16, 185, 129, 0.24)"/>
+      <text x="76" y="61" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#a7f3d0" text-anchor="middle">Keyboard</text>
+    </g>
+
+    <g transform="translate(350, 220)">
+      <rect width="158" height="74" rx="11" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <use href="#flag-zh" x="10" y="13" width="28" height="21"/>
+      <text x="46" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" fill="#ffffff">Chinese</text>
+      <text x="46" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#94a3b8">中文 · Pinyin IME</text>
+      <rect x="46" y="51" width="60" height="14" rx="7" fill="rgba(239, 68, 68, 0.25)"/>
+      <text x="76" y="61" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#fecaca" text-anchor="middle">Keyboard</text>
+    </g>
+
+    <!-- ROW 4: Japanese, Korean, Hindi -->
+    <g transform="translate(14, 302)">
+      <rect width="158" height="74" rx="11" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <use href="#flag-ja" x="10" y="13" width="28" height="21"/>
+      <text x="46" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" fill="#ffffff">Japanese</text>
+      <text x="46" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#94a3b8">日本語 · Kana</text>
+      <rect x="46" y="51" width="60" height="14" rx="7" fill="rgba(236, 72, 153, 0.25)"/>
+      <text x="76" y="61" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#fbcfe8" text-anchor="middle">Keyboard</text>
+    </g>
+
+    <g transform="translate(182, 302)">
+      <rect width="158" height="74" rx="11" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <use href="#flag-ko" x="10" y="13" width="28" height="21"/>
+      <text x="46" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" fill="#ffffff">Korean</text>
+      <text x="46" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#94a3b8">한국어 · Hangul</text>
+      <rect x="46" y="51" width="60" height="14" rx="7" fill="rgba(59, 130, 246, 0.25)"/>
+      <text x="76" y="61" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#bfdbfe" text-anchor="middle">Keyboard</text>
+    </g>
+
+    <g transform="translate(350, 302)">
+      <rect width="158" height="74" rx="11" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <use href="#flag-hi" x="10" y="13" width="28" height="21"/>
+      <text x="46" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" fill="#ffffff">Hindi</text>
+      <text x="46" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#94a3b8">हिन्दी · Devanagari</text>
+      <rect x="46" y="51" width="60" height="14" rx="7" fill="rgba(249, 115, 22, 0.25)"/>
+      <text x="76" y="61" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#fed7aa" text-anchor="middle">Keyboard</text>
+    </g>
+
+    <!-- ROW 5: Arabic, Bengali, Urdu -->
+    <g transform="translate(14, 384)">
+      <rect width="158" height="74" rx="11" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <use href="#flag-ar" x="10" y="13" width="28" height="21"/>
+      <text x="46" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" fill="#ffffff">Arabic</text>
+      <text x="46" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#94a3b8">العربية · RTL</text>
+      <rect x="46" y="51" width="60" height="14" rx="7" fill="rgba(16, 185, 129, 0.25)"/>
+      <text x="76" y="61" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#a7f3d0" text-anchor="middle">Keyboard</text>
+    </g>
+
+    <g transform="translate(182, 384)">
+      <rect width="158" height="74" rx="11" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <use href="#flag-bn" x="10" y="13" width="28" height="21"/>
+      <text x="46" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" fill="#ffffff">Bengali</text>
+      <text x="46" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#94a3b8">বাংলা · Script</text>
+      <rect x="46" y="51" width="60" height="14" rx="7" fill="rgba(244, 63, 94, 0.25)"/>
+      <text x="76" y="61" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#fecdd3" text-anchor="middle">Keyboard</text>
+    </g>
+
+    <g transform="translate(350, 384)">
+      <rect width="158" height="74" rx="11" fill="url(#rowGlass)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+      <use href="#flag-ur" x="10" y="13" width="28" height="21"/>
+      <text x="46" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" fill="#ffffff">Urdu</text>
+      <text x="46" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#94a3b8">اردو · Nastaliq</text>
+      <rect x="46" y="51" width="60" height="14" rx="7" fill="rgba(34, 197, 94, 0.25)"/>
+      <text x="76" y="61" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" fill="#bbf7d0" text-anchor="middle">Keyboard</text>
     </g>
 
     <!-- Bottom Showcase Banner Inside Window -->
-    <g transform="translate(14, 388)">
-      <rect width="418" height="98" rx="14" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-      <text x="209" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="#fde047" text-anchor="middle" letter-spacing="0.3">
-        56 Bidirectional Language Pairs
+    <g transform="translate(14, 470)">
+      <rect width="494" height="58" rx="13" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+      <text x="247" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13.5" font-weight="800" fill="#fde047" text-anchor="middle" letter-spacing="0.2">
+        210 Bidirectional Language Pairs · Learn From Any Native Tongue
       </text>
-      <text x="209" y="54" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#cbd5e1" text-anchor="middle">
-        Learn any language from your native tongue
+      <text x="247" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" fill="#93c5fd" text-anchor="middle">
+        14,500+ Studio MP3s · Grammar Flashcards · Offline Packs · 100% Free
       </text>
-      <!-- Highlights Strip -->
-      <g transform="translate(29, 66)">
-        <rect width="360" height="22" rx="6" fill="rgba(0,0,0,0.3)"/>
-        <text x="180" y="15" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" font-weight="700" fill="#93c5fd" text-anchor="middle">
-          4,200+ Studio MP3s · Spaced Repetition · 100% Free
-        </text>
-      </g>
     </g>
   </g>
 </svg>

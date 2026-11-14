@@ -34,7 +34,7 @@ export const TERMS_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
       {
         heading: '2. Purpose of the Service',
         paragraphs: [
-          'Basic Language School is provided as an interactive, educational language learning platform designed to help users practice 8 languages (Spanish, French, German, Russian, Portuguese, Indonesian, Turkish, and English) including alphabets, pronunciation, numbers, common words, and workplace vocabulary. The service is provided free of charge for personal, non-commercial educational use.'
+          'Basic Language School is provided as an interactive, educational language learning platform designed to help users practice 15 world languages (English, Spanish, French, German, Portuguese, Indonesian, Turkish, Russian, Mandarin Chinese, Japanese, Korean, Hindi, Arabic, Bengali, and Urdu) including alphabets, pronunciation, numbers, common words, and workplace vocabulary. The service is provided free of charge for personal, non-commercial educational use.'
         ]
       },
       {
@@ -93,7 +93,7 @@ export const TERMS_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
       {
         heading: '2. Propósito del Servicio',
         paragraphs: [
-          'Basic Language School es una plataforma educativa e interactiva diseñada para practicar 8 idiomas (español, francés, alemán, ruso, portugués, indonesio, turco e inglés), abarcando alfabetos, pronunciación, números, vocabulario cotidiano y profesional. El servicio se ofrece de forma gratuita para uso educativo personal.'
+          'Basic Language School es una plataforma educativa e interactiva diseñada para practicar 15 idiomas (español, inglés, francés, alemán, portugués, indonesio, turco, ruso, chino mandarín, japonés, coreano, hindi, árabe, bengalí y urdu), abarcando alfabetos, pronunciación, números, vocabulario cotidiano y profesional. El servicio se ofrece de forma gratuita para uso educativo personal.'
         ]
       },
       {
@@ -152,7 +152,7 @@ export const TERMS_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
       {
         heading: '2. Objectif du service',
         paragraphs: [
-          "Basic Language School est une plateforme d'apprentissage linguistique interactive et gratuite permettant d'apprendre 8 langues à des fins personnelles et éducatives."
+          "Basic Language School est une plateforme d'apprentissage linguistique interactive et gratuite permettant d'apprendre 15 langues à des fins personnelles et éducatives."
         ]
       },
       {
@@ -211,7 +211,7 @@ export const TERMS_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
       {
         heading: '2. Назначение сервиса',
         paragraphs: [
-          'Basic Language School — это бесплатная интерактивная образовательная платформа для изучения 8 языков (испанский, французский, немецкий, русский, португальский, индонезийский, турецкий и английский).'
+          'Basic Language School — это бесплатная интерактивная образовательная платформа для изучения 15 языков (английский, испанский, французский, немецкий, португальский, индонезийский, турецкий, русский, китайский, японский, корейский, хинди, арабский, бенгальский и урду).'
         ]
       },
       {
@@ -270,7 +270,7 @@ export const TERMS_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
       {
         heading: '2. Finalidade do Serviço',
         paragraphs: [
-          'A Basic Language School é uma plataforma educacional gratuita desenvolvida para o aprendizado prático de 8 idiomas.'
+          'A Basic Language School é uma plataforma educacional gratuita desenvolvida para o aprendizado prático de 15 idiomas.'
         ]
       },
       {
@@ -329,7 +329,7 @@ export const TERMS_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
       {
         heading: '2. Zweck des Dienstes',
         paragraphs: [
-          'Basic Language School ist eine kostenlose, interaktive Bildungsplattform zum Erlernen von 8 Sprachen.'
+          'Basic Language School ist eine kostenlose, interaktive Bildungsplattform zum Erlernen von 15 Sprachen.'
         ]
       },
       {
@@ -388,7 +388,7 @@ export const TERMS_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
       {
         heading: '2. Tujuan Layanan',
         paragraphs: [
-          'Basic Language School adalah platform pembelajaran bahasa interaktif dan gratis untuk melatih 8 bahasa untuk keperluan pendidikan pribadi.'
+          'Basic Language School adalah platform pembelajaran bahasa interaktif dan gratis untuk melatih 15 bahasa untuk keperluan pendidikan pribadi.'
         ]
       },
       {
@@ -447,7 +447,7 @@ export const TERMS_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
       {
         heading: '2. Hizmetin Amacı',
         paragraphs: [
-          'Basic Language School, 8 dilde alıştırma yapmaya yönelik ücretsiz ve etkileşimli bir eğitim platformudur.'
+          'Basic Language School, 15 dilde alıştırma yapmaya yönelik ücretsiz ve etkileşimli bir eğitim platformudur.'
         ]
       },
       {
@@ -770,7 +770,7 @@ export const PRIVACY_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
     backToPractice: 'Back to Practice',
     backToPracticeAria: 'Back to practice lessons',
     summaryTitle: 'Plain English Summary',
-    summaryText: 'We believe in privacy by default. Basic Language School is an educational platform. We only collect the minimal information needed to save your quiz progress and learning stats across our 8 language courses. We never sell your data, we do not run third-party advertising trackers, and you can delete your data at any time.',
+    summaryText: 'We believe in privacy by default. Basic Language School is an educational platform. We only collect the minimal information needed to save your quiz progress and learning stats across our 15 language courses. We never sell your data, we do not run third-party advertising trackers, and you can delete your data at any time.',
     sections: [
       {
         heading: '1. Information We Collect',
@@ -832,7 +832,7 @@ export const PRIVACY_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
     backToPractice: 'Volver a la Práctica',
     backToPracticeAria: 'Volver a las lecciones de práctica',
     summaryTitle: 'Resumen Claro',
-    summaryText: 'Creemos en la privacidad por defecto. Basic Language School es una plataforma educativa. Solo recopilamos la información mínima necesaria para guardar tu progreso en los 8 cursos de idiomas. Nunca vendemos tus datos, no usamos rastreadores publicitarios y puedes borrar tus datos en cualquier momento.',
+    summaryText: 'Creemos en la privacidad por defecto. Basic Language School es una plataforma educativa. Solo recopilamos la información mínima necesaria para guardar tu progreso en los 15 cursos de idiomas. Nunca vendemos tus datos, no usamos rastreadores publicitarios y puedes borrar tus datos en cualquier momento.',
     sections: [
       {
         heading: '1. Información que Recopilamos',
@@ -955,7 +955,7 @@ export const PRIVACY_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
     backToPractice: 'Вернуться к урокам',
     backToPracticeAria: 'Вернуться к урокам практики',
     summaryTitle: 'Краткое резюме',
-    summaryText: 'Мы уважаем вашу конфиденциальность. Basic Language School — образовательный проект. Мы собираем только минимальные данные, необходимые для синхронизации вашего прогресса в тестах по 8 языкам. Мы никогда не продаём ваши данные, не размещаем рекламные трекеры и позволяем удалить данные в любой момент.',
+    summaryText: 'Мы уважаем вашу конфиденциальность. Basic Language School — образовательный проект. Мы собираем только минимальные данные, необходимые для синхронизации вашего прогресса в тестах по 15 языкам. Мы никогда не продаём ваши данные, не размещаем рекламные трекеры и позволяем удалить данные в любой момент.',
     sections: [
       {
         heading: '1. Собираемая информация',
@@ -1017,7 +1017,7 @@ export const PRIVACY_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
     backToPractice: 'Voltar à Prática',
     backToPracticeAria: 'Voltar às lições de prática',
     summaryTitle: 'Resumo em Linguagem Simples',
-    summaryText: 'Privacidade em primeiro lugar. Coletamos apenas as informações mínimas necessárias para salvar seu progresso nos 8 cursos de idiomas. Nunca vendemos seus dados e não usamos rastreadores de anúncios.',
+    summaryText: 'Privacidade em primeiro lugar. Coletamos apenas as informações mínimas necessárias para salvar seu progresso nos 15 cursos de idiomas. Nunca vendemos seus dados e não usamos rastreadores de anúncios.',
     sections: [
       {
         heading: '1. Informações que Coletamos',
@@ -1078,7 +1078,7 @@ export const PRIVACY_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
     backToPractice: 'Zurück zur Übung',
     backToPracticeAria: 'Zurück zu den Übungslektionen',
     summaryTitle: 'Kurzfassung',
-    summaryText: 'Datenschutz steht bei uns an erster Stelle. Wir erfassen nur das Minimum an Daten, um Ihren Lernfortschritt in den 8 Sprachkursen zu speichern. Wir verkaufen niemals Ihre Daten und setzen keine Werbe-Tracker ein.',
+    summaryText: 'Datenschutz steht bei uns an erster Stelle. Wir erfassen nur das Minimum an Daten, um Ihren Lernfortschritt in den 15 Sprachkursen zu speichern. Wir verkaufen niemals Ihre Daten und setzen keine Werbe-Tracker ein.',
     sections: [
       {
         heading: '1. Erfasste Informationen',
@@ -1139,7 +1139,7 @@ export const PRIVACY_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
     backToPractice: 'Kembali ke Latihan',
     backToPracticeAria: 'Kembali ke pelajaran latihan',
     summaryTitle: 'Ringkasan Singkat',
-    summaryText: 'Kami mengutamakan privasi Anda. Basic Language School hanya mengumpulkan data minimal untuk menyimpan kemajuan kuis dan statistik belajar Anda di 8 bahasa. Kami tidak pernah menjual data Anda dan tidak menggunakan pelacak iklan pihak ketiga.',
+    summaryText: 'Kami mengutamakan privasi Anda. Basic Language School hanya mengumpulkan data minimal untuk menyimpan kemajuan kuis dan statistik belajar Anda di 15 bahasa. Kami tidak pernah menjual data Anda dan tidak menggunakan pelacak iklan pihak ketiga.',
     sections: [
       {
         heading: '1. Informasi yang Kami Kumpulkan',
@@ -1200,7 +1200,7 @@ export const PRIVACY_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
     backToPractice: 'Alıştırmaya Dön',
     backToPracticeAria: 'Alıştırma derslerine geri dön',
     summaryTitle: 'Açık Özet',
-    summaryText: 'Gizliliğinize saygı duyuyoruz. Basic Language School bir eğitim platformudur. Yalnızca 8 dildeki sınav ilerlemenizi ve öğrenme istatistiklerinizi kaydetmek için gereken asgari bilgileri topluyoruz. Verilerinizi asla satmıyoruz ve reklam izleyicileri kullanmıyoruz.',
+    summaryText: 'Gizliliğinize saygı duyuyoruz. Basic Language School bir eğitim platformudur. Yalnızca 15 dildeki sınav ilerlemenizi ve öğrenme istatistiklerinizi kaydetmek için gereken asgari bilgileri topluyoruz. Verilerinizi asla satmıyoruz ve reklam izleyicileri kullanmıyoruz.',
     sections: [
       {
         heading: '1. Topladığımız Bilgiler',

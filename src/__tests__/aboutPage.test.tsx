@@ -20,7 +20,7 @@ describe('About & Contact Component', () => {
     // Title and philosophy
     expect(screen.getByRole('heading', { level: 1, name: /about & contact/i })).toBeInTheDocument();
     expect(screen.getByText(/no bulk\. no fluff\. no patronizing\. just learning\./i)).toBeInTheDocument();
-    expect(screen.getByText(/genuinely free, ad-free bidirectional learning across 8 languages/i)).toBeInTheDocument();
+    expect(screen.getByText(/genuinely free, ad-free bidirectional learning across 15 languages/i)).toBeInTheDocument();
 
     // Creator and contact
     expect(screen.getByText('John Bendfeldt')).toBeInTheDocument();
