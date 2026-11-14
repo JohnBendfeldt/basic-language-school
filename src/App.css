@@ -75,14 +75,21 @@ header {
 }
 
 .install-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 14px;
+  box-sizing: border-box;
+  line-height: 1;
   background: linear-gradient(135deg, #10b981, #059669);
-  border: none;
-  color: white;
-  padding: 8px 16px;
-  font-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  font-size: 0.875rem;
   font-weight: 600;
+  font-family: inherit;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 9999px;
   white-space: nowrap;
   flex-shrink: 0;
   box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
@@ -5871,26 +5878,6 @@ html {
     display: none;
   }
 
-  .voice-speed-trigger {
-    padding: 5px 9px;
-    font-size: 0.8rem;
-    flex-shrink: 0;
-    white-space: nowrap;
-  }
-
-  .language-switcher-trigger {
-    padding: 5px 9px;
-    font-size: 0.82rem;
-    flex-shrink: 0;
-    white-space: nowrap;
-  }
-
-  .quick-swap-nav-btn {
-    width: 30px;
-    height: 30px;
-    flex-shrink: 0;
-  }
-
   header h1 {
     font-size: 1.6rem;
     margin-bottom: 0;
@@ -5898,13 +5885,6 @@ html {
 
   header {
     padding: 0.65rem 1rem 0.5rem;
-  }
-
-  .install-button {
-    font-size: 0.78rem;
-    padding: 5px 10px;
-    flex-shrink: 0;
-    white-space: nowrap;
   }
   
   /* Hide the menu toggle completely on mobile */
@@ -6321,14 +6301,21 @@ html {
 .header-action-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.4rem;
-  padding: 0.45rem 0.9rem;
-  border-radius: 20px;
-  font-size: 0.88rem;
+  height: 36px;
+  padding: 0 14px;
+  box-sizing: border-box;
+  line-height: 1;
+  border-radius: 9999px;
+  font-size: 0.875rem;
   font-weight: 600;
+  font-family: inherit;
+  white-space: nowrap;
+  flex-shrink: 0;
   cursor: pointer;
   transition: all 0.2s ease;
-  border: none;
+  border: 1px solid transparent;
 }
 
 .header-action-btn.progress-btn {
@@ -6358,17 +6345,25 @@ html {
 /* Logged-in User Profile Trigger */
 .user-menu-wrapper {
   position: relative;
+  display: inline-flex;
+  align-items: center;
 }
 
 .user-profile-trigger {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
+  height: 36px;
+  padding: 0 12px 0 4px;
+  box-sizing: border-box;
+  line-height: 1;
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.35);
-  padding: 0.3rem 0.75rem 0.3rem 0.4rem;
-  border-radius: 25px;
+  border-radius: 9999px;
   color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: inherit;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -7499,10 +7494,6 @@ html {
     display: none;
   }
 
-  .header-action-btn {
-    padding: 0.45rem 0.6rem;
-  }
-
   .user-display-name {
     display: none;
   }
@@ -7941,13 +7932,19 @@ html {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  height: 36px;
+  padding: 0 14px;
+  box-sizing: border-box;
+  line-height: 1;
   background: rgba(255, 255, 255, 0.16);
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 9999px;
-  padding: 0.35rem 0.85rem;
-  font-size: 0.88rem;
+  font-size: 0.875rem;
   font-weight: 600;
+  font-family: inherit;
+  white-space: nowrap;
+  flex-shrink: 0;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   backdrop-filter: blur(10px);
@@ -7993,9 +7990,12 @@ html {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
+  box-sizing: border-box;
+  line-height: 1;
   border-radius: 50%;
+  flex-shrink: 0;
   background: rgba(255, 255, 255, 0.14);
   border: 1px solid rgba(255, 255, 255, 0.25);
   color: #fde047;
@@ -8650,20 +8650,27 @@ html {
 /* Voice Speed Control */
 .voice-speed-control {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
 }
 
 .voice-speed-trigger {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
+  height: 36px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  line-height: 1;
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: #ffffff;
-  padding: 8px 12px;
   border-radius: 9999px;
   font-size: 0.875rem;
-  font-weight: 700;
+  font-weight: 600;
+  font-family: inherit;
+  flex-shrink: 0;
   cursor: pointer;
   backdrop-filter: blur(8px);
   transition: all 0.2s ease;
@@ -9835,13 +9842,18 @@ html {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 14px;
-  border-radius: 20px;
+  height: 36px;
+  padding: 0 14px;
+  box-sizing: border-box;
+  line-height: 1;
+  border-radius: 9999px;
   background: rgba(255, 255, 255, 0.16);
   border: 1px solid rgba(255, 255, 255, 0.28);
   color: #ffffff;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   font-weight: 600;
+  font-family: inherit;
+  flex-shrink: 0;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
@@ -10577,6 +10589,8 @@ html {
   justify-content: center;
   width: 36px;
   height: 36px;
+  box-sizing: border-box;
+  line-height: 1;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.16);
   border: 1px solid rgba(255, 255, 255, 0.28);
@@ -10606,6 +10620,52 @@ html {
 .header-offline-btn.offline-ready:hover {
   background: rgba(16, 185, 129, 0.4);
   color: #ecfdf5;
+}
+
+@media (max-width: 768px) {
+  .language-switcher-trigger,
+  .voice-speed-trigger,
+  .install-button,
+  .header-action-btn,
+  .header-search-btn {
+    height: 34px;
+    padding: 0 11px;
+    font-size: 0.82rem;
+  }
+
+  .user-profile-trigger {
+    height: 34px;
+    padding: 0 10px 0 3px;
+    font-size: 0.82rem;
+  }
+
+  .user-avatar-img,
+  .user-avatar-placeholder {
+    width: 26px;
+    height: 26px;
+  }
+
+  .mobile-search-btn,
+  .mobile-hamburger-btn,
+  .quick-swap-nav-btn,
+  .header-offline-btn {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-action-btn {
+    height: 34px;
+    padding: 0 10px;
+  }
+
+  .user-profile-trigger {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    justify-content: center;
+  }
 }
 
 /* Mobile Drawer Offline Audio Card */
