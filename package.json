@@ -19,6 +19,7 @@
     "start": "vite",
     "build": "tsc && vite build && node scripts/build-offline-packs.mjs",
     "test": "vitest run",
+    "test:coverage": "vitest run --coverage.enabled --coverage.provider=v8",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "preview": "vite preview",
