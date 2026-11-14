@@ -40,7 +40,8 @@ export const getCandidateAudioPathsForText = (
     .normalize('NFC')
     .split('/')[0]
     .replace(/\s*\([^)]*\)\s*/g, '')
-    .replace(/[?.,!¡¿'’"«»:؟،？。、！]/g, '')
+    .replace(/[?.,!¡¿'’"«»:؟،？。、！\\]/g, '')
+    .replace(/\.\.+/g, '')
     .trim();
   const fileName = cleanText.replace(/\s+/g, '_');
   if (!fileName) return [];

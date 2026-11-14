@@ -46,6 +46,14 @@ describe('supabaseClient - not configured (guest mode)', () => {
     expect(mod.isSupabaseConfigured()).toBe(false);
   });
 
+  it('rejects .env.example placeholder URL and anon key values', async () => {
+    const placeholderUrl = await loadModule({ url: 'https://your-project-id.supabase.co', key: 'real-key' });
+    expect(placeholderUrl.mod.isSupabaseConfigured()).toBe(false);
+
+    const placeholderKey = await loadModule({ url: 'https://abc.supabase.co', key: 'your-anon-public-key' });
+    expect(placeholderKey.mod.isSupabaseConfigured()).toBe(false);
+  });
+
   it.each(['signInWithGoogle', 'signInWithEntra', 'signInWithGithub'] as const)(
     '%s returns a friendly guest-mode error instead of throwing',
     async (fn) => {

@@ -13,7 +13,10 @@ const mocks = vi.hoisted(() => ({
 }));
 
 // supabase: null → the component skips session lookups and uses only the `initialUser` prop
-vi.mock('../services/supabaseClient', () => ({ ...mocks, supabase: null }));
+vi.mock('../services/supabaseClient', async () => {
+  const actual = await vi.importActual<typeof import('../services/supabaseClient')>('../services/supabaseClient');
+  return { ...actual, ...mocks, supabase: null };
+});
 
 const renderMenu = (props: Record<string, unknown> = {}, baseLang = 'en') => {
   localStorage.setItem('basic_language_base_lang', baseLang);
@@ -73,9 +76,15 @@ describe('UserMenu - signed in', () => {
     expect(screen.getByLabelText('User menu for User')).toBeInTheDocument();
   });
 
-  it('renders the avatar image when the profile has one', () => {
-    renderMenu({ initialUser: user({ user_metadata: { full_name: 'Maria', avatar_url: 'https://img.test/a.png' } }) });
-    expect(screen.getByAltText('Maria')).toHaveAttribute('src', 'https://img.test/a.png');
+  it('renders the avatar image with no-referrer when HTTPS and blocks unsafe avatar URLs', () => {
+    const { unmount } = renderMenu({ initialUser: user({ user_metadata: { full_name: 'Maria', avatar_url: 'https://img.test/a.png' } }) });
+    const img = screen.getByAltText('Maria');
+    expect(img).toHaveAttribute('src', 'https://img.test/a.png');
+    expect(img).toHaveAttribute('referrerpolicy', 'no-referrer');
+    unmount();
+
+    renderMenu({ initialUser: user({ user_metadata: { full_name: 'Maria', avatar_url: 'javascript:alert(1)' } }) });
+    expect(screen.queryByRole('img')).not.toBeInTheDocument();
   });
 
   it('toggles the dropdown and reports expanded state', () => {

@@ -128,7 +128,9 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
       if (raw) {
         const parsed = JSON.parse(raw);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed.filter(p => p.base && p.target && p.base !== p.target).slice(0, 4);
+          return parsed
+            .filter(p => p && typeof p === 'object' && p.base && p.target && p.base !== p.target)
+            .slice(0, 4);
         }
       }
     } catch {

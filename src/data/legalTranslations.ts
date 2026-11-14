@@ -21,7 +21,7 @@ export interface LegalContent {
 export const TERMS_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
   en: {
     title: 'Terms of Service',
-    lastUpdated: 'Last Updated: October 16, 2026',
+    lastUpdated: 'Last Updated: November 13, 2026',
     backToPractice: 'Back to Practice',
     backToPracticeAria: 'Back to practice lessons',
     sections: [
@@ -34,13 +34,13 @@ export const TERMS_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
       {
         heading: '2. Purpose of the Service',
         paragraphs: [
-          'Basic Language School is provided as an interactive, educational language learning platform designed to help users practice 15 world languages (English, Spanish, French, German, Portuguese, Indonesian, Turkish, Russian, Mandarin Chinese, Japanese, Korean, Hindi, Arabic, Bengali, and Urdu) including alphabets, pronunciation, numbers, common words, and workplace vocabulary. The service is provided free of charge for personal, non-commercial educational use.'
+          'Basic Language School is provided as an interactive, educational language learning platform designed to help users practice 15 world languages (English, Spanish, French, German, Portuguese, Indonesian, Turkish, Russian, Mandarin Chinese, Japanese, Korean, Hindi, Arabic, Bengali, and Urdu) including alphabets, pronunciation, numbers, grammar, common words, and workplace vocabulary. The service is provided free of charge for personal, non-commercial educational use.'
         ]
       },
       {
         heading: '3. User Accounts & Acceptable Use',
         paragraphs: [
-          'You may use Basic Language School without an account (Guest Mode) or sign in via Google OAuth or Microsoft Entra ID to save your learning history across courses. When using the service, you agree not to:'
+          'You may use Basic Language School without an account (Guest Mode) or sign in via Google OAuth, Microsoft Entra ID, or GitHub OAuth to save your learning history across courses. When using the service, you agree not to:'
         ],
         listItems: [
           'Attempt to bypass, disable, or tamper with security or Row Level Security policies of our database or APIs.',
@@ -766,7 +766,7 @@ export const TERMS_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
 export const PRIVACY_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
   en: {
     title: 'Privacy Policy',
-    lastUpdated: 'Last Updated: October 16, 2026',
+    lastUpdated: 'Last Updated: November 13, 2026',
     backToPractice: 'Back to Practice',
     backToPracticeAria: 'Back to practice lessons',
     summaryTitle: 'Plain English Summary',
@@ -779,8 +779,8 @@ export const PRIVACY_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
         ],
         listItems: [
           'Guest Users (Unauthenticated): If you use the app without logging in, your quiz scores and word practice history are stored exclusively in your local browser’s localStorage. No personal identification is collected or transmitted to our servers.',
-          'Registered Users (Authenticated via Google or Microsoft): If you choose to sign in to sync progress across devices, we receive basic authentication details (email address, display name, and avatar URL if provided).',
-          'Learning Data: Quiz session scores, accuracy rates, and spaced-repetition performance for practice vocabulary.'
+          'Registered Users (Authenticated via Google, Microsoft Entra ID, or GitHub): If you choose to sign in to sync progress across devices, we receive basic authentication details (email address, display name, and avatar URL if provided by Google, Microsoft, or GitHub).',
+          'Learning Data: Quiz session scores, accuracy rates, and spaced-repetition performance for practice vocabulary across courses.'
         ]
       },
       {
@@ -793,7 +793,7 @@ export const PRIVACY_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
       {
         heading: '3. Data Storage & Security',
         paragraphs: [
-          'Your data is stored in a secure cloud PostgreSQL database managed via Supabase with Row Level Security (RLS) policies and HTTPS/TLS encryption in transit. We never handle or store your account passwords.'
+          'Your data is stored in a secure cloud PostgreSQL database managed via Supabase with strict Row Level Security (RLS) policies, database integrity constraints, and HTTPS/TLS encryption in transit enforced with Strict-Transport-Security (HSTS) and a strict Content Security Policy (CSP). We authenticate exclusively via OAuth 2.0 / OpenID Connect (Google, Microsoft Entra ID, and GitHub) and never handle or store your account passwords.'
         ]
       },
       {
@@ -805,7 +805,7 @@ export const PRIVACY_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
       {
         heading: '5. Third-Party Services',
         paragraphs: [
-          'We work with trusted infrastructure providers: Google Identity & Microsoft Entra ID (authentication), Supabase (database), and Netlify (static hosting).'
+          'We work with trusted infrastructure providers: Google Identity, Microsoft Entra ID & GitHub OAuth (authentication), Supabase (PostgreSQL database & session management), and Netlify (global CDN web hosting, TLS termination, and HTTP security headers).'
         ]
       },
       {

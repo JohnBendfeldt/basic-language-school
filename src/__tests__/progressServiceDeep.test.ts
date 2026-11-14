@@ -351,6 +351,21 @@ describe('ProgressService.syncGuestDataToCloud', () => {
     const sessions = (chains.quiz_sessions[0].insert as ReturnType<typeof vi.fn>).mock.calls[0][0];
     expect(sessions).toHaveLength(20);
     expect(sessions[0]).toMatchObject({ user_id: 'user-1', total_questions: 2, language_id: 'es' });
+
+    // Local guest caches should be cleared after successful sync to prevent duplicate inserts
+    expect(localStorage.getItem('es_word_progress')).toBeNull();
+    expect(localStorage.getItem('es_quiz_sessions')).toBeNull();
+  });
+
+  it('retains local guest cache if cloud upload returns an error', async () => {
+    seedLocal();
+    signedIn({
+      word_progress: { data: null, error: { message: 'rls' } },
+      quiz_sessions: { data: null, error: { message: 'rls' } },
+    });
+    await ProgressService.syncGuestDataToCloud('es');
+    expect(localStorage.getItem('es_word_progress')).not.toBeNull();
+    expect(localStorage.getItem('es_quiz_sessions')).not.toBeNull();
   });
 
   it('never throws when the upload fails', async () => {

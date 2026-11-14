@@ -2,10 +2,10 @@
 
 An interactive, high-performance multi-language learning platform offering **15 world languages** across **210 bidirectional language pairs**, featuring **14,500+ studio-quality neural audio recordings**, adaptive spaced-repetition quizzes, interactive grammar & flashcards, **8 non-Latin phonetic virtual keyboards**, single-file offline audio binary packs, and Progressive Web App (PWA) support.
 
-[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-19.3-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Vitest](https://img.shields.io/badge/Vitest-1%2C512_Passing-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)](https://vitest.dev/)
+[![Vitest](https://img.shields.io/badge/Vitest-1%2C517_Passing-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)](https://vitest.dev/)
 [![Playwright](https://img.shields.io/badge/Playwright-21_E2E_Passing-2EAD33?style=for-the-badge&logo=playwright&logoColor=white)](https://playwright.dev/)
 [![Supabase](https://img.shields.io/badge/Supabase-Auth%20%26%20Postgres-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
 [![Edge TTS](https://img.shields.io/badge/Audio-Edge%20Neural%20TTS-0078D4?style=for-the-badge&logo=microsoft&logoColor=white)](https://github.com/rany2/edge-tts)
@@ -51,21 +51,32 @@ An interactive, high-performance multi-language learning platform offering **15 
 * **🎙️ 14,500+ Studio Neural Audio Recordings & Speed Controls**: Pre-rendered native MP3 pronunciations generated via Microsoft Edge Neural TTS with variable speed control (`0.5×` to `1.25×`), word/example playback inside revealed cards, and clean browser TTS fallback.
 * **📦 Instant Single-File Offline Audio Binary Packs (`offline-pack.bin`)**: Each language bundles all its MP3 clips into a single contiguous binary archive (`public/audio/<lang>/offline-pack.bin`) with byte-offset manifests (`manifest.json`), enabling rapid one-click offline downloads into browser Cache Storage for full Airplane Mode playback (`OfflineAudioModal.tsx`).
 * **🎯 Adaptive Quiz Engine with Fuzzy Typo Tolerance**: Supports Source-to-Target, Target-to-Source, Listening Mode, smart script normalization, and Levenshtein typo detection that accepts harmless slips while rejecting near-miss real words.
-* **☁️ Cloud Sync & Privacy-First Guest Mode (Supabase)**: Local progress persistence by default with optional Google, GitHub, and Microsoft OAuth 2.0 cloud synchronization (`progressService.ts`) backed by PostgreSQL Row Level Security (RLS).
+* **☁️ Cloud Sync & Privacy-First Guest Mode (Supabase)**: Local progress persistence by default with optional **Google**, **Microsoft Entra ID**, and **GitHub** OAuth 2.0 / OIDC cloud synchronization (`progressService.ts`) backed by PostgreSQL Row Level Security (RLS).
+
+---
+
+## 🔒 Security Architecture
+
+* **Strict Content Security Policy (CSP)**: Enforces `script-src 'self'` (no `'unsafe-inline'` or `'unsafe-eval'`), `worker-src 'self'`, `manifest-src 'self'`, `object-src 'none'`, `base-uri 'self'`, `frame-ancestors 'none'`, `form-action 'self'`, and `upgrade-insecure-requests`.
+* **OWASP HTTP Headers**: Configured in [`netlify.toml`](netlify.toml) with HSTS (`max-age=31536000; includeSubDomains; preload`), `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `X-XSS-Protection: 0`, `Cross-Origin-Opener-Policy: same-origin-allow-popups`, `Referrer-Policy: strict-origin-when-cross-origin`, and restrictive `Permissions-Policy`.
+* **Database Row Level Security (RLS) & Constraints**: PostgreSQL tables (`public.profiles`, `public.quiz_sessions`, `public.word_progress`) revoke `anon` access, enforce `auth.uid() = id` / `auth.uid() = user_id` RLS policies across all `SELECT`/`INSERT`/`UPDATE`/`DELETE` operations, and validate score/mastery/URL bounds via SQL `CHECK` constraints (see [`docs/schema.sql`](docs/schema.sql)).
+* **Zero Password Handling & Safe Client Storage**: Passwordless federated OAuth 2.0 / OIDC sign-in, strict `https:` validation on Supabase endpoints and OAuth avatar URLs (`referrerPolicy="no-referrer"`), audio pack filename sanitization, and prototype-pollution-safe `localStorage` parsing.
+
+*Detailed system architecture and database design are documented in [`docs/BACKEND_PLAN.md`](docs/BACKEND_PLAN.md).*
 
 ---
 
 ## 🛠️ Tech Stack
 
-* **Frontend**: React 19, TypeScript 5.8, Vanilla CSS (CSS Variables, Flexbox/Grid, RTL support, Glassmorphism)
+* **Frontend**: React 19.3, TypeScript 5.9, Modern CSS (CSS Variables, Flexbox/Grid, RTL support, Glassmorphism)
 * **Routing**: Universal multi-language dual routing (`/learn/:lang/:section`, `/:lang/:section`, and root routes) with dynamic SEO metadata
-* **Build System**: Vite 6, `@vitejs/plugin-react`, `vite-plugin-pwa`, custom offline audio pack bundler (`scripts/build-offline-packs.mjs`)
+* **Build System & PWA**: Vite 6, `@vitejs/plugin-react` v5, `vite-plugin-pwa` v2 (Workbox), custom offline audio pack bundler (`scripts/build-offline-packs.mjs`)
 * **Testing**:
-  * **Unit & Integration**: Vitest, React Testing Library, JSDOM (**1,512 tests across 55 suites**)
+  * **Unit & Integration**: Vitest 5, React Testing Library 16, JSDOM (**1,517 tests across 55 suites**)
   * **End-to-End**: Playwright Chromium (**21 E2E browser specs** covering desktop, 390px mobile, RTL, Pinyin, phonetic typing, offline Airplane Mode, and neural audio)
-* **Backend & Auth**: Supabase PostgreSQL, Row Level Security (RLS), OAuth 2.0 (Google, GitHub, Microsoft)
+* **Backend & Auth**: Supabase PostgreSQL, Row Level Security (RLS), OAuth 2.0 / OIDC (Google, Microsoft Entra ID, GitHub)
 * **Audio Pipeline**: Python `edge-tts` studio batch synthesis (`scripts/generate-all-audio.py`) + Web Speech API fallback
-* **Hosting & CDN**: Netlify with security headers and SPA fallback rules
+* **Hosting & CDN**: Netlify (`301` domain redirects, OWASP security headers, SSL, SPA fallback rules)
 
 ---
 
@@ -160,7 +171,7 @@ npm run dev
 
 ### 4. Run Automated Tests
 ```bash
-# Unit & integration suite (55 suites, 1,512 tests)
+# Unit & integration suite (55 suites, 1,517 tests)
 npm test
 
 # Strict TypeScript check

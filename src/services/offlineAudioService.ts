@@ -306,7 +306,13 @@ const tryDownloadLanguageViaBinaryPack = async (
     return false;
   }
 
-  const packUrl = `/audio/${lang}/${manifest.packFile || 'offline-pack.bin'}`;
+  const safePackFile =
+    typeof manifest.packFile === 'string' &&
+    /^[a-z0-9._-]+$/i.test(manifest.packFile) &&
+    !manifest.packFile.includes('..')
+      ? manifest.packFile
+      : 'offline-pack.bin';
+  const packUrl = `/audio/${lang}/${safePackFile}`;
   let resp: Response;
   try {
     resp = await fetchWithRetry(packUrl, signal, 2);

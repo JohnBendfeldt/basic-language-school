@@ -371,7 +371,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
   };
   const [dismissedKbTips, setDismissedKbTips] = useState<string[]>(() => {
     try {
-      return JSON.parse(localStorage.getItem('basic_kb_tips_seen') || '[]');
+      const parsed = JSON.parse(localStorage.getItem('basic_kb_tips_seen') || '[]');
+      return Array.isArray(parsed) ? parsed.filter((v): v is string => typeof v === 'string') : [];
     } catch {
       return [];
     }
