@@ -19,7 +19,7 @@ describe('App', () => {
     fireEvent.click(privacyLink);
 
     await waitFor(() => {
-      expect(screen.getByRole('heading', { name: 'Privacy Policy', level: 1 })).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: 'Privacy Policy', level: 2 })).toBeInTheDocument();
       expect(window.location.pathname).toBe('/privacy');
     });
   });
@@ -30,7 +30,7 @@ describe('App', () => {
     fireEvent.click(termsLink);
 
     await waitFor(() => {
-      expect(screen.getByRole('heading', { name: 'Terms of Service', level: 1 })).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: 'Terms of Service', level: 2 })).toBeInTheDocument();
       expect(window.location.pathname).toBe('/terms');
     });
   });
@@ -40,7 +40,7 @@ describe('App', () => {
     render(<App />);
 
     await waitFor(() => {
-      expect(screen.getByRole('heading', { name: 'Privacy Policy', level: 1 })).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: 'Privacy Policy', level: 2 })).toBeInTheDocument();
     });
   });
 
@@ -49,7 +49,7 @@ describe('App', () => {
     render(<App />);
 
     await waitFor(() => {
-      expect(screen.getByRole('heading', { name: 'Terms of Service', level: 1 })).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: 'Terms of Service', level: 2 })).toBeInTheDocument();
     });
   });
 
@@ -79,7 +79,7 @@ describe('App', () => {
 
     await waitFor(() => {
       expect(window.location.pathname).toBe('/time');
-      expect(screen.getByRole('heading', { name: /russian time grammar rules/i, level: 3 })).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: /russian time grammar rules/i, level: 2 })).toBeInTheDocument();
       expect(screen.getByRole('heading', { name: /telling time & time phrases/i, level: 2 })).toBeInTheDocument();
     });
   });
@@ -89,7 +89,7 @@ describe('App', () => {
     render(<App />);
 
     await waitFor(() => {
-      expect(screen.getByRole('heading', { name: /russian time grammar rules/i, level: 3 })).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: /russian time grammar rules/i, level: 2 })).toBeInTheDocument();
       expect(screen.getByRole('heading', { name: /telling time & time phrases/i, level: 2 })).toBeInTheDocument();
     });
   });

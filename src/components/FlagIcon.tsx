@@ -34,6 +34,10 @@ interface FlagIconProps {
  * Universal vector SVG flags that render consistently on all platforms,
  * including Windows Chrome which lacks emoji country flags and displays
  * letter codes (like [GB], [RU], [ES]) instead.
+ *
+ * Defaults to decorative (`aria-hidden="true"`) when rendered alongside
+ * visible language names so screen readers do not announce noisy duplicate
+ * flag descriptions inside buttons/menus unless `ariaLabel` is explicitly supplied.
  */
 export const FlagIcon: React.FC<FlagIconProps> = ({
   lang,
@@ -58,15 +62,17 @@ export const FlagIcon: React.FC<FlagIconProps> = ({
     flexShrink: 0,
   };
 
+  const a11yProps = ariaLabel
+    ? ({ role: 'img', 'aria-label': ariaLabel } as const)
+    : ({ 'aria-hidden': true, focusable: 'false' } as const);
+
   if (norm === 'ru') {
-    // Russian tricolor: white, blue, red
     return (
       <svg
         viewBox="0 0 640 480"
         style={commonStyle}
         className={`flag-icon flag-ru ${className}`}
-        aria-label={ariaLabel || 'Russian flag'}
-        role="img"
+        {...a11yProps}
       >
         <rect width="640" height="160" fill="#ffffff" />
         <rect y="160" width="640" height="160" fill="#0039a6" />
@@ -76,14 +82,12 @@ export const FlagIcon: React.FC<FlagIconProps> = ({
   }
 
   if (norm === 'es') {
-    // Spanish flag: red, yellow (double height), red
     return (
       <svg
         viewBox="0 0 640 480"
         style={commonStyle}
         className={`flag-icon flag-es ${className}`}
-        aria-label={ariaLabel || 'Spanish flag'}
-        role="img"
+        {...a11yProps}
       >
         <rect width="640" height="120" fill="#aa151b" />
         <rect y="120" width="640" height="240" fill="#f1bf00" />
@@ -93,14 +97,12 @@ export const FlagIcon: React.FC<FlagIconProps> = ({
   }
 
   if (norm === 'fr') {
-    // French tricolor: blue, white, red
     return (
       <svg
         viewBox="0 0 640 480"
         style={commonStyle}
         className={`flag-icon flag-fr ${className}`}
-        aria-label={ariaLabel || 'French flag'}
-        role="img"
+        {...a11yProps}
       >
         <rect width="213.3" height="480" fill="#002654" />
         <rect x="213.3" width="213.4" height="480" fill="#ffffff" />
@@ -110,41 +112,37 @@ export const FlagIcon: React.FC<FlagIconProps> = ({
   }
 
   if (norm === 'en' || norm === 'gb' || norm === 'uk') {
-    // Union Jack (clear, high-contrast)
     return (
       <svg
         viewBox="0 0 60 30"
         style={commonStyle}
         className={`flag-icon flag-gb ${className}`}
-        aria-label={ariaLabel || 'English flag'}
-        role="img"
+        {...a11yProps}
       >
         <clipPath id="s">
-          <path d="M0,0 v30 h60 v-30 z"/>
+          <path d="M0,0 v30 h60 v-30 z" />
         </clipPath>
         <clipPath id="t">
-          <path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/>
+          <path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z" />
         </clipPath>
         <g clipPath="url(#s)">
-          <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
-          <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="6"/>
-          <path d="M0,0 L60,30 M60,0 L0,30" clipPath="url(#t)" stroke="#C8102E" strokeWidth="4"/>
-          <path d="M30,0 v30 M0,15 h60" stroke="#fff" strokeWidth="10"/>
-          <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" strokeWidth="6"/>
+          <path d="M0,0 v30 h60 v-30 z" fill="#012169" />
+          <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="6" />
+          <path d="M0,0 L60,30 M60,0 L0,30" clipPath="url(#t)" stroke="#C8102E" strokeWidth="4" />
+          <path d="M30,0 v30 M0,15 h60" stroke="#fff" strokeWidth="10" />
+          <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" strokeWidth="6" />
         </g>
       </svg>
     );
   }
 
   if (norm === 'pt' || norm === 'br') {
-    // Brazil flag: green field, yellow diamond, blue globe
     return (
       <svg
         viewBox="0 0 640 480"
         style={commonStyle}
         className={`flag-icon flag-pt ${className}`}
-        aria-label={ariaLabel || 'Portuguese (Brazil) flag'}
-        role="img"
+        {...a11yProps}
       >
         <rect width="640" height="480" fill="#009b3a" />
         <polygon points="320,60 580,240 320,420 60,240" fill="#fedf00" />
@@ -155,14 +153,12 @@ export const FlagIcon: React.FC<FlagIconProps> = ({
   }
 
   if (norm === 'de') {
-    // German tricolor: black, red, gold
     return (
       <svg
         viewBox="0 0 640 480"
         style={commonStyle}
         className={`flag-icon flag-de ${className}`}
-        aria-label={ariaLabel || 'German flag'}
-        role="img"
+        {...a11yProps}
       >
         <rect width="640" height="160" fill="#000000" />
         <rect y="160" width="640" height="160" fill="#dd0000" />
@@ -172,14 +168,12 @@ export const FlagIcon: React.FC<FlagIconProps> = ({
   }
 
   if (norm === 'id') {
-    // Indonesian bicolor: red over white
     return (
       <svg
         viewBox="0 0 640 480"
         style={commonStyle}
         className={`flag-icon flag-id ${className}`}
-        aria-label={ariaLabel || 'Indonesian flag'}
-        role="img"
+        {...a11yProps}
       >
         <rect width="640" height="240" fill="#ce1126" />
         <rect y="240" width="640" height="240" fill="#ffffff" />
@@ -188,14 +182,12 @@ export const FlagIcon: React.FC<FlagIconProps> = ({
   }
 
   if (norm === 'tr') {
-    // Turkish flag: red field with white crescent and star
     return (
       <svg
         viewBox="0 0 640 480"
         style={commonStyle}
         className={`flag-icon flag-tr ${className}`}
-        aria-label={ariaLabel || 'Turkish flag'}
-        role="img"
+        {...a11yProps}
       >
         <rect width="640" height="480" fill="#e30a17" />
         <circle cx="240" cy="240" r="120" fill="#ffffff" />
@@ -209,14 +201,12 @@ export const FlagIcon: React.FC<FlagIconProps> = ({
   }
 
   if (norm === 'ja') {
-    // Japanese flag (Hinomaru): white field with red sun disc
     return (
       <svg
         viewBox="0 0 640 480"
         style={commonStyle}
         className={`flag-icon flag-ja ${className}`}
-        aria-label={ariaLabel || 'Japanese flag'}
-        role="img"
+        {...a11yProps}
       >
         <rect width="640" height="480" fill="#ffffff" />
         <circle cx="320" cy="240" r="144" fill="#bc002d" />
@@ -225,14 +215,12 @@ export const FlagIcon: React.FC<FlagIconProps> = ({
   }
 
   if (norm === 'ko') {
-    // Korean flag (Taegeukgi): white field with red/blue Taegeuk
     return (
       <svg
         viewBox="0 0 640 480"
         style={commonStyle}
         className={`flag-icon flag-ko ${className}`}
-        aria-label={ariaLabel || 'Korean flag'}
-        role="img"
+        {...a11yProps}
       >
         <rect width="640" height="480" fill="#ffffff" />
         <circle cx="320" cy="240" r="120" fill="#cd2e3a" />
@@ -246,14 +234,12 @@ export const FlagIcon: React.FC<FlagIconProps> = ({
   }
 
   if (norm === 'zh' || norm === 'cn' || norm === 'mandarin chinese') {
-    // Chinese flag: red field with gold stars
     return (
       <svg
         viewBox="0 0 640 480"
         style={commonStyle}
         className={`flag-icon flag-zh ${className}`}
-        aria-label={ariaLabel || 'Chinese flag'}
-        role="img"
+        {...a11yProps}
       >
         <rect width="640" height="480" fill="#de2910" />
         <polygon points="128,64 148,124 210,124 160,160 179,220 128,183 77,220 96,160 46,124 108,124" fill="#ffde00" />
@@ -266,14 +252,12 @@ export const FlagIcon: React.FC<FlagIconProps> = ({
   }
 
   if (norm === 'hi' || norm === 'in' || norm === 'hindi') {
-    // Indian flag: saffron, white, green with Ashoka Chakra
     return (
       <svg
         viewBox="0 0 640 480"
         style={commonStyle}
         className={`flag-icon flag-in ${className}`}
-        aria-label={ariaLabel || 'Indian flag'}
-        role="img"
+        {...a11yProps}
       >
         <rect width="640" height="160" fill="#ff9933" />
         <rect y="160" width="640" height="160" fill="#ffffff" />
@@ -285,14 +269,12 @@ export const FlagIcon: React.FC<FlagIconProps> = ({
   }
 
   if (norm === 'ar' || norm === 'sa' || norm === 'modern standard arabic') {
-    // Saudi / Arabic flag: green field with white script and sword motif
     return (
       <svg
         viewBox="0 0 640 480"
         style={commonStyle}
         className={`flag-icon flag-sa ${className}`}
-        aria-label={ariaLabel || 'Arabic flag'}
-        role="img"
+        {...a11yProps}
       >
         <rect width="640" height="480" fill="#165d31" />
         <path d="M180 295h280v12H180z M440 288l28 13-28 13z" fill="#ffffff" />
@@ -302,14 +284,12 @@ export const FlagIcon: React.FC<FlagIconProps> = ({
   }
 
   if (norm === 'bn' || norm === 'bd' || norm === 'bengali') {
-    // Bangladesh flag: green field with red circle
     return (
       <svg
         viewBox="0 0 640 480"
         style={commonStyle}
         className={`flag-icon flag-bd ${className}`}
-        aria-label={ariaLabel || 'Bengali flag'}
-        role="img"
+        {...a11yProps}
       >
         <rect width="640" height="480" fill="#006a4e" />
         <circle cx="288" cy="240" r="144" fill="#f42a41" />
@@ -318,14 +298,12 @@ export const FlagIcon: React.FC<FlagIconProps> = ({
   }
 
   if (norm === 'ur' || norm === 'pk' || norm === 'urdu') {
-    // Pakistan flag: green field, white hoist stripe, crescent and star
     return (
       <svg
         viewBox="0 0 640 480"
         style={commonStyle}
         className={`flag-icon flag-pk ${className}`}
-        aria-label={ariaLabel || 'Urdu flag'}
-        role="img"
+        {...a11yProps}
       >
         <rect width="640" height="480" fill="#01411c" />
         <rect width="160" height="480" fill="#ffffff" />
@@ -338,7 +316,11 @@ export const FlagIcon: React.FC<FlagIconProps> = ({
 
   // Fallback: Globe icon
   return (
-    <span style={{ fontSize: width, lineHeight: 1 }} className={`flag-fallback ${className}`}>
+    <span
+      style={{ fontSize: width, lineHeight: 1 }}
+      className={`flag-fallback ${className}`}
+      {...(ariaLabel ? { role: 'img', 'aria-label': ariaLabel } : { 'aria-hidden': true })}
+    >
       🌐
     </span>
   );

@@ -71,28 +71,34 @@ const RussianKeyboard: React.FC<RussianKeyboardProps> = ({ onLetterClick }) => {
   const vowels = ['а', 'е', 'и', 'о', 'у', 'я', 'ю', 'ё', 'э'];
 
   return (
-    <div className="russian-keyboard">
+    <div className="russian-keyboard" role="group" aria-label="Russian Cyrillic virtual keyboard">
       
       {keyboardRows.map((row, rowIndex) => (
         <div key={rowIndex} className="keyboard-row">
-          {row.map((letter, i) => (
-            <button
-              key={`${rowIndex}-${i}`}
-              className="keyboard-key"
-              onClick={() => onLetterClick(letter)}
-              type="button"
-              aria-label={`Insert letter ${letter}`}
-            >
-              <span className="key-ru">{letter}</span>
-              <span className="key-en">{phoneticGuide[rowIndex][i]?.en || ''}</span>
-            </button>
-          ))}
+          {row.map((letter, i) => {
+            const enHint = phoneticGuide[rowIndex][i]?.en || '';
+            return (
+              <button
+                key={`${rowIndex}-${i}`}
+                className="keyboard-key"
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => onLetterClick(letter)}
+                type="button"
+                aria-label={enHint ? `Insert letter ${letter} — ${enHint}` : `Insert letter ${letter}`}
+              >
+                <span className="key-ru" lang="ru">{letter}</span>{' '}
+                <span className="key-en">{enHint}</span>
+              </button>
+            );
+          })}
           {rowIndex === 2 && (
             <button
               className="keyboard-key space-key"
+              onMouseDown={(e) => e.preventDefault()}
               onClick={() => onLetterClick(' ')}
               type="button"
-              aria-label="Space"
+              aria-label="Space — Пробел"
+              lang="ru"
             >
               Пробел
             </button>
@@ -104,11 +110,12 @@ const RussianKeyboard: React.FC<RussianKeyboardProps> = ({ onLetterClick }) => {
         {/* Soft sign first for emphasis */}
         <button
           className="keyboard-key special-key soft-sign-key"
+          onMouseDown={(e) => e.preventDefault()}
           onClick={() => onLetterClick('ь')}
           type="button"
-          aria-label="Insert soft sign (ь)"
+          aria-label="Insert soft sign — Ь"
         >
-          <span className="key-ru">Ь</span>
+          <span className="key-ru" lang="ru">Ь</span>{' '}
           <span className="key-en">'</span>
         </button>
         
@@ -117,11 +124,12 @@ const RussianKeyboard: React.FC<RussianKeyboardProps> = ({ onLetterClick }) => {
           <button
             key={char.value}
             className="keyboard-key special-key"
+            onMouseDown={(e) => e.preventDefault()}
             onClick={() => onLetterClick(char.value)}
             type="button"
-            aria-label={`Insert letter ${char.label}`}
+            aria-label={`Insert letter ${char.label} — ${char.en}`}
           >
-            <span className="key-ru">{char.label}</span>
+            <span className="key-ru" lang="ru">{char.label}</span>{' '}
             <span className="key-en">{char.en}</span>
           </button>
         ))}
@@ -133,9 +141,11 @@ const RussianKeyboard: React.FC<RussianKeyboardProps> = ({ onLetterClick }) => {
           <button
             key={`upper-${letter}`}
             className="keyboard-key vowel-key"
+            onMouseDown={(e) => e.preventDefault()}
             onClick={() => onLetterClick(letter.toUpperCase())}
             type="button"
             aria-label={`Insert uppercase letter ${letter.toUpperCase()}`}
+            lang="ru"
           >
             {letter.toUpperCase()}
           </button>
@@ -143,6 +153,7 @@ const RussianKeyboard: React.FC<RussianKeyboardProps> = ({ onLetterClick }) => {
         
         <button
           className="keyboard-key backspace-key"
+          onMouseDown={(e) => e.preventDefault()}
           onClick={() => onLetterClick('backspace')}
           type="button"
           aria-label="Backspace"
@@ -152,6 +163,7 @@ const RussianKeyboard: React.FC<RussianKeyboardProps> = ({ onLetterClick }) => {
         
         <button
           className="keyboard-key clear-key"
+          onMouseDown={(e) => e.preventDefault()}
           onClick={() => onLetterClick('clear')}
           type="button"
           aria-label="Clear"

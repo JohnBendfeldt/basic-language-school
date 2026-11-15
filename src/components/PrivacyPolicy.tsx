@@ -10,6 +10,7 @@ interface PrivacyPolicyProps {
 const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigate }) => {
   const { baseLanguage } = useLanguage();
   const t = PRIVACY_TRANSLATIONS[baseLanguage] || PRIVACY_TRANSLATIONS.en;
+  const englishPassageLang = baseLanguage !== 'en' ? 'en' : undefined;
 
   return (
     <div className="section legal-container">
@@ -26,7 +27,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigate }) => {
           </button>
         </div>
 
-        <h1 className="legal-title">{t.title}</h1>
+        <h2 className="legal-title">{t.title}</h2>
         <p className="legal-last-updated">{t.lastUpdated}</p>
 
         {t.summaryText && (
@@ -37,7 +38,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigate }) => {
 
         {t.sections.map((sec, idx) => (
           <React.Fragment key={idx}>
-            <h2>{sec.heading}</h2>
+            <h3>{sec.heading}</h3>
             {sec.paragraphs.map((p, pIdx) => (
               <p key={pIdx}>{p}</p>
             ))}
@@ -51,9 +52,9 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigate }) => {
           </React.Fragment>
         ))}
 
-        <h2>{t.contactHeading}</h2>
+        <h3>{t.contactHeading}</h3>
         <p>{t.contactIntro}</p>
-        <p className="legal-contact-block">
+        <p className="legal-contact-block" lang={englishPassageLang} dir={englishPassageLang ? 'ltr' : undefined}>
           <strong>Basic Language School</strong><br />
           Attn: John Bendfeldt<br />
           Email: <a href="mailto:dev@basiclanguage.school">dev@basiclanguage.school</a><br />

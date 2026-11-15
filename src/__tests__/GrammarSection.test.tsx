@@ -93,11 +93,11 @@ describe('Alphabet & Grammar Section Integration', () => {
     fireEvent.click(verbsTab);
 
     // Should list verbs
-    expect(screen.getByRole('button', { name: /sein/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /planen/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^sein\b/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^planen\b/i })).toBeInTheDocument();
 
     // Switch to 'planen' (the verb from the user request!)
-    const planenBtn = screen.getByRole('button', { name: /planen/i });
+    const planenBtn = screen.getByRole('button', { name: /^planen\b/i });
     fireEvent.click(planenBtn);
 
     expect(screen.getAllByText('planen').length).toBeGreaterThan(0);

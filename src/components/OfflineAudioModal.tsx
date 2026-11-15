@@ -24,6 +24,7 @@ import {
   removeOfflineLanguage,
   subscribeOfflineAudioChanges,
 } from '../services/offlineAudioService';
+import { useModalAccessibility } from '../hooks/useModalAccessibility';
 
 interface OfflineAudioModalProps {
   isOpen: boolean;
@@ -354,7 +355,15 @@ export const OfflineAudioModal: React.FC<OfflineAudioModalProps> = ({
   const [isDownloading, setIsDownloading] = useState(false);
   const [progress, setProgress] = useState<OfflineDownloadProgress | null>(null);
   const [justCompleted, setJustCompleted] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
   const abortRef = useRef<AbortController | null>(null);
+
+  useModalAccessibility({
+    isOpen,
+    onClose,
+    modalRef,
+    canClose: !isDownloading,
+  });
 
   const activePairIds = useMemo<SupportedLanguageId[]>(() => {
     return Array.from(new Set<SupportedLanguageId>([targetLanguage, baseLanguage]));
@@ -391,24 +400,6 @@ export const OfflineAudioModal: React.FC<OfflineAudioModalProps> = ({
       unsub();
     };
   }, [isOpen, activePairIds]);
-
-  // Lock background scroll & close on Escape
-  useEffect(() => {
-    if (!isOpen) return;
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && !isDownloading) {
-        onClose();
-      }
-    };
-    window.addEventListener('keydown', onKeyDown);
-    return () => {
-      document.body.style.overflow = prevOverflow;
-      window.removeEventListener('keydown', onKeyDown);
-    };
-  }, [isOpen, isDownloading, onClose]);
 
   if (!isOpen) return null;
 
@@ -503,54 +494,62 @@ export const OfflineAudioModal: React.FC<OfflineAudioModalProps> = ({
     return (
       <div
         key={lang}
-        role="checkbox"
-        aria-checked={isDownloaded || isChecked}
-        tabIndex={0}
-        data-testid={`offline-pack-${lang}`}
-        className={`offline-pack-card ${isFeaturedPair ? 'featured' : ''} ${
-          isDownloaded ? 'downloaded' : isChecked ? 'selected' : ''
-        }`}
-        onClick={() => toggleLanguageSelection(lang)}
-        onKeyDown={(e) => {
-          if (e.key === ' ' || e.key === 'Enter') {
-            e.preventDefault();
-            toggleLanguageSelection(lang);
-          }
-        }}
+        className={`offline-course-row-wrap ${isDownloaded ? 'has-remove' : ''}`}
       >
-        <div className="offline-pack-left">
-          <FlagIcon lang={lang} size={26} />
-          <div className="offline-pack-names">
-            <span className="offline-pack-title">{localizedName}</span>
-            <span className="offline-pack-meta">
-              {pack.sizeMB.toFixed(1)} MB · {pack.fileCount.toLocaleString()} {copy.clipsUnit}
-            </span>
+        <div
+          role="checkbox"
+          aria-checked={isDownloaded || isChecked}
+          aria-label={`${localizedName} (${pack.sizeMB.toFixed(1)} MB)`}
+          tabIndex={0}
+          data-testid={`offline-pack-${lang}`}
+          className={`offline-pack-card ${isFeaturedPair ? 'featured' : ''} ${
+            isDownloaded ? 'downloaded' : isChecked ? 'selected' : ''
+          }`}
+          onClick={() => toggleLanguageSelection(lang)}
+          onKeyDown={(e) => {
+            if (e.key === ' ' || e.key === 'Enter') {
+              e.preventDefault();
+              toggleLanguageSelection(lang);
+            }
+          }}
+        >
+          <div className="offline-pack-left">
+            <FlagIcon lang={lang} size={26} />
+            <div className="offline-pack-names">
+              <span className="offline-pack-title">{localizedName}</span>
+              <span className="offline-pack-meta">
+                {pack.sizeMB.toFixed(1)} MB · {pack.fileCount.toLocaleString()} {copy.clipsUnit}
+              </span>
+            </div>
+          </div>
+
+          <div className="offline-pack-right">
+            {isDownloaded ? (
+              <div className="offline-ready-group">
+                <span className="offline-ready-pill">
+                  <FaCheckCircle aria-hidden="true" />
+                  <span>{copy.offlineReady}</span>
+                </span>
+              </div>
+            ) : (
+              <span className={`offline-check-circle ${isChecked ? 'checked' : ''}`} aria-hidden="true">
+                {isChecked && <FaCheck aria-hidden="true" />}
+              </span>
+            )}
           </div>
         </div>
 
-        <div className="offline-pack-right">
-          {isDownloaded ? (
-            <div className="offline-ready-group">
-              <span className="offline-ready-pill">
-                <FaCheckCircle />
-                <span>{copy.offlineReady}</span>
-              </span>
-              <button
-                type="button"
-                className="offline-remove-btn"
-                onClick={(e) => handleRemovePack(e, lang)}
-                title={copy.removePackTitle}
-                aria-label={`${copy.removePackTitle}: ${localizedName}`}
-              >
-                <FaTrashAlt />
-              </button>
-            </div>
-          ) : (
-            <span className={`offline-check-circle ${isChecked ? 'checked' : ''}`}>
-              {isChecked && <FaCheck />}
-            </span>
-          )}
-        </div>
+        {isDownloaded && (
+          <button
+            type="button"
+            className="offline-remove-btn"
+            onClick={(e) => handleRemovePack(e, lang)}
+            title={copy.removePackTitle}
+            aria-label={`${copy.removePackTitle}: ${localizedName}`}
+          >
+            <FaTrashAlt aria-hidden="true" />
+          </button>
+        )}
       </div>
     );
   };
@@ -563,6 +562,8 @@ export const OfflineAudioModal: React.FC<OfflineAudioModalProps> = ({
       )
     : '';
 
+  const milestonePercent = progress ? Math.floor(progress.percent / 25) * 25 : 0;
+
   return (
     <div
       className="offline-modal-backdrop"
@@ -572,6 +573,7 @@ export const OfflineAudioModal: React.FC<OfflineAudioModalProps> = ({
       role="presentation"
     >
       <div
+        ref={modalRef}
         className="offline-modal-dialog"
         role="dialog"
         aria-modal="true"
@@ -581,7 +583,7 @@ export const OfflineAudioModal: React.FC<OfflineAudioModalProps> = ({
         <div className="offline-modal-header">
           <div className="offline-modal-title-row">
             <span className="offline-plane-badge" aria-hidden="true">
-              <FaPlane />
+              <FaPlane aria-hidden="true" />
             </span>
             <div>
               <h2>{copy.title}</h2>
@@ -595,27 +597,27 @@ export const OfflineAudioModal: React.FC<OfflineAudioModalProps> = ({
             disabled={isDownloading}
             aria-label={copy.done}
           >
-            <FaTimes />
+            <FaTimes aria-hidden="true" />
           </button>
         </div>
 
         <div className="offline-modal-body">
           {openedFromInstall && !justCompleted && (
             <div className="offline-install-banner">
-              <FaCloudDownloadAlt className="offline-banner-icon" />
+              <FaCloudDownloadAlt className="offline-banner-icon" aria-hidden="true" />
               <span>{copy.installPromptBanner}</span>
             </div>
           )}
 
           {justCompleted && (
-            <div className="offline-success-banner" role="status">
-              <FaCheckCircle className="offline-banner-icon" />
+            <div className="offline-success-banner" role="status" aria-live="polite">
+              <FaCheckCircle className="offline-banner-icon" aria-hidden="true" />
               <span>{copy.completedBanner}</span>
             </div>
           )}
 
           {!cacheSupported && (
-            <div className="offline-warning-banner">{copy.unsupportedNote}</div>
+            <div className="offline-warning-banner" role="alert">{copy.unsupportedNote}</div>
           )}
 
           {/* Section 1: Pre-selected Active Language Pair */}
@@ -643,7 +645,10 @@ export const OfflineAudioModal: React.FC<OfflineAudioModalProps> = ({
         {/* Footer: Progress Bar or Download CTA */}
         <div className="offline-modal-footer">
           {isDownloading && progress ? (
-            <div className="offline-progress-container" role="status" aria-live="polite">
+            <div className="offline-progress-container">
+              <span className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+                {`${copy.downloadingLabel} ${currentLangLabel}: ${milestonePercent}%`}
+              </span>
               <div className="offline-progress-top">
                 <span className="offline-progress-label">
                   {copy.downloadingLabel} <strong>{currentLangLabel}</strong>
@@ -653,7 +658,14 @@ export const OfflineAudioModal: React.FC<OfflineAudioModalProps> = ({
                   {progress.totalFiles.toLocaleString()})
                 </span>
               </div>
-              <div className="offline-progress-track">
+              <div
+                className="offline-progress-track"
+                role="progressbar"
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-valuenow={progress.percent}
+                aria-label={`${copy.downloadingLabel} ${currentLangLabel}`}
+              >
                 <div
                   className="offline-progress-fill"
                   style={{ width: `${progress.percent}%` }}
@@ -675,7 +687,7 @@ export const OfflineAudioModal: React.FC<OfflineAudioModalProps> = ({
                 disabled={!cacheSupported || pendingToDownload.length === 0}
                 onClick={handleStartDownload}
               >
-                <FaCloudDownloadAlt />
+                <FaCloudDownloadAlt aria-hidden="true" />
                 <span>
                   {pendingToDownload.length > 0
                     ? `${copy.downloadSelected} (${selectedSizeMB.toFixed(1)} MB)`

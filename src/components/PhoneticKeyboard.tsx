@@ -417,6 +417,8 @@ const PhoneticKeyboard: React.FC<PhoneticKeyboardProps> = ({ lang, onLetterClick
       className={`russian-keyboard phonetic-keyboard phonetic-keyboard-${lang}`}
       data-script-lang={lang}
       dir="ltr"
+      role="group"
+      aria-label={`Phonetic virtual keyboard (${lang})`}
     >
       {config.rows.map((row, rowIndex) => (
         <div key={rowIndex} className="keyboard-row">
@@ -424,11 +426,12 @@ const PhoneticKeyboard: React.FC<PhoneticKeyboardProps> = ({ lang, onLetterClick
             <button
               key={`${rowIndex}-${i}-${keyItem.value}`}
               className="keyboard-key"
+              onMouseDown={(e) => e.preventDefault()}
               onClick={() => onLetterClick(keyItem.value)}
               type="button"
-              aria-label={`Insert letter ${keyItem.label}`}
+              aria-label={`Insert letter ${keyItem.label} — ${keyItem.en}`}
             >
-              <span className="key-ru key-script">{keyItem.label}</span>
+              <span className="key-ru key-script" lang={lang} dir={config.isRtl ? 'rtl' : 'ltr'}>{keyItem.label}</span>{' '}
               <span className="key-en">{keyItem.en}</span>
             </button>
           ))}
@@ -441,11 +444,12 @@ const PhoneticKeyboard: React.FC<PhoneticKeyboardProps> = ({ lang, onLetterClick
             <button
               key={`special-${idx}-${charItem.value}`}
               className="keyboard-key special-key"
+              onMouseDown={(e) => e.preventDefault()}
               onClick={() => onLetterClick(charItem.value)}
               type="button"
-              aria-label={`Insert letter ${charItem.label}`}
+              aria-label={`Insert letter ${charItem.label} — ${charItem.en}`}
             >
-              <span className="key-ru key-script">{charItem.label}</span>
+              <span className="key-ru key-script" lang={lang} dir={config.isRtl ? 'rtl' : 'ltr'}>{charItem.label}</span>{' '}
               <span className="key-en">{charItem.en}</span>
             </button>
           ))}
@@ -455,15 +459,17 @@ const PhoneticKeyboard: React.FC<PhoneticKeyboardProps> = ({ lang, onLetterClick
       <div className="keyboard-row keyboard-utility-row">
         <button
           className="keyboard-key space-key"
+          onMouseDown={(e) => e.preventDefault()}
           onClick={() => onLetterClick(' ')}
           type="button"
-          aria-label="Space"
+          aria-label={`Space — ${config.spaceLabel.replace(/\s*\([^)]*\)/g, '')}`}
         >
           {config.spaceLabel}
         </button>
 
         <button
           className="keyboard-key backspace-key"
+          onMouseDown={(e) => e.preventDefault()}
           onClick={() => onLetterClick('backspace')}
           type="button"
           aria-label="Backspace"
@@ -473,6 +479,7 @@ const PhoneticKeyboard: React.FC<PhoneticKeyboardProps> = ({ lang, onLetterClick
 
         <button
           className="keyboard-key clear-key"
+          onMouseDown={(e) => e.preventDefault()}
           onClick={() => onLetterClick('clear')}
           type="button"
           aria-label="Clear"

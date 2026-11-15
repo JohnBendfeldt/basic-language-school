@@ -95,25 +95,32 @@ describe('PronunciationButton', () => {
       </LanguageProvider>
     );
 
-  it('plays the studio recording first and shows a playing state until it ends', async () => {
+  it('plays the studio recording first, preserves focus via aria-disabled, and shows a playing state until it ends', async () => {
     renderButton();
-    const button = screen.getByRole('button', { name: 'Pronounce' });
+    const button = screen.getByRole('button', { name: 'Pronounce "casa"' });
+    button.focus();
+    expect(document.activeElement).toBe(button);
     fireEvent.click(button);
 
     expect(instances.at(-1)?.src).toBe('/audio/es/words/casa.mp3');
-    expect(screen.getByRole('button', { name: 'Speaking...' })).toBeDisabled();
+    const playingBtn = screen.getByRole('button', { name: 'Speaking...' });
+    expect(playingBtn).toHaveAttribute('aria-disabled', 'true');
+    expect(playingBtn).not.toBeDisabled();
+    expect(document.activeElement).toBe(button);
 
     act(() => {
       instances.at(-1)!.onended!();
     });
-    await waitFor(() => expect(screen.getByRole('button', { name: 'Pronounce' })).toBeEnabled());
+    await waitFor(() =>
+      expect(screen.getByRole('button', { name: 'Pronounce "casa"' })).toHaveAttribute('aria-disabled', 'false')
+    );
     expect(speechMocks.speak).not.toHaveBeenCalled();
   });
 
   it('moves on to the next candidate file when one is missing', async () => {
     playBehavior = (src) => (src === '/audio/es/words/casa.mp3' ? Promise.reject(new Error('404')) : Promise.resolve());
     renderButton();
-    fireEvent.click(screen.getByRole('button', { name: 'Pronounce' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Pronounce "casa"' }));
     await waitFor(() => expect(instances.some((i) => i.src === '/audio/es/grammar/casa.mp3')).toBe(true));
     expect(speechMocks.speak).not.toHaveBeenCalled();
   });
@@ -121,7 +128,7 @@ describe('PronunciationButton', () => {
   it('falls back to browser speech only after every recording fails', async () => {
     playBehavior = () => Promise.reject(new Error('missing'));
     renderButton({ text: 'zzz nothing', lang: 'es' });
-    fireEvent.click(screen.getByRole('button', { name: 'Pronounce' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Pronounce "zzz nothing"' }));
     await waitFor(() => expect(speechMocks.speak).toHaveBeenCalledTimes(1));
     expect(speechMocks.speak.mock.calls[0][0]).toBe('zzz nothing');
   });
@@ -133,7 +140,7 @@ describe('PronunciationButton', () => {
 
   it('does not start a second playback while one is running', () => {
     renderButton();
-    const button = screen.getByRole('button', { name: 'Pronounce' });
+    const button = screen.getByRole('button', { name: 'Pronounce "casa"' });
     fireEvent.click(button);
     const before = instances.length;
     fireEvent.click(screen.getByRole('button', { name: 'Speaking...' }));
@@ -142,7 +149,7 @@ describe('PronunciationButton', () => {
 
   it('refuses to read non-Cyrillic text in Russian mode', () => {
     renderButton({ text: 'hello', lang: 'ru' });
-    fireEvent.click(screen.getByRole('button', { name: 'Pronounce' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Pronounce "hello"' }));
     expect(instances.length).toBe(0);
     expect(speechMocks.speak).not.toHaveBeenCalled();
   });
@@ -155,7 +162,7 @@ describe('PronunciationButton', () => {
 
   it('pre-buffers the recording when the pointer hovers over the button', () => {
     renderButton();
-    fireEvent.pointerEnter(screen.getByRole('button', { name: 'Pronounce' }));
+    fireEvent.pointerEnter(screen.getByRole('button', { name: 'Pronounce "casa"' }));
     expect(instances.at(-1)?.src).toBe('/audio/es/words/casa.mp3');
   });
 });

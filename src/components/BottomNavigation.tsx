@@ -40,16 +40,15 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({
       id: 'alphabet', 
       label: getAlphabetGrammarLabel(),
       ariaLabel: getAlphabetGrammarAria(),
-      icon: <FaFont /> 
+      icon: <FaFont aria-hidden="true" /> 
     },
-    { id: 'phrases', label: ui?.basicPhrases || 'Phrases', ariaLabel: ui?.basicPhrases || 'Phrases', icon: <FaComment /> },
-    { id: 'words', label: ui?.commonWords || 'Words', ariaLabel: ui?.commonWords || 'Words', icon: <FaListUl /> },
-    { id: 'numbers', label: ui?.numbersAndTime || 'Numbers & Time', ariaLabel: ui?.numbersAndTime || 'Numbers & Time', icon: <FaCalculator /> },
-    { id: 'quiz', label: ui?.quiz || 'Quiz', ariaLabel: ui?.quiz || 'Quiz', icon: <FaQuestionCircle /> }
+    { id: 'phrases', label: ui?.basicPhrases || 'Phrases', ariaLabel: ui?.basicPhrases || 'Phrases', icon: <FaComment aria-hidden="true" /> },
+    { id: 'words', label: ui?.commonWords || 'Words', ariaLabel: ui?.commonWords || 'Words', icon: <FaListUl aria-hidden="true" /> },
+    { id: 'numbers', label: ui?.numbersAndTime || 'Numbers & Time', ariaLabel: ui?.numbersAndTime || 'Numbers & Time', icon: <FaCalculator aria-hidden="true" /> },
+    { id: 'quiz', label: ui?.quiz || 'Quiz', ariaLabel: ui?.quiz || 'Quiz', icon: <FaQuestionCircle aria-hidden="true" /> }
   ];
 
   const handleNavClick = (id: string) => {
-    // Apply tactile feedback when clicked
     const element = document.querySelector(`.bottom-nav-item[data-section="${id}"]`);
     if (element) {
       element.classList.add('nav-click-effect');
@@ -58,24 +57,32 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({
       }, 200);
     }
     
-    // Switch to the selected section immediately without delayed scroll jerk
     setActiveSection(id);
   };
 
   return (
-    <nav className="bottom-navigation">
-      {navItems.map(item => (
-        <button
-          key={item.id}
-          className={`bottom-nav-item ${(activeSection === item.id || (item.id === 'numbers' && activeSection === 'time')) ? 'active' : ''}`}
-          onClick={() => handleNavClick(item.id)}
-          aria-label={item.ariaLabel ? `Switch to ${item.ariaLabel} section` : `Switch to ${item.label.replace('\n', ' ')} section`}
-          data-section={item.id}
-        >
-          <div className="bottom-nav-icon">{item.icon}</div>
-          <span className="bottom-nav-label">{item.label}</span>
-        </button>
-      ))}
+    <nav
+      className="bottom-navigation"
+      aria-label={ui?.bottomNavigation || 'Bottom navigation'}
+    >
+      {navItems.map((item) => {
+        const isActive =
+          activeSection === item.id || (item.id === 'numbers' && activeSection === 'time');
+        return (
+          <button
+            key={item.id}
+            type="button"
+            className={`bottom-nav-item ${isActive ? 'active' : ''}`}
+            aria-current={isActive ? 'page' : undefined}
+            onClick={() => handleNavClick(item.id)}
+            aria-label={item.ariaLabel ? `Switch to ${item.ariaLabel} section` : `Switch to ${item.label.replace('\n', ' ')} section`}
+            data-section={item.id}
+          >
+            <div className="bottom-nav-icon" aria-hidden="true">{item.icon}</div>
+            <span className="bottom-nav-label">{item.label}</span>
+          </button>
+        );
+      })}
     </nav>
   );
 };

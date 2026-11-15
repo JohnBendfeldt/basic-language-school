@@ -225,9 +225,9 @@ describe('Quiz - Russian helper keys, phonetic guide, and on-screen keyboard', (
     fireEvent.click(kbToggle);
     expect(screen.getByText('Full Russian Keyboard')).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole('button', { name: 'Insert letter к' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Insert letter о' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Insert letter т' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Insert letter к — K' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Insert letter о — O' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Insert letter т — T' }));
     expect(getInput().value).toBe('кот');
 
     // Backspace removes the last character
@@ -248,7 +248,7 @@ describe('Quiz - Russian helper keys, phonetic guide, and on-screen keyboard', (
 
     // Space converts latin phonetics typed earlier via transliteration
     fireEvent.change(getInput(), { target: { value: 'privet' } });
-    fireEvent.click(screen.getByRole('button', { name: 'Space' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Space — Пробел' }));
     expect(getInput().value).toContain('привет');
   });
 

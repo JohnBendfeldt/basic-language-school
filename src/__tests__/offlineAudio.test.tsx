@@ -401,7 +401,7 @@ describe('Offline Audio Service, Manifests, Airplane Mode Playback & PWA Install
       </LanguageProvider>
     );
 
-    fireEvent.click(screen.getByRole('button', { name: 'Pronounce' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Pronounce "casa"' }));
 
     await waitFor(() => {
       expect(audioInstances.some((inst) => inst.src.startsWith('blob:'))).toBe(true);
@@ -547,7 +547,7 @@ describe('Offline Audio Service, Manifests, Airplane Mode Playback & PWA Install
         <PronunciationButton text="Haus" lang="de" />
       </LanguageProvider>
     );
-    fireEvent.pointerEnter(screen.getByRole('button', { name: 'Pronounce' }));
+    fireEvent.pointerEnter(screen.getByRole('button', { name: 'Pronounce "Haus"' }));
     expect(mockCaches.open).not.toHaveBeenCalled();
   });
 });

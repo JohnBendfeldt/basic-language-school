@@ -289,20 +289,70 @@ const Alphabet: React.FC<AlphabetProps> = ({
   const alphabetTabLabel = `${alphabetMainLabel}${alphabetSuffix}`;
   const grammarTabLabel = `${grammarMainLabel}${grammarSuffix}`;
   const aboutTabLabel = `${aboutMainLabel}${aboutSuffix}`;
+  const targetDir = currentLanguage === 'ar' || currentLanguage === 'ur' ? 'rtl' : 'ltr';
+  const baseDir = baseLanguage === 'ar' || baseLanguage === 'ur' ? 'rtl' : 'ltr';
+
+  const savedAlphabetTitleRef = React.useRef<string>('');
+  const hasSwitchedViewRef = React.useRef<boolean>(false);
+
+  React.useEffect(() => {
+    if (typeof document === 'undefined') return;
+    const appTitle = currentMeta.appName || 'Basic Language School';
+    if (activeView === 'alphabet') {
+      if (!hasSwitchedViewRef.current) {
+        savedAlphabetTitleRef.current = document.title;
+      } else {
+        document.title = savedAlphabetTitleRef.current || `${headerTitle} — ${appTitle}`;
+      }
+    } else if (activeView === 'grammar') {
+      if (!savedAlphabetTitleRef.current && document.title) {
+        savedAlphabetTitleRef.current = document.title;
+      }
+      hasSwitchedViewRef.current = true;
+      document.title = `${grammarMainLabel} (${currentMeta.name}) — ${appTitle}`;
+    } else if (activeView === 'about') {
+      if (!savedAlphabetTitleRef.current && document.title) {
+        savedAlphabetTitleRef.current = document.title;
+      }
+      hasSwitchedViewRef.current = true;
+      document.title = `${aboutTabLabel} — ${appTitle}`;
+    }
+  }, [activeView, currentMeta.appName, currentMeta.name, grammarMainLabel, aboutTabLabel, headerTitle]);
+
+  const subViews: Array<'alphabet' | 'grammar' | 'about'> = ['alphabet', 'grammar', 'about'];
+  const handleSegmentedKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight' && e.key !== 'Home' && e.key !== 'End') return;
+    e.preventDefault();
+    const tabs = Array.from(e.currentTarget.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const idx = subViews.indexOf(activeView);
+    let nextIdx = idx;
+    if (e.key === 'ArrowRight') nextIdx = (idx + 1) % subViews.length;
+    else if (e.key === 'ArrowLeft') nextIdx = (idx - 1 + subViews.length) % subViews.length;
+    else if (e.key === 'Home') nextIdx = 0;
+    else if (e.key === 'End') nextIdx = subViews.length - 1;
+    setActiveView(subViews[nextIdx]);
+    tabs[nextIdx]?.focus();
+  };
 
   return (
     <div className="section alphabet-section">
       {/* Segmented Control: Alphabet vs Grammar vs About */}
-      <div className="section-segmented-control" role="tablist">
+      <div
+        className="section-segmented-control"
+        role="tablist"
+        aria-label="Course foundations views"
+        onKeyDown={handleSegmentedKeyDown}
+      >
         <button
           type="button"
           role="tab"
           aria-selected={activeView === 'alphabet'}
+          tabIndex={activeView === 'alphabet' ? 0 : -1}
           aria-label={alphabetTabLabel}
           className={`segmented-tab-btn ${activeView === 'alphabet' ? 'active' : ''}`}
           onClick={() => setActiveView('alphabet')}
         >
-          <span className="tab-icon">🔤</span>
+          <span className="tab-icon" aria-hidden="true">🔤</span>
           <span className="tab-label-text">
             <span className="tab-label-main">{alphabetMainLabel}</span>
             <span className="tab-label-extra">{alphabetSuffix}</span>
@@ -312,11 +362,12 @@ const Alphabet: React.FC<AlphabetProps> = ({
           type="button"
           role="tab"
           aria-selected={activeView === 'grammar'}
+          tabIndex={activeView === 'grammar' ? 0 : -1}
           aria-label={grammarTabLabel}
           className={`segmented-tab-btn ${activeView === 'grammar' ? 'active' : ''}`}
           onClick={() => setActiveView('grammar')}
         >
-          <span className="tab-icon">📖</span>
+          <span className="tab-icon" aria-hidden="true">📖</span>
           <span className="tab-label-text">
             <span className="tab-label-main">{grammarMainLabel}</span>
             <span className="tab-label-extra">{grammarSuffix}</span>
@@ -326,11 +377,12 @@ const Alphabet: React.FC<AlphabetProps> = ({
           type="button"
           role="tab"
           aria-selected={activeView === 'about'}
+          tabIndex={activeView === 'about' ? 0 : -1}
           aria-label={aboutTabLabel}
           className={`segmented-tab-btn ${activeView === 'about' ? 'active' : ''}`}
           onClick={() => setActiveView('about')}
         >
-          <span className="tab-icon">🌏</span>
+          <span className="tab-icon" aria-hidden="true">🌏</span>
           <span className="tab-label-text">
             <span className="tab-label-main">{aboutMainLabel}</span>
             <span className="tab-label-extra">{aboutSuffix}</span>
@@ -352,22 +404,20 @@ const Alphabet: React.FC<AlphabetProps> = ({
           </div>
 
           {currentLanguage === 'zh' && (
-            <div
+            <button
+              type="button"
               className="chinese-about-teaser"
               onClick={() => setActiveView('about')}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setActiveView('about'); }}
-              aria-label="Learn about the history of Chinese writing and Pinyin"
+              aria-label={`Learn about the history of Chinese writing and Pinyin — ${zhFilterLabels.teaser} ${zhFilterLabels.readStory}`}
             >
               <div className="teaser-content">
-                <span className="teaser-icon">📜</span>
+                <span className="teaser-icon" aria-hidden="true">📜</span>
                 <span className="teaser-text">
                   {zhFilterLabels.teaser}
                 </span>
               </div>
               <span className="teaser-link">{zhFilterLabels.readStory}</span>
-            </div>
+            </button>
           )}
 
           {currentLanguage === 'zh' && (
@@ -378,6 +428,7 @@ const Alphabet: React.FC<AlphabetProps> = ({
             <div className="zh-alphabet-filter-bar" role="group" aria-label="Pinyin sound filters">
               <button
                 type="button"
+                aria-pressed={zhFilter === 'all'}
                 className={`zh-filter-chip ${zhFilter === 'all' ? 'active' : ''}`}
                 onClick={() => setZhFilter('all')}
               >
@@ -385,6 +436,7 @@ const Alphabet: React.FC<AlphabetProps> = ({
               </button>
               <button
                 type="button"
+                aria-pressed={zhFilter === 'initials'}
                 className={`zh-filter-chip ${zhFilter === 'initials' ? 'active' : ''}`}
                 onClick={() => setZhFilter('initials')}
               >
@@ -392,6 +444,7 @@ const Alphabet: React.FC<AlphabetProps> = ({
               </button>
               <button
                 type="button"
+                aria-pressed={zhFilter === 'finals'}
                 className={`zh-filter-chip ${zhFilter === 'finals' ? 'active' : ''}`}
                 onClick={() => setZhFilter('finals')}
               >
@@ -412,7 +465,7 @@ const Alphabet: React.FC<AlphabetProps> = ({
                 exampleMeaning = resolveTranslation(item, currentLanguage, baseLanguage);
               }
 
-              // Format phonetic example phrase with localized "as in" (e.g. "as in", "comme dans", "como en", "как в", "como em", "wie in", "seperti di", "gibi")
+              // Format phonetic example phrase with localized "as in"
               let localizedExamplePhrase = '';
               if (item.examplesByLang && item.examplesByLang[baseLanguage]) {
                 const custom = item.examplesByLang[baseLanguage]!;
@@ -433,27 +486,33 @@ const Alphabet: React.FC<AlphabetProps> = ({
                 <div className="alphabet-card" key={index}>
                   <div className="letter-container">
                     {currentLanguage === 'zh' && (
-                      <span className="pinyin-badge">
+                      <span className="pinyin-badge" lang={baseLanguage === 'zh' ? 'zh' : undefined}>
                         {baseLanguage === 'zh' ? '汉语拼音'
-                          : baseLanguage === 'ja' ? 'ピンイン (拼音)'
-                          : baseLanguage === 'ko' ? '한어병음 (拼音)'
-                          : baseLanguage === 'ru' ? 'Пиньинь (拼音)'
-                          : baseLanguage === 'hi' ? 'पिनयिन (拼音)'
-                          : baseLanguage === 'ar' ? 'بينيين (拼音)'
-                          : baseLanguage === 'bn' ? 'পিনইন (拼音)'
-                          : baseLanguage === 'ur' ? 'پِن یِن (拼音)'
-                          : '拼音 Pinyin'}
+                          : baseLanguage === 'ja' ? <>ピンイン (<span lang="zh">拼音</span>)</>
+                          : baseLanguage === 'ko' ? <>한어병음 (<span lang="zh">拼音</span>)</>
+                          : baseLanguage === 'ru' ? <>Пиньинь (<span lang="zh">拼音</span>)</>
+                          : baseLanguage === 'hi' ? <>पिनयिन (<span lang="zh">拼音</span>)</>
+                          : baseLanguage === 'ar' ? <>بينيين (<span lang="zh">拼音</span>)</>
+                          : baseLanguage === 'bn' ? <>পিনইন (<span lang="zh">拼音</span>)</>
+                          : baseLanguage === 'ur' ? <>پِن یِن (<span lang="zh">拼音</span>)</>
+                          : <><span lang="zh">拼音</span> Pinyin</>}
                       </span>
                     )}
                     <div className="letter-header">
                       <div className="letter-pair">
                         {isCasedScript ? (
                           <>
-                            <span className="letter-uppercase">{item.letter}</span>
-                            <span className="letter-lowercase">{lowerLetter}</span>
+                            <span className="letter-uppercase" lang={currentLanguage} dir={targetDir}>
+                              {item.letter}
+                            </span>
+                            <span className="letter-lowercase" lang={currentLanguage} dir={targetDir}>
+                              {lowerLetter}
+                            </span>
                           </>
                         ) : (
-                          <span className="letter-single">{item.letter}</span>
+                          <span className="letter-single" lang={currentLanguage} dir={targetDir}>
+                            {item.letter}
+                          </span>
                         )}
                         <div className="pronunciation-button-wrapper">
                           <PronunciationButton 
@@ -484,7 +543,9 @@ const Alphabet: React.FC<AlphabetProps> = ({
                         <div className="example-word-row">
                           <span className="example-word-text">
                             <strong className="example-label">{labels.example}</strong>{' '}
-                            <span className="example-word">{exampleWord}</span>{' '}
+                            <span className="example-word" lang={currentLanguage} dir={targetDir}>
+                              {exampleWord}
+                            </span>{' '}
                             {item.wordPronunciation && (
                               <span className="example-word-pronunciation" title="Pronunciation">
                                 ({item.wordPronunciation})
@@ -501,7 +562,9 @@ const Alphabet: React.FC<AlphabetProps> = ({
                         </div>
                         {exampleMeaning && (
                           <div className="example-meaning-row">
-                            <span className="example-translation">({exampleMeaning})</span>
+                            <span className="example-translation" lang={baseLanguage} dir={baseDir}>
+                              ({exampleMeaning})
+                            </span>
                             {baseLanguage !== currentLanguage && (
                               <PronunciationButton 
                                 text={exampleMeaning}

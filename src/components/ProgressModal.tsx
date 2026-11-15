@@ -11,6 +11,7 @@ import { SUPPORTED_LANGUAGES } from '../data/languages';
 import { SupportedLanguageId } from '../data/languages/types';
 import { getLocalizedLanguageName, localizeCategoryBadge } from '../utils/pageDictionary';
 import { resolveTranslation } from '../utils/translationResolver';
+import { useModalAccessibility } from '../hooks/useModalAccessibility';
 
 interface ProgressModalProps {
   isOpen: boolean;
@@ -77,7 +78,24 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
   const [loading, setLoading] = useState<boolean>(true);
   const [masteryOverview, setMasteryOverview] = useState<Record<string, { wordsMastered: number; totalItems: number; percentMastered: number }>>({});
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const modalRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownTriggerRef = useRef<HTMLButtonElement>(null);
+  const listboxRef = useRef<HTMLDivElement>(null);
+
+  useModalAccessibility({
+    isOpen,
+    onClose,
+    modalRef,
+    onEscape: () => {
+      if (isDropdownOpen) {
+        setIsDropdownOpen(false);
+        dropdownTriggerRef.current?.focus({ preventScroll: true });
+        return true;
+      }
+      return false;
+    },
+  });
 
   // Sync selected language when modal opens or languageId changes
   useEffect(() => {
@@ -87,25 +105,22 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
     }
   }, [isOpen, languageId, contextLang]);
 
-  // Click outside and Escape key listeners to close language dropdown
+  // Click outside listener to close language dropdown and focus selected option on open
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsDropdownOpen(false);
       }
     };
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isDropdownOpen) {
-        setIsDropdownOpen(false);
-      }
-    };
     if (isDropdownOpen) {
       document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('keydown', handleKeyDown);
+      const selectedOpt =
+        listboxRef.current?.querySelector<HTMLButtonElement>('[role="option"][aria-selected="true"]') ||
+        listboxRef.current?.querySelector<HTMLButtonElement>('[role="option"]');
+      selectedOpt?.focus({ preventScroll: true });
     }
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleKeyDown);
     };
   }, [isDropdownOpen]);
 
@@ -147,6 +162,8 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
   if (!isOpen) return null;
 
   const localizedActiveLangName = getLocalizedLanguageName(selectedLang, baseLanguage, activeMeta.name);
+  const selectedTargetDir = selectedLang === 'ar' || selectedLang === 'ur' ? 'rtl' : 'ltr';
+  const baseDir = baseLanguage === 'ar' || baseLanguage === 'ur' ? 'rtl' : 'ltr';
 
   const modalCopy = (() => {
     const translated = PROGRESS_MODAL_COPY[baseLanguage];
@@ -261,17 +278,27 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
   })();
 
   return (
-    <div className="progress-modal-backdrop" onClick={onClose} role="dialog" aria-modal="true">
-      <div className="progress-modal-container" onClick={(e) => e.stopPropagation()}>
-        <button className="progress-modal-close" onClick={onClose} aria-label="Close modal">
-          <FaTimes />
+    <div
+      ref={modalRef}
+      className="progress-modal-backdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="progress-modal-title"
+      onClick={onClose}
+    >
+      <div
+        className="progress-modal-container"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button type="button" className="progress-modal-close" onClick={onClose} aria-label="Close modal">
+          <FaTimes aria-hidden="true" />
         </button>
 
         <div className="progress-modal-header">
           <div className="progress-header-title">
-            <FaChartBar className="header-icon" />
+            <FaChartBar className="header-icon" aria-hidden="true" />
             <div>
-              <h2>{modalCopy.title}</h2>
+              <h2 id="progress-modal-title">{modalCopy.title}</h2>
               <p className="user-indicator">
                 {userEmail ? modalCopy.loggedInAs(userEmail) : modalCopy.guestMode}
               </p>
@@ -289,30 +316,62 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
           </div>
           <div className="progress-dropdown-wrapper" ref={dropdownRef}>
             <button
+              ref={dropdownTriggerRef}
               id="progress-lang-dropdown"
               type="button"
               className={`progress-dropdown-trigger ${isDropdownOpen ? 'open' : ''}`}
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              onKeyDown={(e) => {
+                if ((e.key === 'ArrowDown' || e.key === 'ArrowUp') && !isDropdownOpen) {
+                  e.preventDefault();
+                  setIsDropdownOpen(true);
+                }
+              }}
               aria-expanded={isDropdownOpen}
               aria-haspopup="listbox"
-              aria-label={`Current course: ${localizedActiveLangName}. Click to change course progress.`}
+              aria-label={`Current course: ${localizedActiveLangName} — ${percentMastered}% ${modalCopy.masteredBadge}. Click to change course progress.`}
             >
               <div className="dropdown-trigger-main">
-                <span className="dropdown-trigger-flag">
+                <span className="dropdown-trigger-flag" aria-hidden="true">
                   <FlagIcon lang={activeMeta.id} size={22} />
                 </span>
                 <span className="dropdown-trigger-name">{localizedActiveLangName}</span>
-              </div>
+              </div>{' '}
               <div className="dropdown-trigger-end">
                 <span className={`dropdown-trigger-badge ${percentMastered > 0 ? 'has-mastery' : ''}`}>
                   {percentMastered}% {modalCopy.masteredBadge}
                 </span>
-                <FaChevronDown className={`dropdown-chevron ${isDropdownOpen ? 'rotated' : ''}`} />
+                <FaChevronDown className={`dropdown-chevron ${isDropdownOpen ? 'rotated' : ''}`} aria-hidden="true" />
               </div>
             </button>
 
             {isDropdownOpen && (
-              <div className="progress-dropdown-menu" role="listbox" aria-label="Available languages">
+              <div
+                ref={listboxRef}
+                className="progress-dropdown-menu"
+                role="listbox"
+                aria-label="Available languages"
+                onKeyDown={(e) => {
+                  const options = Array.from(
+                    e.currentTarget.querySelectorAll<HTMLButtonElement>('[role="option"]')
+                  );
+                  if (!options.length) return;
+                  const idx = options.indexOf(document.activeElement as HTMLButtonElement);
+                  if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    options[(idx + 1) % options.length]?.focus();
+                  } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    options[(idx - 1 + options.length) % options.length]?.focus();
+                  } else if (e.key === 'Home') {
+                    e.preventDefault();
+                    options[0]?.focus();
+                  } else if (e.key === 'End') {
+                    e.preventDefault();
+                    options[options.length - 1]?.focus();
+                  }
+                }}
+              >
                 {Object.values(SUPPORTED_LANGUAGES).map(lang => {
                   const isSelected = lang.id === selectedLang;
                   const overview = masteryOverview[lang.id];
@@ -328,10 +387,11 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
                       onClick={() => {
                         setSelectedLang(lang.id);
                         setIsDropdownOpen(false);
+                        dropdownTriggerRef.current?.focus({ preventScroll: true });
                       }}
                     >
                       <div className="dropdown-item-left">
-                        <span className="dropdown-item-flag">
+                        <span className="dropdown-item-flag" aria-hidden="true">
                           <FlagIcon lang={lang.id} size={20} />
                         </span>
                         <span className="dropdown-item-name">{localizedName}</span>
@@ -341,9 +401,9 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
                           {percent}%
                         </span>
                         {isSelected ? (
-                          <FaCheck className="dropdown-item-check" />
+                          <FaCheck className="dropdown-item-check" aria-hidden="true" />
                         ) : (
-                          <span className="dropdown-item-check-placeholder" />
+                          <span className="dropdown-item-check-placeholder" aria-hidden="true" />
                         )}
                       </div>
                     </button>
@@ -355,13 +415,13 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
         </div>
 
         {loading ? (
-          <div className="progress-loading">
-            <div className="loading-spinner"></div>
+          <div className="progress-loading" role="status" aria-live="polite">
+            <div className="loading-spinner" aria-hidden="true"></div>
             <p>{modalCopy.loading}</p>
           </div>
         ) : !stats || (stats.totalQuizzesTaken === 0 && stats.wordsMasteredCount === 0 && stats.wordsLearningCount === 0) ? (
           <div className="progress-empty-state">
-            <FaGraduationCap className="empty-icon" />
+            <FaGraduationCap className="empty-icon" aria-hidden="true" />
             <h3>{modalCopy.noHistoryTitle}</h3>
             <p>
               {modalCopy.noHistoryDesc(localizedActiveLangName)}
@@ -376,7 +436,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
                 }}
               >
                 <span>{modalCopy.switchToPractice(localizedActiveLangName)}</span>
-                <FaArrowRight />
+                <FaArrowRight aria-hidden="true" />
               </button>
             ) : null}
           </div>
@@ -400,7 +460,14 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
                       modalCopy.masteryCountDesc(stats.wordsMasteredCount, totalCurriculum)
                     )}
                   </p>
-                  <div className="mastery-progress-track">
+                  <div
+                    className="mastery-progress-track"
+                    role="progressbar"
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={percentMastered}
+                    aria-label={modalCopy.curriculumMastery(localizedActiveLangName)}
+                  >
                     <div 
                       className="mastery-progress-fill" 
                       style={{ width: `${percentMastered}%` }}
@@ -420,7 +487,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
                   title={`Switch active app language to ${localizedActiveLangName}`}
                 >
                   <span>{modalCopy.studyBtn(localizedActiveLangName)}</span>
-                  <span className="btn-flag">
+                  <span className="btn-flag" aria-hidden="true">
                     <FlagIcon lang={activeMeta.id} size={18} />
                   </span>
                 </button>
@@ -430,8 +497,8 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
             {/* Stat Cards Grid */}
             <div className="stats-grid">
               <div className="stat-card">
-                <div className="stat-icon streak-icon">
-                  <FaFire />
+                <div className="stat-icon streak-icon" aria-hidden="true">
+                  <FaFire aria-hidden="true" />
                 </div>
                 <div className="stat-content">
                   <span className="stat-value">{stats.currentDailyStreak || 0}</span>
@@ -440,8 +507,8 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
               </div>
 
               <div className="stat-card">
-                <div className="stat-icon trophy-icon">
-                  <FaTrophy />
+                <div className="stat-icon trophy-icon" aria-hidden="true">
+                  <FaTrophy aria-hidden="true" />
                 </div>
                 <div className="stat-content">
                   <span className="stat-value">{stats.totalQuizzesTaken}</span>
@@ -450,8 +517,8 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
               </div>
 
               <div className="stat-card">
-                <div className="stat-icon accuracy-icon">
-                  <FaChartBar />
+                <div className="stat-icon accuracy-icon" aria-hidden="true">
+                  <FaChartBar aria-hidden="true" />
                 </div>
                 <div className="stat-content">
                   <span className="stat-value">{stats.averageScore}%</span>
@@ -460,8 +527,8 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
               </div>
 
               <div className="stat-card">
-                <div className="stat-icon mastered-icon">
-                  <FaCheckCircle />
+                <div className="stat-icon mastered-icon" aria-hidden="true">
+                  <FaCheckCircle aria-hidden="true" />
                 </div>
                 <div className="stat-content">
                   <span className="stat-value">{stats.wordsMasteredCount}</span>
@@ -470,8 +537,8 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
               </div>
 
               <div className="stat-card">
-                <div className="stat-icon learning-icon">
-                  <FaGraduationCap />
+                <div className="stat-icon learning-icon" aria-hidden="true">
+                  <FaGraduationCap aria-hidden="true" />
                 </div>
                 <div className="stat-content">
                   <span className="stat-value">{stats.wordsLearningCount}</span>
@@ -484,7 +551,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
             {stats.wordsToReview.length > 0 && (
               <div className="progress-section">
                 <div className="section-title">
-                  <FaRedo className="section-icon" />
+                  <FaRedo className="section-icon" aria-hidden="true" />
                   <h3>{modalCopy.wordsToReviewTitle}</h3>
                 </div>
                 <p className="section-subtitle">
@@ -511,8 +578,12 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
                     return (
                       <div key={item.wordId} className="review-word-card">
                         <div className="review-word-info">
-                          <span className="russian-text">{target}</span>
-                          <span className="english-translation">{localizedMeaning}</span>
+                          <span className="russian-text" lang={selectedLang} dir={selectedTargetDir}>
+                            {target}
+                          </span>
+                          <span className="english-translation" lang={baseLanguage} dir={baseDir}>
+                            {localizedMeaning}
+                          </span>
                         </div>
 
                         <div className="review-word-actions">
@@ -536,7 +607,7 @@ export const ProgressModal: React.FC<ProgressModalProps> = ({ isOpen, onClose, u
             {stats.recentSessions.length > 0 && (
               <div className="progress-section">
                 <div className="section-title">
-                  <FaTrophy className="section-icon" />
+                  <FaTrophy className="section-icon" aria-hidden="true" />
                   <h3>{modalCopy.recentSessionsTitle}</h3>
                 </div>
 

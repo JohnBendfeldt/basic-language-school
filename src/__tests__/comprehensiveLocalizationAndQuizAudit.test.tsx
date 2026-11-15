@@ -164,7 +164,7 @@ describe('Comprehensive Non-Anglo-Centric Localization, Pickers, Time Data & Qui
 
     const input = screen.getByRole('textbox') as HTMLInputElement;
     fireEvent.change(input, { target: { value: 'Hello' } });
-    fireEvent.click(screen.getByRole('button', { name: '检查答案' }));
+    fireEvent.click(screen.getByRole('button', { name: /^检查答案/ }));
 
     // English "Hello" must NEVER be accepted when Mandarin speaker is quizzed on Spanish "Hola"!
     expect(document.querySelector('.quiz-feedback-drawer.feedback-incorrect')).toBeTruthy();
@@ -187,7 +187,7 @@ describe('Comprehensive Non-Anglo-Centric Localization, Pickers, Time Data & Qui
     );
     const nopeInput = screen.getByRole('textbox') as HTMLInputElement;
     fireEvent.change(nopeInput, { target: { value: 'nope' } });
-    fireEvent.click(screen.getByRole('button', { name: '检查答案' }));
+    fireEvent.click(screen.getByRole('button', { name: /^检查答案/ }));
     expect(document.querySelector('.quiz-feedback-drawer.feedback-incorrect')).toBeTruthy();
     unmountNope();
 
@@ -213,7 +213,7 @@ describe('Comprehensive Non-Anglo-Centric Localization, Pickers, Time Data & Qui
 
     const numInput = screen.getByRole('textbox') as HTMLInputElement;
     fireEvent.change(numInput, { target: { value: 'fifteen' } });
-    fireEvent.click(screen.getByRole('button', { name: '检查答案' }));
+    fireEvent.click(screen.getByRole('button', { name: /^检查答案/ }));
 
     expect(document.querySelector('.quiz-feedback-drawer.feedback-incorrect')).toBeTruthy();
     expect(document.querySelector('.quiz-feedback-drawer.feedback-correct')).toBeFalsy();
@@ -235,7 +235,7 @@ describe('Comprehensive Non-Anglo-Centric Localization, Pickers, Time Data & Qui
     );
     const validNumInput = screen.getByRole('textbox') as HTMLInputElement;
     fireEvent.change(validNumInput, { target: { value: '十五' } });
-    fireEvent.click(screen.getByRole('button', { name: '检查答案' }));
+    fireEvent.click(screen.getByRole('button', { name: /^检查答案/ }));
     expect(document.querySelector('.quiz-feedback-drawer.feedback-correct')).toBeTruthy();
     unmountNumValid();
   });

@@ -123,7 +123,7 @@ describe('MobileDrawer Component', () => {
       </LanguageProvider>
     );
 
-    const progressCard = screen.getByText('My Learning Progress').closest('[role="button"]')!;
+    const progressCard = screen.getByText('My Learning Progress').closest('button')!;
     fireEvent.click(progressCard);
 
     expect(handleClose).toHaveBeenCalledTimes(1);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { PhraseItem } from '../types/index';
 import PronunciationButton from './PronunciationButton';
 import { NumberBadge } from './NumberBadge';
@@ -8,6 +8,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { resolveTranslation, extractDigit } from '../utils/translationResolver';
 import { localizeCategoryBadge } from '../utils/pageDictionary';
 import { useIsMobile } from '../hooks/useIsMobile';
+import { useModalAccessibility } from '../hooks/useModalAccessibility';
 
 const CATEGORY_ICONS: Record<string, string> = {
   'all': '✨',
@@ -75,6 +76,8 @@ const PhraseCardComponent: React.FC<PhraseCardProps> = ({
 }) => {
   const { currentLanguage, baseLanguage, ui } = useLanguage();
   const localizedCategory = localizeCategoryBadge(category, baseLanguage);
+  const targetDir = currentLanguage === 'ar' || currentLanguage === 'ur' ? 'rtl' : 'ltr';
+  const baseDir = baseLanguage === 'ar' || baseLanguage === 'ur' ? 'rtl' : 'ltr';
   const handleToggle = useCallback(() => {
     onToggleIndex(cardIndex);
   }, [onToggleIndex, cardIndex]);
@@ -99,12 +102,12 @@ const PhraseCardComponent: React.FC<PhraseCardProps> = ({
     >
       <div className="phrase-card-top-row">
         {localizedCategory && (
-          <div className="phrase-meta-badge" lang={baseLanguage}>
+          <div className="phrase-meta-badge" lang={baseLanguage} dir={baseDir}>
             <span className="meta-category">{localizedCategory}</span>
           </div>
         )}
         {contentType === 'numbers' && numericValue && (
-          <div className="phrase-number-pill">
+          <div className="phrase-number-pill" aria-hidden="true">
             <NumberBadge value={numericValue} size={30} />
           </div>
         )}
@@ -116,7 +119,9 @@ const PhraseCardComponent: React.FC<PhraseCardProps> = ({
               <WordIcon icon={icon} word={targetText} meaning={translatedText} size={24} />
             </span>
           )}
-          <h3 className="phrase-text">{targetText}</h3>
+          <h3 className="phrase-text" lang={currentLanguage} dir={targetDir}>
+            {targetText}
+          </h3>
         </div>
         <PronunciationButton 
           text={targetText} 
@@ -128,24 +133,20 @@ const PhraseCardComponent: React.FC<PhraseCardProps> = ({
         />
       </div>
       <div className="phrase-content">
-        {isRevealed ? (
+        {isRevealed && (
           <div 
             className="phrase-revealed-wrap"
-            role="button"
-            tabIndex={0}
-            aria-expanded={true}
-            aria-label={`Hide translation for ${targetText}`}
-            onClick={handleToggle}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
+            onClick={(e) => {
+              if (!(e.target as HTMLElement).closest('button')) {
                 handleToggle();
               }
             }}
           >
             <div className="phrase-revealed-body">
               <div className="phrase-revealed-translation-row">
-                <p className="english">{translatedText}</p>
+                <p className="english" lang={baseLanguage} dir={baseDir}>
+                  {translatedText}
+                </p>
                 <PronunciationButton 
                   text={translatedText}
                   lang={baseLanguage}
@@ -160,23 +161,19 @@ const PhraseCardComponent: React.FC<PhraseCardProps> = ({
                 </p>
               )}
             </div>
-            <div className="card-hide-cue">
-              <FaSyncAlt className="cue-icon mini" aria-hidden="true" />
-              <span>{ui.tapToHide}</span>
-            </div>
           </div>
-        ) : (
-          <button 
-            type="button"
-            className="phrase-reveal-btn" 
-            aria-expanded={false}
-            aria-label={`Reveal translation for ${targetText}`}
-            onClick={handleToggle}
-          >
-            <FaSyncAlt className="cue-icon" aria-hidden="true" />
-            <span>{ui.tapToReveal}</span>
-          </button>
         )}
+        <button 
+          key="phrase-toggle-btn"
+          type="button"
+          className={isRevealed ? 'card-hide-cue phrase-hide-btn' : 'phrase-reveal-btn'}
+          aria-expanded={isRevealed}
+          aria-label={isRevealed ? `Hide translation for ${targetText} — ${ui.tapToHide}` : `Reveal translation for ${targetText} — ${ui.tapToReveal}`}
+          onClick={handleToggle}
+        >
+          <FaSyncAlt className={isRevealed ? 'cue-icon mini' : 'cue-icon'} aria-hidden="true" />
+          <span>{isRevealed ? ui.tapToHide : ui.tapToReveal}</span>
+        </button>
       </div>
     </div>
   );
@@ -198,11 +195,18 @@ const Phrases: React.FC<PhrasesProps> = ({
   const { currentLanguage, baseLanguage, ui } = useLanguage();
   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(new Set());
   const [sheetOpen, setSheetOpen] = useState(false);
+  const sheetRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   const activeCategory = selectedCategories.size === 0 ? 'all' : Array.from(selectedCategories).join('|');
   const [revealedSet, setRevealedSet] = useState<Set<number>>(() => new Set());
-  const isInitialCategoriesRender = React.useRef(true);
-  const isInitialRevealedRender = React.useRef(true);
+  const isInitialCategoriesRender = useRef(true);
+  const isInitialRevealedRender = useRef(true);
+
+  useModalAccessibility({
+    isOpen: sheetOpen,
+    onClose: () => setSheetOpen(false),
+    modalRef: sheetRef,
+  });
 
   // Build available category pills with counts
   const categoryPills = useMemo(() => {
@@ -247,21 +251,6 @@ const Phrases: React.FC<PhrasesProps> = ({
     setSelectedCategories(prev => (prev.size === 0 ? prev : new Set()));
     setSheetOpen(prev => (prev ? false : prev));
   }, [data, title, currentLanguage]);
-
-  // Close the topic sheet with Escape and lock background scroll while it is open
-  useEffect(() => {
-    if (!sheetOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setSheetOpen(false);
-    };
-    document.addEventListener('keydown', onKey);
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.removeEventListener('keydown', onKey);
-      document.body.style.overflow = prevOverflow;
-    };
-  }, [sheetOpen]);
 
   const selectOnly = (id: string) => setSelectedCategories(new Set([id]));
   const clearCategories = () => setSelectedCategories(new Set());
@@ -331,6 +320,7 @@ const Phrases: React.FC<PhrasesProps> = ({
         <button
           type="button"
           className="study-toggle-btn"
+          aria-pressed={allRevealed}
           onClick={toggleAll}
           aria-label={allRevealed ? `${ui.hideAll} ${title.toLowerCase()}` : `${ui.revealAll} ${title.toLowerCase()}`}
         >
@@ -425,7 +415,7 @@ const Phrases: React.FC<PhrasesProps> = ({
                     aria-label={`${pill.label} ✕`}
                     onClick={() => toggleCategory(pill.id)}
                   >
-                    {pill.icon} {pill.label} <span aria-hidden="true">✕</span>
+                    <span aria-hidden="true">{pill.icon}</span> {pill.label} <span aria-hidden="true">✕</span>
                   </button>
                 ))}
               <button type="button" className="topic-clear-link" onClick={clearCategories}>
@@ -435,8 +425,9 @@ const Phrases: React.FC<PhrasesProps> = ({
           )}
 
           {sheetOpen && (
-            <div className="topic-sheet-backdrop" onClick={() => setSheetOpen(false)}>
+            <div className="topic-sheet-backdrop" onClick={() => setSheetOpen(false)} role="presentation">
               <div
+                ref={sheetRef}
                 className="topic-sheet"
                 role="dialog"
                 aria-modal="true"
@@ -444,14 +435,14 @@ const Phrases: React.FC<PhrasesProps> = ({
                 onClick={e => e.stopPropagation()}
               >
                 <div className="topic-sheet-header">
-                  <h3>{ui.topics}</h3>
+                  <h2>{ui.topics}</h2>
                   <button
                     type="button"
                     className="topic-sheet-close"
                     aria-label={ui.closeLabel}
                     onClick={() => setSheetOpen(false)}
                   >
-                    ✕
+                    <span aria-hidden="true">✕</span>
                   </button>
                 </div>
                 <div className="topic-sheet-chips">

@@ -63,6 +63,11 @@ export interface UIStrings {
   listeningMode: string;
   repeatHint: string;
   listeningPromptHint: string;
+
+  // Accessibility landmarks & skip links
+  skipToContent?: string;
+  mainNavigation?: string;
+  bottomNavigation?: string;
 }
 
 export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
@@ -84,6 +89,9 @@ export const UI_TRANSLATIONS: Record<SupportedLanguageId, UIStrings> = {
     playbackSpeed: 'Audio speed',
     installApp: 'Install App',
     myStats: 'My Stats',
+    skipToContent: 'Skip to main content',
+    mainNavigation: 'Main navigation',
+    bottomNavigation: 'Bottom navigation',
 
     example: 'Example',
     sound: 'Sound',

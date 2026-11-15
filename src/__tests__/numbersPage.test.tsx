@@ -116,14 +116,16 @@ describe('Numbers page: Japanese, Korean, Bengali and Urdu', () => {
   it.each(NATIVE_NUMBER_LANGS)('%s: revealing a card shows "digit (word)" in the learner language', (lang) => {
     renderPage(lang, 'en');
     const first = SUPPORTED_LANGUAGES[lang].data.numbers.find((p) => extractDigit(String(p.translation)) === 7)!;
-    fireEvent.click(screen.getByLabelText(`Reveal translation for ${targetOf(first)}`));
+    const escaped = targetOf(first).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    fireEvent.click(screen.getByLabelText(new RegExp(`^Reveal translation for ${escaped} —`)));
     expect(screen.getByText(`7 (${NUMBER_TABLE[7].en})`)).toBeInTheDocument();
   });
 
   it.each(NATIVE_NUMBER_LANGS)('%s speakers see the numbers page in their own language when learning Spanish', (base) => {
     renderPage('es', base);
     const first = SUPPORTED_LANGUAGES.es.data.numbers.find((p) => extractDigit(String(p.translation)) === 15)!;
-    fireEvent.click(screen.getByLabelText(`Reveal translation for ${targetOf(first)}`));
+    const escaped = targetOf(first).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    fireEvent.click(screen.getByLabelText(new RegExp(`^Reveal translation for ${escaped} —`)));
     expect(screen.getByText(`15 (${NUMBER_TABLE[15][base]})`)).toBeInTheDocument();
   });
 });

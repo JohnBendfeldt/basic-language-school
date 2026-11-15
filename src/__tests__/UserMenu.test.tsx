@@ -41,20 +41,20 @@ describe('UserMenu - guest', () => {
 
   it('shows stats and sign-in buttons', () => {
     renderMenu();
-    expect(screen.getByLabelText('View learning stats')).toBeInTheDocument();
-    expect(screen.getByLabelText('Sign in to sync progress')).toBeInTheDocument();
+    expect(screen.getByLabelText(/View learning stats/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Sign in to sync progress/i)).toBeInTheDocument();
   });
 
   it('opens the sign-in dialog', () => {
     renderMenu();
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
-    fireEvent.click(screen.getByLabelText('Sign in to sync progress'));
+    fireEvent.click(screen.getByLabelText(/Sign in to sync progress/i));
     expect(screen.getByRole('dialog')).toBeInTheDocument();
   });
 
   it('localizes the guest buttons', () => {
     renderMenu({}, 'ru');
-    expect(screen.getByLabelText('View learning stats')).toHaveTextContent('Статистика');
+    expect(screen.getByLabelText(/View learning stats/i)).toHaveTextContent('Статистика');
   });
 });
 
@@ -114,7 +114,7 @@ describe('UserMenu - signed in', () => {
     fireEvent.click(screen.getByLabelText('User menu for Maria Lopez'));
     fireEvent.click(screen.getByText('Sign Out'));
 
-    await waitFor(() => expect(screen.getByLabelText('Sign in to sync progress')).toBeInTheDocument());
+    await waitFor(() => expect(screen.getByLabelText(/Sign in to sync progress/i)).toBeInTheDocument());
     expect(mocks.signOutUser).toHaveBeenCalledTimes(1);
     expect(screen.queryByLabelText('User menu for Maria Lopez')).not.toBeInTheDocument();
   });

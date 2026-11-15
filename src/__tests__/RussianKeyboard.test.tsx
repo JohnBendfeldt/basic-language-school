@@ -6,16 +6,16 @@ describe('RussianKeyboard', () => {
   it('inserts the clicked phonetic letter', () => {
     const onLetterClick = vi.fn();
     render(<RussianKeyboard onLetterClick={onLetterClick} />);
-    fireEvent.click(screen.getByLabelText('Insert letter д'));
+    fireEvent.click(screen.getByLabelText('Insert letter д — D'));
     expect(onLetterClick).toHaveBeenCalledWith('д');
   });
 
   it('inserts special Russian letters, soft sign and space', () => {
     const onLetterClick = vi.fn();
     render(<RussianKeyboard onLetterClick={onLetterClick} />);
-    fireEvent.click(screen.getByLabelText('Insert letter Ж'));
-    fireEvent.click(screen.getByLabelText('Insert soft sign (ь)'));
-    fireEvent.click(screen.getByLabelText('Space'));
+    fireEvent.click(screen.getByLabelText('Insert letter Ж — ZH'));
+    fireEvent.click(screen.getByLabelText('Insert soft sign — Ь'));
+    fireEvent.click(screen.getByLabelText('Space — Пробел'));
     expect(onLetterClick.mock.calls.map(c => c[0])).toEqual(['ж', 'ь', ' ']);
   });
 

@@ -151,7 +151,7 @@ test.describe('Playwright E2E: Layout, Modals, Alignment & Neural Audio Matrix',
     const stoCard = page.locator('.phrase-card').filter({
       has: page.locator('h3.phrase-text', { hasText: /^сто$/ }),
     });
-    await stoCard.getByRole('button', { name: 'Reveal translation for сто', exact: true }).click();
+    await stoCard.getByRole('button', { name: /^Reveal translation for сто —/ }).click();
 
     // Verify translation is "100 (Cien)" (NOT "Uno"!)
     await expect(stoCard.getByText('100 (Cien)')).toBeVisible();
