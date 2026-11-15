@@ -113,7 +113,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
     for (let i = 1; i <= 5; i++) {
       const input = screen.getByRole('textbox');
       fireEvent.change(input, { target: { value: 'ah' } });
-      fireEvent.click(screen.getByRole('button', { name: 'Check Answer' }));
+      fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
       await settle();
 
       if (i < 5) {
@@ -199,7 +199,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
 
     const input = await screen.findByRole('textbox');
     fireEvent.change(input, { target: { value: 'wrong' } });
-    fireEvent.click(screen.getByRole('button', { name: 'Check Answer' }));
+    fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
     await settle();
 
     // Bottom feedback sheet should be present with Not quite
@@ -345,7 +345,7 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
       const promptText = document.querySelector('.quiz-prompt-text')?.textContent || '';
       const ans = promptText.includes('Сегодня') ? 'today' : 'сегодня';
       fireEvent.change(input, { target: { value: ans } });
-      fireEvent.click(screen.getByRole('button', { name: 'Check Answer' }));
+      fireEvent.click(screen.getByRole('button', { name: /Check Answer/i }));
       await settle();
 
       if (i < 5) {
@@ -577,24 +577,24 @@ describe('Quiz Component - Session Goals & Mastery Filtering', () => {
     render(<RussianKeyboard onLetterClick={(letter) => clicked.push(letter)} />);
 
     // Both W and V keys insert 'в'
-    const vButtons = screen.getAllByRole('button', { name: 'Insert letter в' });
+    const vButtons = screen.getAllByRole('button', { name: /^Insert letter в — / });
     expect(vButtons).toHaveLength(2);
     expect(vButtons.map(btn => btn.querySelector('.key-en')?.textContent)).toEqual(['W', 'V']);
     fireEvent.click(vButtons[0]);
     fireEvent.click(vButtons[1]);
 
     // Row 1 Y and Row 2 J insert 'й', while special row keeps 'Ы'
-    const shortIButtons = screen.getAllByRole('button', { name: 'Insert letter й' });
+    const shortIButtons = screen.getAllByRole('button', { name: /^Insert letter й — / });
     expect(shortIButtons).toHaveLength(2);
     expect(shortIButtons.map(btn => btn.querySelector('.key-en')?.textContent)).toEqual(['Y', 'J']);
     fireEvent.click(shortIButtons[0]);
 
-    const hardIButton = screen.getByRole('button', { name: 'Insert letter Ы' });
+    const hardIButton = screen.getByRole('button', { name: 'Insert letter Ы — IH' });
     expect(hardIButton.querySelector('.key-en')?.textContent).toBe('IH');
     fireEvent.click(hardIButton);
 
     // Special row Э uses distinct 'EH' combo label
-    const ehButton = screen.getByRole('button', { name: 'Insert letter Э' });
+    const ehButton = screen.getByRole('button', { name: 'Insert letter Э — EH' });
     expect(ehButton.querySelector('.key-en')?.textContent).toBe('EH');
     fireEvent.click(ehButton);
 

@@ -167,7 +167,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     ProgressService.setActiveLanguage(resolvedTarget);
 
     if (typeof document !== 'undefined') {
-      document.documentElement.lang = resolvedTarget;
+      document.documentElement.lang = resolvedBase;
       document.documentElement.dir = isRtlLanguage(resolvedBase) ? 'rtl' : 'ltr';
     }
   }, []);
@@ -212,10 +212,10 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   // Sync html lang and dir tags on initial mount & updates
   useEffect(() => {
     if (typeof document !== 'undefined') {
-      document.documentElement.lang = targetLanguage;
+      document.documentElement.lang = baseLanguage;
       document.documentElement.dir = isRtlLanguage(baseLanguage) ? 'rtl' : 'ltr';
     }
-  }, [targetLanguage, baseLanguage]);
+  }, [baseLanguage]);
 
   const contextValue = useMemo<LanguageContextType>(() => ({
     // Target / active language

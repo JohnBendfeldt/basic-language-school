@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { FaTimes, FaGoogle, FaMicrosoft, FaGithub, FaLock } from 'react-icons/fa';
 import { signInWithGoogle, signInWithEntra, signInWithGithub, isSupabaseConfigured } from '../services/supabaseClient';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useModalAccessibility } from '../hooks/useModalAccessibility';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -29,7 +30,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
   const { baseLanguage } = useLanguage();
   const [loadingProvider, setLoadingProvider] = useState<'google' | 'azure' | 'github' | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
   const configured = isSupabaseConfigured();
+
+  useModalAccessibility({ isOpen, onClose, modalRef });
 
   if (!isOpen) return null;
 
@@ -119,24 +123,34 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className="auth-modal-backdrop" onClick={onClose} role="dialog" aria-modal="true">
-      <div className="auth-modal-container" onClick={(e) => e.stopPropagation()}>
-        <button className="auth-modal-close" onClick={onClose} aria-label="Close modal">
-          <FaTimes />
+    <div
+      ref={modalRef}
+      className="auth-modal-backdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="auth-modal-title"
+      onClick={onClose}
+    >
+      <div
+        className="auth-modal-container"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button type="button" className="auth-modal-close" onClick={onClose} aria-label="Close modal">
+          <FaTimes aria-hidden="true" />
         </button>
 
         <div className="auth-modal-header">
-          <div className="auth-modal-icon">
-            <FaLock />
+          <div className="auth-modal-icon" aria-hidden="true">
+            <FaLock aria-hidden="true" />
           </div>
-          <h2>{copy.title}</h2>
+          <h2 id="auth-modal-title">{copy.title}</h2>
           <p>
             {copy.subtitle}
           </p>
         </div>
 
         {errorMessage && (
-          <div className="auth-modal-alert auth-modal-error">
+          <div className="auth-modal-alert auth-modal-error" role="alert">
             {errorMessage}
           </div>
         )}
@@ -150,58 +164,61 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         <div className="auth-providers-grid">
           {/* Google */}
           <button
+            type="button"
             className={`auth-tile-btn google-tile ${loadingProvider === 'google' ? 'loading' : ''}`}
             onClick={handleGoogleLogin}
             disabled={loadingProvider !== null}
             title="Sign in with Google (Gmail)"
-            aria-label="Sign in with Google"
+            aria-label="Sign in with Google — Gmail"
           >
-            <div className="auth-tile-icon-wrap google">
-              <FaGoogle className="tile-icon" />
+            <div className="auth-tile-icon-wrap google" aria-hidden="true">
+              <FaGoogle className="tile-icon" aria-hidden="true" />
             </div>
             <div className="auth-tile-text">
-              <span className="tile-name">Google</span>
+              <span className="tile-name">Google</span>{' '}
               <span className="tile-subtext">Gmail</span>
             </div>
           </button>
 
           {/* GitHub */}
           <button
+            type="button"
             className={`auth-tile-btn github-tile ${loadingProvider === 'github' ? 'loading' : ''}`}
             onClick={handleGithubLogin}
             disabled={loadingProvider !== null}
             title="Sign in with GitHub"
-            aria-label="Sign in with GitHub"
+            aria-label="Sign in with GitHub — 1-Click"
           >
-            <div className="auth-tile-icon-wrap github">
-              <FaGithub className="tile-icon" />
+            <div className="auth-tile-icon-wrap github" aria-hidden="true">
+              <FaGithub className="tile-icon" aria-hidden="true" />
             </div>
             <div className="auth-tile-text">
-              <span className="tile-name">GitHub</span>
+              <span className="tile-name">GitHub</span>{' '}
               <span className="tile-subtext">1-Click</span>
             </div>
           </button>
 
           {/* Microsoft */}
           <button
+            type="button"
             className={`auth-tile-btn entra-tile ${loadingProvider === 'azure' ? 'loading' : ''}`}
             onClick={handleEntraLogin}
             disabled={loadingProvider !== null}
             title="Sign in with Microsoft Entra ID"
             aria-label="Sign in with Microsoft Entra ID"
           >
-            <div className="auth-tile-icon-wrap entra">
-              <FaMicrosoft className="tile-icon" />
+            <div className="auth-tile-icon-wrap entra" aria-hidden="true">
+              <FaMicrosoft className="tile-icon" aria-hidden="true" />
             </div>
             <div className="auth-tile-text">
-              <span className="tile-name">Microsoft</span>
+              <span className="tile-name">Microsoft</span>{' '}
               <span className="tile-subtext">Entra ID</span>
             </div>
           </button>
         </div>
 
         {loadingProvider && (
-          <div className="auth-loading-notice">
+          <div className="auth-loading-notice" role="status" aria-live="polite">
             {copy.connecting} {loadingProvider === 'azure' ? 'Microsoft' : loadingProvider === 'github' ? 'GitHub' : 'Google'}...
           </div>
         )}

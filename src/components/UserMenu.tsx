@@ -20,6 +20,8 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [progressModalOpen, setProgressModalOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const menuContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!supabase) return;
@@ -51,16 +53,51 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
     };
   }, [currentLanguage]);
 
-  // Close dropdown on click outside
+  // Close dropdown on click outside or Escape, and move initial focus when opened
   useEffect(() => {
+    if (!menuOpen) return;
+
+    const firstItem = menuContainerRef.current?.querySelector<HTMLButtonElement>('[role="menuitem"]');
+    firstItem?.focus({ preventScroll: true });
+
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setMenuOpen(false);
       }
     };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setMenuOpen(false);
+        triggerRef.current?.focus({ preventScroll: true });
+      }
+    };
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [menuOpen]);
+
+  const handleMenuKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const items = Array.from(e.currentTarget.querySelectorAll<HTMLButtonElement>('[role="menuitem"]'));
+    if (!items.length) return;
+    const currentIdx = items.indexOf(document.activeElement as HTMLButtonElement);
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      items[(currentIdx + 1) % items.length]?.focus();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      items[(currentIdx - 1 + items.length) % items.length]?.focus();
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      items[0]?.focus();
+    } else if (e.key === 'End') {
+      e.preventDefault();
+      items[items.length - 1]?.focus();
+    }
+  };
 
   const handleSignOut = async (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -114,11 +151,12 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
         // Logged-in state: trigger and dropdown are siblings, preventing bubbling bugs
         <>
           <button 
+            ref={triggerRef}
             type="button"
             className="user-profile-trigger" 
             onClick={() => setMenuOpen((prev) => !prev)}
             aria-expanded={menuOpen}
-            aria-haspopup="true"
+            aria-haspopup="menu"
             aria-label={`User menu for ${displayName}`}
           >
             {avatarUrl ? (
@@ -130,8 +168,8 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
                 loading="lazy"
               />
             ) : (
-              <div className="user-avatar-placeholder">
-                <FaUser />
+              <div className="user-avatar-placeholder" aria-hidden="true">
+                <FaUser aria-hidden="true" />
               </div>
             )}
             <span className="user-display-name">{displayName}</span>
@@ -140,7 +178,6 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
           {menuOpen && (
             <div 
               className="user-dropdown-menu" 
-              role="menu"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="user-dropdown-header">
@@ -149,87 +186,99 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
                 <span className="provider-badge">
                   {provider === 'azure' ? (
                     <>
-                      <FaMicrosoft /> Microsoft Entra ID
+                      <FaMicrosoft aria-hidden="true" /> Microsoft Entra ID
                     </>
                   ) : provider === 'github' ? (
                     <>
-                      <FaGithub /> GitHub
+                      <FaGithub aria-hidden="true" /> GitHub
                     </>
                   ) : provider === 'google' ? (
                     <>
-                      <FaGoogle /> Google
+                      <FaGoogle aria-hidden="true" /> Google
                     </>
                   ) : (
                     <>
-                      <FaUser /> Account
+                      <FaUser aria-hidden="true" /> Account
                     </>
                   )}
                 </span>
               </div>
 
-              <div className="dropdown-divider"></div>
+              <div className="dropdown-divider" role="presentation"></div>
 
-              <button
-                type="button"
-                className="dropdown-item"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setMenuOpen(false);
-                  setProgressModalOpen(true);
-                }}
+              <div
+                ref={menuContainerRef}
+                className="user-dropdown-items"
+                role="menu"
+                aria-label={`User menu for ${displayName}`}
+                onKeyDown={handleMenuKeyDown}
               >
-                <FaChartLine />
-                <span>{chrome.myLearningProgress}</span>
-              </button>
+                <button
+                  type="button"
+                  role="menuitem"
+                  className="dropdown-item"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setMenuOpen(false);
+                    setProgressModalOpen(true);
+                  }}
+                >
+                  <FaChartLine aria-hidden="true" />
+                  <span>{chrome.myLearningProgress}</span>
+                </button>
 
-              {onNavigate && (
-                <>
-                  <div className="dropdown-divider"></div>
-                  <button
-                    type="button"
-                    className="dropdown-item legal-dropdown-item"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setMenuOpen(false);
-                      onNavigate('about');
-                    }}
-                  >
-                    <FaInfoCircle />
-                    <span>{chrome.aboutContact}</span>
-                  </button>
-                  <button
-                    type="button"
-                    className="dropdown-item legal-dropdown-item"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setMenuOpen(false);
-                      onNavigate('privacy');
-                    }}
-                  >
-                    <FaShieldAlt />
-                    <span>{chrome.privacyPolicy}</span>
-                  </button>
-                  <button
-                    type="button"
-                    className="dropdown-item legal-dropdown-item"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setMenuOpen(false);
-                      onNavigate('terms');
-                    }}
-                  >
-                    <FaFileContract />
-                    <span>{chrome.termsOfService}</span>
-                  </button>
-                </>
-              )}
+                {onNavigate && (
+                  <>
+                    <div className="dropdown-divider" role="separator"></div>
+                    <button
+                      type="button"
+                      role="menuitem"
+                      className="dropdown-item legal-dropdown-item"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setMenuOpen(false);
+                        onNavigate('about');
+                      }}
+                    >
+                      <FaInfoCircle aria-hidden="true" />
+                      <span>{chrome.aboutContact}</span>
+                    </button>
+                    <button
+                      type="button"
+                      role="menuitem"
+                      className="dropdown-item legal-dropdown-item"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setMenuOpen(false);
+                        onNavigate('privacy');
+                      }}
+                    >
+                      <FaShieldAlt aria-hidden="true" />
+                      <span>{chrome.privacyPolicy}</span>
+                    </button>
+                    <button
+                      type="button"
+                      role="menuitem"
+                      className="dropdown-item legal-dropdown-item"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setMenuOpen(false);
+                        onNavigate('terms');
+                      }}
+                    >
+                      <FaFileContract aria-hidden="true" />
+                      <span>{chrome.termsOfService}</span>
+                    </button>
+                  </>
+                )}
 
-              <div className="dropdown-divider"></div>
+                <div className="dropdown-divider" role="separator"></div>
 
-              <button type="button" className="dropdown-item signout-btn" onClick={handleSignOut}>
-                <FaSignOutAlt />
-                <span>{chrome.signOut}</span>
-              </button>
+                <button type="button" role="menuitem" className="dropdown-item signout-btn" onClick={handleSignOut}>
+                  <FaSignOutAlt aria-hidden="true" />
+                  <span>{chrome.signOut}</span>
+                </button>
+              </div>
             </div>
           )}
         </>
@@ -241,9 +290,9 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
             className="header-action-btn progress-btn"
             onClick={() => setProgressModalOpen(true)}
             title="View learning stats"
-            aria-label="View learning stats"
+            aria-label={`${chrome.myStats} — View learning stats`}
           >
-            <FaChartLine />
+            <FaChartLine aria-hidden="true" />
             <span className="btn-text">{chrome.myStats}</span>
           </button>
 
@@ -252,9 +301,9 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
             className="header-action-btn signin-btn"
             onClick={() => setAuthModalOpen(true)}
             title="Sign in to sync progress"
-            aria-label="Sign in to sync progress"
+            aria-label={`${chrome.signIn} — Sign in to sync progress`}
           >
-            <FaSignInAlt />
+            <FaSignInAlt aria-hidden="true" />
             <span className="btn-text">{chrome.signIn}</span>
           </button>
         </div>

@@ -3,9 +3,15 @@ import { SupportedLanguageId } from '../data/languages/types';
 
 interface AppEmblemProps {
   language: SupportedLanguageId;
+  decorative?: boolean;
 }
 
-export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
+export const AppEmblem: React.FC<AppEmblemProps> = ({ language, decorative = false }) => {
+  const emblemA11y = (label: string) =>
+    decorative
+      ? ({ 'aria-hidden': true as const, focusable: 'false' as const })
+      : ({ 'aria-label': label, role: 'img' as const });
+
   // Shared graduation cap geometry
   const capGeometry = (goldGradId: string) => (
     <g transform="translate(0, 3)">
@@ -83,8 +89,7 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Basic Russian emblem"
-          role="img"
+          {...emblemA11y('Basic Russian emblem')}
         >
           <defs>
             <linearGradient id="rusEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -118,8 +123,7 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Basic German emblem"
-          role="img"
+          {...emblemA11y('Basic German emblem')}
         >
           <defs>
             <linearGradient id="deEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -154,8 +158,7 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Basic Spanish emblem"
-          role="img"
+          {...emblemA11y('Basic Spanish emblem')}
         >
           <defs>
             <linearGradient id="esEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -189,8 +192,7 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Basic French emblem"
-          role="img"
+          {...emblemA11y('Basic French emblem')}
         >
           <defs>
             <linearGradient id="frEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -225,8 +227,7 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Basic Portuguese emblem"
-          role="img"
+          {...emblemA11y('Basic Portuguese emblem')}
         >
           <defs>
             <linearGradient id="ptEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -260,8 +261,7 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Basic Indonesian emblem"
-          role="img"
+          {...emblemA11y('Basic Indonesian emblem')}
         >
           <defs>
             <linearGradient id="idEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -294,8 +294,7 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Basic Turkish emblem"
-          role="img"
+          {...emblemA11y('Basic Turkish emblem')}
         >
           <defs>
             <linearGradient id="trEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -330,8 +329,7 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Basic Japanese emblem"
-          role="img"
+          {...emblemA11y('Basic Japanese emblem')}
         >
           <defs>
             <linearGradient id="jaEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -364,8 +362,7 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Basic Korean emblem"
-          role="img"
+          {...emblemA11y('Basic Korean emblem')}
         >
           <defs>
             <linearGradient id="koEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -401,8 +398,7 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Basic Chinese emblem"
-          role="img"
+          {...emblemA11y('Basic Chinese emblem')}
         >
           <defs>
             <linearGradient id="zhEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -439,8 +435,7 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Basic Hindi emblem"
-          role="img"
+          {...emblemA11y('Basic Hindi emblem')}
         >
           <defs>
             <linearGradient id="hiEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -476,8 +471,7 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Basic Arabic emblem"
-          role="img"
+          {...emblemA11y('Basic Arabic emblem')}
         >
           <defs>
             <linearGradient id="arEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -514,8 +508,7 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Basic Bengali emblem"
-          role="img"
+          {...emblemA11y('Basic Bengali emblem')}
         >
           <defs>
             <linearGradient id="bnEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -549,8 +542,7 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Basic Urdu emblem"
-          role="img"
+          {...emblemA11y('Basic Urdu emblem')}
         >
           <defs>
             <linearGradient id="urEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -588,8 +580,7 @@ export const AppEmblem: React.FC<AppEmblemProps> = ({ language }) => {
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Basic English emblem"
-          role="img"
+          {...emblemA11y('Basic English emblem')}
         >
           <defs>
             <linearGradient id="enEmblemBg" x1="0%" y1="0%" x2="100%" y2="100%">

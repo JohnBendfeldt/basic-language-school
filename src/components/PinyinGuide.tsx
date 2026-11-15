@@ -378,12 +378,30 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
     }
   ];
 
+  const englishFallbackLang = baseLanguage !== 'en' ? 'en' : undefined;
+  const englishFallbackDir = baseLanguage !== 'en' ? 'ltr' : undefined;
+  const pinyinTabs: Array<'tones' | 'anatomy' | 'typing'> = ['tones', 'anatomy', 'typing'];
+
+  const handlePinyinTabKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight' && e.key !== 'Home' && e.key !== 'End') return;
+    e.preventDefault();
+    const tabs = Array.from(e.currentTarget.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const idx = pinyinTabs.indexOf(activeTab);
+    let nextIdx = idx;
+    if (e.key === 'ArrowRight') nextIdx = (idx + 1) % pinyinTabs.length;
+    else if (e.key === 'ArrowLeft') nextIdx = (idx - 1 + pinyinTabs.length) % pinyinTabs.length;
+    else if (e.key === 'Home') nextIdx = 0;
+    else if (e.key === 'End') nextIdx = pinyinTabs.length - 1;
+    setActiveTab(pinyinTabs[nextIdx]);
+    tabs[nextIdx]?.focus();
+  };
+
   return (
     <div className="pinyin-guide-container">
       {/* Header Banner & Collapse Toggle */}
       <div className="pinyin-guide-header">
         <div className="pinyin-guide-title-wrap">
-          <span className="pinyin-guide-badge">🀄 {text.badge}</span>
+          <span className="pinyin-guide-badge"><span aria-hidden="true">🀄</span> {text.badge}</span>
           <h3 className="pinyin-guide-title">{text.title}</h3>
           <p className="pinyin-guide-subtitle">{text.subtitle}</p>
         </div>
@@ -395,40 +413,48 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
           aria-label={isOpen ? text.toggleHide : text.toggleShow}
         >
           <span>{isOpen ? text.toggleHide : text.toggleShow}</span>
-          <FaChevronDown className={`pinyin-toggle-icon ${isOpen ? 'open' : ''}`} />
+          <FaChevronDown className={`pinyin-toggle-icon ${isOpen ? 'open' : ''}`} aria-hidden="true" />
         </button>
       </div>
 
       {isOpen && (
         <div className="pinyin-guide-body">
           {/* Navigation Sub-Tabs */}
-          <div className="pinyin-guide-tabs" role="tablist">
+          <div
+            className="pinyin-guide-tabs"
+            role="tablist"
+            aria-label={text.title}
+            onKeyDown={handlePinyinTabKeyDown}
+          >
             <button
               type="button"
               role="tab"
               aria-selected={activeTab === 'tones'}
+              tabIndex={activeTab === 'tones' ? 0 : -1}
               className={`pinyin-tab-btn ${activeTab === 'tones' ? 'active' : ''}`}
               onClick={() => setActiveTab('tones')}
             >
-              🎵 {text.tabTones}
+              <span aria-hidden="true">🎵</span> {text.tabTones}
             </button>
             <button
               type="button"
               role="tab"
               aria-selected={activeTab === 'anatomy'}
+              tabIndex={activeTab === 'anatomy' ? 0 : -1}
               className={`pinyin-tab-btn ${activeTab === 'anatomy' ? 'active' : ''}`}
               onClick={() => setActiveTab('anatomy')}
             >
-              🧩 {text.tabAnatomy}
+              <span aria-hidden="true">🧩</span> {text.tabAnatomy}
             </button>
             <button
               type="button"
               role="tab"
               aria-selected={activeTab === 'typing'}
+              tabIndex={activeTab === 'typing' ? 0 : -1}
               className={`pinyin-tab-btn ${activeTab === 'typing' ? 'active' : ''}`}
               onClick={() => setActiveTab('typing')}
             >
-              ⌨️ {text.tabTyping}
+              <span aria-hidden="true">⌨️</span> {text.tabTyping}
             </button>
           </div>
 
@@ -436,37 +462,39 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
           {activeTab === 'tones' && (
             <div className="pinyin-tab-panel tones-panel">
               <p className="pinyin-panel-intro">
-                <FaLightbulb className="panel-hint-icon" /> {text.toneHeader}
+                <FaLightbulb className="panel-hint-icon" aria-hidden="true" /> {text.toneHeader}
               </p>
 
               <div className="pinyin-tone-grid">
                 {toneCards.map((card) => (
                   <div key={card.toneNumber} className={`pinyin-tone-card tone-${card.toneNumber}`}>
                     <div className="tone-card-top">
-                      <span className="tone-name-badge">{card.toneName}</span>
+                      <span className="tone-name-badge" lang={englishFallbackLang} dir={englishFallbackDir}>
+                        {card.toneName}
+                      </span>
                       <div className="tone-pitch-visual" aria-hidden="true">
                         {card.contour === 'high-flat' && (
-                          <svg width="40" height="28" viewBox="0 0 40 28">
+                          <svg width="40" height="28" viewBox="0 0 40 28" aria-hidden="true">
                             <line x1="4" y1="8" x2="36" y2="8" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
                           </svg>
                         )}
                         {card.contour === 'rising' && (
-                          <svg width="40" height="28" viewBox="0 0 40 28">
+                          <svg width="40" height="28" viewBox="0 0 40 28" aria-hidden="true">
                             <line x1="4" y1="22" x2="36" y2="8" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
                           </svg>
                         )}
                         {card.contour === 'dipping' && (
-                          <svg width="40" height="28" viewBox="0 0 40 28">
+                          <svg width="40" height="28" viewBox="0 0 40 28" aria-hidden="true">
                             <path d="M 4 10 Q 20 25 36 8" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
                           </svg>
                         )}
                         {card.contour === 'falling' && (
-                          <svg width="40" height="28" viewBox="0 0 40 28">
+                          <svg width="40" height="28" viewBox="0 0 40 28" aria-hidden="true">
                             <line x1="4" y1="8" x2="36" y2="22" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
                           </svg>
                         )}
                         {card.contour === 'neutral' && (
-                          <svg width="40" height="28" viewBox="0 0 40 28">
+                          <svg width="40" height="28" viewBox="0 0 40 28" aria-hidden="true">
                             <circle cx="20" cy="14" r="5" fill="currentColor" />
                           </svg>
                         )}
@@ -475,7 +503,7 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
 
                     <div className="tone-card-center">
                       <div className="tone-hanzi-wrap">
-                        <span className="tone-hanzi">{card.hanzi}</span>
+                        <span className="tone-hanzi" lang="zh">{card.hanzi}</span>
                         <span className="tone-pinyin">{card.pinyin}</span>
                       </div>
                       <PronunciationButton
@@ -488,8 +516,8 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
                       />
                     </div>
 
-                    <div className="tone-card-bottom">
-                      <span className="tone-meaning">"{card.translation}"</span>
+                    <div className="tone-card-bottom" lang={englishFallbackLang} dir={englishFallbackDir}>
+                      <span className="tone-meaning">&quot;{card.translation}&quot;</span>
                       <span className="tone-pitch-desc">{card.pitchDescription}</span>
                     </div>
                   </div>
@@ -505,42 +533,42 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
               <p className="pinyin-panel-intro">{text.formulaDesc}</p>
 
               {/* Visual Formula Equation */}
-              <div className="pinyin-formula-equation">
+              <div className="pinyin-formula-equation" lang={englishFallbackLang} dir={englishFallbackDir}>
                 <div className="formula-block initial">
                   <span className="block-label">Initial · 声母</span>
                   <span className="block-val">b</span>
                   <span className="block-sub">Consonant Start</span>
                 </div>
-                <span className="formula-op">+</span>
+                <span className="formula-op" aria-hidden="true">+</span>
                 <div className="formula-block final">
                   <span className="block-label">Final · 韵母</span>
                   <span className="block-val">a</span>
                   <span className="block-sub">Vowel Core</span>
                 </div>
-                <span className="formula-op">+</span>
+                <span className="formula-op" aria-hidden="true">+</span>
                 <div className="formula-block tone">
                   <span className="block-label">Tone · 声调</span>
                   <span className="block-val">ˋ (4th)</span>
                   <span className="block-sub">Pitch Contour</span>
                 </div>
-                <span className="formula-op">=</span>
+                <span className="formula-op" aria-hidden="true">=</span>
                 <div className="formula-block result">
                   <span className="block-label">Pinyin</span>
                   <span className="block-val">bà</span>
                   <span className="block-sub">Spoken Syllable</span>
                 </div>
-                <span className="formula-arrow">➜</span>
+                <span className="formula-arrow" aria-hidden="true">➜</span>
                 <div className="formula-block hanzi">
                   <span className="block-label">Hanzi</span>
-                  <span className="block-val">爸</span>
+                  <span className="block-val" lang="zh">爸</span>
                   <span className="block-sub">Dad</span>
                 </div>
               </div>
 
               {/* Breakdown Cards */}
-              <div className="pinyin-breakdown-cards">
+              <div className="pinyin-breakdown-cards" lang={englishFallbackLang} dir={englishFallbackDir}>
                 <div className="breakdown-card">
-                  <h5 className="breakdown-card-title">1. The 21 Initials (声母 · Shēngmǔ)</h5>
+                  <h5 className="breakdown-card-title">1. The 21 Initials (<span lang="zh">声母</span> · Shēngmǔ)</h5>
                   <p className="breakdown-card-text">
                     Consonants placed at the start of a syllable. The letters below in our chart represent all 21 initials:
                   </p>
@@ -570,7 +598,7 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
                 </div>
 
                 <div className="breakdown-card">
-                  <h5 className="breakdown-card-title">2. Finals (韵母 · Yùnmǔ) & Semi-Vowels</h5>
+                  <h5 className="breakdown-card-title">2. Finals (<span lang="zh">韵母</span> · Yùnmǔ) &amp; Semi-Vowels</h5>
                   <p className="breakdown-card-text">
                     Vowels and endings that complete the syllable. Tone marks are always placed over vowels (a &gt; o &gt; e &gt; i/u/ü):
                   </p>
@@ -593,12 +621,12 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
           {activeTab === 'typing' && (
             <div className="pinyin-tab-panel typing-panel">
               <h4 className="pinyin-panel-title">
-                <FaKeyboard className="panel-icon" /> {text.typingTitle}
+                <FaKeyboard className="panel-icon" aria-hidden="true" /> {text.typingTitle}
               </h4>
               <p className="pinyin-panel-intro">{text.typingDesc}</p>
 
               {/* Interactive Visual Keyboard Flow */}
-              <div className="pinyin-typing-flow">
+              <div className="pinyin-typing-flow" lang={englishFallbackLang} dir={englishFallbackDir}>
                 <div className="typing-step">
                   <span className="step-num">Step 1</span>
                   <div className="step-mock-keyboard">
@@ -611,24 +639,24 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
                   <span className="step-caption">Type Latin letters without tones</span>
                 </div>
 
-                <div className="flow-arrow">➜</div>
+                <div className="flow-arrow" aria-hidden="true">➜</div>
 
                 <div className="typing-step">
                   <span className="step-num">Step 2</span>
                   <div className="step-mock-candidates">
-                    <span className="candidate-choice active">1. 你好</span>
-                    <span className="candidate-choice">2. 拟好</span>
-                    <span className="candidate-choice">3. 泥耗</span>
+                    <span className="candidate-choice active">1. <span lang="zh">你好</span></span>
+                    <span className="candidate-choice">2. <span lang="zh">拟好</span></span>
+                    <span className="candidate-choice">3. <span lang="zh">泥耗</span></span>
                   </div>
                   <span className="step-caption">Keyboard predicts matching Hanzi</span>
                 </div>
 
-                <div className="flow-arrow">➜</div>
+                <div className="flow-arrow" aria-hidden="true">➜</div>
 
                 <div className="typing-step">
                   <span className="step-num">Step 3</span>
                   <div className="step-mock-output">
-                    <span className="output-hanzi">你好！</span>
+                    <span className="output-hanzi" lang="zh">你好！</span>
                     <span className="output-meaning">(Hello!)</span>
                   </div>
                   <span className="step-caption">Select #1 to insert the character</span>
@@ -637,13 +665,13 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
 
               {/* Homophones Explanation Box */}
               <div className="pinyin-homophone-box">
-                <div className="homophone-badge">💡 {text.homophoneTitle}</div>
+                <div className="homophone-badge"><span aria-hidden="true">💡</span> {text.homophoneTitle}</div>
                 <p className="homophone-text">{text.homophoneDesc}</p>
-                <div className="homophone-examples">
-                  <span className="homophone-chip"><strong>是</strong> (shì) · To be</span>
-                  <span className="homophone-chip"><strong>事</strong> (shì) · Matter</span>
-                  <span className="homophone-chip"><strong>市</strong> (shì) · City</span>
-                  <span className="homophone-chip"><strong>室</strong> (shì) · Room</span>
+                <div className="homophone-examples" lang={englishFallbackLang} dir={englishFallbackDir}>
+                  <span className="homophone-chip"><strong lang="zh">是</strong> (shì) · To be</span>
+                  <span className="homophone-chip"><strong lang="zh">事</strong> (shì) · Matter</span>
+                  <span className="homophone-chip"><strong lang="zh">市</strong> (shì) · City</span>
+                  <span className="homophone-chip"><strong lang="zh">室</strong> (shì) · Room</span>
                 </div>
               </div>
             </div>

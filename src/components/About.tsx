@@ -10,6 +10,7 @@ interface AboutProps {
 export const About: React.FC<AboutProps> = ({ onNavigate }) => {
   const { baseLanguage } = useLanguage();
   const t = ABOUT_TRANSLATIONS[baseLanguage] || ABOUT_TRANSLATIONS.en;
+  const englishPassageLang = baseLanguage !== 'en' ? 'en' : undefined;
 
   return (
     <div className="section legal-container about-container">
@@ -28,15 +29,15 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
         </div>
 
         {/* Header */}
-        <h1 className="legal-title">{t.title}</h1>
+        <h2 className="legal-title">{t.title}</h2>
         <p className="about-subtitle">{t.subtitle}</p>
 
         {/* Philosophy Highlight Box */}
         <div className="about-philosophy-banner">
-          <div className="about-philosophy-icon">
-            <FaHeart />
+          <div className="about-philosophy-icon" aria-hidden="true">
+            <FaHeart aria-hidden="true" />
           </div>
-          <div className="about-philosophy-text">
+          <div className="about-philosophy-text" lang={englishPassageLang} dir={englishPassageLang ? 'ltr' : undefined}>
             <strong>No bulk. No fluff. No patronizing. Just learning.</strong>
             <p>
               We believe foundational language education should be open to all: genuinely free, ad-free bidirectional learning across 15 languages. Built to get straight to real language practice without paywalls, subscription timers, distracting ads, or artificial energy limits.
@@ -45,19 +46,19 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
         </div>
 
         {/* Section 1: Overview */}
-        <h2>{t.appOverviewTitle}</h2>
+        <h3>{t.appOverviewTitle}</h3>
         {t.appOverviewParagraphs.map((p, idx) => (
           <p key={idx}>{p}</p>
         ))}
 
         {/* Section 2: Core Features */}
-        <h2>{t.featuresTitle}</h2>
+        <h3>{t.featuresTitle}</h3>
         <div className="about-features-grid">
           {t.features.map((feat, idx) => (
             <div key={idx} className="about-feature-item">
-              <span className="about-feature-icon" role="img" aria-hidden="true">{feat.icon}</span>
+              <span className="about-feature-icon" aria-hidden="true">{feat.icon}</span>
               <div className="about-feature-content">
-                <h3>{feat.title}</h3>
+                <h4>{feat.title}</h4>
                 <p>{feat.desc}</p>
               </div>
             </div>
@@ -65,25 +66,25 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
         </div>
 
         {/* Section 3: About Creator */}
-        <h2>{t.creatorTitle}</h2>
+        <h3>{t.creatorTitle}</h3>
         {t.creatorBio.map((bio, idx) => (
           <p key={idx}>{bio}</p>
         ))}
 
         {/* Section 4: Contact & Bug Reports */}
-        <h2>{t.contactTitle}</h2>
+        <h3>{t.contactTitle}</h3>
         <p>{t.contactIntro}</p>
 
         <div className="about-contact-box">
           <div className="contact-row">
             <span className="contact-label">
-              <FaUser className="contact-icon" /> {t.contactNameLabel}
+              <FaUser className="contact-icon" aria-hidden="true" /> {t.contactNameLabel}
             </span>
-            <span className="contact-value">John Bendfeldt</span>
+            <span className="contact-value" lang={englishPassageLang} dir={englishPassageLang ? 'ltr' : undefined}>John Bendfeldt</span>
           </div>
           <div className="contact-row">
             <span className="contact-label">
-              <FaEnvelope className="contact-icon" /> {t.contactEmailLabel}
+              <FaEnvelope className="contact-icon" aria-hidden="true" /> {t.contactEmailLabel}
             </span>
             <span className="contact-value">
               <a href="mailto:dev@basiclanguage.school">dev@basiclanguage.school</a>
@@ -91,16 +92,16 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
           </div>
           <div className="contact-row">
             <span className="contact-label">
-              <FaGithub className="contact-icon" /> {t.contactBugsLabel}
+              <FaGithub className="contact-icon" aria-hidden="true" /> {t.contactBugsLabel}
             </span>
-            <span className="contact-value">
+            <span className="contact-value" lang={englishPassageLang} dir={englishPassageLang ? 'ltr' : undefined}>
               Send questions, audio suggestions, or bug reports anytime to <a href="mailto:dev@basiclanguage.school">dev@basiclanguage.school</a>
             </span>
           </div>
         </div>
 
         {/* Section 5: Open Source & Roadmap */}
-        <h2>{t.communityTitle}</h2>
+        <h3>{t.communityTitle}</h3>
         {t.communityParagraphs.map((cp, idx) => (
           <p key={idx}>{cp}</p>
         ))}
@@ -114,16 +115,16 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
               className="legal-inline-link" 
               onClick={() => onNavigate('privacy')}
             >
-              <FaShieldAlt className="inline-link-icon" />
+              <FaShieldAlt className="inline-link-icon" aria-hidden="true" />
               <span>{t.privacyLinkText}</span>
             </button>
-            <span className="footer-link-divider">·</span>
+            <span className="footer-link-divider" aria-hidden="true">·</span>
             <button 
               type="button" 
               className="legal-inline-link" 
               onClick={() => onNavigate('terms')}
             >
-              <FaFileContract className="inline-link-icon" />
+              <FaFileContract className="inline-link-icon" aria-hidden="true" />
               <span>{t.termsLinkText}</span>
             </button>
           </div>

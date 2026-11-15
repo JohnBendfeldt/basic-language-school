@@ -61,7 +61,7 @@ describe('App routing - URL to section', () => {
 
   it('renders legal pages directly', async () => {
     await mountAt('/privacy');
-    expect(screen.getByRole('heading', { name: 'Privacy Policy', level: 1 })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Privacy Policy', level: 2 })).toBeInTheDocument();
   });
 });
 

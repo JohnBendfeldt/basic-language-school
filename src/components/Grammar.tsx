@@ -520,6 +520,9 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
     ? activeGrammar.verbs
     : [];
   const [activeVerbIndex, setActiveVerbIndex] = useState(0);
+  const nextBtnRef = useRef<HTMLButtonElement>(null);
+  const targetDir = currentLanguage === 'ar' || currentLanguage === 'ur' ? 'rtl' : 'ltr';
+  const baseDir = baseLanguage === 'ar' || baseLanguage === 'ur' ? 'rtl' : 'ltr';
 
   // Reset progress when language or grammar data changes
   React.useEffect(() => {
@@ -529,6 +532,13 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
     setDeckFinished(false);
     setActiveVerbIndex(0);
   }, [currentLanguage, grammarData]);
+
+  // Move focus to Next Card button when options become disabled after answering
+  useEffect(() => {
+    if (selectedOption !== null) {
+      nextBtnRef.current?.focus();
+    }
+  }, [selectedOption]);
 
   const currentCard = flashcardDeck[currentIndex] || flashcardDeck[0];
 
@@ -574,6 +584,28 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
     setSelectedOption(null);
     setCardScore(0);
     setDeckFinished(false);
+  };
+
+  const availableTabs: Array<'flashcards' | 'gender' | 'verbs' | 'descriptions'> = ['flashcards'];
+  if (activeGrammar.genderRules && activeGrammar.genderRules.length > 0) availableTabs.push('gender');
+  if (verbsList.length > 0) availableTabs.push('verbs');
+  if (activeGrammar.descriptions && activeGrammar.descriptions.length > 0) availableTabs.push('descriptions');
+
+  const handleTabKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) return;
+    const tabEls = Array.from(e.currentTarget.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    if (tabEls.length === 0) return;
+    const currentIdx = availableTabs.indexOf(activeTab);
+    if (currentIdx === -1) return;
+    e.preventDefault();
+    const isRtl = baseDir === 'rtl';
+    let nextIdx = currentIdx;
+    if (e.key === 'ArrowRight') nextIdx = (currentIdx + (isRtl ? -1 : 1) + availableTabs.length) % availableTabs.length;
+    else if (e.key === 'ArrowLeft') nextIdx = (currentIdx + (isRtl ? 1 : -1) + availableTabs.length) % availableTabs.length;
+    else if (e.key === 'Home') nextIdx = 0;
+    else if (e.key === 'End') nextIdx = availableTabs.length - 1;
+    setActiveTab(availableTabs[nextIdx]);
+    tabEls[nextIdx]?.focus();
   };
 
   const localizedLabels = (() => {
@@ -697,16 +729,31 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
 
   return (
     <div className="grammar-section" data-testid="grammar-component">
+      <h2 className="sr-only">
+        {activeTab === 'gender'
+          ? localizedLabels.gender
+          : activeTab === 'verbs'
+          ? localizedLabels.verbs
+          : activeTab === 'descriptions'
+          ? localizedLabels.descriptions
+          : localizedLabels.flashcards}
+      </h2>
       {/* Secondary Tab Switcher */}
-      <div className="grammar-subtabs-nav" role="tablist">
+      <div
+        className="grammar-subtabs-nav"
+        role="tablist"
+        aria-label="Grammar sections"
+        onKeyDown={handleTabKeyDown}
+      >
         <button
           type="button"
           role="tab"
           aria-selected={activeTab === 'flashcards'}
+          tabIndex={activeTab === 'flashcards' ? 0 : -1}
           className={`grammar-tab-btn ${activeTab === 'flashcards' ? 'active' : ''}`}
           onClick={() => setActiveTab('flashcards')}
         >
-          <FaBolt className="tab-btn-icon" />
+          <FaBolt className="tab-btn-icon" aria-hidden="true" />
           <span>{localizedLabels.flashcards}</span>
         </button>
 
@@ -715,10 +762,11 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
             type="button"
             role="tab"
             aria-selected={activeTab === 'gender'}
+            tabIndex={activeTab === 'gender' ? 0 : -1}
             className={`grammar-tab-btn ${activeTab === 'gender' ? 'active' : ''}`}
             onClick={() => setActiveTab('gender')}
           >
-            <FaBookOpen className="tab-btn-icon" />
+            <FaBookOpen className="tab-btn-icon" aria-hidden="true" />
             <span>{localizedLabels.gender}</span>
           </button>
         )}
@@ -728,10 +776,11 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
             type="button"
             role="tab"
             aria-selected={activeTab === 'verbs'}
+            tabIndex={activeTab === 'verbs' ? 0 : -1}
             className={`grammar-tab-btn ${activeTab === 'verbs' ? 'active' : ''}`}
             onClick={() => setActiveTab('verbs')}
           >
-            <FaListUl className="tab-btn-icon" />
+            <FaListUl className="tab-btn-icon" aria-hidden="true" />
             <span>{localizedLabels.verbs}</span>
           </button>
         )}
@@ -741,6 +790,7 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
             type="button"
             role="tab"
             aria-selected={activeTab === 'descriptions'}
+            tabIndex={activeTab === 'descriptions' ? 0 : -1}
             className={`grammar-tab-btn ${activeTab === 'descriptions' ? 'active' : ''}`}
             onClick={() => setActiveTab('descriptions')}
           >
@@ -803,8 +853,8 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                                 {selectedOption}
                               </span>
                             ) : (
-                              <span className="grammar-blank-slot" aria-label="blank space">
-                                <span className="grammar-blank-line" />
+                              <span className="grammar-blank-slot" role="img" aria-label="blank space">
+                                <span className="grammar-blank-line" aria-hidden="true" />
                               </span>
                             )
                           )}
@@ -829,7 +879,13 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                         </div>
                       )}
                       <div className="grammar-prompt-heading-row">
-                        <h3 className="grammar-card-prompt">{renderPromptWithBlank(heroWord)}</h3>
+                        <h3
+                          className="grammar-card-prompt"
+                          lang={currentCard.type === 'description' ? baseLanguage : currentLanguage}
+                          dir={currentCard.type === 'description' ? baseDir : targetDir}
+                        >
+                          {renderPromptWithBlank(heroWord)}
+                        </h3>
                         {activePromptAudio && (
                           <PronunciationButton
                             text={activePromptAudio}
@@ -841,7 +897,7 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                         )}
                       </div>
                       {currentCard.translation && (
-                        <p className="grammar-card-translation">
+                        <p className="grammar-card-translation" lang={baseLanguage} dir={baseDir}>
                           {currentCard.translations?.[baseLanguage] ||
                             resolveTranslation(
                               {
@@ -856,8 +912,8 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                       )}
                       {taskPrompt && (
                         <div className="grammar-prompt-task-pill">
-                          <span className="task-pill-arrow">➔</span>
-                          <span>{renderPromptWithBlank(taskPrompt)}</span>
+                          <span className="task-pill-arrow" aria-hidden="true">➔</span>
+                          <span lang={baseLanguage} dir={baseDir}>{renderPromptWithBlank(taskPrompt)}</span>
                         </div>
                       )}
                     </div>
@@ -899,11 +955,11 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                               disabled={selectedOption !== null}
                             >
                               <div className="grammar-option-content">
-                                <span className="grammar-option-main">{mainText}</span>
+                                <span className="grammar-option-main" lang={currentLanguage} dir={targetDir}>{mainText}</span>
                                 {subText && <span className="grammar-option-sub">({subText})</span>}
                               </div>
-                              {selectedOption !== null && isCorrect && <FaCheckCircle className="option-state-icon" />}
-                              {selectedOption !== null && isSelected && !isCorrect && <FaTimesCircle className="option-state-icon" />}
+                              {selectedOption !== null && isCorrect && <FaCheckCircle className="option-state-icon" aria-hidden="true" />}
+                              {selectedOption !== null && isSelected && !isCorrect && <FaTimesCircle className="option-state-icon" aria-hidden="true" />}
                             </button>
                             {spokenOption && (
                               <PronunciationButton
@@ -921,9 +977,18 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
 
                     {/* Immediate Feedback Card */}
                     {selectedOption !== null && (
-                      <div className={`grammar-feedback-box ${selectedOption === currentCard.correctAnswer ? 'feedback-correct' : 'feedback-incorrect'}`}>
-                        <p className="feedback-explanation">
-                          {selectedOption === currentCard.correctAnswer ? '✨ ' : '💡 '}
+                      <div
+                        role="status"
+                        aria-live="polite"
+                        className={`grammar-feedback-box ${selectedOption === currentCard.correctAnswer ? 'feedback-correct' : 'feedback-incorrect'}`}
+                      >
+                        <p className="feedback-explanation" lang={baseLanguage} dir={baseDir}>
+                          <span className="sr-only">
+                            {selectedOption === currentCard.correctAnswer ? 'Correct. ' : 'Incorrect. '}
+                          </span>
+                          <span aria-hidden="true">
+                            {selectedOption === currentCard.correctAnswer ? '✨ ' : '💡 '}
+                          </span>
                           {currentCard.explanations?.[baseLanguage] || currentCard.explanation}
                         </p>
 
@@ -937,12 +1002,13 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                           />
 
                           <button
+                            ref={nextBtnRef}
                             type="button"
                             className="grammar-next-btn"
                             onClick={handleNextCard}
                             autoFocus
                           >
-                            {localizedLabels.next} ➔
+                            {localizedLabels.next} <span aria-hidden="true">➔</span>
                           </button>
                         </div>
                       </div>
@@ -952,8 +1018,8 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
               })()}
             </div>
           ) : (
-            <div className="grammar-deck-complete-card">
-              <span className="complete-trophy">🏆</span>
+            <div className="grammar-deck-complete-card" role="status" aria-live="polite">
+              <span className="complete-trophy" aria-hidden="true">🏆</span>
               <h3>{localizedLabels.deckCompleted}</h3>
               <p className="complete-score">
                 {baseLanguage === 'ru' ? (
@@ -993,7 +1059,7 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                 className="grammar-restart-btn"
                 onClick={handleRestartDeck}
               >
-                <FaRedo /> {localizedLabels.restart}
+                <FaRedo aria-hidden="true" /> {localizedLabels.restart}
               </button>
             </div>
           )}
@@ -1010,16 +1076,21 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
               style={{ borderTopColor: rule.color }}
             >
               <div className="gender-card-header">
-                <span className="gender-article-badge" style={{ backgroundColor: rule.color }}>
+                <span
+                  className="gender-article-badge"
+                  style={{ backgroundColor: rule.color }}
+                  lang={currentLanguage}
+                  dir={targetDir}
+                >
                   {rule.article}
                 </span>
-                <h4>{rule.name}</h4>
+                <h3>{rule.name}</h3>
               </div>
 
               <p className="gender-desc">{rule.description}</p>
 
               <div className="gender-rule-list">
-                <h5>{localizedLabels.howToRecognize}</h5>
+                <h4>{localizedLabels.howToRecognize}</h4>
                 <ul>
                   {rule.rules.map((r, i) => (
                     <li key={i}>{r}</li>
@@ -1028,25 +1099,34 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
               </div>
 
               <div className="gender-examples-list">
-                <h5>{localizedLabels.highFrequencyExamples}</h5>
+                <h4>{localizedLabels.highFrequencyExamples}</h4>
                 <div className="gender-examples-grid">
                   {rule.examples.map((ex) => {
                     const hasGrammaticalArticle = ['de', 'fr', 'es', 'pt', 'en'].includes(currentLanguage);
                     const displayTarget = hasGrammaticalArticle ? `${rule.article} ${ex.word}` : ex.word;
                     return (
                       <div key={ex.word} className="gender-example-item">
-                        <WordIcon
-                          icon={ex.icon || '📌'}
-                          word={ex.word}
-                          meaning={ex.meaning}
-                          size={22}
-                          className="example-icon"
-                        />
+                        <span aria-hidden="true">
+                          <WordIcon
+                            icon={ex.icon || '📌'}
+                            word={ex.word}
+                            meaning={ex.meaning}
+                            size={22}
+                            className="example-icon"
+                          />
+                        </span>
                         <div className="example-text-wrap">
-                          <strong className="example-target" style={{ color: rule.color }}>
+                          <strong
+                            className="example-target"
+                            style={{ color: rule.color }}
+                            lang={currentLanguage}
+                            dir={targetDir}
+                          >
                             {displayTarget}
                           </strong>
-                          <span className="example-meaning">{localizeGrammarMeaning(ex.meaning, baseLanguage)}</span>
+                          <span className="example-meaning" lang={baseLanguage} dir={baseDir}>
+                            {localizeGrammarMeaning(ex.meaning, baseLanguage)}
+                          </span>
                         </div>
                         <PronunciationButton
                           text={displayTarget}
@@ -1086,11 +1166,14 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
               <button
                 key={v.verb}
                 type="button"
+                aria-pressed={idx === activeVerbIndex}
                 className={`verb-pill-btn ${idx === activeVerbIndex ? 'active' : ''}`}
                 onClick={() => setActiveVerbIndex(idx)}
               >
-                <strong>{v.verb}</strong>
-                <span className="verb-pill-meaning">({localizeGrammarMeaning(v.meaning, baseLanguage)})</span>
+                <strong lang={currentLanguage} dir={targetDir}>{v.verb}</strong>
+                <span className="verb-pill-meaning" lang={baseLanguage} dir={baseDir}>
+                  ({localizeGrammarMeaning(v.meaning, baseLanguage)})
+                </span>
               </button>
             ))}
           </div>
@@ -1100,8 +1183,12 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
               <div className="verb-detail-header">
                 <div>
                   <h3>
-                    <span className="verb-name">{verbsList[activeVerbIndex].verb}</span>
-                    <span className="verb-meaning-tag">— {localizeGrammarMeaning(verbsList[activeVerbIndex].meaning, baseLanguage)}</span>
+                    <span className="verb-name" lang={currentLanguage} dir={targetDir}>
+                      {verbsList[activeVerbIndex].verb}
+                    </span>
+                    <span className="verb-meaning-tag" lang={baseLanguage} dir={baseDir}>
+                      — {localizeGrammarMeaning(verbsList[activeVerbIndex].meaning, baseLanguage)}
+                    </span>
                   </h3>
                   <span className="verb-tense-badge">{verbsList[activeVerbIndex].tense}</span>
                 </div>
@@ -1113,34 +1200,51 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                 />
               </div>
 
-              <div className="conjugation-table">
-                {verbsList[activeVerbIndex].forms.map((item) => {
-                  const isNonPersonConjugated = ['zh', 'id', 'ja', 'ko'].includes(currentLanguage);
-                  const cleanPronoun = item.pronoun.replace(/\s*\(.*?\)/g, '').split('/')[0].trim();
-                  const [mainForm, formDesc] = item.form.split(/\s*—\s*/);
-                  const cleanForm = mainForm.replace(/\s*\([^)]*\)\s*/g, '').split('/')[0].trim();
-                  
-                  let audioTarget = cleanForm;
-                  if (!isNonPersonConjugated && cleanPronoun && (!/[a-zA-Z]/.test(cleanPronoun) || currentLanguage === 'en')) {
-                    audioTarget = `${cleanPronoun} ${cleanForm}`;
-                  }
+              <div
+                className="conjugation-table"
+                role="table"
+                aria-label={`${verbsList[activeVerbIndex].verb} — ${verbsList[activeVerbIndex].tense}`}
+              >
+                <div role="rowgroup" className="sr-only">
+                  <div role="row">
+                    <span role="columnheader">Subject</span>
+                    <span role="columnheader">Conjugated form</span>
+                    <span role="columnheader">Pronunciation</span>
+                  </div>
+                </div>
+                <div role="rowgroup" className="aria-rowgroup">
+                  {verbsList[activeVerbIndex].forms.map((item) => {
+                    const isNonPersonConjugated = ['zh', 'id', 'ja', 'ko'].includes(currentLanguage);
+                    const cleanPronoun = item.pronoun.replace(/\s*\(.*?\)/g, '').split('/')[0].trim();
+                    const [mainForm, formDesc] = item.form.split(/\s*—\s*/);
+                    const cleanForm = mainForm.replace(/\s*\([^)]*\)\s*/g, '').split('/')[0].trim();
+                    
+                    let audioTarget = cleanForm;
+                    if (!isNonPersonConjugated && cleanPronoun && (!/[a-zA-Z]/.test(cleanPronoun) || currentLanguage === 'en')) {
+                      audioTarget = `${cleanPronoun} ${cleanForm}`;
+                    }
 
-                  return (
-                    <div key={item.pronoun} className="conjugation-row">
-                      <span className="conj-pronoun">{item.pronoun}</span>
-                      <div className="conj-form-wrap">
-                        <strong className="conj-form">{mainForm}</strong>
-                        {formDesc && <span className="conj-form-desc">{formDesc}</span>}
+                    return (
+                      <div key={item.pronoun} className="conjugation-row" role="row">
+                        <span className="conj-pronoun" role="cell" lang={currentLanguage} dir={targetDir}>
+                          {item.pronoun}
+                        </span>
+                        <div className="conj-form-wrap" role="cell">
+                          <strong className="conj-form" lang={currentLanguage} dir={targetDir}>{mainForm}</strong>
+                          {formDesc && <span className="conj-form-desc">{formDesc}</span>}
+                        </div>
+                        <div className="conj-audio-cell" role="cell">
+                          <PronunciationButton
+                            text={audioTarget}
+                            lang={currentLanguage}
+                            audioCategory="grammar"
+                            className="conj-audio-btn"
+                          />
+                        </div>
                       </div>
-                      <PronunciationButton
-                        text={audioTarget}
-                        lang={currentLanguage}
-                        audioCategory="grammar"
-                        className="conj-audio-btn"
-                      />
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
 
               {verbsList[activeVerbIndex].exampleSentence && (
@@ -1153,10 +1257,10 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                       className="verb-example-audio"
                     />
                   </div>
-                  <p className="example-target-line">
+                  <p className="example-target-line" lang={currentLanguage} dir={targetDir}>
                     «{verbsList[activeVerbIndex].exampleSentence?.target}»
                   </p>
-                  <p className="example-translation-line">
+                  <p className="example-translation-line" lang={baseLanguage} dir={baseDir}>
                     ({verbsList[activeVerbIndex].exampleSentence?.translation})
                   </p>
                 </div>
@@ -1174,76 +1278,82 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
               <h3>{desc.title}</h3>
               <p className="description-explanation">{desc.explanation}</p>
 
-              <div className="comparison-table">
-                <div className="comparison-header-row">
-                  <span>{desc.headers?.[0] || ({
-                    en: 'Base (Positive)', ru: 'Исходная форма', es: 'Positivo', fr: 'Positif', de: 'Grundform',
-                    pt: 'Positivo', id: 'Bentuk Dasar', tr: 'Yalın Hal', zh: '原级', ja: '原級',
-                    ko: '원급', hi: 'मूल रूप', ar: 'الصيغة الأساسية', bn: 'মূল রূপ', ur: 'مطلق صفت'
-                  }[baseLanguage] || 'Base (Positive)')}</span>
-                  <span>{desc.headers?.[1] || ({
-                    en: 'Comparative', ru: 'Сравнительная', es: 'Comparativo', fr: 'Comparatif', de: 'Komparativ',
-                    pt: 'Comparativo', id: 'Komparatif', tr: 'Karşılaştırma', zh: '比较级', ja: '比較級',
-                    ko: '비교급', hi: 'उत्तरावस्था', ar: 'المقارنة', bn: 'তরতম্য', ur: 'تفصیلِ بعض'
-                  }[baseLanguage] || 'Comparative')}</span>
-                  <span>{desc.headers?.[2] || ({
-                    en: 'Superlative', ru: 'Превосходная', es: 'Superlativo', fr: 'Superlatif', de: 'Superlativ',
-                    pt: 'Superlativo', id: 'Superlatif', tr: 'Üstünlük', zh: '最高级', ja: '最上級',
-                    ko: '최상급', hi: 'उत्तमावस्था', ar: 'التفضيل', bn: 'অতিশায়ন', ur: 'تفصیلِ کل'
-                  }[baseLanguage] || 'Superlative')}</span>
-                  <span>{desc.headers?.[3] || ({
-                    en: 'Meaning', ru: 'Значение', es: 'Significado', fr: 'Sens', de: 'Bedeutung',
-                    pt: 'Significado', id: 'Arti', tr: 'Anlam', zh: '释义', ja: '意味',
-                    ko: '의미', hi: 'अर्थ', ar: 'المعنى', bn: 'অর্থ', ur: 'معنی'
-                  }[baseLanguage] || 'Meaning')}</span>
+              <div className="comparison-table" role="table" aria-label={desc.title}>
+                <div role="rowgroup" className="aria-rowgroup">
+                  <div className="comparison-header-row" role="row">
+                    <span role="columnheader">{desc.headers?.[0] || ({
+                      en: 'Base (Positive)', ru: 'Исходная форма', es: 'Positivo', fr: 'Positif', de: 'Grundform',
+                      pt: 'Positivo', id: 'Bentuk Dasar', tr: 'Yalın Hal', zh: '原级', ja: '原級',
+                      ko: '원급', hi: 'मूल रूप', ar: 'الصيغة الأساسية', bn: 'মূল রূপ', ur: 'مطلق صفت'
+                    }[baseLanguage] || 'Base (Positive)')}</span>
+                    <span role="columnheader">{desc.headers?.[1] || ({
+                      en: 'Comparative', ru: 'Сравнительная', es: 'Comparativo', fr: 'Comparatif', de: 'Komparativ',
+                      pt: 'Comparativo', id: 'Komparatif', tr: 'Karşılaştırma', zh: '比较级', ja: '比較級',
+                      ko: '비교급', hi: 'उत्तरावस्था', ar: 'المقارنة', bn: 'তরতম্য', ur: 'تفصیلِ بعض'
+                    }[baseLanguage] || 'Comparative')}</span>
+                    <span role="columnheader">{desc.headers?.[2] || ({
+                      en: 'Superlative', ru: 'Превосходная', es: 'Superlativo', fr: 'Superlatif', de: 'Superlativ',
+                      pt: 'Superlativo', id: 'Superlatif', tr: 'Üstünlük', zh: '最高级', ja: '最上級',
+                      ko: '최상급', hi: 'उत्तमावस्था', ar: 'التفضيل', bn: 'অতিশায়ন', ur: 'تفصیلِ کل'
+                    }[baseLanguage] || 'Superlative')}</span>
+                    <span role="columnheader">{desc.headers?.[3] || ({
+                      en: 'Meaning', ru: 'Значение', es: 'Significado', fr: 'Sens', de: 'Bedeutung',
+                      pt: 'Significado', id: 'Arti', tr: 'Anlam', zh: '释义', ja: '意味',
+                      ko: '의미', hi: 'अर्थ', ar: 'المعنى', bn: 'অর্থ', ur: 'معنی'
+                    }[baseLanguage] || 'Meaning')}</span>
+                  </div>
                 </div>
-                {desc.examples.map((item, rowIdx) => {
-                  const spokenPos = getSpokenGrammarWord(item.positive, currentLanguage);
-                  const spokenComp = getSpokenGrammarWord(item.comparative, currentLanguage);
-                  const spokenSuper = getSpokenGrammarWord(item.superlative, currentLanguage);
+                <div role="rowgroup" className="aria-rowgroup">
+                  {desc.examples.map((item, rowIdx) => {
+                    const spokenPos = getSpokenGrammarWord(item.positive, currentLanguage);
+                    const spokenComp = getSpokenGrammarWord(item.comparative, currentLanguage);
+                    const spokenSuper = getSpokenGrammarWord(item.superlative, currentLanguage);
 
-                  return (
-                    <div key={rowIdx} className="comparison-data-row">
-                      <div className="comp-cell comp-positive">
-                        <span className="comp-text">{item.positive}</span>
-                        {spokenPos && (
-                          <PronunciationButton
-                            text={spokenPos}
-                            lang={currentLanguage}
-                            audioCategory="grammar"
-                            className="comp-mini-audio"
-                            label={`Pronounce ${spokenPos}`}
-                          />
-                        )}
+                    return (
+                      <div key={rowIdx} className="comparison-data-row" role="row">
+                        <div className="comp-cell comp-positive" role="cell">
+                          <span className="comp-text" lang={currentLanguage} dir={targetDir}>{item.positive}</span>
+                          {spokenPos && (
+                            <PronunciationButton
+                              text={spokenPos}
+                              lang={currentLanguage}
+                              audioCategory="grammar"
+                              className="comp-mini-audio"
+                              label={`Pronounce ${spokenPos}`}
+                            />
+                          )}
+                        </div>
+                        <div className="comp-cell comp-comparative" role="cell">
+                          <span className="comp-text" lang={currentLanguage} dir={targetDir}>{item.comparative}</span>
+                          {spokenComp && (
+                            <PronunciationButton
+                              text={spokenComp}
+                              lang={currentLanguage}
+                              audioCategory="grammar"
+                              className="comp-mini-audio"
+                              label={`Pronounce ${spokenComp}`}
+                            />
+                          )}
+                        </div>
+                        <div className="comp-cell comp-superlative" role="cell">
+                          <span className="comp-text" lang={currentLanguage} dir={targetDir}>{item.superlative}</span>
+                          {spokenSuper && (
+                            <PronunciationButton
+                              text={spokenSuper}
+                              lang={currentLanguage}
+                              audioCategory="grammar"
+                              className="comp-mini-audio"
+                              label={`Pronounce ${spokenSuper}`}
+                            />
+                          )}
+                        </div>
+                        <span className="comp-meaning" role="cell" lang={baseLanguage} dir={baseDir}>
+                          {localizeGrammarMeaning(item.meaning, baseLanguage)}
+                        </span>
                       </div>
-                      <div className="comp-cell comp-comparative">
-                        <span className="comp-text">{item.comparative}</span>
-                        {spokenComp && (
-                          <PronunciationButton
-                            text={spokenComp}
-                            lang={currentLanguage}
-                            audioCategory="grammar"
-                            className="comp-mini-audio"
-                            label={`Pronounce ${spokenComp}`}
-                          />
-                        )}
-                      </div>
-                      <div className="comp-cell comp-superlative">
-                        <span className="comp-text">{item.superlative}</span>
-                        {spokenSuper && (
-                          <PronunciationButton
-                            text={spokenSuper}
-                            lang={currentLanguage}
-                            audioCategory="grammar"
-                            className="comp-mini-audio"
-                            label={`Pronounce ${spokenSuper}`}
-                          />
-                        )}
-                      </div>
-                      <span className="comp-meaning">{localizeGrammarMeaning(item.meaning, baseLanguage)}</span>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
             </div>
           ))}

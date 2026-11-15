@@ -1,7 +1,12 @@
+import fs from 'node:fs';
 import { defineConfig, devices } from '@playwright/test';
 
 const E2E_PORT = process.env.PLAYWRIGHT_PORT || '5185';
 const E2E_BASE_URL = `http://localhost:${E2E_PORT}`;
+const useChromeChannel = process.platform !== 'linux' || fs.existsSync('/opt/google/chrome/chrome');
+const systemChromiumPath = !useChromeChannel && fs.existsSync('/usr/bin/chromium')
+  ? '/usr/bin/chromium'
+  : undefined;
 
 export default defineConfig({
   testDir: './e2e',
@@ -13,7 +18,11 @@ export default defineConfig({
   use: {
     baseURL: E2E_BASE_URL,
     trace: 'on-first-retry',
-    channel: 'chrome',
+    ...(useChromeChannel
+      ? { channel: 'chrome' }
+      : systemChromiumPath
+        ? { launchOptions: { executablePath: systemChromiumPath, args: ['--no-sandbox'] } }
+        : {}),
   },
   projects: [
     {

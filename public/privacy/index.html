@@ -13,7 +13,7 @@
       --primary-dark: #00277a;
       --accent: #D52B1E;
       --text: #1e293b;
-      --text-muted: #64748b;
+      --text-muted: #475569;
       --bg: #f8fafc;
       --card-bg: #ffffff;
       --border: #e2e8f0;
@@ -25,6 +25,33 @@
       color: var(--text);
       background-color: var(--bg);
       padding: 0 1rem 3rem;
+    }
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      inset-inline-start: 1rem;
+      z-index: 9999;
+      padding: 0.65rem 1.1rem;
+      background: #0f172a;
+      color: #ffffff;
+      font-weight: 700;
+      border-radius: 8px;
+      text-decoration: underline;
+    }
+    .skip-link:focus,
+    .skip-link:focus-visible {
+      top: 0.75rem;
+      outline: 3px solid #fde047;
+      outline-offset: 2px;
+    }
+    a:focus-visible {
+      outline: 3px solid #1d4ed8;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    header a:focus-visible {
+      outline: 3px solid #fde047;
+      outline-offset: 2px;
     }
     header {
       background: linear-gradient(135deg, #0039a6, #002266);
@@ -99,7 +126,7 @@
       margin-bottom: 1rem;
     }
     ul {
-      padding-left: 1.5rem;
+      padding-inline-start: 1.5rem;
     }
     li {
       margin-bottom: 0.5rem;
@@ -107,12 +134,15 @@
     strong {
       color: #0f172a;
     }
-    a {
+    main a,
+    footer a {
       color: var(--primary);
-      text-decoration: none;
-    }
-    a:hover {
       text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    main a:hover,
+    footer a:hover {
+      color: var(--primary-dark);
     }
     .highlight-box {
       background: #f0fdf4;
@@ -132,10 +162,11 @@
   </style>
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <header>
     <div class="header-inner">
       <a href="/" class="logo-group">
-        <svg class="flag" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Basic Language School crest">
+        <svg class="flag" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
           <rect width="48" height="48" rx="10" fill="#1e3a8a"/>
           <path d="M24 13L8 20.5L24 28L40 20.5L24 13Z" fill="#f59e0b"/>
           <path d="M14 24.5V32C14 35.5 18 38 24 38C30 38 34 35.5 34 32V24.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
@@ -146,7 +177,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main-content" tabindex="-1">
     <h1>Privacy Policy</h1>
     <p class="last-updated">Last Updated: November 13, 2026</p>
 

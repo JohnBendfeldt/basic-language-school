@@ -194,16 +194,17 @@ export const LanguageAbout: React.FC<LanguageAboutProps> = ({ currentLanguage, b
   const profile: LanguageProfile = getLocalizedAboutProfile(currentLanguage, baseLanguage);
   const copy = ABOUT_CHROME_MAP[baseLanguage] || ABOUT_CHROME_MAP.en;
   const scriptLabels = getScriptEvolutionLabels(baseLanguage);
+  const targetDir = currentLanguage === 'ar' || currentLanguage === 'ur' ? 'rtl' : 'ltr';
 
   return (
     <div className="language-about-container">
       {/* Hero Banner */}
       <div className="about-hero-card">
         <div className="about-hero-badge">
-          <FaGlobeAmericas className="hero-badge-icon" /> {copy.originsBadge}
+          <FaGlobeAmericas className="hero-badge-icon" aria-hidden="true" /> {copy.originsBadge}
         </div>
         <h2 className="about-hero-title">{profile.title}</h2>
-        <p className="about-hero-native">{profile.nativeName}</p>
+        <p className="about-hero-native" lang={currentLanguage} dir={targetDir}>{profile.nativeName}</p>
         <p className="about-hero-tagline">{profile.tagline}</p>
 
         {/* Core Identity Pills */}
@@ -226,7 +227,7 @@ export const LanguageAbout: React.FC<LanguageAboutProps> = ({ currentLanguage, b
       {/* Quick Facts Grid */}
       <div className="about-section-wrap">
         <h3 className="about-section-heading">
-          <FaLightbulb className="heading-icon" /> {copy.quickFacts}
+          <FaLightbulb className="heading-icon" aria-hidden="true" /> {copy.quickFacts}
         </h3>
         <div className="about-facts-grid">
           {profile.facts.map((fact, idx) => (
@@ -247,7 +248,7 @@ export const LanguageAbout: React.FC<LanguageAboutProps> = ({ currentLanguage, b
           <div className="script-evolution-header">
             <span className="script-badge">{scriptLabels.badge}</span>
             <h3 className="about-section-heading">
-              <FaBookOpen className="heading-icon" /> {scriptLabels.heading}
+              <FaBookOpen className="heading-icon" aria-hidden="true" /> {scriptLabels.heading}
             </h3>
             <p className="script-evolution-desc">
               {scriptLabels.description}
@@ -261,13 +262,13 @@ export const LanguageAbout: React.FC<LanguageAboutProps> = ({ currentLanguage, b
                   {/* Traditional */}
                   <div className="compare-character-side traditional">
                     <span className="char-badge">{scriptLabels.traditionalBadge}</span>
-                    <span className="compare-char">{item.traditional}</span>
+                    <span className="compare-char" lang="zh">{item.traditional}</span>
                     <span className="stroke-pill">{scriptLabels.formatStrokes(item.traditionalStrokes)}</span>
                   </div>
 
                   {/* Transition Arrow */}
                   <div className="compare-arrow-wrap">
-                    <FaArrowRight className="compare-arrow" />
+                    <FaArrowRight className="compare-arrow" aria-hidden="true" />
                     <span className="reduced-badge">
                       {scriptLabels.formatReducedStrokes(item.traditionalStrokes - item.simplifiedStrokes)}
                     </span>
@@ -276,7 +277,7 @@ export const LanguageAbout: React.FC<LanguageAboutProps> = ({ currentLanguage, b
                   {/* Simplified */}
                   <div className="compare-character-side simplified">
                     <span className="char-badge active">{scriptLabels.simplifiedBadge}</span>
-                    <span className="compare-char">{item.simplified}</span>
+                    <span className="compare-char" lang="zh">{item.simplified}</span>
                     <span className="stroke-pill success">{scriptLabels.formatStrokes(item.simplifiedStrokes)}</span>
                   </div>
                 </div>
@@ -305,12 +306,12 @@ export const LanguageAbout: React.FC<LanguageAboutProps> = ({ currentLanguage, b
       {/* Historical Milestones Timeline */}
       <div className="about-section-wrap">
         <h3 className="about-section-heading">
-          <FaHistory className="heading-icon" /> {copy.historyHeading}
+          <FaHistory className="heading-icon" aria-hidden="true" /> {copy.historyHeading}
         </h3>
         <div className="about-timeline">
           {profile.historyTimeline.map((milestone, idx) => (
             <div key={idx} className="timeline-node">
-              <div className="timeline-marker-col">
+              <div className="timeline-marker-col" aria-hidden="true">
                 <div className="timeline-circle" />
                 {idx < profile.historyTimeline.length - 1 && <div className="timeline-stem" />}
               </div>
@@ -332,20 +333,20 @@ export const LanguageAbout: React.FC<LanguageAboutProps> = ({ currentLanguage, b
       {/* Linguistic Traits & Superpowers */}
       <div className="about-section-wrap">
         <h3 className="about-section-heading">
-          <FaLightbulb className="heading-icon" /> {copy.secretsHeading}
+          <FaLightbulb className="heading-icon" aria-hidden="true" /> {copy.secretsHeading}
         </h3>
         <div className="about-traits-grid">
           {profile.linguisticTraits.map((trait, idx) => (
             <div key={idx} className="about-trait-card">
               <div className="trait-top">
-                <span className="trait-icon">{trait.icon || '✨'}</span>
+                <span className="trait-icon" aria-hidden="true">{trait.icon || '✨'}</span>
                 <h4 className="trait-title">{trait.title}</h4>
               </div>
               <p className="trait-desc">{trait.description}</p>
               {trait.example && (
                 <div className="trait-example-box">
                   <span className="example-tag">{copy.exampleTag}</span>
-                  <span className="example-text">{trait.example}</span>
+                  <span className="example-text" lang={currentLanguage} dir={targetDir}>{trait.example}</span>
                 </div>
               )}
             </div>
@@ -356,7 +357,7 @@ export const LanguageAbout: React.FC<LanguageAboutProps> = ({ currentLanguage, b
       {/* Cultural Note Banner */}
       {profile.culturalNote && (
         <div className="about-cultural-banner">
-          <span className="cultural-icon">🌺</span>
+          <span className="cultural-icon" aria-hidden="true">🌺</span>
           <div className="cultural-text">
             <strong>{copy.culturalReflection}</strong> {profile.culturalNote}
           </div>

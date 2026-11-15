@@ -4,6 +4,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import { SupportedLanguageId } from '../data/languages/types';
 import { FlagIcon } from './FlagIcon';
 import { getLocalizedLanguageName, getComponentChrome, getLocalizedRegionName, getLanguageRequestCopy, getLanguagePickerCopy } from '../utils/pageDictionary';
+import { useModalAccessibility } from '../hooks/useModalAccessibility';
 
 interface LanguageSwitcherProps {
   onLanguageChange?: (langId: SupportedLanguageId) => void;
@@ -152,28 +153,11 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
     });
   };
 
-  // Close modal on Escape key
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
-        setIsOpen(false);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen]);
-
-  // Lock body scroll when modal is open on mobile to prevent background scroll-jumping
-  useEffect(() => {
-    if (isOpen) {
-      const originalStyle = document.body.style.overflow;
-      document.body.style.overflow = 'hidden';
-      return () => {
-        document.body.style.overflow = originalStyle;
-      };
-    }
-  }, [isOpen]);
+  useModalAccessibility({
+    isOpen,
+    onClose: () => setIsOpen(false),
+    modalRef,
+  });
 
   const handleSelectTarget = (langId: string, available: boolean) => {
     if (!available) return;
@@ -236,6 +220,8 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
   const pickerCopy = getLanguagePickerCopy(baseLanguage);
   const localizedTargetName = getLocalizedLanguageName(targetMeta.id, baseLanguage, targetMeta.name);
   const localizedBaseName = getLocalizedLanguageName(baseMeta.id, baseLanguage, baseMeta.name);
+  const baseNativeDir = baseMeta.id === 'ar' || baseMeta.id === 'ur' ? 'rtl' : 'ltr';
+  const targetNativeDir = targetMeta.id === 'ar' || targetMeta.id === 'ur' ? 'rtl' : 'ltr';
 
   return (
     <div className={`language-switcher-container ${className}`}>
@@ -247,9 +233,9 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
           aria-haspopup="dialog"
           aria-expanded={isOpen}
           title={`${ui.iSpeak}: ${localizedBaseName}, ${ui.learning}: ${localizedTargetName}`}
-          aria-label={`Current language pair: ${baseMeta.name} to ${targetMeta.name}. Click to switch.`}
+          aria-label={`Current language pair: ${baseMeta.name} to ${targetMeta.name} — ${localizedTargetName}. Click to switch.`}
         >
-          <span className="pair-flag-chips">
+          <span className="pair-flag-chips" aria-hidden="true">
             <span className="base-flag-chip" title={`${ui.iSpeak || 'I speak'}: ${localizedBaseName}`}>
               <FlagIcon lang={baseMeta.id} size={18} />
             </span>
@@ -259,7 +245,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
             </span>
           </span>
           <span className="language-name">{localizedTargetName}</span>
-          <FaChevronDown className={`language-chevron ${isOpen ? 'open' : ''}`} />
+          <FaChevronDown className={`language-chevron ${isOpen ? 'open' : ''}`} aria-hidden="true" />
         </button>
 
         {/* Direct quick-swap button right in the navbar */}
@@ -270,7 +256,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
           title={ui.switchPair || 'Swap languages (learn the other way around)'}
           aria-label="Swap language pair"
         >
-          <FaExchangeAlt />
+          <FaExchangeAlt aria-hidden="true" />
         </button>
       </div>
 
@@ -294,12 +280,12 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
               onClick={() => setIsOpen(false)}
               aria-label="Close modal"
             >
-              <FaTimes />
+              <FaTimes aria-hidden="true" />
             </button>
 
             <div className="language-modal-header">
-              <div className="language-modal-header-icon">
-                <FaGlobe className="dropdown-icon" />
+              <div className="language-modal-header-icon" aria-hidden="true">
+                <FaGlobe className="dropdown-icon" aria-hidden="true" />
               </div>
               <div className="language-modal-header-text">
                 <h2>{ui.switchPair || 'Language Learning Pair'}</h2>
@@ -316,7 +302,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                 onClick={() => setActiveTab('base')}
                 role="button"
                 tabIndex={0}
-                aria-label={ui.iSpeak || 'I speak'}
+                aria-pressed={activeTab === 'base'}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -332,7 +318,9 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                   <FlagIcon lang={baseMeta.id} size={26} />
                   <div className="pair-box-names">
                     <span className="pair-box-name">{localizedBaseName}</span>
-                    <span className="pair-box-native">{baseMeta.nativeName}</span>
+                    <span className="pair-box-native" lang={baseMeta.id} dir={baseNativeDir}>
+                      {baseMeta.nativeName}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -344,7 +332,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                 title={ui.switchPair || 'Swap learning & native languages'}
                 aria-label="Swap native and learning languages"
               >
-                <FaExchangeAlt />
+                <FaExchangeAlt aria-hidden="true" />
               </button>
 
               <div
@@ -352,7 +340,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                 onClick={() => setActiveTab('target')}
                 role="button"
                 tabIndex={0}
-                aria-label={ui.iWantToLearn || 'I want to learn'}
+                aria-pressed={activeTab === 'target'}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -368,7 +356,9 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                   <FlagIcon lang={targetMeta.id} size={26} />
                   <div className="pair-box-names">
                     <span className="pair-box-name">{localizedTargetName}</span>
-                    <span className="pair-box-native">{targetMeta.nativeName}</span>
+                    <span className="pair-box-native" lang={targetMeta.id} dir={targetNativeDir}>
+                      {targetMeta.nativeName}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -386,13 +376,14 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                         <button
                           key={`recent-${p.base}-${p.target}`}
                           type="button"
+                          aria-pressed={isCurrent}
                           className={`quick-pair-chip ${isCurrent ? 'active' : ''}`}
                           onClick={() => handleQuickPair(p.base, p.target)}
-                          aria-label={`Switch to pair ${p.base.toUpperCase()} to ${p.target.toUpperCase()}`}
+                          aria-label={`Switch to pair ${p.base.toUpperCase()} to ${p.target.toUpperCase()} — ${p.base.toUpperCase()} ${p.target.toUpperCase()}`}
                         >
                           <FlagIcon lang={p.base} size={15} />
                           <span>{p.base.toUpperCase()}</span>
-                          <span className="chip-arrow">→</span>
+                          <span className="chip-arrow" aria-hidden="true">→</span>
                           <FlagIcon lang={p.target} size={15} />
                           <span>{p.target.toUpperCase()}</span>
                         </button>
@@ -415,9 +406,10 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                           <button
                             key={`sugg-${baseLanguage}-${tgt.id}`}
                             type="button"
+                            aria-pressed={isCurrent}
                             className={`quick-pair-chip ${isCurrent ? 'active' : ''}`}
                             onClick={() => handleQuickPair(baseLanguage, tgt.id as SupportedLanguageId)}
-                            aria-label={`Learn ${tgt.name}`}
+                            aria-label={localizedTgtName === tgt.name ? `Learn ${tgt.name}` : `Learn ${tgt.name} — ${localizedTgtName}`}
                           >
                             <FlagIcon lang={tgt.id} size={14} /> {localizedTgtName}
                           </button>
@@ -429,7 +421,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
             </div>
 
             {/* Language Selection List for Active Tab */}
-            <div className="language-list" role="menu">
+            <div className="language-list">
               <div className="language-list-header">
                 <div className="language-group-title">
                   {activeTab === 'target' 
@@ -456,7 +448,29 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                 </div>
               </div>
 
-              <div className="language-options-grid">
+              <div
+                className="language-options-grid"
+                role="menu"
+                aria-label={
+                  activeTab === 'target'
+                    ? chrome.chooseLanguageToLearn
+                    : (ui.iSpeak || 'Choose Your Language')
+                }
+                onKeyDown={(e) => {
+                  const items = Array.from(
+                    e.currentTarget.querySelectorAll<HTMLButtonElement>('[role="menuitem"]')
+                  );
+                  if (!items.length) return;
+                  const idx = items.indexOf(document.activeElement as HTMLButtonElement);
+                  if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    items[(idx + 1) % items.length]?.focus();
+                  } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    items[(idx - 1 + items.length) % items.length]?.focus();
+                  }
+                }}
+              >
                 {availableLanguages
                   .filter(l => l.available)
                   .filter(l => selectedRegion === 'all' || LANGUAGE_REGION_MAP[l.id] === selectedRegion)
@@ -465,12 +479,14 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                       ? lang.id === targetLanguage 
                       : lang.id === baseLanguage;
                     const localizedOptName = getLocalizedLanguageName(lang.id, baseLanguage, lang.name);
+                    const optNativeDir = lang.id === 'ar' || lang.id === 'ur' ? 'rtl' : 'ltr';
 
                     return (
                       <button
                         key={lang.id}
                         type="button"
                         role="menuitem"
+                        aria-current={isSelected ? 'true' : undefined}
                         className={`language-option ${isSelected ? 'active' : ''}`}
                         onClick={() => {
                           if (activeTab === 'target') {
@@ -485,9 +501,11 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                         </span>
                         <div className="option-details">
                           <span className="option-name">{localizedOptName}</span>
-                          <span className="option-native">{lang.nativeName}</span>
+                          <span className="option-native" lang={lang.id} dir={optNativeDir}>
+                            {lang.nativeName}
+                          </span>
                         </div>
-                        {isSelected && <FaCheck className="option-check" />}
+                        {isSelected && <FaCheck className="option-check" aria-hidden="true" />}
                       </button>
                     );
                   })}
@@ -498,7 +516,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                   <div className="language-request-callout">
                     <div className="request-callout-icon" aria-hidden="true">✉️</div>
                     <div className="request-callout-body">
-                      <h4 className="request-callout-title">{requestCopy.title}</h4>
+                      <h3 className="request-callout-title">{requestCopy.title}</h3>
                       <p className="request-callout-text">
                         {requestCopy.before}{' '}
                         <a
@@ -521,7 +539,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                 type="button"
                 className="language-modal-done-btn"
                 onClick={() => setIsOpen(false)}
-                aria-label="Confirm selection and close modal"
+                aria-label={`${pickerCopy.done} — Confirm selection and close modal`}
               >
                 {pickerCopy.done}
               </button>

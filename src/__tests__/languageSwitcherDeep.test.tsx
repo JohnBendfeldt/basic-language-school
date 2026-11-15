@@ -70,7 +70,7 @@ describe('LanguageSwitcher - opening and closing', () => {
   it('closes with the Done button', () => {
     setup();
     openPicker();
-    fireEvent.click(screen.getByRole('button', { name: 'Confirm selection and close modal' }));
+    fireEvent.click(screen.getByRole('button', { name: /Confirm selection and close modal/i }));
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 });
@@ -81,7 +81,7 @@ describe('LanguageSwitcher - dialog text is in the learner\'s language', () => {
     openPicker();
     const copy = getLanguagePickerCopy(base);
     expect(within(picker()).getByText(copy.subtitle)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Confirm selection and close modal' })).toHaveTextContent(copy.done);
+    expect(screen.getByRole('button', { name: /Confirm selection and close modal/i })).toHaveTextContent(copy.done);
   });
 
   it.each(['ja', 'ko', 'zh', 'hi', 'ar', 'bn', 'ur', 'ru'] as const)('%s: is not left in English', (base) => {
@@ -198,7 +198,7 @@ describe('LanguageSwitcher - swapping and quick pairs', () => {
     const onChange = vi.fn();
     const { pair } = setup('en', 'es', onChange);
     openPicker();
-    fireEvent.click(screen.getByRole('button', { name: 'Switch to pair EN to FR' }));
+    fireEvent.click(screen.getByRole('button', { name: /^Switch to pair EN to FR\b/ }));
     expect(pair()).toBe('en>fr');
     expect(onChange).toHaveBeenCalledWith('fr');
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
@@ -219,24 +219,24 @@ describe('LanguageSwitcher - swapping and quick pairs', () => {
     localStorage.setItem(RECENT_KEY, '{broken');
     setup('en', 'es');
     openPicker();
-    expect(screen.getByRole('button', { name: 'Switch to pair EN to RU' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^Switch to pair EN to RU\b/ })).toBeInTheDocument();
   });
 
   it('ignores saved pairs where both sides are the same language', () => {
     localStorage.setItem(RECENT_KEY, JSON.stringify([{ base: 'en', target: 'en' }, { base: 'en', target: 'de' }]));
     setup('en', 'es');
     openPicker();
-    expect(screen.queryByRole('button', { name: 'Switch to pair EN to EN' })).not.toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Switch to pair EN to DE' })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /^Switch to pair EN to EN\b/ })).not.toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /^Switch to pair EN to DE\b/ })).toBeInTheDocument();
   });
 
   it('suggests courses for the native language, never the native language itself', () => {
     setup('ja', 'en');
     openPicker();
-    const suggestions = screen.getAllByRole('button', { name: /^Learn / }).map((b) => b.getAttribute('aria-label'));
+    const suggestions = screen.getAllByRole('button', { name: /^Learn / }).map((b) => b.getAttribute('aria-label') || '');
     expect(suggestions.length).toBeGreaterThan(0);
-    expect(suggestions).not.toContain('Learn Japanese');
-    expect(suggestions).toContain('Learn Mandarin Chinese');
+    expect(suggestions.some((s) => s.startsWith('Learn Japanese'))).toBe(false);
+    expect(suggestions.some((s) => s.startsWith('Learn Mandarin Chinese'))).toBe(true);
   });
 });
 

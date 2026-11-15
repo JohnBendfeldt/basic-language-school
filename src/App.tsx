@@ -111,8 +111,26 @@ const OFFLINE_BTN_TITLES: Record<SupportedLanguageId, { download: string; ready:
   ur: { download: 'آف لائن آڈیو کورسز ڈاؤن لوڈ کریں', ready: 'آف لائن آڈیو تیار — انتظام کریں' },
 };
 
+const SKIP_LINK_LABELS: Record<SupportedLanguageId, string> = {
+  en: 'Skip to main content',
+  es: 'Saltar al contenido principal',
+  fr: 'Aller au contenu principal',
+  de: 'Zum Hauptinhalt springen',
+  pt: 'Pular para o conteúdo principal',
+  ru: 'Перейти к основному содержимому',
+  id: 'Lewati ke konten utama',
+  tr: 'Ana içeriğe geç',
+  zh: '跳转到主要内容',
+  ja: 'メインコンテンツへスキップ',
+  ko: '본문으로 건너뛰기',
+  hi: 'मुख्य सामग्री पर जाएँ',
+  ar: 'تخطَّ إلى المحتوى الرئيسي',
+  bn: 'মূল বিষয়বস্তুতে যান',
+  ur: 'مرکزی مواد پر جائیں',
+};
+
 const AppContent: React.FC = () => {
-  const { currentLanguage, currentMeta, setLanguage, baseLanguage } = useLanguage();
+  const { currentLanguage, currentMeta, setLanguage, baseLanguage, ui } = useLanguage();
   const parsed = parsePath();
   const [activeSection, setActiveSection] = useState<string>(() => parsed.section);
   const [installPrompt, setInstallPrompt] = useState<any>(null);
@@ -175,6 +193,26 @@ const AppContent: React.FC = () => {
 
   // Update SEO Title & Meta tags dynamically per language and section
   const updateMeta = useCallback((section: string) => {
+    const chromeCopy = getComponentChrome(baseLanguage);
+    if (section === 'about' || section === 'privacy' || section === 'terms') {
+      const legalTitleMap: Record<string, string> = {
+        about: `${chromeCopy.aboutContact || 'About & Contact'} | Basic Language School`,
+        privacy: `${chromeCopy.privacyPolicy || 'Privacy Policy'} | Basic Language School`,
+        terms: `${chromeCopy.termsOfService || 'Terms of Service'} | Basic Language School`,
+      };
+      const pageTitle = legalTitleMap[section];
+      document.title = pageTitle;
+
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle) ogTitle.setAttribute('content', pageTitle);
+
+      const canonical = document.querySelector('link[rel="canonical"]');
+      if (canonical) {
+        canonical.setAttribute('href', `https://basiclanguage.school/${section}`);
+      }
+      return;
+    }
+
     const safeSection = Object.prototype.hasOwnProperty.call(currentMeta.seo, section) ? section : 'alphabet';
     const seoInfo = currentMeta.seo[safeSection] || currentMeta.seo.alphabet;
     if (seoInfo) {
@@ -194,7 +232,7 @@ const AppContent: React.FC = () => {
         canonical.setAttribute('href', `https://basiclanguage.school/learn/${currentLanguage}/${safeSection}`);
       }
     }
-  }, [currentLanguage, currentMeta]);
+  }, [currentLanguage, currentMeta, baseLanguage]);
 
   // Handle browser back/forward buttons
   useEffect(() => {
@@ -398,17 +436,31 @@ const AppContent: React.FC = () => {
   const offlineBtnCopy = OFFLINE_BTN_TITLES[baseLanguage] || OFFLINE_BTN_TITLES.en;
   const offlineBtnLabel = isActivePairOfflineReady ? offlineBtnCopy.ready : offlineBtnCopy.download;
 
+  const skipLabel = SKIP_LINK_LABELS[baseLanguage] || ui?.skipToContent || 'Skip to main content';
+
   return (
     <div className="app" data-target-lang={currentLanguage} data-base-lang={baseLanguage}>
+      <a href="#main-content" className="skip-link">
+        {skipLabel}
+      </a>
       <header>
         <div className="header-content">
-          <h1 
-            onClick={() => handleSectionChange('alphabet')} 
-            style={{ cursor: 'pointer' }} 
-            title={`Return to ${localizedAppName} lessons`}
+          <h1
+            onClick={(e) => {
+              if (e.target === e.currentTarget) {
+                handleSectionChange('alphabet');
+              }
+            }}
           >
-            <AppEmblem language={currentLanguage} />
-            {localizedAppName}
+            <button
+              type="button"
+              className="brand-home-button"
+              onClick={() => handleSectionChange('alphabet')}
+              title={`Return to ${localizedAppName} lessons`}
+            >
+              <AppEmblem language={currentLanguage} decorative />
+              <span>{localizedAppName}</span>
+            </button>
           </h1>
 
           {/* Desktop Actions: Spacious row on wider screens */}
@@ -418,11 +470,10 @@ const AppContent: React.FC = () => {
               type="button"
               className="header-search-btn"
               onClick={() => setIsSearchOpen(true)}
-              aria-label={chrome.searchTitle || searchShortcut.title}
               title={chrome.searchTitle || searchShortcut.title}
             >
-              <FaSearch className="search-btn-icon" />
-              <span className="search-btn-label">{chrome.search || 'Search'}</span>
+              <FaSearch className="search-btn-icon" aria-hidden="true" />
+              <span className="search-btn-label">{chrome.search || 'Search'}</span>{' '}
               <kbd className="search-btn-kbd">{searchShortcut.kbd}</kbd>
             </button>
 
@@ -444,11 +495,11 @@ const AppContent: React.FC = () => {
               aria-label={offlineBtnLabel}
               title={offlineBtnLabel}
             >
-              {isActivePairOfflineReady ? <FaCheckCircle /> : <FaCloudDownloadAlt />}
+              {isActivePairOfflineReady ? <FaCheckCircle aria-hidden="true" /> : <FaCloudDownloadAlt aria-hidden="true" />}
             </button>
 
             {installPrompt && (
-              <button onClick={handleInstallClick} className="install-button">
+              <button type="button" onClick={handleInstallClick} className="install-button">
                 {chrome.installApp}
               </button>
             )}
@@ -464,7 +515,7 @@ const AppContent: React.FC = () => {
               aria-label={chrome.searchTitle || searchShortcut.title}
               title={chrome.search || 'Search'}
             >
-              <FaSearch />
+              <FaSearch aria-hidden="true" />
             </button>
             <LanguageSwitcher onLanguageChange={handleLanguageChange} />
             <button
@@ -474,7 +525,7 @@ const AppContent: React.FC = () => {
               aria-label="Open settings and menu"
               title="Menu"
             >
-              <FaBars />
+              <FaBars aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -501,7 +552,7 @@ const AppContent: React.FC = () => {
         />
       </header>
       
-      <main tabIndex={-1}>
+      <main id="main-content" tabIndex={-1}>
         {renderActiveSection()}
       </main>
       

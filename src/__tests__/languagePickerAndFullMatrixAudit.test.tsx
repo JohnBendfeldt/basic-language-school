@@ -207,7 +207,7 @@ describe('Language Picker Setup, Routing & Full 210-Pair Cross-Language Audit', 
 
       fireEvent.click(screen.getByRole('button', { name: /Current language pair/i }));
       const dialog = screen.getByRole('dialog', { name: 'Language selection modal' });
-      fireEvent.click(within(dialog).getByRole('button', { name: 'Switch to pair ES to EN' }));
+      fireEvent.click(within(dialog).getByRole('button', { name: /^Switch to pair ES to EN\b/ }));
 
       expect(screen.getByTestId('picker-pair').textContent).toBe(`es->en:${UI_TRANSLATIONS.es.quiz}`);
       expect(onLangChange).toHaveBeenCalledWith('en');
@@ -269,7 +269,7 @@ describe('Language Picker Setup, Routing & Full 210-Pair Cross-Language Audit', 
       const dialog = screen.getByRole('dialog', { name: 'Language selection modal' });
 
       // Click "I speak" tab (localized in Russian: UI_TRANSLATIONS.ru.iSpeak)
-      fireEvent.click(within(dialog).getByRole('button', { name: UI_TRANSLATIONS.ru.iSpeak }));
+      fireEvent.click(within(dialog).getByRole('button', { name: new RegExp(`^${UI_TRANSLATIONS.ru.iSpeak}`) }));
 
       // Switch base -> Indonesian ('id')
       fireEvent.click(within(dialog).getByRole('menuitem', { name: /Bahasa Indonesia/i }));

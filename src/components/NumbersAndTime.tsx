@@ -64,14 +64,39 @@ const NumbersAndTime: React.FC<NumbersAndTimeProps> = ({
       ? getEnglishTimeGuide(baseLanguage)
       : null;
 
+  const targetDir = currentLanguage === 'ar' || currentLanguage === 'ur' ? 'rtl' : 'ltr';
+
+  const handleTabListKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight' && e.key !== 'Home' && e.key !== 'End') return;
+    e.preventDefault();
+    const tabButtons = Array.from(e.currentTarget.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const nextTab = activeTab === 'numbers' ? 'time' : 'numbers';
+    if (e.key === 'Home') {
+      onTabChange('numbers');
+      tabButtons[0]?.focus();
+    } else if (e.key === 'End') {
+      onTabChange('time');
+      tabButtons[1]?.focus();
+    } else {
+      onTabChange(nextTab);
+      tabButtons[nextTab === 'numbers' ? 0 : 1]?.focus();
+    }
+  };
+
   return (
     <div className="numbers-and-time-section">
       <div className="section-tab-container">
-        <div className="section-tab-bar" role="tablist" aria-label="Numbers and Time Navigation">
+        <div
+          className="section-tab-bar"
+          role="tablist"
+          aria-label="Numbers and Time Navigation"
+          onKeyDown={handleTabListKeyDown}
+        >
           <button
             type="button"
             role="tab"
             aria-selected={activeTab === 'numbers'}
+            tabIndex={activeTab === 'numbers' ? 0 : -1}
             className={`section-tab-btn ${activeTab === 'numbers' ? 'active' : ''}`}
             onClick={() => onTabChange('numbers')}
           >
@@ -82,6 +107,7 @@ const NumbersAndTime: React.FC<NumbersAndTimeProps> = ({
             type="button"
             role="tab"
             aria-selected={activeTab === 'time'}
+            tabIndex={activeTab === 'time' ? 0 : -1}
             className={`section-tab-btn ${activeTab === 'time' ? 'active' : ''}`}
             onClick={() => onTabChange('time')}
           >
@@ -95,18 +121,19 @@ const NumbersAndTime: React.FC<NumbersAndTimeProps> = ({
         <div className="time-grammar-guide">
           <div className="guide-header">
             <FaLightbulb className="guide-icon" aria-hidden="true" />
-            <h3>{grammarGuide.headerTitle}</h3>
+            <h2>{grammarGuide.headerTitle}</h2>
           </div>
           <div className="guide-grid">
             {grammarGuide.rules.map((rule, idx) => (
               <div className="guide-card" key={idx}>
                 <span className="guide-badge">{rule.ruleBadge}</span>
-                <h4>{rule.title}</h4>
+                <h3>{rule.title}</h3>
                 <p>{rule.desc}</p>
                 <ul>
                   {rule.items.map((item, itemIdx) => (
                     <li key={itemIdx}>
-                      <strong>{item.label}:</strong> <em>{item.text}</em>
+                      <strong>{item.label}:</strong>{' '}
+                      <em lang={currentLanguage} dir={targetDir}>{item.text}</em>
                     </li>
                   ))}
                 </ul>

@@ -38,8 +38,8 @@ describe('AuthModal', () => {
 
   it('offers all three providers', () => {
     renderModal();
-    expect(screen.getByLabelText('Sign in with Google')).toBeInTheDocument();
-    expect(screen.getByLabelText('Sign in with GitHub')).toBeInTheDocument();
+    expect(screen.getByLabelText('Sign in with Google — Gmail')).toBeInTheDocument();
+    expect(screen.getByLabelText('Sign in with GitHub — 1-Click')).toBeInTheDocument();
     expect(screen.getByLabelText('Sign in with Microsoft Entra ID')).toBeInTheDocument();
   });
 
@@ -69,18 +69,18 @@ describe('AuthModal', () => {
     mocks.signInWithGoogle.mockReturnValue(new Promise((r) => (resolve = r)));
     renderModal();
 
-    fireEvent.click(screen.getByLabelText('Sign in with Google'));
+    fireEvent.click(screen.getByLabelText('Sign in with Google — Gmail'));
     expect(await screen.findByText(/Connecting to Google/i)).toBeInTheDocument();
-    expect(screen.getByLabelText('Sign in with GitHub')).toBeDisabled();
+    expect(screen.getByLabelText('Sign in with GitHub — 1-Click')).toBeDisabled();
     expect(screen.getByLabelText('Sign in with Microsoft Entra ID')).toBeDisabled();
 
     resolve({ error: null });
     await waitFor(() => expect(screen.queryByText(/Connecting to/i)).not.toBeInTheDocument());
-    expect(screen.getByLabelText('Sign in with GitHub')).toBeEnabled();
+    expect(screen.getByLabelText('Sign in with GitHub — 1-Click')).toBeEnabled();
   });
 
   it.each([
-    ['Sign in with GitHub', 'signInWithGithub', 'GitHub'],
+    ['Sign in with GitHub — 1-Click', 'signInWithGithub', 'GitHub'],
     ['Sign in with Microsoft Entra ID', 'signInWithEntra', 'Microsoft'],
   ] as const)('%s calls the matching provider and names it while connecting', async (label, fn, name) => {
     mocks[fn].mockReturnValue(new Promise(() => {}));
@@ -93,25 +93,25 @@ describe('AuthModal', () => {
   it('shows the provider error message and re-enables the buttons', async () => {
     mocks.signInWithGoogle.mockResolvedValue({ error: { message: 'OAuth popup was blocked' } });
     renderModal();
-    fireEvent.click(screen.getByLabelText('Sign in with Google'));
+    fireEvent.click(screen.getByLabelText('Sign in with Google — Gmail'));
     expect(await screen.findByText('OAuth popup was blocked')).toBeInTheDocument();
-    expect(screen.getByLabelText('Sign in with Google')).toBeEnabled();
+    expect(screen.getByLabelText('Sign in with Google — Gmail')).toBeEnabled();
   });
 
   it('falls back to a readable message when the provider throws', async () => {
     mocks.signInWithGithub.mockRejectedValue(new Error(''));
     renderModal();
-    fireEvent.click(screen.getByLabelText('Sign in with GitHub'));
+    fireEvent.click(screen.getByLabelText('Sign in with GitHub — 1-Click'));
     expect(await screen.findByText('Failed to initialize GitHub login')).toBeInTheDocument();
   });
 
   it('clears a previous error when the learner tries again', async () => {
     mocks.signInWithGoogle.mockResolvedValueOnce({ error: { message: 'First failure' } });
     renderModal();
-    fireEvent.click(screen.getByLabelText('Sign in with Google'));
+    fireEvent.click(screen.getByLabelText('Sign in with Google — Gmail'));
     expect(await screen.findByText('First failure')).toBeInTheDocument();
 
-    fireEvent.click(screen.getByLabelText('Sign in with Google'));
+    fireEvent.click(screen.getByLabelText('Sign in with Google — Gmail'));
     await waitFor(() => expect(screen.queryByText('First failure')).not.toBeInTheDocument());
   });
 

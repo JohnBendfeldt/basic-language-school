@@ -18,7 +18,7 @@ describe('About & Contact Component', () => {
     );
 
     // Title and philosophy
-    expect(screen.getByRole('heading', { level: 1, name: /about & contact/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: /about & contact/i })).toBeInTheDocument();
     expect(screen.getByText(/no bulk\. no fluff\. no patronizing\. just learning\./i)).toBeInTheDocument();
     expect(screen.getByText(/genuinely free, ad-free bidirectional learning across 15 languages/i)).toBeInTheDocument();
 
@@ -51,7 +51,7 @@ describe('About & Contact Component', () => {
     fireEvent.click(aboutFooterLink);
 
     await waitFor(() => {
-      expect(screen.getByRole('heading', { level: 1, name: /about & contact/i })).toBeInTheDocument();
+      expect(screen.getByRole('heading', { level: 2, name: /about & contact/i })).toBeInTheDocument();
       expect(window.location.pathname).toBe('/about');
     });
   });
@@ -61,7 +61,7 @@ describe('About & Contact Component', () => {
     render(<App />);
 
     await waitFor(() => {
-      expect(screen.getByRole('heading', { level: 1, name: /about & contact/i })).toBeInTheDocument();
+      expect(screen.getByRole('heading', { level: 2, name: /about & contact/i })).toBeInTheDocument();
     });
   });
 });

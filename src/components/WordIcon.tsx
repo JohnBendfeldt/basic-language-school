@@ -20,6 +20,7 @@ export const TableSVG: React.FC<{ size?: number; className?: string }> = ({ size
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     className={`word-icon-svg word-icon-table ${className}`}
+    role="img"
     aria-label="Table"
   >
     {/* Floor Drop Shadow */}
@@ -55,6 +56,7 @@ export const MeetingBoardSVG: React.FC<{ size?: number; className?: string }> = 
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     className={`word-icon-svg word-icon-meeting ${className}`}
+    role="img"
     aria-label="Meeting Planning Board"
   >
     {/* Easel Stand */}
@@ -83,6 +85,7 @@ export const TeacherSVG: React.FC<{ size?: number; className?: string }> = ({ si
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     className={`word-icon-svg word-icon-teacher ${className}`}
+    role="img"
     aria-label="Teacher"
   >
     <rect x="16" y="8" width="26" height="20" rx="2" fill="#1E293B" stroke="#78350F" strokeWidth="2" />

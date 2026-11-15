@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   FaTimes,
   FaTachometerAlt,
@@ -23,6 +23,7 @@ import AuthModal from './AuthModal';
 import ProgressModal from './ProgressModal';
 import { supabase, signOutUser } from '../services/supabaseClient';
 import { getComponentChrome, getLocalizedAppName, getLocalizedLanguageName } from '../utils/pageDictionary';
+import { useModalAccessibility } from '../hooks/useModalAccessibility';
 
 interface MobileDrawerProps {
   isOpen: boolean;
@@ -216,6 +217,13 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
   const [currentUser, setCurrentUser] = useState<any>(null);
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [progressModalOpen, setProgressModalOpen] = useState(false);
+  const drawerRef = useRef<HTMLElement>(null);
+
+  useModalAccessibility({
+    isOpen,
+    onClose,
+    modalRef: drawerRef,
+  });
 
   // Sync Supabase user only when needed and guard against unmounted updates
   useEffect(() => {
@@ -235,28 +243,6 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
       subscription.unsubscribe();
     };
   }, [isOpen]);
-
-  // Lock background body scroll when drawer is open
-  useEffect(() => {
-    if (isOpen) {
-      const prevOverflow = document.body.style.overflow;
-      document.body.style.overflow = 'hidden';
-      return () => {
-        document.body.style.overflow = prevOverflow;
-      };
-    }
-  }, [isOpen]);
-
-  // Close on Escape key
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
-        onClose();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose]);
 
   if (!isOpen && !authModalOpen && !progressModalOpen) return null;
 
@@ -292,6 +278,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
       {isOpen && (
         <div className="mobile-drawer-backdrop" onClick={onClose} role="presentation">
           <aside
+            ref={drawerRef}
             className="mobile-drawer-panel"
             role="dialog"
             aria-modal="true"
@@ -301,7 +288,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
           {/* Drawer Top Header */}
           <div className="mobile-drawer-header">
             <div className="drawer-app-identity">
-              <span className="drawer-course-flag">
+              <span className="drawer-course-flag" aria-hidden="true">
                 <FlagIcon lang={targetLanguage} size={28} />
               </span>
               <div>
@@ -315,39 +302,38 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
               onClick={onClose}
               aria-label="Close menu"
             >
-              <FaTimes />
+              <FaTimes aria-hidden="true" />
             </button>
           </div>
 
           <div className="mobile-drawer-scrollable">
             {/* Quick Search Action */}
             {onOpenSearch && (
-              <div
+              <button
+                type="button"
                 className="drawer-card drawer-search-card"
                 onClick={() => {
                   onClose();
                   onOpenSearch();
                 }}
-                role="button"
-                tabIndex={0}
               >
                 <div className="drawer-action-content">
-                  <div className="drawer-action-icon search-icon">
-                    <FaSearch />
+                  <div className="drawer-action-icon search-icon" aria-hidden="true">
+                    <FaSearch aria-hidden="true" />
                   </div>
                   <div className="drawer-action-text">
                     <h3>{drawerCopy.searchTitle}</h3>
                     <p>{drawerCopy.searchSubtitle}</p>
                   </div>
                 </div>
-                <span className="drawer-action-arrow">›</span>
-              </div>
+                <span className="drawer-action-arrow" aria-hidden="true">›</span>
+              </button>
             )}
 
             {/* Section 1: Active Language Learning Pair */}
             <div className="drawer-card drawer-pair-card">
               <div className="drawer-card-label">
-                <FaGlobe className="drawer-card-icon" />
+                <FaGlobe className="drawer-card-icon" aria-hidden="true" />
                 <span>{chrome.learningPair}</span>
               </div>
               <div className="drawer-pair-row">
@@ -366,7 +352,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                   title="Swap languages"
                   aria-label="Swap language pair"
                 >
-                  <FaExchangeAlt />
+                  <FaExchangeAlt aria-hidden="true" />
                 </button>
 
                 <div className="drawer-pair-lang">
@@ -382,25 +368,26 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
             {/* Section 2: Audio Playback Speed */}
             <div className="drawer-card">
               <div className="drawer-card-label">
-                <FaTachometerAlt className="drawer-card-icon" />
+                <FaTachometerAlt className="drawer-card-icon" aria-hidden="true" />
                 <span>{chrome.audioPlaybackSpeed}</span>
               </div>
               <p className="drawer-card-desc">
                 {drawerCopy.speedSubtitle}
               </p>
-              <div className="drawer-speed-grid">
+              <div className="drawer-speed-grid" role="group" aria-label={chrome.audioPlaybackSpeed}>
                 {SPEEDS.map((item) => {
                   const isSelected = item.value === speechSpeed;
                   return (
                     <button
                       key={item.value}
                       type="button"
+                      aria-pressed={isSelected}
                       className={`drawer-speed-btn ${isSelected ? 'active' : ''}`}
                       onClick={() => setSpeechSpeed(item.value)}
                     >
                       <span className="drawer-speed-val">{item.label}</span>
                       <span className="drawer-speed-desc">{drawerCopy.speeds[item.key]}</span>
-                      {isSelected && <FaCheck className="drawer-speed-check" />}
+                      {isSelected && <FaCheck className="drawer-speed-check" aria-hidden="true" />}
                     </button>
                   );
                 })}
@@ -408,55 +395,51 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
             </div>
 
             {/* Section 3: Progress & Detailed Stats */}
-            <div className="drawer-card drawer-action-card" onClick={handleOpenProgress} role="button" tabIndex={0}>
+            <button
+              type="button"
+              className="drawer-card drawer-action-card"
+              onClick={handleOpenProgress}
+            >
               <div className="drawer-action-content">
-                <div className="drawer-action-icon progress-icon">
-                  <FaChartLine />
+                <div className="drawer-action-icon progress-icon" aria-hidden="true">
+                  <FaChartLine aria-hidden="true" />
                 </div>
                 <div className="drawer-action-text">
                   <h3>{chrome.myLearningProgress}</h3>
                   <p>{chrome.overallAccuracy} · {chrome.mastered}</p>
                 </div>
               </div>
-              <span className="drawer-action-arrow">›</span>
-            </div>
+              <span className="drawer-action-arrow" aria-hidden="true">›</span>
+            </button>
 
             {/* Section 3b: Offline Audio Courses (Airplane Mode) */}
             {onOpenOfflineAudio && (
-              <div
+              <button
+                type="button"
                 className="drawer-card drawer-offline-card"
                 data-testid="drawer-offline-audio-card"
                 onClick={() => {
                   onClose();
                   onOpenOfflineAudio();
                 }}
-                onKeyDown={(e) => {
-                  if (e.key === ' ' || e.key === 'Enter') {
-                    e.preventDefault();
-                    onClose();
-                    onOpenOfflineAudio();
-                  }
-                }}
-                role="button"
-                tabIndex={0}
               >
                 <div className="drawer-action-content">
-                  <div className="drawer-action-icon offline-icon">
-                    <FaCloudDownloadAlt />
+                  <div className="drawer-action-icon offline-icon" aria-hidden="true">
+                    <FaCloudDownloadAlt aria-hidden="true" />
                   </div>
                   <div className="drawer-action-text">
                     <h3>{drawerCopy.offlineTitle}</h3>
                     <p>{drawerCopy.offlineSubtitle}</p>
                   </div>
                 </div>
-                <span className="drawer-action-arrow">›</span>
-              </div>
+                <span className="drawer-action-arrow" aria-hidden="true">›</span>
+              </button>
             )}
 
             {/* Section 4: Cloud Sync & Account */}
             <div className="drawer-card">
               <div className="drawer-card-label">
-                <FaUser className="drawer-card-icon" />
+                <FaUser className="drawer-card-icon" aria-hidden="true" />
                 <span>{chrome.accountCloudSync}</span>
               </div>
               {currentUser ? (
@@ -470,7 +453,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                     className="drawer-auth-btn sign-out"
                     onClick={handleSignOut}
                   >
-                    <FaSignOutAlt />
+                    <FaSignOutAlt aria-hidden="true" />
                     <span>{chrome.signOut}</span>
                   </button>
                 </div>
@@ -484,7 +467,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                     className="drawer-auth-btn sign-in"
                     onClick={handleOpenAuth}
                   >
-                    <FaSignInAlt />
+                    <FaSignInAlt aria-hidden="true" />
                     <span>{chrome.syncSignIn}</span>
                   </button>
                 </div>
@@ -493,18 +476,22 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
 
             {/* Section 5: PWA Install App (if available) */}
             {installPrompt && (
-              <div className="drawer-card drawer-install-card" onClick={onInstallClick} role="button" tabIndex={0}>
+              <button
+                type="button"
+                className="drawer-card drawer-install-card"
+                onClick={onInstallClick}
+              >
                 <div className="drawer-action-content">
-                  <div className="drawer-action-icon install-icon">
-                    <FaDownload />
+                  <div className="drawer-action-icon install-icon" aria-hidden="true">
+                    <FaDownload aria-hidden="true" />
                   </div>
                   <div className="drawer-action-text">
                     <h3>{chrome.installApp}</h3>
                     <p>{chrome.installAppTitle}</p>
                   </div>
                 </div>
-                <span className="drawer-action-arrow">›</span>
-              </div>
+                <span className="drawer-action-arrow" aria-hidden="true">›</span>
+              </button>
             )}
 
             {/* Section 6: Legal & About Links */}
@@ -517,7 +504,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                   onClose();
                 }}
               >
-                <FaInfoCircle />
+                <FaInfoCircle aria-hidden="true" />
                 <span>{chrome.aboutContact}</span>
               </button>
               <button
@@ -528,7 +515,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                   onClose();
                 }}
               >
-                <FaShieldAlt />
+                <FaShieldAlt aria-hidden="true" />
                 <span>{chrome.privacyPolicy}</span>
               </button>
               <button
@@ -539,13 +526,13 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                   onClose();
                 }}
               >
-                <FaFileContract />
+                <FaFileContract aria-hidden="true" />
                 <span>{chrome.termsOfService}</span>
               </button>
             </div>
 
             <div className="drawer-footer-note">
-              <span>Basic Language School · Free & Open Education</span>
+              <span>Basic Language School · Free &amp; Open Education</span>
             </div>
           </div>
         </aside>

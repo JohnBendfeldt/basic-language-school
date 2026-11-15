@@ -52,7 +52,7 @@ describe('Multi-Script Phonetic Typing, Keyboards & Pill Localization', () => {
       const onClick = vi.fn();
       await renderSettled(<PhoneticKeyboard lang={lang} onLetterClick={onClick} />);
 
-      const spaceBtn = screen.getByRole('button', { name: 'Space' });
+      const spaceBtn = screen.getByRole('button', { name: /^Space — / });
       const backBtn = screen.getByRole('button', { name: 'Backspace' });
       const clearBtn = screen.getByRole('button', { name: 'Clear' });
 
@@ -251,7 +251,7 @@ describe('Multi-Script Phonetic Typing, Keyboards & Pill Localization', () => {
 
     // Also verify wrong-answer feedback in Chinese has localized 发音: (never Meaning:) and 我答对了 (never I was right)
     fireEvent.change(input, { target: { value: 'ж', selectionStart: 1 } });
-    fireEvent.click(screen.getByRole('button', { name: '检查答案' }));
+    fireEvent.click(screen.getByRole('button', { name: /^检查答案/ }));
     await settle();
 
     const drawerText = document.querySelector('.quiz-feedback-drawer')?.textContent || '';

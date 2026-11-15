@@ -29,7 +29,7 @@ export const GERMAN_GRAMMAR: GrammarData = {
     {
       article: 'die',
       gender: 'feminine',
-      color: '#dc2626',
+      color: '#b91c1c',
       name: 'Feminin (die)',
       description: 'Feminine nouns take "die" in the nominative case. Most two-syllable nouns ending in -e and abstract nouns belong here.',
       rules: [
@@ -50,7 +50,7 @@ export const GERMAN_GRAMMAR: GrammarData = {
     {
       article: 'das',
       gender: 'neuter',
-      color: '#16a34a',
+      color: '#15803d',
       name: 'Neutrum (das)',
       description: 'Neuter nouns take "das" in the nominative case. Diminutives, infinitive nouns, and metals belong here.',
       rules: [
@@ -436,7 +436,7 @@ export const RUSSIAN_GRAMMAR: GrammarData = {
     {
       article: 'она',
       gender: 'feminine',
-      color: '#dc2626',
+      color: '#b91c1c',
       name: 'Женский род (она)',
       description: 'Feminine nouns in Russian typically end in the vowel letters -а or -я, or soft sign -ь.',
       rules: [
@@ -454,7 +454,7 @@ export const RUSSIAN_GRAMMAR: GrammarData = {
     {
       article: 'оно',
       gender: 'neuter',
-      color: '#16a34a',
+      color: '#15803d',
       name: 'Средний род (оно)',
       description: 'Neuter nouns in Russian typically end in the vowel letters -о or -е (or -мя).',
       rules: [
@@ -684,7 +684,7 @@ export const SPANISH_GRAMMAR: GrammarData = {
     {
       article: 'la',
       gender: 'feminine',
-      color: '#dc2626',
+      color: '#b91c1c',
       name: 'Femenino (la)',
       description: 'Feminine nouns in Spanish typically end in -a, -ción, -sión, -dad, -tad.',
       rules: [
@@ -895,7 +895,7 @@ export const FRENCH_GRAMMAR: GrammarData = {
     {
       article: 'la',
       gender: 'feminine',
-      color: '#dc2626',
+      color: '#b91c1c',
       name: 'Féminin (la / l\')',
       description: 'Feminine nouns take "la" (or "l\'" before a vowel/silent h).',
       rules: [
@@ -1077,7 +1077,7 @@ export const PORTUGUESE_GRAMMAR: GrammarData = {
     {
       article: 'a',
       gender: 'feminine',
-      color: '#dc2626',
+      color: '#b91c1c',
       name: 'Feminino (a / as)',
       description: 'Feminine nouns in Portuguese typically end in -a, -ção, -dade.',
       rules: [
@@ -2173,7 +2173,7 @@ export const HINDI_GRAMMAR: GrammarData = {
     {
       article: 'पुल्लिंग (Masculine)',
       gender: 'masculine',
-      color: '#3b82f6',
+      color: '#1d4ed8',
       name: 'Masculine Nouns (पुल्लिंग)',
       description: 'Hindi nouns are divided into two grammatical genders: Masculine and Feminine. Most masculine nouns end in -ā (आ) in singular and change to -e (ए) in plural.',
       rules: [
@@ -2191,7 +2191,7 @@ export const HINDI_GRAMMAR: GrammarData = {
     {
       article: 'स्त्रीलिंग (Feminine)',
       gender: 'feminine',
-      color: '#ec4899',
+      color: '#be185d',
       name: 'Feminine Nouns (स्त्रीलिंग)',
       description: 'Nouns ending in -ī (ई), -iyā (इया), or -t (त) are typically feminine. Plural forms take -iyā̃ (इयाँ) or -ẽ (एं).',
       rules: [
@@ -2413,7 +2413,7 @@ export const ARABIC_GRAMMAR: GrammarData = {
     {
       article: 'مذكر (Masculine)',
       gender: 'masculine',
-      color: '#3b82f6',
+      color: '#1d4ed8',
       name: 'Masculine Nouns (الأسماء المذكرة)',
       description: 'Arabic nouns are masculine by default unless they have a feminine marker. Demonstrative pronoun is "هذا" (haadhaa - this).',
       rules: [
@@ -2431,7 +2431,7 @@ export const ARABIC_GRAMMAR: GrammarData = {
     {
       article: 'مؤنث (Feminine)',
       gender: 'feminine',
-      color: '#ec4899',
+      color: '#be185d',
       name: 'Feminine Nouns (الأسماء المؤنثة)',
       description: 'Nouns ending in Taa Marbuta (ـة / ة) are feminine. Demonstrative pronoun is "هذه" (haadhihi - this).',
       rules: [
@@ -2681,7 +2681,7 @@ export const BENGALI_GRAMMAR: GrammarData = {
     {
       article: 'বহুবচন (-গুলো / -রা)',
       gender: 'plural',
-      color: '#16a34a',
+      color: '#15803d',
       name: 'Plural Enclitics (-গুলো / -রা)',
       description: 'Plurals in Bengali are formed with enclitics attached to nouns. Inanimate objects take -গুলো (-gulo), while human beings take -রা (-ra) in the nominative case.',
       rules: [
@@ -2950,7 +2950,7 @@ export const URDU_GRAMMAR: GrammarData = {
     {
       article: 'مؤنث (Feminine)',
       gender: 'feminine',
-      color: '#ec4899',
+      color: '#be185d',
       name: 'Feminine Nouns (مؤنث)',
       description: 'Nouns ending in -ee (ی), -at (ت), or -ish (ش) are typically feminine. Plural forms take -aan (یاں) or -ein (یں).',
       rules: [
