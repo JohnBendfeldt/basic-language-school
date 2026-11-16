@@ -610,6 +610,17 @@ const AppContent: React.FC = () => {
             }}
           >
             {chrome.termsOfService}
+          </a>{' '}
+          ·{' '}
+          <a
+            href="https://github.com/JohnBendfeldt/basic-language-school"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-link"
+            lang={baseLanguage !== 'en' ? 'en' : undefined}
+            dir={baseLanguage !== 'en' ? 'ltr' : undefined}
+          >
+            GitHub
           </a>
         </p>
       </footer>

@@ -51,6 +51,10 @@ describe('MobileDrawer Component', () => {
     // Section 5: Legal links
     expect(screen.getByRole('button', { name: /privacy policy/i })).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /terms of service/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /github repository/i })).toHaveAttribute(
+      'href',
+      'https://github.com/JohnBendfeldt/basic-language-school'
+    );
   });
 
   it('calls onClose when clicking close button or pressing Escape', () => {

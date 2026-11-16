@@ -14,7 +14,8 @@ import {
   FaCloudDownloadAlt,
   FaCheck,
   FaGlobe,
-  FaSearch
+  FaSearch,
+  FaGithub
 } from 'react-icons/fa';
 import { useLanguage, SpeechSpeed } from '../contexts/LanguageContext';
 import { SupportedLanguageId } from '../data/languages/types';
@@ -22,7 +23,7 @@ import { FlagIcon } from './FlagIcon';
 import AuthModal from './AuthModal';
 import ProgressModal from './ProgressModal';
 import { supabase, signOutUser } from '../services/supabaseClient';
-import { getComponentChrome, getLocalizedAppName, getLocalizedLanguageName } from '../utils/pageDictionary';
+import { getComponentChrome, getGithubRepoLabel, getLocalizedAppName, getLocalizedLanguageName } from '../utils/pageDictionary';
 import { useModalAccessibility } from '../hooks/useModalAccessibility';
 
 interface MobileDrawerProps {
@@ -529,6 +530,16 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                 <FaFileContract aria-hidden="true" />
                 <span>{chrome.termsOfService}</span>
               </button>
+              <a
+                href="https://github.com/JohnBendfeldt/basic-language-school"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="drawer-legal-link"
+                onClick={() => onClose()}
+              >
+                <FaGithub aria-hidden="true" />
+                <span>{getGithubRepoLabel(baseLanguage)}</span>
+              </a>
             </div>
 
             <div className="drawer-footer-note">

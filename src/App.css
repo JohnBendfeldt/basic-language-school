@@ -6597,6 +6597,7 @@ html {
   border: none;
   font-size: 0.88rem;
   color: #334155;
+  text-decoration: none;
   cursor: pointer;
   text-align: start;
   transition: background 0.15s;
@@ -9487,24 +9488,26 @@ button.drawer-card {
 }
 
 .drawer-legal-links {
-  display: flex;
-  gap: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
   padding-top: 0.25rem;
 }
 
 .drawer-legal-link {
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  padding: 0.55rem;
+  padding: 0.55rem 0.5rem;
   border-radius: 8px;
   background: transparent;
   border: 1px solid #e2e8f0;
   color: #475569;
   font-size: 0.75rem;
   font-weight: 600;
+  text-decoration: none;
+  text-align: center;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -9650,7 +9653,7 @@ button.drawer-card {
 }
 
 .about-contact-box .contact-value a {
-  color: #4a5af4;
+  color: #1e40af;
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -9658,6 +9661,69 @@ button.drawer-card {
 
 .about-contact-box .contact-value a:hover {
   text-decoration: underline;
+}
+
+.about-repos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 2rem;
+}
+
+.about-repo-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.6rem;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 1.1rem 1.2rem;
+  text-decoration: none;
+  color: #0f172a;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.about-repo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  border-color: #94a3b8;
+}
+
+.about-repo-card:focus-visible {
+  outline: 2px solid #1e40af;
+  outline-offset: 2px;
+}
+
+.about-repo-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.about-repo-icon {
+  font-size: 1.15rem;
+  color: #0f172a;
+  flex-shrink: 0;
+}
+
+.about-repo-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.about-repo-desc {
+  font-size: 0.88rem;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.about-repo-slug {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1e40af;
+  margin-top: 0.15rem;
 }
 
 .about-legal-footer {

@@ -5,7 +5,7 @@ import { ProgressService } from '../services/progressService';
 import { useLanguage } from '../contexts/LanguageContext';
 import AuthModal from './AuthModal';
 import ProgressModal from './ProgressModal';
-import { getComponentChrome } from '../utils/pageDictionary';
+import { getComponentChrome, getGithubRepoLabel } from '../utils/pageDictionary';
 
 interface UserMenuProps {
   onNavigate?: (section: string) => void;
@@ -15,6 +15,7 @@ interface UserMenuProps {
 export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = null }) => {
   const { currentLanguage, baseLanguage } = useLanguage();
   const chrome = getComponentChrome(baseLanguage);
+  const githubRepoLabel = getGithubRepoLabel(baseLanguage);
   const [currentUser, setCurrentUser] = useState<any>(initialUser);
   const [menuOpen, setMenuOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
@@ -57,7 +58,7 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
   useEffect(() => {
     if (!menuOpen) return;
 
-    const firstItem = menuContainerRef.current?.querySelector<HTMLButtonElement>('[role="menuitem"]');
+    const firstItem = menuContainerRef.current?.querySelector<HTMLElement>('[role="menuitem"]');
     firstItem?.focus({ preventScroll: true });
 
     const handleClickOutside = (event: MouseEvent) => {
@@ -81,9 +82,9 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
   }, [menuOpen]);
 
   const handleMenuKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    const items = Array.from(e.currentTarget.querySelectorAll<HTMLButtonElement>('[role="menuitem"]'));
+    const items = Array.from(e.currentTarget.querySelectorAll<HTMLElement>('[role="menuitem"]'));
     if (!items.length) return;
-    const currentIdx = items.indexOf(document.activeElement as HTMLButtonElement);
+    const currentIdx = items.indexOf(document.activeElement as HTMLElement);
     if (e.key === 'ArrowDown') {
       e.preventDefault();
       items[(currentIdx + 1) % items.length]?.focus();
@@ -226,6 +227,18 @@ export const UserMenu: React.FC<UserMenuProps> = ({ onNavigate, initialUser = nu
                   <FaChartLine aria-hidden="true" />
                   <span>{chrome.myLearningProgress}</span>
                 </button>
+
+                <a
+                  href="https://github.com/JohnBendfeldt/basic-language-school"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  role="menuitem"
+                  className="dropdown-item"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <FaGithub aria-hidden="true" />
+                  <span>{githubRepoLabel}</span>
+                </a>
 
                 {onNavigate && (
                   <>
