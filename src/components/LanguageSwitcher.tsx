@@ -525,7 +525,18 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
                         >
                           dev@basiclanguage.school
                         </a>{' '}
-                        {requestCopy.after}
+                        {requestCopy.after}{' '}
+                        <a
+                          href="https://github.com/JohnBendfeldt/basic-language-school"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="request-email-link"
+                          lang={baseLanguage !== 'en' ? 'en' : undefined}
+                          dir={baseLanguage !== 'en' ? 'ltr' : undefined}
+                        >
+                          {requestCopy.githubLabel}
+                        </a>
+                        {requestCopy.closing}
                       </p>
                     </div>
                   </div>

@@ -33,9 +33,44 @@ const TermsOfService: React.FC<TermsOfServiceProps> = ({ onNavigate }) => {
         {t.sections.map((sec, idx) => (
           <React.Fragment key={idx}>
             <h3>{sec.heading}</h3>
-            {sec.paragraphs.map((p, pIdx) => (
-              <p key={pIdx}>{p}</p>
-            ))}
+            {sec.paragraphs.map((p, pIdx) => {
+              const mitRegex = /(MIT License|Licencia MIT|licence MIT|лицензии MIT|licença MIT|MIT-Lizenz|Lisensi MIT|MIT Lisansı|MITライセンス|MIT 许可证|MIT लाइसेंस|MIT 라이선스|ترخيص MIT|MIT লাইসেন্স|MIT لائسنس)/;
+              const match = p.match(mitRegex);
+              if (!match) {
+                return <p key={pIdx}>{p}</p>;
+              }
+              const [beforeMit, afterMit] = p.split(match[0]);
+              const ghIndex = afterMit.indexOf('GitHub');
+              return (
+                <p key={pIdx}>
+                  {beforeMit}
+                  <a
+                    href="https://github.com/JohnBendfeldt/basic-language-school/blob/main/LICENSE"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {match[0]}
+                  </a>
+                  {ghIndex >= 0 ? (
+                    <>
+                      {afterMit.slice(0, ghIndex)}
+                      <a
+                        href="https://github.com/JohnBendfeldt/basic-language-school"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        lang={englishPassageLang}
+                        dir={englishPassageLang ? 'ltr' : undefined}
+                      >
+                        GitHub
+                      </a>
+                      {afterMit.slice(ghIndex + 'GitHub'.length)}
+                    </>
+                  ) : (
+                    afterMit
+                  )}
+                </p>
+              );
+            })}
             {sec.listItems && sec.listItems.length > 0 && (
               <ul>
                 {sec.listItems.map((li, lIdx) => (
@@ -52,7 +87,15 @@ const TermsOfService: React.FC<TermsOfServiceProps> = ({ onNavigate }) => {
           <strong>Basic Language School</strong><br />
           Attn: John Bendfeldt<br />
           Email: <a href="mailto:dev@basiclanguage.school">dev@basiclanguage.school</a><br />
-          Website: <a href="https://basiclanguage.school">https://basiclanguage.school</a>
+          Website: <a href="https://basiclanguage.school">https://basiclanguage.school</a><br />
+          GitHub:{' '}
+          <a
+            href="https://github.com/JohnBendfeldt/basic-language-school"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            github.com/JohnBendfeldt/basic-language-school
+          </a>
         </p>
 
         <div className="legal-page-footer">

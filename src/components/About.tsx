@@ -7,6 +7,40 @@ interface AboutProps {
   onNavigate: (section: string) => void;
 }
 
+interface OpenSourceRepoItem {
+  name: string;
+  slug: string;
+  url: string;
+  description: string;
+}
+
+const OPEN_SOURCE_REPOS: OpenSourceRepoItem[] = [
+  {
+    name: 'Basic Language School',
+    slug: 'JohnBendfeldt/basic-language-school',
+    url: 'https://github.com/JohnBendfeldt/basic-language-school',
+    description: 'Multi-language PWA hub with 15 languages, 210 bidirectional pairs, offline audio packs, and phonetic keyboards.',
+  },
+  {
+    name: 'Basic English',
+    slug: 'JohnBendfeldt/basic-english',
+    url: 'https://github.com/JohnBendfeldt/basic-english',
+    description: 'Standalone English alphabet, phonics, numbers, and vocabulary PWA (basicenglish.school).',
+  },
+  {
+    name: 'Basic French',
+    slug: 'JohnBendfeldt/basic-french',
+    url: 'https://github.com/JohnBendfeldt/basic-french',
+    description: 'Standalone French phonetics, numbers, time, and accent-forgiving quiz PWA (basicfrench.org).',
+  },
+  {
+    name: 'Basic Russian',
+    slug: 'JohnBendfeldt/basic-russian',
+    url: 'https://github.com/JohnBendfeldt/basic-russian',
+    description: 'Standalone Russian & Cyrillic PWA with virtual keyboard and live Latin-to-Cyrillic transliteration (basicrussian.org).',
+  },
+];
+
 export const About: React.FC<AboutProps> = ({ onNavigate }) => {
   const { baseLanguage } = useLanguage();
   const t = ABOUT_TRANSLATIONS[baseLanguage] || ABOUT_TRANSLATIONS.en;
@@ -95,16 +129,47 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
               <FaGithub className="contact-icon" aria-hidden="true" /> {t.contactBugsLabel}
             </span>
             <span className="contact-value" lang={englishPassageLang} dir={englishPassageLang ? 'ltr' : undefined}>
-              Send questions, audio suggestions, or bug reports anytime to <a href="mailto:dev@basiclanguage.school">dev@basiclanguage.school</a>
+              Open an issue or pull request on{' '}
+              <a
+                href="https://github.com/JohnBendfeldt/basic-language-school/issues"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub Issues
+              </a>{' '}
+              or email <a href="mailto:dev@basiclanguage.school">dev@basiclanguage.school</a>
             </span>
           </div>
         </div>
 
-        {/* Section 5: Open Source & Roadmap */}
+        {/* Section 5: Open Source & GitHub Repositories */}
         <h3>{t.communityTitle}</h3>
         {t.communityParagraphs.map((cp, idx) => (
           <p key={idx}>{cp}</p>
         ))}
+
+        <div
+          className="about-repos-grid"
+          lang={englishPassageLang}
+          dir={englishPassageLang ? 'ltr' : undefined}
+        >
+          {OPEN_SOURCE_REPOS.map((repo) => (
+            <a
+              key={repo.slug}
+              href={repo.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="about-repo-card"
+            >
+              <span className="about-repo-header">
+                <FaGithub className="about-repo-icon" aria-hidden="true" />
+                <span className="about-repo-title">{repo.name}</span>
+              </span>
+              <span className="about-repo-desc">{repo.description}</span>
+              <span className="about-repo-slug">{repo.slug} ↗</span>
+            </a>
+          ))}
+        </div>
 
         {/* Footer Legal Prompt */}
         <div className="legal-page-footer about-legal-footer">

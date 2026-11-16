@@ -5045,26 +5045,138 @@ export const getRelaxedAndBriskSpeedLabels = (baseLang: SupportedLanguageId): { 
   return table[baseLang] ?? table.en;
 };
 
+/** Localized label for the GitHub repository link in menus and drawers. */
+export const getGithubRepoLabel = (baseLang: SupportedLanguageId): string => {
+  const table: Record<SupportedLanguageId, string> = {
+    en: 'GitHub Repository',
+    es: 'Repositorio en GitHub',
+    fr: 'Dépôt GitHub',
+    ru: 'Репозиторий GitHub',
+    pt: 'Repositório no GitHub',
+    de: 'GitHub-Repository',
+    id: 'Repositori GitHub',
+    tr: 'GitHub Deposu',
+    ja: 'GitHub リポジトリ',
+    ko: 'GitHub 저장소',
+    zh: 'GitHub 开源仓库',
+    hi: 'GitHub रिपॉज़िटरी',
+    ar: 'مستودع GitHub',
+    bn: 'GitHub রিপোজিটরি',
+    ur: 'GitHub ریپوزٹری',
+  };
+  return table[baseLang] ?? table.en;
+};
+
 /** Text of the "Request a Language" note shown at the bottom of the language picker. */
 export const getLanguageRequestCopy = (
   baseLang: SupportedLanguageId
-): { title: string; before: string; after: string } => {
-  const table: Record<SupportedLanguageId, { title: string; before: string; after: string }> = {
-    en: { title: 'Request a Language', before: "Have a language you'd love to learn? Email", after: 'to request it. Once this project is open source, community contributions will enable support for even more languages!' },
-    es: { title: 'Solicita un idioma', before: '¿Hay un idioma que te gustaría aprender? Escribe a', after: 'para pedirlo. ¡Cuando este proyecto sea de código abierto, las contribuciones de la comunidad permitirán aún más idiomas!' },
-    fr: { title: 'Demandez une langue', before: 'Une langue que vous aimeriez apprendre ? Écrivez à', after: 'pour la demander. Une fois ce projet open source, les contributions de la communauté permettront d’ajouter encore plus de langues !' },
-    ru: { title: 'Запросить язык', before: 'Хотите изучать другой язык? Напишите на', after: 'и мы рассмотрим запрос. Когда проект станет открытым, вклад сообщества позволит добавить ещё больше языков!' },
-    pt: { title: 'Peça um idioma', before: 'Quer aprender outro idioma? Escreva para', after: 'para solicitá-lo. Quando o projeto for de código aberto, as contribuições da comunidade permitirão ainda mais idiomas!' },
-    de: { title: 'Sprache anfragen', before: 'Möchtest du eine andere Sprache lernen? Schreibe an', after: 'um sie anzufragen. Sobald das Projekt Open Source ist, ermöglichen Beiträge der Community noch mehr Sprachen!' },
-    id: { title: 'Minta Bahasa', before: 'Ingin belajar bahasa lain? Kirim email ke', after: 'untuk memintanya. Setelah proyek ini open source, kontribusi komunitas akan menghadirkan lebih banyak bahasa!' },
-    tr: { title: 'Dil Talep Et', before: 'Öğrenmek istediğiniz başka bir dil mi var? Şu adrese yazın:', after: 'Bu proje açık kaynak olduğunda topluluk katkılarıyla daha da fazla dil desteklenecek!' },
-    ja: { title: '言語をリクエスト', before: '学びたい言語はありますか？こちらにメールしてください：', after: 'このプロジェクトがオープンソースになれば、コミュニティの協力でさらに多くの言語に対応できます！' },
-    ko: { title: '언어 요청', before: '배우고 싶은 언어가 있나요? 이메일을 보내 주세요:', after: '이 프로젝트가 오픈 소스가 되면 커뮤니티 기여로 더 많은 언어를 지원할 수 있습니다!' },
-    zh: { title: '申请新语言', before: '想学习其他语言吗？请发送邮件至', after: '提出申请。项目开源后，社区贡献将支持更多语言！' },
-    hi: { title: 'भाषा का अनुरोध करें', before: 'कोई और भाषा सीखना चाहते हैं? ईमेल करें:', after: 'अनुरोध करने के लिए। प्रोजेक्ट के ओपन सोर्स होने पर समुदाय के योगदान से और भी भाषाएँ जुड़ेंगी!' },
-    ar: { title: 'اطلب لغة', before: 'هل ترغب في تعلّم لغة أخرى؟ راسلنا على', after: 'لطلبها. وعندما يصبح المشروع مفتوح المصدر ستتيح مساهمات المجتمع دعم المزيد من اللغات!' },
-    bn: { title: 'ভাষার অনুরোধ করুন', before: 'অন্য কোনো ভাষা শিখতে চান? ইমেইল করুন:', after: 'অনুরোধ জানাতে। প্রকল্পটি ওপেন সোর্স হলে কমিউনিটির অবদানে আরও ভাষা যুক্ত হবে!' },
-    ur: { title: 'زبان کی درخواست کریں', before: 'کوئی اور زبان سیکھنا چاہتے ہیں؟ ای میل کریں:', after: 'درخواست کے لیے۔ پروجیکٹ اوپن سورس ہونے پر کمیونٹی کے تعاون سے مزید زبانیں شامل ہوں گی!' },
+): { title: string; before: string; after: string; githubLabel: string; closing: string } => {
+  const table: Record<SupportedLanguageId, { title: string; before: string; after: string; githubLabel: string; closing: string }> = {
+    en: {
+      title: 'Request a Language',
+      before: "Have a language you'd love to learn? Email",
+      after: 'or open an issue or pull request on',
+      githubLabel: 'GitHub',
+      closing: ' — this project is open source and welcomes community contributions!',
+    },
+    es: {
+      title: 'Solicita un idioma',
+      before: '¿Hay un idioma que te gustaría aprender? Escribe a',
+      after: 'o abre un issue o pull request en',
+      githubLabel: 'GitHub',
+      closing: ': ¡este proyecto es de código abierto y da la bienvenida a las contribuciones de la comunidad!',
+    },
+    fr: {
+      title: 'Demandez une langue',
+      before: 'Une langue que vous aimeriez apprendre ? Écrivez à',
+      after: 'ou ouvrez une issue ou une pull request sur',
+      githubLabel: 'GitHub',
+      closing: ' — ce projet est open source et accueille les contributions de la communauté !',
+    },
+    ru: {
+      title: 'Запросить язык',
+      before: 'Хотите изучать другой язык? Напишите на',
+      after: 'или создайте Issue / Pull Request на',
+      githubLabel: 'GitHub',
+      closing: ' — проект полностью открыт и рад вкладу сообщества!',
+    },
+    pt: {
+      title: 'Peça um idioma',
+      before: 'Quer aprender outro idioma? Escreva para',
+      after: 'ou abra uma issue ou pull request no',
+      githubLabel: 'GitHub',
+      closing: ' — este projeto é de código aberto e recebe contribuições da comunidade!',
+    },
+    de: {
+      title: 'Sprache anfragen',
+      before: 'Möchtest du eine andere Sprache lernen? Schreibe an',
+      after: 'oder erstelle ein Issue bzw. einen Pull Request auf',
+      githubLabel: 'GitHub',
+      closing: ' – dieses Projekt ist Open Source und freut sich über Beiträge der Community!',
+    },
+    id: {
+      title: 'Minta Bahasa',
+      before: 'Ingin belajar bahasa lain? Kirim email ke',
+      after: 'atau buat issue maupun pull request di',
+      githubLabel: 'GitHub',
+      closing: ' — proyek ini bersifat open source dan menyambut kontribusi komunitas!',
+    },
+    tr: {
+      title: 'Dil Talep Et',
+      before: 'Öğrenmek istediğiniz başka bir dil mi var? Şu adrese yazın:',
+      after: 'veya doğrudan',
+      githubLabel: 'GitHub',
+      closing: ' üzerinden bir issue ya da pull request açın — bu açık kaynaklı proje topluluk katkılarını bekliyor!',
+    },
+    ja: {
+      title: '言語をリクエスト',
+      before: '学びたい言語はありますか？メール（',
+      after: '）または',
+      githubLabel: 'GitHub',
+      closing: ' の Issue・Pull Request からお気軽にお知らせください。オープンソースとしてコミュニティの貢献を歓迎しています！',
+    },
+    ko: {
+      title: '언어 요청',
+      before: '배우고 싶은 언어가 있나요? 이메일(',
+      after: ')을 보내거나',
+      githubLabel: 'GitHub',
+      closing: '에서 Issue 및 Pull Request를 열어 주세요 — 오픈소스 프로젝트로서 커뮤니티 기여를 환영합니다!',
+    },
+    zh: {
+      title: '申请新语言',
+      before: '想学习其他语言吗？请发送邮件至',
+      after: '或在',
+      githubLabel: 'GitHub',
+      closing: ' 提交 Issue 与 Pull Request——本项目现已开源，欢迎社区共同贡献更多语言！',
+    },
+    hi: {
+      title: 'भाषा का अनुरोध करें',
+      before: 'कोई और भाषा सीखना चाहते हैं? ईमेल करें:',
+      after: 'या',
+      githubLabel: 'GitHub',
+      closing: ' पर Issue अथवा Pull Request खोलें — यह ओपन-सोर्स प्रोजेक्ट समुदाय के योगदान का स्वागत करता है!',
+    },
+    ar: {
+      title: 'اطلب لغة',
+      before: 'هل ترغب في تعلّم لغة أخرى؟ راسلنا على',
+      after: 'أو افتح طلب مساهمة (Issue / PR) على',
+      githubLabel: 'GitHub',
+      closing: ' — فالمشروع مفتوح المصدر ويرحب بمساهمات المجتمع!',
+    },
+    bn: {
+      title: 'ভাষার অনুরোধ করুন',
+      before: 'অন্য কোনো ভাষা শিখতে চান? ইমেইল করুন:',
+      after: 'অথবা',
+      githubLabel: 'GitHub',
+      closing: '-এ Issue বা Pull Request খুলুন — এই ওপেন সোর্স প্রকল্পে কমিউনিটির অবদান স্বাগত!',
+    },
+    ur: {
+      title: 'زبان کی درخواست کریں',
+      before: 'کوئی اور زبان سیکھنا چاہتے ہیں؟ ای میل کریں:',
+      after: 'یا',
+      githubLabel: 'GitHub',
+      closing: ' پر Issue یا Pull Request کھولیں — یہ اوپن سورس پروجیکٹ کمیونٹی کے تعاون کا خیرمقدم کرتا ہے!',
+    },
   };
   return table[baseLang] ?? table.en;
 };

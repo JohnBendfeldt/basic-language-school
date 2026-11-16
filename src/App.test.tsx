@@ -93,4 +93,37 @@ describe('App', () => {
       expect(screen.getByRole('heading', { name: /telling time & time phrases/i, level: 2 })).toBeInTheDocument();
     });
   });
+
+  test('renders GitHub links in footer, Terms of Service, and About page (including sister repos)', async () => {
+    render(<App />);
+    const footerGithubLink = screen.getByRole('link', { name: /^GitHub$/i });
+    expect(footerGithubLink).toHaveAttribute('href', 'https://github.com/JohnBendfeldt/basic-language-school');
+    expect(footerGithubLink).toHaveAttribute('rel', 'noopener noreferrer');
+
+    fireEvent.click(screen.getByRole('link', { name: /terms of service/i }));
+    await waitFor(() => {
+      expect(screen.getByRole('heading', { name: 'Terms of Service', level: 2 })).toBeInTheDocument();
+    });
+    expect(screen.getByRole('link', { name: /MIT License/i })).toHaveAttribute(
+      'href',
+      'https://github.com/JohnBendfeldt/basic-language-school/blob/main/LICENSE'
+    );
+
+    fireEvent.click(screen.getByRole('link', { name: /about & contact/i }));
+    await waitFor(() => {
+      expect(screen.getByRole('heading', { name: 'About & Contact', level: 2 })).toBeInTheDocument();
+    });
+
+    for (const repoUrl of [
+      'https://github.com/JohnBendfeldt/basic-language-school',
+      'https://github.com/JohnBendfeldt/basic-english',
+      'https://github.com/JohnBendfeldt/basic-french',
+      'https://github.com/JohnBendfeldt/basic-russian',
+    ]) {
+      const matchingLinks = screen
+        .getAllByRole('link')
+        .filter((el) => el.getAttribute('href') === repoUrl);
+      expect(matchingLinks.length).toBeGreaterThanOrEqual(1);
+    }
+  });
 });

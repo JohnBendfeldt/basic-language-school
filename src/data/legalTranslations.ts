@@ -51,7 +51,7 @@ export const TERMS_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
       {
         heading: '4. Intellectual Property',
         paragraphs: [
-          'The code for Basic Language School is open source under the MIT License. The audio assets, learning design, and trademarks belong to their respective creators and operators.'
+          'The code for Basic Language School is open source under the MIT License on GitHub. The audio assets, learning design, and trademarks belong to their respective creators and operators.'
         ]
       },
       {
@@ -720,7 +720,13 @@ export const TERMS_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
         ]
       },
       {
-        heading: '৩. দায়মুক্তি ও ওয়ারেন্টি',
+        heading: '৩. মেধাস্বত্ব ও ওপেন সোর্স',
+        paragraphs: [
+          'Basic Language School-এর সোর্স কোড GitHub-এ MIT লাইসেন্সের অধীনে ওপেন সোর্স হিসেবে প্রকাশিত।'
+        ]
+      },
+      {
+        heading: '৪. দায়মুক্তি ও ওয়ারেন্টি',
         paragraphs: [
           'সেবাটি "যেমন আছে" সেভাবেই কোনো প্রকার আনুষ্ঠানিক ওয়্যারেন্টি ব্যতিরেকে প্রদান করা হচ্ছে।'
         ]
@@ -750,7 +756,13 @@ export const TERMS_TRANSLATIONS: Record<SupportedLanguageId, LegalContent> = {
         ]
       },
       {
-        heading: '3. دستبرداری',
+        heading: '3. دانشورانہ ملکیت اور اوپن سورس',
+        paragraphs: [
+          'بیسک لینگویج اسکول کا سورس کوڈ GitHub پر MIT لائسنس کے تحت اوپن سورس ہے۔'
+        ]
+      },
+      {
+        heading: '4. دستبرداری',
         paragraphs: [
           'یہ خدمات بلا کسی ضمانت کے "جیسی ہیں" فراہم کی جاتی ہیں۔'
         ]

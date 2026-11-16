@@ -133,6 +133,8 @@ describe('UserMenu - signed in', () => {
     fireEvent.click(screen.getByLabelText('User menu for Maria Lopez'));
     expect(screen.queryByText('Sign Out')).not.toBeInTheDocument();
     expect(screen.queryByText('My Progress & Stats')).not.toBeInTheDocument();
+    const ghLink = screen.getByRole('menuitem', { name: /Репозиторий GitHub/i });
+    expect(ghLink).toHaveAttribute('href', 'https://github.com/JohnBendfeldt/basic-language-school');
   });
 
   describe('legal navigation', () => {

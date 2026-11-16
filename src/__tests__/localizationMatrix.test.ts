@@ -11,6 +11,7 @@ import {
   getLocalizedLanguageName,
   getTimeTabs,
   getLanguageRequestCopy,
+  getGithubRepoLabel,
   LanguageRegionKey,
 } from '../utils/pageDictionary';
 import { LANGUAGE_NAMES_IN_BASE } from '../utils/translationResolver';
@@ -103,20 +104,25 @@ describe('UI localization matrix across all 15 base languages', () => {
   });
 });
 
-describe('Language request note', () => {
-  it.each(ALL)('%s: has a title and text around the email address', (lang) => {
+describe('Language request note & GitHub repository label', () => {
+  it.each(ALL)('%s: has a title, GitHub label, and text around the email address', (lang) => {
     const copy = getLanguageRequestCopy(lang);
     expect(copy.title.trim()).not.toBe('');
     expect(copy.before.trim()).not.toBe('');
+    expect(copy.githubLabel.trim()).not.toBe('');
     expect(copy.after.trim()).not.toBe('');
+    expect(copy.closing.trim()).not.toBe('');
+    expect(getGithubRepoLabel(lang).trim()).not.toBe('');
   });
 
   it.each(NON_LATIN)('%s: is not left in English', (lang) => {
     expect(getLanguageRequestCopy(lang).title).not.toBe(getLanguageRequestCopy('en').title);
+    expect(getGithubRepoLabel(lang)).not.toBe(getGithubRepoLabel('en'));
   });
 
   it('falls back to English for an unknown language', () => {
     expect(getLanguageRequestCopy('xx' as SupportedLanguageId).title).toBe('Request a Language');
+    expect(getGithubRepoLabel('xx' as SupportedLanguageId)).toBe('GitHub Repository');
   });
 });
 

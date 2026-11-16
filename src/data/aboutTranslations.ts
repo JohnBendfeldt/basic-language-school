@@ -76,10 +76,10 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     contactNameLabel: 'Creator & Maintainer:',
     contactEmailLabel: 'Email:',
     contactBugsLabel: 'Bug Reports & Feedback:',
-    communityTitle: 'Open Source Vision & GitHub Contributions',
+    communityTitle: 'Open Source & GitHub Repositories',
     communityParagraphs: [
-      'The source code repository is currently private while core curriculum expansions and audio tuning are completed.',
-      'The roadmap is to open-source the project on GitHub, welcoming community contributions, language packs, native speaker audio review, and developer pull requests (PRs) and issue tracking.'
+      'Basic Language School and its standalone sister apps (Basic English, Basic French, and Basic Russian) are open source under the MIT License on GitHub.',
+      'We welcome community contributions — including new language packs, native speaker audio reviews, issue reports, and developer pull requests (PRs). Explore the repositories below:'
     ],
     footerPrompt: 'Explore our legal policies:',
     privacyLinkText: 'Privacy Policy',
@@ -133,10 +133,10 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     contactNameLabel: 'Creador y desarrollador:',
     contactEmailLabel: 'Correo electrónico:',
     contactBugsLabel: 'Reporte de errores y sugerencias:',
-    communityTitle: 'Visión de Código Abierto y GitHub',
+    communityTitle: 'Código Abierto y Repositorios en GitHub',
     communityParagraphs: [
-      'El repositorio de código fuente es privado temporalmente mientras se completan las expansiones del plan de estudios y la calibración del audio.',
-      'El objetivo es abrir el proyecto en GitHub a la comunidad para recibir sugerencias, mejoras de hablantes nativos, apertura de problemas (issues) y pull requests (PRs).'
+      'Basic Language School y sus aplicaciones independientes hermanas (Basic English, Basic French y Basic Russian) son de código abierto bajo la Licencia MIT en GitHub.',
+      'Damos la bienvenida a las contribuciones de la comunidad: paquetes de idiomas, revisiones de hablantes nativos, apertura de issues y pull requests (PRs).'
     ],
     footerPrompt: 'Consulta nuestras políticas legales:',
     privacyLinkText: 'Política de Privacidad',
@@ -190,10 +190,10 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     contactNameLabel: 'Автор и разработчик:',
     contactEmailLabel: 'Электронная почта:',
     contactBugsLabel: 'Ошибки и предложения:',
-    communityTitle: 'Открытый исходный код и планы на GitHub',
+    communityTitle: 'Открытый исходный код и репозитории на GitHub',
     communityParagraphs: [
-      'В настоящее время репозиторий временно закрыт, пока завершается полировка аудиобазы и расширение словарного запаса до 500+ единиц.',
-      'В планах — открыть проект на GitHub для сообщества: принимать Pull Request (PR), отслеживать пожелания в Issues и привлекать носителей языка для проверки произношения.'
+      'Платформа Basic Language School и её отдельные приложения-спутники (Basic English, Basic French и Basic Russian) полностью открыты на GitHub под лицензией MIT.',
+      'Мы рады вкладу сообщества: вы можете создавать Issues, помогать с проверкой произношения носителями языка и отправлять Pull Request (PR).'
     ],
     footerPrompt: 'Юридическая информация:',
     privacyLinkText: 'Политика конфиденциальности',
@@ -247,10 +247,10 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     contactNameLabel: 'Créateur & Développeur :',
     contactEmailLabel: 'E-mail :',
     contactBugsLabel: 'Bugs et suggestions :',
-    communityTitle: 'Vision Open Source et GitHub',
+    communityTitle: 'Open Source et Dépôts GitHub',
     communityParagraphs: [
-      'Le dépôt de code source est actuellement privé pendant les dernières optimisations du cursus et des fichiers audio.',
-      'L\'objectif est de publier le projet en open source sur GitHub pour accueillir les contributions de la communauté, les revues d\'audio par des locuteurs natifs et les Pull Requests (PR).'
+      'Basic Language School ainsi que ses applications autonomes sœurs (Basic English, Basic French et Basic Russian) sont publiés en open source sous licence MIT sur GitHub.',
+      'Nous accueillons avec plaisir les contributions de la communauté : signalements d\'issues, relectures audio par des locuteurs natifs et Pull Requests (PR).'
     ],
     footerPrompt: 'Consulter nos documents juridiques :',
     privacyLinkText: 'Politique de Confidentialité',
@@ -304,10 +304,10 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     contactNameLabel: 'Criador e Desenvolvedor:',
     contactEmailLabel: 'E-mail:',
     contactBugsLabel: 'Relato de bugs e ideias:',
-    communityTitle: 'Visão de Código Aberto no GitHub',
+    communityTitle: 'Código Aberto e Repositórios no GitHub',
     communityParagraphs: [
-      'O repositório do projeto está temporariamente privado enquanto concluímos a expansão completa de 500+ termos em todos os cursos.',
-      'O plano é abrir o código no GitHub para a comunidade global, permitindo a abertura de issues, envio de Pull Requests (PRs) e colaboração de falantes nativos.'
+      'A Basic Language School e seus aplicativos independentes (Basic English, Basic French e Basic Russian) têm código aberto sob a Licença MIT no GitHub.',
+      'Convidamos a comunidade global a colaborar com abertura de issues, revisão de áudio por falantes nativos e envio de Pull Requests (PRs).'
     ],
     footerPrompt: 'Políticas e termos legais:',
     privacyLinkText: 'Política de Privacidade',
@@ -361,10 +361,10 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     contactNameLabel: 'Entwickler & Maintainer:',
     contactEmailLabel: 'E-Mail:',
     contactBugsLabel: 'Fehlermeldungen & Anregungen:',
-    communityTitle: 'Open-Source-Vision auf GitHub',
+    communityTitle: 'Open Source & GitHub-Repositories',
     communityParagraphs: [
-      'Das Quellcode-Repository ist derzeit privat, während die Lehrpläne und Audio-Abstimmungen fertiggestellt werden.',
-      'Die Vision ist es, das Projekt auf GitHub für die Community zu öffnen, um Pull Requests (PRs), Issues und Beiträge von Muttersprachlern willkommen zu heißen.'
+      'Die Basic Language School sowie die eigenständigen Schwester-Apps (Basic English, Basic French und Basic Russian) sind unter der MIT-Lizenz auf GitHub als Open Source veröffentlicht.',
+      'Wir freuen uns über Beiträge der Community – ob neue Sprachpakete, Aussprache-Feedback von Muttersprachlern, Issues oder Pull Requests (PRs).'
     ],
     footerPrompt: 'Rechtliche Hinweise:',
     privacyLinkText: 'Datenschutzerklärung',
@@ -418,10 +418,10 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     contactNameLabel: 'Pembuat & Pengembang:',
     contactEmailLabel: 'Email:',
     contactBugsLabel: 'Laporan Bug & Masukan:',
-    communityTitle: 'Visi Sumber Terbuka (Open Source) di GitHub',
+    communityTitle: 'Sumber Terbuka (Open Source) & Repositori GitHub',
     communityParagraphs: [
-      'Repositori kode saat ini bersifat privat selama penyempurnaan kurikulum dan penyesuaian audio 500+ materi berlangsung.',
-      'Rencana ke depan adalah membuka kode di GitHub agar komunitas dapat berkontribusi lewat Pull Request (PR), membuka laporan isu, dan menyumbang koreksi penutur asli.'
+      'Basic Language School beserta aplikasi mandiri pendampingnya (Basic English, Basic French, dan Basic Russian) bersifat open source di bawah Lisensi MIT di GitHub.',
+      'Kami menyambut kontribusi komunitas melalui laporan isu (Issues), tinjauan audio oleh penutur asli, serta Pull Request (PR).'
     ],
     footerPrompt: 'Pelajari kebijakan hukum kami:',
     privacyLinkText: 'Kebijakan Privasi',
@@ -475,10 +475,10 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     contactNameLabel: 'Geliştirici:',
     contactEmailLabel: 'E-posta:',
     contactBugsLabel: 'Hata Bildirimi ve Görüşler:',
-    communityTitle: 'Açık Kaynak Vizyonu ve GitHub',
+    communityTitle: 'Açık Kaynak ve GitHub Depoları',
     communityParagraphs: [
-      'Müfredat genişletmeleri ve ses kalibrasyonları tamamlanana kadar kaynak kod deposu geçici olarak özeldir.',
-      'Gelecek planımız, projeyi GitHub üzerinden açık kaynaklı hale getirerek topluluk katkılarını, yerel telaffuz geri bildirimlerini ve Pull Request\'leri (PR) kabul etmektir.'
+      'Basic Language School ve bağımsız kardeş uygulamaları (Basic English, Basic French ve Basic Russian) MIT Lisansı kapsamında GitHub üzerinde açık kaynaklıdır.',
+      'Topluluk katkılarını, yeni dil paketlerini, ana dili konuşanların telaffuz incelemelerini ve GitHub üzerinden Issue ile Pull Request\'leri (PR) memnuniyetle karşılıyoruz.'
     ],
     footerPrompt: 'Yasal belgelerimizi inceleyin:',
     privacyLinkText: 'Gizlilik Politikası',
@@ -532,9 +532,9 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     contactNameLabel: '開発者:',
     contactEmailLabel: 'メール:',
     contactBugsLabel: '改善提案・バグ報告:',
-    communityTitle: 'オープンソース展開',
+    communityTitle: 'オープンソース & GitHub リポジトリ',
     communityParagraphs: [
-      'カリキュラムと発音の整備を進めながら、GitHub を通じたコミュニティ貢献の受付を計画しています。'
+      'Basic Language School および姉妹アプリ（Basic English・Basic French・Basic Russian）はすべて MIT ライセンスのもと GitHub でオープンソース公開されています。Issue 報告、ネイティブ発音レビュー、Pull Request（PR）による貢献を歓迎します。'
     ],
     footerPrompt: '利用規約とプライバシーポリシー:',
     privacyLinkText: 'プライバシーポリシー',
@@ -577,9 +577,9 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     contactNameLabel: '姓名：',
     contactEmailLabel: '邮箱：',
     contactBugsLabel: '问题反馈：',
-    communityTitle: '开源社区',
+    communityTitle: '开源社区与 GitHub 仓库',
     communityParagraphs: [
-      '本项目在 GitHub 开源，欢迎广大开发者与语言爱好者共同参与完善课程与发音数据。'
+      'Basic Language School 及其独立姐妹应用（Basic English、Basic French、Basic Russian）均已在 GitHub 采用 MIT 许可证开源，欢迎开发者与母语学习者提交 Issue 与 Pull Request 共同完善课程与发音数据。'
     ],
     footerPrompt: '想了解我们如何保护您的数据？',
     privacyLinkText: '查看隐私政策',
@@ -622,9 +622,9 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     contactNameLabel: 'नाम:',
     contactEmailLabel: 'ईमेल:',
     contactBugsLabel: 'समस्या रिपोर्ट:',
-    communityTitle: 'ओपन सोर्स समुदाय',
+    communityTitle: 'ओपन सोर्स और GitHub रिपॉज़िटरी',
     communityParagraphs: [
-      'यह परियोजना GitHub पर ओपन-सोर्स है और समुदाय के योगदान का स्वागत करती है।'
+      'Basic Language School और इसके सहयोगी ऐप्स (Basic English, Basic French और Basic Russian) MIT लाइसेंस के तहत GitHub पर ओपन-सोर्स हैं और समुदाय के Issues व Pull Requests का स्वागत करते हैं।'
     ],
     footerPrompt: 'गोपनीयता और नियम जानना चाहते हैं?',
     privacyLinkText: 'गोपनीयता नीति देखें',
@@ -678,9 +678,9 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     contactNameLabel: '개발자:',
     contactEmailLabel: '이메일:',
     contactBugsLabel: '제안 및 버그 제보:',
-    communityTitle: '오픈소스 비전',
+    communityTitle: '오픈소스 및 GitHub 저장소',
     communityParagraphs: [
-      '커리큘럼 보강과 음성 튜닝을 거쳐 GitHub을 통한 오픈소스화 및 커뮤니티 기여를 지원할 계획입니다.'
+      'Basic Language School과 자매 단독 웹앱(Basic English, Basic French, Basic Russian)은 모두 MIT 라이선스 하에 GitHub에 공개된 오픈소스 프로젝트입니다. 이슈 제보, 원어민 발음 검수 및 Pull Request(PR) 기여를 환영합니다.'
     ],
     footerPrompt: '법적 고지:',
     privacyLinkText: '개인정보 처리방침',
@@ -734,9 +734,9 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     contactNameLabel: 'المطور:',
     contactEmailLabel: 'البريد الإلكتروني:',
     contactBugsLabel: 'الاقتراحات والإبلاغ عن الأخطاء:',
-    communityTitle: 'المصدر المفتوح والمجتمع',
+    communityTitle: 'المصدر المفتوح ومستودعات GitHub',
     communityParagraphs: [
-      'نهدف إلى مواصلة تطوير المناهج وجعل المنصة مفتوحة المصدر لتمكين مساهمات المجتمع حول العالم.'
+      'منصة Basic Language School وتطبيقاتها المستقلة الشقيقة (Basic English و Basic French و Basic Russian) مفتوحة المصدر بالكامل تحت ترخيص MIT على GitHub، ونرحب بمساهمات المجتمع ومراجعات النطق وطلبات السحب (PRs).'
     ],
     footerPrompt: 'المعلومات القانونية:',
     privacyLinkText: 'سياسة الخصوصية',
@@ -790,9 +790,9 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     contactNameLabel: 'নির্মাতা:',
     contactEmailLabel: 'ইমেইল:',
     contactBugsLabel: 'সমস্যা প্রতিবেদন:',
-    communityTitle: 'উন্মুক্ত সোর্স ও সম্প্রদায়',
+    communityTitle: 'ওপেন সোর্স ও GitHub রিপোজিটরি',
     communityParagraphs: [
-      'আমরা প্ল্যাটফর্মটিকে উন্মুক্ত রেখে বিশ্বব্যাপী শিক্ষার্থীদের সহযোগিতায় সমৃদ্ধ করতে প্রতিশ্রুতিবদ্ধ।'
+      'Basic Language School এবং এর সহযোগী অ্যাপগুলো (Basic English, Basic French ও Basic Russian) MIT লাইসেন্সের অধীনে GitHub-এ সম্পূর্ণ ওপেন সোর্স। আমরা কমিউনিটির Issue, উচ্চারণ যাচাই এবং Pull Request স্বাগত জানাই।'
     ],
     footerPrompt: 'আইনি তথ্য:',
     privacyLinkText: 'গোপনীয়তা নীতি',
@@ -846,9 +846,9 @@ export const ABOUT_TRANSLATIONS: Record<SupportedLanguageId, AboutContent> = {
     contactNameLabel: 'ڈویلپر:',
     contactEmailLabel: 'ای میل:',
     contactBugsLabel: 'تجاویز اور نقائص کی رپورٹ:',
-    communityTitle: 'اوپن سورس اور کمیونٹی',
+    communityTitle: 'اوپن سورس اور GitHub ریپوزٹریز',
     communityParagraphs: [
-      'ہم اس تعلیمی پلیٹ فارم کو سب کی شراکت سے مزید بہتر بنانے کے لیے پرعزم ہیں۔'
+      'بیسک لینگویج اسکول اور اس کی ذیلی ایپس (Basic English، Basic French اور Basic Russian) GitHub پر MIT لائسنس کے تحت مکمل طور پر اوپن سورس ہیں۔ کمیونٹی کی تجاویز، آڈیو جائزے اور Pull Requests کا خیرمقدم کیا جاتا ہے۔'
     ],
     footerPrompt: 'قانونی معلومات:',
     privacyLinkText: 'رازداری کی پالیسی',
