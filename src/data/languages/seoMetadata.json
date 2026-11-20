@@ -1,0 +1,512 @@
+{
+  "ru": {
+    "name": "Russian",
+    "hasTimeGuide": true,
+    "seo": {
+      "alphabet": {
+        "title": "Russian Alphabet (Cyrillic) | Basic Language School",
+        "description": "Learn all 33 letters of the Russian Cyrillic alphabet with studio neural audio, pronunciation guides, example words, and Latin transliteration."
+      },
+      "grammar": {
+        "title": "Russian Grammar & Conjugation | Basic Language School",
+        "description": "Master beginner Russian grammar, grammatical gender, verb conjugations, and interactive flashcards with native studio audio pronunciation."
+      },
+      "phrases": {
+        "title": "Basic Russian Phrases | Basic Language School",
+        "description": "Learn essential Russian phrases and everyday greetings for beginners with native studio neural audio, transliteration, and clear translations."
+      },
+      "numbers": {
+        "title": "Russian Numbers (0–1,000) | Basic Language School",
+        "description": "Learn to count in Russian from 0 to 1,000 with studio neural audio pronunciation, transliteration guides, and interactive practice."
+      },
+      "time": {
+        "title": "Telling Time in Russian | Basic Language School",
+        "description": "Learn how to ask and tell time in Russian with grammar rules for hours and minutes plus authentic native neural audio pronunciation."
+      },
+      "words": {
+        "title": "Common Russian Words & Vocabulary | Basic Language School",
+        "description": "Build your core Russian vocabulary with high-frequency everyday, travel, and workplace words featuring native studio audio pronunciation."
+      },
+      "quiz": {
+        "title": "Interactive Russian Quiz | Basic Language School",
+        "description": "Test your Russian Cyrillic alphabet, phrases, numbers, and vocabulary with spaced-repetition quizzes and a phonetic Cyrillic keyboard."
+      }
+    }
+  },
+  "en": {
+    "name": "English",
+    "hasTimeGuide": false,
+    "seo": {
+      "alphabet": {
+        "title": "English Alphabet & Phonics | Basic Language School",
+        "description": "Master all 26 letters of the English alphabet with clear phonics sounds, IPA pronunciation guides, example words, and studio neural audio."
+      },
+      "grammar": {
+        "title": "English Grammar & Verb Flashcards | Basic Language School",
+        "description": "Practice foundational English grammar, verb forms, descriptive adjectives, and interactive flashcards with native studio neural audio."
+      },
+      "phrases": {
+        "title": "Essential English Phrases | Basic Language School",
+        "description": "Learn everyday English conversation, greetings, polite expressions, and travel phrases with crystal-clear studio neural audio pronunciation."
+      },
+      "numbers": {
+        "title": "English Numbers & Time | Basic Language School",
+        "description": "Learn English numbers from 0 to 1,000 and practical time expressions with crystal-clear native studio audio pronunciation."
+      },
+      "time": {
+        "title": "Telling Time in English | Basic Language School",
+        "description": "Learn how to ask and tell time in English with practical clock expressions and authentic native studio neural audio pronunciation."
+      },
+      "words": {
+        "title": "Common English Words & Vocabulary | Basic Language School",
+        "description": "Build your core English vocabulary with high-frequency everyday, business, tech, healthcare, and travel words with studio neural audio."
+      },
+      "quiz": {
+        "title": "Interactive English Quiz | Basic Language School",
+        "description": "Test your English phonics, phrases, numbers, and vocabulary with adaptive spaced-repetition quizzes, listening drills, and writing practice."
+      }
+    }
+  },
+  "es": {
+    "name": "Spanish",
+    "hasTimeGuide": true,
+    "seo": {
+      "alphabet": {
+        "title": "Spanish Alphabet & Pronunciation | Basic Language School",
+        "description": "Learn all 27 letters of the Spanish alphabet including ñ with pronunciation guides, example vocabulary, and native studio neural audio."
+      },
+      "grammar": {
+        "title": "Spanish Grammar & Conjugation | Basic Language School",
+        "description": "Master beginner Spanish grammar, masculine and feminine gender, verb conjugations, and interactive flashcards with native studio audio."
+      },
+      "phrases": {
+        "title": "Essential Spanish Phrases | Basic Language School",
+        "description": "Learn practical Spanish phrases, greetings, and travel expressions for beginners with authentic native studio neural audio pronunciation."
+      },
+      "numbers": {
+        "title": "Spanish Numbers (0–1,000) | Basic Language School",
+        "description": "Master Spanish numbers from 0 to 1,000 with interactive pronunciation cards and native studio neural audio for beginners."
+      },
+      "time": {
+        "title": "Telling Time in Spanish | Basic Language School",
+        "description": "Learn how to ask and tell time in Spanish (¿Qué hora es?, y cuarto, y media) with grammar explanations and native studio audio."
+      },
+      "words": {
+        "title": "Common Spanish Words & Vocabulary | Basic Language School",
+        "description": "Build your core Spanish vocabulary with high-frequency everyday, travel, business, and healthcare words featuring native studio audio."
+      },
+      "quiz": {
+        "title": "Interactive Spanish Quiz | Basic Language School",
+        "description": "Test your Spanish alphabet, phrases, numbers, grammar, and vocabulary with adaptive spaced-repetition quizzes and listening exercises."
+      }
+    }
+  },
+  "fr": {
+    "name": "French",
+    "hasTimeGuide": true,
+    "seo": {
+      "alphabet": {
+        "title": "French Alphabet & Phonetics | Basic Language School",
+        "description": "Master all 26 letters of the French alphabet, nasal vowels, and accent marks with example vocabulary and native studio neural audio."
+      },
+      "grammar": {
+        "title": "French Grammar & Conjugation | Basic Language School",
+        "description": "Learn beginner French grammar, noun gender, verb conjugations, and interactive flashcards with authentic native studio neural audio."
+      },
+      "phrases": {
+        "title": "Essential French Phrases | Basic Language School",
+        "description": "Learn practical French phrases, polite greetings, café orders, and travel expressions with authentic native studio neural audio."
+      },
+      "numbers": {
+        "title": "French Numbers (0–1,000) | Basic Language School",
+        "description": "Master French numbers from 0 to 1,000 including soixante-dix and quatre-vingt-dix with native studio neural audio pronunciation."
+      },
+      "time": {
+        "title": "Telling Time in French | Basic Language School",
+        "description": "Learn how to ask and tell time in French (Quelle heure est-il ?, midi, minuit, et quart) with grammar notes and native studio audio."
+      },
+      "words": {
+        "title": "Common French Words & Vocabulary | Basic Language School",
+        "description": "Build your core French vocabulary with high-frequency everyday, dining, business, and travel words with native studio neural audio."
+      },
+      "quiz": {
+        "title": "Interactive French Quiz | Basic Language School",
+        "description": "Test your French phonetics, phrases, numbers, time, and vocabulary with adaptive spaced-repetition quizzes and listening practice."
+      }
+    }
+  },
+  "pt": {
+    "name": "Portuguese",
+    "hasTimeGuide": true,
+    "seo": {
+      "alphabet": {
+        "title": "Portuguese Alphabet & Sounds | Basic Language School",
+        "description": "Master the Portuguese alphabet including Ç and nasal sounds with pronunciation guides, example words, and Brazilian Portuguese studio audio."
+      },
+      "grammar": {
+        "title": "Portuguese Grammar & Verbs | Basic Language School",
+        "description": "Learn beginner Portuguese grammar, noun gender, verb conjugations, and interactive flashcards with native Brazilian Portuguese studio audio."
+      },
+      "phrases": {
+        "title": "Essential Portuguese Phrases | Basic Language School",
+        "description": "Learn practical Brazilian Portuguese phrases for greetings, daily conversation, business, and travel with native studio neural audio."
+      },
+      "numbers": {
+        "title": "Portuguese Numbers (0–1,000) | Basic Language School",
+        "description": "Master numbers in Portuguese from 0 to 1,000 with interactive pronunciation cards and native Brazilian Portuguese studio audio."
+      },
+      "time": {
+        "title": "Telling Time in Portuguese | Basic Language School",
+        "description": "Learn how to ask and tell time in Brazilian Portuguese with clear grammar tips and authentic native studio neural audio pronunciation."
+      },
+      "words": {
+        "title": "Core Portuguese Vocabulary | Basic Language School",
+        "description": "Build your Brazilian Portuguese vocabulary with high-frequency everyday, travel, business, and tech words featuring native studio audio."
+      },
+      "quiz": {
+        "title": "Interactive Portuguese Quiz | Basic Language School",
+        "description": "Test your Portuguese alphabet, phrases, numbers, grammar, and vocabulary with adaptive spaced-repetition quizzes and listening drills."
+      }
+    }
+  },
+  "de": {
+    "name": "German",
+    "hasTimeGuide": true,
+    "seo": {
+      "alphabet": {
+        "title": "German Alphabet (Ä, Ö, Ü, ß) | Basic Language School",
+        "description": "Master all 30 letters of the German alphabet including Umlaute (Ä, Ö, Ü) and Eszett (ß) with pronunciation guides and native studio audio."
+      },
+      "grammar": {
+        "title": "German Grammar & Conjugation | Basic Language School",
+        "description": "Learn beginner German grammar, der/die/das noun gender, verb conjugations, and interactive flashcards with native studio neural audio."
+      },
+      "phrases": {
+        "title": "Essential German Phrases | Basic Language School",
+        "description": "Learn practical German phrases, greetings, and polite expressions for conversation, business, and travel with native studio neural audio."
+      },
+      "numbers": {
+        "title": "German Numbers (0–1,000) | Basic Language School",
+        "description": "Master numbers in German from 0 to 1,000 with pronunciation breakdowns and authentic native German studio neural audio."
+      },
+      "time": {
+        "title": "Telling Time in German | Basic Language School",
+        "description": "Learn how to ask and tell time in German (Wie spät ist es?, Viertel, halb) using 12-hour and 24-hour formats with native studio audio."
+      },
+      "words": {
+        "title": "Core German Vocabulary | Basic Language School",
+        "description": "Build your German vocabulary with high-frequency everyday, business, travel, and career words featuring native studio neural audio."
+      },
+      "quiz": {
+        "title": "Interactive German Quiz | Basic Language School",
+        "description": "Test your German alphabet, phrases, numbers, gender articles, and vocabulary with adaptive spaced-repetition quizzes and listening drills."
+      }
+    }
+  },
+  "id": {
+    "name": "Indonesian",
+    "hasTimeGuide": true,
+    "seo": {
+      "alphabet": {
+        "title": "Indonesian Alphabet & Sounds | Basic Language School",
+        "description": "Master all 26 letters of the Bahasa Indonesia alphabet with phonetic pronunciation guides, example words, and native studio neural audio."
+      },
+      "grammar": {
+        "title": "Indonesian Grammar & Flashcards | Basic Language School",
+        "description": "Learn beginner Bahasa Indonesia grammar, sentence patterns, verb usage, and interactive flashcards with native studio neural audio."
+      },
+      "phrases": {
+        "title": "Essential Indonesian Phrases | Basic Language School",
+        "description": "Learn practical Bahasa Indonesia phrases, greetings, and polite expressions for daily conversation, business, and travel with studio audio."
+      },
+      "numbers": {
+        "title": "Indonesian Numbers (0–1,000) | Basic Language School",
+        "description": "Master numbers in Bahasa Indonesia from 0 to 1,000 with interactive cards and authentic native Indonesian studio neural audio."
+      },
+      "time": {
+        "title": "Telling Time in Indonesian | Basic Language School",
+        "description": "Learn how to ask and tell time in Bahasa Indonesia (Jam berapa?, pagi, siang, sore, malam) with native studio neural audio."
+      },
+      "words": {
+        "title": "Core Indonesian Vocabulary | Basic Language School",
+        "description": "Build your Bahasa Indonesia vocabulary with high-frequency everyday, travel, and career words featuring native studio neural audio."
+      },
+      "quiz": {
+        "title": "Interactive Indonesian Quiz | Basic Language School",
+        "description": "Test your Bahasa Indonesia alphabet, phrases, numbers, time, and vocabulary with adaptive spaced-repetition quizzes and listening drills."
+      }
+    }
+  },
+  "tr": {
+    "name": "Turkish",
+    "hasTimeGuide": true,
+    "seo": {
+      "alphabet": {
+        "title": "Turkish Alphabet (29 Letters) | Basic Language School",
+        "description": "Master all 29 letters of the Turkish alphabet including Ç, Ğ, I/ı, İ/i, Ö, Ş, and Ü with example words and native studio neural audio."
+      },
+      "grammar": {
+        "title": "Turkish Grammar & Flashcards | Basic Language School",
+        "description": "Learn beginner Turkish grammar, vowel harmony basics, verb conjugations, and interactive flashcards with native studio neural audio."
+      },
+      "phrases": {
+        "title": "Essential Turkish Phrases | Basic Language School",
+        "description": "Learn practical Turkish phrases, greetings, and polite expressions for conversation, business, and travel with native studio neural audio."
+      },
+      "numbers": {
+        "title": "Turkish Numbers (0–1,000) | Basic Language School",
+        "description": "Master numbers in Turkish from 0 to 1,000 with interactive pronunciation guides and authentic native Turkish studio neural audio."
+      },
+      "time": {
+        "title": "Telling Time in Turkish | Basic Language School",
+        "description": "Learn how to ask and tell time in Turkish (Saat kaç?, çeyrek, buçuk) with grammar guides and native studio neural audio."
+      },
+      "words": {
+        "title": "Core Turkish Vocabulary | Basic Language School",
+        "description": "Build your Turkish vocabulary with high-frequency everyday, travel, dining, and business words featuring native studio neural audio."
+      },
+      "quiz": {
+        "title": "Interactive Turkish Quiz | Basic Language School",
+        "description": "Test your Turkish alphabet, phrases, numbers, time, and vocabulary with adaptive spaced-repetition quizzes and listening practice."
+      }
+    }
+  },
+  "ko": {
+    "name": "Korean",
+    "hasTimeGuide": true,
+    "seo": {
+      "alphabet": {
+        "title": "Korean Alphabet (Hangul) | Basic Language School",
+        "description": "Learn the Korean Hangul alphabet with consonants, vowels, romanization, pronunciation guides, and authentic native studio neural audio."
+      },
+      "grammar": {
+        "title": "Korean Grammar & Flashcards | Basic Language School",
+        "description": "Learn beginner Korean grammar, polite speech levels, verb patterns, and interactive flashcards with native studio neural audio."
+      },
+      "phrases": {
+        "title": "Basic Korean Phrases | Basic Language School",
+        "description": "Learn essential everyday Korean phrases, polite greetings, and travel expressions with romanization and authentic native studio audio."
+      },
+      "numbers": {
+        "title": "Korean Numbers (Sino & Native) | Basic Language School",
+        "description": "Master both Sino-Korean and Native Korean numbers from 0 to 1,000 with pronunciation guides and native studio neural audio."
+      },
+      "time": {
+        "title": "Telling Time in Korean | Basic Language School",
+        "description": "Learn how to ask and tell time in Korean combining Native Korean hours and Sino-Korean minutes with authentic native studio audio."
+      },
+      "words": {
+        "title": "Core Korean Vocabulary | Basic Language School",
+        "description": "Build your Korean vocabulary with high-frequency everyday, dining, travel, and workplace words featuring Hangul and studio audio."
+      },
+      "quiz": {
+        "title": "Interactive Korean Quiz | Basic Language School",
+        "description": "Test your Korean Hangul, vocabulary, numbers, and grammar with adaptive spaced-repetition quizzes and a phonetic Hangul keyboard."
+      }
+    }
+  },
+  "ja": {
+    "name": "Japanese",
+    "hasTimeGuide": true,
+    "seo": {
+      "alphabet": {
+        "title": "Japanese Hiragana Alphabet | Basic Language School",
+        "description": "Learn all 46 Japanese Hiragana characters with romaji pronunciation guides, example vocabulary, and native studio neural audio."
+      },
+      "grammar": {
+        "title": "Japanese Grammar & Flashcards | Basic Language School",
+        "description": "Learn beginner Japanese grammar, polite verb forms, adjectives, and interactive flashcards with authentic native studio neural audio."
+      },
+      "phrases": {
+        "title": "Basic Japanese Phrases | Basic Language School",
+        "description": "Learn essential Japanese greetings, polite expressions, dining etiquette, and travel phrases with romaji and native studio audio."
+      },
+      "numbers": {
+        "title": "Japanese Numbers (0–1,000) | Basic Language School",
+        "description": "Learn Japanese numbers from 0 to 1,000 with kana, kanji, romaji pronunciation guides, and authentic native studio neural audio."
+      },
+      "time": {
+        "title": "Telling Time in Japanese | Basic Language School",
+        "description": "Learn how to ask and tell time in Japanese (今何時ですか, ji, fun/pun) with pronunciation rules and authentic native studio audio."
+      },
+      "words": {
+        "title": "Common Japanese Words | Basic Language School",
+        "description": "Master high-frequency Japanese vocabulary across daily life, dining, travel, and work with kana, romaji, and native studio audio."
+      },
+      "quiz": {
+        "title": "Interactive Japanese Quiz | Basic Language School",
+        "description": "Test your Japanese Hiragana, phrases, numbers, and vocabulary with spaced-repetition quizzes and a phonetic kana keyboard."
+      }
+    }
+  },
+  "zh": {
+    "name": "Mandarin Chinese",
+    "hasTimeGuide": true,
+    "seo": {
+      "alphabet": {
+        "title": "Mandarin Chinese Pinyin & Tones | Basic Language School",
+        "description": "Learn Mandarin Chinese Pinyin initials, finals, and the four standard tones with Hanzi examples and native studio neural audio."
+      },
+      "grammar": {
+        "title": "Mandarin Chinese Grammar | Basic Language School",
+        "description": "Master beginner Mandarin Chinese grammar, sentence order, measure words, and interactive flashcards with Pinyin and native studio audio."
+      },
+      "phrases": {
+        "title": "Basic Mandarin Chinese Phrases | Basic Language School",
+        "description": "Learn essential everyday Mandarin Chinese greetings, courtesy expressions, and travel phrases with Hanzi, Pinyin, and native audio."
+      },
+      "numbers": {
+        "title": "Chinese Numbers (0–1,000) | Basic Language School",
+        "description": "Master Mandarin Chinese numbers from 0 to 1,000 with Hanzi characters, Pinyin tone marks, and authentic native studio neural audio."
+      },
+      "time": {
+        "title": "Telling Time in Chinese | Basic Language School",
+        "description": "Learn how to ask and tell time in Mandarin Chinese (现在几点, diǎn, fēn, bàn) with Pinyin and authentic native neural audio."
+      },
+      "words": {
+        "title": "Core Chinese Vocabulary | Basic Language School",
+        "description": "Build your Mandarin Chinese vocabulary with high-frequency daily life, business, dining, and travel words with Hanzi, Pinyin, and audio."
+      },
+      "quiz": {
+        "title": "Interactive Chinese Quiz | Basic Language School",
+        "description": "Test your Mandarin Chinese Pinyin, Hanzi vocabulary, numbers, and grammar with adaptive spaced-repetition quizzes and tone support."
+      }
+    }
+  },
+  "hi": {
+    "name": "Hindi",
+    "hasTimeGuide": true,
+    "seo": {
+      "alphabet": {
+        "title": "Hindi Devanagari Alphabet | Basic Language School",
+        "description": "Master the Hindi Devanagari script vowels (swar) and consonants (vyanjan) with transliteration, examples, and native studio neural audio."
+      },
+      "grammar": {
+        "title": "Hindi Grammar & Conjugation | Basic Language School",
+        "description": "Learn beginner Hindi grammar, noun gender agreement, verb conjugations, and interactive flashcards with native studio neural audio."
+      },
+      "phrases": {
+        "title": "Essential Hindi Phrases | Basic Language School",
+        "description": "Learn everyday Hindi greetings, courtesy expressions, and conversational phrases with Devanagari, transliteration, and studio audio."
+      },
+      "numbers": {
+        "title": "Hindi Numbers (0–1,000) | Basic Language School",
+        "description": "Master numbers in Hindi from 0 to 1,000 with Devanagari script, pronunciation transliteration, and authentic native neural audio."
+      },
+      "time": {
+        "title": "Telling Time in Hindi | Basic Language School",
+        "description": "Learn how to ask and tell time in Hindi (कितने बजे हैं, सवा, साढ़े, पौने) with transliteration and native studio audio pronunciations."
+      },
+      "words": {
+        "title": "Core Hindi Vocabulary | Basic Language School",
+        "description": "Build your Hindi vocabulary with high-frequency everyday, business, dining, and travel words in Devanagari with native studio audio."
+      },
+      "quiz": {
+        "title": "Interactive Hindi Quiz | Basic Language School",
+        "description": "Test your Hindi Devanagari script, vocabulary, numbers, and grammar with spaced-repetition quizzes and a phonetic Hindi keyboard."
+      }
+    }
+  },
+  "ar": {
+    "name": "Arabic",
+    "hasTimeGuide": true,
+    "seo": {
+      "alphabet": {
+        "title": "Arabic Alphabet & Script | Basic Language School",
+        "description": "Master all 28 letters of the Arabic alphabet with pronunciation guides, transliteration, example vocabulary, and native studio audio."
+      },
+      "grammar": {
+        "title": "Arabic Grammar & Conjugation | Basic Language School",
+        "description": "Learn beginner Modern Standard Arabic grammar, gender agreement, verb patterns, and interactive flashcards with native studio audio."
+      },
+      "phrases": {
+        "title": "Essential Arabic Phrases | Basic Language School",
+        "description": "Learn everyday Modern Standard Arabic greetings, polite expressions, and conversational phrases with transliteration and studio audio."
+      },
+      "numbers": {
+        "title": "Arabic Numbers (0–1,000) | Basic Language School",
+        "description": "Master numbers in Arabic from 0 to 1,000 with Arabic script, transliteration guides, and authentic native studio neural audio."
+      },
+      "time": {
+        "title": "Telling Time in Arabic | Basic Language School",
+        "description": "Learn how to ask and tell time in Modern Standard Arabic (كم الساعة؟) with transliteration and native studio audio pronunciations."
+      },
+      "words": {
+        "title": "Core Arabic Vocabulary | Basic Language School",
+        "description": "Build your Modern Standard Arabic vocabulary with high-frequency daily life, business, dining, and travel words with studio audio."
+      },
+      "quiz": {
+        "title": "Interactive Arabic Quiz | Basic Language School",
+        "description": "Test your Arabic alphabet, vocabulary, numbers, and grammar with spaced-repetition quizzes and an on-screen phonetic Arabic keyboard."
+      }
+    }
+  },
+  "bn": {
+    "name": "Bengali",
+    "hasTimeGuide": true,
+    "seo": {
+      "alphabet": {
+        "title": "Bengali Alphabet & Script | Basic Language School",
+        "description": "Master the Bengali alphabet (স্বরবর্ণ ও ব্যঞ্জনবর্ণ) with transliteration, pronunciation guides, example words, and native studio audio."
+      },
+      "grammar": {
+        "title": "Bengali Grammar & Flashcards | Basic Language School",
+        "description": "Learn beginner Bengali grammar, noun classifiers, verb forms, and interactive flashcards with transliteration and native studio audio."
+      },
+      "phrases": {
+        "title": "Essential Bengali Phrases | Basic Language School",
+        "description": "Learn everyday Bengali greetings, polite expressions, and conversational phrases with Bengali script, transliteration, and studio audio."
+      },
+      "numbers": {
+        "title": "Bengali Numbers (0–1,000) | Basic Language School",
+        "description": "Master numbers in Bengali from 0 to 1,000 with Bengali numerals, pronunciation guides, and authentic native studio neural audio."
+      },
+      "time": {
+        "title": "Telling Time in Bengali | Basic Language School",
+        "description": "Learn how to ask and tell time in Bengali (কটা বাজে?) with clear pronunciation guides and authentic native studio audio."
+      },
+      "words": {
+        "title": "Core Bengali Vocabulary | Basic Language School",
+        "description": "Build your Bengali vocabulary with high-frequency daily life, dining, family, and travel words with transliteration and studio audio."
+      },
+      "quiz": {
+        "title": "Interactive Bengali Quiz | Basic Language School",
+        "description": "Test your Bengali alphabet, vocabulary, numbers, and grammar with spaced-repetition quizzes and an on-screen phonetic Bengali keyboard."
+      }
+    }
+  },
+  "ur": {
+    "name": "Urdu",
+    "hasTimeGuide": true,
+    "seo": {
+      "alphabet": {
+        "title": "Urdu Alphabet & Nastaliq Script | Basic Language School",
+        "description": "Master all 39 letters of the Urdu Nastaliq alphabet with pronunciation guides, transliteration, example words, and native studio audio."
+      },
+      "grammar": {
+        "title": "Urdu Grammar & Conjugation | Basic Language School",
+        "description": "Learn beginner Urdu grammar, gender agreement, polite verb forms, and interactive flashcards with transliteration and studio audio."
+      },
+      "phrases": {
+        "title": "Essential Urdu Phrases | Basic Language School",
+        "description": "Learn everyday Urdu greetings, polite expressions, and conversational phrases with Urdu Nastaliq script, transliteration, and audio."
+      },
+      "numbers": {
+        "title": "Urdu Numbers (0–1,000) | Basic Language School",
+        "description": "Master numbers in Urdu from 0 to 1,000 with Urdu script, pronunciation transliteration, and authentic native studio neural audio."
+      },
+      "time": {
+        "title": "Telling Time in Urdu | Basic Language School",
+        "description": "Learn how to ask and tell time in Urdu (کتنے بجے ہیں؟) with transliteration guides and authentic native studio audio pronunciations."
+      },
+      "words": {
+        "title": "Core Urdu Vocabulary | Basic Language School",
+        "description": "Build your Urdu vocabulary with high-frequency daily life, dining, family, and travel words featuring Nastaliq script and studio audio."
+      },
+      "quiz": {
+        "title": "Interactive Urdu Quiz | Basic Language School",
+        "description": "Test your Urdu Nastaliq alphabet, vocabulary, numbers, and grammar with spaced-repetition quizzes and a phonetic Urdu keyboard."
+      }
+    }
+  }
+}

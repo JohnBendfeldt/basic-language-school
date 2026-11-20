@@ -193,46 +193,76 @@ const AppContent: React.FC = () => {
 
   // Update SEO Title & Meta tags dynamically per language and section
   const updateMeta = useCallback((section: string) => {
-    const chromeCopy = getComponentChrome(baseLanguage);
-    if (section === 'about' || section === 'privacy' || section === 'terms') {
-      const legalTitleMap: Record<string, string> = {
-        about: `${chromeCopy.aboutContact || 'About & Contact'} | Basic Language School`,
-        privacy: `${chromeCopy.privacyPolicy || 'Privacy Policy'} | Basic Language School`,
-        terms: `${chromeCopy.termsOfService || 'Terms of Service'} | Basic Language School`,
-      };
-      const pageTitle = legalTitleMap[section];
-      document.title = pageTitle;
+    const applyHeadMeta = (title: string, description: string, canonicalUrl: string) => {
+      document.title = title;
+
+      const descTag = document.querySelector('meta[name="description"]');
+      if (descTag) descTag.setAttribute('content', description);
 
       const ogTitle = document.querySelector('meta[property="og:title"]');
-      if (ogTitle) ogTitle.setAttribute('content', pageTitle);
+      if (ogTitle) ogTitle.setAttribute('content', title);
+
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogDesc) ogDesc.setAttribute('content', description);
+
+      const ogUrl = document.querySelector('meta[property="og:url"]');
+      if (ogUrl) ogUrl.setAttribute('content', canonicalUrl);
+
+      const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+      if (twitterTitle) twitterTitle.setAttribute('content', title);
+
+      const twitterDesc = document.querySelector('meta[name="twitter:description"]');
+      if (twitterDesc) twitterDesc.setAttribute('content', description);
 
       const canonical = document.querySelector('link[rel="canonical"]');
-      if (canonical) {
-        canonical.setAttribute('href', `https://basiclanguage.school/${section}`);
-      }
+      if (canonical) canonical.setAttribute('href', canonicalUrl);
+    };
+
+    const chromeCopy = getComponentChrome(baseLanguage);
+    if (section === 'about' || section === 'privacy' || section === 'terms') {
+      const legalMetaMap: Record<string, { title: string; description: string }> = {
+        about: {
+          title: `${chromeCopy.aboutContact || 'About & Contact'} | Basic Language School`,
+          description:
+            'Learn about Basic Language School — a free, privacy-friendly platform for learning 15 world languages across 210 bidirectional pairs with studio neural audio.',
+        },
+        privacy: {
+          title: `${chromeCopy.privacyPolicy || 'Privacy Policy'} | Basic Language School`,
+          description:
+            'Privacy Policy for Basic Language School (basiclanguage.school). Learn how we protect your privacy, quiz progress, and account information.',
+        },
+        terms: {
+          title: `${chromeCopy.termsOfService || 'Terms of Service'} | Basic Language School`,
+          description:
+            'Terms of Service for Basic Language School (basiclanguage.school). Free language learning platform terms and guidelines.',
+        },
+      };
+      const legal = legalMetaMap[section];
+      applyHeadMeta(legal.title, legal.description, `https://basiclanguage.school/${section}`);
       return;
     }
 
-    const safeSection = Object.prototype.hasOwnProperty.call(currentMeta.seo, section) ? section : 'alphabet';
+    const currentPath =
+      typeof window !== 'undefined'
+        ? window.location.pathname.toLowerCase().replace(/\/+$/, '') || '/'
+        : '/';
+    const isGrammarRoute =
+      section === 'alphabet' &&
+      (alphabetSubTab === 'grammar' || currentPath.endsWith('/grammar'));
+    const effectiveSection = isGrammarRoute ? 'grammar' : section;
+    const safeSection = Object.prototype.hasOwnProperty.call(currentMeta.seo, effectiveSection)
+      ? effectiveSection
+      : 'alphabet';
     const seoInfo = currentMeta.seo[safeSection] || currentMeta.seo.alphabet;
+
     if (seoInfo) {
-      document.title = seoInfo.title;
-
-      const descTag = document.querySelector('meta[name="description"]');
-      if (descTag) descTag.setAttribute('content', seoInfo.description);
-
-      const ogTitle = document.querySelector('meta[property="og:title"]');
-      if (ogTitle) ogTitle.setAttribute('content', seoInfo.title);
-
-      const ogDesc = document.querySelector('meta[property="og:description"]');
-      if (ogDesc) ogDesc.setAttribute('content', seoInfo.description);
-
-      const canonical = document.querySelector('link[rel="canonical"]');
-      if (canonical) {
-        canonical.setAttribute('href', `https://basiclanguage.school/learn/${currentLanguage}/${safeSection}`);
-      }
+      const canonicalUrl =
+        currentPath === '/'
+          ? 'https://basiclanguage.school/'
+          : `https://basiclanguage.school/learn/${currentLanguage}/${safeSection}`;
+      applyHeadMeta(seoInfo.title, seoInfo.description, canonicalUrl);
     }
-  }, [currentLanguage, currentMeta, baseLanguage]);
+  }, [currentLanguage, currentMeta, baseLanguage, alphabetSubTab]);
 
   // Handle browser back/forward buttons
   useEffect(() => {
