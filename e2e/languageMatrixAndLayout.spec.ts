@@ -834,5 +834,96 @@ test.describe('Playwright E2E: Layout, Modals, Alignment & Neural Audio Matrix',
       expect(box!.x + box!.width).toBeLessThanOrEqual(390);
     }
   });
+
+  test('LanguageSwitcher "I speak" regression (Desktop & Mobile): switching Russian for English speakers to Spanish yields Russian for Spanish speakers without hijacking target or closing early', async ({
+    page,
+  }) => {
+    // 1. Desktop (1280x800): Start on Russian for English speakers
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto('/');
+    await page.evaluate(() => {
+      localStorage.clear();
+      localStorage.setItem('basic_language_base_lang', 'en');
+      localStorage.setItem('basic_language_target_lang', 'ru');
+    });
+    await page.goto('/learn/ru/alphabet');
+
+    const appRoot = page.locator('.app');
+    await expect(appRoot).toHaveAttribute('data-base-lang', 'en');
+    await expect(appRoot).toHaveAttribute('data-target-lang', 'ru');
+
+    // Open desktop language switcher modal
+    await page.locator('.desktop-header-actions .language-switcher-trigger').click();
+    const modal = page.getByRole('dialog', { name: 'Language selection modal' });
+    await expect(modal).toBeVisible();
+
+    // Click "I speak: English"
+    await modal.locator('.pair-box.base-box').click();
+    await expect(modal.locator('.pair-box.base-box')).toHaveClass(/selected-tab/);
+
+    // Quick-pairs (Recent Pairs & Suggested For You) must NOT appear while customizing "I speak"
+    await expect(modal.locator('.quick-pairs-section')).toHaveCount(0);
+
+    // Clicking the FIRST button matching "Spanish" (just like a user) must be unambiguous (exactly 1 match)
+    const spanishBtns = modal.locator('button', { hasText: 'Spanish' });
+    await expect(spanishBtns).toHaveCount(1);
+    await spanishBtns.first().click();
+
+    // Modal stays open and pair is now Russian for Spanish speakers (NOT Spanish for English speakers!)
+    await expect(modal).toBeVisible();
+    await expect(appRoot).toHaveAttribute('data-base-lang', 'es');
+    await expect(appRoot).toHaveAttribute('data-target-lang', 'ru');
+    await expect(page).toHaveURL(/\/learn\/ru\/alphabet$/);
+    await expect(modal.locator('.pair-box.base-box')).toContainText('Español');
+    await expect(modal.locator('.pair-box.target-box')).toContainText('Ruso');
+
+    // Click Done ("Listo") to close modal
+    await modal.getByRole('button', { name: /Confirm selection and close modal/i }).click();
+    await expect(modal).toBeHidden();
+    await expect(page.locator('h1')).toContainText('Ruso Básico');
+
+    // Reloading preserves Russian for Spanish speakers
+    await page.reload();
+    await expect(appRoot).toHaveAttribute('data-base-lang', 'es');
+    await expect(appRoot).toHaveAttribute('data-target-lang', 'ru');
+    await expect(page).toHaveURL(/\/learn\/ru\/alphabet$/);
+
+    // Reopening starts cleanly on "I want to learn" ("Quiero aprender") with ES -> RU in Recent Pairs
+    await page.locator('.desktop-header-actions .language-switcher-trigger').click();
+    await expect(modal).toBeVisible();
+    await expect(modal.locator('.pair-box.target-box')).toHaveClass(/selected-tab/);
+    await expect(modal.locator('.quick-pairs-section')).toBeVisible();
+    await expect(modal.getByRole('button', { name: /^Switch to pair ES to RU\b/ })).toBeVisible();
+    await modal.getByRole('button', { name: 'Close modal', exact: true }).click();
+    await expect(modal).toBeHidden();
+
+    // 2. Mobile (390x844): Repeat the exact Russian for English speakers -> Russian for Spanish speakers flow
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.evaluate(() => {
+      localStorage.setItem('basic_language_base_lang', 'en');
+      localStorage.setItem('basic_language_target_lang', 'ru');
+    });
+    await page.goto('/learn/ru/alphabet');
+
+    await page.locator('.mobile-header-actions .language-switcher-trigger').click();
+    await expect(modal).toBeVisible();
+
+    await modal.locator('.pair-box.base-box').click();
+    await expect(modal.locator('.quick-pairs-section')).toHaveCount(0);
+
+    const mobileSpanishBtns = modal.locator('button', { hasText: 'Spanish' });
+    await expect(mobileSpanishBtns).toHaveCount(1);
+    await mobileSpanishBtns.first().click();
+
+    await expect(modal).toBeVisible();
+    await expect(appRoot).toHaveAttribute('data-base-lang', 'es');
+    await expect(appRoot).toHaveAttribute('data-target-lang', 'ru');
+    await expect(page).toHaveURL(/\/learn\/ru\/alphabet$/);
+
+    const modalBox = await modal.boundingBox();
+    expect(modalBox).not.toBeNull();
+    expect(modalBox!.x).toBeGreaterThanOrEqual(0);
+    expect(modalBox!.x + modalBox!.width).toBeLessThanOrEqual(390);
+  });
 });
 
