@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/app-icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#1e3a8a" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
     <!-- Cache Control (Prevent mobile browser / iOS WebKit caching of the HTML entrypoint) -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
@@ -13,21 +15,22 @@
 
     <!-- Primary SEO -->
     <title>Basic Language School | Free Online Language Courses &amp; Quizzes</title>
-    <meta name="description" content="Master 15 world languages online for free: Spanish, French, German, Russian, Portuguese, Indonesian, Turkish, Mandarin Chinese, Japanese, Korean, Hindi, Arabic, Bengali, Urdu, and English. Interactive alphabets, studio neural audio, grammar flashcards, and career-focused vocabulary." />
+    <meta name="description" content="Learn 15 world languages free online: Spanish, French, German, Russian, Portuguese, Indonesian, Turkish, Chinese, Japanese, Korean, Hindi, Arabic, Bengali, Urdu &amp; English." />
     <meta name="keywords" content="basic language school, learn spanish, learn french, learn german, learn russian, learn portuguese, learn indonesian, learn turkish, learn english, learn chinese, learn japanese, learn korean, learn hindi, learn arabic, learn bengali, learn urdu, language learning, vocabulary, studio audio" />
-    <link rel="canonical" href="https://basiclanguage.school" />
+    <link rel="canonical" href="https://basiclanguage.school/" />
 
     <!-- Open Graph (Facebook, LinkedIn, Twitter, etc.) -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://basiclanguage.school" />
+    <meta property="og:url" content="https://basiclanguage.school/" />
     <meta property="og:site_name" content="Basic Language School" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:title" content="Basic Language School | Free Online Language Courses &amp; Quizzes" />
     <meta property="og:description" content="Master 15 world languages across 210 bidirectional pairs with studio neural audio, spaced repetition, grammar flashcards, phonetic keyboards, and practical workplace vocabulary." />
     <meta property="og:image" content="https://basiclanguage.school/og-image.png" />
     <meta property="og:image:secure_url" content="https://basiclanguage.school/og-image.png" />
     <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="2400" />
+    <meta property="og:image:height" content="1260" />
     <meta property="og:image:alt" content="Basic Language School interactive 15-language learning dashboard preview" />
 
     <!-- Twitter Card -->
@@ -35,6 +38,7 @@
     <meta name="twitter:title" content="Basic Language School | Free Online Language Courses &amp; Quizzes" />
     <meta name="twitter:description" content="Master 15 world languages across 210 pairs with studio neural audio, spaced repetition, grammar flashcards, and practical workplace vocabulary." />
     <meta name="twitter:image" content="https://basiclanguage.school/og-image.png" />
+    <meta name="twitter:image:alt" content="Basic Language School interactive 15-language learning dashboard preview" />
 
     <!-- PWA -->
     <link rel="apple-touch-icon" href="/logo192.png" />
@@ -43,43 +47,103 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Basic Language School" />
-    <link rel="apple-touch-startup-image" href="/splash-screen.png" />
 
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Basic Language School",
-      "alternateName": "Basic Language School Online",
-      "url": "https://basiclanguage.school",
-      "description": "Learn 15 world languages across 210 bidirectional pairs online for free. Interactive courses in English, Spanish, French, German, Russian, Portuguese, Indonesian, Turkish, Mandarin Chinese, Japanese, Korean, Hindi, Arabic, Bengali, and Urdu with studio neural audio pronunciation, grammar flashcards, vocabulary quizzes, and phrase guides.",
-      "applicationCategory": "EducationalApplication",
-      "operatingSystem": "Any",
-      "browserRequirements": "Requires JavaScript",
-      "inLanguage": ["en", "es", "fr", "de", "pt", "id", "tr", "ru", "zh", "ja", "ko", "hi", "ar", "bn", "ur"],
-      "isAccessibleForFree": true,
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "educationalLevel": "Beginner to Intermediate",
-      "teaches": "Essential Phrases & Greetings across 15 languages (English, Spanish, French, German, Russian, Portuguese, Indonesian, Turkish, Mandarin Chinese, Japanese, Korean, Hindi, Arabic, Bengali, Urdu)",
-      "audience": {
-        "@type": "EducationalAudience",
-        "educationalRole": "student",
-        "audienceType": "Language learners worldwide"
-      },
-      "featureList": [
-        "Interactive Alphabet, Script & Pinyin Guides with native studio audio",
-        "Essential Phrases & Greetings across 15 languages",
-        "Numbers & Telling Time modules",
-        "Grammar, Verb Conjugation & Flashcards with neural audio",
-        "8 Non-Latin Phonetic Virtual Keyboards & sound-out typing",
-        "Common Vocabulary & Career packs (Tech, Business, Healthcare, Travel)",
-        "Spaced repetition quiz with listening & writing modes",
-        "Single-file Offline Audio packs & PWA support"
+      "@graph": [
+        {
+          "@type": "EducationalOrganization",
+          "@id": "https://basiclanguage.school/#organization",
+          "name": "Basic Language School",
+          "url": "https://basiclanguage.school/",
+          "logo": "https://basiclanguage.school/logo512.png",
+          "description": "Free online multi-language learning school offering 15 world languages across 210 bidirectional language pairs with studio neural audio and interactive exercises.",
+          "sameAs": [
+            "https://basicenglish.school/",
+            "https://basicfrench.org/",
+            "https://basicrussian.org/",
+            "https://github.com/JohnBendfeldt/basic-language-school",
+            "https://github.com/JohnBendfeldt/basic-english",
+            "https://github.com/JohnBendfeldt/basic-french",
+            "https://github.com/JohnBendfeldt/basic-russian"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://basiclanguage.school/#website",
+          "name": "Basic Language School",
+          "alternateName": "Basic Language School Online",
+          "url": "https://basiclanguage.school/",
+          "description": "Free online courses in 15 world languages across 210 bidirectional pairs with studio neural audio, grammar flashcards, and spaced-repetition quizzes.",
+          "inLanguage": ["en", "es", "fr", "de", "pt", "id", "tr", "ru", "zh", "ja", "ko", "hi", "ar", "bn", "ur"],
+          "publisher": {
+            "@id": "https://basiclanguage.school/#organization"
+          }
+        },
+        {
+          "@type": "WebApplication",
+          "@id": "https://basiclanguage.school/#app",
+          "name": "Basic Language School",
+          "alternateName": "Basic Language School Online",
+          "url": "https://basiclanguage.school/",
+          "image": "https://basiclanguage.school/og-image.png",
+          "description": "Learn 15 world languages across 210 bidirectional pairs online for free. Interactive courses in English, Spanish, French, German, Russian, Portuguese, Indonesian, Turkish, Mandarin Chinese, Japanese, Korean, Hindi, Arabic, Bengali, and Urdu with studio neural audio pronunciation, grammar flashcards, vocabulary quizzes, and phrase guides.",
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "Any",
+          "browserRequirements": "Requires JavaScript",
+          "inLanguage": ["en", "es", "fr", "de", "pt", "id", "tr", "ru", "zh", "ja", "ko", "hi", "ar", "bn", "ur"],
+          "isAccessibleForFree": true,
+          "provider": {
+            "@id": "https://basiclanguage.school/#organization"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "educationalLevel": "Beginner to Intermediate",
+          "teaches": "15 world languages: English, Spanish, French, German, Russian, Portuguese, Indonesian, Turkish, Mandarin Chinese, Japanese, Korean, Hindi, Arabic, Bengali, and Urdu",
+          "audience": {
+            "@type": "EducationalAudience",
+            "educationalRole": "student",
+            "audienceType": "Language learners worldwide"
+          },
+          "featureList": [
+            "Interactive Alphabet, Script & Pinyin Guides with native studio audio",
+            "Essential Phrases & Greetings across 15 languages",
+            "Numbers & Telling Time modules",
+            "Grammar, Verb Conjugation & Flashcards with neural audio",
+            "8 Non-Latin Phonetic Virtual Keyboards & sound-out typing",
+            "Common Vocabulary & Career packs (Tech, Business, Healthcare, Travel)",
+            "Spaced repetition quiz with listening & writing modes",
+            "Single-file Offline Audio packs & PWA support"
+          ]
+        },
+        {
+          "@type": "ItemList",
+          "@id": "https://basiclanguage.school/#courses",
+          "name": "Free Online Language Courses at Basic Language School",
+          "numberOfItems": 15,
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "item": { "@type": "Course", "name": "Basic English", "description": "Free English alphabet, phonics, phrases, numbers, grammar, and vocabulary with studio audio.", "url": "https://basiclanguage.school/learn/en/alphabet", "provider": { "@id": "https://basiclanguage.school/#organization" } } },
+            { "@type": "ListItem", "position": 2, "item": { "@type": "Course", "name": "Basic Spanish", "description": "Free Spanish alphabet, phrases, numbers, time, grammar, and vocabulary with studio audio.", "url": "https://basiclanguage.school/learn/es/alphabet", "provider": { "@id": "https://basiclanguage.school/#organization" } } },
+            { "@type": "ListItem", "position": 3, "item": { "@type": "Course", "name": "Basic French", "description": "Free French alphabet, phonetics, phrases, numbers, time, grammar, and vocabulary with studio audio.", "url": "https://basiclanguage.school/learn/fr/alphabet", "provider": { "@id": "https://basiclanguage.school/#organization" } } },
+            { "@type": "ListItem", "position": 4, "item": { "@type": "Course", "name": "Basic German", "description": "Free German alphabet, phrases, numbers, time, grammar, and vocabulary with studio audio.", "url": "https://basiclanguage.school/learn/de/alphabet", "provider": { "@id": "https://basiclanguage.school/#organization" } } },
+            { "@type": "ListItem", "position": 5, "item": { "@type": "Course", "name": "Basic Portuguese", "description": "Free Brazilian Portuguese alphabet, phrases, numbers, time, grammar, and vocabulary with studio audio.", "url": "https://basiclanguage.school/learn/pt/alphabet", "provider": { "@id": "https://basiclanguage.school/#organization" } } },
+            { "@type": "ListItem", "position": 6, "item": { "@type": "Course", "name": "Basic Indonesian", "description": "Free Bahasa Indonesia alphabet, phrases, numbers, time, grammar, and vocabulary with studio audio.", "url": "https://basiclanguage.school/learn/id/alphabet", "provider": { "@id": "https://basiclanguage.school/#organization" } } },
+            { "@type": "ListItem", "position": 7, "item": { "@type": "Course", "name": "Basic Turkish", "description": "Free Turkish alphabet, phrases, numbers, time, grammar, and vocabulary with studio audio.", "url": "https://basiclanguage.school/learn/tr/alphabet", "provider": { "@id": "https://basiclanguage.school/#organization" } } },
+            { "@type": "ListItem", "position": 8, "item": { "@type": "Course", "name": "Basic Russian", "description": "Free Russian Cyrillic alphabet, phrases, numbers, time, grammar, and vocabulary with studio audio.", "url": "https://basiclanguage.school/learn/ru/alphabet", "provider": { "@id": "https://basiclanguage.school/#organization" } } },
+            { "@type": "ListItem", "position": 9, "item": { "@type": "Course", "name": "Basic Mandarin Chinese", "description": "Free Mandarin Chinese Pinyin, tones, phrases, numbers, time, grammar, and vocabulary with studio audio.", "url": "https://basiclanguage.school/learn/zh/alphabet", "provider": { "@id": "https://basiclanguage.school/#organization" } } },
+            { "@type": "ListItem", "position": 10, "item": { "@type": "Course", "name": "Basic Japanese", "description": "Free Japanese Hiragana, phrases, numbers, time, grammar, and vocabulary with studio audio.", "url": "https://basiclanguage.school/learn/ja/alphabet", "provider": { "@id": "https://basiclanguage.school/#organization" } } },
+            { "@type": "ListItem", "position": 11, "item": { "@type": "Course", "name": "Basic Korean", "description": "Free Korean Hangul alphabet, phrases, numbers, time, grammar, and vocabulary with studio audio.", "url": "https://basiclanguage.school/learn/ko/alphabet", "provider": { "@id": "https://basiclanguage.school/#organization" } } },
+            { "@type": "ListItem", "position": 12, "item": { "@type": "Course", "name": "Basic Hindi", "description": "Free Hindi Devanagari script, phrases, numbers, time, grammar, and vocabulary with studio audio.", "url": "https://basiclanguage.school/learn/hi/alphabet", "provider": { "@id": "https://basiclanguage.school/#organization" } } },
+            { "@type": "ListItem", "position": 13, "item": { "@type": "Course", "name": "Basic Arabic", "description": "Free Arabic alphabet, phrases, numbers, time, grammar, and vocabulary with studio audio.", "url": "https://basiclanguage.school/learn/ar/alphabet", "provider": { "@id": "https://basiclanguage.school/#organization" } } },
+            { "@type": "ListItem", "position": 14, "item": { "@type": "Course", "name": "Basic Bengali", "description": "Free Bengali script, phrases, numbers, time, grammar, and vocabulary with studio audio.", "url": "https://basiclanguage.school/learn/bn/alphabet", "provider": { "@id": "https://basiclanguage.school/#organization" } } },
+            { "@type": "ListItem", "position": 15, "item": { "@type": "Course", "name": "Basic Urdu", "description": "Free Urdu Nastaliq script, phrases, numbers, time, grammar, and vocabulary with studio audio.", "url": "https://basiclanguage.school/learn/ur/alphabet", "provider": { "@id": "https://basiclanguage.school/#organization" } } }
+          ]
+        }
       ]
     }
     </script>
@@ -93,7 +157,7 @@
         Study alphabets, essential phrases, grammar, common words, numbers, and pronunciation with interactive
         exercises and native studio audio. Please enable JavaScript to use the full app.
       </p>
-      <nav>
+      <nav aria-label="Language courses">
         <ul>
           <li><a href="/learn/en/alphabet">Basic English – English alphabet, phrases, numbers, and vocabulary</a></li>
           <li><a href="/learn/es/alphabet">Basic Spanish – Spanish alphabet, phrases, numbers, and vocabulary</a></li>
@@ -110,6 +174,12 @@
           <li><a href="/learn/ar/alphabet">Basic Arabic – Arabic script, phrases, numbers, and vocabulary</a></li>
           <li><a href="/learn/bn/alphabet">Basic Bengali – Bengali script, phrases, numbers, and vocabulary</a></li>
           <li><a href="/learn/ur/alphabet">Basic Urdu – Urdu Nastaliq script, phrases, numbers, and vocabulary</a></li>
+          <li><a href="/about">About Basic Language School</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Service</a></li>
+          <li><a href="https://basicenglish.school/">Basic English Standalone App</a></li>
+          <li><a href="https://basicfrench.org/">Basic French Standalone App</a></li>
+          <li><a href="https://basicrussian.org/">Basic Russian Standalone App</a></li>
         </ul>
       </nav>
     </noscript>

@@ -1,4 +1,6 @@
 {
+  "id": "/",
+  "lang": "en",
   "short_name": "Basic Language",
   "name": "Basic Language School",
   "icons": [
@@ -6,6 +8,12 @@
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
     },
     {
       "src": "logo192.png",
@@ -26,14 +34,5 @@
   "background_color": "#ffffff",
   "orientation": "portrait",
   "categories": ["education", "learning", "languages"],
-  "description": "Learn 15 world languages (Spanish, French, German, Russian, Portuguese, Indonesian, Turkish, Mandarin Chinese, Japanese, Korean, Hindi, Arabic, Bengali, Urdu, and English) across 210 language pairs with interactive exercises and studio neural audio.",
-  "screenshots": [
-    {
-      "src": "screenshot1.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "platform": "wide",
-      "label": "Russian Alphabet Learning"
-    }
-  ]
+  "description": "Learn 15 world languages (Spanish, French, German, Russian, Portuguese, Indonesian, Turkish, Mandarin Chinese, Japanese, Korean, Hindi, Arabic, Bengali, Urdu, and English) across 210 language pairs with interactive exercises and studio neural audio."
 }

@@ -1,5 +1,6 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /voice-test.html
 
 Sitemap: https://basiclanguage.school/sitemap.xml
