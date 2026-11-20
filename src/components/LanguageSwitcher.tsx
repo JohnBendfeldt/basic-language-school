@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { FaChevronDown, FaCheck, FaGlobe, FaExchangeAlt, FaTimes } from 'react-icons/fa';
 import { useLanguage } from '../contexts/LanguageContext';
 import { SupportedLanguageId } from '../data/languages/types';
+import { isSupportedLanguageId } from '../data/languages';
 import { FlagIcon } from './FlagIcon';
 import { getLocalizedLanguageName, getComponentChrome, getLocalizedRegionName, getLanguageRequestCopy, getLanguagePickerCopy } from '../utils/pageDictionary';
 import { useModalAccessibility } from '../hooks/useModalAccessibility';
@@ -105,6 +106,33 @@ const getSuggestedTitle = (baseLang: SupportedLanguageId): string => {
   }
 };
 
+const readStoredRecentPairs = (): StoredLanguagePair[] | null => {
+  try {
+    const raw = localStorage.getItem(RECENT_PAIRS_STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        const valid = parsed
+          .filter(
+            (p): p is StoredLanguagePair =>
+              Boolean(p) &&
+              typeof p === 'object' &&
+              isSupportedLanguageId(p.base) &&
+              isSupportedLanguageId(p.target) &&
+              p.base !== p.target
+          )
+          .slice(0, 4);
+        if (valid.length > 0) {
+          return valid;
+        }
+      }
+    }
+  } catch {
+    // ignore
+  }
+  return null;
+};
+
 export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageChange, className = '' }) => {
   const {
     targetLanguage,
@@ -122,22 +150,30 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
   const [selectedRegion, setSelectedRegion] = useState<LanguageRegion>('all');
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const [recentPairs, setRecentPairs] = useState<StoredLanguagePair[]>(() => {
-    try {
-      const raw = localStorage.getItem(RECENT_PAIRS_STORAGE_KEY);
-      if (raw) {
-        const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed
-            .filter(p => p && typeof p === 'object' && p.base && p.target && p.base !== p.target)
-            .slice(0, 4);
-        }
-      }
-    } catch {
-      // ignore
+  const [recentPairs, setRecentPairs] = useState<StoredLanguagePair[]>(
+    () => readStoredRecentPairs() ?? DEFAULT_INITIAL_PAIRS
+  );
+
+  const openModal = () => {
+    setActiveTab('target');
+    setSelectedRegion('all');
+    const stored = readStoredRecentPairs();
+    if (stored) {
+      setRecentPairs(stored);
     }
-    return DEFAULT_INITIAL_PAIRS;
-  });
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+    setActiveTab('target');
+    setSelectedRegion('all');
+  };
+
+  const selectTab = (tab: PairTab) => {
+    setActiveTab(tab);
+    setSelectedRegion('all');
+  };
 
   const recordRecentPair = (base: SupportedLanguageId, target: SupportedLanguageId) => {
     if (!base || !target || base === target) return;
@@ -155,7 +191,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
 
   useModalAccessibility({
     isOpen,
-    onClose: () => setIsOpen(false),
+    onClose: closeModal,
     modalRef,
   });
 
@@ -171,7 +207,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
     if (onLanguageChange) {
       onLanguageChange(nextTarget);
     }
-    setIsOpen(false);
+    closeModal();
   };
 
   const handleSelectBase = (langId: string, available: boolean) => {
@@ -201,7 +237,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
     if (onLanguageChange) {
       onLanguageChange(target);
     }
-    setIsOpen(false);
+    closeModal();
   };
 
   const handleSwapClick = (e: React.MouseEvent) => {
@@ -229,7 +265,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
         <button
           type="button"
           className="language-switcher-trigger"
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => (isOpen ? closeModal() : openModal())}
           aria-haspopup="dialog"
           aria-expanded={isOpen}
           title={`${ui.iSpeak}: ${localizedBaseName}, ${ui.learning}: ${localizedTargetName}`}
@@ -263,7 +299,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
       {isOpen && (
         <div
           className="language-modal-backdrop"
-          onClick={() => setIsOpen(false)}
+          onClick={closeModal}
           role="presentation"
         >
           <div
@@ -277,7 +313,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
             <button
               type="button"
               className="language-modal-close auth-modal-close"
-              onClick={() => setIsOpen(false)}
+              onClick={closeModal}
               aria-label="Close modal"
             >
               <FaTimes aria-hidden="true" />
@@ -299,14 +335,14 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
             <div className="pair-visualizer-card">
               <div
                 className={`pair-box base-box ${activeTab === 'base' ? 'selected-tab' : ''}`}
-                onClick={() => setActiveTab('base')}
+                onClick={() => selectTab('base')}
                 role="button"
                 tabIndex={0}
                 aria-pressed={activeTab === 'base'}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    setActiveTab('base');
+                    selectTab('base');
                   }
                 }}
               >
@@ -337,14 +373,14 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
 
               <div
                 className={`pair-box target-box ${activeTab === 'target' ? 'selected-tab' : ''}`}
-                onClick={() => setActiveTab('target')}
+                onClick={() => selectTab('target')}
                 role="button"
                 tabIndex={0}
                 aria-pressed={activeTab === 'target'}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    setActiveTab('target');
+                    selectTab('target');
                   }
                 }}
               >
@@ -364,61 +400,63 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
               </div>
             </div>
 
-            {/* Quick-Pairs Section: Recent & High-Affinity Corridors */}
-            <div className="quick-pairs-section">
-              {recentPairs.length > 0 && (
-                <div className="quick-pairs-group">
-                  <div className="quick-pairs-title">⚡ {getRecentPairsTitle(baseLanguage)}</div>
-                  <div className="quick-pairs-chips">
-                    {recentPairs.map(p => {
-                      const isCurrent = baseLanguage === p.base && targetLanguage === p.target;
-                      return (
-                        <button
-                          key={`recent-${p.base}-${p.target}`}
-                          type="button"
-                          aria-pressed={isCurrent}
-                          className={`quick-pair-chip ${isCurrent ? 'active' : ''}`}
-                          onClick={() => handleQuickPair(p.base, p.target)}
-                          aria-label={`Switch to pair ${p.base.toUpperCase()} to ${p.target.toUpperCase()} — ${p.base.toUpperCase()} ${p.target.toUpperCase()}`}
-                        >
-                          <FlagIcon lang={p.base} size={15} />
-                          <span>{p.base.toUpperCase()}</span>
-                          <span className="chip-arrow" aria-hidden="true">→</span>
-                          <FlagIcon lang={p.target} size={15} />
-                          <span>{p.target.toUpperCase()}</span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-
-              {availableLanguages.filter(l => l.available && l.id !== baseLanguage && (HIGH_AFFINITY_CORRIDORS[baseLanguage] || ['es', 'fr', 'en', 'de']).includes(l.id as SupportedLanguageId)).length > 0 && (
-                <div className="quick-pairs-group" style={{ marginTop: '0.65rem' }}>
-                  <div className="quick-pairs-title">✨ {getSuggestedTitle(baseLanguage)}</div>
-                  <div className="quick-pairs-chips">
-                    {availableLanguages
-                      .filter(l => l.available && l.id !== baseLanguage && (HIGH_AFFINITY_CORRIDORS[baseLanguage] || ['es', 'fr', 'en', 'de']).includes(l.id as SupportedLanguageId))
-                      .map(tgt => {
-                        const isCurrent = targetLanguage === tgt.id;
-                        const localizedTgtName = getLocalizedLanguageName(tgt.id, baseLanguage, tgt.name);
+            {/* Quick-Pairs Section: Recent & High-Affinity Corridors (only shown while choosing what to learn) */}
+            {activeTab === 'target' && (
+              <div className="quick-pairs-section">
+                {recentPairs.length > 0 && (
+                  <div className="quick-pairs-group">
+                    <div className="quick-pairs-title">⚡ {getRecentPairsTitle(baseLanguage)}</div>
+                    <div className="quick-pairs-chips">
+                      {recentPairs.map(p => {
+                        const isCurrent = baseLanguage === p.base && targetLanguage === p.target;
                         return (
                           <button
-                            key={`sugg-${baseLanguage}-${tgt.id}`}
+                            key={`recent-${p.base}-${p.target}`}
                             type="button"
                             aria-pressed={isCurrent}
                             className={`quick-pair-chip ${isCurrent ? 'active' : ''}`}
-                            onClick={() => handleQuickPair(baseLanguage, tgt.id as SupportedLanguageId)}
-                            aria-label={localizedTgtName === tgt.name ? `Learn ${tgt.name}` : `Learn ${tgt.name} — ${localizedTgtName}`}
+                            onClick={() => handleQuickPair(p.base, p.target)}
+                            aria-label={`Switch to pair ${p.base.toUpperCase()} to ${p.target.toUpperCase()} — ${p.base.toUpperCase()} ${p.target.toUpperCase()}`}
                           >
-                            <FlagIcon lang={tgt.id} size={14} /> {localizedTgtName}
+                            <FlagIcon lang={p.base} size={15} />
+                            <span>{p.base.toUpperCase()}</span>
+                            <span className="chip-arrow" aria-hidden="true">→</span>
+                            <FlagIcon lang={p.target} size={15} />
+                            <span>{p.target.toUpperCase()}</span>
                           </button>
                         );
                       })}
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
+                )}
+
+                {availableLanguages.filter(l => l.available && l.id !== baseLanguage && (HIGH_AFFINITY_CORRIDORS[baseLanguage] || ['es', 'fr', 'en', 'de']).includes(l.id as SupportedLanguageId)).length > 0 && (
+                  <div className="quick-pairs-group" style={{ marginTop: '0.65rem' }}>
+                    <div className="quick-pairs-title">✨ {getSuggestedTitle(baseLanguage)}</div>
+                    <div className="quick-pairs-chips">
+                      {availableLanguages
+                        .filter(l => l.available && l.id !== baseLanguage && (HIGH_AFFINITY_CORRIDORS[baseLanguage] || ['es', 'fr', 'en', 'de']).includes(l.id as SupportedLanguageId))
+                        .map(tgt => {
+                          const isCurrent = targetLanguage === tgt.id;
+                          const localizedTgtName = getLocalizedLanguageName(tgt.id, baseLanguage, tgt.name);
+                          return (
+                            <button
+                              key={`sugg-${baseLanguage}-${tgt.id}`}
+                              type="button"
+                              aria-pressed={isCurrent}
+                              className={`quick-pair-chip ${isCurrent ? 'active' : ''}`}
+                              onClick={() => handleQuickPair(baseLanguage, tgt.id as SupportedLanguageId)}
+                              aria-label={localizedTgtName === tgt.name ? `Learn ${tgt.name}` : `Learn ${tgt.name} — ${localizedTgtName}`}
+                            >
+                              <FlagIcon lang={tgt.id} size={14} /> {localizedTgtName}
+                            </button>
+                          );
+                        })}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* Language Selection List for Active Tab */}
             <div className="language-list">
@@ -549,7 +587,7 @@ export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ onLanguageCh
               <button
                 type="button"
                 className="language-modal-done-btn"
-                onClick={() => setIsOpen(false)}
+                onClick={closeModal}
                 aria-label={`${pickerCopy.done} — Confirm selection and close modal`}
               >
                 {pickerCopy.done}

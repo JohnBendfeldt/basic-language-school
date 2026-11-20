@@ -274,13 +274,17 @@ describe('WCAG 2.1 / 2.2 Level AA Accessibility Audit Suite', () => {
       await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull());
       expect(document.activeElement).toBe(searchTrigger);
 
-      // 2. LanguageSwitcher
+      // 2. LanguageSwitcher (both "I want to learn" and "I speak" tabs)
       const langTrigger = container.querySelector<HTMLButtonElement>('.language-switcher-trigger')!;
       langTrigger.focus();
       fireEvent.click(langTrigger);
 
       const langDialog = await screen.findByRole('dialog', { name: /Language selection modal/i });
       expect(within(langDialog).getByRole('menu')).toBeInTheDocument();
+      await expectNoAxeViolations(container);
+
+      fireEvent.click(langDialog.querySelector('.pair-box.base-box')!);
+      expect(langDialog.querySelector('.quick-pairs-section')).toBeNull();
       await expectNoAxeViolations(container);
 
       fireEvent.keyDown(window, { key: 'Escape' });
