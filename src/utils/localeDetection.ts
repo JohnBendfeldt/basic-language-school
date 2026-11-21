@@ -1,5 +1,5 @@
 import { SupportedLanguageId } from '../data/languages/types';
-import { SUPPORTED_LANGUAGES, isSupportedLanguageId } from '../data/languages';
+import { isSupportedLanguageId } from '../data/languages';
 
 export interface LanguagePair {
   targetLanguage: SupportedLanguageId; // Language the user is learning

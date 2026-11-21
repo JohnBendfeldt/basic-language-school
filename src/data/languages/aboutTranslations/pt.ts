@@ -99,7 +99,7 @@ export const ABOUT_TRANSLATIONS_PT: AboutLanguageTranslations = {
         title: 'Sem conjugação verbal',
         description: 'Ao contrário do português ou do espanhol, com dezenas de desinências verbais, os verbos em chinês nunca mudam! “Comer” (吃 chī) é idêntico para eu como, tu comes, nós comemos ou eles comerão. O tempo é indicado de modo simples por marcadores temporais (ontem, amanhã) ou partículas aspectuais (了 le).',
         icon: '⚡',
-        example: '我吃 (Eu como) · 昨天我吃 (Ontem eu comi)'
+        example: '我吃 (Eu como) · 我昨天吃了 (Ontem eu comi)'
       },
       {
         title: 'Sem gênero gramatical nem terminações de plural',
@@ -222,7 +222,7 @@ export const ABOUT_TRANSLATIONS_PT: AboutLanguageTranslations = {
         example: '私はパンを食べました (Eu comi pão)'
       },
       {
-        title: 'Partículas gramaticais (助词 · Joshi)',
+        title: 'Partículas gramaticais (助詞 · Joshi)',
         description: 'Pequenas partículas pospostas indicam o papel exato de cada palavra na frase (は tópico, が sujeito, を objeto direto, に destino ou tempo).',
         icon: '🏷️',
         example: '猫が (o gato [sujeito]) + 魚を (peixe [objeto]) + 食べた (comeu)'
@@ -276,7 +276,7 @@ export const ABOUT_TRANSLATIONS_PT: AboutLanguageTranslations = {
         title: 'Consoantes brandas e duras (palatalização)',
         description: 'Quase todas as consoantes formam pares duros (simples) ou brandos (palatalizados), diferenciados pela vogal seguinte ou pelo sinal brando (ь).',
         icon: '🎶',
-        example: 'мат (xeque-mate) vs. мать (mãe)'
+        example: 'брат (irmão) vs. брать (pegar)'
       }
     ],
     culturalNote: 'O russo é um dos seis idiomas oficiais das Nações Unidas e a segunda língua operacional obrigatória a bordo da Estação Espacial Internacional.'
@@ -334,7 +334,7 @@ export const ABOUT_TRANSLATIONS_PT: AboutLanguageTranslations = {
     writingSystem: 'Abjad árabe (28 letras, da direita para a esquerda)',
     languageFamily: 'Afro-asiática (semítica)',
     facts: [
-      { label: 'Direção da escrita', value: 'Da direita para a esquerda', icon: '➡️' },
+      { label: 'Direção da escrita', value: 'Da direita para a esquerda', icon: '⬅️' },
       { label: 'Alfabeto', value: '28 letras (consoantes e vogais longas)', icon: '🔤' },
       { label: 'Sistema de raízes', value: 'Raízes consonantais de 3 letras (trilíteras)', icon: '🌱' },
       { label: 'O som exclusivo', value: 'Dad (ض) — encontrado quase exclusivamente no árabe', icon: '🗣️' },
@@ -385,7 +385,7 @@ export const ABOUT_TRANSLATIONS_PT: AboutLanguageTranslations = {
     writingSystem: 'Escrita abugida devanágari (देवनागरी)',
     languageFamily: 'Indo-europeia (indo-ariana)',
     facts: [
-      { label: 'Alfabeto', value: '46 letras devanágari (11 vogais e 33 consoantes)', icon: '🔤' },
+      { label: 'Alfabeto', value: 'Escrita devanágari (11 vogais, 33 consoantes e ligaduras)', icon: '🔤' },
       { label: 'Linha superior', value: 'Shirorekha (traço horizontal que sustenta as letras)', icon: '📏' },
       { label: 'Língua irmã', value: 'Coloquialmente intercompreensível com o urdu', icon: '🤝' },
       { label: 'Ordem das palavras', value: 'SOV (Sujeito-Objeto-Verbo)', icon: '🔄' },

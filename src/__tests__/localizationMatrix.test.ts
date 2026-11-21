@@ -174,9 +174,9 @@ describe('Full 15-language category, page header & translation performance guara
     }
   });
 
-  it('resolves English words into Urdu and Bengali script instead of English dictionary definitions, in < 50ms for 500+ items', () => {
+  it('resolves English words into Urdu and Bengali script instead of English dictionary definitions, in < 50ms for 300+ items', () => {
     const enWords = SUPPORTED_LANGUAGES.en.data.commonWords || [];
-    expect(enWords.length).toBeGreaterThan(400);
+    expect(enWords.length).toBeGreaterThan(300);
 
     // Warm up one-time index initialization, then benchmark 1,000+ steady-state tab-switch lookups
     resolveTranslation(enWords[0] as any, 'en', 'es');

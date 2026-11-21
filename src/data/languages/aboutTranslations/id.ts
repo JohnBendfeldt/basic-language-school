@@ -99,7 +99,7 @@ export const ABOUT_TRANSLATIONS_ID: AboutLanguageTranslations = {
         title: 'Tanpa Konjugasi Kata Kerja',
         description: 'Berbeda dengan bahasa Spanyol atau Prancis yang memiliki puluhan perubahan akhiran kata kerja, kata kerja bahasa Mandarin tidak pernah berubah bentuk—persis seperti bahasa Indonesia! Kata "makan" (吃 chī) tetap sama untuk saya makan, kamu makan, kemarin kami makan, atau besok mereka makan. Waktu cukup ditunjukkan dengan keterangan waktu (kemarin, besok) atau partikel aspek (了 le).',
         icon: '⚡',
-        example: '我吃 (Saya makan) · 昨天我吃 (Kemarin saya makan)'
+        example: '我吃 (Saya makan) · 我昨天吃了 (Kemarin saya makan)'
       },
       {
         title: 'Tanpa Genus Tata Bahasa atau Akhiran Jamak',
@@ -162,7 +162,7 @@ export const ABOUT_TRANSLATIONS_ID: AboutLanguageTranslations = {
         title: 'Aksara Anatomis (Meniru Bentuk Mulut & Lidah)',
         description: 'Bentuk huruf Hangeul tidak dibuat sembarangan: ㄱ meniru pangkal lidah yang menutup kerongkongan, ㄴ meniru ujung lidah yang menyentuh gusi atas, dan ㅁ meniru bentuk bibir.',
         icon: '👅',
-        example: 'ㅁ (m) menggambarkan bibir tertutup; ㅂ (b) menambah garis hembusan bunyi.'
+        example: 'ㅁ (m) menggambarkan bibir tertutup; ㅂ (b/p) menambah garis untuk bunyi letup, dan ㅍ (p) untuk aspirasi.'
       },
       {
         title: 'Arsitektur Blok Suku Kata',
@@ -276,7 +276,7 @@ export const ABOUT_TRANSLATIONS_ID: AboutLanguageTranslations = {
         title: 'Konsonan Keras & Lunak (Palatalisasi)',
         description: 'Hampir setiap konsonan memiliki pasangan bunyi keras (biasa) dan lunak (dipalatalisasi), yang ditandai oleh huruf vokal sesudahnya atau oleh tanda pelunak (ь).',
         icon: '🎶',
-        example: 'мат (skakmat catur) dibandingkan мать (ibu)'
+        example: 'брат (saudara laki-laki) dibandingkan брать (mengambil)'
       }
     ],
     culturalNote: 'Bahasa Rusia merupakan salah satu dari enam bahasa resmi Perserikatan Bangsa-Bangsa serta bahasa operasional kedua yang wajib dikuasai para antariksawan di Stasiun Luar Angkasa Internasional.'
@@ -334,7 +334,7 @@ export const ABOUT_TRANSLATIONS_ID: AboutLanguageTranslations = {
     writingSystem: 'Abjad Arab (28 Huruf, Ditulis dari Kanan ke Kiri)',
     languageFamily: 'Afroasiatik (Semitik)',
     facts: [
-      { label: 'Arah Tulisan', value: 'Kanan ke Kiri', icon: '➡️' },
+      { label: 'Arah Tulisan', value: 'Kanan ke Kiri', icon: '⬅️' },
       { label: 'Abjad', value: '28 Huruf (Konsonan dan vokal panjang)', icon: '🔤' },
       { label: 'Sistem Akar Kata', value: 'Akar 3 Huruf Konsonan (Tsulatsi)', icon: '🌱' },
       { label: 'Bunyi Khas', value: 'Huruf Dhad (ض) — Hampir hanya ditemukan dalam bahasa Arab', icon: '🗣️' },
@@ -385,7 +385,7 @@ export const ABOUT_TRANSLATIONS_ID: AboutLanguageTranslations = {
     writingSystem: 'Aksara Abugida Devanagari (देवनागरी)',
     languageFamily: 'Indo-Eropa (Indo-Arya)',
     facts: [
-      { label: 'Abjad', value: '46 Huruf Devanagari (11 Vokal, 33 Konsonan)', icon: '🔤' },
+      { label: 'Abjad', value: 'Aksara Devanagari (11 Vokal, 33 Konsonan & Ligatur)', icon: '🔤' },
       { label: 'Garis Atas', value: 'Shirorekha (Garis mendatar tempat menggantungkan huruf)', icon: '📏' },
       { label: 'Bahasa Serumpun', value: 'Saling dapat dipahami secara lisan dengan bahasa Urdu', icon: '🤝' },
       { label: 'Urutan Kata', value: 'Subjek-Objek-Kata Kerja (Kata kerja di akhir)', icon: '🔄' },

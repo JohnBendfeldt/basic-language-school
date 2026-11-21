@@ -516,10 +516,18 @@ export const RUSSIAN_GRAMMAR: GrammarData = {
   ],
   descriptions: [
     {
-      title: 'Russian Adjective Agreement',
-      explanation: 'Russian adjectives change endings according to the gender of the noun: -ый/-ий (masculine), -ая/-яя (feminine), -ое/-ее (neuter), -ые/-ие (plural).',
+      title: 'Russian Adjective Gender Agreement',
+      explanation: 'Russian adjectives change endings according to the gender of the noun: -ый/-ий/-ой (masculine), -ая/-яя (feminine), -ое/-ее (neuter), -ые/-ие (plural).',
+      headers: ['Masculine (-ый/-ой)', 'Feminine (-ая)', 'Neuter (-ое)', 'Meaning'],
       examples: [
         { positive: 'новый (masc)', comparative: 'новая (fem)', superlative: 'новое (neut)', meaning: 'new' },
+        { positive: 'большой (masc)', comparative: 'большая (fem)', superlative: 'большое (neut)', meaning: 'big' },
+      ],
+    },
+    {
+      title: 'Russian Comparative & Superlative Adjectives',
+      explanation: 'Key high-frequency adjectives have irregular comparative and superlative forms.',
+      examples: [
         { positive: 'хороший (good)', comparative: 'лучше (better)', superlative: 'лучший (best)', meaning: 'good / better / best' },
         { positive: 'большой (big)', comparative: 'больше (bigger)', superlative: 'наибольший (biggest)', meaning: 'big / bigger / biggest' },
       ],
@@ -1264,7 +1272,7 @@ export const ENGLISH_GRAMMAR: GrammarData = {
         fr: '« Apple » commence par un son voyelle /æ/, on utilise donc l\'article « an » (« an apple »).',
         de: '„Apple“ beginnt mit einem Vokallaut /æ/, daher wird der unbestimmte Artikel „an“ verwendet („an apple“).',
         pt: '«Apple» começa com um som vocálico /æ/, por isso leva o artigo «an» («an apple»).',
-        tr: '«Apple» kelimesi /æ/ sesli harfiyle başladığı için «an» artikeli alır («an apple»).',
+        tr: '«Apple» kelimesi /æ/ ünlü sesiyle başladığı için «an» artikeli alır («an apple»).',
         id: '«Apple» diawali dengan bunyi vokal /æ/, sehingga menggunakan artikel «an» («an apple»).',
         ja: '「apple」は母音 /æ/ で始まるため、冠詞「an」を付けます（an apple）。',
         ko: '«apple»은 모음 /æ/로 시작하므로 부정관사 «an»을 사용합니다 (an apple).'
@@ -1297,7 +1305,7 @@ export const ENGLISH_GRAMMAR: GrammarData = {
         fr: 'Le « h » de « hour » est muet et commence par un son voyelle /aʊər/, on utilise donc « an hour ».',
         de: 'In „hour“ ist das „h“ stumm und beginnt mit dem Vokallaut /aʊər/, daher heißt es „an hour“.',
         pt: 'A letra «h» em «hour» é muda e a palavra começa com som vocálico /aʊər/, usando-se «an hour».',
-        tr: '«Hour» kelimesindeki «h» harfi okunmaz ve sesli /aʊər/ ile başlar, bu yüzden «an hour» kullanılır.',
+        tr: '«Hour» kelimesindeki «h» harfi okunmaz ve /aʊər/ ünlü sesiyle başlar, bu yüzden «an hour» kullanılır.',
         id: 'Huruf «h» pada «hour» tidak dibunyikan dan diawali bunyi vokal /aʊər/, sehingga menggunakan «an hour».',
         ja: '「hour」の「h」は発音せず母音 /aʊər/ で始まるため、「an hour」になります。',
         ko: '«hour»의 «h»는 묵음이고 모음 /aʊər/로 시작하므로 «an hour»를 사용합니다.'
@@ -1479,12 +1487,19 @@ export const TURKISH_GRAMMAR: GrammarData = {
 export const INDONESIAN_GRAMMAR: GrammarData = {
   descriptions: [
     {
-      title: 'Indonesian Word Order & Time Markers',
-      explanation: 'Indonesian has NO verb conjugation, NO grammatical gender, and NO tenses! Adjectives follow nouns (rumah besar = house big = big house). Time is indicated simply with marker words: "sudah" (already/past), "sedang" (currently), and "akan" (will/future).',
-      headers: ['Base Verb / Noun', 'In-Progress (sedang)', 'Completed (sudah)', 'Function & Word Order'],
+      title: 'Indonesian Time & Aspect Markers',
+      explanation: 'Indonesian has NO verb conjugation, NO grammatical gender, and NO verb tenses! Time and aspect are indicated simply with marker words before the verb: "sudah" (already/past), "sedang" (currently), and "akan" (will/future).',
+      headers: ['Base Verb', 'In-Progress (sedang)', 'Completed (sudah)', 'Function'],
       examples: [
         { positive: 'makan (eat)', comparative: 'sedang makan (eating now)', superlative: 'sudah makan (already ate)', meaning: 'Time markers before verb' },
-        { positive: 'rumah (house)', comparative: 'rumah besar (big house)', superlative: 'rumah-rumah (houses)', meaning: 'Plural by word repetition' },
+      ],
+    },
+    {
+      title: 'Indonesian Word Order & Plurals',
+      explanation: 'Adjectives follow the noun they describe (rumah besar = house big = big house), and plurals can be formed by repeating the noun (reduplication).',
+      headers: ['Base Noun', 'Noun + Adjective', 'Plural (Reduplication)', 'Word Order & Plural Rule'],
+      examples: [
+        { positive: 'rumah (house)', comparative: 'rumah besar (big house)', superlative: 'rumah-rumah (houses)', meaning: 'Adjective after noun; repeat for plural' },
       ],
     },
   ],
@@ -1527,7 +1542,7 @@ export const INDONESIAN_GRAMMAR: GrammarData = {
       forms: [
         { pronoun: 'Present / Want to', form: 'mau (want to)' },
         { pronoun: 'Past / Intended (tadi mau)', form: 'tadi mau (wanted to earlier)' },
-        { pronoun: 'Future / About to (akan mau)', form: 'akan segera (about to)' },
+        { pronoun: 'Soon / About to (akan segera)', form: 'akan segera (about to)' },
         { pronoun: 'Negative (tidak mau)', form: 'tidak mau (don\'t want to)' },
         { pronoun: 'Polite Want (ingin)', form: 'ingin (would like to [polite])' },
         { pronoun: 'Question (mau apa)', form: 'mau apa? (what do you want?)' },
@@ -1583,7 +1598,7 @@ export const INDONESIAN_GRAMMAR: GrammarData = {
       explanation: 'Indonesian expresses plural by repeating the noun (reduplication): "buku-buku".',
       explanations: {
         en: 'Indonesian expresses plural by repeating the noun (reduplication): "buku-buku".',
-        ru: 'Во индонезийском языке множественное число выражается повторением слова (редупликацией): «buku-buku».',
+        ru: 'В индонезийском языке множественное число выражается повторением слова (редупликацией): «buku-buku».',
         de: 'Im Indonesischen wird der Plural durch Wortwiederholung (Reduplikation) gebildet: „buku-buku“.',
         es: 'En indonesio, el plural se forma repitiendo la palabra (reduplicación): «buku-buku».',
         fr: 'En indonésien, le pluriel s\'exprime par répétition du mot (réduplication) : « buku-buku ».',
@@ -1606,10 +1621,17 @@ export const KOREAN_GRAMMAR: GrammarData = {
     {
       title: 'Korean Particles (조사 - 은/는, 이/가, 을/를)',
       explanation: 'Korean uses postpositional particles to mark grammatical roles. 은/는 marks topic/contrast. 이/가 marks subject. 을/를 marks direct object. Korean has NO grammatical gender!',
-      headers: ['Topic (은/는)', 'Subject (이/가)', 'Object (을/를)', 'Role & Consonant/Vowel Rule'],
+      headers: ['Topic (은/는)', 'Subject (이/가)', 'Object (을/를)', 'Role'],
       examples: [
         { positive: '저는 (jeo-neun)', comparative: '물이 (mul-i)', superlative: '밥을 (bap-eul)', meaning: '저 (topic) + 물 (subject) + 밥 (object)' },
-        { positive: '은 / 을 (after consonant)', comparative: '는 / 를 (after vowel)', superlative: '이 / 가 (sub consonant/vowel)', meaning: '책을 (book-obj) vs 커피를 (coffee-obj)' },
+      ],
+    },
+    {
+      title: 'Consonant (Batchim) vs. Vowel Particle Rule',
+      explanation: 'Each Korean particle has two forms depending on whether the preceding syllable ends in a final consonant (받침 batchim) or a vowel.',
+      headers: ['After Consonant (받침 O)', 'After Vowel (받침 X)', 'Subject Pair (이 / 가)', 'Examples'],
+      examples: [
+        { positive: '은 / 을 (after consonant)', comparative: '는 / 를 (after vowel)', superlative: '이 / 가 (consonant / vowel)', meaning: '책을 (book-obj) vs 커피를 (coffee-obj)' },
       ],
     },
     {
@@ -1687,7 +1709,7 @@ export const KOREAN_GRAMMAR: GrammarData = {
       explanations: {
         en: '"물" ends with a consonant (ㄹ), so the object particle "을" is attached.',
         ru: 'Слово «물» оканчивается на согласный (ㄹ), поэтому присоединяется частица прямого дополнения «을».',
-        de: '„물“ endet auf einen Konsonanten (ㄹ), daher wird der Akkusativ-Partikel „을“ angehängt.',
+        de: '„물“ endet auf einen Konsonanten (ㄹ), daher wird die Akkusativpartikel „을“ angehängt.',
         es: '«물» termina en consonante (ㄹ), por lo que se añade la partícula de objeto «을».',
         fr: '« 물 » se termine par une consonne (ㄹ), on attache donc la particule d\'objet « 을 ».',
       },
@@ -1704,13 +1726,13 @@ export const KOREAN_GRAMMAR: GrammarData = {
     {
       id: 'ko-card-2',
       type: 'verb',
-      prompt: 'Polite present tense of "가다" (to go)',
+      prompt: 'Everyday polite (-아요/어요) present tense of "가다" (to go)',
       prompts: {
-        en: 'Polite present tense of "가다" (to go)',
-        ru: 'Вежливое настоящее время от «가다» (идти)',
-        de: 'Höfliches Präsens von „가다“ (gehen)',
-        es: 'Presente cortés de "가다" (ir)',
-        fr: 'Présent poli de « 가다 » (aller)',
+        en: 'Everyday polite (-아요/어요) present tense of "가다" (to go)',
+        ru: 'Повседневное вежливое настоящее время (-아요/어요) от «가다» (идти)',
+        de: 'Alltägliches höfliches Präsens (-아요/어요) von „가다“ (gehen)',
+        es: 'Presente cortés cotidiano (-아요/어요) de "가다" (ir)',
+        fr: 'Présent poli courant (-아요/어요) de « 가다 » (aller)',
       },
       options: ['가세요', '갔어요', '가요', '갑니다'],
       correctAnswer: '가요',
@@ -1769,11 +1791,18 @@ export const KOREAN_GRAMMAR: GrammarData = {
 export const JAPANESE_GRAMMAR: GrammarData = {
   descriptions: [
     {
-      title: 'Japanese Particles (助詞 - は, が, を, に, で)',
-      explanation: 'Particles mark grammatical functions: は (wa) marks topic, が (ga) marks subject, を (o) marks direct object, に (ni) marks target/time, で (de) marks location of action. Japanese has NO grammatical gender!',
+      title: 'Japanese Core Sentence Particles (助詞 - は, が, を)',
+      explanation: 'Particles mark grammatical functions in Subject–Object–Verb (SOV) order: は (wa) marks the topic, が (ga) marks the subject, and を (o) marks the direct object. Japanese has NO grammatical gender!',
       headers: ['Topic / Subject', 'Direct Object', 'Action / Verb', 'Grammar Role (SOV)'],
       examples: [
         { positive: '私は (watashi wa)', comparative: '水を (mizu o)', superlative: '飲みます (nomimasu)', meaning: 'Topic + Object + Verb (SOV order)' },
+      ],
+    },
+    {
+      title: 'Location, Direction & Companion Particles (に, で, と)',
+      explanation: 'に (ni) marks destination or target/time, で (de) marks the location where an action happens, and と (to) means "with" a person or connects nouns.',
+      headers: ['Direction / Target (に)', 'Action Location (で)', 'Together With (と)', 'Particle Function'],
+      examples: [
         { positive: '学校に (to school)', comparative: '駅で (at station)', superlative: '友達と (with friend)', meaning: 'Direction (に) vs Location (で) vs With (と)' },
       ],
     },
@@ -1783,7 +1812,7 @@ export const JAPANESE_GRAMMAR: GrammarData = {
       headers: ['Present Polite (〜ます)', 'Negative (〜ません)', 'Past Form (〜ました)', 'Category & Role'],
       examples: [
         { positive: '食べます (tabemasu)', comparative: '食べません (don\'t eat)', superlative: '食べました (ate)', meaning: 'Polite present vs negative vs past' },
-        { positive: '学生です (I am student)', comparative: 'ではありません (am not)', superlative: 'でした (was)', meaning: 'Noun + desu inflections' },
+        { positive: '学生です (I am a student)', comparative: 'ではありません (am not)', superlative: 'でした (was)', meaning: 'Noun + desu inflections' },
       ],
     },
   ],
@@ -1827,7 +1856,7 @@ export const JAPANESE_GRAMMAR: GrammarData = {
         { pronoun: 'Polite Present (現在 丁寧)', form: 'します (shimasu) — do' },
         { pronoun: 'Polite Negative (現在 否定)', form: 'しません (shimasen) — don\'t do' },
         { pronoun: 'Polite Past (過去 肯定)', form: 'しました (shimashita) — did' },
-        { pronoun: 'Polite Past Neg ( past negative)', form: 'しませんでした (shimasendeshita)' },
+        { pronoun: 'Polite Past Neg (過去 否定)', form: 'しませんでした (shimasendeshita)' },
         { pronoun: 'Plain / Dictionary (辞書形)', form: 'する (suru) — to do (casual)' },
         { pronoun: 'Te-form (て形 Request/Connect)', form: 'して (shite) — please do / doing' },
       ],
@@ -1992,7 +2021,7 @@ export const CHINESE_GRAMMAR: GrammarData = {
         { pronoun: 'Negative (否定: 没有 - never 不有!)', form: '没有 (méi yǒu) — don\'t have' },
         { pronoun: 'Question (疑问: 有没有)', form: '有没有 (yǒu méi yǒu?)' },
         { pronoun: 'Completed / Acquired (有了)', form: '有了 (yǒu le) — now have' },
-        { pronoun: 'Quantity (有很多)', form: '很多 (hěn duō) — have many' },
+        { pronoun: 'Quantity (有很多 - have many)', form: '很多 (hěn duō) — many / a lot' },
         { pronoun: 'Existence (存在句)', form: '这里有 (zhèlǐ yǒu) — there is here' },
       ],
       exampleSentence: { target: '我有一个问题，你有没有时间？', translation: 'I have a question, do you have time?' },
@@ -2081,7 +2110,7 @@ export const CHINESE_GRAMMAR: GrammarData = {
       explanations: {
         en: '吗 (ma) placed at the end of a statement turns it into a direct yes/no question without changing word order.',
         ru: 'Частица 吗 (ma) в конце повествовательного предложения превращает его в общий вопрос да/нет.',
-        de: 'Das Partikel 吗 (ma) am Satzende verwandelt eine Aussage in eine Ja/Nein-Frage.',
+        de: 'Die Partikel 吗 (ma) am Satzende verwandelt eine Aussage in eine Ja/Nein-Frage.',
         es: 'La partícula 吗 (ma) al final de una afirmación la convierte en una pregunta directa de sí o no.',
         fr: 'La particule 吗 (ma) en fin de phrase transforme une affirmation en question fermée oui/non.',
         zh: '陈述句末尾加上疑问语气助词"吗"，即可变为一般疑问句。',
@@ -2107,7 +2136,7 @@ export const CHINESE_GRAMMAR: GrammarData = {
         de: 'Besitzanzeigende Partikel: „Mein Freund“ ➔ 我___朋友',
         es: 'Partícula posesiva: «Mi amigo» ➔ 我___朋友',
         fr: 'Particule de possession : « Mon ami » ➔ 我___朋友',
-        zh: '结构助词："我的朋友" ➔ 我___朋友',
+        zh: '表示所属关系的结构助词 ➔ 我___朋友',
       },
       options: ['了', '的', '吗', '个'],
       correctAnswer: '的',
@@ -2141,7 +2170,7 @@ export const CHINESE_GRAMMAR: GrammarData = {
         de: 'Vergleichssatz: „China ist größer als Japan“ ➔ 中国___日本大',
         es: 'Oración comparativa: «China es más grande que Japón» ➔ 中国___日本大',
         fr: 'Phrase comparative : « La Chine est plus grande que le Japon » ➔ 中国___日本大',
-        zh: '比较句："中国比日本大" ➔ 中国___日本大',
+        zh: '比较句（中国 > 日本） ➔ 中国___日本大',
       },
       options: ['很', '最', '比', '更'],
       correctAnswer: '比',
@@ -2211,7 +2240,7 @@ export const HINDI_GRAMMAR: GrammarData = {
     {
       title: 'Hindi Postpositions (परसर्ग - में, पर, से, को, का/के/की)',
       explanation: 'Unlike English prepositions that come BEFORE a noun, Hindi uses postpositions that follow the noun. When a postposition follows, the noun enters the oblique case (e.g. लड़का ➔ लड़के को).',
-      headers: ['Noun / Context', 'Postposition Phrase', 'Oblique Case / Possessive', 'Meaning & Function'],
+      headers: ['Noun / Context', 'Postposition Phrase', 'Meaning / Possessive', 'Grammar Function'],
       examples: [
         { positive: 'कमरा (room)', comparative: 'कमरे में (kamre mẽ)', superlative: 'In the room', meaning: 'Locative: inside (oblique -e)' },
         { positive: 'मेज़ (table)', comparative: 'मेज़ पर (mez par)', superlative: 'On the table', meaning: 'Locative: on / at' },
@@ -2236,7 +2265,7 @@ export const HINDI_GRAMMAR: GrammarData = {
         { pronoun: 'आप (You - formal)', form: 'हैं (are)' },
         { pronoun: 'वे / ये (They)', form: 'हैं (are)' },
       ],
-      exampleSentence: { target: 'हम साथ में भाषा सीख रहे हैं।', translation: 'We are learning languages together.' },
+      exampleSentence: { target: 'हम साथ में भाषा सीख रहे हैं।', translation: 'We are learning a language together.' },
     },
     {
       verb: 'करना (to do)',
@@ -2422,10 +2451,10 @@ export const ARABIC_GRAMMAR: GrammarData = {
         'Adjectives agree with masculine nouns: كتاب جديد (a new book), ولد ذكي (a smart boy).',
       ],
       examples: [
-        { word: 'ولد (Boy)', article: 'مذكر', meaning: 'boy', icon: '👦' },
-        { word: 'كتاب (Book)', article: 'مذكر', meaning: 'book', icon: '📖' },
-        { word: 'قلم (Pen)', article: 'مذكر', meaning: 'pen', icon: '🖊️' },
-        { word: 'بيت (House)', article: 'مذكر', meaning: 'house', icon: '🏠' },
+        { word: 'ولد (walad)', article: 'مذكر', meaning: 'boy', icon: '👦' },
+        { word: 'كتاب (kitāb)', article: 'مذكر', meaning: 'book', icon: '📖' },
+        { word: 'قلم (qalam)', article: 'مذكر', meaning: 'pen', icon: '🖊️' },
+        { word: 'بيت (bayt)', article: 'مذكر', meaning: 'house', icon: '🏠' },
       ],
     },
     {
@@ -2440,10 +2469,10 @@ export const ARABIC_GRAMMAR: GrammarData = {
         'Adjectives modifying feminine nouns take Taa Marbuta: سيارة جديدة (a new car), مدينة جميلة (a beautiful city).',
       ],
       examples: [
-        { word: 'بنت (Girl)', article: 'مؤنث', meaning: 'girl', icon: '👧' },
-        { word: 'سيارة (Car)', article: 'مؤنث', meaning: 'car', icon: '🚗' },
-        { word: 'شجرة (Tree)', article: 'مؤنث', meaning: 'tree', icon: '🌳' },
-        { word: 'مدينة (City)', article: 'مؤنث', meaning: 'city', icon: '🏙️' },
+        { word: 'بنت (bint)', article: 'مؤنث', meaning: 'girl', icon: '👧' },
+        { word: 'سيارة (sayyārah)', article: 'مؤنث', meaning: 'car', icon: '🚗' },
+        { word: 'شجرة (shajarah)', article: 'مؤنث', meaning: 'tree', icon: '🌳' },
+        { word: 'مدينة (madīnah)', article: 'مؤنث', meaning: 'city', icon: '🏙️' },
       ],
     },
   ],
@@ -2701,10 +2730,10 @@ export const BENGALI_GRAMMAR: GrammarData = {
     {
       title: 'Bengali Postpositions & Cases (বিভক্তি - এ/তে, র/এর, কে, থেকে, জন্য)',
       explanation: 'Like other South Asian languages, Bengali uses postpositions and case endings (বিভক্তি) suffixed directly to nouns rather than prepositions.',
-      headers: ['Noun / Root', 'Postposition Phrase', 'Case / Function', 'Meaning & Example'],
+      headers: ['Noun / Root', 'Postposition Phrase', 'Meaning', 'Case & Function'],
       examples: [
         { positive: 'ঘর (room)', comparative: 'ঘরে (ghore)', superlative: 'In the room', meaning: 'Locative: inside / at (-এ / -তে)' },
-        { positive: 'টেবিল (table)', comparative: 'টেবিলে (tebille)', superlative: 'On the table', meaning: 'Locative: on / upon' },
+        { positive: 'টেবিল (table)', comparative: 'টেবিলে (tebile)', superlative: 'On the table', meaning: 'Locative: on / upon' },
         { positive: 'ঢাকা (Dhaka)', comparative: 'ঢাকা থেকে (Dhaka theke)', superlative: 'From Dhaka', meaning: 'Ablative: originating from' },
         { positive: 'বন্ধু (friend)', comparative: 'বন্ধুকে (bondhu-ke)', superlative: 'To the friend', meaning: 'Dative / Accusative: direct object (-কে)' },
         { positive: 'রফিক (Rafiq)', comparative: 'রফিকের বই (Rafiq-er boi)', superlative: "Rafiq's book", meaning: "Genitive / Possessive: of (-র / -এর)" },
@@ -2971,10 +3000,10 @@ export const URDU_GRAMMAR: GrammarData = {
     {
       title: 'Urdu Postpositions (حروفِ جار - میں, پر, سے, کو, کا/کے/کی)',
       explanation: 'Urdu uses postpositions (حروفِ جار) that follow the noun. When a postposition is used, the preceding masculine noun inflects into the oblique case (e.g. کمرہ ➔ کمرے میں).',
-      headers: ['Noun / Context', 'Postposition Phrase', 'Oblique Case / Possessive', 'Meaning & Function'],
+      headers: ['Noun / Context', 'Postposition Phrase', 'Meaning / Possessive', 'Grammar Function'],
       examples: [
         { positive: 'کمرہ (room)', comparative: 'کمرے میں (kamre mein)', superlative: 'In the room', meaning: 'Locative: inside (oblique -e)' },
-        { positive: 'میز (table)', comparative: 'میز پر (maiz par)', superlative: 'On the table', meaning: 'Locative: on / upon' },
+        { positive: 'میز (table)', comparative: 'میز پر (mez par)', superlative: 'On the table', meaning: 'Locative: on / upon' },
         { positive: 'لاہور (Lahore)', comparative: 'لاہور سے (Lahore se)', superlative: 'From Lahore', meaning: 'Ablative: originating from' },
         { positive: 'دوست (friend)', comparative: 'دوست کو (dost ko)', superlative: 'To the friend', meaning: 'Dative / Accusative: to / for' },
         { positive: 'احمد (Ahmad)', comparative: 'احمد کا گھر (m.sg)', superlative: "احمد کی کتاب (f.sg)", meaning: "Possessive of (کا/کے/کی)" },
@@ -3036,7 +3065,7 @@ export const URDU_GRAMMAR: GrammarData = {
         es: '___ لڑکی',
         fr: '___ لڑکی',
         zh: '___ لڑکی',
-        hi: '___ लड़की',
+        hi: '___ لڑکی',
         ur: '___ لڑکی',
       },
       options: ['اچھی', 'اچھا', 'اچھے', 'اچھوں'],
@@ -3048,7 +3077,7 @@ export const URDU_GRAMMAR: GrammarData = {
         ru: 'Прилагательные на -aa принимают окончание -ee перед существительными женского рода (اچھا لڑکا ➔ اچھی لڑکی).',
         de: 'Adjektive auf -aa enden vor weiblichen Nomen auf -ee (اچھا لڑکا ➔ اچھی لڑکی).',
         es: 'Los adjetivos terminados en -aa cambian a -ee con sustantivos femeninos (اچھا لڑکا ➔ اچھی لڑکی).',
-        fr: 'Les adjectifs en -aa se terminent en -ee devant un nom féminin (اچھا لڑکا ➔ अच्छी लड़की).',
+        fr: 'Les adjectifs en -aa se terminent en -ee devant un nom féminin (اچھا لڑکا ➔ اچھی لڑکی).',
         zh: '修饰阴性名词时，以 -aa 结尾的形容词变为 -ee（اچھا لڑکا ➔ اچھی لڑکی）。',
         hi: 'स्त्रीलिंग संज्ञा (लड़की) के साथ विशेषण का स्त्रीलिंग रूप "اچھی" प्रयुक्त होता है।',
         ur: 'مؤنث اسم (لڑکی) کے ساتھ صفت کی مؤنث صورت "اچھی" استعمال ہوتی ہے۔',
@@ -3246,9 +3275,9 @@ const LOCALIZED_ENGLISH_GRAMMAR: Partial<Record<SupportedLanguageId, Partial<Gra
         title: 'Степени сравнения прилагательных',
         explanation: 'Короткие прилагательные принимают суффиксы -er / -est (fast ➔ faster ➔ fastest). Более длинные прилагательные используют слова more / most (important ➔ more important ➔ most important).',
         examples: [
-          { positive: 'good (хороший)', comparative: 'better (лучше)', superlative: 'best (лучший)', meaning: 'good / better / best' },
-          { positive: 'bad (плохой)', comparative: 'worse (хуже)', superlative: 'worst (худший)', meaning: 'bad / worse / worst' },
-          { positive: 'big (большой)', comparative: 'bigger (больше)', superlative: 'biggest (наибольший)', meaning: 'big / bigger / biggest' },
+          { positive: 'good (хороший)', comparative: 'better (лучше)', superlative: 'best (лучший)', meaning: 'хороший / лучше / лучший' },
+          { positive: 'bad (плохой)', comparative: 'worse (хуже)', superlative: 'worst (худший)', meaning: 'плохой / хуже / худший' },
+          { positive: 'big (большой)', comparative: 'bigger (больше)', superlative: 'biggest (наибольший)', meaning: 'большой / больше / наибольший' },
         ],
       },
     ],
@@ -3304,11 +3333,11 @@ const LOCALIZED_ENGLISH_GRAMMAR: Partial<Record<SupportedLanguageId, Partial<Gra
     descriptions: [
       {
         title: 'Comparación de adjetivos en inglés',
-        explanation: 'Los adjetivos cortos toman -er / -est (fast -> faster -> fastest). Los adjetivos más largos usan more / most (important -> more important -> most important).',
+        explanation: 'Los adjetivos cortos toman -er / -est (fast ➔ faster ➔ fastest). Los adjetivos más largos usan more / most (important ➔ more important ➔ most important).',
         examples: [
-          { positive: 'good (bueno)', comparative: 'better (mejor)', superlative: 'best (el mejor)', meaning: 'good / better / best' },
-          { positive: 'bad (malo)', comparative: 'worse (peor)', superlative: 'worst (el peor)', meaning: 'bad / worse / worst' },
-          { positive: 'big (grande)', comparative: 'bigger (más grande)', superlative: 'biggest (el más grande)', meaning: 'big / bigger / biggest' },
+          { positive: 'good (bueno)', comparative: 'better (mejor)', superlative: 'best (el mejor)', meaning: 'bueno / mejor / el mejor' },
+          { positive: 'bad (malo)', comparative: 'worse (peor)', superlative: 'worst (el peor)', meaning: 'malo / peor / el peor' },
+          { positive: 'big (grande)', comparative: 'bigger (más grande)', superlative: 'biggest (el más grande)', meaning: 'grande / más grande / el más grande' },
         ],
       },
     ],
@@ -3619,7 +3648,7 @@ const LOCALIZED_ENGLISH_GRAMMAR: Partial<Record<SupportedLanguageId, Partial<Gra
           article: 'a / an / the',
           gender: 'neuter',
           color: '#2563eb',
-          name: 'उपनाम व उपपद (Articles: A, An, The)',
+          name: 'आर्टिकल / उपपद (Articles: A, An, The)',
           description: 'अंग्रेज़ी संज्ञाओं में व्याकरणिक लिंग नहीं होता, लेकिन शब्द के आरम्भिक उच्चारण के आधार पर अनिश्चित उपपद (a / an) और निश्चित उपपद (the) का उपयोग किया जाता है।',
           rules: [
             'व्यंजन (Consonant) ध्वनि से शुरू होने वाले शब्दों से पहले "a" आता है: a book, a car, a university (प्रारंभिक ध्वनि /j/)',
@@ -3647,7 +3676,7 @@ const LOCALIZED_ENGLISH_GRAMMAR: Partial<Record<SupportedLanguageId, Partial<Gra
             { pronoun: 'we', form: 'are / were' },
             { pronoun: 'they', form: 'are / were' },
           ],
-          exampleSentence: { target: 'We are learning languages together.', translation: 'हम एक साथ भाषा सीख रहे हैं।' },
+          exampleSentence: { target: 'We are learning languages together.', translation: 'हम एक साथ भाषाएँ सीख रहे हैं।' },
         },
         {
           verb: 'to have',
@@ -3909,6 +3938,126 @@ const LOCALIZED_ENGLISH_GRAMMAR: Partial<Record<SupportedLanguageId, Partial<Gra
           { positive: 'good (اچھا)', comparative: 'better (بہتر)', superlative: 'best (بہترین)', meaning: 'اچھا / بہتر / بہترین' },
           { positive: 'bad (برا)', comparative: 'worse (بدتر)', superlative: 'worst (بدترین)', meaning: 'برا / بدتر / بدترین' },
           { positive: 'big (بڑا)', comparative: 'bigger (زیادہ بڑا)', superlative: 'biggest (سب سے بڑا)', meaning: 'بڑا / زیادہ بڑا / سب سے بڑا' },
+        ],
+      },
+    ],
+  },
+  tr: {
+    genderRules: [
+      {
+        article: 'a / an / the',
+        gender: 'neuter',
+        color: '#2563eb',
+        name: 'Artikeller (A, An, The)',
+        description: 'İngilizcede isimlerin dilbilgisel cinsiyeti yoktur; ancak kelimenin başındaki sese göre belirsiz artikeller ("a / an") ve belirli artikel ("the") kullanılır.',
+        rules: [
+          'Ünsüz sesiyle başlayan kelimelerden önce "a" kullanılır: a book, a car, a university (/j/ sesiyle başlar)',
+          'Ünlü sesiyle başlayan kelimelerden önce "an" kullanılır: an apple, an hour (sessiz "h"), an elephant',
+          'Belirli veya daha önce bahsedilen nesneler için "the" kullanılır: the book on the table',
+        ],
+        examples: [
+          { word: 'apple', article: 'an', meaning: 'bir elma', icon: '🍎' },
+          { word: 'book', article: 'a', meaning: 'bir kitap', icon: '📖' },
+          { word: 'car', article: 'a', meaning: 'bir araba', icon: '🚗' },
+          { word: 'hour', article: 'an', meaning: 'bir saat', icon: '⏱️' },
+        ],
+      },
+    ],
+    verbs: [
+      {
+        verb: 'to be',
+        meaning: 'olmak',
+        tense: 'Geniş ve Geçmiş Zaman',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I', form: 'am / was' },
+          { pronoun: 'you', form: 'are / were' },
+          { pronoun: 'he / she / it', form: 'is / was' },
+          { pronoun: 'we', form: 'are / were' },
+          { pronoun: 'they', form: 'are / were' },
+        ],
+        exampleSentence: { target: 'We are learning languages together.', translation: 'Birlikte diller öğreniyoruz.' },
+      },
+      {
+        verb: 'to have',
+        meaning: 'sahip olmak',
+        tense: 'Geniş ve Geçmiş Zaman',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I / you / we / they', form: 'have (had)' },
+          { pronoun: 'he / she / it', form: 'has (had)' },
+        ],
+        exampleSentence: { target: 'She has a meeting today.', translation: 'Bugün onun bir toplantısı var.' },
+      },
+    ],
+    descriptions: [
+      {
+        title: 'İngilizce Sıfat Karşılaştırmaları',
+        explanation: 'Kısa sıfatlar -er / -est eklerini alır (fast ➔ faster ➔ fastest). Daha uzun sıfatlar ise başlarına more / most alır (important ➔ more important ➔ most important).',
+        examples: [
+          { positive: 'good (iyi)', comparative: 'better (daha iyi)', superlative: 'best (en iyi)', meaning: 'iyi / daha iyi / en iyi' },
+          { positive: 'bad (kötü)', comparative: 'worse (daha kötü)', superlative: 'worst (en kötü)', meaning: 'kötü / daha kötü / en kötü' },
+          { positive: 'big (büyük)', comparative: 'bigger (daha büyük)', superlative: 'biggest (en büyük)', meaning: 'büyük / daha büyük / en büyük' },
+        ],
+      },
+    ],
+  },
+  id: {
+    genderRules: [
+      {
+        article: 'a / an / the',
+        gender: 'neuter',
+        color: '#2563eb',
+        name: 'Artikel (A, An, The)',
+        description: 'Bahasa Inggris tidak memiliki gender tata bahasa untuk kata benda, tetapi menggunakan artikel tak tentu ("a / an") dan artikel tentu ("the") berdasarkan bunyi awal kata.',
+        rules: [
+          'Gunakan "a" sebelum bunyi konsonan: a book, a car, a university (diawali bunyi /j/)',
+          'Gunakan "an" sebelum bunyi vokal: an apple, an hour ("h" tidak dibunyikan), an elephant',
+          'Gunakan "the" untuk benda yang spesifik atau sudah disebutkan: the book on the table',
+        ],
+        examples: [
+          { word: 'apple', article: 'an', meaning: 'sebuah apel', icon: '🍎' },
+          { word: 'book', article: 'a', meaning: 'sebuah buku', icon: '📖' },
+          { word: 'car', article: 'a', meaning: 'sebuah mobil', icon: '🚗' },
+          { word: 'hour', article: 'an', meaning: 'satu jam', icon: '⏱️' },
+        ],
+      },
+    ],
+    verbs: [
+      {
+        verb: 'to be',
+        meaning: 'adalah / berada',
+        tense: 'Bentuk Kini & Lampau',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I', form: 'am / was' },
+          { pronoun: 'you', form: 'are / were' },
+          { pronoun: 'he / she / it', form: 'is / was' },
+          { pronoun: 'we', form: 'are / were' },
+          { pronoun: 'they', form: 'are / were' },
+        ],
+        exampleSentence: { target: 'We are learning languages together.', translation: 'Kami sedang belajar bahasa bersama.' },
+      },
+      {
+        verb: 'to have',
+        meaning: 'mempunyai / memiliki',
+        tense: 'Bentuk Kini & Lampau',
+        type: 'irregular',
+        forms: [
+          { pronoun: 'I / you / we / they', form: 'have (had)' },
+          { pronoun: 'he / she / it', form: 'has (had)' },
+        ],
+        exampleSentence: { target: 'She has a meeting today.', translation: 'Dia memiliki rapat hari ini.' },
+      },
+    ],
+    descriptions: [
+      {
+        title: 'Perbandingan Kata Sifat Bahasa Inggris',
+        explanation: 'Kata sifat pendek memakai akhiran -er / -est (fast ➔ faster ➔ fastest). Kata sifat panjang memakai more / most di depannya (important ➔ more important ➔ most important).',
+        examples: [
+          { positive: 'good (baik)', comparative: 'better (lebih baik)', superlative: 'best (terbaik)', meaning: 'baik / lebih baik / terbaik' },
+          { positive: 'bad (buruk)', comparative: 'worse (lebih buruk)', superlative: 'worst (terburuk)', meaning: 'buruk / lebih buruk / terburuk' },
+          { positive: 'big (besar)', comparative: 'bigger (lebih besar)', superlative: 'biggest (terbesar)', meaning: 'besar / lebih besar / terbesar' },
         ],
       },
     ],

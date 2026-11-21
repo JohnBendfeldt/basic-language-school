@@ -99,7 +99,7 @@ export const ABOUT_TRANSLATIONS_DE: AboutLanguageTranslations = {
         title: 'Keine Verbkonjugation',
         description: 'Anders als im Deutschen oder Französischen mit zahlreichen Verbendungen verändern sich chinesische Verben nie! „Essen“ (吃 chī) bleibt identisch für ich esse, du isst, wir aßen oder sie werden essen. Die Zeitstufe wird schlicht über Zeitwörter (gestern, morgen) oder Aspektpartikeln (了 le) ausgedrückt.',
         icon: '⚡',
-        example: '我吃 (Ich esse) · 昨天我吃 (Gestern aß ich)'
+        example: '我吃 (Ich esse) · 我昨天吃了 (Gestern aß ich)'
       },
       {
         title: 'Kein grammatisches Geschlecht und keine Pluralendungen',
@@ -222,7 +222,7 @@ export const ABOUT_TRANSLATIONS_DE: AboutLanguageTranslations = {
         example: '私はパンを食べました (Ich habe Brot gegessen)'
       },
       {
-        title: 'Grammatische Partikeln (助词 · Joshi)',
+        title: 'Grammatische Partikeln (助詞 · Joshi)',
         description: 'Kurze nachgestellte Partikeln kennzeichnen präzise die Rolle jedes Wortes im Satz (は Thema, が Subjekt, を direktes Objekt, に Ziel oder Zeitpunkt).',
         icon: '🏷️',
         example: '猫が (die Katze [Subjekt]) + 魚を (Fisch [Objekt]) + 食べた (fraß)'
@@ -276,7 +276,7 @@ export const ABOUT_TRANSLATIONS_DE: AboutLanguageTranslations = {
         title: 'Weiche und harte Konsonanten (Palatalisierung)',
         description: 'Nahezu jeder Konsonant existiert als hartes (unpalatalisiertes) oder weiches (palatalisiertes) Paar – erkennbar am nachfolgenden Vokal oder am Weichheitszeichen (ь).',
         icon: '🎶',
-        example: 'мат (Schachmatt) vs. мать (Mutter)'
+        example: 'брат (Bruder) vs. брать (nehmen)'
       }
     ],
     culturalNote: 'Russisch gehört zu den sechs Amtssprachen der Vereinten Nationen und ist die verbindliche zweite Arbeitssprache an Bord der Internationalen Raumstation (ISS).'
@@ -334,7 +334,7 @@ export const ABOUT_TRANSLATIONS_DE: AboutLanguageTranslations = {
     writingSystem: 'Arabisches Abdschad (28 Buchstaben, von rechts nach links)',
     languageFamily: 'Afroasiatisch (Semitisch)',
     facts: [
-      { label: 'Schreibrichtung', value: 'Von rechts nach links', icon: '➡️' },
+      { label: 'Schreibrichtung', value: 'Von rechts nach links', icon: '⬅️' },
       { label: 'Alphabet', value: '28 Buchstaben (Konsonanten und Langvokale)', icon: '🔤' },
       { label: 'Wurzelsystem', value: 'Dreibuchstabige Konsonantenwurzeln (Radikale)', icon: '🌱' },
       { label: 'Der besondere Laut', value: 'Dād (ض) — kommt fast ausschließlich im Arabischen vor', icon: '🗣️' },
@@ -385,7 +385,7 @@ export const ABOUT_TRANSLATIONS_DE: AboutLanguageTranslations = {
     writingSystem: 'Devanagari-Silbenschrift / Abugida (देवनागरी)',
     languageFamily: 'Indogermanisch (Indo-Arisch)',
     facts: [
-      { label: 'Schriftzeichen', value: '46 Devanagari-Zeichen (11 Vokale, 33 Konsonanten)', icon: '🔤' },
+      { label: 'Schriftzeichen', value: 'Devanagari-Schrift (11 Vokale, 33 Konsonanten & Ligaturen)', icon: '🔤' },
       { label: 'Oberlinie', value: 'Shirorekha (durchgehender waagerechter Kopfbalken)', icon: '📏' },
       { label: 'Schwestersprache', value: 'Im gesprochenen Alltag gegenseitig verständlich mit Urdu', icon: '🤝' },
       { label: 'Satzbau', value: 'SOV (Subjekt-Objekt-Verb)', icon: '🔄' },

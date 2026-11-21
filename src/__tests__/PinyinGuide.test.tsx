@@ -73,7 +73,7 @@ describe('PinyinGuide Component', () => {
   it('localizes Pinyin guide into Russian for Russian native speakers', () => {
     render(<PinyinGuide baseLanguage="ru" />);
 
-    expect(screen.getByText(/Как устроен пиньинь и тоны/i)).toBeInTheDocument();
+    expect(screen.getByText(/Как устроены пиньинь и тоны/i)).toBeInTheDocument();
     expect(screen.getByText(/Мост от латинских букв к китайским иероглифам/i)).toBeInTheDocument();
     expect(screen.getByRole('tab', { name: /4 тона и нейтральный/i })).toBeInTheDocument();
     expect(screen.getByRole('tab', { name: /Формула слога/i })).toBeInTheDocument();

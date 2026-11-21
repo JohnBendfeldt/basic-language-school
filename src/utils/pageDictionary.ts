@@ -994,7 +994,7 @@ const getPageContentExplicit = (
         case 'fr':
           return { title: 'Nombres en espagnol (0–1 000)', subtitle: 'Nombres cardinaux avec prononciation native' };
         case 'pt':
-          return { title: 'Números em espanhol (0–1.000)', subtitle: 'Números cardinales com pronúncia nativa' };
+          return { title: 'Números em espanhol (0–1.000)', subtitle: 'Números cardinais com pronúncia nativa' };
         case 'de':
           return { title: 'Spanische Zahlen (0–1.000)', subtitle: 'Grundzahlen von null bis tausend mit Studio-Audio' };
         case 'id':
@@ -1016,7 +1016,7 @@ const getPageContentExplicit = (
         case 'fr':
           return { title: 'Nombres en français (0–1 000)', subtitle: 'Nombres cardinaux avec prononciation native' };
         case 'pt':
-          return { title: 'Nombres en français (0–1 000)', subtitle: 'Nombres cardinaux avec prononciation native' };
+          return { title: 'Números em francês (0–1.000)', subtitle: 'Números cardinais com pronúncia nativa' };
         case 'de':
           return { title: 'Französische Zahlen (0–1.000)', subtitle: 'Grundzahlen von null bis tausend mit Studio-Audio' };
         case 'id':
@@ -1216,9 +1216,9 @@ const getPageContentExplicit = (
   };
 };
 
-const TARGET_LETTER_COUNTS: Record<SupportedLanguageId, number> = {
+export const TARGET_LETTER_COUNTS: Record<SupportedLanguageId, number> = {
   en: 26, es: 27, fr: 26, ru: 33, pt: 27, de: 30, id: 26, tr: 29,
-  zh: 29, ja: 46, ko: 24, hi: 46, ar: 28, bn: 50, ur: 39
+  zh: 29, ja: 46, ko: 29, hi: 42, ar: 28, bn: 50, ur: 40
 };
 
 const TARGET_ENGLISH_NAMES: Record<SupportedLanguageId, string> = {
@@ -1305,13 +1305,20 @@ const buildDynamicPageContent = (
       if (section === 'numbers') return { title: `Nombres (${tName}) (0–1 000)`, subtitle: 'Nombres cardinaux de zéro à mille avec prononciation native' };
       if (section === 'time') return { title: `Dire l'heure (${tName})`, subtitle: 'Heures, minutes et expressions de temps quotidiennes' };
       return { title: `Quiz d'entraînement (${tName})`, subtitle: 'Entraînement interactif de vocabulaire et d\'écoute' };
-    case 'ru':
-      if (section === 'alphabet') return { title: `Алфавит (${tName})`, subtitle: `${count} букв и знаков с правилами произношения, примерами и аудио` };
+    case 'ru': {
+      const mod10 = count % 10;
+      const mod100 = count % 100;
+      const ruLetterWord =
+        mod10 === 1 && mod100 !== 11 ? 'буква'
+        : mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14) ? 'буквы'
+        : 'букв';
+      if (section === 'alphabet') return { title: `Алфавит (${tName})`, subtitle: `${count} ${ruLetterWord} с правилами произношения, примерами и аудио` };
       if (section === 'phrases') return { title: `Основные фразы (${tName})`, subtitle: tapSubtitle.ru };
       if (section === 'words') return { title: `Популярные слова (${tName})`, subtitle: tapSubtitle.ru };
       if (section === 'numbers') return { title: `Числа (${tName}) (0–1000)`, subtitle: 'Количественные числительные от нуля до тысячи с произношением' };
       if (section === 'time') return { title: `Время и фразы (${tName})`, subtitle: 'Часы, минуты и повседневные выражения времени' };
       return { title: `Практический тест (${tName})`, subtitle: 'Интерактивная тренировка слов, фраз и восприятия на слух' };
+    }
     case 'pt':
       if (section === 'alphabet') return { title: `Alfabeto (${tName})`, subtitle: `${count} letras com guias de pronúncia, vocabulário e áudio nativo` };
       if (section === 'phrases') return { title: `Frases essenciais (${tName})`, subtitle: tapSubtitle.pt };
@@ -1435,9 +1442,9 @@ export const getAlphabetLabels = (baseLang: SupportedLanguageId): { sound: strin
     case 'tr':
       return { sound: 'Ses:', example: 'Örnek:', asIn: 'örneğin:' };
     case 'ja':
-      return { sound: '発音:', example: '例:', asIn: 'のように' };
+      return { sound: '発音:', example: '例:', asIn: '例:' };
     case 'ko':
-      return { sound: '발음:', example: '예시:', asIn: '처럼' };
+      return { sound: '발음:', example: '예시:', asIn: '예:' };
     case 'zh':
       return { sound: '发音:', example: '例词:', asIn: '类似于' };
     case 'hi':
@@ -1666,7 +1673,7 @@ export const getEnglishTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             desc: 'Past = nach der vollen Stunde; To = vor der nächsten Stunde:',
             items: [
               { label: ':15', text: 'Quarter past (Viertel nach): Quarter past two = 2:15' },
-              { label: ':30', text: 'Half past (Halb nach): Half past two = 2:30' },
+              { label: ':30', text: 'Half past (Halb zur nächsten Stunde: Half past two = halb drei / 2:30!)' },
               { label: ':45', text: 'Quarter to (Viertel vor): Quarter to three = 2:45' }
             ]
           },
@@ -1786,7 +1793,7 @@ export const getEnglishTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             title: 'AM 与 PM（12小时制）',
             desc: '英语日常使用12小时制并区分上下午：',
             items: [
-              { label: 'AM', text: '上午（午夜 00:00 至中午 11:59）' },
+              { label: 'AM', text: '上午（午夜 00:00 至上午 11:59）' },
               { label: 'PM', text: '下午与晚上（中午 12:00 至 23:59）' },
               { label: '常用提问', text: '«What time is it?» — 现在几点了？' }
             ]
@@ -1860,7 +1867,7 @@ export const getEnglishTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             title: 'AM과 PM (12시간제)',
             desc: '영어는 오전과 오후를 구분하는 12시간제를 사용합니다:',
             items: [
-              { label: 'AM', text: '오전 (자정부터 낮 11:59까지)' },
+              { label: 'AM', text: '오전 (자정부터 오전 11:59까지)' },
               { label: 'PM', text: '오후 및 밤 (정오부터 밤 11:59까지)' },
               { label: '질문', text: '«What time is it?» — 지금 몇 시인가요?' }
             ]
@@ -1897,13 +1904,13 @@ export const getEnglishTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             title: 'AM बनाम PM (12-घंटे का प्रारूप)',
             desc: 'अंग्रेज़ी में दिन के समय के साथ 12-घंटे का प्रारूप चलता है:',
             items: [
-              { label: 'AM', text: 'सुबह (आधी रात से दोपहर 11:59 तक)' },
+              { label: 'AM', text: 'सुबह (आधी रात से सुबह 11:59 तक)' },
               { label: 'PM', text: 'दोपहर और रात (दोपहर 12:00 से रात 11:59 तक)' },
               { label: 'प्रश्न', text: '«What time is it?» — अभी क्या समय हुआ है?' }
             ]
           }
         ],
-        footerHint: 'सभी संख्याओं और समय के वाक्यों में स्टूडियो गुणवत्ता की मूल अंग्रेज़ी ऑडियो है!'
+        footerHint: 'सभी संख्याओं और समय के वाक्यों में स्टूडियो गुणवत्ता का मूल अंग्रेज़ी ऑडियो है!'
       };
     case 'ar':
       return {
@@ -1934,7 +1941,7 @@ export const getEnglishTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             title: 'AM مقابل PM (نظام 12 ساعة)',
             desc: 'تستخدم الإنجليزية نظام 12 ساعة لتحديد الصباح والمساء:',
             items: [
-              { label: 'AM', text: 'صباحاً (من منتصف الليل حتى 11:59 ظهراً)' },
+              { label: 'AM', text: 'صباحاً (من منتصف الليل حتى 11:59 صباحاً)' },
               { label: 'PM', text: 'مساءً (من 12:00 ظهراً حتى 11:59 ليلاً)' },
               { label: 'سؤال', text: '«What time is it?» — كم الساعة؟' }
             ]
@@ -2008,7 +2015,7 @@ export const getEnglishTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             title: 'AM بمقابلہ PM (12 گھنٹے کا نظام)',
             desc: 'انگریزی میں صبح اور شام کے لیے 12 گھنٹے کا فارمیٹ استعمال ہوتا ہے:',
             items: [
-              { label: 'AM', text: 'صبح (آدھی رات سے دوپہر 11:59 تک)' },
+              { label: 'AM', text: 'صبح (آدھی رات سے صبح 11:59 تک)' },
               { label: 'PM', text: 'دوپہر اور رات (دوپہر 12:00 سے رات 11:59 تک)' },
               { label: 'سوال', text: '«What time is it?» — ابھی کیا وقت ہوا ہے؟' }
             ]
@@ -2034,7 +2041,7 @@ export const getEnglishTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
           {
             ruleBadge: 'Rule 2',
             title: 'Past & To (Fractions of an Hour)',
-            desc: 'Standard international English time expressions:',
+            desc: 'Past = minutes after the hour (1–30); To = minutes before the next hour (31–59):',
             items: [
               { label: ':15', text: 'Quarter past (e.g. Quarter past two = 2:15)' },
               { label: ':30', text: 'Half past (e.g. Half past two = 2:30)' },
@@ -2071,7 +2078,7 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             title: 'La regla de 1 / 2–4 / 5+ horas',
             desc: 'La palabra para «hora» cambia según el número:',
             items: [
-              { label: '1', text: 'один час (nominativo singular)' },
+              { label: '1', text: 'час / один час (nominativo singular)' },
               { label: '2, 3, 4', text: 'два, три, четыре часа (genitivo singular)' },
               { label: '5–12', text: 'пять ... двенадцать часов (genitivo plural)' }
             ]
@@ -2090,10 +2097,10 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
           {
             ruleBadge: 'Regla 3',
             title: 'Preguntar la hora',
-            desc: 'Dos formas naturales de preguntar qué hora es:',
+            desc: 'Formas naturales de preguntar qué hora es:',
             items: [
               { label: 'Который час?', text: '«¿Qué hora es?» (La más común)' },
-              { label: 'Сколько сейчас времени?', text: '«¿Cuánto tiempo es ahora?»' },
+              { label: 'Сколько сейчас времени?', text: '«¿Qué hora es ahora?» (lit. «¿Cuánto tiempo es ahora?»)' },
               { label: 'Во сколько?', text: '«¿A qué hora?»' }
             ]
           }
@@ -2109,7 +2116,7 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             title: 'Règle des 1 / 2–4 / 5+ heures',
             desc: 'Le mot pour « heure » change selon le chiffre :',
             items: [
-              { label: '1', text: 'один час (nominatif singulier)' },
+              { label: '1', text: 'час / один час (nominatif singulier)' },
               { label: '2, 3, 4', text: 'два, три, четыре часа (génitif singulier)' },
               { label: '5–12', text: 'пять ... двенадцать часов (génitif pluriel)' }
             ]
@@ -2131,7 +2138,7 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             desc: 'Façons naturelles de demander l\'heure :',
             items: [
               { label: 'Который час?', text: '« Quelle heure est-il ? » (Le plus courant)' },
-              { label: 'Сколько сейчас времени?', text: '« Combien de temps maintenant ? »' },
+              { label: 'Сколько сейчас времени?', text: '« Quelle heure est-il maintenant ? » (lit. « Combien de temps ? »)' },
               { label: 'Во сколько?', text: '« À quelle heure ? »' }
             ]
           }
@@ -2147,7 +2154,7 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             title: 'Правило 1 / 2–4 / 5+ часов',
             desc: 'Форма слова «час» меняется в зависимости от числа:',
             items: [
-              { label: '1', text: 'один час (именительный падеж)' },
+              { label: '1', text: 'час / один час (именительный падеж)' },
               { label: '2, 3, 4', text: 'два, три, четыре часа (родительный падеж ед. ч.)' },
               { label: '5–12', text: 'пять ... двенадцать часов (родительный падеж мн. ч.)' }
             ]
@@ -2185,7 +2192,7 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             title: 'Regra de 1 / 2–4 / 5+ horas',
             desc: 'A palavra para «hora» muda conforme o número:',
             items: [
-              { label: '1', text: 'один час (nominativo singular)' },
+              { label: '1', text: 'час / один час (nominativo singular)' },
               { label: '2, 3, 4', text: 'два, три, четыре часа (genitivo singular)' },
               { label: '5–12', text: 'пять ... двенадцать часов (genitivo plural)' }
             ]
@@ -2207,7 +2214,7 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             desc: 'Formas naturais de perguntar que horas são:',
             items: [
               { label: 'Который час?', text: '«Que horas são?» (Mais comum)' },
-              { label: 'Сколько сейчас времени?', text: '«Quanto tempo é agora?»' },
+              { label: 'Сколько сейчас времени?', text: '«Que horas são agora?» (lit. «Quanto tempo agora?»)' },
               { label: 'Во сколько?', text: '«A que horas?»' }
             ]
           }
@@ -2223,7 +2230,7 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             title: 'Die 1 / 2–4 / 5+ Stunden-Regel',
             desc: 'Das Wort für „Stunde“ ändert sich je nach Zahl:',
             items: [
-              { label: '1', text: 'один час (Nominativ)' },
+              { label: '1', text: 'час / один час (Nominativ)' },
               { label: '2, 3, 4', text: 'два, три, четыре часа (Genitiv Singular)' },
               { label: '5–12', text: 'пять ... двенадцать часов (Genitiv Plural)' }
             ]
@@ -2245,7 +2252,7 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             desc: 'Natürliche Fragen nach der Uhrzeit:',
             items: [
               { label: 'Который час?', text: '„Wie spät ist es?“ (Am gebräuchlichsten)' },
-              { label: 'Сколько сейчас времени?', text: '„Wie viel Zeit ist es jetzt?“' },
+              { label: 'Сколько сейчас времени?', text: '„Wie spät ist es jetzt?“ (wörtl. „Wie viel Zeit ist jetzt?“)' },
               { label: 'Во сколько?', text: '„Um wie viel Uhr?“' }
             ]
           }
@@ -2261,7 +2268,7 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             title: 'Aturan 1 / 2–4 / 5+ Jam',
             desc: 'Kata untuk "jam" berubah sesuai angka:',
             items: [
-              { label: '1', text: 'один час (nominatif tunggal)' },
+              { label: '1', text: 'час / один час (nominatif tunggal)' },
               { label: '2, 3, 4', text: 'два, три, четыре часа (genitif tunggal)' },
               { label: '5–12', text: 'пять ... двенадцать часов (genitif jamak)' }
             ]
@@ -2283,7 +2290,7 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             desc: 'Cara alami menanyakan jam berapa sekarang:',
             items: [
               { label: 'Который час?', text: '«Jam berapa sekarang?» (Paling sering)' },
-              { label: 'Сколько сейчас времени?', text: '«Berapa waktu sekarang?»' },
+              { label: 'Сколько сейчас времени?', text: '«Jam berapa sekarang?» (harfiah: berapa waktu sekarang?)' },
               { label: 'Во сколько?', text: '«Pada jam berapa?»' }
             ]
           }
@@ -2299,7 +2306,7 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             title: '1 / 2–4 / 5+ Saat Kuralı',
             desc: '«Saat» kelimesi sayıya göre değişir:',
             items: [
-              { label: '1', text: 'один час (yalın tekil)' },
+              { label: '1', text: 'час / один час (yalın tekil)' },
               { label: '2, 3, 4', text: 'два, три, четыре часа (ilgi tekil)' },
               { label: '5–12', text: 'пять ... двенадцать часов (ilgi çoğul)' }
             ]
@@ -2337,7 +2344,7 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             title: '1 / 2–4 / 5+ 小时变格规则',
             desc: '俄语中“小时”一词会根据前面的数字发生格变化：',
             items: [
-              { label: '1', text: 'один час（单数第一格）' },
+              { label: '1', text: 'час / один час（单数第一格）' },
               { label: '2, 3, 4', text: 'два, три, четыре часа（单数第二格）' },
               { label: '5–12', text: 'пять ... двенадцать часов（复数第二格）' }
             ]
@@ -2375,7 +2382,7 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             title: '1 / 2〜4 / 5〜12 時間の語形変化',
             desc: '「時間」を表す語は数字によって格変化します：',
             items: [
-              { label: '1', text: 'один час（単数主格）' },
+              { label: '1', text: 'час / один час（単数主格）' },
               { label: '2, 3, 4', text: 'два, три, четыре часа（単数生格）' },
               { label: '5–12', text: 'пять ... двенадцать часов（複数生格）' }
             ]
@@ -2387,7 +2394,7 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             items: [
               { label: 'утра', text: '8 часов утра（午前8時・朝）' },
               { label: 'дня', text: '2 часа дня（午後2時・昼）' },
-              { label: 'вечера', text: '7 часов вечера（午後7時・夕方）' },
+              { label: 'вечера', text: '7 часов вечера（午後7時・夜）' },
               { label: 'ночи', text: '2 часа ночи（午前2時・深夜）' }
             ]
           },
@@ -2413,7 +2420,7 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             title: '1 / 2–4 / 5+ 시간 격변화 규칙',
             desc: '숫자에 따라 "시간"을 뜻하는 단어 형태가 바뀝니다:',
             items: [
-              { label: '1', text: 'один час (단수 주격)' },
+              { label: '1', text: 'час / один час (단수 주격)' },
               { label: '2, 3, 4', text: 'два, три, четыре часа (단수 생격)' },
               { label: '5–12', text: 'пять ... двенадцать часов (복수 생격)' }
             ]
@@ -2451,7 +2458,7 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             title: '1 / 2–4 / 5+ घंटे का नियम',
             desc: 'संख्या के अनुसार "घंटा" शब्द का रूप बदलता है:',
             items: [
-              { label: '1', text: 'один час (एकवचन कर्ता कारक)' },
+              { label: '1', text: 'час / один час (एकवचन कर्ता कारक)' },
               { label: '2, 3, 4', text: 'два, три, четыре часа (एकवचन संबंध कारक)' },
               { label: '5–12', text: 'пять ... двенадцать часов (बहुवचन संबंध कारक)' }
             ]
@@ -2489,7 +2496,7 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             title: 'قاعدة 1 / 2–4 / 5+ ساعات',
             desc: 'تتغير كلمة «ساعة» في الروسية بحسب الرقم:',
             items: [
-              { label: '1', text: 'один час (مفرد مرفوع)' },
+              { label: '1', text: 'час / один час (مفرد مرفوع)' },
               { label: '2, 3, 4', text: 'два, три, четыре часа (مفرد مضاف)' },
               { label: '5–12', text: 'пять ... двенадцать часов (جمع مضاف)' }
             ]
@@ -2527,7 +2534,7 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             title: '১ / ২–৪ / ৫+ ঘণ্টার নিয়ম',
             desc: 'সংখ্যার ওপর ভিত্তি করে "ঘণ্টা" শব্দের রূপ পরিবর্তিত হয়:',
             items: [
-              { label: '1', text: 'один час (একবচন কর্তৃকারক)' },
+              { label: '1', text: 'час / один час (একবচন কর্তৃকারক)' },
               { label: '2, 3, 4', text: 'два, три, четыре часа (একবচন সম্বন্ধ পদ)' },
               { label: '5–12', text: 'пять ... двенадцать часов (বহুবচন সম্বন্ধ পদ)' }
             ]
@@ -2565,7 +2572,7 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             title: '1 / 2–4 / 5+ گھنٹوں کا اصول',
             desc: 'عدد کے مطابق لفظ "گھنٹہ" کی شکل بدلتی ہے:',
             items: [
-              { label: '1', text: 'один час (واحد فاعلی حالت)' },
+              { label: '1', text: 'час / один час (واحد فاعلی حالت)' },
               { label: '2, 3, 4', text: 'два, три, четыре часа (واحد اضافی حالت)' },
               { label: '5–12', text: 'пять ... двенадцать часов (جمع اضافی حالت)' }
             ]
@@ -2604,7 +2611,7 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             title: 'The 1 / 2–4 / 5+ Hour Rule',
             desc: 'The word for "hour" changes based on the number:',
             items: [
-              { label: '1', text: 'один час (nominative)' },
+              { label: '1', text: 'час / один час (nominative)' },
               { label: '2, 3, 4', text: 'два, три, четыре часа (genitive singular)' },
               { label: '5–12', text: 'пять ... двенадцать часов (genitive plural)' }
             ]
@@ -2625,8 +2632,8 @@ export const getRussianTimeGuide = (baseLang: SupportedLanguageId): TimeGrammarG
             title: 'Asking the Time',
             desc: 'Natural ways to ask what time it is:',
             items: [
-              { label: 'Который час?', text: 'Lit. "Which hour?" (Most common)' },
-              { label: 'Сколько сейчас времени?', text: '"How much time is it now?"' },
+              { label: 'Который час?', text: '"What time is it?" (Lit. "Which hour?" — most common)' },
+              { label: 'Сколько сейчас времени?', text: '"What time is it now?" (Lit. "How much time now?")' },
               { label: 'Во сколько?', text: '"At what time?"' }
             ]
           }
@@ -2798,8 +2805,8 @@ export const getLocalizedAppName = (
       zh: 'ベーシック中国語',
       hi: 'ベーシックヒンディー語',
       ar: 'ベーシック アラビア語',
-      bn: '基本ベンガル語',
-      ur: '基本ウルドゥー語',
+      bn: 'ベーシックベンガル語',
+      ur: 'ベーシックウルドゥー語',
     },
     ko: {
       en: '베이직 영어',
@@ -2815,8 +2822,8 @@ export const getLocalizedAppName = (
       zh: '베이직 중국어',
       hi: '베이직 힌디어',
       ar: '베이직 아랍어',
-      bn: '기초 벵골어',
-      ur: '기초 우르두어',
+      bn: '베이직 벵골어',
+      ur: '베이직 우르두어',
     },
     zh: {
       en: '基础英语',
@@ -3024,6 +3031,8 @@ export const getLocalizedLanguageName = (
       ko: 'Korea',
       hi: 'Hindi',
       ar: 'Arab',
+      bn: 'Bengali',
+      ur: 'Urdu',
     },
     tr: {
       en: 'İngilizce',
@@ -3245,7 +3254,7 @@ export const localizeCategoryBadge = (
       ja: '医療・健康', ko: '건강 및 의료', zh: '医疗健康', hi: 'स्वास्थ्य सेवा', ar: 'الرعاية الصحية', bn: 'স্বাস্থ্যসেবা', ur: 'صحت کی دیکھ بھال'
     },
     'travel': {
-      en: 'Travel & Transit', es: 'Viajes y Tránsito', fr: 'Voyage et Transit', ru: 'Путешествия', pt: 'Viagem e Tránsito', de: 'Reisen & Verkehr', id: 'Perjalanan & Transportasi', tr: 'Seyahat ve Ulaşım',
+      en: 'Travel & Transit', es: 'Viajes y Tránsito', fr: 'Voyage et Transit', ru: 'Путешествия', pt: 'Viagem e Trânsito', de: 'Reisen & Verkehr', id: 'Perjalanan & Transportasi', tr: 'Seyahat ve Ulaşım',
       ja: '旅行と交通', ko: '여행 및 교통', zh: '旅游与交通', hi: 'यात्रा और पारगमन', ar: 'السفر والتنقل', bn: 'ভ্রমণ ও যাতায়াত', ur: 'سفر اور نقل و حمل'
     },
     'dining': {
@@ -3267,7 +3276,7 @@ export const localizeCategoryBadge = (
     'greetings': { en: 'Greetings', es: 'Saludos', fr: 'Salutations', ru: 'Приветствия', pt: 'Saudações', de: 'Begrüßungen', id: 'Sapaan', tr: 'Selamlaşma', ja: '挨拶', ko: '인사', zh: '问候', hi: 'अभिवादन', ar: 'التحيات', bn: 'অভিবাদন', ur: 'سلام' },
     'conversation': { en: 'Conversation', es: 'Conversación', fr: 'Conversation', ru: 'Разговор', pt: 'Conversação', de: 'Gespräch', id: 'Percakapan', tr: 'Sohbet', ja: '会話', ko: '대화', zh: '对话', hi: 'बातचीत', ar: 'محادثة', bn: 'কথোপকথন', ur: 'گفتگو' },
     'introductions': { en: 'Introductions', es: 'Presentaciones', fr: 'Présentations', ru: 'Знакомство', pt: 'Apresentações', de: 'Vorstellung', id: 'Perkenalan', tr: 'Tanışma', ja: '自己紹介', ko: '소개', zh: '介绍', hi: 'परिचय', ar: 'التعارف', bn: 'পরিচিতি', ur: 'تعارف' },
-    'farewells': { en: 'Farewells', es: 'Despedidas', fr: 'Au revoir', ru: 'Прощание', pt: 'Despedidas', de: 'Abschied', id: 'Perpisahan', tr: 'Vedalaşma', ja: '別れの言葉', ko: '작별', zh: '告别', hi: 'विदाई', ar: 'الوداع', bn: 'বিদায়', ur: 'الوداع' },
+    'farewells': { en: 'Farewells', es: 'Despedidas', fr: 'Adieux', ru: 'Прощание', pt: 'Despedidas', de: 'Abschied', id: 'Perpisahan', tr: 'Vedalaşma', ja: '別れの言葉', ko: '작별', zh: '告别', hi: 'विदाई', ar: 'الوداع', bn: 'বিদায়', ur: 'الوداع' },
     'politeness': { en: 'Politeness', es: 'Cortesía', fr: 'Politesse', ru: 'Вежливость', pt: 'Cortesia', de: 'Höflichkeit', id: 'Kesopanan', tr: 'Nezaket', ja: '丁寧な表現', ko: '예절', zh: '礼貌', hi: 'विनम्रता', ar: 'اللباقة', bn: 'ভদ্রতা', ur: 'شائستگی' },
     'responses': { en: 'Responses', es: 'Respuestas', fr: 'Réponses', ru: 'Ответы', pt: 'Respostas', de: 'Antworten', id: 'Tanggapan', tr: 'Yanıtlar', ja: '返答', ko: '응답', zh: '回应', hi: 'उत्तर', ar: 'الردود', bn: 'উত্তর', ur: 'جوابات' },
     'communication': { en: 'Communication', es: 'Comunicación', fr: 'Communication', ru: 'Общение', pt: 'Comunicação', de: 'Kommunikation', id: 'Komunikasi', tr: 'İletişim', ja: 'コミュニケーション', ko: '의사소통', zh: '交流', hi: 'संचार', ar: 'التواصل', bn: 'যোগাযোগ', ur: 'رابطہ' },
@@ -3285,7 +3294,7 @@ export const localizeCategoryBadge = (
     'time & weather': { en: 'Time & Weather', es: 'Tiempo y Clima', fr: 'Temps et Météo', ru: 'Время и погода', pt: 'Tempo e Clima', de: 'Zeit & Wetter', id: 'Waktu & Cuaca', tr: 'Zaman ve Hava', ja: '時間と天気', ko: '시간과 날씨', zh: '时间与天气', hi: 'समय और मौसम', ar: 'الوقت والطقس', bn: 'সময় ও আবহাওয়া', ur: 'وقت اور موسم' },
     'descriptions': { en: 'Descriptions', es: 'Descripciones', fr: 'Descriptions', ru: 'Описания', pt: 'Descrições', de: 'Beschreibungen', id: 'Deskripsi', tr: 'Tanımlar', ja: '描写', ko: '설명', zh: '描述', hi: 'विवरण', ar: 'الأوصاف', bn: 'বিবরণ', ur: 'اوصاف' },
     'common verbs': { en: 'Common Verbs', es: 'Verbos Comunes', fr: 'Verbes Courants', ru: 'Основные глаголы', pt: 'Verbos Comuns', de: 'Häufige Verben', id: 'Kata Kerja Umum', tr: 'Yaygın Fiiller', ja: '基本動詞', ko: '자주 쓰이는 동사', zh: '常用动词', hi: 'सामान्य क्रियाएँ', ar: 'أفعال شائعة', bn: 'সাধারণ ক্রিয়া', ur: 'عام افعال' },
-    'core actions': { en: 'Core Actions', es: 'Acciones Básicas', fr: 'Actions de Base', ru: 'Основные действия', pt: 'Ações Básicas', de: 'Grundverben', id: 'Tindakan Dasar', tr: 'Temel Eylemler', ja: '基本動作', ko: '기본 동작', zh: '核心行动', hi: 'मुख्य क्रियाएँ', ar: 'الإجراءات الأساسية', bn: 'প্রধান পদক্ষেপ', ur: 'بنیادی اعمال' },
+    'core actions': { en: 'Core Actions', es: 'Acciones Básicas', fr: 'Actions de Base', ru: 'Основные действия', pt: 'Ações Básicas', de: 'Grundverben', id: 'Tindakan Dasar', tr: 'Temel Eylemler', ja: '基本動作', ko: '기본 동작', zh: '核心动作', hi: 'मुख्य क्रियाएँ', ar: 'الأفعال الأساسية', bn: 'মূল ক্রিয়া', ur: 'بنیادی افعال' },
     'numbers 0-10': {
       en: 'Numbers 0-10', es: 'Números 0-10', fr: 'Nombres 0-10', ru: 'Числа 0–10', pt: 'Números 0–10', de: 'Zahlen 0–10', id: 'Angka 0–10', tr: 'Sayılar 0–10',
       ja: '数字 0〜10', ko: '숫자 0–10', zh: '数字 0–10', hi: 'संख्याएँ 0–10', ar: 'الأرقام 0–10', bn: 'সংখ্যা ০–১০', ur: 'اعداد 0–10'
@@ -3323,7 +3332,7 @@ export const localizeCategoryBadge = (
       ja: '時間・正時', ko: '정각·시간', zh: '小时', hi: 'घंटे', ar: 'الساعات', bn: 'ঘণ্টা', ur: 'گھنٹے'
     },
     'exact hours': {
-      en: 'Exact Hours', es: 'Horas en punto', fr: 'Heures piles', ru: 'Точные часы', pt: 'Horas exatas', de: 'Volle Stunden', id: 'Jam Tepat', tr: 'Tam Saatler',
+      en: 'Exact Hours', es: 'Horas en punto', fr: 'Heures pile', ru: 'Точные часы', pt: 'Horas exatas', de: 'Volle Stunden', id: 'Jam Tepat', tr: 'Tam Saatler',
       ja: 'ちょうどの時刻', ko: '정각 표현', zh: '整点表达', hi: 'ठीक घंटे', ar: 'الساعات التامة', bn: 'পূর্ণ ঘণ্টা', ur: 'پورا گھنٹہ'
     },
     'half hours': {
@@ -3343,11 +3352,11 @@ export const localizeCategoryBadge = (
       ja: '時刻を尋ねる', ko: '시간 묻기', zh: '询问时间', hi: 'समय पूछना', ar: 'السؤال عن الوقت', bn: 'সময় জিজ্ঞাসা', ur: 'وقت پوچھنا'
     },
     'time of day': {
-      en: 'Time of Day', es: 'Momentos del día', fr: 'Moments de la journée', ru: 'Время суток', pt: 'Períodos do dia', de: 'Tageszeiten', id: 'Waktu Hari', tr: 'Günün Vakitleri',
+      en: 'Time of Day', es: 'Momentos del día', fr: 'Moments de la journée', ru: 'Время суток', pt: 'Períodos do dia', de: 'Tageszeiten', id: 'Bagian Hari', tr: 'Günün Vakitleri',
       ja: '時間帯', ko: '하루의 시간대', zh: '一天中的时段', hi: 'दिन का समय', ar: 'أوقات اليوم', bn: 'দিনের সময়', ur: 'دن کے اوقات'
     },
     'special': {
-      en: 'Special', es: 'Especial', fr: 'Spécial', ru: 'Особое', pt: 'Especial', de: 'Spezial', id: 'Khusus', tr: 'Özel',
+      en: 'Special', es: 'Especial', fr: 'Spécial', ru: 'Особое', pt: 'Especial', de: 'Besonderes', id: 'Khusus', tr: 'Özel',
       ja: '特別表現', ko: '특별 표현', zh: '特殊表达', hi: 'विशेष', ar: 'خاص', bn: 'বিশেষ', ur: 'خاص'
     },
     'mixed': {
@@ -3384,7 +3393,7 @@ export const localizeCategoryBadge = (
     },
     'adjectives': {
       en: 'Adjectives', es: 'Adjetivos', fr: 'Adjectifs', ru: 'Прилагательные', pt: 'Adjetivos', de: 'Adjektive', id: 'Kata Sifat', tr: 'Sıfatlar',
-      ja: '形容詞', ko: '형용사', zh: '形容词', hi: 'विशेषण', ar: 'الصفات', bn: 'বিশেষণ', ur: 'صفتیں'
+      ja: '形容詞', ko: '형용사', zh: '形容词', hi: 'विशेषण', ar: 'الصفات', bn: 'বিশেষণ', ur: 'صفات'
     },
     'animals': {
       en: 'Animals', es: 'Animales', fr: 'Animaux', ru: 'Животные', pt: 'Animais', de: 'Tiere', id: 'Hewan', tr: 'Hayvanlar',
@@ -3530,7 +3539,7 @@ export const getLocalizedRegionName = (
       ja: 'すべて', ko: '전체', zh: '全部', hi: 'सभी', ar: 'الكل', bn: 'সব', ur: 'تمام'
     },
     romance: {
-      en: 'Romance', es: 'Románicas', fr: 'Romanes', ru: 'Романские', pt: 'Românicas', de: 'Romanisch', id: 'Romanika', tr: 'Romen',
+      en: 'Romance', es: 'Románicas', fr: 'Romanes', ru: 'Романские', pt: 'Românicas', de: 'Romanisch', id: 'Romanika', tr: 'Roman',
       ja: 'ロマンス諸語', ko: '로망스어군', zh: '罗曼语族', hi: 'रोमांस भाषाएँ', ar: 'الرومانسية', bn: 'রোমান্স ভাষা', ur: 'رومانس زبانیں'
     },
     germanic: {
@@ -3539,19 +3548,19 @@ export const getLocalizedRegionName = (
     },
     'slavic-eurasian': {
       en: 'Slavic & Eurasian', es: 'Eslavas y Euroasiáticas', fr: 'Slaves et Eurasiennes', ru: 'Славянские и евразийские', pt: 'Eslavas e Eurasiáticas', de: 'Slawisch & Eurasisch', id: 'Slavia & Eurasia', tr: 'Slav ve Avrasya',
-      ja: 'スラブ・ユーラシア諸語', ko: '슬라브 및 유라시아어군', zh: '斯拉夫与欧亚语系', hi: 'स्लाव और यूरेशियाई', ar: 'السلافية والأوراسية', bn: 'স্লাভিক ও ইউরেশীয়', ur: 'سلاوی اور یوریشیائی'
+      ja: 'スラブ・ユーラシア諸語', ko: '슬라브 및 유라시아', zh: '斯拉夫与欧亚语言', hi: 'स्लाव और यूरेशियाई', ar: 'السلافية والأوراسية', bn: 'স্লাভিক ও ইউরেশীয়', ur: 'سلاوی اور یوریشیائی'
     },
     'east-asian': {
       en: 'East Asian', es: 'Asia Oriental', fr: 'Asie de l’Est', ru: 'Восточноазиатские', pt: 'Leste Asiático', de: 'Ostasiatisch', id: 'Asia Timur', tr: 'Doğu Asya',
-      ja: '東アジア諸語', ko: '동아시아어군', zh: '东亚语系', hi: 'पूर्वी एशियाई', ar: 'شرق آسيا', bn: 'পূর্ব এশীয়', ur: 'مشرقی ایشیائی'
+      ja: '東アジア諸語', ko: '동아시아', zh: '东亚语言', hi: 'पूर्वी एशियाई', ar: 'شرق آسيا', bn: 'পূর্ব এশীয়', ur: 'مشرقی ایشیائی'
     },
     'south-asian': {
       en: 'South Asian', es: 'Asia Meridional', fr: 'Asie du Sud', ru: 'Южноазиатские', pt: 'Sul Asiático', de: 'Südasiatisch', id: 'Asia Selatan', tr: 'Güney Asya',
-      ja: '南アジア諸語', ko: '남아시아어군', zh: '南亚语系', hi: 'दक्षिण एशियाई', ar: 'جنوب آسيا', bn: 'দক্ষিণ এশীয়', ur: 'جنوبی ایشیائی'
+      ja: '南アジア諸語', ko: '남아시아', zh: '南亚语言', hi: 'दक्षिण एशियाई', ar: 'جنوب آسيا', bn: 'দক্ষিণ এশীয়', ur: 'جنوبی ایشیائی'
     },
     'middle-eastern': {
       en: 'Middle Eastern', es: 'Medio Oriente', fr: 'Moyen-Orient', ru: 'Ближневосточные', pt: 'Oriente Médio', de: 'Nahöstlich', id: 'Timur Tengah', tr: 'Orta Doğu',
-      ja: '中東諸語', ko: '중동어군', zh: '中东语系', hi: 'मध्य पूर्वी', ar: 'الشرق الأوسط', bn: 'মধ্যপ্রাচ্য', ur: 'مشرق وسطیٰ'
+      ja: '中東諸語', ko: '중동', zh: '中东语言', hi: 'मध्य पूर्वी', ar: 'الشرق الأوسط', bn: 'মধ্যপ্রাচ্য', ur: 'مشرق وسطیٰ'
     }
   };
 
@@ -3715,7 +3724,7 @@ export const getQuizRecapLabels = (baseLang: SupportedLanguageId = 'en'): QuizRe
         needHint: 'Brauchst du einen Hinweis?',
         meaningLabel: 'Bedeutung',
         levelCheckpoint: (lvl, pct) => ({
-          title: `Stufe ${lvl} Kontrollpunkt bestanden!`,
+          title: `Meilenstein Stufe ${lvl} erreicht!`,
           desc: `Du hast solide Kenntnisse des Wortschatzes der Stufe ${lvl} gezeigt (${pct} % Genauigkeit). Sehr gut!`
         }),
         feedbackSubtitle: (pct) => {
@@ -3813,14 +3822,14 @@ export const getQuizRecapLabels = (baseLang: SupportedLanguageId = 'en'): QuizRe
         wordsToReview: (c) => `Kata untuk Diulas dari Sesi Ini (${c})`,
         reviewHint: 'Dengarkan pengucapan yang benar untuk memperkuat ingatan:',
         answerLabel: 'Jawaban:',
-        youTypedLabel: 'Ketik Anda:',
+        youTypedLabel: 'Jawaban Anda:',
         coreCurriculum: 'Kurikulum Utama',
         specializedPacks: 'Paket Spesialis & Industri',
         replayAudio: 'Ketuk untuk memutar audio lagi',
         needHint: 'Butuh petunjuk?',
         meaningLabel: 'Arti',
         levelCheckpoint: (lvl, pct) => ({
-          title: `Pos Pemeriksaan Tingkat ${lvl} Berhasil Dilewati!`,
+          title: `Tahap Tingkat ${lvl} Berhasil Dilewati!`,
           desc: `Anda menunjukkan penguasaan kosakata Tingkat ${lvl} yang kuat (akurasi ${pct}%). Luar biasa!`
         }),
         feedbackSubtitle: (pct) => {
@@ -3983,7 +3992,10 @@ export const getQuizRecapLabels = (baseLang: SupportedLanguageId = 'en'): QuizRe
         loggedNotice: 'تم تسجيل اختبار مكتمل واحد في تقدمك التعليمي',
         chooseTopic: 'اختر موضوعاً:',
         chooseNextLength: 'اختر طول الاختبار القادم:',
-        startNextQuiz: (g) => `بدء الاختبار التالي (${g} أسئلة)`,
+        startNextQuiz: (g) => {
+          const qLabel = g === 1 ? 'سؤال واحد' : g === 2 ? 'سؤالان' : g >= 3 && g <= 10 ? `${g} أسئلة` : `${g} سؤالاً`;
+          return `بدء الاختبار التالي (${qLabel})`;
+        },
         pressEnter: 'اضغط ↵ Enter',
         wordsToReview: (c) => `الكلمات المطلوب مراجعتها من هذه الجلسة (${c})`,
         reviewHint: 'استمع إلى النطق الصحيح لتعزيز حفظك:',
@@ -3995,7 +4007,7 @@ export const getQuizRecapLabels = (baseLang: SupportedLanguageId = 'en'): QuizRe
         needHint: 'هل تحتاج إلى تلميح؟',
         meaningLabel: 'المعنى',
         levelCheckpoint: (lvl, pct) => ({
-          title: `تم اجتياز نقطة تفتيش المستوى ${lvl}!`,
+          title: `تم اجتياز مرحلة المستوى ${lvl}!`,
           desc: `أظهرت تمكناً متيناً من مفردات المستوى ${lvl} بدقة ${pct}%. أحسنت!`
         }),
         feedbackSubtitle: (pct) => {
@@ -4178,7 +4190,7 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
       return {
         installApp: 'تثبيت التطبيق',
         installAppTitle: 'تثبيت التطبيق على جهازك',
-        loadingLessons: 'جاري تحميل الدروس...',
+        loadingLessons: 'جارٍ تحميل الدروس...',
         allRightsReserved: 'جميع الحقوق محفوظة.',
         aboutContact: 'حول المشروع والتواصل',
         privacyPolicy: 'سياسة الخصوصية',
@@ -4189,7 +4201,7 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         customizingBadge: 'تخصيص',
         popularPairs: 'اللغات الشائعة',
         chooseLanguageToLearn: 'اختر لغة لتتعلمها',
-        bidirectionalNotice: 'منهج تعليمي ثنائي الاتجاه · صوت استوديو عصبي',
+        bidirectionalNotice: 'منهج تعليمي ثنائي الاتجاه · صوت استوديو طبيعي',
         switchDirectionTitle: (baseName, targetName) =>
           `تبديل الاتجاه: تعلم ${baseName} من ${targetName}`,
 
@@ -4274,7 +4286,7 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         accuracyByCategory: 'বিভাগ অনুযায়ী নির্ভুলতা',
         alphabetCat: 'বর্ণমালা',
         phrasesCat: 'প্রয়োজনীয় বাক্য',
-        commonWordsCat: 'প্রয়োজনীয় শব্দ',
+        commonWordsCat: 'সাধারণ শব্দ',
         numbersCat: 'সংখ্যা',
         correctOfTotal: (correct: number, total: number) => `${total}-এর মধ্যে ${correct} সঠিক`,
         syncPromoText: 'আপনার সমস্ত ডিভাইসে অগ্রগতি সংরক্ষণ করতে চান?',
@@ -4378,7 +4390,7 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         signOutTitle: 'Выйти из аккаунта',
         progressModalTitle: 'Мой прогресс',
         overallAccuracy: 'Общая точность',
-        questionsAttempted: 'Отвечено вопросов',
+        questionsAttempted: 'Пройдено вопросов',
         streak: 'Серия',
         mastered: 'Изучено',
         accuracyByCategory: 'Точность по категориям',
@@ -4486,7 +4498,7 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         signOutTitle: 'Se déconnecter',
         progressModalTitle: 'Ma Progression',
         overallAccuracy: 'Précision Globale',
-        questionsAttempted: 'Questions Tentées',
+        questionsAttempted: 'Questions répondues',
         streak: 'Série',
         mastered: 'Maîtrisées',
         accuracyByCategory: 'Précision par Catégorie',
@@ -4868,7 +4880,7 @@ export const getComponentChrome = (baseLang: SupportedLanguageId): ComponentChro
         streak: '连续打卡',
         mastered: '已掌握',
         accuracyByCategory: '各分类准确率',
-        alphabetCat: '字母拼音',
+        alphabetCat: '字母与文字',
         phrasesCat: '基础短语',
         commonWordsCat: '核心词汇',
         numbersCat: '数字时间',
@@ -5012,7 +5024,7 @@ export const getMultiMeaningNote = (
     case 'id': return `“${t}” memiliki lebih dari satu arti: ${m}`;
     case 'tr': return `“${t}” birden fazla anlama gelir: ${m}`;
     case 'ja': return `「${t}」には複数の意味があります：${m}`;
-    case 'ko': return `「${t}」에는 여러 가지 뜻이 있습니다: ${m}`;
+    case 'ko': return `‘${t}’에는 여러 가지 뜻이 있습니다: ${m}`;
     case 'zh': return `“${t}”有多个意思：${m}`;
     case 'hi': return `“${t}” के एक से अधिक अर्थ हैं: ${m}`;
     case 'ar': return `«${t}» لها أكثر من معنى: ${m}`;
@@ -5224,16 +5236,16 @@ export const getPraiseHeadline = (
       practice: { title: 'Practice makes perfect', pronunciation: 'Step by step' },
     },
     es: {
-      perfect: { title: '¡Excelente!', pronunciation: '¡Puntaje perfecto!' },
-      great: { title: '¡Muy bien!', pronunciation: '¡Mwee byehn!' },
-      good: { title: '¡Buen trabajo!', pronunciation: '¡Bwehn trah-BAH-hoh!' },
-      practice: { title: 'La práctica hace al maestro', pronunciation: '¡Sigue practicando!' },
+      perfect: { title: '¡Excelente!', pronunciation: 'ek-seh-LEN-teh!' },
+      great: { title: '¡Muy bien!', pronunciation: 'mwee byehn!' },
+      good: { title: '¡Buen trabajo!', pronunciation: 'bwehn trah-BAH-hoh!' },
+      practice: { title: 'La práctica hace al maestro', pronunciation: 'lah PRAK-tee-kah AH-seh ahl mah-EHS-troh' },
     },
     fr: {
-      perfect: { title: 'Parfait !', pronunciation: 'Score parfait !' },
-      great: { title: 'Très bien !', pronunciation: 'Treh byahn !' },
-      good: { title: 'Bien joué !', pronunciation: 'Byahn zhoo-AY !' },
-      practice: { title: 'C’est en forgeant qu’on devient forgeron', pronunciation: 'Continuez à pratiquer !' },
+      perfect: { title: 'Parfait !', pronunciation: 'pahr-FEH!' },
+      great: { title: 'Très bien !', pronunciation: 'treh byahn!' },
+      good: { title: 'Bien joué !', pronunciation: 'byahn zhoo-AY!' },
+      practice: { title: 'C’est en forgeant qu’on devient forgeron', pronunciation: 'seh tahn for-ZHAHN kohn duh-VYAHN for-zhuh-ROHN' },
     },
     ru: {
       perfect: { title: 'Отлично!', pronunciation: 'Otlichno!' },
@@ -5242,13 +5254,13 @@ export const getPraiseHeadline = (
       practice: { title: 'Повторение — мать учения', pronunciation: 'Povtorenie — mat ucheniya' },
     },
     de: {
-      perfect: { title: 'Ausgezeichnet!', pronunciation: 'OWS-ge-tsyke-net' },
+      perfect: { title: 'Ausgezeichnet!', pronunciation: 'OWS-geh-tsykh-net' },
       great: { title: 'Sehr gut!', pronunciation: 'zair goot' },
       good: { title: 'Gut gemacht!', pronunciation: 'goot ge-MAKHT' },
       practice: { title: 'Übung macht den Meister', pronunciation: 'EW-bung makht dayn MY-ster' },
     },
     pt: {
-      perfect: { title: 'Excelente!', pronunciation: 'ex-se-LEN-tchi' },
+      perfect: { title: 'Excelente!', pronunciation: 'eh-seh-LEN-tchee' },
       great: { title: 'Muito bem!', pronunciation: 'MWEEN-too bayn' },
       good: { title: 'Bom trabalho!', pronunciation: 'bohm tra-BA-lyoo' },
       practice: { title: 'A prática leva à perfeição', pronunciation: 'a PRA-tchi-ka LEH-va a per-fay-SOWN' },
@@ -5272,7 +5284,7 @@ export const getPraiseHeadline = (
       practice: { title: '継続は力なり', pronunciation: 'Keizoku wa chikara nari' },
     },
     ko: {
-      perfect: { title: '완벽해요!', pronunciation: 'Wanbyeokaeyo!' },
+      perfect: { title: '완벽해요!', pronunciation: 'Wanbyeokhaeyo!' },
       great: { title: '잘했어요!', pronunciation: 'Jalhaesseoyo!' },
       good: { title: '좋아요!', pronunciation: 'Joayo!' },
       practice: { title: '연습이 완벽을 만든다', pronunciation: 'Yeonseubi wanbyeogeul mandeunda' },
@@ -5291,7 +5303,7 @@ export const getPraiseHeadline = (
     },
     ar: {
       perfect: { title: 'ممتاز!', pronunciation: 'Mumtaaz!' },
-      great: { title: 'أحسنت!', pronunciation: 'Ahsanta!' },
+      great: { title: 'أحسنت!', pronunciation: 'Ahsant!' },
       good: { title: 'جيد!', pronunciation: 'Jayyid!' },
       practice: { title: 'التكرار يعلّم الشطّار', pronunciation: 'At-Takraar yu\'allim ash-shuttaar' },
     },

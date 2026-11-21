@@ -87,7 +87,7 @@ export const getFlashcardFullAudioText = (card: GrammarFlashcard, lang: string):
     return trimmedAudio;
   }
   const canonicalPrompt = card.prompts?.en || card.prompt;
-  const promptParts = canonicalPrompt.split(/\s*➔\s*/);
+  const promptParts = canonicalPrompt.split(/\s*[➔⬅]\s*/);
   const hero = promptParts[0].trim();
   const task = promptParts.length > 1 ? promptParts[1].trim() : null;
 
@@ -116,7 +116,7 @@ export const getFlashcardPromptStemAudioText = (card: GrammarFlashcard, lang: st
     return card.promptAudio.trim();
   }
   const canonicalPrompt = card.prompts?.en || card.prompt;
-  const promptParts = canonicalPrompt.split(/\s*➔\s*/);
+  const promptParts = canonicalPrompt.split(/\s*[➔⬅]\s*/);
   const hero = promptParts[0].trim();
   const task = promptParts.length > 1 ? promptParts[1].trim() : null;
 
@@ -827,7 +827,7 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
               {/* Prompt Hero Card */}
               {(() => {
                 const activePrompt = currentCard.prompts?.[baseLanguage] || currentCard.prompt;
-                const promptParts = activePrompt.split(/\s*➔\s*/);
+                const promptParts = activePrompt.split(/\s*[➔⬅]\s*/);
                 const heroWord = promptParts[0];
                 const taskPrompt = promptParts.length > 1 ? promptParts[1] : null;
                 const hasComplexOptions = cardOptions.some(
@@ -912,7 +912,7 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                       )}
                       {taskPrompt && (
                         <div className="grammar-prompt-task-pill">
-                          <span className="task-pill-arrow" aria-hidden="true">➔</span>
+                          <span className="task-pill-arrow" aria-hidden="true">{baseDir === 'rtl' ? '⬅' : '➔'}</span>
                           <span lang={baseLanguage} dir={baseDir}>{renderPromptWithBlank(taskPrompt)}</span>
                         </div>
                       )}
@@ -1103,7 +1103,10 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                 <div className="gender-examples-grid">
                   {rule.examples.map((ex) => {
                     const hasGrammaticalArticle = ['de', 'fr', 'es', 'pt', 'en'].includes(currentLanguage);
-                    const displayTarget = hasGrammaticalArticle ? `${rule.article} ${ex.word}` : ex.word;
+                    const activeArticle = ex.article || rule.article;
+                    const displayTarget = hasGrammaticalArticle
+                      ? `${activeArticle}${activeArticle.endsWith("'") ? '' : ' '}${ex.word}`
+                      : ex.word;
                     return (
                       <div key={ex.word} className="gender-example-item">
                         <span aria-hidden="true">
@@ -1289,12 +1292,12 @@ export const Grammar: React.FC<GrammarProps> = ({ grammarData, initialTab = 'fla
                     <span role="columnheader">{desc.headers?.[1] || ({
                       en: 'Comparative', ru: 'Сравнительная', es: 'Comparativo', fr: 'Comparatif', de: 'Komparativ',
                       pt: 'Comparativo', id: 'Komparatif', tr: 'Karşılaştırma', zh: '比较级', ja: '比較級',
-                      ko: '비교급', hi: 'उत्तरावस्था', ar: 'المقارنة', bn: 'তরতম্য', ur: 'تفصیلِ بعض'
+                      ko: '비교급', hi: 'उत्तरावस्था', ar: 'المقارنة', bn: 'তরতম্য', ur: 'تفضیلِ بعض'
                     }[baseLanguage] || 'Comparative')}</span>
                     <span role="columnheader">{desc.headers?.[2] || ({
                       en: 'Superlative', ru: 'Превосходная', es: 'Superlativo', fr: 'Superlatif', de: 'Superlativ',
                       pt: 'Superlativo', id: 'Superlatif', tr: 'Üstünlük', zh: '最高级', ja: '最上級',
-                      ko: '최상급', hi: 'उत्तमावस्था', ar: 'التفضيل', bn: 'অতিশায়ন', ur: 'تفصیلِ کل'
+                      ko: '최상급', hi: 'उत्तमावस्था', ar: 'التفضيل', bn: 'অতিশায়ন', ur: 'تفضیلِ کل'
                     }[baseLanguage] || 'Superlative')}</span>
                     <span role="columnheader">{desc.headers?.[3] || ({
                       en: 'Meaning', ru: 'Значение', es: 'Significado', fr: 'Sens', de: 'Bedeutung',

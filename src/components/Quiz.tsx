@@ -527,8 +527,8 @@ const Quiz: React.FC<QuizProps> = ({ data }) => {
         case 'ja': return `${word}（または ${digit}）`;
         case 'ko': return `${word} (또는 ${digit})`;
         case 'ru': return `${word} (или ${digit})`;
-        case 'es':
-        case 'pt': return `${word} (o ${digit})`;
+        case 'es': return `${word} (o ${digit})`;
+        case 'pt': return `${word} (ou ${digit})`;
         case 'fr': return `${word} (ou ${digit})`;
         case 'de': return `${word} (oder ${digit})`;
         case 'id': return `${word} (atau ${digit})`;

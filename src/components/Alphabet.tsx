@@ -59,10 +59,10 @@ const Alphabet: React.FC<AlphabetProps> = ({
     defaultEnSubtitle = '46 Hiragana characters with pronunciation guides, example words, and native studio audio';
   } else if (currentLanguage === 'ko') {
     defaultEnTitle = 'Korean Hangul & Sounds (한글)';
-    defaultEnSubtitle = '24 core Hangul letters (consonants & vowels) with pronunciation guides, example words, and native studio audio';
+    defaultEnSubtitle = '29 Hangul letters (consonants, vowels & double consonants) with pronunciation guides, example words, and native studio audio';
   } else if (currentLanguage === 'hi') {
     defaultEnTitle = 'Hindi Varnamala & Sounds (वर्णमाला)';
-    defaultEnSubtitle = '46 Devanagari letters with pronunciation guides, example words, and native studio audio';
+    defaultEnSubtitle = '42 Devanagari letters with pronunciation guides, example words, and native studio audio';
   } else if (currentLanguage === 'ar') {
     defaultEnTitle = 'Arabic Alphabet & Sounds (الحروف العربية)';
     defaultEnSubtitle = '28 Arabic letters with pronunciation guides, example words, and native studio audio';
@@ -77,7 +77,7 @@ const Alphabet: React.FC<AlphabetProps> = ({
     : baseLanguage === 'fr' ? 'Grammaire'
     : baseLanguage === 'ru' ? 'Грамматика'
     : baseLanguage === 'pt' ? 'Gramática'
-    : baseLanguage === 'tr' ? 'Dilbilgisi'
+    : baseLanguage === 'tr' ? 'Dil Bilgisi'
     : baseLanguage === 'id' ? 'Tata Bahasa'
     : baseLanguage === 'zh' ? '语法'
     : baseLanguage === 'ja' ? '文法'
@@ -154,7 +154,7 @@ const Alphabet: React.FC<AlphabetProps> = ({
     : baseLanguage === 'ar' ? 'حول اللغة'
     : baseLanguage === 'bn' ? 'ভাষার পরিচিতি'
     : baseLanguage === 'ur' ? 'زبان کا تعارف'
-    : 'About & Origins'
+    : 'About'
   );
 
   const aboutSuffix = (

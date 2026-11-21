@@ -26,7 +26,7 @@ import {
 } from './services/offlineAudioService';
 import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
 import { SupportedLanguageId } from './data/languages/types';
-import { SUPPORTED_LANGUAGES, isSupportedLanguageId } from './data/languages';
+import { isSupportedLanguageId } from './data/languages';
 import { getPageContent, getLocalizedAppName, getComponentChrome } from './utils/pageDictionary';
 
 // Map path segments to section IDs

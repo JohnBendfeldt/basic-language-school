@@ -99,7 +99,7 @@ export const ABOUT_TRANSLATIONS_JA: AboutLanguageTranslations = {
         title: '動詞の活用が一切ない',
         description: '何十通りもの動詞活用を持つスペイン語やフランス語とは異なり、中国語の動詞は決して形を変えません。「食べる（吃 chī）」は主語が私でもあなたでも、過去でも未来でも同じ形のままで、時制は時間詞（昨日・明日）やアスペクト助詞（了 le）を添えるだけで表現できます。',
         icon: '⚡',
-        example: '我吃（私は食べる） · 昨天我吃（昨日私は食べた）'
+        example: '我吃（私は食べる） · 我昨天吃了（昨日私は食べた）'
       },
       {
         title: '文法上の性や複数語尾がない',
@@ -276,7 +276,7 @@ export const ABOUT_TRANSLATIONS_JA: AboutLanguageTranslations = {
         title: '硬子音と軟子音の対立（口蓋化）',
         description: 'ほぼすべての子音に「硬音（通常の発音）」と「軟音（舌の中央を硬口蓋に近づける口蓋化音）」のペアが存在し、後ろに続く母音字や軟音記号（ь）によって明確に区別されます。',
         icon: '🎶',
-        example: 'мат（チェスの詰み） 対 мать（母）'
+        example: 'брат（兄弟） 対 брать（取る）'
       }
     ],
     culturalNote: 'ロシア語は国連の6つの公用語のひとつであり、国際宇宙ステーションに搭乗するすべての宇宙飛行士が習得を義務づけられている第二の運用言語でもあります。'
@@ -334,7 +334,7 @@ export const ABOUT_TRANSLATIONS_JA: AboutLanguageTranslations = {
     writingSystem: 'アラビア文字アブジャド（全28文字・右から左へ横書き）',
     languageFamily: 'アフロ・アジア語族（セム語派）',
     facts: [
-      { label: '書字方向', value: '右から左へ記述', icon: '➡️' },
+      { label: '書字方向', value: '右から左へ記述', icon: '⬅️' },
       { label: '文字体系', value: '全28文字（子音と長母音を表記）', icon: '🔤' },
       { label: '語根システム', value: '3子音語根（三語根による語形成）', icon: '🌱' },
       { label: '固有の発音', value: 'ダード（ض）——アラビア語を象徴する独特の音', icon: '🗣️' },

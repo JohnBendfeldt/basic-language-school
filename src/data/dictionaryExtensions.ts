@@ -86,7 +86,7 @@ export const SUPPLEMENTAL_DICTIONARY: Record<string, Partial<Record<SupportedLan
   },
   'in the evening': {
     en: 'In the evening', es: 'Por la tarde / noche', fr: 'Le soir', ru: 'Вечером', pt: 'À noite', de: 'Am Abend', id: 'Di malam hari', tr: 'Akşamleyin',
-    zh: '在晚上 (下午/傍晚)', ja: '夕方に・夜に', ko: '저녁에 (오후)', hi: 'शाम को', ar: 'في المساء', bn: 'সন্ধ্যায়', ur: 'شام کو'
+    zh: '在晚上', ja: '夕方に・夜に', ko: '저녁에', hi: 'शाम को', ar: 'في المساء', bn: 'সন্ধ্যায়', ur: 'شام کو'
   },
   'hello (formal)': { zh: '您好（正式）', ja: 'こんにちは（丁寧）', ko: '안녕하십니까 (격식)', hi: 'नमस्ते (औपचारिक)', ar: 'مرحباً (رسمي)', bn: 'নমস্কার / আসসালামু আলাইকুম', ur: 'السلام علیکم / آداب' },
   'hello (informal)': { zh: '嗨 / 你好（日常）', ja: 'やあ / こんにちは', ko: '안녕 (반말)', hi: 'हैलो / नमस्ते', ar: 'أهلاً', bn: 'হ্যালো / হাই', ur: 'ہیلو' },
@@ -197,12 +197,12 @@ export const SUPPLEMENTAL_DICTIONARY: Record<string, Partial<Record<SupportedLan
     ur: 'میری طبیعت ٹھیک نہیں ہے'
   },
   "you're welcome": {
-    zh: '不客气', ja: 'どういたしまして', ko: '천만에요', hi: 'कोई बात नहीं / आपका स्वागत है', ar: 'على الرحب والسعة',
-    bn: 'স্বাগতম / কিছু মনে করবেন না', ur: 'کوئی بات نہیں / خوش آمدید'
+    zh: '不客气', ja: 'どういたしまして', ko: '천만에요', hi: 'कोई बात नहीं', ar: 'على الرحب والسعة',
+    bn: 'কোনো ব্যাপার না', ur: 'کوئی بات نہیں'
   },
   'you are welcome': {
-    zh: '不客气', ja: 'どういたしまして', ko: '천만에요', hi: 'आपका स्वागत है', ar: 'على الرحب والسعة',
-    bn: 'স্বাগতম', ur: 'کوئی بات نہیں / خوش آمدید'
+    zh: '不客气', ja: 'どういたしまして', ko: '천만에요', hi: 'कोई बात नहीं', ar: 'على الرحب والسعة',
+    bn: 'কোনো ব্যাপার না', ur: 'کوئی بات نہیں'
   },
   'i am sorry': {
     zh: '对不起', ja: 'ごめんなさい', ko: '미안합니다 / 죄송합니다', hi: 'मुझे खेद है / माफ़ कीजिए', ar: 'أنا آسف',
@@ -374,7 +374,7 @@ export const SUPPLEMENTAL_DICTIONARY: Record<string, Partial<Record<SupportedLan
   'half past twelve': { bn: 'সাড়ে বারোটা (১২:৩০)', ur: 'ساڑھے بارہ بجے (12:30)' },
   'ten to two': { bn: 'দুটো বাজতে দশ মিনিট বাকি (১:৫০)', ur: 'دو بجنے میں دس منٹ (1:50)' },
   'half an hour': { bn: 'আধা ঘণ্টা', ur: 'آدھا گھنٹہ' },
-  'quarter of an hour': { bn: 'পনেরো মিনিট / এক পোয়া ঘণ্টা', ur: 'پندرہ منٹ / سوا گھنٹے کا چوتھائی' },
+  'quarter of an hour': { bn: 'পনেরো মিনিট / এক পোয়া ঘণ্টা', ur: 'پندرہ منٹ / ایک چوتھائی گھنٹہ' },
   'noon / midday': { bn: 'দুপুর বারোটা / মধ্যাহ্ন', ur: 'دوپہر بارہ بجے' },
   'on time': { bn: 'সময়মতো', ur: 'وقت پر' },
   'hour': { bn: 'ঘণ্টা', ur: 'گھنٹہ' },
@@ -1236,7 +1236,7 @@ export const SUPPLEMENTAL_DICTIONARY: Record<string, Partial<Record<SupportedLan
   },
   'quarter past (:15)': {
     en: 'Quarter past (:15)', es: 'Y cuarto (:15)', fr: 'Et quart (:15)', de: 'Viertel nach (:15)', pt: 'E quinze (:15)', ru: 'Четверть (:15)', id: 'Lewat seperempat (:15)', tr: 'Çeyrek geçe (:15)',
-    zh: '一刻 (:15)', ja: '15分過ぎ (:15)', ko: '15분 (사분 지남)', hi: 'सवा (:15)', ar: 'والربع (:15)', bn: 'সওয়া (:১৫)', ur: 'سوا (:15)'
+    zh: '一刻 (:15)', ja: '15分過ぎ (:15)', ko: '15분 (:15)', hi: 'सवा (:15)', ar: 'والربع (:15)', bn: 'সওয়া (:১৫)', ur: 'سوا (:15)'
   },
   'quarter to (:45)': {
     en: 'Quarter to (:45)', es: 'Menos cuarto (:45)', fr: 'Moins le quart (:45)', de: 'Viertel vor (:45)', pt: 'Quinze para (:45)', ru: 'Без четверти (:45)', id: 'Kurang seperempat (:45)', tr: 'Çeyrek kala (:45)',
@@ -1249,5 +1249,209 @@ export const SUPPLEMENTAL_DICTIONARY: Record<string, Partial<Record<SupportedLan
   'pm (afternoon)': {
     en: 'PM (Afternoon)', es: 'PM (Tarde)', fr: 'Après-midi (PM)', de: 'Nachmittag (PM)', pt: 'Tarde (PM)', ru: 'Дня / Вечера (PM)', id: 'Siang / Sore (PM)', tr: 'Öğleden sonra (PM)',
     zh: '下午 (PM)', ja: '午後 (PM)', ko: '오후 (PM)', hi: 'दोपहर (PM)', ar: 'مساءً (PM)', bn: 'দুপুর / বিকেল (PM)', ur: 'دوپہر / شام (PM)'
+  },
+
+  // Multi-word basic phrases & cross-curriculum idioms (prevent Step-5 single-word collapse across all 15 languages)
+  'a glass of water please': {
+    en: 'A glass of water, please', es: 'Un vaso de agua, por favor', fr: 'Un verre d\'eau, s\'il vous plaît', de: 'Ein Glas Wasser, bitte', pt: 'Um copo de água, por favor', ru: 'Стакан воды, пожалуйста', id: 'Segelas air, tolong', tr: 'Bir bardak su, lütfen',
+    zh: '请给我一杯水', ja: 'お水を一杯ください', ko: '물 한 잔 주세요', hi: 'कृपया एक गिलास पानी दीजिए', ar: 'كوب من الماء، من فضلك', bn: 'এক গ্লাস জল দিন', ur: 'براہِ کرم ایک گلاس پانی دیجیے'
+  },
+  'a table for two': {
+    en: 'A table for two', es: 'Una mesa para dos', fr: 'Une table pour deux', de: 'Einen Tisch für zwei', pt: 'Uma mesa para dois', ru: 'Столик на двоих', id: 'Meja untuk dua orang', tr: 'İki kişilik bir masa',
+    zh: '一张两人桌', ja: '2名席', ko: '두 명 자리', hi: 'दो लोगों के लिए मेज़', ar: 'طاولة لشخصين', bn: 'দুইজনের জন্য টেবিল', ur: 'دو افراد کے لیے میز'
+  },
+  'call a doctor': {
+    en: 'Call a doctor', es: 'Llame a un médico', fr: 'Appelez un médecin', de: 'Rufen Sie einen Arzt', pt: 'Chame um médico', ru: 'Вызовите врача', id: 'Panggil dokter', tr: 'Doktor çağırın',
+    zh: '请叫医生', ja: '医者を呼んでください', ko: '의사를 불러주세요', hi: 'डॉक्टर को बुलाइए', ar: 'اتصل بطبيب', bn: 'ডাক্তার ডাকুন', ur: 'ڈاکٹر کو بلائیں'
+  },
+  'call an ambulance': {
+    en: 'Call an ambulance', es: 'Llame a una ambulancia', fr: 'Appelez une ambulance', de: 'Rufen Sie einen Krankenwagen', pt: 'Chame uma ambulância', ru: 'Вызовите скорую помощь', id: 'Panggil ambulans', tr: 'Ambulans çağırın',
+    zh: '请叫救护车', ja: '救急車を呼んでください', ko: '구급차를 불러주세요', hi: 'एम्बुलेंस बुलाइए', ar: 'اتصل بسيارة إسعاف', bn: 'অ্যাম্বুলেন্স ডাকুন', ur: 'ایمبولینس بلائیں'
+  },
+  'i am sharing my screen': {
+    en: 'I am sharing my screen', es: 'Estoy compartiendo mi pantalla', fr: 'Je partage mon écran', de: 'Ich teile meinen Bildschirm', pt: 'Estou compartilhando minha tela', ru: 'Я показываю свой экран', id: 'Saya sedang berbagi layar', tr: 'Ekranımı paylaşıyorum',
+    zh: '我正在共享屏幕', ja: '画面を共有しています', ko: '화면을 공유하고 있어요', hi: 'मैं अपनी स्क्रीन साझा कर रहा हूँ', ar: 'أشارك شاشتي الآن', bn: 'আমি স্ক্রিন শেয়ার করছি', ur: 'میں اپنی اسکرین شیئر کر رہا ہوں'
+  },
+  'my battery is dead': {
+    en: 'My battery is dead', es: 'Mi batería está agotada', fr: 'Ma batterie est déchargée', de: 'Mein Akku ist leer', pt: 'Minha bateria acabou', ru: 'У меня села батарея', id: 'Baterai saya habis', tr: 'Şarjım bitti',
+    zh: '我的电池没电了', ja: 'バッテリーが切れました', ko: '배터리가 다 닳았어요', hi: 'मेरी बैटरी ख़त्म हो गई है', ar: 'بطاريتي فرغت', bn: 'আমার চার্জ শেষ হয়ে গেছে', ur: 'میری بیٹری ختم ہو گئی ہے'
+  },
+  'one ticket please': {
+    en: 'One ticket, please', es: 'Un boleto, por favor', fr: 'Un billet, s\'il vous plaît', de: 'Ein Ticket, bitte', pt: 'Uma passagem, por favor', ru: 'Один билет, пожалуйста', id: 'Satu tiket, tolong', tr: 'Bir bilet, lütfen',
+    zh: '请给我一张票', ja: '切符を一枚ください', ko: '표 한 장 주세요', hi: 'कृपया एक टिकट दीजिए', ar: 'تذكرة واحدة، من فضلك', bn: 'একটি টিকিট দিন', ur: 'براہِ کرم ایک ٹکٹ دیجیے'
+  },
+  'the bill please': {
+    en: 'The bill, please', es: 'La cuenta, por favor', fr: 'L\'addition, s\'il vous plaît', de: 'Die Rechnung, bitte', pt: 'A conta, por favor', ru: 'Счёт, пожалуйста', id: 'Minta bonnya, tolong', tr: 'Hesap, lütfen',
+    zh: '请买单', ja: 'お会計をお願いします', ko: '계산서 주세요', hi: 'कृपया बिल दीजिए', ar: 'الفاتورة، من فضلك', bn: 'বিলটা দিন, দয়া করে', ur: 'براہِ کرم بل لا دیجیے'
+  },
+  'the food is very delicious': {
+    en: 'The food is very delicious', es: 'La comida está muy deliciosa', fr: 'La nourriture est délicieuse', de: 'Das Essen ist sehr lecker', pt: 'A comida está muito deliciosa', ru: 'Еда очень вкусная', id: 'Makanannya sangat lezat', tr: 'Yemek çok lezzetli',
+    zh: '食物非常美味', ja: '料理がとても美味しいです', ko: '음식이 아주 맛있어요', hi: 'खाना बहुत स्वादिष्ट है', ar: 'الطعام لذيذ جداً', bn: 'খাবার খুব সুস্বাদু', ur: 'کھانا بہت لذیذ ہے'
+  },
+  'the internet is very slow': {
+    en: 'The internet is very slow', es: 'El internet es muy lento', fr: 'Internet est très lent', de: 'Das Internet ist sehr langsam', pt: 'A internet está muito lenta', ru: 'Интернет очень медленный', id: 'Internetnya sangat lambat', tr: 'İnternet çok yavaş',
+    zh: '网络非常慢', ja: 'インターネットがとても遅いです', ko: '인터넷이 매우 느려요', hi: 'इंटरनेट बहुत धीमा है', ar: 'الإنترنت بطيء جداً', bn: 'ইন্টারনেট খুব ধীরগতি', ur: 'انٹرنیٹ بہت سست ہے'
+  },
+  'where is it?': {
+    en: 'Where is it?', es: '¿Dónde está?', fr: 'Où est-ce ?', de: 'Wo ist es?', pt: 'Onde fica?', ru: 'Где это?', id: 'Di mana itu?', tr: 'Nerede?',
+    zh: '它在哪里？', ja: 'どこにありますか？', ko: '어디에 있어요?', hi: 'यह कहाँ है?', ar: 'أين هو؟', bn: 'এটা কোথায়?', ur: 'یہ کہاں ہے؟'
+  },
+  'where will the car stop?': {
+    en: 'Where will the car stop?', es: '¿Dónde se detendrá el coche?', fr: 'Où la voiture va-t-elle s\'arrêter ?', de: 'Wo wird das Auto halten?', pt: 'Onde o carro vai parar?', ru: 'Где остановится машина?', id: 'Di mana mobil akan berhenti?', tr: 'Araba nerede duracak?',
+    zh: '车会在哪里停？', ja: '車はどこに停まりますか？', ko: '차가 어디에 멈추나요?', hi: 'गाड़ी कहाँ रुकेगी?', ar: 'أين ستتوقف السيارة؟', bn: 'গাড়ি কোথায় থামবে?', ur: 'گاڑی کہاں رکے گی؟'
+  },
+  'please send an email': {
+    en: 'Please send an email', es: 'Por favor, envíe un correo electrónico', fr: 'Veuillez envoyer un courriel', de: 'Bitte senden Sie eine E-Mail', pt: 'Por favor, envie um e-mail', ru: 'Пожалуйста, отправьте письмо', id: 'Tolong kirim email', tr: 'Lütfen bir e-posta gönderin',
+    zh: '请发送电子邮件', ja: 'メールを送ってください', ko: '이메일을 보내 주세요', hi: 'कृपया एक ईमेल भेजें', ar: 'يرجى إرسال بريد إلكتروني', bn: 'ইমেইল পাঠিয়ে দিন', ur: 'براہِ کرم ای میل بھیجیں'
+  },
+  'please send me an email': {
+    en: 'Please send me an email', es: 'Por favor, envíeme un correo electrónico', fr: 'Veuillez m\'envoyer un courriel', de: 'Bitte senden Sie mir eine E-Mail', pt: 'Por favor, me envie um e-mail', ru: 'Пожалуйста, отправьте мне письмо', id: 'Tolong kirim saya email', tr: 'Lütfen bana bir e-posta gönderin',
+    zh: '请给我发电子邮件', ja: '私にメールを送ってください', ko: '저에게 이메일을 보내 주세요', hi: 'कृपया मुझे ईमेल भेजें', ar: 'يرجى إرسال بريد إلكتروني لي', bn: 'দয়া করে আমাকে ইমেইল পাঠান', ur: 'مجھے ای میل بھیجیں'
+  },
+  'please speak slowly': {
+    en: 'Please speak slowly', es: 'Por favor, hable despacio', fr: 'Parlez lentement, s\'il vous plaît', de: 'Bitte sprechen Sie langsam', pt: 'Por favor, fale devagar', ru: 'Говорите медленно, пожалуйста', id: 'Tolong bicara pelan-pelan', tr: 'Lütfen yavaş konuşun',
+    zh: '请说慢一点', ja: 'ゆっくり話してください', ko: '천천히 말해 주세요', hi: 'कृपया धीरे बोलिए', ar: 'تحدث ببطء من فضلك', bn: 'দয়া করে ধীরে বলুন', ur: 'براہِ کرم آہستہ بولیں'
+  },
+  'please help me': {
+    en: 'Please help me', es: 'Por favor, ayúdeme', fr: 'Aidez-moi, s\'il vous plaît', de: 'Bitte helfen Sie mir', pt: 'Por favor, ajude-me', ru: 'Пожалуйста, помогите мне', id: 'Tolong bantu saya', tr: 'Lütfen bana yardım edin',
+    zh: '请帮帮我', ja: '助けてください', ko: '도와주세요', hi: 'कृपया मेरी मदद करें', ar: 'ساعدني من فضلك', bn: 'দয়া করে আমাকে সাহায্য করুন', ur: 'براہِ کرم میری مدد کریں'
+  },
+  'sounds good / i like it': {
+    en: 'Sounds good / I like it', es: 'Suena bien / Me gusta', fr: 'Ça me plaît / C\'est bien', de: 'Klingt gut / Gefällt mir', pt: 'Parece ótimo / Eu gosto', ru: 'Отлично / Мне нравится', id: 'Bagus / Saya suka', tr: 'Kulağa hoş geliyor / Beğendim',
+    zh: '听起来不错 / 我喜欢', ja: 'いいですね / 好きです', ko: '좋아요', hi: 'अच्छा लगता है / मुझे पसंद है', ar: 'يبدو جيداً / يعجبني', bn: 'ভালো লাগছে / আমার পছন্দ হয়েছে', ur: 'اچھا ہے / مجھے پسند ہے'
+  },
+  'thank you for the meal': {
+    en: 'Thank you for the meal', es: 'Gracias por la comida', fr: 'Merci pour le repas', de: 'Danke für das Essen', pt: 'Obrigado pela refeição', ru: 'Спасибо за еду', id: 'Terima kasih atas makanannya', tr: 'Yemek için teşekkürler',
+    zh: '谢谢款待', ja: 'ごちそうさまでした', ko: '잘 먹겠습니다', hi: 'भोजन के लिए धन्यवाद', ar: 'شكراً على الوجبة', bn: 'খাবারের জন্য ধন্যবাদ', ur: 'کھانے کے لیے شکریہ'
+  },
+  'thank you for the meal (before eating)': {
+    en: 'Thank you for the meal (before eating)', es: 'Gracias por la comida (antes de comer)', fr: 'Merci pour ce repas (avant de manger)', de: 'Danke für das Essen (vor dem Essen)', pt: 'Obrigado pela refeição (antes de comer)', ru: 'Спасибо за еду (перед едой)', id: 'Terima kasih atas makanannya (sebelum makan)', tr: 'Yemek için teşekkürler (yemekten önce)',
+    zh: '我开动了（饭前致谢）', ja: 'いただきます', ko: '잘 먹겠습니다', hi: 'भोजन के लिए धन्यवाद (खाने से पहले)', ar: 'شكراً على الطعام (قبل الأكل)', bn: 'খাবারের জন্য ধন্যবাদ (খাওয়ার আগে)', ur: 'کھانے کے لیے شکریہ (کھانے سے پہلے)'
+  },
+  'thank you for the meal (after eating)': {
+    en: 'Thank you for the meal (after eating)', es: 'Gracias por la comida (después de comer)', fr: 'Merci pour le repas (après avoir mangé)', de: 'Danke für das Essen (nach dem Essen)', pt: 'Obrigado pela refeição (depois de comer)', ru: 'Спасибо за еду (после еды)', id: 'Terima kasih atas makanannya (setelah makan)', tr: 'Elinize sağlık (yemekten sonra)',
+    zh: '多谢款待（饭后致谢）', ja: 'ごちそうさまでした', ko: '잘 먹었습니다', hi: 'भोजन के लिए धन्यवाद (खाने के बाद)', ar: 'شكراً على الطعام (بعد الأكل)', bn: 'খাবারের জন্য ধন্যবাদ (খাওয়ার পরে)', ur: 'کھانے کے لیے شکریہ (کھانے کے بعد)'
+  },
+  'thank you (polite)': {
+    en: 'Thank you (polite)', es: 'Muchas gracias (formal)', fr: 'Merci beaucoup (poli)', de: 'Vielen Dank (höflich)', pt: 'Obrigado (formal)', ru: 'Спасибо (вежливо)', id: 'Terima kasih (sopan)', tr: 'Teşekkür ederim (kibar)',
+    zh: '谢谢您（礼貌）', ja: 'ありがとうございます', ko: '고맙습니다', hi: 'धन्यवाद (विनम्र)', ar: 'شكراً لك (بأدب)', bn: 'ধন্যবাদ (ভদ্রভাবে)', ur: 'شکریہ (ادب سے)'
+  },
+  'goodbye (to someone leaving)': {
+    en: 'Goodbye (to someone leaving)', es: 'Adiós (a quien se va)', fr: 'Au revoir (à celui qui part)', de: 'Auf Wiedersehen (an den Gehenden)', pt: 'Adeus (a quem parte)', ru: 'До свидания (уходящему)', id: 'Selamat jalan', tr: 'Güle güle',
+    zh: '再见（对离开的人说）', ja: 'さようなら（去る人へ）', ko: '안녕히 가세요', hi: 'अलविदा (जाने वाले से)', ar: 'مع السلامة (للمغادر)', bn: 'বিদায় (যিনি যাচ্ছেন)', ur: 'خدا حافظ (جانے والے سے)'
+  },
+  'goodbye (to someone staying)': {
+    en: 'Goodbye (to someone staying)', es: 'Adiós (a quien se queda)', fr: 'Au revoir (à celui qui reste)', de: 'Auf Wiedersehen (an den Bleibenden)', pt: 'Adeus (a quem fica)', ru: 'До свидания (остающемуся)', id: 'Selamat tinggal', tr: 'Hoşça kalın',
+    zh: '再见（对留下的人说）', ja: 'さようなら（残る人へ）', ko: '안녕히 계세요', hi: 'अलविदा (रुकने वाले से)', ar: 'وداعاً (للباقي)', bn: 'বিদায় (যিনি থাকছেন)', ur: 'خدا حافظ (رکنے والے سے)'
+  },
+  'see you again / goodbye': {
+    en: 'See you again / Goodbye', es: 'Hasta pronto / Adiós', fr: 'À bientôt / Au revoir', de: 'Bis bald / Auf Wiedersehen', pt: 'Até breve / Adeus', ru: 'До встречи / До свидания', id: 'Sampai jumpa lagi', tr: 'Tekrar görüşürüz / Hoşça kalın',
+    zh: '再会 / 再见', ja: 'また会いましょう / さようなら', ko: '또 봐요 / 안녕히 계세요', hi: 'फिर मिलेंगे / अलविदा', ar: 'إلى اللقاء / مع السلامة', bn: 'আবার দেখা হবে', ur: 'پھر ملیں گے / خدا حافظ'
+  },
+  'hello / peace be upon you': {
+    en: 'Hello / Peace be upon you', es: '¡Hola! / La paz sea contigo', fr: 'Bonjour / Que la paix soit sur vous', de: 'Hallo / Friede sei mit dir', pt: 'Olá / A paz esteja com você', ru: 'Здравствуйте / Мир вам', id: 'Halo / Assalamualaikum', tr: 'Merhaba / Selamün aleyküm',
+    zh: '你好 / 愿平安与你同在', ja: 'こんにちは / あなたに平安あれ', ko: '안녕하세요 / 평화가 함께하기를', hi: 'नमस्ते / अस्सलामु अलैकुम', ar: 'السلام عليكم', bn: 'আসসালামু আলাইকুম / নমস্কার', ur: 'السلام علیکم'
+  },
+
+  // Grammar flashcard & clarified vocabulary translations (all 15 languages)
+  'university': {
+    en: 'University', es: 'Universidad', fr: 'Université', de: 'Universität', pt: 'Universidade', ru: 'Университет', id: 'Universitas', tr: 'Üniversite',
+    zh: '大学', ja: '大学', ko: '대학교', hi: 'विश्वविद्यालय', ar: 'جامعة', bn: 'বিশ্ববিদ্যালয়', ur: 'یونیورسٹی'
+  },
+  'document': {
+    en: 'Document', es: 'Documento', fr: 'Document', de: 'Dokument', pt: 'Documento', ru: 'Документ', id: 'Dokumen', tr: 'Belge',
+    zh: '文件', ja: '書類', ko: '문서', hi: 'दस्तावेज़', ar: 'وثيقة', bn: 'নথি', ur: 'دستاویز'
+  },
+  'cold water': {
+    en: 'Cold water', es: 'Agua fría', fr: 'Eau froide', de: 'Kaltes Wasser', pt: 'Água fria', ru: 'Холодная вода', id: 'Air dingin', tr: 'Soğuk su',
+    zh: '冷水', ja: '冷たい水', ko: '차가운 물', hi: 'ठंडा पानी', ar: 'ماء بارد', bn: 'ঠান্ডা জল', ur: 'ٹھنڈا پانی'
+  },
+  'tired': {
+    en: 'Tired', es: 'Cansado', fr: 'Fatigué', de: 'Müde', pt: 'Cansado', ru: 'Уставший', id: 'Lelah', tr: 'Yorgun',
+    zh: '累', ja: '疲れた', ko: '피곤한', hi: 'थका हुआ', ar: 'متعب', bn: 'ক্লান্ত', ur: 'تھکا ہوا'
+  },
+  'books': {
+    en: 'Books', es: 'Libros', fr: 'Livres', de: 'Bücher', pt: 'Livros', ru: 'Книги', id: 'Buku-buku', tr: 'Kitaplar',
+    zh: '书（复数）', ja: '本（複数）', ko: '책들', hi: 'किताबें', ar: 'كتب', bn: 'বইগুলো', ur: 'کتابیں'
+  },
+  'better': {
+    en: 'Better', es: 'Mejor', fr: 'Meilleur', de: 'Besser', pt: 'Melhor', ru: 'Лучше', id: 'Lebih baik', tr: 'Daha iyi',
+    zh: '更好', ja: 'より良い', ko: '더 좋은', hi: 'बेहतर', ar: 'أفضل', bn: 'আরও ভালো', ur: 'بہتر'
+  },
+  'hungry': {
+    en: 'Hungry', es: 'Hambriento', fr: 'Affamé', de: 'Hungrig', pt: 'Com fome', ru: 'Голодный', id: 'Lapar', tr: 'Aç',
+    zh: '饿', ja: 'お腹が空いた', ko: '배고픈', hi: 'भूखा', ar: 'جائع', bn: 'ক্ষুধার্ত', ur: 'بھوکا'
+  },
+  'brazil': {
+    en: 'Brazil', es: 'Brasil', fr: 'Brésil', de: 'Brasilien', pt: 'Brasil', ru: 'Бразилия', id: 'Brasil', tr: 'Brezilya',
+    zh: '巴西', ja: 'ブラジル', ko: '브라질', hi: 'ब्राज़ील', ar: 'البرازيل', bn: 'ব্রাজিল', ur: 'برازیل'
+  },
+  'car key': {
+    en: 'Car key', es: 'Llave del coche', fr: 'Clé de voiture', de: 'Autoschlüssel', pt: 'Chave do carro', ru: 'Ключ от машины', id: 'Kunci mobil', tr: 'Araba anahtarı',
+    zh: '车钥匙', ja: '車の鍵', ko: '차 열쇠', hi: 'कार की चाबी', ar: 'مفتاح السيارة', bn: 'গাড়ির চাবি', ur: 'گاڑی کی چابی'
+  },
+  'children': {
+    en: 'Children', es: 'Niños', fr: 'Enfants', de: 'Kinder', pt: 'Crianças', ru: 'Дети', id: 'Anak-anak', tr: 'Çocuklar',
+    zh: '孩子们', ja: '子どもたち', ko: '아이들', hi: 'बच्चे', ar: 'أطفال', bn: 'শিশুরা', ur: 'بچے'
+  },
+  "don't forget": {
+    en: "Don't forget", es: 'No olvides', fr: 'N\'oubliez pas', de: 'Vergiss nicht', pt: 'Não esqueça', ru: 'Не забудь', id: 'Jangan lupa', tr: 'Unutma',
+    zh: '别忘了', ja: '忘れないで', ko: '잊지 마세요', hi: 'भूलना मत', ar: 'لا تنسَ', bn: 'ভুলে যেও না', ur: 'مت بھولنا'
+  },
+  'library': {
+    en: 'Library', es: 'Biblioteca', fr: 'Bibliothèque', de: 'Bibliothek', pt: 'Biblioteca', ru: 'Библиотека', id: 'Perpustakaan', tr: 'Kütüphane',
+    zh: '图书馆', ja: '図書館', ko: '도서관', hi: 'पुस्तकालय', ar: 'مكتبة', bn: 'গ্রন্থাগার', ur: 'کتب خانہ'
+  },
+  'czar': {
+    en: 'Czar', es: 'Zar', fr: 'Tsar', de: 'Zar', pt: 'Czar', ru: 'Царь', id: 'Tsar', tr: 'Çar',
+    zh: '沙皇', ja: 'ツァーリ', ko: '차르', hi: 'ज़ार', ar: 'قيصر', bn: 'জার', ur: 'زار'
+  },
+  'color': {
+    en: 'Color', es: 'Color', fr: 'Couleur', de: 'Farbe', pt: 'Cor', ru: 'Цвет', id: 'Warna', tr: 'Renk',
+    zh: '颜色', ja: '色', ko: '색 / 색깔', hi: 'रंग', ar: 'لون', bn: 'রঙ', ur: 'رنگ'
+  },
+  'mouse (animal)': {
+    en: 'Mouse (animal)', es: 'Ratón (animal)', fr: 'Souris (animal)', de: 'Maus (Tier)', pt: 'Rato', ru: 'Мышь (животное)', id: 'Tikus', tr: 'Fare (hayvan)',
+    zh: '老鼠', ja: 'ネズミ', ko: '쥐', hi: 'चूहा', ar: 'فأر', bn: 'ইঁদুর', ur: 'چوہا'
+  },
+  'cloud (computing)': {
+    en: 'Cloud (computing)', es: 'Nube (informática)', fr: 'Cloud (informatique)', de: 'Cloud (IT)', pt: 'Nuvem (computação)', ru: 'Облако (ИТ)', id: 'Komputasi awan', tr: 'Bulut (bilişim)',
+    zh: '云端', ja: 'クラウド', ko: '클라우드', hi: 'क्लाउड', ar: 'سحابة إلكترونية', bn: 'ক্লাউড', ur: 'کلاؤڈ'
+  },
+  'porcupine': {
+    en: 'Porcupine', es: 'Puercoespín', fr: 'Porc-épic', de: 'Stachelschwein', pt: 'Porco-espinho', ru: 'Дикобраз', id: 'Landak', tr: 'Oklu kirpi',
+    zh: '豪猪', ja: 'ヤマアラシ', ko: '호저', hi: 'साही', ar: 'نيص', bn: 'সজারু', ur: 'ساہی'
+  },
+  'hotel room': {
+    en: 'Hotel room', es: 'Habitación de hotel', fr: 'Chambre d\'hôtel', de: 'Hotelzimmer', pt: 'Quarto de hotel', ru: 'Номер', id: 'Kamar hotel', tr: 'Otel odası',
+    zh: '酒店房间', ja: 'ホテルの部屋', ko: '호텔 방', hi: 'होटल का कमरा', ar: 'غرفة فندق', bn: 'হোটেলের ঘর', ur: 'ہوٹل کا کمرہ'
+  },
+  'video camera': {
+    en: 'Video camera', es: 'Cámara de video', fr: 'Caméra', de: 'Videokamera', pt: 'Câmera de vídeo', ru: 'Видеокамера', id: 'Kamera video', tr: 'Video kamera',
+    zh: '摄像机', ja: 'ビデオカメラ', ko: '비디오 카메라', hi: 'वीडियो कैमरा', ar: 'كاميرا فيديو', bn: 'ভিডিও ক্যামেরা', ur: 'ویڈیو کیمرہ'
+  },
+  'wristwatch': {
+    en: 'Wristwatch', es: 'Reloj de pulsera', fr: 'Montre-bracelet', de: 'Armbanduhr', pt: 'Relógio de pulso', ru: 'Наручные часы', id: 'Jam tangan', tr: 'Kol saati',
+    zh: '手表', ja: '腕時計', ko: '손목시계', hi: 'कलाई घड़ी', ar: 'ساعة يد', bn: 'হাতঘড়ি', ur: 'کلائی کی گھڑی'
+  },
+  'sweets / dessert': {
+    en: 'Sweets / Dessert', es: 'Dulces / Postre', fr: 'Douceurs / Dessert', de: 'Süßigkeiten / Nachspeise', pt: 'Doces / Sobremesa', ru: 'Сладости / Десерт', id: 'Manisan / Hidangan penutup', tr: 'Tatlılar',
+    zh: '甜点', ja: 'お菓子 / デザート', ko: '과자 / 디저트', hi: 'मिठाई', ar: 'حلويات', bn: 'মিষ্টি', ur: 'مٹھائی'
+  },
+  'reserve / stock': {
+    en: 'Reserve / Stock', es: 'Reserva / Existencias', fr: 'Réserve / Stock', de: 'Vorrat / Reserve', pt: 'Reserva / Estoque', ru: 'Запас / Резерв', id: 'Cadangan / Persediaan', tr: 'Stok / Rezerv',
+    zh: '储备', ja: '備蓄 / 在庫', ko: '비축 / 재고', hi: 'भंडार / संचय', ar: 'مخزون / احتياطي', bn: 'মজুদ / সঞ্চয়', ur: 'ذخیرہ'
+  },
+  'calendar': {
+    en: 'Calendar', es: 'Calendario', fr: 'Calendrier', de: 'Kalender', pt: 'Calendário', ru: 'Календарь', id: 'Kalender', tr: 'Takvim',
+    zh: '日历', ja: 'カレンダー', ko: '달력', hi: 'कैलेंडर', ar: 'تقويم', bn: 'ক্যালেন্ডার', ur: 'کیلنڈر'
+  },
+  'ambulance / emergency': {
+    en: 'Ambulance / Emergency', es: 'Ambulancia / Emergencia', fr: 'Ambulance / Urgence', de: 'Krankenwagen / Notfall', pt: 'Ambulância / Emergência', ru: 'Скорая помощь', id: 'Ambulans / Darurat', tr: 'Ambulans / Acil durum',
+    zh: '救护车 / 急救', ja: '救急車 / 緊急', ko: '구급차 / 응급', hi: 'एम्बुलेंस / आपातकाल', ar: 'سيارة إسعاف / طوارئ', bn: 'অ্যাম্বুলেন্স / জরুরি', ur: 'ایمبولینس / ایمرجنسی'
+  },
+  'how much is this?': {
+    en: 'How much is this?', es: '¿Cuánto cuesta esto?', fr: 'Combien coûte ceci ?', de: 'Wie viel kostet das?', pt: 'Quanto custa isto?', ru: 'Сколько это стоит?', id: 'Berapa harganya?', tr: 'Bu ne kadar?',
+    zh: '这个多少钱？', ja: 'これはいくらですか？', ko: '이거 얼마예요?', hi: 'यह कितने का है?', ar: 'بكم هذا؟', bn: 'এর দাম কত?', ur: 'اس کی قیمت کیا ہے؟'
   },
 };

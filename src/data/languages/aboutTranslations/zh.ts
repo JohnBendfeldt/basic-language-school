@@ -99,7 +99,7 @@ export const ABOUT_TRANSLATIONS_ZH: AboutLanguageTranslations = {
         title: '动词无变位',
         description: '不同于西班牙语或法语动辄数十种的动词词尾变化，汉语动词永远保持原貌！无论“我吃”“你吃”“我们吃过”还是“他们将要吃”，“吃”（chī）字本身分毫不改，时态只需借助时间词（昨天、明天）或动态助词（了 le）即可清晰表达。',
         icon: '⚡',
-        example: '我吃（现在） · 昨天我吃（过去）'
+        example: '我吃（现在） · 我昨天吃了（过去）'
       },
       {
         title: '无语法性别与复数词尾',
@@ -162,7 +162,7 @@ export const ABOUT_TRANSLATIONS_ZH: AboutLanguageTranslations = {
         title: '特征文字（描摹口腔与舌位）',
         description: '谚文字母绝非随意勾画：ㄱ 模拟舌根抵住软腭的轮廓，ㄴ 模拟舌尖轻触上齿龈的姿态，ㅁ 则直接象形双唇闭合的口型。',
         icon: '👅',
-        example: 'ㅁ（m）展现双唇闭合；ㅂ（b）在此基础上加笔体现爆破气流。'
+        example: 'ㅁ（m）展现双唇闭合；ㅂ（b/p）加笔表示双唇塞音，ㅍ（p）再加笔表示送气音。'
       },
       {
         title: '方块音节拼合结构',
@@ -276,7 +276,7 @@ export const ABOUT_TRANSLATIONS_ZH: AboutLanguageTranslations = {
         title: '软辅音与硬辅音（腭化对比）',
         description: '俄语中几乎每个辅音都成对分为硬音（普通发音）与软音（舌面抬向硬腭），由后续元音字母或软音符号（ь）加以区分。',
         icon: '🎶',
-        example: 'мат（国际象棋将死） 对比 мать（母亲）'
+        example: 'брат（兄弟） 对比 брать（拿、取）'
       }
     ],
     culturalNote: '俄语既是联合国六种正式语言之一，也是宇航员进入国际空间站执勤所必须掌握的第二工作语言。'
@@ -334,7 +334,7 @@ export const ABOUT_TRANSLATIONS_ZH: AboutLanguageTranslations = {
     writingSystem: '阿拉伯辅音音素文字（28个字母，从右向左书写）',
     languageFamily: '亚非语系（闪米特语族）',
     facts: [
-      { label: '书写方向', value: '从右向左书写', icon: '➡️' },
+      { label: '书写方向', value: '从右向左书写', icon: '⬅️' },
       { label: '字母规模', value: '28个字母（记录辅音与长元音）', icon: '🔤' },
       { label: '词根机制', value: '三辅音词根体系（三母词根）', icon: '🌱' },
       { label: '独有发音', value: '“达德”音（ض）——几乎为阿拉伯语所独有', icon: '🗣️' },
