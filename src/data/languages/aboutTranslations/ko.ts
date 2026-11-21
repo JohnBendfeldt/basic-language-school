@@ -99,7 +99,7 @@ export const ABOUT_TRANSLATIONS_KO: AboutLanguageTranslations = {
         title: '동사 어형 변화가 전혀 없음',
         description: '수십 가지 동사 어미 변화를 외워야 하는 스페인어나 프랑스어와 달리 중국어 동사는 형태가 절대 바뀌지 않습니다! ‘먹다(吃 chī)’는 주어가 나든 너든, 과거든 미래든 그대로 쓰이며, 시제는 시간 부사(어제, 내일)나 상 조사(了 le)만으로 간단히 나타냅니다.',
         icon: '⚡',
-        example: '我吃 (나는 먹는다) · 昨天我吃 (어제 나는 먹었다)'
+        example: '我吃 (나는 먹는다) · 我昨天吃了 (어제 나는 먹었다)'
       },
       {
         title: '문법적 성(性)과 복수 어미의 부재',
@@ -276,7 +276,7 @@ export const ABOUT_TRANSLATIONS_KO: AboutLanguageTranslations = {
         title: '경자음과 연자음의 대립 (구개음화)',
         description: '거의 모든 자음이 일반 발음인 경음과 혀를 입천장 쪽으로 들어 올려 부드럽게 내는 연음(구개음화음) 쌍을 이루며, 뒤따르는 모음이나 연음 부호(ь)로 구분됩니다.',
         icon: '🎶',
-        example: 'мат (체스의 외통수) 대 мать (어머니)'
+        example: 'брат (형제) 대 брать (취하다)'
       }
     ],
     culturalNote: '러시아어는 유엔의 6대 공용어 중 하나이자, 국제우주정거장 우주비행사들이 반드시 익혀야 하는 제2 공식 운용 언어입니다.'
@@ -334,7 +334,7 @@ export const ABOUT_TRANSLATIONS_KO: AboutLanguageTranslations = {
     writingSystem: '아랍 아브자드 문자 (28자, 오른쪽에서 왼쪽으로 표기)',
     languageFamily: '아프리카아시아어족 (셈어파)',
     facts: [
-      { label: '쓰기 방향', value: '오른쪽에서 왼쪽으로 가로쓰기', icon: '➡️' },
+      { label: '쓰기 방향', value: '오른쪽에서 왼쪽으로 가로쓰기', icon: '⬅️' },
       { label: '문자 구성', value: '총 28자 (자음과 장모음 표기 중심)', icon: '🔤' },
       { label: '어근 체계', value: '3자음 어근 체계 (세 자음으로 핵심 의미 형성)', icon: '🌱' },
       { label: '고유 발음', value: '다드(ض) — 사실상 아랍어에만 존재하는 독창적 자음', icon: '🗣️' },

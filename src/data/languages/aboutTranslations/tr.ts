@@ -99,7 +99,7 @@ export const ABOUT_TRANSLATIONS_TR: AboutLanguageTranslations = {
         title: 'Fiil Çekimi Yoktur',
         description: 'Onlarca fiil çekim ekine sahip İspanyolca, Fransızca veya Türkçenin aksine Çince fiiller asla değişmez! "Yemek yemek" (吃 chī) ben yerim, sen yersin, dün yedik veya yarın yiyecekler için tamamen aynıdır. Zaman kavramı zaman zarflarıyla (dün, yarın) veya görünüş edatlarıyla (了 le) belirtilir.',
         icon: '⚡',
-        example: '我吃 (Ben yerim) · 昨天我吃 (Dün yedim)'
+        example: '我吃 (Ben yerim) · 我昨天吃了 (Dün yedim)'
       },
       {
         title: 'Dilbilgisel Cinsiyet ve Çoğul Eki Yoktur',
@@ -276,7 +276,7 @@ export const ABOUT_TRANSLATIONS_TR: AboutLanguageTranslations = {
         title: 'Sert ve Yumuşak Ünsüzler (Damaksıllaşma)',
         description: 'Neredeyse her ünsüz harfin sert (düz) ve yumuşak (damaksıllaşmış) bir karşılığı vardır; bu ayrım ardından gelen ünlü harfle veya yumuşatma işaretiyle (ь) belirlenir.',
         icon: '🎶',
-        example: 'мат (satrançta mat) ile мать (anne)'
+        example: 'брат (erkek kardeş) ile брать (almak)'
       }
     ],
     culturalNote: 'Rusça, Birleşmiş Milletler’in altı resmî dilinden biridir ve Uluslararası Uzay İstasyonu’nda astronotların öğrendiği zorunlu ikinci görev dilidir.'
@@ -334,7 +334,7 @@ export const ABOUT_TRANSLATIONS_TR: AboutLanguageTranslations = {
     writingSystem: 'Arap Ebced Yazısı (28 Harf, Sağdan Sola)',
     languageFamily: 'Afro-Asya (Sami Dilleri Kolu)',
     facts: [
-      { label: 'Yazı Yönü', value: 'Sağdan Sola', icon: '➡️' },
+      { label: 'Yazı Yönü', value: 'Sağdan Sola', icon: '⬅️' },
       { label: 'Alfabe', value: '28 Harf (Ünsüzler ve uzun ünlüler)', icon: '🔤' },
       { label: 'Kök Sistemi', value: '3 Harfli Ünsüz Kökleri (Sülâsî Kökler)', icon: '🌱' },
       { label: 'Özgün Ses', value: 'Dâd (ض) — Neredeyse yalnızca Arapçada bulunan eşsiz ses', icon: '🗣️' },
@@ -385,7 +385,7 @@ export const ABOUT_TRANSLATIONS_TR: AboutLanguageTranslations = {
     writingSystem: 'Devanagari (देवनागरी) Abugida Yazısı',
     languageFamily: 'Hint-Avrupa (Hint-Aryan Kolu)',
     facts: [
-      { label: 'Alfabe', value: '46 Devanagari Harfi (11 Ünlü, 33 Ünsüz)', icon: '🔤' },
+      { label: 'Alfabe', value: 'Devanagari Yazısı (11 Ünlü, 33 Ünsüz ve Bileşik Harfler)', icon: '🔤' },
       { label: 'Üst Çizgi', value: 'Şirorekha (Harflerin asılı durduğu yatay üst çizgi)', icon: '📏' },
       { label: 'Kardeş Dil', value: 'Günlük konuşma dilinde Urduca ile karşılıklı anlaşılır', icon: '🤝' },
       { label: 'Söz Dizimi', value: 'Özne-Nesne-Yüklem (Türkçe ile aynı sıra)', icon: '🔄' },

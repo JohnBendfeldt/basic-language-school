@@ -99,7 +99,7 @@ export const ABOUT_TRANSLATIONS_FR: AboutLanguageTranslations = {
         title: 'Aucune conjugaison verbale',
         description: 'Contrairement au français ou à l’espagnol et leurs dizaines de terminaisons, les verbes chinois restent invariables ! « Manger » (吃 chī) est identique pour je mange, tu manges, nous avons mangé ou ils mangeront. Le temps s’exprime simplement par des marqueurs temporels (hier, demain) ou des particules d’aspect (了 le).',
         icon: '⚡',
-        example: '我吃 (Je mange) · 昨天我吃 (Hier, j’ai mangé)'
+        example: '我吃 (Je mange) · 我昨天吃了 (Hier, j’ai mangé)'
       },
       {
         title: 'Ni genre grammatical ni marque du pluriel',
@@ -222,7 +222,7 @@ export const ABOUT_TRANSLATIONS_FR: AboutLanguageTranslations = {
         example: '私はパンを食べました (J’ai mangé du pain)'
       },
       {
-        title: 'Les particules grammaticales (助词 · Joshi)',
+        title: 'Les particules grammaticales (助詞 · Joshi)',
         description: 'De petites particules postposées indiquent la fonction précise de chaque mot dans la phrase (は thème, が sujet, を complément d’objet direct, に destination ou temps).',
         icon: '🏷️',
         example: '猫が (le chat [sujet]) + 魚を (poisson [objet]) + 食べた (a mangé)'
@@ -276,7 +276,7 @@ export const ABOUT_TRANSLATIONS_FR: AboutLanguageTranslations = {
         title: 'Consonnes dures et mouillées (palatalisation)',
         description: 'Presque chaque consonne fonctionne en paire dure (ordinaire) ou mouillée (palatalisée), distinguée par la voyelle qui la suit ou par le signe mou (ь).',
         icon: '🎶',
-        example: 'мат (échec et mat) vs мать (mère)'
+        example: 'брат (frère) vs брать (prendre)'
       }
     ],
     culturalNote: 'Le russe est l’une des six langues officielles des Nations unies et la seconde langue opérationnelle obligatoire de la Station spatiale internationale.'
@@ -334,7 +334,7 @@ export const ABOUT_TRANSLATIONS_FR: AboutLanguageTranslations = {
     writingSystem: 'Abjad arabe (28 lettres, de droite à gauche)',
     languageFamily: 'Afro-asiatique (sémitique)',
     facts: [
-      { label: 'Sens d’écriture', value: 'De droite à gauche', icon: '➡️' },
+      { label: 'Sens d’écriture', value: 'De droite à gauche', icon: '⬅️' },
       { label: 'Alphabet', value: '28 lettres (consonnes et voyelles longues)', icon: '🔤' },
       { label: 'Système de racines', value: 'Racines consonantiques de 3 lettres (trilitères)', icon: '🌱' },
       { label: 'Le son unique', value: 'Dād (ض) — présent presque exclusivement en arabe', icon: '🗣️' },
@@ -385,7 +385,7 @@ export const ABOUT_TRANSLATIONS_FR: AboutLanguageTranslations = {
     writingSystem: 'Alphasyllabaire (abugida) devanagari (देवनागरी)',
     languageFamily: 'Indo-européenne (indo-aryenne)',
     facts: [
-      { label: 'Alphabet', value: '46 lettres devanagari (11 voyelles, 33 consonnes)', icon: '🔤' },
+      { label: 'Alphabet', value: 'Écriture devanagari (11 voyelles, 33 consonnes et ligatures)', icon: '🔤' },
       { label: 'Ligne supérieure', value: 'Shirorekha (trait horizontal suspendant les lettres)', icon: '📏' },
       { label: 'Langue sœur', value: 'Mutuellement compréhensible à l’oral avec l’ourdou', icon: '🤝' },
       { label: 'Ordre des mots', value: 'SOV (Sujet-Objet-Verbe)', icon: '🔄' },

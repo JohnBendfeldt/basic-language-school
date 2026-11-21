@@ -105,7 +105,10 @@ describe('Grammar Audio Audit Across All Languages', () => {
           for (const ex of rule.examples) {
             // In non-Latin languages, don't speak the rule name
             const isNonLatin = ['hi', 'ar', 'zh', 'ja', 'ko', 'bn', 'ur'].includes(lang);
-            const targetText = (lang === 'ru' || isNonLatin) ? ex.word : `${rule.article} ${ex.word}`;
+            const activeArticle = ex.article || rule.article;
+            const targetText = (lang === 'ru' || isNonLatin)
+              ? ex.word
+              : `${activeArticle}${activeArticle.endsWith("'") ? '' : ' '}${ex.word}`;
             const spokenText = ex.word.replace(/\s*\([^)]*\)\s*/g, '').trim();
             const candidates = getCandidateAudioPathsForText(targetText, lang);
             if (!diskFileExistsForCandidates(candidates)) {

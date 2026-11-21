@@ -53,11 +53,11 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
     nativeName: '普通话 (Pǔtōnghuà) · 汉语 (Hànyǔ)',
     title: 'The Story of Mandarin & Simplified Chinese',
     tagline: 'From 3,000-year-old oracle bones to the 1950s literacy revolution and the birth of Pinyin.',
-    speakersCount: '1.1+ Billion Native Speakers',
+    speakersCount: '~940 Million Native Speakers (1.1B+ Total)',
     writingSystem: 'Simplified Chinese Characters (简体字) & Hanyu Pinyin (汉语拼音)',
     languageFamily: 'Sino-Tibetan',
     facts: [
-      { label: 'Native Speakers', value: '1.1 Billion (World #1)', icon: '👥' },
+      { label: 'Native Speakers', value: '~940 Million Native (1.1B+ Total, World #1)', icon: '👥' },
       { label: 'Official Script', value: 'Simplified Characters (简体字)', icon: '✍️' },
       { label: 'Phonetic Bridge', value: 'Hanyu Pinyin (Adopted 1958)', icon: '🔤' },
       { label: 'Standard Dialect', value: 'Beijing Phonology', icon: '📍' },
@@ -148,7 +148,7 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
         title: 'No Verb Conjugation',
         description: 'Unlike Spanish or French with dozens of verb endings, Chinese verbs never change! "To eat" (吃 chī) is identical for I eat, you eat, we ate, or they will eat. Tense is communicated simply with time markers (yesterday, tomorrow) or aspect particles (了 le).',
         icon: '⚡',
-        example: '我吃 (I eat) · 昨天我吃 (Yesterday I ate)'
+        example: '我吃 (I eat) · 我昨天吃了 (Yesterday I ate)'
       },
       {
         title: 'No Grammatical Gender or Plural Endings',
@@ -183,7 +183,7 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
     languageFamily: 'Koreanic (Language Isolate)',
     facts: [
       { label: 'Inventor', value: 'King Sejong the Great (1443)', icon: '👑' },
-      { label: 'Alphabet System', value: '24 Core Letters (Consonants & Vowels)', icon: '🔤' },
+      { label: 'Alphabet System', value: '24 Basic Letters (+ 5 Double Consonants)', icon: '🔤' },
       { label: 'Scientific Design', value: 'Letter shapes mimic mouth & tongue', icon: '👅' },
       { label: 'National Holiday', value: 'Hangul Day (October 9)', icon: '🎉' },
       { label: 'Word Order', value: 'SOV (Subject-Object-Verb)', icon: '🧱' },
@@ -214,7 +214,7 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
         title: 'Featural Script (Mouth & Tongue Mimicry)',
         description: 'Hangul letters are not arbitrary: ㄱ mimics the tongue blocking the throat, ㄴ mimics the tongue touching the upper gums, and ㅁ mimics the shape of the lips.',
         icon: '👅',
-        example: 'ㅁ (m) shows closed lips; ㅂ (b) adds lines for aspiration.'
+        example: 'ㅁ (m) shows closed lips; ㅂ (b/p) adds strokes for a stop, and ㅍ (p) adds strokes for aspiration.'
       },
       {
         title: 'Syllabic Block Architecture',
@@ -277,7 +277,7 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
         example: '私はパンを食べました (I ate bread)'
       },
       {
-        title: 'Grammatical Particles (助词 · Joshi)',
+        title: 'Grammatical Particles (助詞 · Joshi)',
         description: 'Little post-position particles indicate the role of each word in the sentence (は topic, が subject, を direct object, に destination/time).',
         icon: '🏷️',
         example: '猫が (the cat [subject]) + 魚を (fish [object]) + 食べた (ate)'
@@ -334,7 +334,7 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
         title: 'Soft & Hard Consonants (Palatalization)',
         description: 'Almost every consonant comes in a hard (plain) or soft (palatalized) pair, distinguished by the vowel that follows it or the soft sign (ь).',
         icon: '🎶',
-        example: 'мат (checkmate) vs мать (mother)'
+        example: 'брат (brother) vs брать (to take)'
       }
     ],
     culturalNote: 'Russian is one of the six official languages of the United Nations and the mandatory second operational language of the International Space Station.'
@@ -398,12 +398,12 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
     writingSystem: 'Arabic Abjad (28 Letters, Right-to-Left)',
     languageFamily: 'Afroasiatic (Semitic)',
     facts: [
-      { label: 'Direction', value: 'Right to Left (RTL)', icon: '➡️' },
+      { label: 'Direction', value: 'Right to Left (RTL)', icon: '⬅️' },
       { label: 'Alphabet', value: '28 Letters (All consonants and long vowels)', icon: '🔤' },
       { label: 'Root System', value: '3-Letter Consonantal Roots (Triliteral)', icon: '🌱' },
       { label: 'The Unique Sound', value: 'Daad (ض) — Found almost exclusively in Arabic', icon: '🗣️' },
       { label: 'Dual Number', value: 'Singular, Dual (two), and Plural forms', icon: '2️⃣' },
-      { label: 'World Mother Language', value: 'UN World Arabic Language Day (Dec 18)', icon: '🌐' }
+      { label: 'UN Language Day', value: 'UN World Arabic Language Day (Dec 18)', icon: '🌐' }
     ],
     historyTimeline: [
       {
@@ -452,7 +452,7 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
     writingSystem: 'Devanagari (देवनागरी) Abugida Script',
     languageFamily: 'Indo-European (Indo-Aryan)',
     facts: [
-      { label: 'Alphabet', value: '46 Devanagari Letters (11 Vowels, 33 Consonants)', icon: '🔤' },
+      { label: 'Alphabet', value: 'Devanagari Script (11 Vowels, 33 Consonants & Conjuncts)', icon: '🔤' },
       { label: 'Top Line', value: 'Shirorekha (Horizontal headline hanging letters)', icon: '📏' },
       { label: 'Sibling Language', value: 'Colloquially interchangeable with Urdu', icon: '🤝' },
       { label: 'Word Order', value: 'SOV (Subject-Object-Verb)', icon: '🔄' },
@@ -469,7 +469,7 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
       {
         era: '13th – 18th Century',
         title: 'The Emergence of Hindustani',
-        description: 'The Delhi Sultanate and Mughal era brought Persian, Turkic, and Arabic vocabulary into everyday conversation, creating Hindustani as the bustling lingua franca of bazars and poetry.',
+        description: 'The Delhi Sultanate and Mughal era brought Persian, Turkic, and Arabic vocabulary into everyday conversation, creating Hindustani as the bustling lingua franca of bazaars and poetry.',
         highlight: 'Birth of common Hindustani'
       },
       {
@@ -509,7 +509,7 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
       { label: 'Rank', value: '6th Most Spoken Native Language Globally', icon: '🌐' },
       { label: 'Nobel Laureate', value: 'Rabindranath Tagore (Nobel Literature 1913)', icon: '🏅' },
       { label: 'UNESCO Holiday', value: 'International Mother Language Day (Feb 21)', icon: '🌺' },
-      { label: 'Inherent Vowel', value: 'Rounded "o" sound (অ / ɔ/)', icon: '👄' },
+      { label: 'Inherent Vowel', value: 'Rounded "o" sound (অ /ɔ/)', icon: '👄' },
       { label: 'Grammatical Gender', value: 'None! Verbs and adjectives are gender-neutral', icon: '⚖️' },
       { label: 'National Anthems', value: 'Tagore penned the anthems of both India & Bangladesh', icon: '🎶' }
     ],
@@ -536,13 +536,13 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
     linguisticTraits: [
       {
         title: 'The Inherent Rounded "O" Vowel',
-        description: 'Unlike Hindi which defaults to a short "a" sound, every unmarked Bengali consonant carries a warm, rounded "o" (\\/ɔ\\/) sound. For example, জল is pronounced "jol" (water).',
+        description: 'Unlike Hindi which defaults to a short "a" sound, every unmarked Bengali consonant carries a warm, rounded "o" (/ɔ/) sound. For example, জল is pronounced "jol" (water).',
         icon: '👄',
         example: 'ক = ko (not ka) · জল = jol'
       },
       {
         title: 'Complete Gender Neutrality',
-        description: 'Bengali grammar has zero grammatical gender. Men, women, and inanimate objects use the same third-person pronouns (সে she/he) and identical verb forms.',
+        description: 'Bengali grammar has zero grammatical gender. Men and women use the same third-person pronoun (সে, he/she) and identical verb forms.',
         icon: '⚖️',
         example: 'সে যায় (He goes / She goes)'
       }
@@ -557,7 +557,7 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
     title: 'The Language of Poetry: Nastaliq Script & Courtly Elegance',
     tagline: 'Born from royal encampments, celebrated for centuries in ghazals, romance, and philosophy.',
     speakersCount: '230+ Million Total Speakers',
-    writingSystem: 'Perso-Arabic Nastaliq Script (نستعلیق · 39 Letters)',
+    writingSystem: 'Perso-Arabic Nastaliq Script (نستعلیق · 40 Letters)',
     languageFamily: 'Indo-European (Indo-Aryan)',
     facts: [
       { label: 'Origin of Name', value: 'From Turkic "Ordu" (Royal Camp)', icon: '⛺' },
@@ -596,7 +596,7 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
       },
       {
         title: 'Nuanced Politeness & Tehzeeb (Adab)',
-        description: 'Urdu has three distinct levels of "you": informal "tu" (तू), polite "tum" (تم), and deferential "aap" (آپ), accompanied by elaborate courtesies.',
+        description: 'Urdu has three distinct levels of "you": informal "tu" (تو), polite "tum" (تم), and deferential "aap" (آپ), accompanied by elaborate courtesies.',
         icon: '🙇',
         example: 'آپ تشریف رکھیے (Please grace us by taking a seat)'
       }
@@ -657,7 +657,7 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
     englishName: 'Spanish',
     nativeName: 'Español · Castellano',
     title: 'From Castile to the Americas: The Global Spanish Journey',
-    tagline: 'Born from Vulgar Latin, enriched by 700 years of Arabic, spoken by 500+ million across 21 nations.',
+    tagline: 'Born from Vulgar Latin, enriched by 700 years of Arabic, spoken by 500+ million across 20 nations and Puerto Rico.',
     speakersCount: '500+ Million Native Speakers (World #2)',
     writingSystem: 'Spanish Latin Alphabet (27 Letters including Ñ)',
     languageFamily: 'Indo-European (Romance)',
@@ -666,7 +666,7 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
       { label: 'Arabic Influence', value: '4,000+ Arabic loanwords (azúcar, alcalde, ojalá)', icon: '🕌' },
       { label: 'First Modern Grammar', value: 'Antonio de Nebrija (1492)', icon: '📖' },
       { label: 'Inverted Punctuation', value: '¡Opening exclamation! & ¿Opening question?', icon: '❓' },
-      { label: 'Official in', value: '21 Countries across 4 Continents', icon: '🏛️' },
+      { label: 'Official in', value: '20 Countries & Puerto Rico across 4 Continents', icon: '🏛️' },
       { label: 'Literary Masterpiece', value: 'Don Quixote by Miguel de Cervantes', icon: '🛡️' }
     ],
     historyTimeline: [
@@ -698,12 +698,12 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
       },
       {
         title: 'Ser vs Estar (Two Kinds of "To Be")',
-        description: 'Spanish distinguishes between permanent identity/essence (Ser) and temporary states/locations (Estar). Soy feliz means I am a happy person; estoy feliz means I feel happy right now.',
+        description: 'Spanish distinguishes between inherent identity or defining traits (Ser) and states, conditions, or locations (Estar). Soy profesor states a profession; estoy cansado describes how you feel right now.',
         icon: '⚖️',
         example: 'Soy profesor (Identity) vs Estoy cansado (Current state)'
       }
     ],
-    culturalNote: 'Spanish is spoken across 21 sovereign nations, each contributing vibrant musical traditions, literary giants, and regional idioms.'
+    culturalNote: 'Spanish is official across 20 sovereign nations and Puerto Rico, each contributing vibrant musical traditions, literary giants, and regional idioms.'
   },
 
   fr: {
@@ -748,7 +748,7 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
         title: 'Liaison & Flowing Euphony',
         description: 'French places supreme value on vocal flow (euphony). Normally silent ending consonants wake up and link to the next vowel sound (les amis → lay-zah-mee).',
         icon: '🎶',
-        example: 'C’est un ami (Pronounced: Seh-tuhn-ah-mee)'
+        example: 'C’est un ami (Pronounced: Seh-tuhn-nah-mee)'
       },
       {
         title: 'Nasal Vowels',
@@ -773,7 +773,7 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
       { label: 'Most Spoken in EU', value: '#1 First Language in the European Union', icon: '🇪🇺' },
       { label: 'Compound Words', value: 'Words chained together to form exact concepts', icon: '🧩' },
       { label: 'Grammatical Cases', value: '4 Cases (Nominative, Accusative, Dative, Genitive)', icon: '🏛️' },
-      { label: 'Genders', value: '3 (Der Maskulin, Die Feminin, Das Neutrum)', icon: '⚖️' },
+      { label: 'Genders', value: '3 (Masculine der, Feminine die, Neuter das)', icon: '⚖️' },
       { label: 'Noun Capitalization', value: 'Every single noun is capitalized in writing', icon: '🔠' },
       { label: 'Scientific Heritage', value: 'Language of Goethe, Kant, Beethoven, Einstein', icon: '🔬' }
     ],
@@ -781,8 +781,8 @@ export const ABOUT_LANGUAGES: Record<SupportedLanguageId, LanguageProfile> = {
       {
         era: '6th – 8th Century',
         title: 'The High German Consonant Shift',
-        description: 'A major phonetic sound shift separated German from its Germanic cousins (English/Dutch), changing "t" to "z/ss" (water → Wasser, two → zwei).',
-        highlight: 'Divergence from Proto-Germanic'
+        description: 'A major phonetic sound shift separated High German from its West Germanic cousins (English/Dutch), changing "t" to "z/ss" and "p" to "pf/ff" (water → Wasser, two → zwei, apple → Apfel).',
+        highlight: 'Divergence within West Germanic'
       },
       {
         era: '1522',

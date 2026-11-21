@@ -49,7 +49,7 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
       case 'ru':
         return {
           badge: 'Гид по фонетике',
-          title: 'Как устроен пиньинь и тоны',
+          title: 'Как устроены пиньинь и тоны',
           subtitle: 'Мост от латинских букв к китайским иероглифам (汉字)',
           toggleShow: 'Показать гид по пиньиню',
           toggleHide: 'Скрыть гид',
@@ -58,7 +58,7 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
           tabTyping: 'Как печатать иероглифы',
           toneHeader: 'В китайском языке тон полностью меняет значение слова:',
           formulaTitle: 'Анатомия китайского слога',
-          formulaDesc: 'Каждый произносимый слог в путунхуа строится по строгой формуле:',
+          formulaDesc: 'Каждый произносимый слог в путунхуа включает финаль (гласную основу) и тон, а перед ними обычно стоит начальный согласный (инициаль):',
           typingTitle: 'От латинских букв к китайским иероглифам',
           typingDesc: 'На смартфонах и компьютерах китайский язык печатают с помощью стандартной клавиатуры:',
           homophoneTitle: 'Зачем нужны иероглифы, если есть пиньинь?',
@@ -67,7 +67,7 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
       case 'es':
         return {
           badge: 'Guía de fonética',
-          title: 'Cómo funciona el Pinyin y los Tonos',
+          title: 'Cómo funcionan el Pinyin y los Tonos',
           subtitle: 'El puente de las letras latinas a los caracteres chinos (汉字)',
           toggleShow: 'Mostrar guía de Pinyin',
           toggleHide: 'Ocultar guía',
@@ -76,7 +76,7 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
           tabTyping: 'Cómo escribir Hanzi',
           toneHeader: 'En mandarín, el tono cambia totalmente el significado de la palabra:',
           formulaTitle: 'Anatomía de una sílaba en chino',
-          formulaDesc: 'Cada sílaba hablada se forma siguiendo una fórmula estricta:',
+          formulaDesc: 'Cada sílaba hablada tiene una final (núcleo vocálico) y un tono, normalmente precedidos por una consonante inicial opcional:',
           typingTitle: 'De letras latinas a caracteres chinos',
           typingDesc: 'En teléfonos y computadoras, el chino se escribe con un teclado latino estándar:',
           homophoneTitle: '¿Por qué necesitamos caracteres si tenemos Pinyin?',
@@ -94,7 +94,7 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
           tabTyping: 'Comment taper les Hanzi',
           toneHeader: 'En mandarin, le ton change complètement le sens du mot :',
           formulaTitle: 'Anatomie d\'une syllabe chinoise',
-          formulaDesc: 'Chaque syllabe parlée est construite selon une formule stricte :',
+          formulaDesc: 'Chaque syllabe parlée comporte une finale (noyau vocalique) et un ton, généralement précédés d\'une consonne initiale facultative :',
           typingTitle: 'Des lettres latines aux caractères chinois',
           typingDesc: 'Sur téléphones et ordinateurs, le chinois se tape avec un clavier latin standard :',
           homophoneTitle: 'Pourquoi des caractères si le Pinyin existe ?',
@@ -112,7 +112,7 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
           tabTyping: 'Hanzi tippen',
           toneHeader: 'Im Mandarin verändert der Ton die Wortbedeutung vollständig:',
           formulaTitle: 'Aufbau einer chinesischen Silbe',
-          formulaDesc: 'Jede Silbe setzt sich nach einer klaren Regel zusammen:',
+          formulaDesc: 'Jede gesprochene Silbe besteht aus einem Auslaut (Vokalkern) und einem Ton, meist mit einem optionalen Anlaut davor:',
           typingTitle: 'Von lateinischen Buchstaben zu Schriftzeichen',
           typingDesc: 'Auf Tastaturen wird Chinesisch über die normale lateinische Tastatur getippt:',
           homophoneTitle: 'Warum gibt es Schriftzeichen trotz Pinyin?',
@@ -130,7 +130,7 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
           tabTyping: 'Como digitar Hanzi',
           toneHeader: 'No mandarim, o tom muda completamente o significado da palavra:',
           formulaTitle: 'Anatomia de uma sílaba em mandarim',
-          formulaDesc: 'Cada sílaba falada segue uma fórmula de três partes:',
+          formulaDesc: 'Cada sílaba falada tem uma final (núcleo vocálico) e um tom, geralmente precedidos por uma consoante inicial opcional:',
           typingTitle: 'De letras latinas a caracteres chineses',
           typingDesc: 'Em celulares e computadores, digita-se chinês com o teclado padrão:',
           homophoneTitle: 'Por que os caracteres (Hanzi) ainda importam?',
@@ -148,7 +148,7 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
           tabTyping: 'Cara Mengetik Hanzi',
           toneHeader: 'Dalam bahasa Mandarin, tinggi-rendah nada menentukan arti kata:',
           formulaTitle: 'Anatomi Suku Kata Mandarin',
-          formulaDesc: 'Setiap suku kata Mandarin tersusun dari tiga bagian:',
+          formulaDesc: 'Setiap suku kata Mandarin memiliki bunyi akhir (inti vokal) dan nada, biasanya diawali konsonan awal opsional:',
           typingTitle: 'Dari Huruf Latin Menjadi Aksara Hanzi',
           typingDesc: 'Di ponsel dan komputer, bahasa Mandarin diketik memakai papan ketik QWERTY:',
           homophoneTitle: 'Mengapa Aksara Hanzi Tetap Penting?',
@@ -166,7 +166,7 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
           tabTyping: 'Hanzi Nasıl Yazılır?',
           toneHeader: 'Mandarin Çincesinde ses tonu kelimenin anlamını tamamen değiştirir:',
           formulaTitle: 'Mandarin Hecesinin Yapısı',
-          formulaDesc: 'Her hece üç temel bölümden oluşur:',
+          formulaDesc: 'Her hece bir sonses (ünlü çekirdeği) ile tondan oluşur ve çoğunlukla isteğe bağlı bir önsesle başlar:',
           typingTitle: 'Latin Harflerinden Çin Karakterlerine',
           typingDesc: 'Telefon ve bilgisayarlarda Çince standart klavye ile yazılır:',
           homophoneTitle: 'Neden Karakterler (Hanzi) Hâlâ Gerekli?',
@@ -176,7 +176,7 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
         return {
           badge: '拼音指南',
           title: '汉语拼音与四声原理',
-          subtitle: '连接拉丁字母与汉字（汉字）的发音桥梁',
+          subtitle: '连接拉丁字母与中文汉字的发音桥梁',
           toggleShow: '展开拼音与声调指南',
           toggleHide: '收起指南',
           tabTones: '四声与轻声',
@@ -184,7 +184,7 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
           tabTyping: '如何用拼音输入汉字',
           toneHeader: '在普通话中，声调的高低升降直接决定词义：',
           formulaTitle: '普通话音节的组成结构',
-          formulaDesc: '每个普通话音节都遵循清晰的三部分结构：',
+          formulaDesc: '每个普通话音节都包含韵母和声调，前面通常配有可选的声母：',
           typingTitle: '如何用拉丁字母输入汉字',
           typingDesc: '在手机和电脑上，使用标准拉丁字母键盘即可输入汉字：',
           homophoneTitle: '有了拼音为什么还需要汉字？',
@@ -202,7 +202,7 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
           tabTyping: '漢字の入力方法',
           toneHeader: '中国語（普通話）では、声の高さと変化（声調）で意味が決まります：',
           formulaTitle: '中国語音節の構造',
-          formulaDesc: 'すべての音節は3つの要素で構成されます：',
+          formulaDesc: 'すべての音節は韻母（母音核）と声調を持ち、多くの場合その前に声母（子音）が付きます：',
           typingTitle: 'ローマ字から中国語の漢字を入力する',
           typingDesc: 'スマートフォンやパソコンでは、通常のローマ字キーボードでピンインを打って漢字に変換します：',
           homophoneTitle: 'ピンインがあるのに漢字が必要な理由',
@@ -220,7 +220,7 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
           tabTyping: '한자 입력 방법',
           toneHeader: '중국어에서는 음의 높낮이(성조)에 따라 단어의 뜻이 완전히 달라집니다:',
           formulaTitle: '중국어 음절의 구조',
-          formulaDesc: '모든 중국어 음절은 세 부분의 공식으로 이루어집니다:',
+          formulaDesc: '모든 중국어 음절은 운모(모음 핵)와 성조로 이루어지며, 대부분 앞에 선택적인 성모(자음)가 옵니다:',
           typingTitle: '로마자로 중국어 한자 입력하기',
           typingDesc: '스마트폰과 컴퓨터에서는 기본 영문 키보드로 병음을 입력해 한자를 선택합니다:',
           homophoneTitle: '병음이 있는데도 한자가 필요한 이유',
@@ -229,16 +229,16 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
       case 'hi':
         return {
           badge: 'ध्वनि मार्गदर्शिका',
-          title: 'पिनयिन और स्वर (Tones) कैसे काम करते हैं',
+          title: 'पिनयिन और सुर (Tones) कैसे काम करते हैं',
           subtitle: 'लैटिन अक्षरों से चीनी अक्षरों (汉字) तक का सेतु',
           toggleShow: 'पिनयिन गाइड दिखाएँ',
           toggleHide: 'गाइड छिपाएँ',
-          tabTones: '4 स्वर और तटस्थ स्वर',
+          tabTones: '4 सुर और तटस्थ सुर',
           tabAnatomy: 'अक्षर संरचना',
           tabTyping: 'चीनी अक्षर कैसे टाइप करें',
-          toneHeader: 'मंदारिन चीनी में स्वर का उतार-चढ़ाव शब्द का सटीक अर्थ तय करता है:',
+          toneHeader: 'मंदारिन चीनी में सुर का उतार-चढ़ाव शब्द का सटीक अर्थ तय करता है:',
           formulaTitle: 'मंदारिन शब्दांश की संरचना',
-          formulaDesc: 'प्रत्येक शब्दांश तीन भागों के नियम का पालन करता है:',
+          formulaDesc: 'प्रत्येक शब्दांश में एक अंतिम भाग (स्वर आधार) और सुर होता है, जिसके पहले प्रायः एक वैकल्पिक आरंभिक व्यंजन आता है:',
           typingTitle: 'लैटिन अक्षरों से चीनी अक्षर कैसे बनते हैं',
           typingDesc: 'फ़ोन और कंप्यूटर पर सामान्य अंग्रेज़ी कीबोर्ड से ही पिनयिन टाइप कर चीनी लिखी जाती है:',
           homophoneTitle: 'पिनयिन होने पर भी चीनी अक्षर (Hanzi) क्यों ज़रूरी हैं?',
@@ -255,8 +255,8 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
           tabAnatomy: 'بنية المقطع الصوتي',
           tabTyping: 'كيفية كتابة الرموز الصينية',
           toneHeader: 'في اللغة الصينية، تحدد طبقة الصوت ونغمته المعنى الدقيق للكلمة:',
-          formulaTitle: 'تشريح المقطع الصوتي الصيني',
-          formulaDesc: 'يتكون كل مقطع منطوق في الصينية من ثلاثة عناصر:',
+          formulaTitle: 'بنية المقطع الصوتي الصيني',
+          formulaDesc: 'يتكون كل مقطع منطوق في الصينية من نهاية صوتية (نواة الحرف المتحرك) ونغمة، وغالباً ما يسبقه حرف ساكن ابتدائي اختياري:',
           typingTitle: 'كيف تتحول الحروف اللاتينية إلى رموز صينية',
           typingDesc: 'على الهواتف والحواسيب، تُكتب الصينية باستخدام لوحة المفاتيح اللاتينية القياسية:',
           homophoneTitle: 'لماذا تظل الرموز الصينية (Hanzi) ضرورية؟',
@@ -265,16 +265,16 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
       case 'bn':
         return {
           badge: 'উচ্চারণ নির্দেশিকা',
-          title: 'পিনইন ও স্বরভঙ্গি কীভাবে কাজ করে',
+          title: 'পিনইন ও সুর কীভাবে কাজ করে',
           subtitle: 'লাতিন অক্ষর থেকে চীনা অক্ষরে (汉字) যাওয়ার সেতু',
           toggleShow: 'পিনইন নির্দেশিকা দেখান',
           toggleHide: 'নির্দেশিকা লুকান',
-          tabTones: '৪টি স্বর ও নিরপেক্ষ স্বর',
+          tabTones: '৪টি সুর ও নিরপেক্ষ সুর',
           tabAnatomy: 'সিলেবল গঠন',
           tabTyping: 'কীভাবে হানজি টাইপ করবেন',
-          toneHeader: 'মান্দারিন চীনা ভাষায় স্বরের ওঠানামা শব্দের অর্থ নির্ধারণ করে:',
+          toneHeader: 'মান্দারিন চীনা ভাষায় সুরের ওঠানামা শব্দের অর্থ নির্ধারণ করে:',
           formulaTitle: 'মান্দারিন সিলেবলের গঠন',
-          formulaDesc: 'প্রতিটি উচ্চারিত সিলেবল তিনটি অংশ নিয়ে গঠিত:',
+          formulaDesc: 'প্রতিটি উচ্চারিত সিলেবলে একটি সমাপ্তি অংশ (স্বরধ্বনির কেন্দ্র) ও সুর থাকে, এবং বেশিরভাগ ক্ষেত্রে শুরুতে একটি ঐচ্ছিক ব্যঞ্জনবর্ণ থাকে:',
           typingTitle: 'লাতিন অক্ষর থেকে কীভাবে চীনা অক্ষর লেখা হয়',
           typingDesc: 'ফোন ও কম্পিউটারে সাধারণ ইংরেজি কিবোর্ড দিয়েই পিনইন টাইপ করে চীনা লেখা হয়:',
           homophoneTitle: 'পিনইন থাকা সত্ত্বেও চীনা অক্ষর (Hanzi) কেন জরুরি?',
@@ -283,16 +283,16 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
       case 'ur':
         return {
           badge: 'صوتی رہنما',
-          title: 'پِن یِن اور لہجے کیسے کام کرتے ہیں',
+          title: 'پِن یِن اور سُر (Tones) کیسے کام کرتے ہیں',
           subtitle: 'لاطینی حروف سے چینی حروف (汉字) تک کا پل',
           toggleShow: 'پِن یِن رہنما دکھائیں',
           toggleHide: 'رہنما چھپائیں',
-          tabTones: '4 لہجے اور معتدل لہجہ',
-          tabAnatomy: 'ہجے کی ساخت',
+          tabTones: '4 سُر اور معتدل سُر',
+          tabAnatomy: 'صوتی رکن کی ساخت',
           tabTyping: 'چینی حروف ٹائپ کرنے کا طریقہ',
-          toneHeader: 'مینڈارن چینی میں آواز کا اتار چڑھاؤ لفظ کا اصل مطلب طے کرتا ہے:',
-          formulaTitle: 'مینڈارن ہجے کی ساخت',
-          formulaDesc: 'ہر بولا جانے والا ہجہ تین حصوں پر مشتمل ہوتا ہے:',
+          toneHeader: 'مینڈارن چینی میں آواز کا اتار چڑھاؤ (سُر) لفظ کا اصل مطلب طے کرتا ہے:',
+          formulaTitle: 'مینڈارن صوتی رکن کی ساخت',
+          formulaDesc: 'ہر بولا جانے والا صوتی رکن اختتامی مصوتے اور سُر پر مشتمل ہوتا ہے، جس سے پہلے عموماً ایک اختیاری ابتدائی مصمتہ آتا ہے:',
           typingTitle: 'لاطینی حروف سے چینی حروف کیسے بنتے ہیں',
           typingDesc: 'فون اور کمپیوٹر پر معیاری انگریزی کی بورڈ سے پِن یِن لکھ کر چینی حروف منتخب کیے جاتے ہیں:',
           homophoneTitle: 'پِن یِن کے باوجود چینی حروف (Hanzi) کیوں ضروری ہیں؟',
@@ -311,7 +311,7 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
           tabTyping: 'How Latin Letters Become Hanzi',
           toneHeader: 'In Mandarin Chinese, pitch and tone determine the word’s exact meaning:',
           formulaTitle: 'Anatomy of a Mandarin Syllable',
-          formulaDesc: 'Every spoken syllable in Mandarin follows a three-part structural formula:',
+          formulaDesc: 'Every spoken syllable in Mandarin has a final (vowel core) and tone, usually preceded by an optional initial consonant:',
           typingTitle: 'How Latin Letters Become Chinese Characters',
           typingDesc: 'On smartphones and computers, Chinese is typed using a standard English/Latin QWERTY keyboard:',
           homophoneTitle: 'Why Characters (Hanzi) Still Matter',
@@ -485,7 +485,7 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
                         )}
                         {card.contour === 'dipping' && (
                           <svg width="40" height="28" viewBox="0 0 40 28" aria-hidden="true">
-                            <path d="M 4 10 Q 20 25 36 8" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
+                            <path d="M 4 17 Q 18 26 36 10" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" />
                           </svg>
                         )}
                         {card.contour === 'falling' && (
@@ -519,6 +519,7 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
                     <div className="tone-card-bottom" lang={englishFallbackLang} dir={englishFallbackDir}>
                       <span className="tone-meaning">&quot;{card.translation}&quot;</span>
                       <span className="tone-pitch-desc">{card.pitchDescription}</span>
+                      <span className="tone-sample-desc">{card.sampleDescription}</span>
                     </div>
                   </div>
                 ))}
@@ -598,9 +599,9 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
                 </div>
 
                 <div className="breakdown-card">
-                  <h5 className="breakdown-card-title">2. Finals (<span lang="zh">韵母</span> · Yùnmǔ) &amp; Semi-Vowels</h5>
+                  <h5 className="breakdown-card-title">2. Finals (<span lang="zh">韵母</span> · Yùnmǔ) &amp; Spelling Glides</h5>
                   <p className="breakdown-card-text">
-                    Vowels and endings that complete the syllable. Tone marks are always placed over vowels (a &gt; o &gt; e &gt; i/u/ü):
+                    Vowels and endings that complete the syllable. Tone marks always sit on a vowel (priority a &gt; o &gt; e &gt; i/u/ü; when i and u appear together as iu/ui, the mark goes on the second vowel). Spelling glides y and w start vowel-only syllables:
                   </p>
                   <div className="pinyin-pill-cloud">
                     <span className="pinyin-pill">a</span>
@@ -646,7 +647,7 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
                   <div className="step-mock-candidates">
                     <span className="candidate-choice active">1. <span lang="zh">你好</span></span>
                     <span className="candidate-choice">2. <span lang="zh">拟好</span></span>
-                    <span className="candidate-choice">3. <span lang="zh">泥耗</span></span>
+                    <span className="candidate-choice">3. <span lang="zh">妮好</span></span>
                   </div>
                   <span className="step-caption">Keyboard predicts matching Hanzi</span>
                 </div>
@@ -659,7 +660,7 @@ export const PinyinGuide: React.FC<PinyinGuideProps> = ({ baseLanguage }) => {
                     <span className="output-hanzi" lang="zh">你好！</span>
                     <span className="output-meaning">(Hello!)</span>
                   </div>
-                  <span className="step-caption">Select #1 to insert the character</span>
+                  <span className="step-caption">Select #1 to insert the characters</span>
                 </div>
               </div>
 

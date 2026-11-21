@@ -2055,6 +2055,13 @@ footer {
   line-height: 1.3;
 }
 
+.tone-sample-desc {
+  font-size: 0.72rem;
+  color: #64748b;
+  font-style: italic;
+  line-height: 1.3;
+}
+
 /* Formula Anatomy */
 .pinyin-formula-equation {
   display: flex;

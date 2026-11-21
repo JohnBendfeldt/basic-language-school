@@ -193,8 +193,8 @@ describe('Page Dictionary & Multilingual Alphabet Localization', () => {
     const trigger = screen.getByRole('button', { name: /Current language pair/i });
     fireEvent.click(trigger);
 
-    // Switch to "I speak" tab (Я говорю)
-    const iSpeakTab = screen.getAllByRole('button', { name: /Я говорю/i })[0];
+    // Switch to "I speak" tab (Мой язык)
+    const iSpeakTab = screen.getAllByRole('button', { name: /Мой язык/i })[0];
     fireEvent.click(iSpeakTab);
 
     // Select French (Французский) as native language

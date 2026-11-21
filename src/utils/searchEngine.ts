@@ -286,7 +286,7 @@ export const searchLanguageConcepts = (
     }
   }
 
-  // Sort: Exact matches first
+  // Sort: Exact matches first, preferring rich dictionary words over alphabet letter examples on ties
   const sortExactFirst = (a: SearchResultItem, b: SearchResultItem) => {
     const aNorm = normalizeSearchQuery(a.title);
     const bNorm = normalizeSearchQuery(b.title);
@@ -294,7 +294,11 @@ export const searchLanguageConcepts = (
     if (bNorm === query && aNorm !== query) return 1;
     if (aNorm.startsWith(query) && !bNorm.startsWith(query)) return -1;
     if (bNorm.startsWith(query) && !aNorm.startsWith(query)) return 1;
-    return a.title.localeCompare(b.title);
+    const titleCmp = a.title.localeCompare(b.title);
+    if (titleCmp !== 0) return titleCmp;
+    if (a.section === 'words' && b.section !== 'words') return -1;
+    if (b.section === 'words' && a.section !== 'words') return 1;
+    return 0;
   };
 
   matchedWords.sort(sortExactFirst);

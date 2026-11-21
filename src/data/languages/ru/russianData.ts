@@ -91,9 +91,9 @@ const alphabet: AlphabetItem[] = [
     letter: 'Й',
     pronunciation: 'y',
     example: 'as in boy',
-    russianWord: 'йогурт',
-    englishWord: 'yogurt',
-    icon: '🥛'
+    russianWord: 'большой',
+    englishWord: 'big',
+    icon: '🐘'
   },
   {
     letter: 'К',
@@ -130,10 +130,10 @@ const alphabet: AlphabetItem[] = [
   {
     letter: 'О',
     pronunciation: 'o',
-    example: 'as in more',
-    russianWord: 'окно',
-    englishWord: 'window',
-    icon: '🪟'
+    example: 'as in more (stressed)',
+    russianWord: 'облако',
+    englishWord: 'cloud',
+    icon: '☁️'
   },
   {
     letter: 'П',
@@ -218,7 +218,7 @@ const alphabet: AlphabetItem[] = [
   {
     letter: 'Щ',
     pronunciation: 'shch',
-    example: 'as in fresh cheese',
+    example: 'long soft sh (as in fresh cheese)',
     russianWord: 'щека',
     englishWord: 'cheek',
     icon: '😊'
@@ -233,8 +233,8 @@ const alphabet: AlphabetItem[] = [
   },
   {
     letter: 'Ы',
-    pronunciation: 'i',
-    example: 'no English equivalent',
+    pronunciation: 'y',
+    example: 'like i in "bit" with tongue pulled back',
     russianWord: 'мы',
     englishWord: 'we',
     icon: '👥'
@@ -292,21 +292,21 @@ const basicPhrases: PhraseItem[] = [
   {
     russian: 'До свидания',
     english: 'Goodbye',
-    pronunciation: 'dah svee-dah-nee-ye',
+    pronunciation: 'dah svee-DAH-nee-ya',
     category: 'Farewells',
     icon: '🚪'
   },
   {
     russian: 'Спасибо',
     english: 'Thank you',
-    pronunciation: 'spah-see-bah',
+    pronunciation: 'spah-SEE-bah',
     category: 'Politeness',
     icon: '🙏'
   },
   {
     russian: 'Пожалуйста',
     english: 'Please / You\'re welcome',
-    pronunciation: 'pah-zhal-stah',
+    pronunciation: 'pah-ZHAL-sta',
     category: 'Politeness',
     icon: '✨'
   },
@@ -327,182 +327,182 @@ const basicPhrases: PhraseItem[] = [
   {
     russian: 'Извините',
     english: 'Excuse me / Sorry',
-    pronunciation: 'eez-vee-nee-tye',
+    pronunciation: 'eez-vee-NEE-tye',
     category: 'Politeness',
     icon: '🙇'
   },
   {
-    russian: 'Как дела',
-    english: 'How are you',
-    pronunciation: 'kahk dee-lah',
+    russian: 'Как дела?',
+    english: 'How are you?',
+    pronunciation: 'kahk dee-LAH',
     category: 'Conversation',
     icon: '😊'
   },
   {
     russian: 'Хорошо',
     english: 'Good / Well',
-    pronunciation: 'khah-rah-shoh',
+    pronunciation: 'khah-rah-SHOH',
     category: 'Responses',
     icon: '👍'
   },
   {
     russian: 'Плохо',
     english: 'Bad / Poorly',
-    pronunciation: 'ploh-khah',
+    pronunciation: 'PLOH-khah',
     category: 'Responses',
     icon: '👎'
   },
   {
     russian: 'Я не понимаю',
     english: 'I don\'t understand',
-    pronunciation: 'ya nee pah-nee-mah-yu',
+    pronunciation: 'ya nee pah-nee-MAH-yu',
     category: 'Conversation',
     icon: '🤔'
   },
   {
     russian: 'Говорите медленнее',
     english: 'Speak more slowly',
-    pronunciation: 'gah-vah-ree-tye myed-lyen-nye-ye',
+    pronunciation: 'gah-vah-REE-tye MYED-lyen-nye-ye',
     category: 'Conversation',
     icon: '🐢'
   },
   {
-    russian: 'Повторите пожалуйста',
+    russian: 'Повторите, пожалуйста',
     english: 'Please repeat',
-    pronunciation: 'pahf-tah-ree-tye pah-zhal-stah',
+    pronunciation: 'pahf-tah-REE-tye, pah-ZHAL-sta',
     category: 'Conversation',
     icon: '🔄'
   },
   {
-    russian: 'Меня зовут',
-    english: 'My name is',
-    pronunciation: 'mee-nya zah-voot',
+    russian: 'Меня зовут...',
+    english: 'My name is...',
+    pronunciation: 'mee-NYA zah-VOOT',
     category: 'Introductions',
     icon: '🏷️'
   },
   {
-    russian: 'Сколько стоит',
-    english: 'How much does it cost',
-    pronunciation: 'skohl-kah stoh-eet',
+    russian: 'Сколько стоит?',
+    english: 'How much does it cost?',
+    pronunciation: 'SKOHL-kah STOH-eet',
     category: 'Shopping',
     icon: '💰'
   },
   {
-    russian: 'Где туалет',
-    english: 'Where is the bathroom',
-    pronunciation: 'gdye too-ah-lyet',
+    russian: 'Где туалет?',
+    english: 'Where is the bathroom?',
+    pronunciation: 'gdye too-ah-LYET',
     category: 'Travel',
     icon: '🚻'
   },
   {
-    russian: 'Помогите',
-    english: 'Help me',
-    pronunciation: 'pah-mah-gee-tye',
+    russian: 'Помогите!',
+    english: 'Help me!',
+    pronunciation: 'pah-mah-GEE-tye',
     category: 'Emergency',
     icon: '🆘'
   },
   {
     russian: 'Я хочу есть',
     english: 'I want to eat',
-    pronunciation: 'ya khah-choo yest',
+    pronunciation: 'ya khah-CHOO yest\'',
     category: 'Dining',
     icon: '🍽️'
   },
   {
     russian: 'Я хочу пить',
     english: 'I want to drink',
-    pronunciation: 'ya khah-choo peet',
+    pronunciation: 'ya khah-CHOO peet\'',
     category: 'Dining',
     icon: '💧'
   },
   {
     russian: 'Доброе утро',
     english: 'Good morning',
-    pronunciation: 'doh-bra-ye oo-tra',
+    pronunciation: 'DOH-bra-ye OO-tra',
     category: 'Greetings',
     icon: '🌅'
   },
   {
     russian: 'Добрый день',
     english: 'Good afternoon',
-    pronunciation: 'doh-briy dyen\'',
+    pronunciation: 'DOH-briy dyen\'',
     category: 'Greetings',
     icon: '☀️'
   },
   {
     russian: 'Добрый вечер',
     english: 'Good evening',
-    pronunciation: 'doh-briy vye-cheer',
+    pronunciation: 'DOH-briy VYE-cheer',
     category: 'Greetings',
     icon: '🌆'
   },
   {
     russian: 'Спокойной ночи',
     english: 'Good night',
-    pronunciation: 'spah-koy-nay noh-chee',
-    category: 'Greetings',
+    pronunciation: 'spah-KOY-nay NOH-chee',
+    category: 'Farewells',
     icon: '🌙'
   },
   {
     russian: 'Пока',
     english: 'Bye (informal)',
-    pronunciation: 'pah-kah',
+    pronunciation: 'pah-KAH',
     category: 'Farewells',
     icon: '👋'
   },
   {
     russian: 'Очень приятно',
     english: 'Nice to meet you',
-    pronunciation: 'oh-cheen\' pree-yat-na',
+    pronunciation: 'OH-cheen\' pree-YAT-na',
     category: 'Introductions',
     icon: '🤝'
   },
   {
     russian: 'Не за что',
     english: 'You\'re welcome / Not at all',
-    pronunciation: 'nye za shta',
+    pronunciation: 'NYE za shto',
     category: 'Politeness',
     icon: '🤗'
   },
   {
     russian: 'Вы говорите по-английски?',
     english: 'Do you speak English?',
-    pronunciation: 'vy gah-vah-ree-tye pah ahn-gleey-skee',
+    pronunciation: 'vy gah-vah-REE-tye pah ahn-GLEEY-skee',
     category: 'Conversation',
     icon: '🗣️'
   },
   {
     russian: 'Я немного говорю по-русски',
     english: 'I speak a little Russian',
-    pronunciation: 'ya nye-mnoh-gah gah-vah-ryoo pah roos-kee',
+    pronunciation: 'ya nee-MNOH-gah gah-vah-RYOO pah ROOS-kee',
     category: 'Conversation',
     icon: '💬'
   },
   {
     russian: 'Как это по-русски?',
     english: 'How do you say this in Russian?',
-    pronunciation: 'kak eh-ta pah roos-kee',
+    pronunciation: 'kahk EH-ta pah ROOS-kee',
     category: 'Conversation',
     icon: '❓'
   },
   {
     russian: 'Вы меня слышите?',
     english: 'Can you hear me?',
-    pronunciation: 'vy mee-nya sli-shi-tye',
+    pronunciation: 'vy mee-NYA SLI-shi-tye',
     category: 'Tech',
     icon: '🎧'
   },
   {
     russian: 'Видно мой экран?',
     english: 'Can you see my screen?',
-    pronunciation: 'veed-na moy eh-krahn',
+    pronunciation: 'VEED-na moy eh-KRAHN',
     category: 'Tech',
     icon: '🖥️'
   },
   {
     russian: 'Какой пароль от вайфая?',
     english: 'What is the Wi-Fi password?',
-    pronunciation: 'kah-koy pah-rohl aht vay-fa-ya',
+    pronunciation: 'kah-KOY pah-ROHL aht vay-FA-ya',
     category: 'Tech',
     icon: '📶'
   },
@@ -510,21 +510,21 @@ const basicPhrases: PhraseItem[] = [
   {
     russian: 'Давайте назначим встречу',
     english: 'Let\'s schedule a meeting',
-    pronunciation: 'dah-vay-tye nahz-nah-cheem fstrye-choo',
+    pronunciation: 'dah-VAY-tye nahz-NAH-cheem FSTRYE-choo',
     category: 'Business',
     icon: '📅'
   },
   {
     russian: 'Я отправлю вам письмо',
     english: 'I will send you an email',
-    pronunciation: 'ya aht-prahv-lyoo vahm pees-moh',
+    pronunciation: 'ya aht-PRAHV-lyoo vahm pees-MOH',
     category: 'Business',
     icon: '📧'
   },
   {
     russian: 'Какой крайний срок?',
     english: 'When is the deadline?',
-    pronunciation: 'kah-koy kray-neey srohk',
+    pronunciation: 'kah-KOY KRAY-neey srohk',
     category: 'Business',
     icon: '⏳'
   },
@@ -532,21 +532,21 @@ const basicPhrases: PhraseItem[] = [
   {
     russian: 'Мне нужен врач',
     english: 'I need a doctor',
-    pronunciation: 'mnye noo-zhen vrahch',
+    pronunciation: 'mnye NOO-zhen vrahch',
     category: 'Health',
     icon: '🩺'
   },
   {
     russian: 'Где ближайшая аптека?',
     english: 'Where is the nearest pharmacy?',
-    pronunciation: 'gdye blee-zhay-sha-ya ap-tye-ka',
+    pronunciation: 'gdye blee-ZHAY-sha-ya ap-TYE-ka',
     category: 'Health',
     icon: '💊'
   },
   {
     russian: 'У меня аллергия на орехи',
     english: 'I am allergic to nuts',
-    pronunciation: 'oo mee-nya ah-leer-gee-ya na ah-rye-khee',
+    pronunciation: 'oo mee-NYA ah-leer-GEE-ya na ah-RYE-khee',
     category: 'Health',
     icon: '⚠️'
   },
@@ -554,21 +554,21 @@ const basicPhrases: PhraseItem[] = [
   {
     russian: 'У меня есть бронь',
     english: 'I have a reservation',
-    pronunciation: 'oo mee-nya yest brohn',
+    pronunciation: 'oo mee-NYA yest\' brohn\'',
     category: 'Travel',
     icon: '🛎️'
   },
   {
     russian: 'Где находится вокзал?',
     english: 'Where is the train station?',
-    pronunciation: 'gdye nah-khoh-deet-sya vahk-zahl',
+    pronunciation: 'gdye nah-KHOH-deet-sya vahk-ZAHL',
     category: 'Travel',
     icon: '🚉'
   },
   {
     russian: 'Мне нужно такси',
     english: 'I need a taxi',
-    pronunciation: 'mnye noozh-na tahk-see',
+    pronunciation: 'mnye NOOZH-na tahk-SEE',
     category: 'Travel',
     icon: '🚕'
   },
@@ -576,28 +576,28 @@ const basicPhrases: PhraseItem[] = [
   {
     russian: 'Столик на двоих, пожалуйста',
     english: 'A table for two, please',
-    pronunciation: 'stoh-leek na dvah-eekh pah-zhal-stah',
+    pronunciation: 'STOH-leek na dvah-EEKH, pah-ZHAL-sta',
     category: 'Dining',
     icon: '🍽️'
   },
   {
     russian: 'Меню, пожалуйста',
     english: 'The menu, please',
-    pronunciation: 'mee-nyoo pah-zhal-stah',
+    pronunciation: 'mee-NYOO, pah-ZHAL-sta',
     category: 'Dining',
     icon: '📖'
   },
   {
     russian: 'Вы принимаете банковские карты?',
     english: 'Do you accept credit cards?',
-    pronunciation: 'vy pree-nee-mah-ye-tye bahn-kahf-skee-ye kar-ti',
+    pronunciation: 'vy pree-nee-MAH-ye-tye BAHN-kahf-skee-ye KAR-ti',
     category: 'Shopping',
     icon: '💳'
   },
   {
     russian: 'Это слишком дорого',
     english: 'It is too expensive',
-    pronunciation: 'eh-ta sleesh-kam doh-ra-ga',
+    pronunciation: 'EH-ta SLEESH-kam DOH-ra-ga',
     category: 'Shopping',
     icon: '💸'
   }
@@ -608,13 +608,13 @@ const numbers: PhraseItem[] = [
   {
     russian: 'ноль',
     english: 'Zero',
-    pronunciation: 'nohl',
+    pronunciation: 'nohl\'',
     category: 'Numbers 0-10'
   },
   {
     russian: 'один',
     english: 'One',
-    pronunciation: 'ah-deen',
+    pronunciation: 'ah-DEEN',
     category: 'Numbers 0-10'
   },
   {
@@ -632,145 +632,145 @@ const numbers: PhraseItem[] = [
   {
     russian: 'четыре',
     english: 'Four',
-    pronunciation: 'chee-tih-rye',
+    pronunciation: 'chee-TY-rye',
     category: 'Numbers 0-10'
   },
   {
     russian: 'пять',
     english: 'Five',
-    pronunciation: 'pyat',
+    pronunciation: 'pyat\'',
     category: 'Numbers 0-10'
   },
   {
     russian: 'шесть',
     english: 'Six',
-    pronunciation: 'shest',
+    pronunciation: 'shest\'',
     category: 'Numbers 0-10'
   },
   {
     russian: 'семь',
     english: 'Seven',
-    pronunciation: 'syem',
+    pronunciation: 'syem\'',
     category: 'Numbers 0-10'
   },
   {
     russian: 'восемь',
     english: 'Eight',
-    pronunciation: 'voh-seem',
+    pronunciation: 'VOH-seem\'',
     category: 'Numbers 0-10'
   },
   {
     russian: 'девять',
     english: 'Nine',
-    pronunciation: 'dyeh-vyet',
+    pronunciation: 'DYEH-veet\'',
     category: 'Numbers 0-10'
   },
   {
     russian: 'десять',
     english: 'Ten',
-    pronunciation: 'dyeh-syet',
+    pronunciation: 'DYEH-seet\'',
     category: 'Numbers 0-10'
   },
   {
     russian: 'одиннадцать',
     english: 'Eleven',
-    pronunciation: 'ah-deen-nad-tsat',
+    pronunciation: 'ah-DEE-nat-sat\'',
     category: 'Numbers 11-20'
   },
   {
     russian: 'двенадцать',
     english: 'Twelve',
-    pronunciation: 'dvye-nad-tsat',
+    pronunciation: 'dvye-NAT-sat\'',
     category: 'Numbers 11-20'
   },
   {
     russian: 'тринадцать',
     english: 'Thirteen',
-    pronunciation: 'tree-nad-tsat',
+    pronunciation: 'tree-NAT-sat\'',
     category: 'Numbers 11-20'
   },
   {
     russian: 'четырнадцать',
     english: 'Fourteen',
-    pronunciation: 'chee-tir-nad-tsat',
+    pronunciation: 'chee-TYR-nat-sat\'',
     category: 'Numbers 11-20'
   },
   {
     russian: 'пятнадцать',
     english: 'Fifteen',
-    pronunciation: 'peet-nad-tsat',
+    pronunciation: 'peet-NAT-sat\'',
     category: 'Numbers 11-20'
   },
   {
     russian: 'шестнадцать',
     english: 'Sixteen',
-    pronunciation: 'shest-nad-tsat',
+    pronunciation: 'shees-NAT-sat\'',
     category: 'Numbers 11-20'
   },
   {
     russian: 'семнадцать',
     english: 'Seventeen',
-    pronunciation: 'seem-nad-tsat',
+    pronunciation: 'seem-NAT-sat\'',
     category: 'Numbers 11-20'
   },
   {
     russian: 'восемнадцать',
     english: 'Eighteen',
-    pronunciation: 'vah-seem-nad-tsat',
+    pronunciation: 'vah-seem-NAT-sat\'',
     category: 'Numbers 11-20'
   },
   {
     russian: 'девятнадцать',
     english: 'Nineteen',
-    pronunciation: 'dee-veet-nad-tsat',
+    pronunciation: 'dee-veet-NAT-sat\'',
     category: 'Numbers 11-20'
   },
   {
     russian: 'двадцать',
     english: 'Twenty',
-    pronunciation: 'dvad-tsat',
+    pronunciation: 'DVAH-tsat\'',
     category: 'Tens'
   },
   {
     russian: 'тридцать',
     english: 'Thirty',
-    pronunciation: 'treed-tsat',
+    pronunciation: 'TREE-tsat\'',
     category: 'Tens'
   },
   {
     russian: 'сорок',
     english: 'Forty',
-    pronunciation: 'soh-rak',
+    pronunciation: 'SOH-rak',
     category: 'Tens'
   },
   {
     russian: 'пятьдесят',
     english: 'Fifty',
-    pronunciation: 'pee-dee-seat',
+    pronunciation: 'pyat-dye-SYAT',
     category: 'Tens'
   },
   {
     russian: 'шестьдесят',
     english: 'Sixty',
-    pronunciation: 'shest-dee-seat',
+    pronunciation: 'shyz-dye-SYAT',
     category: 'Tens'
   },
   {
     russian: 'семьдесят',
     english: 'Seventy',
-    pronunciation: 'sem-dee-seat',
+    pronunciation: 'syem-dye-SYAT',
     category: 'Tens'
   },
   {
     russian: 'восемьдесят',
     english: 'Eighty',
-    pronunciation: 'voh-seem-dee-seat',
+    pronunciation: 'voh-syem-dye-SYAT',
     category: 'Tens'
   },
   {
     russian: 'девяносто',
     english: 'Ninety',
-    pronunciation: 'dev-ya-noh-stah',
+    pronunciation: 'dee-vee-NOH-stah',
     category: 'Tens'
   },
   {
@@ -782,892 +782,134 @@ const numbers: PhraseItem[] = [
   {
     russian: 'тысяча',
     english: 'One thousand',
-    pronunciation: 'tih-see-cha',
+    pronunciation: 'TY-see-cha',
     category: 'Thousands'
   }
 ];
 
 // Common words for everyday use
 const commonWords: PhraseItem[] = [
-  {
-    russian: 'мужчина',
-    english: 'man',
-    pronunciation: 'moosh-chee-na',
-    category: 'People',
-    icon: '👨'
-  },
-  {
-    russian: 'женщина',
-    english: 'woman',
-    pronunciation: 'zhen-shee-na',
-    category: 'People',
-    icon: '👩'
-  },
-  {
-    russian: 'ребенок',
-    english: 'child',
-    pronunciation: 'ree-byo-nok',
-    category: 'People',
-    icon: '🧒'
-  },
-  {
-    russian: 'мальчик',
-    english: 'boy',
-    pronunciation: 'mahl-cheek',
-    category: 'People',
-    icon: '👦'
-  },
-  {
-    russian: 'девочка',
-    english: 'girl',
-    pronunciation: 'dyeh-vach-ka',
-    category: 'People',
-    icon: '👧'
-  },
-  {
-    russian: 'друг',
-    english: 'friend',
-    pronunciation: 'drook',
-    category: 'People',
-    icon: '🤝'
-  },
-  {
-    russian: 'еда',
-    english: 'food',
-    pronunciation: 'ye-da',
-    category: 'Food & Drink',
-    icon: '🍲'
-  },
-  {
-    russian: 'вода',
-    english: 'water',
-    pronunciation: 'va-da',
-    category: 'Food & Drink',
-    icon: '💧'
-  },
-  {
-    russian: 'хлеб',
-    english: 'bread',
-    pronunciation: 'khlyep',
-    category: 'Food & Drink',
-    icon: '🍞'
-  },
-  {
-    russian: 'молоко',
-    english: 'milk',
-    pronunciation: 'ma-la-ko',
-    category: 'Food & Drink',
-    icon: '🥛'
-  },
-  {
-    russian: 'мясо',
-    english: 'meat',
-    pronunciation: 'mya-sa',
-    category: 'Food & Drink',
-    icon: '🥩'
-  },
-  {
-    russian: 'рыба',
-    english: 'fish',
-    pronunciation: 'rih-ba',
-    category: 'Food & Drink',
-    icon: '🐟'
-  },
-  {
-    russian: 'овощи',
-    english: 'vegetables',
-    pronunciation: 'o-va-shi',
-    category: 'Food & Drink',
-    icon: '🥦'
-  },
-  {
-    russian: 'фрукты',
-    english: 'fruits',
-    pronunciation: 'frook-ti',
-    category: 'Food & Drink',
-    icon: '🍎'
-  },
-  {
-    russian: 'кофе',
-    english: 'coffee',
-    pronunciation: 'ko-fe',
-    category: 'Food & Drink',
-    icon: '☕'
-  },
-  {
-    russian: 'чай',
-    english: 'tea',
-    pronunciation: 'chai',
-    category: 'Food & Drink',
-    icon: '🍵'
-  },
-  {
-    russian: 'пиво',
-    english: 'beer',
-    pronunciation: 'pee-va',
-    category: 'Food & Drink',
-    icon: '🍺'
-  },
-  {
-    russian: 'вино',
-    english: 'wine',
-    pronunciation: 'vee-no',
-    category: 'Food & Drink',
-    icon: '🍷'
-  },
-  {
-    russian: 'магазин',
-    english: 'store',
-    pronunciation: 'ma-ga-zeen',
-    category: 'Places',
-    icon: '🛒'
-  },
-  {
-    russian: 'ресторан',
-    english: 'restaurant',
-    pronunciation: 're-sta-ran',
-    category: 'Places',
-    icon: '🍴'
-  },
-  {
-    russian: 'гостиница',
-    english: 'hotel',
-    pronunciation: 'ga-stee-nee-tsa',
-    category: 'Places',
-    icon: '🏨'
-  },
-  {
-    russian: 'станция',
-    english: 'station',
-    pronunciation: 'stan-tsee-ya',
-    category: 'Places',
-    icon: '🚉'
-  },
-  {
-    russian: 'аэропорт',
-    english: 'airport',
-    pronunciation: 'a-eh-ra-port',
-    category: 'Places',
-    icon: '✈️'
-  },
-  {
-    russian: 'улица',
-    english: 'street',
-    pronunciation: 'oo-lee-tsa',
-    category: 'Places',
-    icon: '🛣️'
-  },
-  {
-    russian: 'площадь',
-    english: 'square',
-    pronunciation: 'ploh-shad',
-    category: 'Places',
-    icon: '🏛️'
-  },
-  {
-    russian: 'парк',
-    english: 'park',
-    pronunciation: 'park',
-    category: 'Places',
-    icon: '🌳'
-  },
-  {
-    russian: 'больница',
-    english: 'hospital',
-    pronunciation: 'bal-nee-tsa',
-    category: 'Places',
-    icon: '🏥'
-  },
-  {
-    russian: 'аптека',
-    english: 'pharmacy',
-    pronunciation: 'ap-tye-ka',
-    category: 'Places',
-    icon: '💊'
-  },
-  {
-    russian: 'банк',
-    english: 'bank',
-    pronunciation: 'bank',
-    category: 'Places',
-    icon: '🏦'
-  },
-  {
-    russian: 'почта',
-    english: 'post office',
-    pronunciation: 'poch-ta',
-    category: 'Places',
-    icon: '📮'
-  },
-  {
-    russian: 'полиция',
-    english: 'police',
-    pronunciation: 'pa-lee-tsee-ya',
-    category: 'Places',
-    icon: '🚓'
-  },
-  {
-    russian: 'музей',
-    english: 'museum',
-    pronunciation: 'moo-zyey',
-    category: 'Places',
-    icon: '🖼️'
-  },
-  {
-    russian: 'театр',
-    english: 'theater',
-    pronunciation: 'tee-atr',
-    category: 'Places',
-    icon: '🎭'
-  },
-  {
-    russian: 'кино',
-    english: 'cinema',
-    pronunciation: 'kee-no',
-    category: 'Places',
-    icon: '🎬'
-  },
-  {
-    russian: 'билет',
-    english: 'ticket',
-    pronunciation: 'bee-lyet',
-    category: 'Essentials',
-    icon: '🎟️'
-  },
-  {
-    russian: 'деньги',
-    english: 'money',
-    pronunciation: 'dyen-gee',
-    category: 'Essentials',
-    icon: '💵'
-  },
-  {
-    russian: 'паспорт',
-    english: 'passport',
-    pronunciation: 'pass-port',
-    category: 'Essentials',
-    icon: '🛂'
-  },
-  {
-    russian: 'виза',
-    english: 'visa',
-    pronunciation: 'vee-za',
-    category: 'Essentials',
-    icon: '📄'
-  },
-  // Question Words
-  {
-    russian: 'кто',
-    english: 'who',
-    pronunciation: 'ktoh',
-    category: 'Questions',
-    icon: '❓'
-  },
-  {
-    russian: 'что',
-    english: 'what',
-    pronunciation: 'shtoh',
-    category: 'Questions',
-    icon: '❓'
-  },
-  {
-    russian: 'где',
-    english: 'where',
-    pronunciation: 'gdye',
-    category: 'Questions',
-    icon: '📍'
-  },
-  {
-    russian: 'когда',
-    english: 'when',
-    pronunciation: 'kahg-dah',
-    category: 'Questions',
-    icon: '🕒'
-  },
-  {
-    russian: 'почему',
-    english: 'why',
-    pronunciation: 'pah-chee-moo',
-    category: 'Questions',
-    icon: '🤔'
-  },
-  {
-    russian: 'как',
-    english: 'how',
-    pronunciation: 'kahk',
-    category: 'Questions',
-    icon: '💡'
-  },
-  {
-    russian: 'сколько',
-    english: 'how much / how many',
-    pronunciation: 'skol\'-kah',
-    category: 'Questions',
-    icon: '🔢'
-  },
-  // Family
-  {
-    russian: 'семья',
-    english: 'family',
-    pronunciation: 'seem-ya',
-    category: 'People',
-    icon: '👨‍👩‍👧'
-  },
-  {
-    russian: 'мама',
-    english: 'mother / mom',
-    pronunciation: 'mah-ma',
-    category: 'People',
-    icon: '👩'
-  },
-  {
-    russian: 'папа',
-    english: 'father / dad',
-    pronunciation: 'pah-pa',
-    category: 'People',
-    icon: '👨'
-  },
-  {
-    russian: 'сестра',
-    english: 'sister',
-    pronunciation: 'see-strah',
-    category: 'People',
-    icon: '👧'
-  },
-  {
-    russian: 'брат',
-    english: 'brother',
-    pronunciation: 'braht',
-    category: 'People',
-    icon: '👦'
-  },
-  {
-    russian: 'муж',
-    english: 'husband',
-    pronunciation: 'moozh',
-    category: 'People',
-    icon: '🤵'
-  },
-  {
-    russian: 'жена',
-    english: 'wife',
-    pronunciation: 'zhe-nah',
-    category: 'People',
-    icon: '👰'
-  },
-  // Transportation
-  {
-    russian: 'метро',
-    english: 'subway / metro',
-    pronunciation: 'mee-troh',
-    category: 'Transport',
-    icon: '🚇'
-  },
-  {
-    russian: 'поезд',
-    english: 'train',
-    pronunciation: 'poh-yezd',
-    category: 'Transport',
-    icon: '🚆'
-  },
-  {
-    russian: 'такси',
-    english: 'taxi',
-    pronunciation: 'tahk-see',
-    category: 'Transport',
-    icon: '🚕'
-  },
-  {
-    russian: 'автобус',
-    english: 'bus',
-    pronunciation: 'ahf-toh-boos',
-    category: 'Transport',
-    icon: '🚌'
-  },
-  {
-    russian: 'машина',
-    english: 'car',
-    pronunciation: 'mah-shee-na',
-    category: 'Transport',
-    icon: '🚗'
-  },
-  {
-    russian: 'самолёт',
-    english: 'airplane',
-    pronunciation: 'sah-mah-lyot',
-    category: 'Transport',
-    icon: '✈️'
-  },
-  // Colors & Descriptions
-  {
-    russian: 'красный',
-    english: 'red',
-    pronunciation: 'krah-sniy',
-    category: 'Colors',
-    icon: '🔴'
-  },
-  {
-    russian: 'синий',
-    english: 'blue',
-    pronunciation: 'see-neey',
-    category: 'Colors',
-    icon: '🔵'
-  },
-  {
-    russian: 'зелёный',
-    english: 'green',
-    pronunciation: 'zee-lyo-niy',
-    category: 'Colors',
-    icon: '🟢'
-  },
-  {
-    russian: 'жёлтый',
-    english: 'yellow',
-    pronunciation: 'zhol-tiy',
-    category: 'Colors',
-    icon: '🟡'
-  },
-  {
-    russian: 'чёрный',
-    english: 'black',
-    pronunciation: 'chor-niy',
-    category: 'Colors',
-    icon: '⚫'
-  },
-  {
-    russian: 'белый',
-    english: 'white',
-    pronunciation: 'bye-liy',
-    category: 'Colors',
-    icon: '⚪'
-  },
-  {
-    russian: 'большой',
-    english: 'big',
-    pronunciation: 'bal-shoy',
-    category: 'Descriptions',
-    icon: '🐘'
-  },
-  {
-    russian: 'маленький',
-    english: 'small',
-    pronunciation: 'mah-leen-keey',
-    category: 'Descriptions',
-    icon: '🐁'
-  },
-  {
-    russian: 'новый',
-    english: 'new',
-    pronunciation: 'noh-viy',
-    category: 'Descriptions',
-    icon: '✨'
-  },
-  {
-    russian: 'старый',
-    english: 'old',
-    pronunciation: 'stah-riy',
-    category: 'Descriptions',
-    icon: '🕰️'
-  },
-  // Weather & Seasons
-  {
-    russian: 'солнце',
-    english: 'sun',
-    pronunciation: 'sohn-tse',
-    category: 'Weather',
-    icon: '☀️'
-  },
-  {
-    russian: 'дождь',
-    english: 'rain',
-    pronunciation: 'dohsht',
-    category: 'Weather',
-    icon: '🌧️'
-  },
-  {
-    russian: 'снег',
-    english: 'snow',
-    pronunciation: 'snyek',
-    category: 'Weather',
-    icon: '❄️'
-  },
-  {
-    russian: 'ветер',
-    english: 'wind',
-    pronunciation: 'vye-teer',
-    category: 'Weather',
-    icon: '💨'
-  },
-  {
-    russian: 'облако',
-    english: 'cloud',
-    pronunciation: 'oh-bla-ka',
-    category: 'Weather',
-    icon: '☁️'
-  },
-  {
-    russian: 'гроза',
-    english: 'storm',
-    pronunciation: 'grah-zah',
-    category: 'Weather',
-    icon: '⛈️'
-  },
-  {
-    russian: 'жарко',
-    english: 'hot',
-    pronunciation: 'zhar-ka',
-    category: 'Weather',
-    icon: '🔥'
-  },
-  {
-    russian: 'холодно',
-    english: 'cold',
-    pronunciation: 'khoh-lad-na',
-    category: 'Weather',
-    icon: '🥶'
-  },
-  // Tech & Remote Work
-  {
-    russian: 'компьютер',
-    english: 'computer',
-    pronunciation: 'kam-pyoo-ter',
-    category: 'Tech',
-    icon: '💻'
-  },
-  {
-    russian: 'телефон',
-    english: 'phone',
-    pronunciation: 'tee-lee-fohn',
-    category: 'Tech',
-    icon: '📱'
-  },
-  {
-    russian: 'интернет',
-    english: 'internet',
-    pronunciation: 'een-ter-nyet',
-    category: 'Tech',
-    icon: '🌐'
-  },
-  {
-    russian: 'пароль',
-    english: 'password',
-    pronunciation: 'pah-rohl',
-    category: 'Tech',
-    icon: '🔐'
-  },
-  {
-    russian: 'электронная почта',
-    english: 'email',
-    pronunciation: 'eh-leek-troh-na-ya poch-ta',
-    category: 'Tech',
-    icon: '📧'
-  },
-  {
-    russian: 'экран',
-    english: 'screen',
-    pronunciation: 'eh-krahn',
-    category: 'Tech',
-    icon: '🖥️'
-  },
-  {
-    russian: 'встреча',
-    english: 'meeting',
-    pronunciation: 'fstrye-cha',
-    category: 'Tech',
-    icon: '📅'
-  },
-  {
-    russian: 'файл',
-    english: 'file',
-    pronunciation: 'fayl',
-    category: 'Tech',
-    icon: '📁'
-  },
-  {
-    russian: 'ссылка',
-    english: 'link',
-    pronunciation: 'ssil-ka',
-    category: 'Tech',
-    icon: '🔗'
-  },
-  {
-    russian: 'код',
-    english: 'code',
-    pronunciation: 'koht',
-    category: 'Tech',
-    icon: '🧑‍💻'
-  },
-  {
-    russian: 'ошибка',
-    english: 'error',
-    pronunciation: 'ah-shib-ka',
-    category: 'Tech',
-    icon: '🐛'
-  },
-  {
-    russian: 'батарея',
-    english: 'battery',
-    pronunciation: 'bah-tah-rye-ya',
-    category: 'Tech',
-    icon: '🔋'
-  },
-  // Business & Office
-  {
-    russian: 'проект',
-    english: 'project',
-    pronunciation: 'prah-yekt',
-    category: 'Business',
-    icon: '📊'
-  },
-  {
-    russian: 'клиент',
-    english: 'client',
-    pronunciation: 'klee-yent',
-    category: 'Business',
-    icon: '🤝'
-  },
-  {
-    russian: 'команда',
-    english: 'team',
-    pronunciation: 'kah-mahn-da',
-    category: 'Business',
-    icon: '👥'
-  },
-  {
-    russian: 'руководитель',
-    english: 'manager',
-    pronunciation: 'roo-kah-vah-dee-teel',
-    category: 'Business',
-    icon: '👔'
-  },
-  {
-    russian: 'компания',
-    english: 'company',
-    pronunciation: 'kam-pah-nee-ya',
-    category: 'Business',
-    icon: '🏢'
-  },
-  {
-    russian: 'контракт',
-    english: 'contract',
-    pronunciation: 'kan-trahkt',
-    category: 'Business',
-    icon: '📝'
-  },
-  {
-    russian: 'расписание',
-    english: 'schedule',
-    pronunciation: 'rahs-pee-sah-nee-ye',
-    category: 'Business',
-    icon: '🗓️'
-  },
-  {
-    russian: 'срок',
-    english: 'deadline',
-    pronunciation: 'srohk',
-    category: 'Business',
-    icon: '⏳'
-  },
-  {
-    russian: 'счёт',
-    english: 'invoice',
-    pronunciation: 'schyot',
-    category: 'Business',
-    icon: '🧾'
-  },
-  {
-    russian: 'зарплата',
-    english: 'salary',
-    pronunciation: 'zahr-plah-ta',
-    category: 'Business',
-    icon: '💵'
-  },
-  // Healthcare & Pharmacy
-  {
-    russian: 'врач',
-    english: 'doctor',
-    pronunciation: 'vrahch',
-    category: 'Health',
-    icon: '🩺'
-  },
-  {
-    russian: 'лекарство',
-    english: 'medicine',
-    pronunciation: 'lee-kar-stva',
-    category: 'Health',
-    icon: '💊'
-  },
-  {
-    russian: 'боль',
-    english: 'pain',
-    pronunciation: 'bohl',
-    category: 'Health',
-    icon: '🤕'
-  },
-  {
-    russian: 'температура',
-    english: 'fever',
-    pronunciation: 'teem-pee-rah-too-ra',
-    category: 'Health',
-    icon: '🤒'
-  },
-  {
-    russian: 'аллергия',
-    english: 'allergy',
-    pronunciation: 'ah-leer-gee-ya',
-    category: 'Health',
-    icon: '⚠️'
-  },
-  {
-    russian: 'головная боль',
-    english: 'headache',
-    pronunciation: 'gah-lahv-na-ya bohl',
-    category: 'Health',
-    icon: '🧠'
-  },
-  {
-    russian: 'скорая помощь',
-    english: 'emergency',
-    pronunciation: 'skoh-ra-ya poh-masch',
-    category: 'Health',
-    icon: '🚑'
-  },
-  {
-    russian: 'рецепт',
-    english: 'prescription',
-    pronunciation: 'ree-tsept',
-    category: 'Health',
-    icon: '📋'
-  },
-  {
-    russian: 'бинт',
-    english: 'bandage',
-    pronunciation: 'beent',
-    category: 'Health',
-    icon: '🩹'
-  },
-  {
-    russian: 'здоровье',
-    english: 'health',
-    pronunciation: 'zdah-rohv-ye',
-    category: 'Health',
-    icon: '❤️'
-  },
-  // Hotel, Airport & Travel
-  {
-    russian: 'рейс',
-    english: 'flight',
-    pronunciation: 'reys',
-    category: 'Travel',
-    icon: '🛫'
-  },
-  {
-    russian: 'багаж',
-    english: 'luggage',
-    pronunciation: 'bah-gahsh',
-    category: 'Travel',
-    icon: '🧳'
-  },
-  {
-    russian: 'бронь',
-    english: 'reservation',
-    pronunciation: 'brohn',
-    category: 'Travel',
-    icon: '🛎️'
-  },
-  {
-    russian: 'ключ',
-    english: 'key',
-    pronunciation: 'klyooch',
-    category: 'Travel',
-    icon: '🔑'
-  },
-  {
-    russian: 'номер',
-    english: 'room',
-    pronunciation: 'noh-meer',
-    category: 'Travel',
-    icon: '🛏️'
-  },
-  {
-    russian: 'выход на посадку',
-    english: 'gate',
-    pronunciation: 'vi-khat na pah-sahd-koo',
-    category: 'Travel',
-    icon: '🚪'
-  },
-  {
-    russian: 'карта',
-    english: 'map',
-    pronunciation: 'kar-ta',
-    category: 'Travel',
-    icon: '🗺️'
-  },
-  {
-    russian: 'вход',
-    english: 'entrance',
-    pronunciation: 'fkhoht',
-    category: 'Travel',
-    icon: '➡️'
-  },
-  {
-    russian: 'выход',
-    english: 'exit',
-    pronunciation: 'vi-khat',
-    category: 'Travel',
-    icon: '⬅️'
-  },
-  {
-    russian: 'таможня',
-    english: 'customs',
-    pronunciation: 'tah-mohzh-nya',
-    category: 'Travel',
-    icon: '🛂'
-  },
-  // Shopping & Money
-  {
-    russian: 'банковская карта',
-    english: 'credit card',
-    pronunciation: 'bahn-kahf-ska-ya kar-ta',
-    category: 'Shopping',
-    icon: '💳'
-  },
-  {
-    russian: 'наличные',
-    english: 'cash',
-    pronunciation: 'nah-leech-ni-ye',
-    category: 'Shopping',
-    icon: '💵'
-  },
-  {
-    russian: 'цена',
-    english: 'price',
-    pronunciation: 'tsee-nah',
-    category: 'Shopping',
-    icon: '🏷️'
-  },
-  {
-    russian: 'дешёвый',
-    english: 'cheap',
-    pronunciation: 'dee-sho-viy',
-    category: 'Shopping',
-    icon: '👇'
-  },
-  {
-    russian: 'дорогой',
-    english: 'expensive',
-    pronunciation: 'dah-rah-goy',
-    category: 'Shopping',
-    icon: '💎'
-  },
-  {
-    russian: 'скидка',
-    english: 'discount',
-    pronunciation: 'skeed-ka',
-    category: 'Shopping',
-    icon: '🏷️'
-  },
-  // Batch 1: Modern Tech, Workplace & Commerce (Levels 1, 2, 3)
+  { russian: 'мужчина', english: 'man', pronunciation: 'moosh-chee-na', category: 'People', icon: '👨' },
+  { russian: 'женщина', english: 'woman', pronunciation: 'zhen-shee-na', category: 'People', icon: '👩' },
+  { russian: 'ребёнок', english: 'child', pronunciation: 'ree-byo-nok', category: 'People', level: 1, icon: '🧒' },
+  { russian: 'мальчик', english: 'boy', pronunciation: 'mahl-cheek', category: 'People', icon: '👦' },
+  { russian: 'девочка', english: 'girl', pronunciation: 'dyeh-vach-ka', category: 'People', icon: '👧' },
+  { russian: 'друг', english: 'friend', pronunciation: 'drook', category: 'People', icon: '🤝' },
+  { russian: 'еда', english: 'food', pronunciation: 'ye-da', category: 'Food & Drink', icon: '🍲' },
+  { russian: 'вода', english: 'water', pronunciation: 'va-da', category: 'Food & Drink', icon: '💧' },
+  { russian: 'хлеб', english: 'bread', pronunciation: 'khlyep', category: 'Food & Drink', icon: '🍞' },
+  { russian: 'молоко', english: 'milk', pronunciation: 'ma-la-ko', category: 'Food & Drink', icon: '🥛' },
+  { russian: 'мясо', english: 'meat', pronunciation: 'mya-sa', category: 'Food & Drink', icon: '🥩' },
+  { russian: 'рыба', english: 'fish', pronunciation: 'rih-ba', category: 'Food & Drink', icon: '🐟' },
+  { russian: 'овощи', english: 'vegetables', pronunciation: 'o-va-shi', category: 'Food & Drink', icon: '🥦' },
+  { russian: 'фрукты', english: 'fruits', pronunciation: 'frook-ti', category: 'Food & Drink', icon: '🍎' },
+  { russian: 'кофе', english: 'coffee', pronunciation: 'ko-fe', category: 'Food & Drink', icon: '☕' },
+  { russian: 'чай', english: 'tea', pronunciation: 'chai', category: 'Food & Drink', icon: '🍵' },
+  { russian: 'пиво', english: 'beer', pronunciation: 'pee-va', category: 'Food & Drink', icon: '🍺' },
+  { russian: 'вино', english: 'wine', pronunciation: 'vee-no', category: 'Food & Drink', icon: '🍷' },
+  { russian: 'магазин', english: 'store', pronunciation: 'ma-ga-zeen', category: 'Places', icon: '🛒' },
+  { russian: 'ресторан', english: 'restaurant', pronunciation: 're-sta-ran', category: 'Places', icon: '🍴' },
+  { russian: 'гостиница', english: 'hotel', pronunciation: 'ga-stee-nee-tsa', category: 'Places', icon: '🏨' },
+  { russian: 'станция', english: 'station', pronunciation: 'stan-tsee-ya', category: 'Places', icon: '🚉' },
+  { russian: 'аэропорт', english: 'airport', pronunciation: 'a-eh-ra-port', category: 'Travel', icon: '✈️' },
+  { russian: 'улица', english: 'street', pronunciation: 'oo-lee-tsa', category: 'Places', icon: '🛣️' },
+  { russian: 'площадь', english: 'square', pronunciation: 'ploh-shad', category: 'Places', icon: '🏛️' },
+  { russian: 'парк', english: 'park', pronunciation: 'park', category: 'Places', icon: '🌳' },
+  { russian: 'больница', english: 'hospital', pronunciation: 'bal-nee-tsa', category: 'Health', icon: '🏥' },
+  { russian: 'аптека', english: 'pharmacy', pronunciation: 'ap-tye-ka', category: 'Health', icon: '💊' },
+  { russian: 'банк', english: 'bank', pronunciation: 'bank', category: 'Finance', icon: '🏦' },
+  { russian: 'почта', english: 'post office', pronunciation: 'poch-ta', category: 'Places', icon: '📮' },
+  { russian: 'полиция', english: 'police', pronunciation: 'pa-lee-tsee-ya', category: 'Emergency', icon: '🚓' },
+  { russian: 'музей', english: 'museum', pronunciation: 'moo-zyey', category: 'Places', icon: '🖼️' },
+  { russian: 'театр', english: 'theater', pronunciation: 'tee-atr', category: 'Places', icon: '🎭' },
+  { russian: 'кино', english: 'cinema', pronunciation: 'kee-no', category: 'Places', icon: '🎬' },
+  { russian: 'билет', english: 'ticket', pronunciation: 'bee-lyet', category: 'Travel', icon: '🎟️' },
+  { russian: 'деньги', english: 'money', pronunciation: 'dyen-gee', category: 'Finance', icon: '💵' },
+  { russian: 'паспорт', english: 'passport', pronunciation: 'pass-port', category: 'Travel', icon: '🛂' },
+  { russian: 'виза', english: 'visa', pronunciation: 'vee-za', category: 'Travel', icon: '📄' },
+  { russian: 'кто', english: 'who', pronunciation: 'ktoh', category: 'Questions', icon: '❓' },
+  { russian: 'что', english: 'what', pronunciation: 'shtoh', category: 'Questions', icon: '❓' },
+  { russian: 'где', english: 'where', pronunciation: 'gdye', category: 'Questions', icon: '📍' },
+  { russian: 'когда', english: 'when', pronunciation: 'kahg-dah', category: 'Questions', icon: '🕒' },
+  { russian: 'почему', english: 'why', pronunciation: 'pah-chee-moo', category: 'Questions', icon: '🤔' },
+  { russian: 'как', english: 'how', pronunciation: 'kahk', category: 'Questions', icon: '💡' },
+  { russian: 'семья', english: 'family', pronunciation: 'seem-ya', category: 'Family', icon: '👨‍👩‍👧' },
+  { russian: 'сестра', english: 'sister', pronunciation: 'see-strah', category: 'Family', icon: '👧' },
+  { russian: 'брат', english: 'brother', pronunciation: 'braht', category: 'Family', icon: '👦' },
+  { russian: 'муж', english: 'husband', pronunciation: 'moozh', category: 'Family', icon: '🤵' },
+  { russian: 'жена', english: 'wife', pronunciation: 'zhe-nah', category: 'Family', icon: '👰' },
+  { russian: 'метро', english: 'subway / metro', pronunciation: 'mee-troh', category: 'Travel', icon: '🚇' },
+  { russian: 'поезд', english: 'train', pronunciation: 'poh-yezd', category: 'Travel', icon: '🚆' },
+  { russian: 'такси', english: 'taxi', pronunciation: 'tahk-see', category: 'Travel', icon: '🚕' },
+  { russian: 'автобус', english: 'bus', pronunciation: 'ahf-toh-boos', category: 'Travel', icon: '🚌' },
+  { russian: 'машина', english: 'car', pronunciation: 'mah-shee-na', category: 'Travel', icon: '🚗' },
+  { russian: 'самолёт', english: 'airplane', pronunciation: 'sah-mah-lyot', category: 'Travel', icon: '✈️' },
+  { russian: 'красный', english: 'red', pronunciation: 'krah-sniy', category: 'Colors', icon: '🔴' },
+  { russian: 'синий', english: 'blue', pronunciation: 'see-neey', category: 'Colors', icon: '🔵' },
+  { russian: 'зелёный', english: 'green', pronunciation: 'zee-lyo-niy', category: 'Colors', icon: '🟢' },
+  { russian: 'жёлтый', english: 'yellow', pronunciation: 'zhol-tiy', category: 'Colors', icon: '🟡' },
+  { russian: 'чёрный', english: 'black', pronunciation: 'chor-niy', category: 'Colors', icon: '⚫' },
+  { russian: 'белый', english: 'white', pronunciation: 'bye-liy', category: 'Colors', icon: '⚪' },
+  { russian: 'большой', english: 'big', pronunciation: 'bal-shoy', category: 'Descriptions', icon: '🐘' },
+  { russian: 'маленький', english: 'small', pronunciation: 'mah-leen-keey', category: 'Descriptions', icon: '🐁' },
+  { russian: 'новый', english: 'new', pronunciation: 'noh-viy', category: 'Descriptions', icon: '🆕' },
+  { russian: 'старый', english: 'old', pronunciation: 'stah-riy', category: 'Descriptions', icon: '🕰️' },
+  { russian: 'солнце', english: 'sun', pronunciation: 'sohn-tse', category: 'Nature', icon: '☀️' },
+  { russian: 'дождь', english: 'rain', pronunciation: 'dohsht', category: 'Weather', icon: '🌧️' },
+  { russian: 'снег', english: 'snow', pronunciation: 'snyek', category: 'Weather', icon: '❄️' },
+  { russian: 'ветер', english: 'wind', pronunciation: 'vye-teer', category: 'Weather', icon: '💨' },
+  { russian: 'облако', english: 'cloud', pronunciation: 'oh-bla-ka', category: 'Weather', icon: '☁️' },
+  { russian: 'гроза', english: 'storm', pronunciation: 'grah-zah', category: 'Weather', icon: '⛈️' },
+  { russian: 'жарко', english: 'hot', pronunciation: 'zhar-ka', category: 'Descriptions', icon: '🔥' },
+  { russian: 'холодно', english: 'cold', pronunciation: 'khoh-lad-na', category: 'Descriptions', icon: '🥶' },
+  { russian: 'компьютер', english: 'computer', pronunciation: 'kam-pyoo-ter', category: 'Tech', icon: '💻' },
+  { russian: 'телефон', english: 'phone', pronunciation: 'tee-lee-fohn', category: 'Tech', icon: '📱' },
+  { russian: 'интернет', english: 'internet', pronunciation: 'een-ter-nyet', category: 'Tech', icon: '🌐' },
+  { russian: 'пароль', english: 'password', pronunciation: 'pah-rohl', category: 'Tech', icon: '🔐' },
+  { russian: 'электронная почта', english: 'email', pronunciation: 'eh-leek-troh-na-ya poch-ta', category: 'Tech', icon: '📧' },
+  { russian: 'экран', english: 'screen', pronunciation: 'eh-krahn', category: 'Tech', icon: '🖥️' },
+  { russian: 'встреча', english: 'meeting', pronunciation: 'fstrye-cha', category: 'Business', icon: '📅' },
+  { russian: 'файл', english: 'file', pronunciation: 'fayl', category: 'Tech', icon: '📁' },
+  { russian: 'ссылка', english: 'link', pronunciation: 'ssil-ka', category: 'Tech', icon: '🔗' },
+  { russian: 'код', english: 'code', pronunciation: 'koht', category: 'Tech', icon: '🧑‍💻' },
+  { russian: 'ошибка', english: 'error', pronunciation: 'ah-shib-ka', category: 'Tech', icon: '🐛' },
+  { russian: 'батарея', english: 'battery', pronunciation: 'bah-tah-rye-ya', category: 'Tech', icon: '🔋' },
+  { russian: 'проект', english: 'project', pronunciation: 'prah-yekt', category: 'Business', icon: '📊' },
+  { russian: 'клиент', english: 'client', pronunciation: 'klee-yent', category: 'Business', icon: '🤝' },
+  { russian: 'команда', english: 'team', pronunciation: 'kah-mahn-da', category: 'Business', icon: '👥' },
+  { russian: 'руководитель', english: 'manager', pronunciation: 'roo-kah-vah-dee-teel', category: 'Business', icon: '👔' },
+  { russian: 'компания', english: 'company', pronunciation: 'kam-pah-nee-ya', category: 'Business', icon: '🏢' },
+  { russian: 'контракт', english: 'contract', pronunciation: 'kan-trahkt', category: 'Business', icon: '📝' },
+  { russian: 'расписание', english: 'schedule', pronunciation: 'rahs-pee-sah-nee-ye', category: 'Business', icon: '🗓️' },
+  { russian: 'срок', english: 'deadline', pronunciation: 'srohk', category: 'Business', icon: '⏳' },
+  { russian: 'счёт', english: 'invoice', pronunciation: 'schyot', category: 'Business', icon: '🧾' },
+  { russian: 'зарплата', english: 'salary', pronunciation: 'zahr-plah-ta', category: 'Business', icon: '💵' },
+  { russian: 'врач', english: 'doctor', pronunciation: 'vrahch', category: 'Health', icon: '🩺' },
+  { russian: 'лекарство', english: 'medicine', pronunciation: 'lee-kar-stva', category: 'Health', icon: '💊' },
+  { russian: 'боль', english: 'pain', pronunciation: 'bohl', category: 'Health', icon: '🤕' },
+  { russian: 'температура', english: 'fever', pronunciation: 'teem-pee-rah-too-ra', category: 'Health', icon: '🤒' },
+  { russian: 'аллергия', english: 'allergy', pronunciation: 'ah-leer-gee-ya', category: 'Health', icon: '⚠️' },
+  { russian: 'головная боль', english: 'headache', pronunciation: 'gah-lahv-na-ya bohl', category: 'Health', icon: '🧠' },
+  { russian: 'скорая помощь', english: 'Ambulance / Emergency', pronunciation: 'skoh-ra-ya poh-masch', category: 'Health', icon: '🚑' },
+  { russian: 'рецепт', english: 'prescription', pronunciation: 'ree-tsept', category: 'Health', icon: '📋' },
+  { russian: 'бинт', english: 'bandage', pronunciation: 'beent', category: 'Health', icon: '🩹' },
+  { russian: 'здоровье', english: 'health', pronunciation: 'zdah-rohv-ye', category: 'Health', icon: '❤️' },
+  { russian: 'рейс', english: 'flight', pronunciation: 'reys', category: 'Travel', icon: '🛫' },
+  { russian: 'багаж', english: 'luggage', pronunciation: 'bah-gahsh', category: 'Travel', icon: '🧳' },
+  { russian: 'бронь', english: 'reservation', pronunciation: 'brohn', category: 'Travel', icon: '🛎️' },
+  { russian: 'ключ', english: 'key', pronunciation: 'klyooch', category: 'Home', icon: '🔑' },
+  { russian: 'номер', english: 'Room (hotel)', pronunciation: 'noh-meer', category: 'Travel', icon: '🛏️' },
+  { russian: 'выход на посадку', english: 'gate', pronunciation: 'vi-khat na pah-sahd-koo', category: 'Travel', icon: '🚪' },
+  { russian: 'карта', english: 'map', pronunciation: 'kar-ta', category: 'Travel', icon: '🗺️' },
+  { russian: 'вход', english: 'entrance', pronunciation: 'fkhoht', category: 'Travel', icon: '➡️' },
+  { russian: 'выход', english: 'exit', pronunciation: 'vi-khat', category: 'Travel', icon: '⬅️' },
+  { russian: 'таможня', english: 'customs', pronunciation: 'tah-mohzh-nya', category: 'Travel', icon: '🛂' },
+  { russian: 'банковская карта', english: 'credit card', pronunciation: 'bahn-kahf-ska-ya kar-ta', category: 'Shopping', icon: '💳' },
+  { russian: 'наличные', english: 'cash', pronunciation: 'nah-leech-ni-ye', category: 'Finance', icon: '💵' },
+  { russian: 'цена', english: 'price', pronunciation: 'tsee-nah', category: 'Shopping', icon: '🏷️' },
+  { russian: 'дешёвый', english: 'cheap', pronunciation: 'dee-sho-viy', category: 'Shopping', icon: '👇' },
+  { russian: 'дорогой', english: 'expensive', pronunciation: 'dah-rah-goy', category: 'Shopping', icon: '💎' },
+  { russian: 'скидка', english: 'discount', pronunciation: 'skeed-ka', category: 'Shopping', icon: '🏷️' },
   { russian: 'Ноутбук', english: 'Laptop', pronunciation: 'noh-oot-BOOK', category: 'Tech', level: 1, icon: '💻' },
   { russian: 'Планшет', english: 'Tablet', pronunciation: 'plahn-SHEHT', category: 'Tech', level: 1, icon: '📱' },
   { russian: 'Клавиатура', english: 'Keyboard', pronunciation: 'klah-vee-ah-TOO-rah', category: 'Tech', level: 1, icon: '⌨️' },
@@ -1696,10 +938,9 @@ const commonWords: PhraseItem[] = [
   { russian: 'Купить', english: 'Buy', pronunciation: 'koo-PEET', category: 'Shopping', level: 1, icon: '🛍️' },
   { russian: 'Продать', english: 'Sell', pronunciation: 'prah-DAHT', category: 'Shopping', level: 1, icon: '🏷️' },
   { russian: 'Платить', english: 'Pay', pronunciation: 'plah-TEET', category: 'Shopping', level: 1, icon: '💳' },
-  { russian: 'Кредитная карта', english: 'Credit card', pronunciation: 'kree-DEET-nah-yah KAHR-tah', category: 'Shopping', level: 1, icon: '💳' },
   { russian: 'Чек', english: 'Receipt', pronunciation: 'chek', category: 'Shopping', level: 1, icon: '🧾' },
   { russian: 'Поддержка', english: 'Support', pronunciation: 'puhd-DYEHRZH-kah', category: 'Tech', level: 1, icon: '💁' },
-  { russian: 'Открыть', english: 'Open', pronunciation: 'uht-KRYT', category: 'Tech', level: 1, icon: '📂' },
+  { russian: 'Открыть', english: 'Open', pronunciation: 'uht-KRYT', category: 'Descriptions', level: 1, icon: '📂' },
   { russian: 'Закрыть', english: 'Close', pronunciation: 'zah-KRYT', category: 'Tech', level: 1, icon: '✖️' },
   { russian: 'Обновить', english: 'Update', pronunciation: 'uhb-nah-VEET', category: 'Tech', level: 1, icon: '🔄' },
   { russian: 'Начальник', english: 'Boss / Supervisor', pronunciation: 'nah-CHAHL-neek', category: 'Business', level: 2, icon: '👔' },
@@ -1708,16 +949,14 @@ const commonWords: PhraseItem[] = [
   { russian: 'Задача', english: 'Task', pronunciation: 'zah-DAH-chah', category: 'Business', level: 2, icon: '✅' },
   { russian: 'Отчёт', english: 'Report', pronunciation: 'aht-CHOHT', category: 'Business', level: 2, icon: '📑' },
   { russian: 'Презентация', english: 'Presentation', pronunciation: 'prye-zyen-TAH-tsee-yah', category: 'Business', level: 2, icon: '📽️' },
-  { russian: 'Договор', english: 'Contract', pronunciation: 'dah-gah-VOHR', category: 'Business', level: 2, icon: '📝' },
   { russian: 'Подпись', english: 'Signature', pronunciation: 'POHT-pees', category: 'Business', level: 2, icon: '✍️' },
   { russian: 'Отпуск', english: 'Vacation', pronunciation: 'OHT-poosk', category: 'Business', level: 2, icon: '🏖️' },
   { russian: 'Резюме', english: 'Resume', pronunciation: 'rye-zyoo-MEH', category: 'Business', level: 2, icon: '📄' },
   { russian: 'Собеседование', english: 'Job interview', pronunciation: 'suh-bye-SYEH-duh-vah-nee-yeh', category: 'Business', level: 2, icon: '👔' },
-  { russian: 'Срок сдачи', english: 'Deadline', pronunciation: 'srohk ZDAH-chee', category: 'Business', level: 2, icon: '⏳' },
   { russian: 'Цель', english: 'Goal', pronunciation: 'tsel', category: 'Business', level: 2, icon: '🎯' },
   { russian: 'Продукт', english: 'Product', pronunciation: 'prah-DOOKT', category: 'Business', level: 2, icon: '📦' },
   { russian: 'Услуга', english: 'Service', pronunciation: 'oo-SLOO-gah', category: 'Business', level: 2, icon: '🛠️' },
-  { russian: 'Перевод', english: 'Transfer', pronunciation: 'pyee-ryee-VOHD', category: 'Shopping', level: 2, icon: '💸' },
+  { russian: 'Перевод', english: 'Transfer', pronunciation: 'pyee-ryee-VOHD', category: 'Finance', level: 2, icon: '💸' },
   { russian: 'Возврат', english: 'Refund', pronunciation: 'vahz-VRAHT', category: 'Shopping', level: 2, icon: '↩️' },
   { russian: 'Доставка', english: 'Delivery / Shipping', pronunciation: 'dah-STAHV-kah', category: 'Shopping', level: 2, icon: '🚚' },
   { russian: 'Посылка', english: 'Package / Parcel', pronunciation: 'pah-SYL-kah', category: 'Shopping', level: 2, icon: '📦' },
@@ -1731,35 +970,29 @@ const commonWords: PhraseItem[] = [
   { russian: 'Разработчик', english: 'Developer', pronunciation: 'rahz-rah-BOHT-cheek', category: 'Tech', level: 3, icon: '🧑‍💻' },
   { russian: 'Кибербезопасность', english: 'Cybersecurity', pronunciation: 'kee-byehr-bye-zah-PAHS-nahst', category: 'Tech', level: 3, icon: '🛡️' },
   { russian: 'Операционная система', english: 'Operating system', pronunciation: 'uh-pye-rah-tsee-OHN-nah-yah sees-TYEH-mah', category: 'Tech', level: 3, icon: '⚙️' },
-  { russian: 'Бюджет', english: 'Budget', pronunciation: 'byood-ZHEHT', category: 'Business', level: 3, icon: '💰' },
-  { russian: 'Инвестиции', english: 'Investment', pronunciation: 'een-vye-STEE-tsee-ee', category: 'Business', level: 3, icon: '📈' },
-  { russian: 'Выручка', english: 'Revenue', pronunciation: 'VY-rooch-kah', category: 'Business', level: 3, icon: '💵' },
+  { russian: 'Бюджет', english: 'Budget', pronunciation: 'byood-ZHEHT', category: 'Finance', level: 3, icon: '💰' },
+  { russian: 'Инвестиции', english: 'Investment', pronunciation: 'een-vye-STEE-tsee-ee', category: 'Finance', level: 3, icon: '📈' },
+  { russian: 'Выручка', english: 'Revenue', pronunciation: 'VY-rooch-kah', category: 'Finance', level: 3, icon: '💵' },
   { russian: 'Стартап', english: 'Startup', pronunciation: 'stahr-TAHP', category: 'Business', level: 3, icon: '🚀' },
   { russian: 'Удалённая работа', english: 'Remote work', pronunciation: 'oo-dah-LYOHN-nah-yah rah-BOH-tah', category: 'Business', level: 3, icon: '🏠' },
-  // Batch 2: High-Yield Everyday Vocabulary & Parity (Levels 1 & 2)
-  { russian: 'Ребёнок', english: 'Child', pronunciation: 'rye-BYOH-nahk', category: 'People', level: 1, icon: '🧒' },
   { russian: 'Отец', english: 'Father', pronunciation: 'ah-TYETS', category: 'Family', level: 1, icon: '👨' },
   { russian: 'Мать', english: 'Mother', pronunciation: 'MAHT', category: 'Family', level: 1, icon: '👩' },
   { russian: 'Учитель', english: 'Teacher', pronunciation: 'oo-CHEE-tyel', category: 'People', level: 2, icon: '🧑‍🏫' },
   { russian: 'Студент', english: 'Student', pronunciation: 'stoo-DYENT', category: 'People', level: 2, icon: '🧑‍🎓' },
-  { russian: 'Врач / Доктор', english: 'Doctor', pronunciation: 'VRAHCH / DOHK-tuhr', category: 'People', level: 2, icon: '🧑‍⚕️' },
-  { russian: 'Рис', english: 'Rice', pronunciation: 'REES', category: 'Food', level: 1, icon: '🍚' },
-  { russian: 'Соль', english: 'Salt', pronunciation: 'SOHL', category: 'Food', level: 1, icon: '🧂' },
-  { russian: 'Яйцо', english: 'Egg', pronunciation: 'yye-TSOH', category: 'Food', level: 1, icon: '🥚' },
-  { russian: 'Сок', english: 'Juice', pronunciation: 'SOHK', category: 'Food', level: 1, icon: '🧃' },
-  { russian: 'Сыр', english: 'Cheese', pronunciation: 'SYR', category: 'Food', level: 1, icon: '🧀' },
-  { russian: 'Яблоко', english: 'Apple', pronunciation: 'YAH-blah-kah', category: 'Food', level: 1, icon: '🍏' },
-  { russian: 'Завтрак', english: 'Breakfast', pronunciation: 'ZAHF-trahk', category: 'Food', level: 2, icon: '🍳' },
-  { russian: 'Обед', english: 'Lunch', pronunciation: 'ah-BYET', category: 'Food', level: 2, icon: '🥪' },
-  { russian: 'Ужин', english: 'Dinner', pronunciation: 'OO-zheen', category: 'Food', level: 2, icon: '🍲' },
-  { russian: 'Гостиница / Отель', english: 'Hotel', pronunciation: 'gahs-TEE-nee-tsah / ah-TYEL', category: 'Places', level: 1, icon: '🏨' },
-  { russian: 'Станция / Вокзал', english: 'Station', pronunciation: 'STAHN-tsyee-yah / vahk-ZAHL', category: 'Places', level: 1, icon: '🚉' },
+  { russian: 'Рис', english: 'Rice', pronunciation: 'REES', category: 'Food & Drink', level: 1, icon: '🍚' },
+  { russian: 'Соль', english: 'Salt', pronunciation: 'SOHL', category: 'Food & Drink', level: 1, icon: '🧂' },
+  { russian: 'Яйцо', english: 'Egg', pronunciation: 'yye-TSOH', category: 'Food & Drink', level: 1, icon: '🥚' },
+  { russian: 'Сок', english: 'Juice', pronunciation: 'SOHK', category: 'Food & Drink', level: 1, icon: '🧃' },
+  { russian: 'Сыр', english: 'Cheese', pronunciation: 'SYR', category: 'Food & Drink', level: 1, icon: '🧀' },
+  { russian: 'Яблоко', english: 'Apple', pronunciation: 'YAH-blah-kah', category: 'Food & Drink', level: 1, icon: '🍏' },
+  { russian: 'Завтрак', english: 'Breakfast', pronunciation: 'ZAHF-trahk', category: 'Food & Drink', level: 2, icon: '🍳' },
+  { russian: 'Обед', english: 'Lunch', pronunciation: 'ah-BYET', category: 'Food & Drink', level: 2, icon: '🥪' },
+  { russian: 'Ужин', english: 'Dinner', pronunciation: 'OO-zheen', category: 'Food & Drink', level: 2, icon: '🍲' },
   { russian: 'Супермаркет', english: 'Supermarket', pronunciation: 'soo-peer-MAHR-kyet', category: 'Places', level: 2, icon: '🛒' },
-  { russian: 'Кино / Кинотеатр', english: 'Cinema', pronunciation: 'kee-NOH / kee-nah-tyee-AH-tuhr', category: 'Places', level: 2, icon: '🎬' },
   { russian: 'Центр', english: 'Center', pronunciation: 'TSYEN-tuhr', category: 'Places', level: 2, icon: '📍' },
   { russian: 'Школа', english: 'School', pronunciation: 'SHKOH-lah', category: 'Places', level: 2, icon: '🏫' },
-  { russian: 'Завод', english: 'Factory', pronunciation: 'zah-VAHT', category: 'Places', level: 2, icon: '🏭' },
-  { russian: 'Море', english: 'Sea', pronunciation: 'MOH-rye', category: 'Places', level: 1, icon: '🌊' },
+  { russian: 'Завод', english: 'Factory', pronunciation: 'zah-VOHT', category: 'Places', level: 2, icon: '🏭' },
+  { russian: 'Море', english: 'Sea', pronunciation: 'MOH-rye', category: 'Nature', level: 1, icon: '🌊' },
   { russian: 'Дорога', english: 'Road', pronunciation: 'dah-ROH-gah', category: 'Places', level: 1, icon: '🛤️' },
   { russian: 'Лодка', english: 'Boat', pronunciation: 'LOHT-kah', category: 'Travel', level: 1, icon: '⛵' },
   { russian: 'Стол', english: 'Table', pronunciation: 'STOHL', category: 'Home', level: 1, icon: 'svg:table' },
@@ -1773,9 +1006,9 @@ const commonWords: PhraseItem[] = [
   { russian: 'Журнал', english: 'Magazine', pronunciation: 'zhoor-NAHL', category: 'Home', level: 2, icon: '📰' },
   { russian: 'Зонт', english: 'Umbrella', pronunciation: 'ZOHNT', category: 'Home', level: 1, icon: '☂️' },
   { russian: 'Фото', english: 'Photo', pronunciation: 'FOH-tah', category: 'Home', level: 1, icon: '📷' },
-  { russian: 'Собака', english: 'Dog', pronunciation: 'sah-BAH-kah', category: 'Nature', level: 1, icon: '🐶' },
-  { russian: 'Кот / Кошка', english: 'Cat', pronunciation: 'KOHT / KOHSH-kah', category: 'Nature', level: 1, icon: '🐱' },
-  { russian: 'Птица', english: 'Bird', pronunciation: 'PTEE-tsah', category: 'Nature', level: 1, icon: '🐦' },
+  { russian: 'Собака', english: 'Dog', pronunciation: 'sah-BAH-kah', category: 'Animals', level: 1, icon: '🐶' },
+  { russian: 'Кот / Кошка', english: 'Cat', pronunciation: 'KOHT / KOHSH-kah', category: 'Animals', level: 1, icon: '🐱' },
+  { russian: 'Птица', english: 'Bird', pronunciation: 'PTEE-tsah', category: 'Animals', level: 1, icon: '🐦' },
   { russian: 'Луна', english: 'Moon', pronunciation: 'loo-NAH', category: 'Nature', level: 1, icon: '🌙' },
   { russian: 'Звезда', english: 'Star', pronunciation: 'zvyez-DAH', category: 'Nature', level: 1, icon: '⭐' },
   { russian: 'Цветок', english: 'Flower', pronunciation: 'tsvee-TOHK', category: 'Nature', level: 1, icon: '🌸' },
@@ -1784,61 +1017,48 @@ const commonWords: PhraseItem[] = [
   { russian: 'Плохой / Плохо', english: 'Bad', pronunciation: 'plah-KHOY / PLOH-khah', category: 'Descriptions', level: 1, icon: '👎' },
   { russian: 'Быстрый / Быстро', english: 'Fast / Quick', pronunciation: 'BYS-try / BYS-trah', category: 'Descriptions', level: 1, icon: '⚡' },
   { russian: 'Медленный / Медленно', english: 'Slow', pronunciation: 'MYED-leen-ny / MYED-leen-nah', category: 'Descriptions', level: 1, icon: '🐢' },
-  { russian: 'Счастливый / Рад', english: 'Happy', pronunciation: 'schahs-LEE-vy / RAHT', category: 'Descriptions', level: 1, icon: '😊' },
+  { russian: 'Счастливый / Рад', english: 'Happy', pronunciation: 'shees-LEE-vy / RAHT', category: 'Descriptions', level: 1, icon: '😊' },
   { russian: 'Готов / Готовый', english: 'Ready', pronunciation: 'gah-TOHF / gah-TOH-vy', category: 'Descriptions', level: 1, icon: '✅' },
-  { russian: 'Открыто / Открытый', english: 'Open', pronunciation: 'aht-KRY-tah / aht-KRY-ty', category: 'Descriptions', level: 1, icon: '🟢' },
   { russian: 'Закрыто / Закрытый', english: 'Closed', pronunciation: 'zah-KRY-tah / zah-KRY-ty', category: 'Descriptions', level: 1, icon: '🔴' },
-  { russian: 'Жарко / Горячий', english: 'Hot', pronunciation: 'ZHAR-kah / gah-RYAH-cheey', category: 'Descriptions', level: 1, icon: '🔥' },
-  // Batch 3: Calendar, Family, Body, Kitchen & Everyday Life
-  { russian: 'Месяц', english: 'Month', pronunciation: 'MYE-syets', category: 'Calendar', level: 1, icon: '📆' },
-  { russian: 'Год', english: 'Year', pronunciation: 'GOHT', category: 'Calendar', level: 1, icon: '🎆' },
+  { russian: 'Месяц', english: 'Month', pronunciation: 'MYE-syets', category: 'Time', level: 1, icon: '📆' },
+  { russian: 'Год', english: 'Year', pronunciation: 'GOHT', category: 'Time', level: 1, icon: '🎆' },
   { russian: 'Глаз', english: 'Eye', pronunciation: 'GLAHS', category: 'Health', level: 1, icon: '👁️' },
   { russian: 'Глаза', english: 'Eyes', pronunciation: 'glah-ZAH', category: 'Health', level: 1, icon: '👀' },
   { russian: 'Нос', english: 'Nose', pronunciation: 'NOHS', category: 'Health', level: 1, icon: '👃' },
   { russian: 'Щека', english: 'Cheek', pronunciation: 'shchee-KAH', category: 'Health', level: 1, icon: '😊' },
-  { russian: 'Сердце', english: 'Heart', pronunciation: 'SYEHRT-tseh', category: 'Health', level: 1, icon: '❤️' },
+  { russian: 'Сердце', english: 'Heart', pronunciation: 'SYEHR-tseh', category: 'Health', level: 1, icon: '❤️' },
   { russian: 'Голос', english: 'Voice', pronunciation: 'GOH-lahs', category: 'Health', level: 1, icon: '🗣️' },
-  { russian: 'Чашка', english: 'Cup', pronunciation: 'CHAHSH-kah', category: 'Food', level: 1, icon: '☕' },
-  { russian: 'Стакан', english: 'Glass (cup)', pronunciation: 'stah-KAHN', category: 'Food', level: 1, icon: '🥛' },
-  { russian: 'Чайник', english: 'Kettle', pronunciation: 'CHY-neek', category: 'Food', level: 1, icon: '🫖' },
-  { russian: 'Масло', english: 'Oil', pronunciation: 'MAHS-lah', category: 'Food', level: 1, icon: '🫒' },
-  { russian: 'Лимон', english: 'Lemon', pronunciation: 'lee-MOHN', category: 'Food', level: 1, icon: '🍋' },
-  { russian: 'Апельсин', english: 'Orange', pronunciation: 'ah-pyel-SEEN', category: 'Food', level: 1, icon: '🍊' },
-  { russian: 'Йогурт', english: 'Yogurt', pronunciation: 'YOH-goort', category: 'Food', level: 1, icon: '🥣' },
-  { russian: 'Лёд', english: 'Ice', pronunciation: 'LYOHT', category: 'Food', level: 1, icon: '🧊' },
-  { russian: 'Холодно / Холодный', english: 'Cold', pronunciation: 'KHOH-lahd-nah / khah-LOHD-ny', category: 'Weather', level: 1, icon: '🥶' },
-  { russian: 'Ёж', english: 'Hedgehog', pronunciation: 'YOHZH', category: 'Weather', level: 2, icon: '🦔' },
-  { russian: 'Жук', english: 'Beetle / Bug', pronunciation: 'ZHOOK', category: 'Weather', level: 2, icon: '🪲' },
-  { russian: 'Зебра', english: 'Zebra', pronunciation: 'ZYE-brah', category: 'Weather', level: 2, icon: '🦓' },
+  { russian: 'Чашка', english: 'Cup', pronunciation: 'CHAHSH-kah', category: 'Food & Drink', level: 1, icon: '☕' },
+  { russian: 'Стакан', english: 'Glass (cup)', pronunciation: 'stah-KAHN', category: 'Food & Drink', level: 1, icon: '🥛' },
+  { russian: 'Чайник', english: 'Kettle', pronunciation: 'CHY-neek', category: 'Home', level: 1, icon: '🫖' },
+  { russian: 'Масло', english: 'Oil', pronunciation: 'MAHS-lah', category: 'Food & Drink', level: 1, icon: '🫒' },
+  { russian: 'Лимон', english: 'Lemon', pronunciation: 'lee-MOHN', category: 'Food & Drink', level: 1, icon: '🍋' },
+  { russian: 'Апельсин', english: 'Orange', pronunciation: 'ah-pyel-SEEN', category: 'Food & Drink', level: 1, icon: '🍊' },
+  { russian: 'Йогурт', english: 'Yogurt', pronunciation: 'YOH-goort', category: 'Food & Drink', level: 1, icon: '🥣' },
+  { russian: 'Лёд', english: 'Ice', pronunciation: 'LYOHT', category: 'Food & Drink', level: 1, icon: '🧊' },
+  { russian: 'Ёж', english: 'Hedgehog', pronunciation: 'YOHZH', category: 'Animals', level: 2, icon: '🦔' },
+  { russian: 'Жук', english: 'Beetle / Bug', pronunciation: 'ZHOOK', category: 'Animals', level: 2, icon: '🪲' },
+  { russian: 'Зебра', english: 'Zebra', pronunciation: 'ZYE-brah', category: 'Animals', level: 2, icon: '🦓' },
   { russian: 'Идея', english: 'Idea', pronunciation: 'ee-DYE-yah', category: 'Essentials', level: 1, icon: '💡' },
   { russian: 'Вопрос', english: 'Question', pronunciation: 'vah-PROHS', category: 'Essentials', level: 1, icon: '❓' },
   { russian: 'Успех', english: 'Success', pronunciation: 'oos-PYEKH', category: 'Essentials', level: 2, icon: '🏆' },
   { russian: 'Любовь', english: 'Love', pronunciation: 'lyoo-BOHF', category: 'Essentials', level: 1, icon: '❤️' },
   { russian: 'Имя', english: 'Name', pronunciation: 'EE-myah', category: 'Essentials', level: 1, icon: '🏷️' },
-  { russian: 'Тихий', english: 'Quiet', pronunciation: 'TEE-kheey', category: 'Essentials', level: 1, icon: '🤫' },
+  { russian: 'Тихий', english: 'Quiet', pronunciation: 'TEE-kheey', category: 'Descriptions', level: 1, icon: '🤫' },
   { russian: 'Свет', english: 'Light', pronunciation: 'SVYET', category: 'Essentials', level: 1, icon: '💡' },
-  { russian: 'Остров', english: 'Island', pronunciation: 'OHS-trahf', category: 'Travel', level: 1, icon: '🏝️' },
-  // Batch 4: Foundational Verbs, Questions, City, Travel, Adjectives & Parity
+  { russian: 'Остров', english: 'Island', pronunciation: 'OHS-trahf', category: 'Nature', level: 1, icon: '🏝️' },
   { russian: 'Город', english: 'City', pronunciation: 'GOH-raht', category: 'Places', level: 1, icon: '🏙️' },
   { russian: 'Страна', english: 'Country', pronunciation: 'strah-NAH', category: 'Places', level: 1, icon: '🌍' },
-  { russian: 'Дом', english: 'House / Home', pronunciation: 'DOHM', category: 'Places', level: 1, icon: '🏠' },
   { russian: 'Вокзал', english: 'Train station', pronunciation: 'vahk-ZAHL', category: 'Travel', level: 1, icon: '🚉' },
   { russian: 'Мы', english: 'We', pronunciation: 'MY', category: 'People', level: 1, icon: '👥' },
   { russian: 'Помощь', english: 'Help', pronunciation: 'POH-mahshch', category: 'Essentials', level: 1, icon: '🆘' },
   { russian: 'Обувь', english: 'Shoe / Shoes', pronunciation: 'OH-boof', category: 'Essentials', level: 1, icon: '👞' },
-  { russian: 'Фрукт', english: 'Fruit', pronunciation: 'FROOKT', category: 'Food', level: 1, icon: '🍎' },
-  { russian: 'Часы', english: 'Clock / Watch', pronunciation: 'chah-SY', category: 'Essentials', level: 1, icon: '⏰' },
-  { russian: 'Виноград', english: 'Grape', pronunciation: 'vee-nah-GRAHT', category: 'Food', level: 1, icon: '🍇' },
+  { russian: 'Фрукт', english: 'Fruit', pronunciation: 'FROOKT', category: 'Food & Drink', level: 1, icon: '🍎' },
+  { russian: 'Часы', english: 'Clock / Watch', pronunciation: 'chah-SY', category: 'Home', level: 1, icon: '⏰' },
+  { russian: 'Виноград', english: 'Grape', pronunciation: 'vee-nah-GRAHT', category: 'Food & Drink', level: 1, icon: '🍇' },
   { russian: 'Рентген', english: 'X-ray', pronunciation: 'ryen-TGYEN', category: 'Health', level: 2, icon: '🩻' },
-  { russian: 'Ксилофон', english: 'Xylophone', pronunciation: 'ksee-lah-FOHN', category: 'Essentials', level: 2, icon: '🎵' },
-  { russian: 'Хороший', english: 'Good', pronunciation: 'hah-ROH-sheey', category: 'Descriptions', level: 1, icon: '👍' },
-  { russian: 'Плохой', english: 'Bad', pronunciation: 'plah-KHOY', category: 'Descriptions', level: 1, icon: '👎' },
-  { russian: 'Открыто', english: 'Open', pronunciation: 'aht-KRY-tah', category: 'Descriptions', level: 1, icon: '🚪' },
-  { russian: 'Закрыто', english: 'Closed', pronunciation: 'zah-KRY-tah', category: 'Descriptions', level: 1, icon: '🔒' },
+  { russian: 'Ксилофон', english: 'Xylophone', pronunciation: 'ksee-lah-FOHN', category: 'Home', level: 2, icon: '🎵' },
   { russian: 'Быстрый', english: 'Fast', pronunciation: 'BY-stry', category: 'Descriptions', level: 1, icon: '🚀' },
-  { russian: 'Медленный', english: 'Slow', pronunciation: 'MYED-lyen-ny', category: 'Descriptions', level: 1, icon: '🐢' },
-  { russian: 'Счастливый', english: 'Happy', pronunciation: 'schahst-LEE-vy', category: 'Descriptions', level: 1, icon: '😊' },
-  { russian: 'Готов', english: 'Ready', pronunciation: 'gah-TOHF', category: 'Descriptions', level: 1, icon: '✅' },
   { russian: 'Фиолетовый', english: 'Purple', pronunciation: 'fee-ah-LYEH-tah-vy', category: 'Colors', level: 1, icon: '🟣' },
   { russian: 'Розовый', english: 'Pink', pronunciation: 'ROH-zah-vy', category: 'Colors', level: 1, icon: '🌸' },
   { russian: 'Серый', english: 'Gray', pronunciation: 'SYEH-ry', category: 'Colors', level: 1, icon: '🔘' },
@@ -1854,916 +1074,50 @@ const commonWords: PhraseItem[] = [
   { russian: 'Помогать', english: 'To help', pronunciation: 'pah-mah-GAHT', category: 'Verbs', level: 1, icon: '🤝' },
   { russian: 'Работать', english: 'To work', pronunciation: 'rah-BOH-taht', category: 'Verbs', level: 1, icon: '💼' },
   { russian: 'Хотеть', english: 'To want', pronunciation: 'khah-TYEHT', category: 'Verbs', level: 1, icon: '💭' },
-  // Batch 5: Core Everyday Vocabulary Expansion to 500+
-  { russian: 'Папа / Отец', english: 'Father / Dad', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Мама / Мать', english: 'Mother / Mom', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Фрукт / Фрукты', english: 'Fruit', category: 'Food', level: 1, icon: '🍽️' },
-  { russian: 'Карта / Карточка', english: 'Card', category: 'Places', level: 1, icon: '📍' },
-  { russian: 'Объект / Предмет', english: 'Object', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Ёлка', english: 'Christmas tree', category: 'Nature', level: 1, icon: '🌿' },
-  { russian: 'Килограмм', english: 'Kilogram', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Ночь', english: 'Night', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Веб', english: 'Web', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Желток', english: 'Yolk', category: 'Food', level: 1, icon: '🍽️' },
-  { russian: 'Вагон', english: 'Wagon / Car', category: 'Places', level: 1, icon: '📍' },
-  { russian: 'Пример', english: 'Example', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Утро', english: 'Morning', category: 'General', level: 1, icon: '✨' },
-  { russian: 'День (после полудня)', english: 'Afternoon', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Вечер', english: 'Evening', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Царь', english: 'Czar / King', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Борщ', english: 'Borscht', category: 'Food', level: 1, icon: '🍽️' },
-  { russian: 'Подъезд', english: 'Entrance', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Юг', english: 'South', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Источник', english: 'Source', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Или', english: 'Or', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Это', english: 'This', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Ем', english: 'I eat', category: 'Verbs', level: 1, icon: '⚡' },
-  { russian: 'Может быть', english: 'Maybe', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Идти / Ехать', english: 'To go', category: 'Verbs', level: 1, icon: '⚡' },
-  { russian: 'Приходить / Приезжать', english: 'To come', category: 'Verbs', level: 1, icon: '⚡' },
-  { russian: 'Нуждаться (нужно)', english: 'To need', category: 'Verbs', level: 1, icon: '⚡' },
-  { russian: 'Привет / Здравствуйте', english: 'Hello', category: 'General', level: 1, icon: '✨' },
-  { russian: 'У меня всё хорошо, спасибо', english: 'I am fine, thank you', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Очень хорошо, спасибо', english: 'Very well, thank you', category: 'General', level: 1, icon: '✨' },
-  { russian: 'А вы? / А у вас?', english: 'And you?', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Большое спасибо', english: 'Thank you very much', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Пожалуйста / Не за что', english: 'You are welcome', category: 'Verbs', level: 1, icon: '⚡' },
-  { russian: 'Как вас зовут?', english: 'What is your name?', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Откуда вы?', english: 'Where are you from?', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Я из...', english: 'I am from...', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Хорошего дня', english: 'Have a nice day', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Я понимаю', english: 'I understand', category: 'Verbs', level: 1, icon: '⚡' },
-  { russian: 'Говорите медленнее, пожалуйста', english: 'Please speak more slowly', category: 'Verbs', level: 1, icon: '⚡' },
-  { russian: 'Можете говорить медленнее?', english: 'Can you speak more slowly?', category: 'Verbs', level: 1, icon: '⚡' },
-  { russian: 'Что это значит?', english: 'What does this mean?', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Как сказать...?', english: 'How do you say...?', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Вы можете мне помочь?', english: 'Can you help me?', category: 'Verbs', level: 1, icon: '⚡' },
-  { russian: 'Мне нужна помощь', english: 'I need help', category: 'Verbs', level: 1, icon: '⚡' },
-  { russian: 'Помогите мне', english: 'Help me', category: 'Verbs', level: 1, icon: '⚡' },
-  { russian: 'Где находится туалет?', english: 'Where is the restroom?', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Где находится аэропорт?', english: 'Where is the airport?', category: 'Places', level: 1, icon: '📍' },
-  { russian: 'Я хочу поехать в аэропорт', english: 'I would like to go to the airport', category: 'Places', level: 1, icon: '📍' },
-  { russian: 'Во сколько отправление?', english: 'What time is the departure?', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Где находится отель?', english: 'Where is the hotel?', category: 'Places', level: 1, icon: '📍' },
-  { russian: 'Сколько стоит билет?', english: 'How much is a ticket?', category: 'Places', level: 1, icon: '📍' },
-  { russian: 'Поверните налево', english: 'Turn left', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Поверните направо', english: 'Turn right', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Идите прямо', english: 'Go straight ahead', category: 'Verbs', level: 1, icon: '⚡' },
-  { russian: 'Можно меню, пожалуйста?', english: 'Can I see the menu, please?', category: 'Verbs', level: 1, icon: '⚡' },
-  { russian: 'Я бы хотел(а) воды', english: 'I would like water', category: 'Food', level: 1, icon: '🍽️' },
-  { russian: 'Что вы порекомендуете?', english: 'What do you recommend?', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Это очень вкусно!', english: 'This is delicious!', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Счёт, пожалуйста', english: 'Can I have the check, please?', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Сколько это стоит?', english: 'How much does this cost?', category: 'Shopping', level: 1, icon: '🛍️' },
-  { russian: 'Можно оплатить картой?', english: 'Can I pay by card?', category: 'Places', level: 1, icon: '📍' },
-  { russian: 'Я просто смотрю', english: 'I am just looking', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Я просто смотрю, спасибо', english: 'I am just looking, thank you', category: 'General', level: 1, icon: '✨' },
-  { russian: 'У вас есть другой размер?', english: 'Do you have this in another size?', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Я плохо себя чувствую', english: 'I don\'t feel well', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Вызовите полицию', english: 'Call the police', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Я потерял(а) свой паспорт', english: 'I lost my passport', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Один час (1:00)', english: 'One o\'clock (1:00)', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Ровно один час (1:00)', english: 'It is 1:00 sharp', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Два часа (2:00)', english: 'Two o\'clock (2:00)', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Три часа (3:00)', english: 'Three o\'clock (3:00)', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Ровно три часа (3:00)', english: 'Exactly three o\'clock (3:00)', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Четыре часа (4:00)', english: 'Four o\'clock (4:00)', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Пять часов (5:00)', english: 'Five o\'clock (5:00)', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Шесть часов (6:00)', english: 'Six o\'clock (6:00)', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Семь часов (7:00)', english: 'Seven o\'clock (7:00)', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Восемь часов (8:00)', english: 'Eight o\'clock (8:00)', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Девять часов (9:00)', english: 'Nine o\'clock (9:00)', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Десять часов (10:00)', english: 'Ten o\'clock (10:00)', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Одиннадцать часов (11:00)', english: 'Eleven o\'clock (11:00)', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Двенадцать часов (12:00)', english: 'Twelve o\'clock (12:00)', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Половина третьего (2:30)', english: 'Half past two (2:30)', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Без четверти три (2:45)', english: 'Quarter to three (2:45)', category: 'Verbs', level: 1, icon: '⚡' },
-  { russian: 'Половина четвёртого (3:30)', english: '3:30 (half past three)', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Четверть пятого (4:15)', english: '4:15 (quarter past four)', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Без четверти пять (4:45)', english: '4:45 (quarter to five)', category: 'Verbs', level: 1, icon: '⚡' },
-  { russian: 'Половина первого (12:30)', english: 'Half past twelve (12:30)', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Без десяти два (1:50)', english: 'Ten to two (1:50)', category: 'Verbs', level: 1, icon: '⚡' },
-  { russian: 'Утра (утром)', english: 'In the morning (a.m.)', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Дня (днём)', english: 'In the afternoon (p.m.)', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Ночи (ночью)', english: 'At night', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Здравствуйте / Доброе утро', english: 'Hello / Good morning', category: 'Verbs', level: 1, icon: '⚡' },
-  { russian: 'Привет / Пока', english: 'Hi / Bye', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Как ваши дела?', english: 'How are you? (formal)', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Всё хорошо, спасибо', english: 'I am doing well, thank you', category: 'General', level: 1, icon: '✨' },
-  { russian: 'А вы?', english: 'And you?', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Время / Погода', english: 'Time / Weather', category: 'Verbs', level: 1, icon: '⚡' },
-  { russian: 'Завтра / Утро', english: 'Tomorrow / Morning', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Офис / Стол', english: 'Office / Desk', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Вокзал / Станция', english: 'Train station', category: 'Places', level: 1, icon: '📍' },
-  { russian: 'Мальчик / Ребёнок', english: 'Boy / Child', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Это далеко отсюда?', english: 'Is it far from here?', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Я покажу свой экран', english: 'Let me share my screen', category: 'Tech', level: 1, icon: '💻' },
-  { russian: 'Медленное подключение к интернету', english: 'The internet connection is slow', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Можете отправить по почте?', english: 'Can you send it by email?', category: 'Tech', level: 1, icon: '💻' },
-  { russian: 'У меня почти села батарея', english: 'My battery is almost dead', category: 'General', level: 1, icon: '✨' },
-  { russian: 'Где автобусная остановка?', english: 'Where is the bus stop?', category: 'Places', level: 1, icon: '📍' },
-  { russian: 'Как добраться до аэропорта?', english: 'How do I get to the airport?', category: 'Places', level: 1, icon: '📍' },
-  { russian: 'Я бы хотел кофе, пожалуйста', english: 'I would like a coffee, please', category: 'Food', level: 1, icon: '🍽️' },
-  { russian: 'Бутылку воды, пожалуйста', english: 'A bottle of water, please', category: 'Food', level: 1, icon: '🍽️' }
-,
-  {
-    russian: 'Да',
-    english: 'Yes',
-    pronunciation: '',
-    category: 'Essentials',
-    icon: '✅'
-  },
-  {
-    russian: 'Нет',
-    english: 'No',
-    pronunciation: '',
-    category: 'Essentials',
-    icon: '❌'
-  },
-  {
-    russian: 'Время',
-    english: 'Time / Weather',
-    pronunciation: '',
-    category: 'Time',
-    icon: '⏱️'
-  },
-  {
-    russian: 'Сегодня',
-    english: 'Today',
-    pronunciation: '',
-    category: 'Time',
-    icon: '📅'
-  },
-  {
-    russian: 'Завтра',
-    english: 'Tomorrow / Morning',
-    pronunciation: '',
-    category: 'Time',
-    icon: '🌅'
-  },
-  {
-    russian: 'Вчера',
-    english: 'Yesterday',
-    pronunciation: '',
-    category: 'Time',
-    icon: '⏮️'
-  },
-  {
-    russian: 'Понедельник',
-    english: 'Monday',
-    pronunciation: '',
-    category: 'Calendar',
-    icon: '📅'
-  },
-  {
-    russian: 'Вторник',
-    english: 'Tuesday',
-    pronunciation: '',
-    category: 'Calendar',
-    icon: '📅'
-  },
-  {
-    russian: 'Среда',
-    english: 'Wednesday',
-    pronunciation: '',
-    category: 'Calendar',
-    icon: '📅'
-  },
-  {
-    russian: 'Четверг',
-    english: 'Thursday',
-    pronunciation: '',
-    category: 'Calendar',
-    icon: '📅'
-  },
-  {
-    russian: 'Пятница',
-    english: 'Friday',
-    pronunciation: '',
-    category: 'Calendar',
-    icon: '📅'
-  },
-  {
-    russian: 'Суббота',
-    english: 'Saturday',
-    pronunciation: '',
-    category: 'Calendar',
-    icon: '📅'
-  },
-  {
-    russian: 'Воскресенье',
-    english: 'Sunday',
-    pronunciation: '',
-    category: 'Calendar',
-    icon: '📅'
-  },
-  {
-    russian: 'Неделя',
-    english: 'Week',
-    pronunciation: '',
-    category: 'Calendar',
-    icon: '🗓️'
-  },
-  {
-    russian: 'Час',
-    english: 'Hour',
-    pronunciation: '',
-    category: 'Time',
-    icon: '⏳'
-  },
-  {
-    russian: 'Минута',
-    english: 'Minute',
-    pronunciation: '',
-    category: 'Time',
-    icon: '⏱️'
-  },
-  {
-    russian: 'Секунда',
-    english: 'Second',
-    pronunciation: '',
-    category: 'Time',
-    icon: '⚡'
-  },
-  {
-    russian: 'Рано',
-    english: 'Early',
-    pronunciation: '',
-    category: 'Time',
-    icon: '🌅'
-  },
-  {
-    russian: 'Поздно',
-    english: 'Late',
-    pronunciation: '',
-    category: 'Time',
-    icon: '🌙'
-  },
-  {
-    russian: 'Сейчас',
-    english: 'Now',
-    pronunciation: '',
-    category: 'Time',
-    icon: '⏰'
-  },
-  {
-    russian: 'Привет',
-    english: 'Hello (informal)',
-    pronunciation: '',
-    category: 'General',
-    icon: '✨'
-  },
-  {
-    russian: 'Спасибо',
-    english: 'Thank you',
-    pronunciation: '',
-    category: 'General',
-    icon: '✨'
-  },
-  {
-    russian: 'Пока',
-    english: 'Bye (informal)',
-    pronunciation: '',
-    category: 'General',
-    icon: '✨'
-  },
-  {
-    russian: 'Повторите, пожалуйста',
-    english: 'Please repeat',
-    pronunciation: '',
-    category: 'Verbs',
-    icon: '⚡'
-  },
-  {
-    russian: 'Говорите медленнее',
-    english: 'Speak more slowly',
-    pronunciation: '',
-    category: 'Verbs',
-    icon: '⚡'
-  },
-  {
-    russian: 'Я немного говорю по-русски',
-    english: 'I speak a little Russian',
-    pronunciation: '',
-    category: 'Verbs',
-    icon: '⚡'
-  },
-  {
-    russian: 'Как это по-русски?',
-    english: 'How do you say this in Russian?',
-    pronunciation: '',
-    category: 'General',
-    icon: '✨'
-  },
-  {
-    russian: 'Я хочу есть',
-    english: 'I want to eat',
-    pronunciation: '',
-    category: 'Verbs',
-    icon: '⚡'
-  },
-  {
-    russian: 'Я хочу пить',
-    english: 'I want to drink',
-    pronunciation: '',
-    category: 'Verbs',
-    icon: '⚡'
-  },
-  {
-    russian: 'Сколько сейчас времени?',
-    english: 'What time is it now?',
-    pronunciation: '',
-    category: 'General',
-    icon: '✨'
-  },
-  {
-    russian: 'Во сколько?',
-    english: 'At what time?',
-    pronunciation: '',
-    category: 'General',
-    icon: '✨'
-  },
-  {
-    russian: 'Полчаса',
-    english: 'Half an hour',
-    pronunciation: '',
-    category: 'General',
-    icon: '✨'
-  },
-  {
-    russian: 'Четверть часа',
-    english: 'Quarter of an hour',
-    pronunciation: '',
-    category: 'General',
-    icon: '✨'
-  },
-  {
-    russian: 'Вовремя',
-    english: 'On time',
-    pronunciation: '',
-    category: 'General',
-    icon: '✨'
-  },
-  {
-    russian: 'Как дела?',
-    english: 'How are you?',
-    pronunciation: '',
-    category: 'General',
-    icon: '✨'
-  },
-  {
-    russian: 'Без проблем / Ничего страшного',
-    english: 'No problem',
-    pronunciation: '',
-    category: 'Phrases',
-    icon: '✅'
-  },
-  {
-    russian: 'До скорого',
-    english: 'See you soon',
-    pronunciation: '',
-    category: 'Phrases',
-    icon: '👋'
-  },
-  {
-    russian: 'Банан',
-    english: 'Banana',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Рисовый пирожок',
-    english: 'Rice cake',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Мост',
-    english: 'Bridge',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Рагу',
-    english: 'Stew',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Радио',
-    english: 'Radio',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Письменный стол',
-    english: 'Desk',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Музыка',
-    english: 'Music',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Что?',
-    english: 'What?',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Где?',
-    english: 'Where?',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Когда?',
-    english: 'When?',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Кто?',
-    english: 'Who?',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Почему?',
-    english: 'Why?',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Как?',
-    english: 'How?',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Ноль',
-    english: 'Zero',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'День',
-    english: 'Day',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Здравствуйте',
-    english: 'Hello (formal)',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Доброе утро',
-    english: 'Good morning',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Добрый день',
-    english: 'Good afternoon',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Добрый вечер',
-    english: 'Good evening',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Спокойной ночи',
-    english: 'Good night',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Пожалуйста',
-    english: 'Please',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Извините',
-    english: 'Excuse me',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Простите / Мне жаль',
-    english: 'I am sorry',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Меня зовут...',
-    english: 'My name is...',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Очень приятно познакомиться',
-    english: 'Nice to meet you',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'До свидания',
-    english: 'Goodbye',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Увидимся позже / Пока',
-    english: 'See you later',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Я не понимаю',
-    english: 'I do not understand',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Вы говорите по-английски?',
-    english: 'Do you speak English?',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Помогите!',
-    english: 'Help!',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Где туалет?',
-    english: 'Where is the bathroom?',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Где находится вокзал?',
-    english: 'Where is the train station?',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Мне нужно такси',
-    english: 'I need a taxi',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Столик на двоих, пожалуйста',
-    english: 'A table for two, please',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Меню, пожалуйста',
-    english: 'The menu, please',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Сколько стоит?',
-    english: 'How much does it cost?',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Вы принимаете банковские карты?',
-    english: 'Do you accept credit cards?',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Это слишком дорого',
-    english: 'It is too expensive',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Мне нужен врач',
-    english: 'I need a doctor',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Который час?',
-    english: 'What time is it?',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Ровно один час',
-    english: 'It is 1:00 sharp',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Два часа',
-    english: 'It is 2:00',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Вечера (вечером)',
-    english: 'In the evening (p.m.)',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Полдень',
-    english: 'Noon / Midday',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Полночь',
-    english: 'Midnight',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Привет! / Здравствуйте!',
-    english: 'Hello! / Hi!',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Очень приятно',
-    english: 'Pleased to meet you',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Сто',
-    english: 'One hundred',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Тысяча',
-    english: 'One thousand',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Вы меня слышите?',
-    english: 'Can you hear me?',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Видно мой экран?',
-    english: 'Can you see my screen?',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Какой пароль от вайфая?',
-    english: 'What is the Wi-Fi password?',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Давайте назначим встречу',
-    english: "Let's schedule a meeting",
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Я отправлю вам письмо',
-    english: 'I will send you an email',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Какой крайний срок?',
-    english: 'When is the deadline?',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Где ближайшая аптека?',
-    english: 'Where is the nearest pharmacy?',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'У меня аллергия на орехи',
-    english: 'I am allergic to nuts',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'У меня есть бронь',
-    english: 'I have a reservation',
-    pronunciation: '',
-    category: 'General',
-    icon: '📌'
-  },
-  {
-    russian: 'Клубника',
-    english: 'Strawberry',
-    pronunciation: '',
-    category: 'Food & Drink',
-    icon: '🍓'
-  },
-  {
-    russian: 'Чеснок',
-    english: 'Garlic',
-    pronunciation: '',
-    category: 'Food & Drink',
-    icon: '🧄'
-  },
-  {
-    russian: 'Картофель',
-    english: 'Potato',
-    pronunciation: '',
-    category: 'Food & Drink',
-    icon: '🥔'
-  },
-  {
-    russian: 'Лук',
-    english: 'Onion',
-    pronunciation: '',
-    category: 'Food & Drink',
-    icon: '🧅'
-  },
-  {
-    russian: 'Морковь',
-    english: 'Carrot',
-    pronunciation: '',
-    category: 'Food & Drink',
-    icon: '🥕'
-  },
-  {
-    russian: 'Ложка',
-    english: 'Spoon',
-    pronunciation: '',
-    category: 'Food & Drink',
-    icon: '🥄'
-  },
-  {
-    russian: 'Вилка',
-    english: 'Fork',
-    pronunciation: '',
-    category: 'Food & Drink',
-    icon: '🍴'
-  },
-  {
-    russian: 'Нож',
-    english: 'Knife',
-    pronunciation: '',
-    category: 'Food & Drink',
-    icon: '🔪'
-  },
-  {
-    russian: 'Тарелка',
-    english: 'Plate',
-    pronunciation: '',
-    category: 'Food & Drink',
-    icon: '🍽️'
-  },
-  {
-    russian: 'Велосипед',
-    english: 'Bicycle',
-    pronunciation: '',
-    category: 'Places',
-    icon: '🚲'
-  },
-  {
-    russian: 'Чемодан',
-    english: 'Suitcase',
-    pronunciation: '',
-    category: 'Home',
-    icon: '🧳'
-  },
-  {
-    russian: 'Рюкзак',
-    english: 'Backpack',
-    pronunciation: '',
-    category: 'Home',
-    icon: '🎒'
-  },
-  {
-    russian: 'Кошелек',
-    english: 'Wallet',
-    pronunciation: '',
-    category: 'Home',
-    icon: '👛'
-  },
-  {
-    russian: 'Пожарный',
-    english: 'Firefighter',
-    pronunciation: '',
-    category: 'People',
-    icon: '🧑‍🚒'
-  },
-  {
-    russian: 'Отель',
-    english: 'Hotel',
-    pronunciation: '',
-    category: 'Places',
-    icon: '🏨'
-  },
-  {
-    russian: 'Пляж',
-    english: 'Beach',
-    pronunciation: '',
-    category: 'Nature',
-    icon: '🏖️'
-  },
-  {
-    russian: 'Гора',
-    english: 'Mountain',
-    pronunciation: '',
-    category: 'Nature',
-    icon: '⛰️'
-  },
-  {
-    russian: 'Река',
-    english: 'River',
-    pronunciation: '',
-    category: 'Nature',
-    icon: '🌊'
-  },
-  {
-    russian: 'Озеро',
-    english: 'Lake',
-    pronunciation: '',
-    category: 'Nature',
-    icon: '🏞️'
-  }
+  { russian: 'Карта / Карточка', english: 'Card', pronunciation: 'KAHR-tah / KAHR-tach-kah', category: 'Places', level: 1, icon: '📍' },
+  { russian: 'Объект / Предмет', english: 'Object', pronunciation: 'ahb-YEKT / preed-MYET', category: 'Home', level: 1, icon: '📦' },
+  { russian: 'Ёлка', english: 'Christmas tree', pronunciation: 'YOHL-kah', category: 'Nature', level: 1, icon: '🌿' },
+  { russian: 'Килограмм', english: 'Kilogram', pronunciation: 'kee-lah-GRAHM', category: 'Home', level: 1, icon: '⚖️' },
+  { russian: 'Ночь', english: 'Night', pronunciation: 'nohch\'', category: 'Time', level: 1, icon: '🌙' },
+  { russian: 'Веб', english: 'Web', pronunciation: 'vehp', category: 'Tech', level: 1, icon: '🌐' },
+  { russian: 'Желток', english: 'Yolk', pronunciation: 'zheel-TOHK', category: 'Food & Drink', level: 1, icon: '🍽️' },
+  { russian: 'Вагон', english: 'Wagon / Car', pronunciation: 'vah-GOHN', category: 'Travel', level: 1, icon: '📍' },
+  { russian: 'Пример', english: 'Example', pronunciation: 'pree-MYER', category: 'Home', level: 1, icon: '📝' },
+  { russian: 'Утро', english: 'Morning', pronunciation: 'OO-trah', category: 'Time', level: 1, icon: '🌅' },
+  { russian: 'День (после полудня)', english: 'Afternoon', pronunciation: 'dyen\' (POH-slye pah-LOOD-nya)', category: 'Time', level: 1, icon: '☀️' },
+  { russian: 'Вечер', english: 'Evening', pronunciation: 'VYE-cheer', category: 'Time', level: 1, icon: '🌆' },
+  { russian: 'Царь', english: 'Czar / King', pronunciation: 'tsahr\'', category: 'People', level: 1, icon: '👑' },
+  { russian: 'Борщ', english: 'Borscht', pronunciation: 'bohrshch', category: 'Food & Drink', level: 1, icon: '🍽️' },
+  { russian: 'Юг', english: 'South', pronunciation: 'yook', category: 'Nature', level: 1, icon: '🧭' },
+  { russian: 'Источник', english: 'Source', pronunciation: 'ees-TOHCH-neek', category: 'Home', level: 1, icon: '⛲' },
+  { russian: 'Или', english: 'Or', pronunciation: 'EE-lee', category: 'Essentials', level: 1, icon: '🔀' },
+  { russian: 'Это', english: 'This', pronunciation: 'EH-tah', category: 'Essentials', level: 1, icon: '👉' },
+  { russian: 'Может быть', english: 'Maybe', pronunciation: 'MOH-zhet byt\'', category: 'Essentials', level: 1, icon: '🤔' },
+  { russian: 'Нуждаться (нужно)', english: 'To need', pronunciation: 'noozh-DAHT-sya (NOOZH-nah)', category: 'Verbs', level: 1, icon: '⚡' },
+  { russian: 'Банан', english: 'Banana', pronunciation: 'bah-NAHN', category: 'Food & Drink', icon: '🍌' },
+  { russian: 'Мост', english: 'Bridge', pronunciation: 'mohst', category: 'Places', icon: '🌉' },
+  { russian: 'Рагу', english: 'Stew', pronunciation: 'rah-GOO', category: 'Food & Drink', icon: '🍲' },
+  { russian: 'Радио', english: 'Radio', pronunciation: 'RAH-dee-oh', category: 'Home', icon: '📻' },
+  { russian: 'Письменный стол', english: 'Desk', pronunciation: 'PEES-myen-ny stohl', category: 'Home', icon: '🪑' },
+  { russian: 'Музыка', english: 'Music', pronunciation: 'MOO-zy-kah', category: 'Home', icon: '🎵' },
+  { russian: 'Клубника', english: 'Strawberry', pronunciation: 'kloob-NEE-kah', category: 'Food & Drink', icon: '🍓' },
+  { russian: 'Чеснок', english: 'Garlic', pronunciation: 'chees-NOHK', category: 'Food & Drink', icon: '🧄' },
+  { russian: 'Картофель', english: 'Potato', pronunciation: 'kahr-TOH-feel\'', category: 'Food & Drink', icon: '🥔' },
+  { russian: 'Лук', english: 'Onion', pronunciation: 'look', category: 'Food & Drink', icon: '🧅' },
+  { russian: 'Морковь', english: 'Carrot', pronunciation: 'mahr-KOHF\'', category: 'Food & Drink', icon: '🥕' },
+  { russian: 'Ложка', english: 'Spoon', pronunciation: 'LOHSH-kah', category: 'Food & Drink', icon: '🥄' },
+  { russian: 'Вилка', english: 'Fork', pronunciation: 'VEEL-kah', category: 'Food & Drink', icon: '🍴' },
+  { russian: 'Нож', english: 'Knife', pronunciation: 'nohsh', category: 'Food & Drink', icon: '🔪' },
+  { russian: 'Тарелка', english: 'Plate', pronunciation: 'tah-RYEL-kah', category: 'Food & Drink', icon: '🍽️' },
+  { russian: 'Велосипед', english: 'Bicycle', pronunciation: 'vee-lah-see-PYET', category: 'Travel', icon: '🚲' },
+  { russian: 'Чемодан', english: 'Suitcase', pronunciation: 'chee-mah-DAHN', category: 'Travel', icon: '🧳' },
+  { russian: 'Рюкзак', english: 'Backpack', pronunciation: 'ryook-ZAHK', category: 'Travel', icon: '🎒' },
+  { russian: 'Кошелёк', english: 'Wallet', pronunciation: 'kah-shee-LYOHK', category: 'Shopping', icon: '👛' },
+  { russian: 'Пожарный', english: 'Firefighter', pronunciation: 'pah-ZHAHR-ny', category: 'People', icon: '🧑‍🚒' },
+  { russian: 'Пляж', english: 'Beach', pronunciation: 'plyahsh', category: 'Nature', icon: '🏖️' },
+  { russian: 'Гора', english: 'Mountain', pronunciation: 'gah-RAH', category: 'Nature', icon: '⛰️' },
+  { russian: 'Река', english: 'River', pronunciation: 'ree-KAH', category: 'Nature', icon: '🌊' },
+  { russian: 'Озеро', english: 'Lake', pronunciation: 'OH-zee-rah', category: 'Nature', icon: '🏞️' }
 ];
 
 // Time expressions and telling time
@@ -2772,239 +1126,331 @@ const time: PhraseItem[] = [
   {
     russian: 'Который час?',
     english: 'What time is it?',
-    pronunciation: 'kah-toh-riy chas'
+    pronunciation: 'kah-TOH-riy chas',
+    category: 'Questions',
+    icon: '⌚'
   },
   {
     russian: 'Сколько сейчас времени?',
     english: 'What time is it now?',
-    pronunciation: 'skohl-kah see-chas vrye-mee-nee'
+    pronunciation: 'SKOHL-kah see-CHAS VRYE-mee-nee',
+    category: 'Questions',
+    icon: '🕒'
   },
   {
     russian: 'Во сколько?',
     english: 'At what time?',
-    pronunciation: 'vah skohl-kah'
+    pronunciation: 'vah SKOHL-kah',
+    category: 'Questions',
+    icon: '❓'
   },
   {
     russian: 'время',
     english: 'time',
-    pronunciation: 'vrye-mya'
+    pronunciation: 'VRYE-mya',
+    category: 'Time',
+    icon: '⏱️'
   },
   {
     russian: 'сейчас',
     english: 'now',
-    pronunciation: 'see-chas'
+    pronunciation: 'see-CHAS',
+    category: 'Time',
+    icon: '📍'
   },
   {
     russian: 'час',
     english: 'hour',
-    pronunciation: 'chas'
+    pronunciation: 'chas',
+    category: 'Time',
+    icon: '⌛'
   },
   {
     russian: 'минута',
     english: 'minute',
-    pronunciation: 'mee-noo-ta'
+    pronunciation: 'mee-NOO-ta',
+    category: 'Time',
+    icon: '⏲️'
   },
   {
     russian: 'секунда',
     english: 'second',
-    pronunciation: 'see-koon-da'
+    pronunciation: 'see-KOON-da',
+    category: 'Time',
+    icon: '⏱️'
   },
 
   // Hours (Genitive agreement: час, часа, часов)
   {
     russian: 'Один час',
     english: 'One o\'clock',
-    pronunciation: 'ah-deen chas'
+    pronunciation: 'ah-DEEN chas',
+    category: 'Hour',
+    icon: '🕐'
   },
   {
     russian: 'Два часа',
     english: 'Two o\'clock',
-    pronunciation: 'dva cha-sah'
+    pronunciation: 'dvah cha-SAH',
+    category: 'Hour',
+    icon: '🕑'
   },
   {
     russian: 'Три часа',
     english: 'Three o\'clock',
-    pronunciation: 'tree cha-sah'
+    pronunciation: 'tree cha-SAH',
+    category: 'Hour',
+    icon: '🕒'
   },
   {
     russian: 'Четыре часа',
     english: 'Four o\'clock',
-    pronunciation: 'chee-ty-rye cha-sah'
+    pronunciation: 'chee-TY-rye cha-SAH',
+    category: 'Hour',
+    icon: '🕓'
   },
   {
     russian: 'Пять часов',
     english: 'Five o\'clock',
-    pronunciation: 'pyat\' cha-sohf'
+    pronunciation: 'pyat\' cha-SOHF',
+    category: 'Hour',
+    icon: '🕔'
   },
   {
     russian: 'Шесть часов',
     english: 'Six o\'clock',
-    pronunciation: 'shest\' cha-sohf'
+    pronunciation: 'shest\' cha-SOHF',
+    category: 'Hour',
+    icon: '🕕'
   },
   {
     russian: 'Семь часов',
     english: 'Seven o\'clock',
-    pronunciation: 'syem\' cha-sohf'
+    pronunciation: 'syem\' cha-SOHF',
+    category: 'Hour',
+    icon: '🕖'
   },
   {
     russian: 'Восемь часов',
     english: 'Eight o\'clock',
-    pronunciation: 'voh-seem\' cha-sohf'
+    pronunciation: 'VOH-seem\' cha-SOHF',
+    category: 'Hour',
+    icon: '🕗'
   },
   {
     russian: 'Девять часов',
     english: 'Nine o\'clock',
-    pronunciation: 'dyeh-vyat\' cha-sohf'
+    pronunciation: 'DYEH-veet\' cha-SOHF',
+    category: 'Hour',
+    icon: '🕘'
   },
   {
     russian: 'Десять часов',
     english: 'Ten o\'clock',
-    pronunciation: 'dyeh-syat\' cha-sohf'
+    pronunciation: 'DYEH-seet\' cha-SOHF',
+    category: 'Hour',
+    icon: '🕙'
   },
   {
     russian: 'Одиннадцать часов',
     english: 'Eleven o\'clock',
-    pronunciation: 'ah-deen-nad-tsat\' cha-sohf'
+    pronunciation: 'ah-DEE-nat-sat\' cha-SOHF',
+    category: 'Hour',
+    icon: '🕚'
   },
   {
     russian: 'Двенадцать часов',
     english: 'Twelve o\'clock',
-    pronunciation: 'dvye-nad-tsat\' cha-sohf'
+    pronunciation: 'dvye-NAT-sat\' cha-SOHF',
+    category: 'Hour',
+    icon: '🕛'
   },
 
-  // Times of Day
+  // Times of Day (genitive forms used after hours, e.g. «два часа дня»)
   {
     russian: 'утра',
     english: 'in the morning (a.m.)',
-    pronunciation: 'oot-rah'
+    pronunciation: 'oot-RAH',
+    category: 'Time of Day',
+    icon: '🌅'
   },
   {
     russian: 'дня',
     english: 'in the afternoon (p.m.)',
-    pronunciation: 'dnya'
+    pronunciation: 'dnya',
+    category: 'Time of Day',
+    icon: '☀️'
   },
   {
     russian: 'вечера',
     english: 'in the evening (p.m.)',
-    pronunciation: 'vye-chee-rah'
+    pronunciation: 'VYE-chee-rah',
+    category: 'Time of Day',
+    icon: '🌆'
   },
   {
     russian: 'ночи',
     english: 'at night',
-    pronunciation: 'noh-chee'
+    pronunciation: 'NOH-chee',
+    category: 'Time of Day',
+    icon: '🌙'
   },
   {
     russian: 'полдень',
     english: 'noon / midday',
-    pronunciation: 'pohl-dyen\''
+    pronunciation: 'POHL-dyen\'',
+    category: 'Special',
+    icon: '☀️'
   },
   {
     russian: 'полночь',
     english: 'midnight',
-    pronunciation: 'pohl-nahch'
+    pronunciation: 'POHL-nach',
+    category: 'Special',
+    icon: '🌑'
   },
 
   // Practical Expressions
   {
     russian: 'полчаса',
     english: 'half an hour',
-    pronunciation: 'pohl-cha-sah'
+    pronunciation: 'pohl-cha-SAH',
+    category: 'Minutes',
+    icon: '⏳'
   },
   {
     russian: 'четверть часа',
     english: 'quarter of an hour',
-    pronunciation: 'cheet-vyert\' cha-sah'
+    pronunciation: 'CHYET-vyert\' cha-SAH',
+    category: 'Minutes',
+    icon: '⏱️'
   },
   {
     russian: 'Половина первого',
     english: 'Half past twelve (12:30)',
-    pronunciation: 'pah-lah-vee-nah pyer-vah-vah'
+    pronunciation: 'pah-lah-VEE-nah PYER-vah-vah',
+    category: 'Minutes',
+    icon: '🕧'
   },
   {
     russian: 'Без десяти два',
     english: 'Ten to two (1:50)',
-    pronunciation: 'byez dye-see-tee dva'
+    pronunciation: 'byez dye-see-TEE dvah',
+    category: 'Minutes',
+    icon: '🕑'
   },
   {
     russian: 'Ровно три часа',
     english: 'Exactly three o\'clock',
-    pronunciation: 'rohv-nah tree cha-sah'
+    pronunciation: 'ROHV-nah tree cha-SAH',
+    category: 'Special',
+    icon: '🕒'
   },
   {
     russian: 'вовремя',
     english: 'on time',
-    pronunciation: 'voh-vrye-mya'
+    pronunciation: 'VOH-vrye-mya',
+    category: 'Special',
+    icon: '✅'
   },
   {
     russian: 'рано',
     english: 'early',
-    pronunciation: 'rah-nah'
+    pronunciation: 'RAH-nah',
+    category: 'Special',
+    icon: '🌅'
   },
   {
     russian: 'поздно',
     english: 'late',
-    pronunciation: 'pohz-nah'
+    pronunciation: 'POHZ-nah',
+    category: 'Special',
+    icon: '🌙'
   },
   // Days of the Week & Calendar
   {
     russian: 'понедельник',
     english: 'Monday',
-    pronunciation: 'pah-nee-dyel\'-neek'
+    pronunciation: 'pah-nee-DYEL\'-neek',
+    category: 'Calendar',
+    icon: '📅'
   },
   {
     russian: 'вторник',
     english: 'Tuesday',
-    pronunciation: 'ftohr-neek'
+    pronunciation: 'FTOHR-neek',
+    category: 'Calendar',
+    icon: '📅'
   },
   {
     russian: 'среда',
     english: 'Wednesday',
-    pronunciation: 'srye-dah'
+    pronunciation: 'srye-DAH',
+    category: 'Calendar',
+    icon: '📅'
   },
   {
     russian: 'четверг',
     english: 'Thursday',
-    pronunciation: 'cheet-vyerk'
+    pronunciation: 'cheet-VYERK',
+    category: 'Calendar',
+    icon: '📅'
   },
   {
     russian: 'пятница',
     english: 'Friday',
-    pronunciation: 'pyat-nee-tsa'
+    pronunciation: 'PYAT-nee-tsa',
+    category: 'Calendar',
+    icon: '📅'
   },
   {
     russian: 'суббота',
     english: 'Saturday',
-    pronunciation: 'soo-boh-ta'
+    pronunciation: 'soo-BOH-ta',
+    category: 'Calendar',
+    icon: '📅'
   },
   {
     russian: 'воскресенье',
     english: 'Sunday',
-    pronunciation: 'vah-skrye-syen\'-ye'
+    pronunciation: 'vah-skrye-SYEN\'-ye',
+    category: 'Calendar',
+    icon: '📅'
   },
   {
     russian: 'сегодня',
     english: 'today',
-    pronunciation: 'see-voh-dnya'
+    pronunciation: 'see-VOH-dnya',
+    category: 'Calendar',
+    icon: '📆'
   },
   {
     russian: 'вчера',
     english: 'yesterday',
-    pronunciation: 'fchee-rah'
+    pronunciation: 'fchee-RAH',
+    category: 'Calendar',
+    icon: '⏮️'
   },
   {
     russian: 'завтра',
     english: 'tomorrow',
-    pronunciation: 'zahf-tra'
+    pronunciation: 'ZAHF-tra',
+    category: 'Calendar',
+    icon: '⏭️'
   },
   {
     russian: 'день',
     english: 'day',
-    pronunciation: 'dyen\''
+    pronunciation: 'dyen\'',
+    category: 'Calendar',
+    icon: '☀️'
   },
   {
     russian: 'неделя',
     english: 'week',
-    pronunciation: 'nee-dye-lya'
+    pronunciation: 'nee-DYE-lya',
+    category: 'Calendar',
+    icon: '🗓️'
   }
 ];
 

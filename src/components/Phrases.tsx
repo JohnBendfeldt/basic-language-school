@@ -12,43 +12,62 @@ import { useModalAccessibility } from '../hooks/useModalAccessibility';
 
 const CATEGORY_ICONS: Record<string, string> = {
   'all': '✨',
-  'tech': '💻',
-  'business': '💼',
-  'health': '🏥',
-  'colors': '🎨',
-  'weather': '☀️',
-  'travel': '✈️',
-  'shopping': '🛍️',
+  'greetings': '👋',
+  'introductions': '🤝',
+  'courtesy': '🙏',
+  'politeness': '🙏',
+  'polite': '🙏',
+  'conversation': '💬',
+  'communication': '🗣️',
+  'responses': '✅',
+  'reply': '✅',
+  'farewells': '🚪',
+  'essentials': '⭐',
+  'questions': '❓',
+  'question': '❓',
+  'emergency': '🆘',
   'food & drink': '🍲',
   'dining': '🍽️',
-  'places': '🏙️',
-  'transport': '🚆',
-  'people': '👥',
-  'greetings': '👋',
-  'conversation': '💬',
-  'introductions': '🤝',
-  'politeness': '🙏',
-  'responses': '✅',
-  'farewells': '🚪',
-  'emergency': '🆘',
-  'essentials': '⭐',
-  'work': '💼',
-  'finance': '💵',
-  'time': '⏱️',
-  'questions': '❓',
-  'common verbs': '🏃',
-  'verbs': '🏃',
-  'descriptions': '📝',
-  'calendar': '📅',
-  'family': '👨‍👩‍👧',
   'food': '🍎',
-  'general': '💡',
+  'travel': '✈️',
+  'transport': '🚆',
+  'directions': '🧭',
+  'places': '🏙️',
+  'place': '🏙️',
+  'shopping': '🛍️',
+  'finance': '💵',
+  'health': '🏥',
+  'people': '👥',
+  'family': '👨‍👩‍👧',
   'home': '🏠',
+  'clothing': '👕',
+  'colors': '🎨',
   'nature': '🌿',
+  'animals': '🐾',
+  'weather': '☀️',
+  'time': '⏱️',
+  'time of day': '🌅',
+  'calendar': '📅',
+  'verbs': '🏃',
+  'common verbs': '🏃',
+  'descriptions': '📝',
+  'adjectives': '📝',
+  'tech': '💻',
+  'business': '💼',
+  'work': '💼',
+  'numbers': '🔢',
   'hour': '🕐',
+  'hours': '🕐',
+  'exact hours': '🕐',
+  'half hours': '🕧',
+  'quarter hours': '🕒',
+  'time asking': '⌚',
   'minutes': '⏲️',
   'special': '🌟',
-  'question': '❓'
+  'phrases': '💬',
+  'expressions': '💬',
+  'object': '📦',
+  'general': '💡'
 };
 
 interface PhraseCardProps {
@@ -219,8 +238,14 @@ const Phrases: React.FC<PhrasesProps> = ({
     }
     if (counts.size < 2) return [];
 
-    // Highlight industry & everyday topic packs first (Tech, Business, Health, Colors, Weather, Travel, Shopping), then remaining categories
-    const priorityOrder = ['Tech', 'Business', 'Health', 'Colors', 'Weather', 'Travel', 'Shopping', 'Food & Drink', 'Dining', 'Places', 'Transport', 'People', 'Greetings', 'Conversation', 'Politeness', 'Emergency', 'Essentials', 'Work', 'Finance', 'Time', 'Questions', 'Common Verbs'];
+    // Order everyday foundational categories first, followed by practical & specialized topic packs
+    const priorityOrder = [
+      'Greetings', 'Introductions', 'Courtesy', 'Politeness', 'Conversation', 'Communication',
+      'Responses', 'Farewells', 'Essentials', 'Questions', 'Emergency',
+      'Food & Drink', 'Dining', 'People', 'Family', 'Places', 'Home', 'Travel', 'Shopping',
+      'Colors', 'Nature', 'Animals', 'Weather', 'Time', 'Calendar',
+      'Verbs', 'Descriptions', 'Adjectives', 'Health', 'Finance', 'Tech', 'Business', 'Work', 'General'
+    ];
     const entries = Array.from(counts.entries()).sort((a, b) => {
       const idxA = priorityOrder.indexOf(a[0]);
       const idxB = priorityOrder.indexOf(b[0]);

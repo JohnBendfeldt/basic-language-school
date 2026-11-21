@@ -75,7 +75,7 @@ export const CONCEPT_MATRIX: ConceptItem[] = [
     translations: {
       en: { text: 'I am doing well, thank you', pronunciation: 'eye am DOO-ing well', audioCategory: 'phrases' },
       es: { text: 'Muy bien, gracias', pronunciation: 'mwee byehn, GRAH-syahs', audioCategory: 'phrases' },
-      fr: { text: 'Ça va bien, merci', pronunciation: 'sah vah BYAHN, mair-SEE', audioCategory: 'phrases' },
+      fr: { text: 'Ça va bien, merci', pronunciation: 'sah vah BYEHN, mair-SEE', audioCategory: 'phrases' },
       ru: { text: 'Хорошо, спасибо', pronunciation: 'kha-ra-SHO, spa-SEE-ba', audioCategory: 'phrases' }
     }
   },
@@ -85,7 +85,7 @@ export const CONCEPT_MATRIX: ConceptItem[] = [
     icon: '🙏',
     translations: {
       en: { text: 'Please', pronunciation: 'pleez', audioCategory: 'phrases' },
-      es: { text: 'Por favor', pronunciation: 'pohr fah-BVOHR', audioCategory: 'phrases' },
+      es: { text: 'Por favor', pronunciation: 'pohr fah-VOHR', audioCategory: 'phrases' },
       fr: { text: 'S\'il vous plaît', pronunciation: 'seel voo PLEH', audioCategory: 'phrases' },
       ru: { text: 'Пожалуйста', pronunciation: 'pa-ZHAL-oo-sta', audioCategory: 'phrases' }
     }
@@ -109,7 +109,7 @@ export const CONCEPT_MATRIX: ConceptItem[] = [
       en: { text: 'You are welcome', pronunciation: 'yoo ar WEL-kum', audioCategory: 'phrases' },
       es: { text: 'De nada', pronunciation: 'deh NAH-dah', audioCategory: 'phrases' },
       fr: { text: 'De rien', pronunciation: 'duh RYEHN', audioCategory: 'phrases' },
-      ru: { text: 'Не за что', pronunciation: 'NYE za chto', audioCategory: 'phrases' }
+      ru: { text: 'Не за что', pronunciation: 'NYE za shto', audioCategory: 'phrases' }
     }
   },
   {
@@ -195,7 +195,7 @@ export const CONCEPT_MATRIX: ConceptItem[] = [
     icon: '🧾',
     translations: {
       en: { text: 'Can I have the check, please?', pronunciation: 'kan eye hav the chek pleez', audioCategory: 'phrases' },
-      es: { text: 'La cuenta, por favor', pronunciation: 'lah KWEHN-tah pohr fah-BVOHR', audioCategory: 'phrases' },
+      es: { text: 'La cuenta, por favor', pronunciation: 'lah KWEHN-tah pohr fah-VOHR', audioCategory: 'phrases' },
       fr: { text: 'L\'addition, s\'il vous plaît', pronunciation: 'lah-dee-SYOHN seel voo PLEH', audioCategory: 'phrases' },
       ru: { text: 'Счет, пожалуйста', pronunciation: 'schyot pa-ZHAL-oo-sta', audioCategory: 'phrases' }
     }
@@ -228,7 +228,7 @@ export const CONCEPT_MATRIX: ConceptItem[] = [
     icon: '🔄',
     translations: {
       en: { text: 'Could you repeat that, please?', pronunciation: 'kood yoo ree-PEET that pleez', audioCategory: 'phrases' },
-      es: { text: '¿Puede repetir, por favor?', pronunciation: 'PWEH-deh reh-peh-TEER pohr fah-BVOHR', audioCategory: 'phrases' },
+      es: { text: '¿Puede repetir, por favor?', pronunciation: 'PWEH-deh reh-peh-TEER pohr fah-VOHR', audioCategory: 'phrases' },
       fr: { text: 'Pouvez-vous répéter ?', pronunciation: 'poo-vay voo ray-pay-TAY', audioCategory: 'phrases' },
       ru: { text: 'Повторите, пожалуйста', pronunciation: 'pav-ta-REE-tye pa-ZHAL-oo-sta', audioCategory: 'phrases' }
     }
@@ -238,7 +238,7 @@ export const CONCEPT_MATRIX: ConceptItem[] = [
     category: 'phrases',
     icon: '👋',
     translations: {
-      en: { text: 'Have a great day', pronunciation: 'hav a grayt day', audioCategory: 'phrases' },
+      en: { text: 'See you later', pronunciation: 'see yoo LAY-ter', audioCategory: 'phrases' },
       es: { text: 'Hasta luego', pronunciation: 'AHS-tah LWEH-goh', audioCategory: 'phrases' },
       fr: { text: 'À bientôt', pronunciation: 'ah byehn-TOH', audioCategory: 'phrases' },
       ru: { text: 'До свидания', pronunciation: 'da svee-DA-nee-ya', audioCategory: 'phrases' }

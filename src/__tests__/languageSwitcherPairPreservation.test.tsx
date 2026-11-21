@@ -300,8 +300,8 @@ describe('LanguageSwitcher Language Pair Preservation', () => {
     const trigger = screen.getByRole('button', { name: /Current language pair/i });
     fireEvent.click(trigger);
 
-    // Switch to "I speak" tab (Я говорю)
-    const iSpeakTab = screen.getAllByRole('button', { name: /Я говорю/i })[0];
+    // Switch to "I speak" tab (Мой язык)
+    const iSpeakTab = screen.getAllByRole('button', { name: /Мой язык/i })[0];
     fireEvent.click(iSpeakTab);
 
     // Select Indonesian (Индонезийский) as the new native language
@@ -372,7 +372,7 @@ describe('LanguageSwitcher Language Pair Preservation', () => {
     );
 
     fireEvent.click(screen.getByRole('button', { name: /Current language pair/i }));
-    const iSpeakTab = screen.getAllByRole('button', { name: /Я говорю/i })[0];
+    const iSpeakTab = screen.getAllByRole('button', { name: /Мой язык/i })[0];
     fireEvent.click(iSpeakTab);
 
     // User selects French as their native language (same as current target)

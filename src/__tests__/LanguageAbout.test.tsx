@@ -60,7 +60,7 @@ describe('LanguageAbout & Origins Component', () => {
 
     // Hero title & metadata
     expect(screen.getByText('The Story of Mandarin & Simplified Chinese')).toBeInTheDocument();
-    expect(screen.getByText('1.1+ Billion Native Speakers')).toBeInTheDocument();
+    expect(screen.getByText('~940 Million Native Speakers (1.1B+ Total)')).toBeInTheDocument();
     expect(screen.getByText(/Simplified Chinese Characters \(简体字\) & Hanyu Pinyin/i)).toBeInTheDocument();
     expect(screen.getByText('Sino-Tibetan')).toBeInTheDocument();
 
@@ -132,7 +132,7 @@ describe('LanguageAbout & Origins Component', () => {
 
     // Initial state: Alphabet view
     expect(screen.getByRole('tab', { name: /Alphabet & Sounds/i })).toHaveAttribute('aria-selected', 'true');
-    expect(screen.getByRole('tab', { name: /About & Origins & History/i })).toHaveAttribute('aria-selected', 'false');
+    expect(screen.getByRole('tab', { name: /About & History/i })).toHaveAttribute('aria-selected', 'false');
 
     // Teaser banner is visible in Chinese
     const teaser = screen.getByLabelText(/Learn about the history of Chinese writing/i);
@@ -140,7 +140,7 @@ describe('LanguageAbout & Origins Component', () => {
 
     // Click teaser banner to switch to About view
     fireEvent.click(teaser);
-    expect(screen.getByRole('tab', { name: /About & Origins & History/i })).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByRole('tab', { name: /About & History/i })).toHaveAttribute('aria-selected', 'true');
     expect(screen.getByText('The Story of Mandarin & Simplified Chinese')).toBeInTheDocument();
 
     // Switch back to Alphabet view
