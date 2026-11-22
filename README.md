@@ -66,6 +66,15 @@ An interactive, high-performance multi-language learning platform offering **15 
 
 ---
 
+## 🤖 Built with Google Antigravity & Gemini
+
+This project is actively developed and architected using **Google Antigravity** paired with **Google Gemini / Advanced Agentic AI**.
+
+* **Agentic Pair Programming**: Used Antigravity's autonomous multi-step workflows to build and audit 15 languages across 210 bidirectional pairs, implement phonetic virtual keyboards and offline binary audio packs, harden security headers and RLS schemas, and maintain Vitest and Playwright test suites.
+* **Architectural Velocity**: Demonstrates AI-accelerated full-stack engineering while maintaining strict TypeScript type safety, comprehensive test coverage, and security standards.
+
+---
+
 ## 🛠️ Tech Stack
 
 * **Frontend**: React 19.3, TypeScript 5.9, Modern CSS (CSS Variables, Flexbox/Grid, RTL support, Glassmorphism)
