@@ -10,7 +10,7 @@ async function renderOgImage() {
   const browser = await chromium.launch({ channel: 'chrome' });
   const page = await browser.newPage({
     viewport: { width: 1200, height: 630 },
-    deviceScaleFactor: 2
+    deviceScaleFactor: 1
   });
 
   const svgPath = path.resolve(__dirname, '../public/og-image.svg');

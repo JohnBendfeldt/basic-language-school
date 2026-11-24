@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import fs from 'node:fs';
 import path from 'node:path';
 import { SUPPORTED_LANGUAGES } from '../data/languages';
+import { buildRouteJsonLd } from '../../scripts/generate-seo-routes.mjs';
 
 const ROOT_DIR = path.resolve(__dirname, '../..');
 const BASE_URL = 'https://basiclanguage.school';
@@ -29,8 +30,8 @@ describe('SEO, Structured Data, Sitemap & Asset Integrity Audit', () => {
     expect(indexHtml).toContain('<meta name="author" content="John Bendfeldt" />');
     expect(indexHtml).toContain('<link rel="author" href="https://johnbendfeldt.com/" />');
     expect(indexHtml).toContain(`<link rel="canonical" href="${BASE_URL}/" />`);
-    expect(indexHtml).toContain('property="og:image:width" content="2400"');
-    expect(indexHtml).toContain('property="og:image:height" content="1260"');
+    expect(indexHtml).toContain('property="og:image:width" content="1200"');
+    expect(indexHtml).toContain('property="og:image:height" content="630"');
 
     for (const prop of [
       'og:type',
@@ -88,7 +89,38 @@ describe('SEO, Structured Data, Sitemap & Asset Integrity Audit', () => {
     expect(itemList.itemListElement.length).toBe(15);
   });
 
-  it('never references non-existent public assets in index.html or manifest.json', () => {
+  it('enriches static SEO routes with route-specific BreadcrumbList, WebPage/AboutPage, and per-language Course JSON-LD', () => {
+    const ldMatch = indexHtml.match(/<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/i);
+    const baseJsonLd = JSON.parse(ldMatch![1]);
+
+    const aboutLd = buildRouteJsonLd(baseJsonLd, {
+      path: '/about',
+      title: 'About & Contact | Basic Language School',
+      description: 'About Basic Language School.',
+    });
+    const aboutTypes = aboutLd['@graph'].map((n: { '@type': string }) => n['@type']);
+    expect(aboutTypes).toContain('AboutPage');
+    expect(aboutTypes).toContain('BreadcrumbList');
+
+    const spanishLd = buildRouteJsonLd(baseJsonLd, {
+      path: '/learn/es/alphabet',
+      langId: 'es',
+      langName: 'Spanish',
+      section: 'alphabet',
+      title: 'Spanish Alphabet & Pronunciation | Basic Language School',
+      description: 'Learn the Spanish alphabet with audio.',
+    });
+    const webPage = spanishLd['@graph'].find((n: { '@type': string }) => n['@type'] === 'WebPage');
+    const breadcrumb = spanishLd['@graph'].find((n: { '@type': string }) => n['@type'] === 'BreadcrumbList');
+    const course = spanishLd['@graph'].find((n: { '@type': string }) => n['@type'] === 'Course');
+    expect(webPage.url).toBe(`${BASE_URL}/learn/es/alphabet`);
+    expect(webPage.author).toEqual({ '@id': 'https://johnbendfeldt.com/#person' });
+    expect(breadcrumb.itemListElement).toHaveLength(3);
+    expect(course.name).toBe('Free Online Basic Spanish Course');
+    expect(course.creator).toEqual({ '@id': 'https://johnbendfeldt.com/#person' });
+  });
+
+  it('never references non-existent public assets in index.html or manifest.json and keeps og-image optimized', () => {
     expect(indexHtml).not.toContain('/splash-screen.png');
 
     for (const icon of manifest.icons || []) {
@@ -101,7 +133,9 @@ describe('SEO, Structured Data, Sitemap & Asset Integrity Audit', () => {
       expect(fs.existsSync(assetPath), `Missing manifest screenshot: ${shot.src}`).toBe(true);
     }
 
-    expect(fs.existsSync(path.join(ROOT_DIR, 'public/og-image.png'))).toBe(true);
+    const ogImagePath = path.join(ROOT_DIR, 'public/og-image.png');
+    expect(fs.existsSync(ogImagePath)).toBe(true);
+    expect(fs.statSync(ogImagePath).size).toBeLessThan(650 * 1024);
   });
 
   it('blocks indexing of internal voice-test.html via robots.txt, meta robots, and X-Robots-Tag', () => {
