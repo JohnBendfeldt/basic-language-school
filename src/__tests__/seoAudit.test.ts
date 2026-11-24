@@ -26,6 +26,8 @@ describe('SEO, Structured Data, Sitemap & Asset Integrity Audit', () => {
     expect(descMatch![1].length).toBeLessThanOrEqual(200);
 
     expect(indexHtml).toMatch(/<meta\s+name="robots"\s+content="[^"]*index,\s*follow[^"]*"/i);
+    expect(indexHtml).toContain('<meta name="author" content="John Bendfeldt" />');
+    expect(indexHtml).toContain('<link rel="author" href="https://johnbendfeldt.com/" />');
     expect(indexHtml).toContain(`<link rel="canonical" href="${BASE_URL}/" />`);
     expect(indexHtml).toContain('property="og:image:width" content="2400"');
     expect(indexHtml).toContain('property="og:image:height" content="1260"');
@@ -54,7 +56,7 @@ describe('SEO, Structured Data, Sitemap & Asset Integrity Audit', () => {
     }
   });
 
-  it('embeds valid JSON-LD structured data with EducationalOrganization, WebSite, WebApplication, and 15-course ItemList', () => {
+  it('embeds valid JSON-LD structured data with Person, EducationalOrganization, WebSite, WebApplication, and 15-course ItemList', () => {
     const ldMatch = indexHtml.match(/<script\s+type="application\/ld\+json">([\s\S]*?)<\/script>/i);
     expect(ldMatch).not.toBeNull();
 
@@ -63,10 +65,23 @@ describe('SEO, Structured Data, Sitemap & Asset Integrity Audit', () => {
     expect(Array.isArray(jsonLd['@graph'])).toBe(true);
 
     const types = jsonLd['@graph'].map((node: { '@type': string }) => node['@type']);
+    expect(types).toContain('Person');
     expect(types).toContain('EducationalOrganization');
     expect(types).toContain('WebSite');
     expect(types).toContain('WebApplication');
     expect(types).toContain('ItemList');
+
+    const person = jsonLd['@graph'].find((node: { '@type': string }) => node['@type'] === 'Person');
+    expect(person['@id']).toBe('https://johnbendfeldt.com/#person');
+    expect(person.name).toBe('John Bendfeldt');
+    expect(person.url).toBe('https://johnbendfeldt.com/');
+
+    const org = jsonLd['@graph'].find((node: { '@type': string }) => node['@type'] === 'EducationalOrganization');
+    expect(org.founder).toEqual({ '@id': 'https://johnbendfeldt.com/#person' });
+
+    const webApp = jsonLd['@graph'].find((node: { '@type': string }) => node['@type'] === 'WebApplication');
+    expect(webApp.author).toEqual({ '@id': 'https://johnbendfeldt.com/#person' });
+    expect(webApp.creator).toEqual({ '@id': 'https://johnbendfeldt.com/#person' });
 
     const itemList = jsonLd['@graph'].find((node: { '@type': string }) => node['@type'] === 'ItemList');
     expect(itemList.numberOfItems).toBe(15);
@@ -122,10 +137,12 @@ describe('SEO, Structured Data, Sitemap & Asset Integrity Audit', () => {
     }
   });
 
-  it('includes canonical and Open Graph tags on standalone legal pages', () => {
+  it('includes canonical, author, and Open Graph tags on standalone legal pages', () => {
     for (const page of ['privacy', 'terms']) {
       const html = fs.readFileSync(path.join(ROOT_DIR, `public/${page}/index.html`), 'utf-8');
       expect(html).toContain(`<link rel="canonical" href="${BASE_URL}/${page}">`);
+      expect(html).toContain('<meta name="author" content="John Bendfeldt">');
+      expect(html).toContain('<link rel="author" href="https://johnbendfeldt.com/">');
       expect(html).toContain('<meta name="robots" content="index, follow">');
       expect(html).toContain(`property="og:url" content="${BASE_URL}/${page}"`);
     }

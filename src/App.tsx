@@ -608,7 +608,22 @@ const AppContent: React.FC = () => {
       
       <footer>
         <p>
-          © {new Date().getFullYear()} Basic Language School · {chrome.allRightsReserved.replace(/\.$/, '')} ·{' '}
+          © {new Date().getFullYear()} Basic Language School ·{' '}
+          <span
+            lang={baseLanguage !== 'en' ? 'en' : undefined}
+            dir={baseLanguage !== 'en' ? 'ltr' : undefined}
+          >
+            Created by{' '}
+            <a
+              href="https://johnbendfeldt.com"
+              target="_blank"
+              rel="noopener noreferrer author"
+              className="footer-link"
+            >
+              John Bendfeldt
+            </a>
+          </span>{' '}
+          · {chrome.allRightsReserved.replace(/\.$/, '')} ·{' '}
           <a
             href="/about"
             className="footer-link"

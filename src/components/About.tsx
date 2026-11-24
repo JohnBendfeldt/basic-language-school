@@ -114,7 +114,15 @@ export const About: React.FC<AboutProps> = ({ onNavigate }) => {
             <span className="contact-label">
               <FaUser className="contact-icon" aria-hidden="true" /> {t.contactNameLabel}
             </span>
-            <span className="contact-value" lang={englishPassageLang} dir={englishPassageLang ? 'ltr' : undefined}>John Bendfeldt</span>
+            <span className="contact-value" lang={englishPassageLang} dir={englishPassageLang ? 'ltr' : undefined}>
+              <a
+                href="https://johnbendfeldt.com"
+                target="_blank"
+                rel="noopener noreferrer author"
+              >
+                John Bendfeldt
+              </a>
+            </span>
           </div>
           <div className="contact-row">
             <span className="contact-label">

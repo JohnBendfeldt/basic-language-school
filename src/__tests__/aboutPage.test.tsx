@@ -23,7 +23,9 @@ describe('About & Contact Component', () => {
     expect(screen.getByText(/genuinely free, ad-free bidirectional learning across 15 languages/i)).toBeInTheDocument();
 
     // Creator and contact
-    expect(screen.getByText('John Bendfeldt')).toBeInTheDocument();
+    const creatorLink = screen.getByRole('link', { name: 'John Bendfeldt' });
+    expect(creatorLink).toHaveAttribute('href', 'https://johnbendfeldt.com');
+    expect(creatorLink).toHaveAttribute('rel', 'noopener noreferrer author');
     const mailtoLinks = screen.getAllByRole('link', { name: /dev@basiclanguage\.school/i });
     expect(mailtoLinks.length).toBeGreaterThan(0);
     expect(mailtoLinks[0]).toHaveAttribute('href', 'mailto:dev@basiclanguage.school');
@@ -42,8 +44,12 @@ describe('About & Contact Component', () => {
     expect(handleNavigate).toHaveBeenCalledWith('terms');
   });
 
-  it('renders the About link in the app footer and navigates when clicked', async () => {
+  it('renders the About and author links in the app footer and navigates when clicked', async () => {
     render(<App />);
+
+    const authorFooterLink = screen.getByRole('link', { name: 'John Bendfeldt' });
+    expect(authorFooterLink).toHaveAttribute('href', 'https://johnbendfeldt.com');
+    expect(authorFooterLink).toHaveAttribute('rel', 'noopener noreferrer author');
 
     const aboutFooterLink = screen.getByRole('link', { name: /about & contact/i });
     expect(aboutFooterLink).toBeInTheDocument();
