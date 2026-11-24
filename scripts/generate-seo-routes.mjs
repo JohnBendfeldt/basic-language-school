@@ -33,10 +33,10 @@ const routes = [
     path: '/about',
     title: 'About & Contact | Basic Language School',
     description:
-      'Learn about Basic Language School — a free, privacy-friendly platform for learning 15 world languages across 210 bidirectional pairs with studio neural audio.',
+      'Learn about Basic Language School, created by John Bendfeldt — a free, privacy-friendly platform for learning 15 world languages across 210 pairs with studio audio.',
     heading: 'About Basic Language School',
     summary:
-      'Basic Language School provides free online courses across 15 world languages and 210 bidirectional pairs with studio neural audio, grammar flashcards, phonetic keyboards, and spaced-repetition quizzes.',
+      'Created by John Bendfeldt, Basic Language School provides free online courses across 15 world languages and 210 bidirectional pairs with studio neural audio, grammar flashcards, phonetic keyboards, and spaced-repetition quizzes.',
     navLinks: [
       { href: '/', label: 'Basic Language School Home' },
       { href: '/learn/es/alphabet', label: 'Learn Spanish' },
@@ -116,7 +116,7 @@ for (const route of routes) {
       /<noscript>[\s\S]*?<\/noscript>/i,
       () => `<noscript>
       <h1>${escapeHtml(route.heading)}</h1>
-      <p>${escapeHtml(route.summary)} Please enable JavaScript to use the full interactive app.</p>
+      <p>${escapeHtml(route.summary)} Created by <a href="https://johnbendfeldt.com/" rel="author">John Bendfeldt</a>. Please enable JavaScript to use the full interactive app.</p>
       <nav aria-label="Course navigation">
         <ul>
 ${navItemsHtml}

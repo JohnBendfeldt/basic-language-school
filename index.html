@@ -17,6 +17,8 @@
     <title>Basic Language School | Free Online Language Courses &amp; Quizzes</title>
     <meta name="description" content="Learn 15 world languages free online: Spanish, French, German, Russian, Portuguese, Indonesian, Turkish, Chinese, Japanese, Korean, Hindi, Arabic, Bengali, Urdu &amp; English." />
     <meta name="keywords" content="basic language school, learn spanish, learn french, learn german, learn russian, learn portuguese, learn indonesian, learn turkish, learn english, learn chinese, learn japanese, learn korean, learn hindi, learn arabic, learn bengali, learn urdu, language learning, vocabulary, studio audio" />
+    <meta name="author" content="John Bendfeldt" />
+    <link rel="author" href="https://johnbendfeldt.com/" />
     <link rel="canonical" href="https://basiclanguage.school/" />
 
     <!-- Open Graph (Facebook, LinkedIn, Twitter, etc.) -->
@@ -54,12 +56,25 @@
       "@context": "https://schema.org",
       "@graph": [
         {
+          "@type": "Person",
+          "@id": "https://johnbendfeldt.com/#person",
+          "name": "John Bendfeldt",
+          "url": "https://johnbendfeldt.com/",
+          "sameAs": [
+            "https://github.com/JohnBendfeldt",
+            "https://www.linkedin.com/in/johnbendfeldt"
+          ]
+        },
+        {
           "@type": "EducationalOrganization",
           "@id": "https://basiclanguage.school/#organization",
           "name": "Basic Language School",
           "url": "https://basiclanguage.school/",
           "logo": "https://basiclanguage.school/logo512.png",
           "description": "Free online multi-language learning school offering 15 world languages across 210 bidirectional language pairs with studio neural audio and interactive exercises.",
+          "founder": {
+            "@id": "https://johnbendfeldt.com/#person"
+          },
           "sameAs": [
             "https://basicenglish.school/",
             "https://basicfrench.org/",
@@ -78,6 +93,9 @@
           "url": "https://basiclanguage.school/",
           "description": "Free online courses in 15 world languages across 210 bidirectional pairs with studio neural audio, grammar flashcards, and spaced-repetition quizzes.",
           "inLanguage": ["en", "es", "fr", "de", "pt", "id", "tr", "ru", "zh", "ja", "ko", "hi", "ar", "bn", "ur"],
+          "author": {
+            "@id": "https://johnbendfeldt.com/#person"
+          },
           "publisher": {
             "@id": "https://basiclanguage.school/#organization"
           }
@@ -95,6 +113,12 @@
           "browserRequirements": "Requires JavaScript",
           "inLanguage": ["en", "es", "fr", "de", "pt", "id", "tr", "ru", "zh", "ja", "ko", "hi", "ar", "bn", "ur"],
           "isAccessibleForFree": true,
+          "author": {
+            "@id": "https://johnbendfeldt.com/#person"
+          },
+          "creator": {
+            "@id": "https://johnbendfeldt.com/#person"
+          },
           "provider": {
             "@id": "https://basiclanguage.school/#organization"
           },
@@ -155,7 +179,7 @@
         Learn 15 world languages across 210 bidirectional language pairs online for free at BasicLanguage.school:
         English, Spanish, French, German, Russian, Portuguese, Indonesian, Turkish, Mandarin Chinese, Japanese, Korean, Hindi, Arabic, Bengali, and Urdu.
         Study alphabets, essential phrases, grammar, common words, numbers, and pronunciation with interactive
-        exercises and native studio audio. Please enable JavaScript to use the full app.
+        exercises and native studio audio. Created by <a href="https://johnbendfeldt.com/" rel="author">John Bendfeldt</a>. Please enable JavaScript to use the full app.
       </p>
       <nav aria-label="Language courses">
         <ul>
