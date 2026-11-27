@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="132" viewBox="0 0 320 132">
+  <defs>
+    <linearGradient id="spectrum" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="320" y2="0">
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="20%" style="stop-color:#ef4444"/>
+      <stop offset="40%" style="stop-color:#3b82f6"/>
+      <stop offset="60%" style="stop-color:#10b981"/>
+      <stop offset="80%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#ec4899"/>
+    </linearGradient>
+
+    <linearGradient id="dividerSpectrum" gradientUnits="userSpaceOnUse" x1="104" y1="0" x2="300" y2="0">
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="20%" style="stop-color:#ef4444"/>
+      <stop offset="40%" style="stop-color:#3b82f6"/>
+      <stop offset="60%" style="stop-color:#10b981"/>
+      <stop offset="80%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#ec4899"/>
+    </linearGradient>
+
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fde047"/>
+      <stop offset="60%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#d97706"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Flat Midnight Navy Background -->
+  <rect width="320" height="132" fill="#0b0f19"/>
+
+  <!-- Top & Bottom Multi-Language Spectrum Bars -->
+  <rect x="0" y="0" width="320" height="4" fill="url(#spectrum)"/>
+  <rect x="0" y="128" width="320" height="4" fill="url(#spectrum)"/>
+
+  <!-- Left Academic Crest Emblem (72x72, scaled from 52x52) -->
+  <g transform="translate(16, 30) scale(1.384615)">
+    <rect x="0" y="0" width="52" height="52" rx="16" fill="#4338ca" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+    <path d="M26 14 L11 22 L26 30 L41 22 Z" fill="url(#goldGrad)"/>
+    <path d="M17 26.5 V35.5 C17 38.5 21 41 26 41 C31 41 35 38.5 35 35.5 V26.5" stroke="#ffffff" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <path d="M41 23 V33" stroke="url(#goldGrad)" stroke-width="2.4" stroke-linecap="round"/>
+  </g>
+
+  <!-- Right Wordmark & Domain -->
+  <text x="104" y="49" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#ffffff" letter-spacing="-0.3">
+    Basic Language
+  </text>
+  <text x="104" y="74" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#ffffff" letter-spacing="-0.3">
+    School
+  </text>
+
+  <rect x="104" y="84" width="196" height="3" rx="1.5" fill="url(#dividerSpectrum)"/>
+
+  <text x="104" y="106" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#fde047" letter-spacing="0.2">
+    basiclanguage.school
+  </text>
+</svg>
